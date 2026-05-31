@@ -1,0 +1,22 @@
+export function BackgroundSnippet() {
+  return (
+    <div
+      aria-hidden="true"
+      className="absolute inset-0 -z-10 h-full w-full"
+      style={{
+        backgroundImage: `
+          linear-gradient(to right,  hsl(0 0% 100% / 0.035) 1px, transparent 1px),
+          linear-gradient(to bottom, hsl(0 0% 100% / 0.035) 1px, transparent 1px)
+        `,
+        backgroundSize: '6rem 4rem',
+      }}
+    >
+      <div
+        className="absolute bottom-0 left-0 right-0 top-0"
+        style={{
+          background: 'radial-gradient(circle 800px at 100% 200px, hsl(270 70% 65% / 0.12), transparent)',
+        }}
+      />
+    </div>
+  )
+}
