@@ -4,8 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Globe, Bot, BarChart2, Sparkles, Video, Settings2, Plug, Clock, UserCheck, CalendarDays, Zap, Camera, Target, Layers } from 'lucide-react'
 import { MessengerGlowBackground } from './ui/background-components'
 import { TestimonialsSection } from './ui/testimonials-1'
-import { BackgroundGradientSnippet } from './ui/background-gradient-snippet'
-import { GridBackground, ComplexMultiplierBg } from './ui/grid-background'
+import { GridBackground } from './ui/grid-background'
 import { BeamsBackgroundLayer } from './ui/beams-background'
 import { CircularGallery, type GalleryItem } from './ui/circular-gallery'
 import { GradientBlurBg } from './ui/gradient-blur-bg'
@@ -3693,7 +3692,7 @@ function SocialMediaMarketing() {
                 }}
               >
                 <video
-                  src="/brand_assets/social_control_room.mp4"
+                  src="https://pub-731d5e7deddb4fce94cef7393920d429.r2.dev/social_control_room.mp4"
                   autoPlay
                   muted
                   loop
@@ -4643,7 +4642,7 @@ function SocialMediaMarketing() {
                 }}
               >
                 <video
-                  src="/brand_assets/Damaal.mp4"
+                  src="https://pub-731d5e7deddb4fce94cef7393920d429.r2.dev/Damaal.mp4"
                   controls
                   playsInline
                   preload="metadata"
@@ -5342,7 +5341,7 @@ function ChatbotHero() {
         }}
       >
         <video
-          src="/brand_assets/chatbot-hero.mp4"
+          src="https://pub-731d5e7deddb4fce94cef7393920d429.r2.dev/chatbot-hero.mp4"
           autoPlay
           loop
           muted
@@ -6080,193 +6079,6 @@ function GraphicDesignSplitA() {
 
 // ─── Graphic Design — Split B (Text left · CSS office right) ─────────────────
 
-function OfficeIllustration() {
-  return (
-    <div style={{
-      position: 'relative',
-      width: '100%',
-      aspectRatio: '4 / 5',
-      borderRadius: '30px',
-      overflow: 'hidden',
-      background: '#06060a',
-      boxShadow: [
-        '0 1px 0 1px hsl(0 0% 100% / 0.06)',
-        '0 32px 72px -12px hsl(0 0% 0% / 0.9)',
-      ].join(', '),
-    }}>
-
-      {/* ── Base room gradient ── */}
-      <div style={{
-        position: 'absolute', inset: 0,
-        background: 'linear-gradient(160deg, #0c0c10 0%, #080810 45%, #050508 100%)',
-      }}/>
-
-      {/* ── Back wall plane ── */}
-      <div style={{
-        position: 'absolute', top: '8%', left: '6%', right: '6%', bottom: '28%',
-        background: 'linear-gradient(180deg, #0f0f14 0%, #0b0b12 100%)',
-        borderRadius: '4px',
-        border: '1px solid hsl(0 0% 100% / 0.04)',
-      }}/>
-
-      {/* ── Large window — floor to ceiling ── */}
-      <div style={{
-        position: 'absolute', top: '11%', left: '10%', width: '38%', bottom: '32%',
-        background: 'linear-gradient(180deg, hsl(220 30% 18% / 0.30) 0%, hsl(220 20% 12% / 0.15) 60%, hsl(220 20% 10% / 0.10) 100%)',
-        border: '1px solid hsl(0 0% 100% / 0.07)',
-        borderRadius: '3px 3px 0 0',
-      }}>
-        {/* Window pane divisions */}
-        <div style={{
-          position: 'absolute', top: '8%', left: '8%', right: '8%', height: '1px',
-          background: 'hsl(0 0% 100% / 0.07)',
-        }}/>
-        <div style={{
-          position: 'absolute', top: '8%', bottom: '8%', left: '49%',
-          width: '1px', background: 'hsl(0 0% 100% / 0.06)',
-        }}/>
-        <div style={{
-          position: 'absolute', top: '48%', left: '8%', right: '8%', height: '1px',
-          background: 'hsl(0 0% 100% / 0.04)',
-        }}/>
-        {/* Subtle city glow */}
-        <div style={{
-          position: 'absolute', inset: 0,
-          background: 'radial-gradient(ellipse 80% 60% at 40% 80%, hsl(220 50% 30% / 0.12) 0%, transparent 70%)',
-        }}/>
-      </div>
-
-      {/* ── Decorative wall panel right ── */}
-      <div style={{
-        position: 'absolute', top: '14%', right: '8%', width: '28%', bottom: '32%',
-        background: 'linear-gradient(160deg, #111115 0%, #0d0d12 100%)',
-        border: '1px solid hsl(0 0% 100% / 0.04)',
-        borderRadius: '3px',
-      }}>
-        {/* Thin white accent strip */}
-        <div style={{
-          position: 'absolute', top: '15%', left: 0, width: '1px', height: '40%',
-          background: 'linear-gradient(to bottom, hsl(0 0% 100% / 0.18), transparent)',
-          borderRadius: '1px',
-        }}/>
-      </div>
-
-      {/* ── Pendant light — cool white ── */}
-      <div style={{ position: 'absolute', top: 0, left: '60%', width: '1px', height: '12%', background: 'hsl(0 0% 60% / 0.30)' }}/>
-      <div style={{
-        position: 'absolute', top: '11%', left: 'calc(60% - 20px)',
-        width: '41px', height: '24px',
-        borderRadius: '0 0 50% 50%',
-        background: 'linear-gradient(180deg, #18181e 0%, #202028 100%)',
-        border: '1px solid hsl(0 0% 100% / 0.10)',
-        boxShadow: '0 0 16px hsl(220 40% 60% / 0.18)',
-      }}/>
-      {/* Light cone */}
-      <div style={{
-        position: 'absolute', top: '14%', left: 'calc(60% - 48px)',
-        width: '96px', height: '130px',
-        background: 'radial-gradient(ellipse at 50% 0%, hsl(220 40% 65% / 0.09) 0%, transparent 70%)',
-        pointerEvents: 'none',
-      }}/>
-
-      {/* ── Floor ── */}
-      <div style={{
-        position: 'absolute', bottom: 0, left: 0, right: 0, height: '30%',
-        background: 'linear-gradient(to top, #040406 0%, #07070c 80%, transparent 100%)',
-      }}/>
-      {/* Floor line */}
-      <div style={{
-        position: 'absolute', bottom: '27.5%', left: '5%', right: '5%', height: '1px',
-        background: 'hsl(0 0% 100% / 0.05)',
-      }}/>
-
-      {/* ── Desk surface ── */}
-      <div style={{
-        position: 'absolute', bottom: '27%', left: '5%', right: '5%', height: '3px',
-        background: 'linear-gradient(to right, #14141a, #1e1e28 30%, #242430 55%, #1e1e28 80%, #14141a)',
-        borderRadius: '2px',
-      }}/>
-
-      {/* ── Monitor ── */}
-      <div style={{
-        position: 'absolute', bottom: '30%', left: '50%',
-        transform: 'translateX(-50%)', width: '26%',
-      }}>
-        <div style={{
-          width: '100%', paddingTop: '62%',
-          background: '#0e0e16',
-          borderRadius: '5px 5px 3px 3px',
-          border: '1px solid hsl(0 0% 100% / 0.10)',
-          position: 'relative',
-          boxShadow: '0 0 24px hsl(220 50% 55% / 0.15)',
-          overflow: 'hidden',
-        }}>
-          <div style={{
-            position: 'absolute', inset: '8%',
-            background: 'linear-gradient(135deg, #0d0d18 0%, #0c0c1c 100%)',
-            borderRadius: '3px',
-          }}>
-            {[
-              { w: '62%', c: 'hsl(220 60% 65% / 0.55)', ml: '0%'  },
-              { w: '44%', c: 'hsl(180 40% 55% / 0.45)', ml: '10%' },
-              { w: '52%', c: 'hsl(0   0%  40% / 0.30)', ml: '6%'  },
-              { w: '36%', c: 'hsl(220 50% 60% / 0.50)', ml: '14%' },
-              { w: '58%', c: 'hsl(0   0%  32% / 0.25)', ml: '0%'  },
-              { w: '48%', c: 'hsl(180 35% 50% / 0.40)', ml: '10%' },
-              { w: '40%', c: 'hsl(220 55% 62% / 0.45)', ml: '6%'  },
-            ].map((l, i) => (
-              <div key={i} style={{
-                height: '2px', borderRadius: '1px',
-                width: l.w, marginLeft: l.ml,
-                background: l.c,
-                marginBottom: '5px',
-                marginTop: i === 0 ? '5px' : 0,
-              }}/>
-            ))}
-          </div>
-        </div>
-        <div style={{ width: '7%', height: '9px', margin: '0 auto', background: '#181820' }}/>
-        <div style={{ width: '38%', height: '3px', margin: '0 auto', background: '#1c1c24', borderRadius: '2px' }}/>
-      </div>
-
-      {/* ── Keyboard ── */}
-      <div style={{
-        position: 'absolute', bottom: '28.5%', left: '50%',
-        transform: 'translateX(-50%)',
-        width: '20%', height: '4px',
-        background: '#1a1a22',
-        borderRadius: '2px',
-        border: '1px solid hsl(0 0% 100% / 0.05)',
-      }}/>
-
-      {/* ── Small plant ── */}
-      <div style={{ position: 'absolute', bottom: '27%', left: '9%' }}>
-        <div style={{
-          width: '16px', height: '12px',
-          background: 'linear-gradient(135deg, #18181e, #141418)',
-          borderRadius: '2px 2px 4px 4px',
-          margin: '0 auto',
-          border: '1px solid hsl(0 0% 100% / 0.06)',
-        }}/>
-        <svg width="30" height="26" viewBox="0 0 30 26"
-          style={{ position: 'absolute', bottom: '8px', left: '-7px' }}>
-          <path d="M15 26 Q8 18 4 10"  stroke="hsl(140 22% 18%)" strokeWidth="1.2" fill="none"/>
-          <path d="M15 26 Q19 16 24 12" stroke="hsl(140 22% 18%)" strokeWidth="1.2" fill="none"/>
-          <path d="M15 26 Q15 14 15 7"  stroke="hsl(140 22% 20%)" strokeWidth="1.2" fill="none"/>
-          <ellipse cx="4"  cy="9"  rx="4" ry="2.5" fill="hsl(140 20% 14%)" transform="rotate(-22,4,9)"/>
-          <ellipse cx="24" cy="11" rx="4" ry="2.5" fill="hsl(140 20% 14%)" transform="rotate(22,24,11)"/>
-          <ellipse cx="15" cy="6"  rx="3" ry="2"   fill="hsl(140 20% 16%)"/>
-        </svg>
-      </div>
-
-      {/* ── Vignette ── */}
-      <div style={{
-        position: 'absolute', inset: 0, pointerEvents: 'none',
-        background: 'radial-gradient(ellipse 100% 100% at 50% 50%, transparent 38%, hsl(0 0% 0% / 0.65) 100%)',
-      }}/>
-    </div>
-  )
-}
 
 function GraphicDesignSplitB() {
   const ref = useRef<HTMLElement>(null)
@@ -7269,7 +7081,7 @@ function UGCHero() {
     >
       {/* Background video */}
       <video autoPlay muted loop playsInline aria-hidden="true" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', pointerEvents: 'none' }}>
-        <source src="/brand_assets/tiktok_grid.mp4" type="video/mp4" />
+        <source src="https://pub-731d5e7deddb4fce94cef7393920d429.r2.dev/tiktok_grid.mp4" type="video/mp4" />
       </video>
 
       {/* Layered overlays */}
@@ -7708,7 +7520,7 @@ function UGCFindCreators() {
                   autoPlay muted loop playsInline
                   style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
                 >
-                  <source src="/brand_assets/Cream_velvet.mp4" type="video/mp4" />
+                  <source src="https://pub-731d5e7deddb4fce94cef7393920d429.r2.dev/Cream_velvet.mp4" type="video/mp4" />
                 </video>
 
                 {/* Sound toggle */}
@@ -8555,7 +8367,7 @@ function UGCPerfumeCampaign() {
                       objectFit: 'cover',
                     }}
                   >
-                    <source src="/brand_assets/A'llure3..mp4" type="video/mp4" />
+                    <source src="https://pub-731d5e7deddb4fce94cef7393920d429.r2.dev/A'llure3..mp4" type="video/mp4" />
                   </video>
 
                   {/* Sound toggle */}
@@ -10160,9 +9972,6 @@ export default function Services() {
           backgroundImage: 'radial-gradient(hsl(36 40% 70% / 0.028) 1px, transparent 1px)',
           backgroundSize: '26px 26px',
         }}/>
-
-        {/* Complex multiplier grid — behind hero text */}
-        <ComplexMultiplierBg className="z-[1]" />
 
         <div className="relative z-10 w-full max-w-[72rem] mx-auto px-6 sm:px-10">
 
