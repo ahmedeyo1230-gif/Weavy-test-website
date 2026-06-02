@@ -702,7 +702,7 @@ function BlogCTA() {
 
             {/* Email link */}
             <a
-              href="mailto:hello@weavy.agency"
+              href="mailto:hello@weavyautomation.com"
               onMouseEnter={() => setEmailHover(true)}
               onMouseLeave={() => setEmailHover(false)}
               style={{
@@ -717,7 +717,7 @@ function BlogCTA() {
                 transition: 'color 0.3s ease, border-color 0.3s ease',
               }}
             >
-              hello@weavy.agency
+              hello@weavyautomation.com
             </a>
           </motion.div>
         </motion.div>
@@ -985,7 +985,7 @@ function BlogContactFooter() {
 
         {/* CTA button */}
         <a
-          href="mailto:hello@weavy.agency"
+          href="mailto:hello@weavyautomation.com"
           onMouseEnter={() => setCtaHover(true)}
           onMouseLeave={() => setCtaHover(false)}
           className="relative mb-24 rounded-full"
@@ -1014,7 +1014,7 @@ function BlogContactFooter() {
             }}
           >
             <span style={{ width: 7, height: 7, borderRadius: '50%', flexShrink: 0, background: ctaHover ? 'hsl(199 89% 65%)' : 'hsl(0 0% 32%)', boxShadow: ctaHover ? '0 0 8px hsl(199 89% 65% / 0.8)' : 'none', transition: 'all 0.35s ease' }} />
-            hello@weavy.agency
+            hello@weavyautomation.com
             <span aria-hidden="true" style={{ fontSize: '1em', opacity: ctaHover ? 1 : 0.35, transform: ctaHover ? 'translateX(3px)' : 'translateX(0)', transition: 'all 0.35s ease', display: 'inline-block' }}>→</span>
           </span>
         </a>

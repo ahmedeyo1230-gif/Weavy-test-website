@@ -661,7 +661,7 @@ function WorkCTA() {
         >
           {/* Primary CTA */}
           <a
-            href="mailto:hello@weavy.agency"
+            href="mailto:hello@weavyautomation.com"
             onMouseEnter={() => setBtnHover(true)}
             onMouseLeave={() => setBtnHover(false)}
             style={{
@@ -688,7 +688,7 @@ function WorkCTA() {
 
           {/* Email link */}
           <a
-            href="mailto:hello@weavy.agency"
+            href="mailto:hello@weavyautomation.com"
             onMouseEnter={() => setEmailHover(true)}
             onMouseLeave={() => setEmailHover(false)}
             style={{
@@ -703,7 +703,7 @@ function WorkCTA() {
               transition: 'color 0.3s ease, border-color 0.3s ease',
             }}
           >
-            hello@weavy.agency
+            hello@weavyautomation.com
           </a>
         </div>
 
@@ -1420,7 +1420,7 @@ export default function ImageShowcase() {
             display: 'block',
           }}
         >
-          <source src="/brand_assets/HERO_SECTION2.mp4" type="video/mp4" />
+          <source src="https://pub-731d5e7deddb4fce94cef7393920d429.r2.dev/HERO_SECTION2.mp4" type="video/mp4" />
         </video>
 
         {/* Bottom blend into gallery */}

@@ -230,7 +230,7 @@ export default function Footer() {
           </p>
 
           <a
-            href="mailto:hello@weavy.agency"
+            href="mailto:hello@weavyautomation.com"
             className="font-sans font-light"
             style={{
               fontSize: 'clamp(1rem, 2.2vw, 1.45rem)',
@@ -258,7 +258,7 @@ export default function Footer() {
               el.style.background  = 'hsl(0 0% 100% / 0.03)'
             }}
           >
-            hello@weavy.agency
+            hello@weavyautomation.com
           </a>
         </div>
 
