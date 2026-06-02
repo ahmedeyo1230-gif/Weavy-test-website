@@ -1,6 +1,6 @@
 // ─── Video Showcase ───────────────────────────────────────────────────────────
 
-import videoSrc from '/brand_assets/Video2_weavy.mp4'
+const videoSrc = "https://pub-731d5e7deddb4fce94cef7393920d429.r2.dev/Video2_weavy.mp4"
 
 
 export default function VideoShowcase() {
