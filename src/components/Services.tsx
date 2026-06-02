@@ -1913,7 +1913,7 @@ function BespokeContactFooter() {
 
         {/* ── CTA Email button — premium gradient hover ring ── */}
         <a
-          href="mailto:hello@michaelsmith.com"
+          href="mailto:hello@weavyautomation.com"
           onMouseEnter={() => setCtaHover(true)}
           onMouseLeave={() => setCtaHover(false)}
           className="relative mb-24 rounded-full"
@@ -1958,7 +1958,7 @@ function BespokeContactFooter() {
                 transition: 'all 0.35s ease',
               }}
             />
-            hello@michaelsmith.com
+            hello@weavyautomation.com
             <span
               aria-hidden="true"
               style={{
@@ -5022,7 +5022,7 @@ function S7ContactFooter() {
 
         {/* Email CTA button */}
         <a
-          href="mailto:hello@weavy.com"
+          href="mailto:hello@weavyautomation.com"
           onMouseEnter={() => setCtaHov(true)}
           onMouseLeave={() => setCtaHov(false)}
           style={{
@@ -5050,7 +5050,7 @@ function S7ContactFooter() {
               transition: 'background 0.4s ease, color 0.4s ease',
             }}
           >
-            hello@weavy.com
+            hello@weavyautomation.com
             <span aria-hidden="true" style={{
               fontSize: '0.9em',
               opacity: ctaHov ? 1 : 0.35,
@@ -6914,7 +6914,7 @@ function GraphicDesignContactFooter() {
 
         {/* ── CTA Email button ── */}
         <a
-          href="mailto:hello@michaelsmith.com"
+          href="mailto:hello@weavyautomation.com"
           onMouseEnter={() => setCtaHover(true)}
           onMouseLeave={() => setCtaHover(false)}
           className="relative mb-24 rounded-full"
@@ -6946,7 +6946,7 @@ function GraphicDesignContactFooter() {
               boxShadow: ctaHover ? '0 0 8px hsl(38 90% 65% / 0.8)' : 'none',
               transition: 'all 0.35s ease',
             }}/>
-            hello@michaelsmith.com
+            hello@weavyautomation.com
             <span aria-hidden="true" style={{
               fontSize: '1em',
               opacity: ctaHover ? 1 : 0.35,
@@ -9233,7 +9233,7 @@ function UGCContactFooter() {
 
         {/* ── CTA Email button — premium gradient hover ring ── */}
         <a
-          href="mailto:hello@michaelsmith.com"
+          href="mailto:hello@weavyautomation.com"
           onMouseEnter={() => setCtaHover(true)}
           onMouseLeave={() => setCtaHover(false)}
           className="ugccf-cta relative mb-24 rounded-full"
@@ -9277,7 +9277,7 @@ function UGCContactFooter() {
                 transition: 'all 0.35s ease',
               }}
             />
-            hello@michaelsmith.com
+            hello@weavyautomation.com
             <span
               aria-hidden="true"
               style={{

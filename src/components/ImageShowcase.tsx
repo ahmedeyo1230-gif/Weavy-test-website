@@ -462,7 +462,7 @@ function WorkContactFooter() {
 
         {/* CTA button */}
         <a
-          href="mailto:hello@michaelsmith.com"
+          href="mailto:hello@weavyautomation.com"
           onMouseEnter={() => setCtaHover(true)}
           onMouseLeave={() => setCtaHover(false)}
           className="relative mb-24 rounded-full"
@@ -491,7 +491,7 @@ function WorkContactFooter() {
             }}
           >
             <span style={{ width: 7, height: 7, borderRadius: '50%', flexShrink: 0, background: ctaHover ? 'hsl(199 89% 65%)' : 'hsl(0 0% 32%)', boxShadow: ctaHover ? '0 0 8px hsl(199 89% 65% / 0.8)' : 'none', transition: 'all 0.35s ease' }} />
-            hello@michaelsmith.com
+            hello@weavyautomation.com
             <span aria-hidden="true" style={{ fontSize: '1em', opacity: ctaHover ? 1 : 0.35, transform: ctaHover ? 'translateX(3px)' : 'translateX(0)', transition: 'all 0.35s ease', display: 'inline-block' }}>→</span>
           </span>
         </a>
