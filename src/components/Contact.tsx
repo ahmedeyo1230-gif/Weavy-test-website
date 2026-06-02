@@ -9,7 +9,7 @@ export default function Contact() {
       <Contact2
         title="Get in touch"
         description="Have a project in mind? We'd love to hear about it. Tell us what you're building and let's make it happen."
-        phone="+44 (0) 20 1234 5678"
+        phone="+44 208 522 1210"
         email="hello@weavyautomation.com"
         web={{ label: "weavyautomation.com", url: "https://weavyautomation.com" }}
       />
