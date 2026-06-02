@@ -13,14 +13,16 @@ import TestimonialsSection from './components/Testimonials'
 import Services from './components/Services'
 import Footer from './components/Footer'
 import Blog from './components/Blog'
+import Contact from './components/Contact'
 
-const MAIN_HASHES = ['#home', '#about', '#contact', '#showcase', '']
+const MAIN_HASHES = ['#home', '#about', '#showcase', '']
 
 export default function App() {
   const [loaded, setLoaded] = useState(false)
   const [showServices, setShowServices] = useState(false)
   const [showWork, setShowWork] = useState(false)
   const [showBlog, setShowBlog] = useState(false)
+  const [showContact, setShowContact] = useState(false)
 
   useEffect(() => {
     const check = () => {
@@ -29,18 +31,27 @@ export default function App() {
         setShowServices(true)
         setShowWork(false)
         setShowBlog(false)
+        setShowContact(false)
       } else if (hash === '#work') {
         setShowWork(true)
         setShowServices(false)
         setShowBlog(false)
+        setShowContact(false)
       } else if (hash === '#blog') {
         setShowBlog(true)
         setShowServices(false)
         setShowWork(false)
+        setShowContact(false)
+      } else if (hash === '#contact') {
+        setShowContact(true)
+        setShowServices(false)
+        setShowWork(false)
+        setShowBlog(false)
       } else if (MAIN_HASHES.includes(hash)) {
         setShowServices(false)
         setShowWork(false)
         setShowBlog(false)
+        setShowContact(false)
       }
     }
     window.addEventListener('hashchange', check)
@@ -50,7 +61,7 @@ export default function App() {
   // Snap to top whenever the view switches
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' })
-  }, [showServices, showWork, showBlog])
+  }, [showServices, showWork, showBlog, showContact])
 
   return (
     <>
@@ -71,6 +82,11 @@ export default function App() {
             <>
               <Navbar />
               <Blog />
+            </>
+          ) : showContact ? (
+            <>
+              <Navbar />
+              <Contact />
             </>
           ) : (
             <>
