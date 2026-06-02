@@ -176,7 +176,7 @@ export const Contact2 = ({
                         <input
                           id={id}
                           type="text"
-                          placeholder={id === "firstname" ? "Ahmed" : "Smith"}
+                          placeholder=""
                           required
                           onFocus={() => setFocused(id)}
                           onBlur={() => setFocused(null)}
@@ -194,7 +194,7 @@ export const Contact2 = ({
                     <input
                       id="email"
                       type="email"
-                      placeholder="hello@yourcompany.com"
+                      placeholder=""
                       required
                       onFocus={() => setFocused("email")}
                       onBlur={() => setFocused(null)}
@@ -210,7 +210,7 @@ export const Contact2 = ({
                     <input
                       id="subject"
                       type="text"
-                      placeholder="New project enquiry"
+                      placeholder=""
                       required
                       onFocus={() => setFocused("subject")}
                       onBlur={() => setFocused(null)}
@@ -226,7 +226,7 @@ export const Contact2 = ({
                     <textarea
                       id="message"
                       rows={5}
-                      placeholder="Tell us about your project, goals, and timeline..."
+                      placeholder=""
                       required
                       onFocus={() => setFocused("message")}
                       onBlur={() => setFocused(null)}
