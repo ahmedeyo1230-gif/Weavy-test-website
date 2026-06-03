@@ -4590,6 +4590,9 @@ function SocialMediaMarketing() {
                 <video
                   src="/brand_assets/Food.mp4"
                   controls
+                  autoPlay
+                  muted
+                  loop
                   playsInline
                   preload="metadata"
                   className="h-full w-full object-cover"
