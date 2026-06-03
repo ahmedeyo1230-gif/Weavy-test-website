@@ -117,7 +117,7 @@ function Marquee() {
     if (!el) return
     const tween = gsap.to(el, {
       xPercent: -50,
-      duration: 40,
+      duration: 120,
       ease: "none",
       repeat: -1,
     })
@@ -143,7 +143,7 @@ function Marquee() {
             style={{
               fontFamily: "'Didot', 'GFS Didot', 'Didot LT STD', 'Bodoni MT', Georgia, serif",
               fontWeight: 400,
-              fontSize: "clamp(1.4rem, 3vw, 2.2rem)",
+              fontSize: "clamp(2rem, 4.5vw, 3.2rem)",
               letterSpacing: "0.04em",
               textTransform: "uppercase" as const,
               color: "hsl(0 0% 100% / 0.28)",
