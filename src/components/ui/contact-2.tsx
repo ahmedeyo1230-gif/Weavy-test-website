@@ -117,7 +117,7 @@ function Marquee() {
     if (!el) return
     const tween = gsap.to(el, {
       xPercent: -50,
-      duration: 120,
+      duration: 180,
       ease: "none",
       repeat: -1,
     })
