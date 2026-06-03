@@ -247,22 +247,38 @@ export const Contact2 = ({
                     />
                   </button>
 
-                  {/* Closing statement */}
-                  <p className="text-center font-light tracking-wide text-white/40 pt-1" style={{ fontSize: "0.72rem" }}>
-                    Built with intention.{" "}
-                    <em style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: "italic", color: "rgba(255,255,255,0.55)" }}>
-                      Designed to scale.
-                    </em>
-                  </p>
-
                 </form>
               )}
             </div>
           </motion.div>
         </div>
+
+        {/* ── Closing statement ── */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.1, ease: E, delay: 0.5 }}
+          className="text-center mt-20"
+        >
+          <p
+            className="font-light tracking-[-0.01em] text-white/50"
+            style={{ fontSize: "clamp(1.1rem, 2vw, 1.5rem)", lineHeight: 1.5 }}
+          >
+            Built with intention.
+          </p>
+          <p
+            className="font-light tracking-[-0.01em] text-white/35 mt-1"
+            style={{ fontSize: "clamp(1.1rem, 2vw, 1.5rem)", lineHeight: 1.5 }}
+          >
+            <em style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: "italic", fontWeight: 400 }}>
+              Designed to scale.
+            </em>
+          </p>
+        </motion.div>
+
       </div>
 
-<style>{`
+      <style>{`
         @keyframes contact-pulse {
           0%, 100% { opacity: 1; }
           50% { opacity: 0.3; }
