@@ -143,7 +143,7 @@ function Marquee() {
             style={{
               fontFamily: "'Didot', 'GFS Didot', 'Didot LT STD', 'Bodoni MT', Georgia, serif",
               fontWeight: 400,
-              fontSize: "clamp(1.1rem, 2.5vw, 1.8rem)",
+              fontSize: "clamp(0.65rem, 1.2vw, 0.9rem)",
               letterSpacing: "0.04em",
               textTransform: "uppercase" as const,
               color: "hsl(0 0% 100% / 0.28)",
