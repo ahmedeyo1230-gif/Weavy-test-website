@@ -4355,7 +4355,7 @@ function SocialMediaMarketing() {
                 }}
               >
                 <img
-                  src="/brand_assets/Now_watch.png"
+                  src="/brand_assets/Watch_L.png"
                   alt="Instagram luxury watch campaign visual"
                   style={{
                     position: 'absolute', inset: 0,
