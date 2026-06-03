@@ -262,13 +262,13 @@ export const Contact2 = ({
         >
           <p
             className="font-light tracking-[-0.01em] text-white/50"
-            style={{ fontSize: "clamp(1.1rem, 2vw, 1.5rem)", lineHeight: 1.5 }}
+            style={{ fontSize: "clamp(2rem, 4vw, 3.2rem)", lineHeight: 1.15 }}
           >
             Built with intention.
           </p>
           <p
-            className="font-light tracking-[-0.01em] text-white/35 mt-1"
-            style={{ fontSize: "clamp(1.1rem, 2vw, 1.5rem)", lineHeight: 1.5 }}
+            className="font-light tracking-[-0.01em] text-white/35 mt-2"
+            style={{ fontSize: "clamp(2rem, 4vw, 3.2rem)", lineHeight: 1.15 }}
           >
             <em style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: "italic", fontWeight: 400 }}>
               Designed to scale.
