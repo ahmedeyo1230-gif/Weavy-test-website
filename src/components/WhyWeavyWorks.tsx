@@ -84,10 +84,10 @@ export default function WhyWeavyWorks() {
       />
 
       <div className="relative z-10 max-w-[88rem] mx-auto px-6 sm:px-10">
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto_1fr] gap-12 lg:gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_0.7fr_1fr] gap-12 lg:gap-16 items-center">
 
           {/* ── LEFT: copy ── */}
-          <div className="lg:self-start lg:sticky lg:top-32">
+          <div className="lg:self-start lg:sticky lg:top-32" style={{ order: 1 }}>
 
             {/* Label */}
             <p
@@ -153,31 +153,34 @@ export default function WhyWeavyWorks() {
           </div>
 
           {/* ── MIDDLE: image ── */}
-          <div className="flex items-center justify-center order-last lg:order-none">
-            <div style={{ position: 'relative' }}>
-              {/* Ambient glow behind image */}
+          <div
+            className="flex items-center justify-center"
+            style={{ order: 2 }}
+          >
+            <div style={{ position: 'relative', width: '100%' }}>
+              {/* Ambient glow */}
               <div
                 aria-hidden="true"
                 style={{
                   position: 'absolute',
-                  inset: '-40px',
-                  background: 'radial-gradient(ellipse 70% 70% at 50% 50%, hsl(199 89% 60% / 0.12) 0%, transparent 70%)',
-                  filter: 'blur(28px)',
+                  inset: 0,
+                  background: 'radial-gradient(ellipse 80% 80% at 50% 50%, hsl(199 89% 60% / 0.14) 0%, transparent 70%)',
+                  filter: 'blur(32px)',
                   pointerEvents: 'none',
+                  zIndex: 0,
                 }}
               />
               <img
                 src="/brand_assets/Middle_1.png"
-                alt=""
-                aria-hidden="true"
+                alt="Weavy platform visual"
                 style={{
                   position: 'relative',
+                  zIndex: 1,
                   display: 'block',
                   width: '100%',
-                  maxWidth: '360px',
-                  maxHeight: '520px',
+                  maxHeight: '540px',
                   objectFit: 'contain',
-                  filter: 'drop-shadow(0 30px 80px rgba(56,189,248,0.18))',
+                  filter: 'drop-shadow(0 30px 90px rgba(56,189,248,0.22))',
                   margin: '0 auto',
                 }}
               />
@@ -185,7 +188,7 @@ export default function WhyWeavyWorks() {
           </div>
 
           {/* ── RIGHT: numbered rows ── */}
-          <div>
+          <div style={{ order: 3 }}>
             {ROWS.map(({ num, title, body }, i) => (
               <div
                 key={num}
