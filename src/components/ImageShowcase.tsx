@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, useCallback } from 'react'
 import gsap from 'gsap'
-import { GradientDots } from './ui/gradient-dots'
+
 
 // ─── Types ─────────────────────────────────────────────────────────────────────
 
@@ -1323,78 +1323,25 @@ export default function ImageShowcase() {
       {/* ── Hero ── */}
       <section
         id="work"
-        className="relative w-full overflow-hidden flex items-center justify-center"
-        style={{ background: '#040B0E', minHeight: '70vh' }}
+        className="relative w-full overflow-hidden"
+        style={{ background: '#040B0E' }}
       >
-        {/* Animated gradient dots — full background */}
-        <GradientDots
-          duration={28}
-          colorCycleDuration={8}
-          dotSize={6}
-          spacing={18}
-          backgroundColor="#040B0E"
-          style={{ opacity: 0.72, zIndex: 0 }}
-        />
-
-        {/* Dark vignette overlay — keeps text legible */}
-        <div
-          aria-hidden="true"
+        <img
+          src="/brand_assets/portfolio.png"
+          alt="Weavy selected work"
           style={{
-            position: 'absolute', inset: 0, zIndex: 1,
-            background: 'radial-gradient(ellipse 85% 80% at 50% 50%, transparent 20%, hsl(210 30% 4% / 0.55) 100%)',
+            display: 'block',
+            width: '100%',
+            height: 'auto',
+            objectFit: 'contain',
           }}
         />
-
-        {/* Hero text content */}
-        <div
-          className="relative flex flex-col items-center text-center px-6 sm:px-10"
-          style={{ zIndex: 2, maxWidth: '52rem', padding: 'clamp(5rem, 10vw, 8rem) clamp(1.5rem, 5vw, 4rem)' }}
-        >
-          <p
-            className="font-sans font-light uppercase mb-6"
-            style={{ fontSize: '0.6rem', letterSpacing: '0.38em', color: 'hsl(195 80% 62% / 0.75)' }}
-          >
-            Selected Work
-          </p>
-
-          <h1
-            className="font-sans font-light"
-            style={{
-              fontSize: 'clamp(3rem, 7vw, 6rem)',
-              lineHeight: 1.06,
-              letterSpacing: '-0.04em',
-              color: 'hsl(0 0% 94%)',
-              marginBottom: 'clamp(1.2rem, 2.5vw, 1.8rem)',
-            }}
-          >
-            Work made to be{' '}
-            <em style={{
-              fontFamily: "'Instrument Serif', Georgia, serif",
-              fontStyle: 'italic', fontWeight: 400,
-              color: 'hsl(0 0% 62%)',
-            }}>
-              remembered.
-            </em>
-          </h1>
-
-          <p
-            className="font-sans font-light"
-            style={{
-              fontSize: 'clamp(0.88rem, 1.5vw, 1.05rem)',
-              lineHeight: 1.85,
-              color: 'hsl(0 0% 38%)',
-              maxWidth: '36rem',
-            }}
-          >
-            Campaigns, brand identities, and digital systems built for brands that refuse to be ordinary.
-          </p>
-        </div>
 
         {/* Bottom fade into next section */}
         <div
           aria-hidden="true"
           style={{
-            position: 'absolute', bottom: 0, left: 0, right: 0, height: '120px', zIndex: 3,
+            position: 'absolute', bottom: 0, left: 0, right: 0, height: '120px', zIndex: 1,
             background: 'linear-gradient(to bottom, transparent, #040B0E)',
             pointerEvents: 'none',
           }}
