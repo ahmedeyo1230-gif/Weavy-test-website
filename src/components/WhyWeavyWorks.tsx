@@ -184,7 +184,7 @@ export default function WhyWeavyWorks() {
                 }}
               />
               <img
-                src="/brand_assets/Middle_1.png"
+                src="/brand_assets/New_now.png"
                 alt="Weavy platform visual"
                 style={{
                   position: 'relative',
