@@ -3439,9 +3439,8 @@ function SocialMediaMarketing() {
           objectPosition: 'center center',
           pointerEvents: 'none',
         }}
-      >
-        <source src="/brand_assets/Social_media.mp4" type="video/mp4" />
-      </video>
+        src="/brand_assets/Social_media.mp4"
+      />
 
       {/* Dark overlay for text legibility */}
       <div aria-hidden="true" style={{
