@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
+import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
 
 const ROWS = [
   {
@@ -23,6 +24,99 @@ const ROWS = [
     body: 'From launch to growth, every section is designed to stay consistent, responsive, and easy to improve.',
   },
 ]
+
+function ImageFloat3D() {
+  const containerRef = useRef<HTMLDivElement>(null)
+
+  // Mouse-tracking values
+  const rawX = useMotionValue(0)
+  const rawY = useMotionValue(0)
+  const springX = useSpring(rawX, { stiffness: 60, damping: 18 })
+  const springY = useSpring(rawY, { stiffness: 60, damping: 18 })
+  const rotateX = useTransform(springY, [-0.5, 0.5], [10, -10])
+  const rotateY = useTransform(springX, [-0.5, 0.5], [-12, 12])
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = containerRef.current?.getBoundingClientRect()
+    if (!rect) return
+    rawX.set((e.clientX - rect.left) / rect.width - 0.5)
+    rawY.set((e.clientY - rect.top) / rect.height - 0.5)
+  }
+  const handleMouseLeave = () => {
+    rawX.set(0)
+    rawY.set(0)
+  }
+
+  return (
+    <div
+      ref={containerRef}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={{
+        order: 2,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        perspective: '900px',
+        width: '100%',
+      }}
+    >
+      {/* Ambient glow — static, behind everything */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: 'absolute',
+          width: '80%',
+          height: '60%',
+          background: 'radial-gradient(ellipse 80% 80% at 50% 50%, hsl(199 89% 60% / 0.16) 0%, transparent 70%)',
+          filter: 'blur(40px)',
+          pointerEvents: 'none',
+          zIndex: 0,
+        }}
+      />
+
+      {/* Fade-in entry + continuous float + mouse 3D tilt */}
+      <motion.div
+        initial={{ opacity: 0, y: 32, scale: 0.94 }}
+        whileInView={{ opacity: 1, y: 0, scale: 1 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
+        animate={{ y: [0, -14, 0] }}
+        // @ts-ignore — Framer Motion allows mixing animate + whileInView
+        style={{
+          rotateX,
+          rotateY,
+          transformStyle: 'preserve-3d',
+          position: 'relative',
+          zIndex: 1,
+          width: '100%',
+          animationDuration: '5s',
+        }}
+      >
+        {/* Float loop wrapper */}
+        <motion.div
+          animate={{ y: [0, -14, 0] }}
+          transition={{ duration: 5, ease: 'easeInOut', repeat: Infinity, repeatType: 'loop' }}
+          style={{ transformStyle: 'preserve-3d' }}
+        >
+          <img
+            src="/brand_assets/New_now.png"
+            alt="Weavy platform visual"
+            style={{
+              display: 'block',
+              width: '100%',
+              maxHeight: '540px',
+              objectFit: 'contain',
+              margin: '0 auto',
+              filter: 'drop-shadow(0 30px 90px rgba(56,189,248,0.22))',
+              transformStyle: 'preserve-3d',
+            }}
+          />
+        </motion.div>
+      </motion.div>
+    </div>
+  )
+}
 
 export default function WhyWeavyWorks() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -165,40 +259,8 @@ export default function WhyWeavyWorks() {
 
           </div>
 
-          {/* ── MIDDLE: image ── */}
-          <div
-            className="flex items-center justify-center"
-            style={{ order: 2 }}
-          >
-            <div style={{ position: 'relative', width: '100%' }}>
-              {/* Ambient glow */}
-              <div
-                aria-hidden="true"
-                style={{
-                  position: 'absolute',
-                  inset: 0,
-                  background: 'radial-gradient(ellipse 80% 80% at 50% 50%, hsl(199 89% 60% / 0.14) 0%, transparent 70%)',
-                  filter: 'blur(32px)',
-                  pointerEvents: 'none',
-                  zIndex: 0,
-                }}
-              />
-              <img
-                src="/brand_assets/New_now.png"
-                alt="Weavy platform visual"
-                style={{
-                  position: 'relative',
-                  zIndex: 1,
-                  display: 'block',
-                  width: '100%',
-                  maxHeight: '540px',
-                  objectFit: 'contain',
-                  filter: 'drop-shadow(0 30px 90px rgba(56,189,248,0.22))',
-                  margin: '0 auto',
-                }}
-              />
-            </div>
-          </div>
+          {/* ── MIDDLE: 3D animated image ── */}
+          <ImageFloat3D />
 
           {/* ── RIGHT: numbered rows ── */}
           <div style={{ order: 3 }}>
