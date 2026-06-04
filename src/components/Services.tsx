@@ -9925,7 +9925,7 @@ export default function Services() {
                 }}
               >
                 <img
-                  src="/brand_assets/website 3.png"
+                  src="/brand_assets/site-design.png"
                   alt="Bespoke website design showcase"
                   style={{ display: 'block', width: '100%', height: 'auto' }}
                 />
