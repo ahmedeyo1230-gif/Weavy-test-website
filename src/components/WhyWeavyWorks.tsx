@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
+import { motion } from 'framer-motion'
 
 const ROWS = [
   {
@@ -26,77 +26,49 @@ const ROWS = [
 ]
 
 function ImageFloat3D() {
-  const containerRef = useRef<HTMLDivElement>(null)
-
-  // Mouse-tracking values
-  const rawX = useMotionValue(0)
-  const rawY = useMotionValue(0)
-  const springX = useSpring(rawX, { stiffness: 60, damping: 18 })
-  const springY = useSpring(rawY, { stiffness: 60, damping: 18 })
-  const rotateX = useTransform(springY, [-0.5, 0.5], [10, -10])
-  const rotateY = useTransform(springX, [-0.5, 0.5], [-12, 12])
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = containerRef.current?.getBoundingClientRect()
-    if (!rect) return
-    rawX.set((e.clientX - rect.left) / rect.width - 0.5)
-    rawY.set((e.clientY - rect.top) / rect.height - 0.5)
-  }
-  const handleMouseLeave = () => {
-    rawX.set(0)
-    rawY.set(0)
-  }
-
   return (
     <div
-      ref={containerRef}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
       style={{
         order: 2,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        perspective: '900px',
+        perspective: '1000px',
         width: '100%',
+        position: 'relative',
       }}
     >
-      {/* Ambient glow — static, behind everything */}
+      {/* Ambient glow */}
       <div
         aria-hidden="true"
         style={{
           position: 'absolute',
-          width: '80%',
-          height: '60%',
-          background: 'radial-gradient(ellipse 80% 80% at 50% 50%, hsl(199 89% 60% / 0.16) 0%, transparent 70%)',
-          filter: 'blur(40px)',
+          inset: 0,
+          background: 'radial-gradient(ellipse 75% 65% at 50% 55%, hsl(199 89% 60% / 0.18) 0%, transparent 68%)',
+          filter: 'blur(38px)',
           pointerEvents: 'none',
           zIndex: 0,
         }}
       />
 
-      {/* Fade-in entry + continuous float + mouse 3D tilt */}
+      {/* Fade-in entry */}
       <motion.div
-        initial={{ opacity: 0, y: 32, scale: 0.94 }}
-        whileInView={{ opacity: 1, y: 0, scale: 1 }}
+        initial={{ opacity: 0, scale: 0.88 }}
+        whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
-        animate={{ y: [0, -14, 0] }}
-        // @ts-ignore — Framer Motion allows mixing animate + whileInView
-        style={{
-          rotateX,
-          rotateY,
-          transformStyle: 'preserve-3d',
-          position: 'relative',
-          zIndex: 1,
-          width: '100%',
-          animationDuration: '5s',
-        }}
+        transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+        style={{ position: 'relative', zIndex: 1, width: '100%', transformStyle: 'preserve-3d' }}
       >
-        {/* Float loop wrapper */}
+        {/* Slow Y-axis rotation + gentle float */}
         <motion.div
-          animate={{ y: [0, -14, 0] }}
-          transition={{ duration: 5, ease: 'easeInOut', repeat: Infinity, repeatType: 'loop' }}
+          animate={{
+            rotateY: [0, 360],
+            y: [0, -12, 0],
+          }}
+          transition={{
+            rotateY: { duration: 14, ease: 'linear', repeat: Infinity },
+            y: { duration: 5, ease: 'easeInOut', repeat: Infinity, repeatType: 'mirror' },
+          }}
           style={{ transformStyle: 'preserve-3d' }}
         >
           <img
@@ -108,8 +80,7 @@ function ImageFloat3D() {
               maxHeight: '540px',
               objectFit: 'contain',
               margin: '0 auto',
-              filter: 'drop-shadow(0 30px 90px rgba(56,189,248,0.22))',
-              transformStyle: 'preserve-3d',
+              filter: 'drop-shadow(0 32px 90px rgba(56,189,248,0.28))',
             }}
           />
         </motion.div>
