@@ -5343,7 +5343,7 @@ function ChatbotHero() {
         }}
       >
         <video
-          src="https://pub-731d5e7deddb4fce94cef7393920d429.r2.dev/chatbot-hero.mp4"
+          src="/brand_assets/chatbot-hero.mp4"
           autoPlay
           loop
           muted
