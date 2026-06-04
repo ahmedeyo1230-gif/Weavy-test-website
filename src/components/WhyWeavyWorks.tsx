@@ -83,8 +83,21 @@ export default function WhyWeavyWorks() {
         }}
       />
 
+      <style>{`
+        .wyw-grid {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: clamp(2.5rem, 4vw, 4rem);
+          align-items: center;
+        }
+        @media (min-width: 1024px) {
+          .wyw-grid {
+            grid-template-columns: 0.9fr 0.7fr 1fr;
+          }
+        }
+      `}</style>
       <div className="relative z-10 max-w-[88rem] mx-auto px-6 sm:px-10">
-        <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_0.7fr_1fr] gap-12 lg:gap-16 items-center">
+        <div className="wyw-grid">
 
           {/* ── LEFT: copy ── */}
           <div className="lg:self-start lg:sticky lg:top-32" style={{ order: 1 }}>
