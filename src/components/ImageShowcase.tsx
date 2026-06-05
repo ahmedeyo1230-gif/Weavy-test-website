@@ -55,9 +55,9 @@ const PROJECTS: Project[] = [
     year:           '2026',
     objectPosition: 'center top',
   },
-  // [5] Centre — this_one
+  // [5] Centre — Fefo
   {
-    src:            '/brand_assets/this_one.png',
+    src:            '/brand_assets/Fefo.png',
     title:          'Natural Juice Campaign',
     category:       'Product Advertising',
     year:           '2026',
