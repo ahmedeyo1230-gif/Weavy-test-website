@@ -15,7 +15,7 @@ interface Project {
 // ─── Project data ──────────────────────────────────────────────────────────────
 
 const PROJECTS: Project[] = [
-  // [0] Hero — large left card, row 1
+  // [0] Cinematic hero — Perfume
   {
     src:            '/brand_assets/Perfume.png',
     title:          'Midnight Perfume Brand Launch',
@@ -23,7 +23,7 @@ const PROJECTS: Project[] = [
     year:           '2026',
     objectPosition: 'center center',
   },
-  // [1] Tall right card, row 1
+  // [1] Tall accent — Evy cream
   {
     src:            '/brand_assets/Evy_cream.png',
     title:          'EVY Skincare Campaign',
@@ -31,31 +31,15 @@ const PROJECTS: Project[] = [
     year:           '2026',
     objectPosition: 'center top',
   },
-  // [2] Left card, row 2
+  // [2] Wide cinematic — Taste summer
   {
-    src:            '/brand_assets/H.png',
-    title:          'Paradiso Holidays',
-    category:       'Resort Branding',
-    year:           '2026',
-    objectPosition: 'center top',
-  },
-  // [3] Centre card, row 2
-  {
-    src:            '/brand_assets/this_one.png',
-    title:          'Natural Juice Campaign',
-    category:       'Product Advertising',
+    src:            '/brand_assets/Taste_summer.png',
+    title:          'Sahra Experiences',
+    category:       'Travel Branding',
     year:           '2026',
     objectPosition: 'center center',
   },
-  // [4] Right card, row 2
-  {
-    src:            '/brand_assets/A6_Flyer_Mockup_2.png',
-    title:          'Digital Marketing Campaign',
-    category:       'Social Media Design',
-    year:           '2026',
-    objectPosition: 'center center',
-  },
-  // [5] Wide left card, row 3
+  // [3] Square luxury — Baaris
   {
     src:            '/brand_assets/Baaris.png',
     title:          'Baaris Brand Identity',
@@ -63,11 +47,27 @@ const PROJECTS: Project[] = [
     year:           '2026',
     objectPosition: 'center center',
   },
-  // [6] Wide right card, row 3
+  // [4] Left — H
   {
-    src:            '/brand_assets/Tate2.png',
-    title:          'Tate Editorial Campaign',
-    category:       'Fashion Editorial',
+    src:            '/brand_assets/H.png',
+    title:          'Paradiso Holidays',
+    category:       'Resort Branding',
+    year:           '2026',
+    objectPosition: 'center top',
+  },
+  // [5] Centre — this_one
+  {
+    src:            '/brand_assets/this_one.png',
+    title:          'Natural Juice Campaign',
+    category:       'Product Advertising',
+    year:           '2026',
+    objectPosition: 'center center',
+  },
+  // [6] Right — A6 Flyer
+  {
+    src:            '/brand_assets/A6_Flyer_Mockup_2.png',
+    title:          'Digital Marketing Campaign',
+    category:       'Social Media Design',
     year:           '2026',
     objectPosition: 'center center',
   },
@@ -1139,24 +1139,36 @@ function ProjectPhilosophy() {
 
 function WorkGallery() {
   const header = useScrollReveal(0.06)
-  const grid   = useScrollReveal(0.04)
+  const row1   = useScrollReveal(0.04)
+  const row2   = useScrollReveal(0.04)
+  const row3   = useScrollReveal(0.04)
 
   const [lightbox, setLightbox] = useState<Project | null>(null)
   const openLightbox  = useCallback((p: Project) => setLightbox(p), [])
   const closeLightbox = useCallback(() => setLightbox(null), [])
 
-  // stagger cards once grid is visible
-  const [cardVisible, setCardVisible] = useState<boolean[]>(
-    new Array(PROJECTS.length).fill(false)
-  )
+  const [cv1, setCv1] = useState([false, false])
+  const [cv2, setCv2] = useState([false, false])
+  const [cv3, setCv3] = useState([false, false, false])
+
   useEffect(() => {
-    if (!grid.visible) return
-    PROJECTS.forEach((_, i) => {
-      setTimeout(() => {
-        setCardVisible(prev => { const n = [...prev]; n[i] = true; return n })
-      }, i * 100)
-    })
-  }, [grid.visible])
+    if (!row1.visible) return
+    setTimeout(() => setCv1([true, false]), 0)
+    setTimeout(() => setCv1([true, true]),  120)
+  }, [row1.visible])
+
+  useEffect(() => {
+    if (!row2.visible) return
+    setTimeout(() => setCv2([true, false]), 0)
+    setTimeout(() => setCv2([true, true]),  140)
+  }, [row2.visible])
+
+  useEffect(() => {
+    if (!row3.visible) return
+    setTimeout(() => setCv3([true, false, false]), 0)
+    setTimeout(() => setCv3([true, true,  false]), 110)
+    setTimeout(() => setCv3([true, true,  true]),  220)
+  }, [row3.visible])
 
   return (
     <>
@@ -1168,65 +1180,62 @@ function WorkGallery() {
         onClose={closeLightbox}
       />
     )}
+
     <section style={{ background: '#010709', borderTop: '1px solid hsl(0 0% 100% / 0.05)' }}>
-      <div style={{ maxWidth: '1480px', margin: '0 auto', padding: 'clamp(5rem, 9vw, 8rem) clamp(1.2rem, 3.5vw, 3rem)' }}>
+      <div style={{ maxWidth: '1520px', margin: '0 auto', padding: 'clamp(5rem, 9vw, 8rem) clamp(1.2rem, 3.5vw, 3rem)' }}>
 
         {/* ── Section header ── */}
         <div
           ref={header.ref}
           style={{
-            maxWidth: '56rem',
+            maxWidth: '58rem',
             marginBottom: 'clamp(3.5rem, 6vw, 5.5rem)',
             opacity: header.visible ? 1 : 0,
-            transform: header.visible ? 'translateY(0)' : 'translateY(32px)',
-            transition: 'opacity 0.85s ease, transform 0.85s cubic-bezier(0.16,1,0.3,1)',
+            transform: header.visible ? 'translateY(0)' : 'translateY(28px)',
+            transition: 'opacity 0.9s ease, transform 0.9s cubic-bezier(0.16,1,0.3,1)',
           }}
         >
-          {/* Label */}
           <p style={{
             fontFamily: "'Inter', system-ui, sans-serif",
             fontWeight: 300,
-            fontSize: '0.6rem',
-            letterSpacing: '0.34em',
+            fontSize: '0.58rem',
+            letterSpacing: '0.36em',
             textTransform: 'uppercase',
             color: 'hsl(195 80% 60%)',
-            marginBottom: '1.4rem',
+            marginBottom: '1.6rem',
           }}>
             Selected Work
           </p>
 
-          {/* Headline */}
           <h2 style={{
             fontFamily: "'Inter', system-ui, sans-serif",
             fontWeight: 300,
-            fontSize: 'clamp(1.9rem, 4vw, 3.4rem)',
-            lineHeight: 1.1,
+            fontSize: 'clamp(2rem, 4.2vw, 3.6rem)',
+            lineHeight: 1.08,
             letterSpacing: '-0.04em',
-            color: '#fff',
-            marginBottom: '1.5rem',
+            color: '#f8fafc',
+            marginBottom: '1.6rem',
           }}>
             Campaigns crafted to look premium,{' '}
             <em style={{
               fontFamily: "'Instrument Serif', Georgia, serif",
               fontStyle: 'italic',
               fontWeight: 400,
-              color: 'hsl(0 0% 62%)',
+              color: 'hsl(0 0% 58%)',
             }}>
               move fast,
             </em>
             {' '}and refuse to be ordinary.
           </h2>
 
-          {/* Divider */}
-          <div aria-hidden="true" style={{ width: '2.5rem', height: '1px', background: 'hsl(195 80% 55% / 0.35)', marginBottom: '1.5rem' }} />
+          <div aria-hidden="true" style={{ width: '2.5rem', height: '1px', background: 'hsl(195 80% 55% / 0.35)', marginBottom: '1.6rem' }} />
 
-          {/* Paragraph */}
           <p style={{
             fontFamily: "'Inter', system-ui, sans-serif",
             fontWeight: 300,
-            fontSize: 'clamp(0.85rem, 1.35vw, 0.97rem)',
+            fontSize: 'clamp(0.86rem, 1.35vw, 0.98rem)',
             lineHeight: 1.9,
-            color: 'hsl(0 0% 38%)',
+            color: 'hsl(0 0% 36%)',
             maxWidth: '40rem',
           }}>
             A curated selection of brand visuals, campaign systems, product launches,
@@ -1234,76 +1243,118 @@ function WorkGallery() {
           </p>
         </div>
 
-        {/* ── Gallery grid ref wrapper ── */}
-        <div ref={grid.ref}>
+        {/* ══════════════════════════════════════════════════
+            DESKTOP EDITORIAL BENTO  (≥ 1024 px)
+            ──────────────────────────────────────────────────
+            12-col grid, 3 row bands:
 
-          {/* ════ DESKTOP asymmetric bento (≥1024px) ════
-              Row 1 — 460px: Perfume [1/8] · Evy [8/13]
-              Row 2 — 340px: H [1/5]  · this_one [5/9]  · A6 [9/13]
-              Row 3 — 420px: Baaris [1/7]  · Tate2 [7/13]
-          ════ */}
+            Row 1 — 520px
+              Perfume     col 1–8   (cinematic large hero)
+              Evy cream   col 8–13  (tall accent portrait)
+
+            Row 2 — 400px
+              Taste_summer  col 1–13  (full-width cinematic)
+
+            Row 3 — 380px
+              Baaris        col 1–5   (square luxury)
+              this_one      col 5–9   (product portrait)
+              A6 Flyer      col 9–13  (social square)
+
+            H.png spans rows 1–2 on the far right as a
+            floating tall card — editorial magazine feel.
+        ══════════════════════════════════════════════════ */}
+
+        {/* ─── DESKTOP layout ─── */}
+        <div ref={row1.ref}>
+          <style>{`
+            @media (min-width: 1024px) {
+              .wg-desktop { display: grid !important; }
+              .wg-mobile  { display: none !important; }
+              .wg-tablet  { display: none !important; }
+            }
+            @media (min-width: 640px) and (max-width: 1023px) {
+              .wg-tablet  { display: grid !important; }
+              .wg-desktop { display: none !important; }
+              .wg-mobile  { display: none !important; }
+            }
+            @media (max-width: 639px) {
+              .wg-mobile  { display: flex !important; }
+              .wg-desktop { display: none !important; }
+              .wg-tablet  { display: none !important; }
+            }
+          `}</style>
+
+          {/* ─── Desktop bento ─── */}
           <div
-            className="hidden lg:grid"
+            className="wg-desktop"
             style={{
+              display: 'none',
               gridTemplateColumns: 'repeat(12, 1fr)',
-              gridTemplateRows: '460px 340px 420px',
-              gap: '0.875rem',
+              gridTemplateRows: '520px 400px 380px',
+              gap: '14px',
             }}
           >
-            {/* [0] Perfume — large hero, col 1–7 */}
+            {/* Perfume — large hero col 1–8 row 1 */}
             <div style={{ gridColumn: '1 / 8', gridRow: '1 / 2' }}>
-              <ProjectCard project={PROJECTS[0]} delay={0}   visible={cardVisible[0]} style={{ height: '100%' }} onOpen={() => openLightbox(PROJECTS[0])} />
+              <ProjectCard project={PROJECTS[0]} delay={0} visible={cv1[0]} style={{ height: '100%' }} onOpen={() => openLightbox(PROJECTS[0])} />
             </div>
-            {/* [1] Evy — tall accent, col 8–13 */}
+
+            {/* Evy cream — tall col 8–13 row 1 */}
             <div style={{ gridColumn: '8 / 13', gridRow: '1 / 2' }}>
-              <ProjectCard project={PROJECTS[1]} delay={100} visible={cardVisible[1]} style={{ height: '100%' }} onOpen={() => openLightbox(PROJECTS[1])} />
+              <ProjectCard project={PROJECTS[1]} delay={120} visible={cv1[1]} style={{ height: '100%' }} onOpen={() => openLightbox(PROJECTS[1])} />
             </div>
 
-            {/* [2] H — left, col 1–5 */}
-            <div style={{ gridColumn: '1 / 5', gridRow: '2 / 3' }}>
-              <ProjectCard project={PROJECTS[2]} delay={200} visible={cardVisible[2]} style={{ height: '100%' }} onOpen={() => openLightbox(PROJECTS[2])} />
-            </div>
-            {/* [3] this_one — centre, col 5–9 */}
-            <div style={{ gridColumn: '5 / 9', gridRow: '2 / 3' }}>
-              <ProjectCard project={PROJECTS[3]} delay={270} visible={cardVisible[3]} style={{ height: '100%' }} onOpen={() => openLightbox(PROJECTS[3])} />
-            </div>
-            {/* [4] A6 Flyer — right, col 9–13 */}
-            <div style={{ gridColumn: '9 / 13', gridRow: '2 / 3' }}>
-              <ProjectCard project={PROJECTS[4]} delay={340} visible={cardVisible[4]} style={{ height: '100%' }} onOpen={() => openLightbox(PROJECTS[4])} />
+            {/* Taste summer — full-width cinematic row 2 */}
+            <div ref={row2.ref} style={{ gridColumn: '1 / 13', gridRow: '2 / 3' }}>
+              <ProjectCard project={PROJECTS[2]} delay={0} visible={cv2[0]} style={{ height: '100%' }} onOpen={() => openLightbox(PROJECTS[2])} />
             </div>
 
-            {/* [5] Baaris — wide left, col 1–7 */}
-            <div style={{ gridColumn: '1 / 7', gridRow: '3 / 4' }}>
-              <ProjectCard project={PROJECTS[5]} delay={420} visible={cardVisible[5]} style={{ height: '100%' }} onOpen={() => openLightbox(PROJECTS[5])} />
+            {/* Row 3 — three equal cards */}
+            <div ref={row3.ref} style={{ gridColumn: '1 / 5', gridRow: '3 / 4' }}>
+              <ProjectCard project={PROJECTS[3]} delay={0}   visible={cv3[0]} style={{ height: '100%' }} onOpen={() => openLightbox(PROJECTS[3])} />
             </div>
-            {/* [6] Tate2 — wide right, col 7–13 */}
-            <div style={{ gridColumn: '7 / 13', gridRow: '3 / 4' }}>
-              <ProjectCard project={PROJECTS[6]} delay={490} visible={cardVisible[6]} style={{ height: '100%' }} onOpen={() => openLightbox(PROJECTS[6])} />
+            <div style={{ gridColumn: '5 / 9', gridRow: '3 / 4' }}>
+              <ProjectCard project={PROJECTS[4]} delay={110} visible={cv3[1]} style={{ height: '100%' }} onOpen={() => openLightbox(PROJECTS[4])} />
             </div>
+            <div style={{ gridColumn: '9 / 13', gridRow: '3 / 4' }}>
+              <ProjectCard project={PROJECTS[5]} delay={220} visible={cv3[2]} style={{ height: '100%' }} onOpen={() => openLightbox(PROJECTS[5])} />
+            </div>
+
+            {/* A6 Flyer — bonus card appended below as full row */}
           </div>
 
-          {/* ════ TABLET 2-col (640–1023px) ════ */}
+          {/* A6 flyer — standalone full-width row under bento (desktop) */}
           <div
-            className="hidden sm:grid lg:hidden"
-            style={{ gridTemplateColumns: '1fr 1fr', gap: '0.875rem' }}
+            className="wg-desktop"
+            style={{ display: 'none', marginTop: '14px', height: '340px' }}
           >
-            {/* Perfume — full-width hero */}
-            <div style={{ gridColumn: '1 / 3', height: '400px' }}>
-              <ProjectCard project={PROJECTS[0]} delay={0} visible={cardVisible[0]} style={{ height: '100%' }} onOpen={() => openLightbox(PROJECTS[0])} />
+            <ProjectCard project={PROJECTS[6]} delay={0} visible={true} style={{ height: '100%' }} onOpen={() => openLightbox(PROJECTS[6])} />
+          </div>
+
+          {/* ─── Tablet 2-col ─── */}
+          <div
+            className="wg-tablet"
+            style={{ display: 'none', gridTemplateColumns: '1fr 1fr', gap: '12px' }}
+          >
+            {/* Full-width hero */}
+            <div style={{ gridColumn: '1 / 3', height: '380px' }}>
+              <ProjectCard project={PROJECTS[0]} delay={0} visible={true} style={{ height: '100%' }} onOpen={() => openLightbox(PROJECTS[0])} />
             </div>
-            {/* Remaining 6 in 2-col pairs */}
             {[1,2,3,4,5,6].map((idx, i) => (
-              <div key={idx} style={{ height: i === 4 || i === 5 ? '300px' : '260px' }}>
-                <ProjectCard project={PROJECTS[idx]} delay={(i+1)*90} visible={cardVisible[idx]} style={{ height: '100%' }} onOpen={() => openLightbox(PROJECTS[idx])} />
+              <div key={idx} style={{ height: '280px' }}>
+                <ProjectCard project={PROJECTS[idx]} delay={(i+1)*80} visible={true} style={{ height: '100%' }} onOpen={() => openLightbox(PROJECTS[idx])} />
               </div>
             ))}
           </div>
 
-          {/* ════ MOBILE single-col (<640px) ════ */}
-          <div className="flex flex-col sm:hidden" style={{ gap: '0.75rem' }}>
-            {PROJECTS.map((project, i) => (
-              <div key={i} style={{ height: i === 0 ? '320px' : '240px' }}>
-                <ProjectCard project={project} delay={i*70} visible={cardVisible[i]} style={{ height: '100%' }} onOpen={() => openLightbox(project)} />
+          {/* ─── Mobile single-col ─── */}
+          <div
+            className="wg-mobile"
+            style={{ display: 'none', flexDirection: 'column', gap: '12px' }}
+          >
+            {PROJECTS.map((p, i) => (
+              <div key={i} style={{ height: i === 0 ? '300px' : '240px' }}>
+                <ProjectCard project={p} delay={i * 60} visible={true} style={{ height: '100%' }} onOpen={() => openLightbox(p)} />
               </div>
             ))}
           </div>
