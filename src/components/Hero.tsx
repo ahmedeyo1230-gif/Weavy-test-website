@@ -283,9 +283,9 @@ export default function Hero() {
 
           <p
             className="blur-in font-sans font-light uppercase mb-8"
-            style={{ fontSize: '0.65rem', letterSpacing: '0.32em', color: 'hsl(0 0% 40%)' }}
+            style={{ fontSize: '0.8rem', letterSpacing: '0.36em', color: 'hsl(0 0% 40%)' }}
           >
-            AI Automation Agency
+            Automation Agency
           </p>
 
           <h1
