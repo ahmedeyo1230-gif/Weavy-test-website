@@ -222,7 +222,7 @@ function HeroVideo() {
 
 // ─── Hero ─────────────────────────────────────────────────────────────────────
 
-const ROLES = ['Creative', 'Fullstack', 'Founder', 'Designer']
+const ROLES = ['Creatives', 'Developers', 'Founders', 'Designers']
 
 export default function Hero() {
   const [roleIndex, setRoleIndex] = useState(0)
@@ -305,14 +305,14 @@ export default function Hero() {
 
           <p className="blur-in mb-6 font-sans font-light text-muted inline-flex items-baseline gap-[0.55em]"
              style={{ fontSize: 'clamp(0.9rem, 1.6vw, 1.05rem)' }}>
-            <span className="inline-block">A</span>
+            <span className="inline-block">We</span>
             <span
               key={roleIndex}
               className="font-display italic text-text-primary animate-role-fade-in inline-block"
             >
               {ROLES[roleIndex]}
             </span>
-            <span className="inline-block">lives in London.</span>
+            <span className="inline-block">live in London.</span>
           </p>
 
           <p
