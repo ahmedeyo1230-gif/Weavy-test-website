@@ -3162,7 +3162,7 @@ function ChatbotTikTokAutomation() {
               background: '#080b0f',
             }}>
               <img
-                src="/brand_assets/Tiktok_automatiom.png"
+                src="/brand_assets/tik_youtube_images.png"
                 alt="TikTok automation dashboard"
                 style={{
                   display: 'block',
