@@ -665,6 +665,8 @@ function BespokeCareStories() {
               ].join(', '),
             }}>
               <img
+                loading="lazy"
+                decoding="async"
                 src="/brand_assets/Website_examples.png"
                 alt="CareWell — bespoke website designed for a care support brand"
                 style={{
@@ -840,6 +842,8 @@ function BespokeWebShowcase() {
   const PropPhoto = ({ src, height = '80px' }: { src: string; height?: string }) => (
     <div style={{ height, overflow: 'hidden', borderRadius: '6px' }}>
       <img
+        loading="lazy"
+        decoding="async"
         src={src}
         alt="Property"
         style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
@@ -1434,6 +1438,8 @@ function BespokeWebDesignShowcase() {
               maxWidth: '580px',
             }}>
               <img
+                loading="lazy"
+                decoding="async"
                 src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?auto=format&fit=crop&w=900&q=80"
                 alt="Premium website design by Weavy"
                 style={{
@@ -1811,6 +1817,7 @@ function BespokeContactFooter() {
           muted
           loop
           playsInline
+          preload="none"
           aria-hidden="true"
           className="scale-y-[-1]"
           style={{
@@ -2144,6 +2151,8 @@ function ChatbotWhatsAppBusiness() {
               background: '#080b0f',
             }}>
               <img
+                loading="lazy"
+                decoding="async"
                 src="/brand_assets/Whatsapp.png"
                 alt="WhatsApp Business chatbot interface"
                 style={{
@@ -2368,6 +2377,8 @@ function ChatbotInstagramDM() {
               background: '#080b0f',
             }}>
               <img
+                loading="lazy"
+                decoding="async"
                 src="/brand_assets/Instagram.png"
                 alt="Instagram DM automation interface"
                 style={{ display: 'block', width: '100%', height: 'auto', objectFit: 'contain' }}
@@ -2481,6 +2492,8 @@ function ChatbotFacebookMessenger() {
               background: '#080b0f',
             }}>
               <img
+                loading="lazy"
+                decoding="async"
                 src="/brand_assets/messenger.png"
                 alt="Facebook Messenger automation interface"
                 style={{ display: 'block', width: '100%', height: 'auto', objectFit: 'contain' }}
@@ -3162,6 +3175,8 @@ function ChatbotTikTokAutomation() {
               background: '#080b0f',
             }}>
               <img
+                loading="lazy"
+                decoding="async"
                 src="/brand_assets/Tiktok_automatiom.png"
                 alt="TikTok automation dashboard"
                 style={{
@@ -3431,6 +3446,7 @@ function SocialMediaMarketing() {
         muted
         loop
         playsInline
+        preload="metadata"
         aria-hidden="true"
         style={{
           position: 'absolute', inset: 0,
@@ -3696,6 +3712,7 @@ function SocialMediaMarketing() {
                   muted
                   loop
                   playsInline
+                  preload="metadata"
                   style={{ display: 'block', width: '100%', height: 'auto' }}
                 />
                 {/* Bottom vignette */}
@@ -3947,6 +3964,8 @@ function SocialMediaMarketing() {
                 }}
               >
                 <img
+                  loading="lazy"
+                  decoding="async"
                   src="/brand_assets/OmarEventOrganiser's Facebook profile page-2.png"
                   alt="Omar Event Organiser Facebook profile page"
                   style={{ display: 'block', width: '100%', height: 'auto' }}
@@ -3990,6 +4009,8 @@ function SocialMediaMarketing() {
                 }}
               >
                 <img
+                  loading="lazy"
+                  decoding="async"
                   src="/brand_assets/aimedia.png"
                   alt="AI Media social media showcase"
                   style={{ display: 'block', width: '100%', height: 'auto' }}
@@ -4354,6 +4375,8 @@ function SocialMediaMarketing() {
                 }}
               >
                 <img
+                  loading="lazy"
+                  decoding="async"
                   src="/brand_assets/Watch_L.png"
                   alt="Instagram luxury watch campaign visual"
                   style={{
@@ -4413,6 +4436,8 @@ function SocialMediaMarketing() {
                 }}
               >
                 <img
+                  loading="lazy"
+                  decoding="async"
                   src="/brand_assets/Shampoo.png"
                   alt="TikTok shampoo campaign visual"
                   style={{ display: 'block', width: '100%', height: 'auto' }}
@@ -4920,7 +4945,7 @@ function ContactVideo() {
   return (
     <video
       ref={videoRef}
-      autoPlay muted loop playsInline
+      autoPlay muted loop playsInline preload="none"
       aria-hidden="true"
       className="absolute top-1/2 left-1/2 min-w-full min-h-full object-cover"
       style={{ transform: 'translate(-50%, -50%) scaleY(-1)' }}
@@ -5412,6 +5437,8 @@ function GraphicDesignHero() {
       }}
     >
       <img
+        loading="lazy"
+        decoding="async"
         src="/brand_assets/Claude_image.png"
         alt="Graphic design and animation showcase"
         style={{
@@ -5949,6 +5976,8 @@ function GraphicDesignSplitA() {
               ].join(', '),
             }}>
               <img
+                loading="lazy"
+                decoding="async"
                 src="/brand_assets/office-portrait.png"
                 alt="Designer at work — cinematic neon studio setup"
                 style={{
@@ -6235,6 +6264,8 @@ function GraphicDesignSplitB() {
               ].join(', '),
             }}>
               <img
+                loading="lazy"
+                decoding="async"
                 src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1400&q=85"
                 alt="High-end luxurious modern office interior"
                 style={{
@@ -7084,7 +7115,7 @@ function UGCHero() {
       style={{ width: '100vw', marginLeft: 'calc(-50vw + 50%)', height: 'clamp(500px, 64vh, 820px)', background: '#020508' }}
     >
       {/* Background video */}
-      <video autoPlay muted loop playsInline aria-hidden="true" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', pointerEvents: 'none' }}>
+      <video autoPlay muted loop playsInline preload="metadata" aria-hidden="true" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', pointerEvents: 'none' }}>
         <source src="https://pub-731d5e7deddb4fce94cef7393920d429.r2.dev/tiktok_grid.mp4" type="video/mp4" />
       </video>
 
@@ -7312,6 +7343,8 @@ function UGCCreatorSelection() {
             {/* Vignette */}
             <div aria-hidden="true" style={{ position: 'absolute', inset: 0, zIndex: 1, pointerEvents: 'none', background: 'radial-gradient(ellipse 90% 90% at 50% 50%, transparent 50%, hsl(0 0% 0% / 0.32) 100%)' }}/>
             <img
+              loading="lazy"
+              decoding="async"
               src="/brand_assets/Count.png"
               alt="UGC creator metrics and analytics"
               style={{ display: 'block', width: '100%', height: 'auto', objectFit: 'cover' }}
@@ -7521,7 +7554,7 @@ function UGCFindCreators() {
                 {/* Video */}
                 <video
                   ref={videoRef}
-                  autoPlay muted loop playsInline
+                  autoPlay muted loop playsInline preload="metadata"
                   style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
                 >
                   <source src="https://pub-731d5e7deddb4fce94cef7393920d429.r2.dev/Cream_velvet.mp4" type="video/mp4" />
@@ -7718,6 +7751,8 @@ function UGCMonitoringReporting() {
             <div aria-hidden="true" style={{ position: 'absolute', inset: 0, zIndex: 2, borderRadius: '1.4rem', pointerEvents: 'none', boxShadow: 'inset 0 0 0 1px hsl(0 0% 100% / 0.07)' }}/>
             <div aria-hidden="true" style={{ position: 'absolute', inset: 0, zIndex: 1, pointerEvents: 'none', background: 'radial-gradient(ellipse 90% 90% at 50% 50%, transparent 50%, hsl(0 0% 0% / 0.32) 100%)' }}/>
             <img
+              loading="lazy"
+              decoding="async"
               src="/brand_assets/tik_youtube_images.png"
               alt="Content monitoring and reporting"
               style={{ display: 'block', width: '100%', height: 'clamp(380px, 50vw, 560px)', objectFit: 'cover', objectPosition: 'center' }}
@@ -8363,6 +8398,7 @@ function UGCPerfumeCampaign() {
                     muted
                     loop
                     playsInline
+                    preload="metadata"
                     aria-label="UGC perfume campaign — creator unboxing and presenting fragrance"
                     style={{
                       display: 'block',
@@ -9139,6 +9175,7 @@ function UGCContactFooter() {
           muted
           loop
           playsInline
+          preload="none"
           aria-hidden="true"
           className="scale-y-[-1]"
           style={{
@@ -9671,6 +9708,8 @@ export default function Services() {
       >
         {/* Full-width background image */}
         <img
+          loading="lazy"
+          decoding="async"
           src="/brand_assets/Website.png"
           alt=""
           aria-hidden="true"
@@ -9925,6 +9964,8 @@ export default function Services() {
                 }}
               >
                 <img
+                  loading="lazy"
+                  decoding="async"
                   src="/brand_assets/site-design.png"
                   alt="Bespoke website design showcase"
                   style={{ display: 'block', width: '100%', height: 'auto' }}
@@ -10120,6 +10161,8 @@ export default function Services() {
               {/* Property image — full bleed inside browser */}
               <div style={{ position: 'relative', width: '100%', lineHeight: 0 }}>
                 <img
+                  loading="lazy"
+                  decoding="async"
                   src="/brand_assets/Property.png"
                   alt="Bespoke luxury real estate website showcase"
                   style={{ display: 'block', width: '100%', height: 'auto' }}
@@ -10326,6 +10369,8 @@ export default function Services() {
               {/* Main image — wider via negative side margins */}
               <div style={{ position: 'relative', zIndex: 2, marginLeft: '-10%', marginRight: '-10%' }}>
                 <img
+                  loading="lazy"
+                  decoding="async"
                   src="/brand_assets/2w.png.png"
                   alt="AI chatbot — always online"
                   style={{
@@ -10529,6 +10574,8 @@ export default function Services() {
           {/* Image — directly after "drive meaningful results." */}
           <div style={{ width: '85%', minWidth: '300px', maxWidth: '720px', marginBottom: '3.5rem' }}>
             <img
+              loading="lazy"
+              decoding="async"
               src="/brand_assets/social_lady.png"
               alt="Social media marketing"
               style={{

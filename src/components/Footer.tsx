@@ -54,7 +54,7 @@ function FooterVideo() {
     import('hls.js').then(({ default: Hls }) => {
       if (!videoRef.current) return
       if (Hls.isSupported()) {
-        const hls = new Hls({ startLevel: -1 })
+        const hls = new Hls({ startLevel: -1, maxBufferLength: 20, maxMaxBufferLength: 40 })
         hls.loadSource(HLS_SRC)
         hls.attachMedia(video)
         hls.on(Hls.Events.MANIFEST_PARSED, () => {

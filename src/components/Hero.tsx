@@ -190,7 +190,12 @@ function HeroVideo() {
       if (!videoRef.current) return
 
       if (Hls.isSupported()) {
-        const hls = new Hls({ startLevel: -1 })
+        const hls = new Hls({
+          startLevel: -1,
+          maxBufferLength: 20,
+          maxMaxBufferLength: 40,
+          lowLatencyMode: false,
+        })
         hls.loadSource(HLS_SRC)
         hls.attachMedia(video)
         hls.on(Hls.Events.MANIFEST_PARSED, () => {
@@ -213,6 +218,7 @@ function HeroVideo() {
       muted
       loop
       playsInline
+      preload="none"
       aria-hidden="true"
       className="absolute top-1/2 left-1/2 min-w-full min-h-full object-cover"
       style={{ transform: 'translate(-50%, -50%)' }}

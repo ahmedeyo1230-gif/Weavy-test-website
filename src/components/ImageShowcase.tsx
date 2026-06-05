@@ -249,6 +249,8 @@ function ProjectCard({
       <img
         src={project.src}
         alt={project.title}
+        loading="lazy"
+        decoding="async"
         style={{
           position: 'absolute',
           inset: 0,
@@ -1380,6 +1382,7 @@ export default function ImageShowcase() {
         <img
           src="/brand_assets/portfolio.png"
           alt="Weavy selected work"
+          decoding="async"
           style={{
             display: 'block',
             width: '100%',
@@ -1409,6 +1412,7 @@ export default function ImageShowcase() {
           muted
           loop
           playsInline
+          preload="metadata"
           style={{
             position: 'absolute',
             inset: 0,
