@@ -304,7 +304,7 @@ export default function Hero() {
           </h1>
 
           <p className="blur-in mb-6 font-sans font-light text-muted inline-flex items-baseline gap-[0.55em]"
-             style={{ fontSize: 'clamp(0.9rem, 1.6vw, 1.05rem)' }}>
+             style={{ fontSize: 'clamp(1.2rem, 2.2vw, 1.55rem)' }}>
             <span className="inline-block">We</span>
             <span
               key={roleIndex}
