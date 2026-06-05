@@ -1,9 +1,32 @@
 // ─── Video Showcase ───────────────────────────────────────────────────────────
 
+import { useEffect, useRef } from 'react'
+
 const videoSrc = "https://pub-731d5e7deddb4fce94cef7393920d429.r2.dev/Video2_weavy.mp4"
 
 
 export default function VideoShowcase() {
+  const videoRef = useRef<HTMLVideoElement>(null)
+
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video) return
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        // Pause when less than 40% of the video is visible
+        if (!entry.isIntersecting || entry.intersectionRatio < 0.4) {
+          if (!video.paused) video.pause()
+        }
+        // Do NOT auto-resume — user must press play manually
+      },
+      { threshold: [0, 0.4] }
+    )
+
+    observer.observe(video)
+    return () => observer.disconnect()
+  }, [])
+
   return (
     <section
       id="showcase"
@@ -122,6 +145,7 @@ export default function VideoShowcase() {
         >
           <div style={{ position: 'relative', width: '100%', aspectRatio: '16 / 9' }}>
             <video
+              ref={videoRef}
               controls
               loop
               playsInline
@@ -133,7 +157,7 @@ export default function VideoShowcase() {
                 height: '100%',
                 display: 'block',
                 objectFit: 'cover',
-                filter: 'contrast(1.06) saturate(1.08) brightness(1.04)',
+                filter: 'brightness(0.85) contrast(1.08) saturate(0.95)',
               }}
             >
               <source src={videoSrc} type="video/mp4" />
