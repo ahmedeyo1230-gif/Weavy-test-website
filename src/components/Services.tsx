@@ -7435,8 +7435,8 @@ function UGCCreatorSelection() {
 
           {/* 2. Heading */}
           <h2
-            className="ugccs-text font-sans font-light w-full text-left text-4xl leading-[1.08] text-white sm:text-5xl"
-            style={{ letterSpacing: '-0.03em', margin: 0 }}
+            className="ugccs-text font-sans font-light w-full text-left text-3xl leading-[1.06] text-white sm:text-4xl md:text-5xl"
+            style={{ letterSpacing: '-0.02em', margin: '0 0 0.5rem 0' }}
           >
             Creators chosen by{' '}
             <em style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400, color: 'hsl(195 80% 72%)' }}>
@@ -7444,17 +7444,17 @@ function UGCCreatorSelection() {
             </em>
           </h2>
 
-          {/* 3. Divider */}
-          <div className="ugccs-text h-px w-20 bg-sky-400/70" />
+          {/* 3. Divider (bigger, with breathing room) */}
+          <div className="ugccs-text h-px w-28 bg-sky-400/70 mb-3" />
 
           {/* 4. Paragraphs */}
-          <div className="ugccs-text w-full space-y-6">
-            <p className="w-full max-w-none text-left text-base leading-8 text-white/60 sm:text-lg sm:leading-9">
+          <div className="ugccs-text w-full space-y-5">
+            <p className="w-full max-w-none text-left text-base leading-7 text-white/70 sm:text-lg sm:leading-8">
               Every creator we recommend is validated by their numbers. We look beyond follower count
               and dig into engagement rate, average views, and audience quality — so your budget
               goes to creators who actually perform.
             </p>
-            <p className="w-full max-w-none text-left text-base leading-8 sm:text-lg sm:leading-9" style={{ color: 'hsl(0 0% 40%)' }}>
+            <p className="w-full max-w-none text-left text-base leading-7 sm:text-lg sm:leading-8" style={{ color: 'hsl(0 0% 40%)' }}>
               No guessing, no wasted spend. We present the metrics that matter so you can
               select with confidence and brief creators who are built to deliver.
             </p>
@@ -7468,16 +7468,18 @@ function UGCCreatorSelection() {
             </ul>
           </div>
 
-          {/* 5. Image — large, prominent, at the bottom */}
-          <div className="ugccs-img w-full mt-2" style={{ borderRadius: '1.75rem', overflow: 'hidden', boxShadow: '0 0 0 1px hsl(195 80% 55% / 0.12), 0 24px 60px -12px hsl(0 0% 0% / 0.7), 0 0 40px -10px hsl(195 80% 50% / 0.07)' }}>
-            <img
-              loading="lazy"
-              decoding="async"
-              src="/brand_assets/Count.png"
-              alt="UGC creator metrics and analytics"
-              className="w-full max-w-full h-auto object-cover object-center"
-              style={{ display: 'block' }}
-            />
+          {/* 5. Image — large, prominent, at the bottom (centered with max width) */}
+          <div className="w-full mt-3 flex justify-center">
+            <div className="ugccs-img w-full" style={{ maxWidth: '640px', borderRadius: '1.75rem', overflow: 'hidden', boxShadow: '0 0 0 1px hsl(195 80% 55% / 0.12), 0 24px 60px -12px hsl(0 0% 0% / 0.7), 0 0 40px -10px hsl(195 80% 50% / 0.07)' }}>
+              <img
+                loading="lazy"
+                decoding="async"
+                src="/brand_assets/Count.png"
+                alt="UGC creator metrics and analytics"
+                className="w-full h-auto object-cover object-center"
+                style={{ display: 'block' }}
+              />
+            </div>
           </div>
 
         </div>
@@ -9420,76 +9422,68 @@ function UGCContactFooter() {
           </span>
         </a>
 
-        {/* ── Footer bar ── */}
-        <div
-          className="w-full px-6 sm:px-10"
-          style={{
-            maxWidth: '72rem',
-            margin: '0 auto',
-            borderTop: '1px solid hsl(0 0% 100% / 0.06)',
-            paddingTop: '1.75rem',
-            display: 'grid',
-            gridTemplateColumns: '1fr auto 1fr',
-            alignItems: 'center',
-            gap: '1rem',
-          }}
-        >
-          {/* Left — green pulsing dot + availability */}
-          <div className="flex items-center gap-2.5">
-            <span className="relative flex" style={{ width: 8, height: 8 }}>
-              <span
-                className="absolute inline-flex rounded-full animate-ping"
-                style={{ width: '100%', height: '100%', background: 'hsl(142 71% 45%)', opacity: 0.7 }}
-              />
-              <span
-                className="relative inline-flex rounded-full"
-                style={{ width: 8, height: 8, background: 'hsl(142 71% 52%)', boxShadow: '0 0 8px hsl(142 71% 52% / 0.6)' }}
-              />
-            </span>
-            <span
-              className="font-sans font-light"
-              style={{ fontSize: '0.75rem', letterSpacing: '0.05em', color: 'hsl(0 0% 48%)' }}
-            >
-              Available for projects
-            </span>
-          </div>
+        {/* ── Footer bar (responsive) ── */}
+        <div className="w-full px-6 sm:px-10" style={{ maxWidth: '72rem', margin: '0 auto', borderTop: '1px solid hsl(0 0% 100% / 0.06)', paddingTop: '1.75rem' }}>
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
 
-          {/* Centre — copyright */}
-          <p
-            className="font-sans font-light text-center"
-            style={{ fontSize: '0.7rem', letterSpacing: '0.05em', color: 'hsl(0 0% 28%)' }}
-          >
-            © {new Date().getFullYear()} Weavy. All rights reserved.
-          </p>
-
-          {/* Right — social links */}
-          <div className="flex items-center gap-1 justify-end">
-            {BCF_SOCIAL_LINKS.map(({ label, href, Icon }) => (
-              <a
-                key={label}
-                href={href}
-                aria-label={label}
-                className="rounded-full flex items-center justify-center"
-                style={{
-                  width: 36,
-                  height: 36,
-                  color: 'hsl(0 0% 36%)',
-                  transition: 'color 0.2s ease, background 0.2s ease',
-                }}
-                onMouseEnter={e => {
-                  const el = e.currentTarget as HTMLElement
-                  el.style.color = 'hsl(0 0% 84%)'
-                  el.style.background = 'hsl(0 0% 100% / 0.07)'
-                }}
-                onMouseLeave={e => {
-                  const el = e.currentTarget as HTMLElement
-                  el.style.color = 'hsl(0 0% 36%)'
-                  el.style.background = 'transparent'
-                }}
+            {/* Left — green pulsing dot + availability */}
+            <div className="flex items-center gap-2.5 order-1">
+              <span className="relative flex" style={{ width: 8, height: 8 }}>
+                <span
+                  className="absolute inline-flex rounded-full animate-ping"
+                  style={{ width: '100%', height: '100%', background: 'hsl(142 71% 45%)', opacity: 0.7 }}
+                />
+                <span
+                  className="relative inline-flex rounded-full"
+                  style={{ width: 8, height: 8, background: 'hsl(142 71% 52%)', boxShadow: '0 0 8px hsl(142 71% 52% / 0.6)' }}
+                />
+              </span>
+              <span
+                className="font-sans font-light"
+                style={{ fontSize: '0.75rem', letterSpacing: '0.05em', color: 'hsl(0 0% 48%)' }}
               >
-                <Icon />
-              </a>
-            ))}
+                Available for projects
+              </span>
+            </div>
+
+            {/* Centre — copyright (centered on mobile) */}
+            <p
+              className="font-sans font-light text-center order-3 sm:order-2"
+              style={{ fontSize: '0.7rem', letterSpacing: '0.05em', color: 'hsl(0 0% 28%)' }}
+            >
+              © {new Date().getFullYear()} Weavy. All rights reserved.
+            </p>
+
+            {/* Right — social links */}
+            <div className="flex items-center gap-1 justify-end order-2 sm:order-3">
+              {BCF_SOCIAL_LINKS.map(({ label, href, Icon }) => (
+                <a
+                  key={label}
+                  href={href}
+                  aria-label={label}
+                  className="rounded-full flex items-center justify-center"
+                  style={{
+                    width: 36,
+                    height: 36,
+                    color: 'hsl(0 0% 36%)',
+                    transition: 'color 0.2s ease, background 0.2s ease',
+                  }}
+                  onMouseEnter={e => {
+                    const el = e.currentTarget as HTMLElement
+                    el.style.color = 'hsl(0 0% 84%)'
+                    el.style.background = 'hsl(0 0% 100% / 0.07)'
+                  }}
+                  onMouseLeave={e => {
+                    const el = e.currentTarget as HTMLElement
+                    el.style.color = 'hsl(0 0% 36%)'
+                    el.style.background = 'transparent'
+                  }}
+                >
+                  <Icon />
+                </a>
+              ))}
+            </div>
+
           </div>
         </div>
 
