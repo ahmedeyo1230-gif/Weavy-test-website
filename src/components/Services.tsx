@@ -5441,19 +5441,36 @@ function GraphicDesignHero() {
         paddingTop: 'clamp(3rem, 6vw, 5rem)',
       }}
     >
-      <img
-        loading="lazy"
-        decoding="async"
-        src="/brand_assets/Claude_image.png"
-        alt="Graphic design and animation showcase"
-        style={{
-          display: 'block',
-          width: '100%',
-          height: '78vh',
-          objectFit: 'cover',
-          objectPosition: 'center top',
-        }}
-      />
+      {/* Desktop: keep original image and behavior unchanged */}
+      <div className="hidden lg:block">
+        <img
+          loading="lazy"
+          decoding="async"
+          src="/brand_assets/Claude_image.png"
+          alt="Graphic design and animation showcase"
+          style={{
+            display: 'block',
+            width: '100%',
+            height: '78vh',
+            objectFit: 'cover',
+            objectPosition: 'center top',
+          }}
+        />
+      </div>
+
+      {/* Mobile / Tablet: improved fitted image (only below lg) */}
+      <div className="block lg:hidden w-full overflow-hidden bg-[#010709]">
+        <div className="relative mx-auto w-full max-w-[720px] overflow-hidden sm:rounded-[24px] aspect-[16/9]">
+          <img
+            loading="lazy"
+            decoding="async"
+            src="/brand_assets/Claude_image.png"
+            alt="Graphic design and animation showcase"
+            className="w-full h-full object-contain object-center"
+            style={{ display: 'block' }}
+          />
+        </div>
+      </div>
     </section>
   )
 }
