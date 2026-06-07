@@ -12,6 +12,53 @@ import { BorderRotate } from './ui/animated-gradient-border'
 
 gsap.registerPlugin(ScrollTrigger)
 
+// ─── Lazy HLS hook — IntersectionObserver gated ───────────────────────────────
+function useHlsVideo(src: string) {
+  const videoRef     = useRef<HTMLVideoElement>(null)
+  const containerRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const video     = videoRef.current
+    const container = containerRef.current
+    if (!video || !container) return
+
+    const isMobile = window.innerWidth < 768 || navigator.maxTouchPoints > 0
+    if (isMobile) return
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+
+    let cleanup: (() => void) | undefined
+    let initialized = false
+
+    const init = () => {
+      if (initialized) return
+      initialized = true
+      import('hls.js').then(({ default: Hls }) => {
+        if (!videoRef.current) return
+        if (Hls.isSupported()) {
+          const hls = new Hls({ startLevel: -1, maxBufferLength: 20, maxMaxBufferLength: 40 })
+          hls.loadSource(src)
+          hls.attachMedia(video)
+          hls.on(Hls.Events.MANIFEST_PARSED, () => { video.play().catch(() => {}) })
+          cleanup = () => hls.destroy()
+        } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+          video.src = src
+          video.play().catch(() => {})
+        }
+      })
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => { if (entries[0].isIntersecting) { init(); observer.disconnect() } },
+      { rootMargin: '200px' }
+    )
+    observer.observe(container)
+
+    return () => { observer.disconnect(); cleanup?.() }
+  }, [src])
+
+  return { videoRef, containerRef }
+}
+
 // ─── Service data ─────────────────────────────────────────────────────────────
 
 const SERVICES = [
@@ -1765,31 +1812,8 @@ const BCF_SOCIAL_LINKS = [
 
 function BespokeContactFooter() {
   const marqueeRef = useRef<HTMLDivElement>(null)
-  const videoRef   = useRef<HTMLVideoElement>(null)
+  const { videoRef, containerRef } = useHlsVideo(HLS_FOOTER)
   const [ctaHover, setCtaHover] = useState(false)
-
-  // ── HLS video — same source as hero ──────────────────────────────────────
-  useEffect(() => {
-    const video = videoRef.current
-    if (!video) return
-    let cleanup: (() => void) | undefined
-    import('hls.js').then(({ default: Hls }) => {
-      if (!videoRef.current) return
-      if (Hls.isSupported()) {
-        const hls = new Hls({ startLevel: -1, autoStartLoad: true })
-        hls.loadSource(HLS_FOOTER)
-        hls.attachMedia(video)
-        hls.on(Hls.Events.MANIFEST_PARSED, () => {
-          video.play().catch(() => {})
-        })
-        cleanup = () => hls.destroy()
-      } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-        video.src = HLS_FOOTER
-        video.play().catch(() => {})
-      }
-    })
-    return () => cleanup?.()
-  }, [])
 
   // ── GSAP infinite marquee ─────────────────────────────────────────────────
   useEffect(() => {
@@ -1810,14 +1834,12 @@ function BespokeContactFooter() {
       className="relative bg-bg pt-16 md:pt-20 pb-8 md:pb-12 overflow-hidden"
     >
       {/* ── HLS Video background — flipped vertically ── */}
-      <div className="absolute inset-0" aria-hidden="true" style={{ zIndex: 0 }}>
+      <div ref={containerRef} className="absolute inset-0" aria-hidden="true" style={{ zIndex: 0 }}>
         <video
           ref={videoRef}
-          autoPlay
           muted
           loop
           playsInline
-          preload="none"
           aria-hidden="true"
           className="scale-y-[-1]"
           style={{
@@ -4922,34 +4944,17 @@ function SocialMediaMarketing() {
 const HLS_SRC_CONTACT = 'https://stream.mux.com/Aa02T7oM1wH5Mk5EEVDYhbZ1ChcdhRsS2m1NYyx4Ua1g.m3u8'
 
 function ContactVideo() {
-  const videoRef = useRef<HTMLVideoElement>(null)
-  useEffect(() => {
-    const video = videoRef.current
-    if (!video) return
-    let cleanup: (() => void) | undefined
-    import('hls.js').then(({ default: Hls }) => {
-      if (!videoRef.current) return
-      if (Hls.isSupported()) {
-        const hls = new Hls({ startLevel: -1 })
-        hls.loadSource(HLS_SRC_CONTACT)
-        hls.attachMedia(video)
-        hls.on(Hls.Events.MANIFEST_PARSED, () => video.play().catch(() => {}))
-        cleanup = () => hls.destroy()
-      } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-        video.src = HLS_SRC_CONTACT
-        video.play().catch(() => {})
-      }
-    })
-    return () => cleanup?.()
-  }, [])
+  const { videoRef, containerRef } = useHlsVideo(HLS_SRC_CONTACT)
   return (
-    <video
-      ref={videoRef}
-      autoPlay muted loop playsInline preload="none"
-      aria-hidden="true"
-      className="absolute top-1/2 left-1/2 min-w-full min-h-full object-cover"
-      style={{ transform: 'translate(-50%, -50%) scaleY(-1)' }}
-    />
+    <div ref={containerRef} className="absolute inset-0">
+      <video
+        ref={videoRef}
+        muted loop playsInline
+        aria-hidden="true"
+        className="absolute top-1/2 left-1/2 min-w-full min-h-full object-cover"
+        style={{ transform: 'translate(-50%, -50%) scaleY(-1)' }}
+      />
+    </div>
   )
 }
 
@@ -6847,29 +6852,8 @@ const GCF_SOCIAL_LINKS = [
 
 function GraphicDesignContactFooter() {
   const marqueeRef = useRef<HTMLDivElement>(null)
-  const videoRef   = useRef<HTMLVideoElement>(null)
+  const { videoRef, containerRef } = useHlsVideo(HLS_FOOTER)
   const [ctaHover, setCtaHover] = useState(false)
-
-  // ── HLS video ─────────────────────────────────────────────────────────────
-  useEffect(() => {
-    const video = videoRef.current
-    if (!video) return
-    let cleanup: (() => void) | undefined
-    import('hls.js').then(({ default: Hls }) => {
-      if (!videoRef.current) return
-      if (Hls.isSupported()) {
-        const hls = new Hls({ startLevel: -1, autoStartLoad: true })
-        hls.loadSource(HLS_FOOTER)
-        hls.attachMedia(video)
-        hls.on(Hls.Events.MANIFEST_PARSED, () => { video.play().catch(() => {}) })
-        cleanup = () => hls.destroy()
-      } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-        video.src = HLS_FOOTER
-        video.play().catch(() => {})
-      }
-    })
-    return () => cleanup?.()
-  }, [])
 
   // ── GSAP infinite marquee ─────────────────────────────────────────────────
   useEffect(() => {
@@ -6885,10 +6869,10 @@ function GraphicDesignContactFooter() {
       className="relative bg-bg pt-16 md:pt-20 pb-8 md:pb-12 overflow-hidden"
     >
       {/* ── HLS Video background — flipped vertically ── */}
-      <div className="absolute inset-0" aria-hidden="true" style={{ zIndex: 0 }}>
+      <div ref={containerRef} className="absolute inset-0" aria-hidden="true" style={{ zIndex: 0 }}>
         <video
           ref={videoRef}
-          autoPlay muted loop playsInline aria-hidden="true"
+          muted loop playsInline aria-hidden="true"
           className="scale-y-[-1]"
           style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
         />
@@ -7107,12 +7091,58 @@ function UGCHero() {
 
   return (
     <>
+    {/* ── UGC responsive styles — injected once, applies to all UGC sections ── */}
+    <style>{`
+      /* Hero: mobile padding + allow taller if content overflows */
+      #ugc-hero { min-height: clamp(420px, 64vh, 820px); height: auto !important; }
+      .ugch-content { padding-left: 1.25rem; padding-right: 1.25rem; }
+      @media (min-width: 640px)  { .ugch-content { padding-left: 3.5rem; padding-right: 3.5rem; } }
+      @media (min-width: 1024px) { .ugch-content { padding-left: 5rem;   padding-right: 5rem;   } }
+
+      /* Hero text: full width so it never fights justify-between */
+      .ugch-text { width: 100%; max-width: 44rem; }
+
+      /* Step labels: wrap on narrow screens instead of horizontal overflow */
+      .ugc-step-label { flex-wrap: wrap !important; row-gap: 4px !important; }
+
+      /* Creator Selection grid: 1-col on mobile, 56/44 on desktop */
+      .ugccs-cols { grid-template-columns: 1fr !important; }
+      @media (min-width: 1024px) { .ugccs-cols { grid-template-columns: minmax(0,56%) minmax(0,44%) !important; } }
+
+      /* Monitoring grid: 1-col on mobile, 70/30 on desktop */
+      .ugcmr-cols { grid-template-columns: 1fr !important; }
+      @media (min-width: 1024px) { .ugcmr-cols { grid-template-columns: minmax(0,70%) minmax(0,30%) !important; } }
+
+      /* Tracking URLs: metric cards 2×2 on mobile, 4×1 on wider screens */
+      .ugctu-metrics { display: grid !important; grid-template-columns: repeat(2, 1fr) !important; padding: 14px 14px 0 !important; gap: 8px !important; }
+      @media (min-width: 520px) { .ugctu-metrics { grid-template-columns: repeat(4, 1fr) !important; } }
+      /* Dashboard bar name truncation on very small */
+      @media (max-width: 420px) { .ugctu-bar-name { width: 52px !important; } .ugctu-bar-val { width: 44px !important; } }
+
+      /* Stat table rows: reduce padding + top-align on very small screens */
+      @media (max-width: 420px) {
+        .ugce-stat-row { padding: 1rem 1rem !important; align-items: flex-start !important; gap: 1rem !important; }
+        .ugc-stat-num { font-size: clamp(1.5rem, 6vw, 2.7rem) !important; }
+      }
+
+      /* TikTok mockup: cap width on mobile so it doesn't dominate the viewport */
+      @media (max-width: 767px) { .ugcfc-mockup-inner { max-width: 300px !important; } }
+
+      /* Perfume phone mockup: slightly smaller on mobile */
+      @media (max-width: 767px) { .ugcpc-phone { max-width: 320px !important; } }
+
+      /* UGC section padding: tighter on mobile */
+      @media (max-width: 639px) {
+        .ugc-section-pad { padding-top: 3.5rem !important; padding-bottom: 3.5rem !important; }
+      }
+    `}</style>
+
     {/* ══ CINEMATIC HERO ═══════════════════════════════════════════════════════ */}
     <section
       ref={heroRef}
       id="ugc-hero"
       className="relative overflow-hidden"
-      style={{ width: '100vw', marginLeft: 'calc(-50vw + 50%)', height: 'clamp(500px, 64vh, 820px)', background: '#020508' }}
+      style={{ width: '100vw', marginLeft: 'calc(-50vw + 50%)', background: '#020508' }}
     >
       {/* Background video */}
       <video autoPlay muted loop playsInline preload="metadata" aria-hidden="true" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', pointerEvents: 'none' }}>
@@ -7129,10 +7159,10 @@ function UGCHero() {
       <div aria-hidden="true" style={{ position: 'absolute', inset: 0, pointerEvents: 'none', backgroundImage: 'repeating-linear-gradient(to bottom, transparent 0px, transparent 3px, hsl(0 0% 0% / 0.055) 3px, hsl(0 0% 0% / 0.055) 4px)' }}/>
 
       {/* Content */}
-      <div className="relative z-10 h-full flex items-center justify-between px-8 sm:px-14 lg:px-20 gap-12">
+      <div className="ugch-content relative z-10 flex items-center justify-between gap-12" style={{ minHeight: 'inherit', paddingTop: '2.5rem', paddingBottom: '3rem' }}>
 
         {/* Left: text */}
-        <div style={{ maxWidth: '44rem' }}>
+        <div className="ugch-text">
 
           {/* Badge */}
           <div className="ugch-r inline-flex items-center gap-2 mb-8" style={{ background: 'hsl(0 72% 48% / 0.1)', border: '1px solid hsl(0 72% 58% / 0.28)', borderRadius: 999, padding: '0.38rem 1rem' }}>
@@ -7141,7 +7171,7 @@ function UGCHero() {
           </div>
 
           {/* Headline */}
-          <h1 className="ugch-r font-sans font-light" style={{ color: '#fff', fontSize: 'clamp(2.6rem, 5.8vw, 5rem)', lineHeight: 1.02, letterSpacing: '-0.04em', marginBottom: '1.6rem' }}>
+          <h1 className="ugch-r font-sans font-light" style={{ color: '#fff', fontSize: 'clamp(2rem, 5.8vw, 5rem)', lineHeight: 1.05, letterSpacing: '-0.04em', marginBottom: '1.6rem' }}>
             Real creators.<br/>
             Real{' '}
             <em style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400, color: 'hsl(0 72% 70%)' }}>results.</em>
@@ -7232,7 +7262,7 @@ function UGCHero() {
               { val: '4.5', suffix: '×',  decimals: '1', desc: 'average conversion lift' },
               { val: '60',  suffix: '%',  decimals: '0', desc: 'lower cost than traditional production' },
             ].map(({ val, suffix, decimals, desc }, i, arr) => (
-              <div key={val} style={{ padding: '1.65rem 1.9rem', background: 'hsl(0 0% 100% / 0.022)', borderBottom: i < arr.length - 1 ? '1px solid hsl(0 0% 100% / 0.06)' : undefined, display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
+              <div key={val} className="ugce-stat-row" style={{ padding: '1.65rem 1.9rem', background: 'hsl(0 0% 100% / 0.022)', borderBottom: i < arr.length - 1 ? '1px solid hsl(0 0% 100% / 0.06)' : undefined, display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
                 <span
                   className="font-sans font-light ugc-stat-num"
                   data-val={val}
@@ -7266,6 +7296,8 @@ function UGCHero() {
   )
 }
 
+// (removed unused breakpoint hook `useIsDesktop` — it was causing a TS6133 "declared but its value is never read" error)
+
 // ─── UGC — Step 02: Creator Selection ────────────────────────────────────────
 
 const UGC_INSIGHTS = [
@@ -7277,19 +7309,19 @@ const UGC_INSIGHTS = [
 ]
 
 function UGCCreatorSelection() {
-  const ref = useRef<HTMLElement>(null)
+  const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const el = ref.current
     if (!el) return
     const textEls = el.querySelectorAll('.ugccs-text')
-    const imgEl   = el.querySelector('.ugccs-img')
+    const imgEls  = el.querySelectorAll('.ugccs-img')
     gsap.set(textEls, { opacity: 0, y: 40 })
-    gsap.set(imgEl,   { opacity: 0, y: 28 })
+    gsap.set(imgEls,  { opacity: 0, y: 28 })
     const obs = new IntersectionObserver(([entry]) => {
       if (!entry.isIntersecting) return
       const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
-      tl.to(imgEl,   { opacity: 1, y: 0, duration: 1.05 }, 0)
+      tl.to(imgEls,  { opacity: 1, y: 0, duration: 1.05 }, 0)
       tl.to(textEls, { opacity: 1, y: 0, duration: 1.0, stagger: 0.13 }, 0.15)
       obs.disconnect()
     }, { threshold: 0.07 })
@@ -7297,105 +7329,136 @@ function UGCCreatorSelection() {
     return () => obs.disconnect()
   }, [])
 
-  return (
-    <section
-      ref={ref}
-      className="relative w-full overflow-hidden"
-      style={{ background: '#010709', padding: 'clamp(5rem, 10vw, 9rem) 0' }}
-    >
-      {/* Ambient glow */}
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
-        background: [
-          'radial-gradient(ellipse 50% 55% at 100% 45%, hsl(195 80% 50% / 0.045) 0%, transparent 65%)',
-          'radial-gradient(ellipse 35% 40% at 0% 65%,  hsl(195 70% 40% / 0.03)  0%, transparent 60%)',
-        ].join(', '),
-      }}/>
-      {/* Grain */}
-      <svg aria-hidden="true" className="pointer-events-none absolute inset-0 w-full h-full" style={{ opacity: 0.025 }}>
-        <filter id="ugccs-gr">
-          <feTurbulence type="fractalNoise" baseFrequency="0.66" numOctaves="3" stitchTiles="stitch" result="n"/>
-          <feColorMatrix type="saturate" values="0" in="n"/>
-        </filter>
+  const stepLabel = (
+    <div className="ugccs-text" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.5rem', flexWrap: 'wrap' }}>
+      <span className="font-sans" style={{ fontSize: '0.6rem', letterSpacing: '0.32em', textTransform: 'uppercase', color: 'hsl(195 80% 62%)', flexShrink: 0 }}>01</span>
+      <div aria-hidden="true" style={{ width: '2rem', height: 1, background: 'hsl(195 80% 55% / 0.4)', flexShrink: 0 }}/>
+      <span className="font-sans" style={{ fontSize: '0.6rem', letterSpacing: '0.28em', textTransform: 'uppercase', color: 'hsl(195 80% 62%)' }}>UGC Creator Selection</span>
+    </div>
+  )
+
+  const decorative = (
+    <>
+      <div aria-hidden="true" style={{ pointerEvents: 'none', position: 'absolute', inset: 0, background: 'radial-gradient(ellipse 50% 55% at 100% 45%, hsl(195 80% 50% / 0.045) 0%, transparent 65%), radial-gradient(ellipse 35% 40% at 0% 65%, hsl(195 70% 40% / 0.03) 0%, transparent 60%)' }}/>
+      <svg aria-hidden="true" style={{ pointerEvents: 'none', position: 'absolute', inset: 0, width: '100%', height: '100%', opacity: 0.025 }}>
+        <filter id="ugccs-gr"><feTurbulence type="fractalNoise" baseFrequency="0.66" numOctaves="3" stitchTiles="stitch" result="n"/><feColorMatrix type="saturate" values="0" in="n"/></filter>
         <rect width="100%" height="100%" filter="url(#ugccs-gr)" fill="white"/>
       </svg>
-      {/* Top separator */}
       <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '1px', background: 'linear-gradient(to right, transparent, hsl(195 80% 55% / 0.12), transparent)' }}/>
+    </>
+  )
 
-      <div className="relative z-10 max-w-[72rem] mx-auto px-6 sm:px-10">
-        <div className="grid grid-cols-1 gap-14 lg:gap-20 items-center" style={{ gridTemplateColumns: 'minmax(0,56%) minmax(0,44%)' }}>
+  const imageCard = (extraClass = '') => (
+    <div
+      className={`ugccs-img ${extraClass}`}
+      style={{
+        position: 'relative',
+        borderRadius: '1.4rem',
+        overflow: 'hidden',
+        boxShadow: '0 0 0 1px hsl(195 80% 55% / 0.1), 0 32px 72px -16px hsl(0 0% 0% / 0.75), 0 0 48px -12px hsl(195 80% 50% / 0.08)',
+      }}
+    >
+      <div aria-hidden="true" style={{ position: 'absolute', inset: 0, zIndex: 2, borderRadius: '1.4rem', pointerEvents: 'none', boxShadow: 'inset 0 0 0 1px hsl(0 0% 100% / 0.07)' }}/>
+      <div aria-hidden="true" style={{ position: 'absolute', inset: 0, zIndex: 1, pointerEvents: 'none', background: 'radial-gradient(ellipse 90% 90% at 50% 50%, transparent 50%, hsl(0 0% 0% / 0.32) 100%)' }}/>
+      <img
+        loading="lazy"
+        decoding="async"
+        src="/brand_assets/Count.png"
+        alt="UGC creator metrics and analytics"
+        style={{ display: 'block', width: '100%', height: 'auto', objectFit: 'contain' }}
+      />
+    </div>
+  )
 
-          {/* ── LEFT: image ── */}
-          <div
-            className="ugccs-img"
-            style={{
-              position: 'relative',
-              borderRadius: '1.4rem',
-              overflow: 'hidden',
-              boxShadow: [
-                '0 0 0 1px hsl(195 80% 55% / 0.1)',
-                '0 32px 72px -16px hsl(0 0% 0% / 0.75)',
-                '0 0 48px -12px hsl(195 80% 50% / 0.08)',
-              ].join(', '),
-            }}
-          >
-            {/* Inset frame */}
-            <div aria-hidden="true" style={{ position: 'absolute', inset: 0, zIndex: 2, borderRadius: '1.4rem', pointerEvents: 'none', boxShadow: 'inset 0 0 0 1px hsl(0 0% 100% / 0.07)' }}/>
-            {/* Vignette */}
-            <div aria-hidden="true" style={{ position: 'absolute', inset: 0, zIndex: 1, pointerEvents: 'none', background: 'radial-gradient(ellipse 90% 90% at 50% 50%, transparent 50%, hsl(0 0% 0% / 0.32) 100%)' }}/>
-            <img
-              loading="lazy"
-              decoding="async"
-              src="/brand_assets/Count.png"
-              alt="UGC creator metrics and analytics"
-              style={{ display: 'block', width: '100%', height: 'auto', objectFit: 'cover' }}
-            />
+  const bodyText = (
+    <>
+      <div className="ugccs-text" aria-hidden="true" style={{ width: '2.5rem', height: 1, background: 'hsl(195 80% 55% / 0.38)', marginBottom: '1.6rem' }}/>
+      <p className="ugccs-text font-sans font-light w-full max-w-none text-left text-base leading-8 sm:text-lg" style={{ color: 'hsl(0 0% 52%)', marginBottom: '1.2rem' }}>
+        Every creator we recommend is validated by their numbers. We look beyond follower count
+        and dig into engagement rate, average views, and audience quality — so your budget
+        goes to creators who actually perform.
+      </p>
+      <p className="ugccs-text font-sans font-light w-full max-w-none text-left text-base leading-8 sm:text-lg" style={{ color: 'hsl(0 0% 40%)', marginBottom: '2rem' }}>
+        No guessing, no wasted spend. We present the metrics that matter so you can
+        select with confidence and brief creators who are built to deliver.
+      </p>
+      <ul className="ugccs-text" style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.7rem' }}>
+        {UGC_INSIGHTS.map((item) => (
+          <li key={item} style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
+            <span aria-hidden="true" style={{ width: '5px', height: '5px', borderRadius: '50%', background: 'hsl(195 80% 58%)', boxShadow: '0 0 6px hsl(195 80% 58% / 0.6)', flexShrink: 0 }}/>
+            <span className="font-sans font-light" style={{ fontSize: '0.88rem', color: 'hsl(0 0% 68%)', letterSpacing: '0.01em' }}>{item}</span>
+          </li>
+        ))}
+      </ul>
+    </>
+  )
+
+  return (
+    <div ref={ref}>
+
+      {/* ─── DESKTOP layout (≥1024px): image-left, text-right ─────────────────── */}
+      <section className="hidden lg:block" style={{ position: 'relative', background: '#010709', padding: 'clamp(5rem, 10vw, 9rem) 0', width: '100%', overflow: 'hidden' }}>
+        {decorative}
+        <div style={{ position: 'relative', zIndex: 10, width: '100%', maxWidth: '80rem', margin: '0 auto', padding: '0 2.5rem', boxSizing: 'border-box' }}>
+          <div style={{ display: 'flex', gap: '5rem', alignItems: 'center' }}>
+            <div style={{ flex: '1 1 0', minWidth: 0 }}>
+              {imageCard()}
+            </div>
+            <div style={{ flex: '1 1 0', minWidth: 0 }}>
+              {stepLabel}
+              <h2
+                className="ugccs-text font-sans font-light"
+                style={{ color: '#fff', fontSize: 'clamp(2rem, 2.8vw, 3rem)', lineHeight: 1.05, letterSpacing: '-0.035em', marginBottom: '1.6rem' }}
+              >
+                Creators chosen by{' '}
+                <em style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400, color: 'hsl(195 80% 72%)' }}>
+                  data, not guesswork.
+                </em>
+              </h2>
+              {bodyText}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── MOBILE / TABLET layout (<1024px): fully stacked column ───────────── */}
+      <section className="block lg:hidden w-full overflow-x-hidden px-6 py-16 sm:px-8" style={{ position: 'relative', background: '#010709' }}>
+        {decorative}
+        <div className="mx-auto flex w-full max-w-[680px] flex-col items-start gap-8" style={{ position: 'relative', zIndex: 10 }}>
+
+          {/* 1. Section label */}
+          <div className="ugccs-text w-full flex items-center gap-3 flex-wrap">
+            <span className="font-sans" style={{ fontSize: '0.6rem', letterSpacing: '0.32em', textTransform: 'uppercase', color: 'hsl(195 80% 62%)' }}>01</span>
+            <div aria-hidden="true" style={{ width: '2rem', height: 1, background: 'hsl(195 80% 55% / 0.4)' }}/>
+            <span className="font-sans" style={{ fontSize: '0.6rem', letterSpacing: '0.28em', textTransform: 'uppercase', color: 'hsl(195 80% 62%)' }}>UGC Creator Selection</span>
           </div>
 
-          {/* ── RIGHT: text ── */}
-          <div>
+          {/* 2. Heading */}
+          <h2
+            className="ugccs-text font-sans font-light w-full text-left text-4xl leading-[1.08] text-white sm:text-5xl"
+            style={{ letterSpacing: '-0.03em', margin: 0 }}
+          >
+            Creators chosen by{' '}
+            <em style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400, color: 'hsl(195 80% 72%)' }}>
+              data, not guesswork.
+            </em>
+          </h2>
 
-            {/* Step label */}
-            <div className="ugccs-text flex items-center gap-3 mb-8">
-              <span className="font-sans" style={{ fontSize: '0.6rem', letterSpacing: '0.32em', textTransform: 'uppercase', color: 'hsl(195 80% 62%)' }}>01</span>
-              <div aria-hidden="true" style={{ width: '2rem', height: 1, background: 'hsl(195 80% 55% / 0.4)' }}/>
-              <span className="font-sans" style={{ fontSize: '0.6rem', letterSpacing: '0.32em', textTransform: 'uppercase', color: 'hsl(195 80% 62%)' }}>UGC Creator Selection</span>
-            </div>
+          {/* 3. Divider */}
+          <div className="ugccs-text h-px w-20 bg-sky-400/70" />
 
-            {/* Headline */}
-            <h2
-              className="ugccs-text font-sans font-light"
-              style={{ color: '#fff', fontSize: 'clamp(1.9rem, 3.6vw, 3rem)', lineHeight: 1.08, letterSpacing: '-0.035em', marginBottom: '1.8rem' }}
-            >
-              Creators chosen by{' '}
-              <em style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400, color: 'hsl(195 80% 72%)' }}>
-                data, not guesswork.
-              </em>
-            </h2>
-
-            {/* Divider */}
-            <div className="ugccs-text" aria-hidden="true" style={{ width: '2.5rem', height: 1, background: 'hsl(195 80% 55% / 0.38)', marginBottom: '1.8rem' }}/>
-
-            {/* Paragraph 1 */}
-            <p
-              className="ugccs-text font-sans font-light"
-              style={{ fontSize: 'clamp(0.88rem, 1.4vw, 1.02rem)', lineHeight: 1.9, color: 'hsl(0 0% 52%)', marginBottom: '1.2rem' }}
-            >
+          {/* 4. Paragraphs */}
+          <div className="ugccs-text w-full space-y-6">
+            <p className="w-full max-w-none text-left text-base leading-8 text-white/60 sm:text-lg sm:leading-9">
               Every creator we recommend is validated by their numbers. We look beyond follower count
               and dig into engagement rate, average views, and audience quality — so your budget
               goes to creators who actually perform.
             </p>
-
-            {/* Paragraph 2 */}
-            <p
-              className="ugccs-text font-sans font-light"
-              style={{ fontSize: 'clamp(0.88rem, 1.4vw, 1.02rem)', lineHeight: 1.9, color: 'hsl(0 0% 40%)', marginBottom: '2rem' }}
-            >
+            <p className="w-full max-w-none text-left text-base leading-8 sm:text-lg sm:leading-9" style={{ color: 'hsl(0 0% 40%)' }}>
               No guessing, no wasted spend. We present the metrics that matter so you can
               select with confidence and brief creators who are built to deliver.
             </p>
-
-            {/* Insight list */}
-            <ul className="ugccs-text" style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.7rem' }}>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.7rem' }}>
               {UGC_INSIGHTS.map((item) => (
                 <li key={item} style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
                   <span aria-hidden="true" style={{ width: '5px', height: '5px', borderRadius: '50%', background: 'hsl(195 80% 58%)', boxShadow: '0 0 6px hsl(195 80% 58% / 0.6)', flexShrink: 0 }}/>
@@ -7403,11 +7466,24 @@ function UGCCreatorSelection() {
                 </li>
               ))}
             </ul>
-
           </div>
+
+          {/* 5. Image — large, prominent, at the bottom */}
+          <div className="ugccs-img w-full mt-2" style={{ borderRadius: '1.75rem', overflow: 'hidden', boxShadow: '0 0 0 1px hsl(195 80% 55% / 0.12), 0 24px 60px -12px hsl(0 0% 0% / 0.7), 0 0 40px -10px hsl(195 80% 50% / 0.07)' }}>
+            <img
+              loading="lazy"
+              decoding="async"
+              src="/brand_assets/Count.png"
+              alt="UGC creator metrics and analytics"
+              className="w-full max-w-full h-auto object-cover object-center"
+              style={{ display: 'block' }}
+            />
+          </div>
+
         </div>
-      </div>
-    </section>
+      </section>
+
+    </div>
   )
 }
 
@@ -7473,20 +7549,10 @@ function UGCFindCreators() {
           <div>
 
             {/* Step label */}
-            <div className="ugcfc-text flex items-center gap-3 mb-8">
-              <span
-                className="font-sans"
-                style={{ fontSize: '0.6rem', letterSpacing: '0.32em', textTransform: 'uppercase', color: 'hsl(195 80% 62%)' }}
-              >
-                02
-              </span>
-              <div style={{ width: '2rem', height: 1, background: 'hsl(195 80% 55% / 0.4)' }} aria-hidden="true"/>
-              <span
-                className="font-sans"
-                style={{ fontSize: '0.6rem', letterSpacing: '0.32em', textTransform: 'uppercase', color: 'hsl(195 80% 62%)' }}
-              >
-                Find Your UGC Creators
-              </span>
+            <div className="ugcfc-text ugc-step-label flex items-center gap-3 mb-8">
+              <span className="font-sans" style={{ fontSize: '0.6rem', letterSpacing: '0.32em', textTransform: 'uppercase', color: 'hsl(195 80% 62%)', flexShrink: 0 }}>02</span>
+              <div style={{ width: '2rem', height: 1, background: 'hsl(195 80% 55% / 0.4)', flexShrink: 0 }} aria-hidden="true"/>
+              <span className="font-sans" style={{ fontSize: '0.6rem', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'hsl(195 80% 62%)' }}>Find Your UGC Creators</span>
             </div>
 
             {/* Headline */}
@@ -7535,7 +7601,7 @@ function UGCFindCreators() {
 
           {/* ── RIGHT: TikTok UI mockup (no phone shell) ── */}
           <div className="ugcfc-video flex justify-center lg:justify-end">
-            <div style={{ width: '100%', maxWidth: '380px' }}>
+            <div className="ugcfc-mockup-inner" style={{ width: '100%', maxWidth: '380px' }}>
 
               {/* 9:16 screen */}
               <div style={{
@@ -7689,6 +7755,80 @@ const UGC_REPORT_POINTS = [
 function UGCMonitoringReporting() {
   const ref = useRef<HTMLElement>(null)
 
+  // ── Inject bulletproof layout CSS directly into <head> ──────────────────────
+  useEffect(() => {
+    const id = 'ugcmr-layout-css'
+    const existing = document.getElementById(id)
+    if (existing) existing.remove()
+    const tag = document.createElement('style')
+    tag.id = id
+    tag.textContent = `
+      .ugcmr-layout-section { overflow-x: hidden !important; }
+      .ugcmr-layout-inner {
+        width: 100% !important;
+        max-width: 80rem !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        padding-left: 1.5rem !important;
+        padding-right: 1.5rem !important;
+        box-sizing: border-box !important;
+      }
+      .ugcmr-layout-flex {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 2.5rem !important;
+        width: 100% !important;
+        align-items: stretch !important;
+      }
+      .ugcmr-layout-text {
+        order: 1 !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        max-width: none !important;
+        box-sizing: border-box !important;
+      }
+      .ugcmr-layout-text h2,
+      .ugcmr-layout-text p,
+      .ugcmr-layout-text ul {
+        width: 100% !important;
+        max-width: none !important;
+        min-width: 0 !important;
+        white-space: normal !important;
+        word-break: break-word !important;
+        overflow-wrap: break-word !important;
+      }
+      .ugcmr-layout-image {
+        order: 2 !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        display: flex !important;
+        justify-content: center !important;
+        box-sizing: border-box !important;
+      }
+      @media (min-width: 1024px) {
+        .ugcmr-layout-flex {
+          flex-direction: row !important;
+          gap: 5rem !important;
+          align-items: center !important;
+        }
+        .ugcmr-layout-text {
+          order: 2 !important;
+          flex: 1 1 0 !important;
+          max-width: 50% !important;
+        }
+        .ugcmr-layout-image {
+          order: 1 !important;
+          flex: 1 1 0 !important;
+          max-width: 50% !important;
+          justify-content: flex-end !important;
+        }
+      }
+    `
+    document.head.appendChild(tag)
+    return () => { document.getElementById(id)?.remove() }
+  }, [])
+
+  // ── GSAP scroll animation ────────────────────────────────────────────────────
   useEffect(() => {
     const el = ref.current
     if (!el) return
@@ -7710,97 +7850,48 @@ function UGCMonitoringReporting() {
   return (
     <section
       ref={ref}
-      className="relative w-full overflow-hidden"
-      style={{ background: '#010709', padding: 'clamp(5rem, 10vw, 9rem) 0' }}
+      className="ugcmr-layout-section"
+      style={{ position: 'relative', background: '#010709', padding: 'clamp(5rem, 10vw, 9rem) 0' }}
     >
       {/* Ambient glow */}
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
-        background: [
-          'radial-gradient(ellipse 48% 55% at 0% 50%, hsl(195 80% 50% / 0.042) 0%, transparent 65%)',
-          'radial-gradient(ellipse 35% 40% at 100% 60%, hsl(195 70% 40% / 0.028) 0%, transparent 60%)',
-        ].join(', '),
-      }}/>
+      <div aria-hidden="true" style={{ pointerEvents: 'none', position: 'absolute', inset: 0, background: 'radial-gradient(ellipse 48% 55% at 0% 50%, hsl(195 80% 50% / 0.042) 0%, transparent 65%), radial-gradient(ellipse 35% 40% at 100% 60%, hsl(195 70% 40% / 0.028) 0%, transparent 60%)' }}/>
       {/* Grain */}
-      <svg aria-hidden="true" className="pointer-events-none absolute inset-0 w-full h-full" style={{ opacity: 0.025 }}>
-        <filter id="ugcmr-gr">
-          <feTurbulence type="fractalNoise" baseFrequency="0.66" numOctaves="3" stitchTiles="stitch" result="n"/>
-          <feColorMatrix type="saturate" values="0" in="n"/>
-        </filter>
+      <svg aria-hidden="true" style={{ pointerEvents: 'none', position: 'absolute', inset: 0, width: '100%', height: '100%', opacity: 0.025 }}>
+        <filter id="ugcmr-gr"><feTurbulence type="fractalNoise" baseFrequency="0.66" numOctaves="3" stitchTiles="stitch" result="n"/><feColorMatrix type="saturate" values="0" in="n"/></filter>
         <rect width="100%" height="100%" filter="url(#ugcmr-gr)" fill="white"/>
       </svg>
       {/* Top separator */}
       <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '1px', background: 'linear-gradient(to right, transparent, hsl(195 80% 55% / 0.12), transparent)' }}/>
 
-      <div className="relative z-10 max-w-[72rem] mx-auto px-6 sm:px-10">
-        <div className="grid grid-cols-1 gap-14 lg:gap-20 items-center" style={{ gridTemplateColumns: 'minmax(0,70%) minmax(0,30%)' }}>
+      {/* Content */}
+      <div className="ugcmr-layout-inner" style={{ position: 'relative', zIndex: 10 }}>
+        <div className="ugcmr-layout-flex">
 
-          {/* ── LEFT: image ── */}
-          <div
-            className="ugcmr-img"
-            style={{
-              position: 'relative',
-              borderRadius: '1.4rem',
-              overflow: 'hidden',
-              boxShadow: [
-                '0 0 0 1px hsl(195 80% 55% / 0.1)',
-                '0 32px 72px -16px hsl(0 0% 0% / 0.75)',
-                '0 0 48px -12px hsl(195 80% 50% / 0.08)',
-              ].join(', '),
-            }}
-          >
-            <div aria-hidden="true" style={{ position: 'absolute', inset: 0, zIndex: 2, borderRadius: '1.4rem', pointerEvents: 'none', boxShadow: 'inset 0 0 0 1px hsl(0 0% 100% / 0.07)' }}/>
-            <div aria-hidden="true" style={{ position: 'absolute', inset: 0, zIndex: 1, pointerEvents: 'none', background: 'radial-gradient(ellipse 90% 90% at 50% 50%, transparent 50%, hsl(0 0% 0% / 0.32) 100%)' }}/>
-            <img
-              loading="lazy"
-              decoding="async"
-              src="/brand_assets/tik_youtube_images.png"
-              alt="Content monitoring and reporting"
-              style={{ display: 'block', width: '100%', height: 'clamp(380px, 50vw, 560px)', objectFit: 'cover', objectPosition: 'center' }}
-            />
-          </div>
-
-          {/* ── RIGHT: text ── */}
-          <div>
-            {/* Step label */}
-            <div className="ugcmr-text flex items-center gap-3 mb-8">
-              <span className="font-sans" style={{ fontSize: '0.6rem', letterSpacing: '0.32em', textTransform: 'uppercase', color: 'hsl(195 80% 62%)' }}>03</span>
-              <div aria-hidden="true" style={{ width: '2rem', height: 1, background: 'hsl(195 80% 55% / 0.4)' }}/>
-              <span className="font-sans" style={{ fontSize: '0.6rem', letterSpacing: '0.32em', textTransform: 'uppercase', color: 'hsl(195 80% 62%)' }}>Content Monitoring & Reporting</span>
+          {/* TEXT — first in DOM = top on mobile, order-2 on desktop (right) */}
+          <div className="ugcmr-layout-text">
+            <div className="ugcmr-text" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.75rem', flexWrap: 'wrap' }}>
+              <span className="font-sans" style={{ fontSize: '0.6rem', letterSpacing: '0.32em', textTransform: 'uppercase', color: 'hsl(195 80% 62%)', flexShrink: 0 }}>03</span>
+              <div aria-hidden="true" style={{ width: '2rem', height: 1, background: 'hsl(195 80% 55% / 0.4)', flexShrink: 0 }}/>
+              <span className="font-sans" style={{ fontSize: '0.6rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: 'hsl(195 80% 62%)' }}>Content Monitoring & Reporting</span>
             </div>
-
-            {/* Headline */}
             <h2
               className="ugcmr-text font-sans font-light"
-              style={{ color: '#fff', fontSize: 'clamp(1.9rem, 3.6vw, 3rem)', lineHeight: 1.08, letterSpacing: '-0.035em', marginBottom: '1.8rem' }}
+              style={{ color: '#fff', fontSize: 'clamp(2rem, 5vw, 3rem)', lineHeight: 1.05, letterSpacing: '-0.035em', marginBottom: '1.6rem' }}
             >
               Every result,{' '}
               <em style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400, color: 'hsl(195 80% 72%)' }}>
                 clearly reported.
               </em>
             </h2>
-
-            {/* Divider */}
-            <div className="ugcmr-text" aria-hidden="true" style={{ width: '2.5rem', height: 1, background: 'hsl(195 80% 55% / 0.38)', marginBottom: '1.8rem' }}/>
-
-            {/* Paragraph 1 */}
-            <p
-              className="ugcmr-text font-sans font-light"
-              style={{ fontSize: 'clamp(0.88rem, 1.4vw, 1.02rem)', lineHeight: 1.9, color: 'hsl(0 0% 52%)', marginBottom: '1.2rem' }}
-            >
+            <div className="ugcmr-text" aria-hidden="true" style={{ width: '2.5rem', height: 1, background: 'hsl(195 80% 55% / 0.38)', marginBottom: '1.6rem' }}/>
+            <p className="ugcmr-text font-sans font-light" style={{ fontSize: '1rem', lineHeight: 2, color: 'hsl(0 0% 52%)', marginBottom: '1.2rem' }}>
               During the campaign, we track and collect every piece of published UGC across Instagram,
               including Stories, TikTok, and YouTube, so your content stays organised and easy to review.
             </p>
-
-            {/* Paragraph 2 */}
-            <p
-              className="ugcmr-text font-sans font-light"
-              style={{ fontSize: 'clamp(0.88rem, 1.4vw, 1.02rem)', lineHeight: 1.9, color: 'hsl(0 0% 40%)', marginBottom: '2rem' }}
-            >
+            <p className="ugcmr-text font-sans font-light" style={{ fontSize: '1rem', lineHeight: 2, color: 'hsl(0 0% 40%)', marginBottom: '2rem' }}>
               At the end of each month, we provide clear reporting with downloadable media assets,
               campaign performance insights, and key results such as impressions, clicks, leads, and sales.
             </p>
-
-            {/* Point list */}
             <ul className="ugcmr-text" style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.7rem' }}>
               {UGC_REPORT_POINTS.map(item => (
                 <li key={item} style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
@@ -7809,6 +7900,25 @@ function UGCMonitoringReporting() {
                 </li>
               ))}
             </ul>
+          </div>
+
+          {/* IMAGE — second in DOM = bottom on mobile, order-1 on desktop (left) */}
+          <div className="ugcmr-layout-image">
+            <div
+              className="ugcmr-img"
+              style={{
+                position: 'relative',
+                borderRadius: '1.4rem',
+                overflow: 'hidden',
+                width: '100%',
+                maxWidth: '380px',
+                boxShadow: '0 0 0 1px hsl(195 80% 55% / 0.1), 0 32px 72px -16px hsl(0 0% 0% / 0.75), 0 0 48px -12px hsl(195 80% 50% / 0.08)',
+              }}
+            >
+              <div aria-hidden="true" style={{ position: 'absolute', inset: 0, zIndex: 2, borderRadius: '1.4rem', pointerEvents: 'none', boxShadow: 'inset 0 0 0 1px hsl(0 0% 100% / 0.07)' }}/>
+              <div aria-hidden="true" style={{ position: 'absolute', inset: 0, zIndex: 1, pointerEvents: 'none', background: 'radial-gradient(ellipse 90% 90% at 50% 50%, transparent 50%, hsl(0 0% 0% / 0.32) 100%)' }}/>
+              <img loading="lazy" decoding="async" src="/brand_assets/tik_youtube_images.png" alt="Content monitoring and reporting" style={{ display: 'block', width: '100%', height: 'auto', objectFit: 'contain' }}/>
+            </div>
           </div>
 
         </div>
@@ -7977,9 +8087,9 @@ function UGCTrackingUrls() {
 
           {/* ── LEFT: text ── */}
           <div>
-            <div className="ugctu-text flex items-center gap-3 mb-6">
-              <span className="font-sans" style={{ fontSize: '0.6rem', letterSpacing: '0.32em', textTransform: 'uppercase', color: 'hsl(160 65% 55%)' }}>04</span>
-              <div aria-hidden="true" style={{ width: '2rem', height: 1, background: 'hsl(160 65% 50% / 0.4)' }}/>
+            <div className="ugctu-text ugc-step-label flex items-center gap-3 mb-6">
+              <span className="font-sans" style={{ fontSize: '0.6rem', letterSpacing: '0.32em', textTransform: 'uppercase', color: 'hsl(160 65% 55%)', flexShrink: 0 }}>04</span>
+              <div aria-hidden="true" style={{ width: '2rem', height: 1, background: 'hsl(160 65% 50% / 0.4)', flexShrink: 0 }}/>
               <span className="font-sans" style={{ fontSize: '0.6rem', letterSpacing: '0.32em', textTransform: 'uppercase', color: 'hsl(160 65% 55%)' }}>Tracking URLs</span>
             </div>
 
@@ -8052,7 +8162,7 @@ function UGCTrackingUrls() {
               </div>
 
               {/* Metric cards — numbers count up via ref */}
-              <div style={{ padding: '14px 14px 0', display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '8px' }}>
+              <div className="ugctu-metrics">
                 {UGCTU_METRICS.map(({ label, delta }, i) => (
                   <div
                     key={label}
@@ -8115,14 +8225,14 @@ function UGCTrackingUrls() {
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                   {UGCTU_BARS.map(({ name, val }, i) => (
                     <div key={name} style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                      <span style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 300, fontSize: '0.58rem', color: 'hsl(0 0% 40%)', width: '70px', flexShrink: 0 }}>{name}</span>
+                      <span className="ugctu-bar-name" style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 300, fontSize: '0.58rem', color: 'hsl(0 0% 40%)', width: '70px', flexShrink: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{name}</span>
                       <div style={{ flex: 1, height: '4px', background: 'hsl(0 0% 100% / 0.06)', borderRadius: '2px', overflow: 'hidden' }}>
                         <div
                           ref={el => { barRefs.current[i] = el }}
                           style={{ height: '100%', width: '0%', background: 'linear-gradient(to right, hsl(160 65% 38%), hsl(160 65% 56%))', borderRadius: '2px' }}
                         />
                       </div>
-                      <span style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 300, fontSize: '0.54rem', color: 'hsl(0 0% 34%)', width: '56px', textAlign: 'right', flexShrink: 0 }}>{val}</span>
+                      <span className="ugctu-bar-val" style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 300, fontSize: '0.54rem', color: 'hsl(0 0% 34%)', width: '56px', textAlign: 'right', flexShrink: 0 }}>{val}</span>
                     </div>
                   ))}
                 </div>
@@ -8298,6 +8408,7 @@ function UGCPerfumeCampaign() {
 
             {/* Phone shell */}
             <div
+              className="ugcpc-phone"
               style={{
                 position: 'relative',
                 width: '100%',
@@ -8506,9 +8617,9 @@ function UGCPerfumeCampaign() {
           <div>
 
             {/* Label */}
-            <div className="ugcpc-text flex items-center gap-3 mb-8">
+            <div className="ugcpc-text ugc-step-label flex items-center gap-3 mb-8">
               <span aria-hidden="true" style={{ width: '1.8rem', height: 1, background: 'hsl(38 75% 58% / 0.55)', flexShrink: 0 }} />
-              <span className="font-sans" style={{ fontSize: '0.6rem', letterSpacing: '0.32em', textTransform: 'uppercase', color: 'hsl(38 75% 62%)' }}>
+              <span className="font-sans" style={{ fontSize: '0.6rem', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'hsl(38 75% 62%)' }}>
                 UGC Perfume Campaign
               </span>
             </div>
@@ -9095,7 +9206,7 @@ function UGCPracticeEcosystem() {
 function UGCContactFooter() {
   const sectionRef = useRef<HTMLElement>(null)
   const marqueeRef = useRef<HTMLDivElement>(null)
-  const videoRef   = useRef<HTMLVideoElement>(null)
+  const { videoRef, containerRef } = useHlsVideo(HLS_FOOTER)
   const [ctaHover, setCtaHover] = useState(false)
 
   // ── Scroll-triggered entry animations ────────────────────────────────────
@@ -9125,29 +9236,6 @@ function UGCContactFooter() {
     return () => obs.disconnect()
   }, [])
 
-  // ── HLS video — same source as hero ──────────────────────────────────────
-  useEffect(() => {
-    const video = videoRef.current
-    if (!video) return
-    let cleanup: (() => void) | undefined
-    import('hls.js').then(({ default: Hls }) => {
-      if (!videoRef.current) return
-      if (Hls.isSupported()) {
-        const hls = new Hls({ startLevel: -1, autoStartLoad: true })
-        hls.loadSource(HLS_FOOTER)
-        hls.attachMedia(video)
-        hls.on(Hls.Events.MANIFEST_PARSED, () => {
-          video.play().catch(() => {})
-        })
-        cleanup = () => hls.destroy()
-      } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-        video.src = HLS_FOOTER
-        video.play().catch(() => {})
-      }
-    })
-    return () => cleanup?.()
-  }, [])
-
   // ── GSAP infinite marquee ─────────────────────────────────────────────────
   useEffect(() => {
     const el = marqueeRef.current
@@ -9168,14 +9256,12 @@ function UGCContactFooter() {
       className="relative bg-bg pt-16 md:pt-20 pb-8 md:pb-12 overflow-hidden"
     >
       {/* ── HLS Video background — flipped vertically ── */}
-      <div className="absolute inset-0" aria-hidden="true" style={{ zIndex: 0 }}>
+      <div ref={containerRef} className="absolute inset-0" aria-hidden="true" style={{ zIndex: 0 }}>
         <video
           ref={videoRef}
-          autoPlay
           muted
           loop
           playsInline
-          preload="none"
           aria-hidden="true"
           className="scale-y-[-1]"
           style={{

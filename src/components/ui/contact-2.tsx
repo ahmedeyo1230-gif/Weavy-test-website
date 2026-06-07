@@ -61,49 +61,77 @@ const SOCIALS = [
 
 function FooterVideo() {
   const videoRef = useRef<HTMLVideoElement>(null)
+  const containerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const video = videoRef.current
-    if (!video) return
+    const container = containerRef.current
+    if (!video || !container) return
+
+    const isMobile = window.innerWidth < 768 || navigator.maxTouchPoints > 0
+    if (isMobile) return
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return
+
     let cleanup: (() => void) | undefined
+    let initialized = false
 
-    import("hls.js").then(({ default: Hls }) => {
-      if (!videoRef.current) return
-      if (Hls.isSupported()) {
-        const hls = new Hls({ startLevel: -1, maxBufferLength: 20, maxMaxBufferLength: 40 })
-        hls.loadSource(HLS_SRC)
-        hls.attachMedia(video)
-        hls.on(Hls.Events.MANIFEST_PARSED, () => {
+    const init = () => {
+      if (initialized) return
+      initialized = true
+      import("hls.js").then(({ default: Hls }) => {
+        if (!videoRef.current) return
+        if (Hls.isSupported()) {
+          const hls = new Hls({ startLevel: -1, maxBufferLength: 20, maxMaxBufferLength: 40 })
+          hls.loadSource(HLS_SRC)
+          hls.attachMedia(video)
+          hls.on(Hls.Events.MANIFEST_PARSED, () => {
+            video.play().catch(() => {})
+          })
+          cleanup = () => hls.destroy()
+        } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
+          video.src = HLS_SRC
           video.play().catch(() => {})
-        })
-        cleanup = () => hls.destroy()
-      } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
-        video.src = HLS_SRC
-        video.play().catch(() => {})
-      }
-    })
+        }
+      })
+    }
 
-    return () => cleanup?.()
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          init()
+          observer.disconnect()
+        }
+      },
+      { rootMargin: "200px" }
+    )
+    observer.observe(container)
+
+    return () => {
+      observer.disconnect()
+      cleanup?.()
+    }
   }, [])
 
   return (
-    <video
-      ref={videoRef}
-      autoPlay
-      muted
-      loop
-      playsInline
-      aria-hidden="true"
-      style={{
-        position: "absolute",
-        top: "50%",
-        left: "50%",
-        minWidth: "100%",
-        minHeight: "100%",
-        objectFit: "cover",
-        transform: "translate(-50%, -50%) scaleY(-1)",
-      }}
-    />
+    <div ref={containerRef} style={{ position: "absolute", inset: 0 }}>
+      <video
+        ref={videoRef}
+        muted
+        loop
+        playsInline
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          minWidth: "100%",
+          minHeight: "100%",
+          objectFit: "cover",
+          transform: "translate(-50%, -50%) scaleY(-1)",
+        }}
+      />
+    </div>
   )
 }
 

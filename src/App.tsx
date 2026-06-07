@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, lazy, Suspense } from 'react'
 import LoadingScreen from './components/LoadingScreen'
 import Hero, { Navbar } from './components/Hero'
 import VideoShowcase from './components/VideoShowcase'
@@ -8,12 +8,14 @@ import WhyWeavyWorks from './components/WhyWeavyWorks'
 import SystemsShowcase from './components/SystemsShowcase'
 import ExceedingExpectations from './components/ExceedingExpectations'
 import LiveBrandSignals from './components/LiveBrandSignals'
-import ImageShowcase from './components/ImageShowcase'
 import TestimonialsSection from './components/Testimonials'
-import Services from './components/Services'
 import Footer from './components/Footer'
-import Blog from './components/Blog'
-import Contact from './components/Contact'
+
+// Heavy pages — loaded only when navigated to
+const Services     = lazy(() => import('./components/Services'))
+const ImageShowcase = lazy(() => import('./components/ImageShowcase'))
+const Blog         = lazy(() => import('./components/Blog'))
+const Contact      = lazy(() => import('./components/Contact'))
 
 const MAIN_HASHES = ['#home', '#about', '#showcase', '']
 
@@ -71,22 +73,22 @@ export default function App() {
           {showServices ? (
             <>
               <Navbar />
-              <Services />
+              <Suspense fallback={null}><Services /></Suspense>
             </>
           ) : showWork ? (
             <>
               <Navbar />
-              <ImageShowcase />
+              <Suspense fallback={null}><ImageShowcase /></Suspense>
             </>
           ) : showBlog ? (
             <>
               <Navbar />
-              <Blog />
+              <Suspense fallback={null}><Blog /></Suspense>
             </>
           ) : showContact ? (
             <>
               <Navbar />
-              <Contact />
+              <Suspense fallback={null}><Contact /></Suspense>
             </>
           ) : (
             <>
