@@ -5431,10 +5431,12 @@ function ChatbotHero() {
 // ─── Graphic Design / Animation — Cinematic Hero ─────────────────────────────
 
 function GraphicDesignHero() {
+  // Use a medium pair: start collapsed by default so desktop loads normally,
+  // but allow expanding to a large (but not extreme) size for review.
   const [expanded, setExpanded] = useState(false)
 
   const desktopCollapsed = '95vh'
-  const desktopExpanded = 'min(300vh, 2400px)'
+  const desktopExpanded = 'min(400vh, 3200px)'
   const desktopHeight = expanded ? desktopExpanded : desktopCollapsed
 
   return (
@@ -5876,69 +5878,38 @@ function GraphicDesignServices() {
           style={{ height: '1px', background: 'hsl(0 0% 100% / 0.06)', marginBottom: 'clamp(3rem, 5vw, 4.5rem)' }}
         />
 
-        {/* 4-column pill grid */}
-        <div
-          className="w-full"
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(4, 1fr)',
-            columnGap: '10px',
-            rowGap: '32px',
-          }}
-        >
+        {/* 4-column pill grid — responsive for mobile/tablet */}
+        <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {GDS_ITEMS.map((item) => (
             <div
               key={item}
-              className="gdsvs-c"
+              className="w-full min-w-0 flex items-center gap-4 rounded-full border border-white/10 bg-white/[0.03] px-5 py-4 cursor-default select-none relative"
               style={{
-                position: 'relative',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '10px',
-                padding: '14px 20px',
-                borderRadius: '100px',
-                background: 'hsl(0 0% 100% / 0.038)',
                 boxShadow: [
                   'inset 0 1px 0 hsl(0 0% 100% / 0.05)',
                   'inset 0 -1px 0 hsl(0 0% 0% / 0.2)',
                   '0 0 0 1.5px hsl(0 0% 100% / 0.10)',
                   '0 2px 10px hsl(0 0% 0% / 0.4)',
                 ].join(', '),
-                cursor: 'default',
-                userSelect: 'none',
-                overflow: 'hidden',
               }}
             >
-              {/* Shimmer sweep element */}
+              {/* Shimmer sweep element (visual only) */}
               <div
-                className="gdsvs-shimmer"
+                className="absolute inset-y-0 left-0 pointer-events-none"
                 aria-hidden="true"
                 style={{
-                  position: 'absolute',
-                  top: 0, bottom: 0,
-                  left: 0,
                   width: '40%',
                   background: 'linear-gradient(90deg, transparent, hsl(38 90% 70% / 0.22), transparent)',
                   transform: 'translateX(-120%)',
-                  pointerEvents: 'none',
                   borderRadius: '100px',
                 }}
               />
-              <GdsCheckIcon />
-              <span
-                className="font-sans"
-                style={{
-                  fontSize: 'clamp(0.7rem, 1.05vw, 0.78rem)',
-                  fontWeight: 500,
-                  letterSpacing: '0.01em',
-                  color: 'hsl(0 0% 65%)',
-                  whiteSpace: 'nowrap',
-                  overflow: 'hidden',
-                  textOverflow: 'ellipsis',
-                  position: 'relative',
-                  zIndex: 1,
-                }}
-              >
+
+              <div style={{ flexShrink: 0 }} aria-hidden>
+                <GdsCheckIcon />
+              </div>
+
+              <span className="text-sm sm:text-base text-white/65 leading-normal whitespace-normal break-words min-w-0 font-sans font-medium">
                 {item}
               </span>
             </div>

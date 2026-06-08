@@ -1078,6 +1078,8 @@ function BlogHero() {
         style={{ boxShadow: '0 24px 80px rgba(0,0,0,0.5)' }}
       >
         <img
+          loading="lazy"
+          decoding="async"
           src="/brand_assets/Blog_1.png"
           alt="Blog hero"
           style={{ display: 'block', width: '100%', height: 'auto', objectFit: 'cover', objectPosition: 'center top' }}

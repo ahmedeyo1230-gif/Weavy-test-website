@@ -49,6 +49,8 @@ export const TestimonialsColumn = (props: {
                 </p>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', marginTop: '1.1rem' }}>
                   <img
+                    loading="lazy"
+                    decoding="async"
                     src={image}
                     alt={name}
                     width={36}

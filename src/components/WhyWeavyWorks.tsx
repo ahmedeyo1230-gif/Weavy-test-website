@@ -100,6 +100,8 @@ function ImageFloat3D() {
           style={{ transformStyle: 'preserve-3d' }}
         >
           <img
+            loading="lazy"
+            decoding="async"
             src="/brand_assets/New_now.png"
             alt="Weavy platform visual"
             style={{

@@ -158,6 +158,8 @@ function Lightbox({ src, title, category, onClose }: { src: string; title: strin
         }}
       >
         <img
+          loading="lazy"
+          decoding="async"
           src={src}
           alt={title}
           style={{
