@@ -6186,12 +6186,13 @@ function GraphicDesignSplitB() {
       }}/>
 
       <div className="relative z-10 max-w-[92rem] mx-auto px-6 sm:px-12">
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: '1fr 1.25fr',
-          gap: 'clamp(3rem, 6vw, 6rem)',
-          alignItems: 'center',
-        }}>
+        <div
+          className="hidden lg:grid lg:grid-cols-[1fr_1.25fr]"
+          style={{
+            gap: 'clamp(2rem, 6vw, 6rem)',
+            alignItems: 'center',
+          }}
+        >
 
           {/* ── LEFT: Typography ── */}
           <div className="flex flex-col" style={{ paddingRight: 'clamp(0rem, 2vw, 2rem)' }}>
@@ -6261,7 +6262,7 @@ function GraphicDesignSplitB() {
                   borderBottom: '1px solid hsl(0 0% 100% / 0.05)',
                 }}>
                   <span className="font-sans font-light" style={{
-                    fontSize: 'clamp(0.78rem, 1.1vw, 0.9rem)',
+                    fontSize: 'clamp(0.88rem, 1.1vw, 0.9rem)',
                     color: 'hsl(0 0% 48%)', letterSpacing: '0.01em',
                   }}>{step}</span>
                   <span className="font-sans" style={{
@@ -6290,13 +6291,80 @@ function GraphicDesignSplitB() {
                 decoding="async"
                 src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1400&q=85"
                 alt="High-end luxurious modern office interior"
-                style={{
-                  display: 'block',
-                  width: '100%',
-                  height: 'clamp(500px, 65vw, 780px)',
-                  objectFit: 'cover',
-                  objectPosition: 'center center',
-                }}
+                className="block w-full object-cover object-center h-[260px] sm:h-[400px] lg:h-[clamp(500px,65vw,780px)]"
+                style={{ objectPosition: 'center center' }}
+              />
+            </div>
+          </div>
+
+        </div>
+
+        {/* ═══ MOBILE / TABLET LAYOUT (< lg) ═══ */}
+        <div className="block lg:hidden px-6 sm:px-8" style={{ paddingTop: '0.75rem' }}>
+
+          {/* Text stack: heading -> paragraph */}
+          <div style={{ maxWidth: '100%', margin: '0 auto', paddingBottom: '1rem' }}>
+            <h2 style={{
+              fontFamily: 'var(--font-sans, sans-serif)', fontWeight: 500,
+              fontSize: 'clamp(1.8rem, 6.6vw, 2.6rem)',
+              lineHeight: 1.08, letterSpacing: '-0.02em',
+              color: 'hsl(0 0% 94%)', margin: 0, marginBottom: '0.7rem'
+            }}>
+              Where Vision Becomes Influence
+            </h2>
+
+            <div style={{ height: '1px', background: 'hsl(0 0% 100% / 0.06)', margin: '0.9rem 0' }} />
+
+            <p style={{
+              fontFamily: 'var(--font-sans, sans-serif)', fontWeight: 300,
+              fontSize: '0.98rem', lineHeight: 1.85,
+              color: 'hsl(0 0% 44%)', margin: 0, marginBottom: '1.25rem'
+            }}>
+              Every project begins with strategy and ends with impact. We combine brand thinking, design excellence, motion craftsmanship, and digital storytelling to create work that captures attention, builds recognition, and delivers lasting value across every platform.
+            </p>
+          </div>
+
+          {/* 2×2 Process grid — compact, balanced */}
+          <div style={{ marginBottom: '1.5rem' }}>
+            <div style={{
+              display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '12px',
+              width: '100%',
+            }}>
+              {([
+                ['01', 'Brief & Creative Direction'],
+                ['02', 'Concept & Visual Development'],
+                ['03', 'Design, Motion & Production'],
+                ['04', 'Refinement & Final Delivery'],
+              ] as const).map(([num, step]) => (
+                <div key={num} style={{
+                  background: 'linear-gradient(180deg, hsl(0 0% 6% / 0.96), hsl(0 0% 4% / 0.96))',
+                  borderRadius: '12px', padding: '14px', display: 'flex', flexDirection: 'column', justifyContent: 'center',
+                  minHeight: '78px', boxShadow: '0 6px 18px rgba(0,0,0,0.55)',
+                }}>
+                  <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: '12px' }}>
+                    <span style={{
+                      fontFamily: 'monospace', fontSize: '0.66rem', color: 'hsl(0 0% 76%)', letterSpacing: '0.18em'
+                    }}>{num}</span>
+                  </div>
+                  <div style={{ marginTop: '6px' }}>
+                    <span style={{ fontFamily: 'var(--font-sans, sans-serif)', fontWeight: 300, fontSize: '0.92rem', color: 'hsl(0 0% 78%)', lineHeight: 1.3 }}>
+                      {step}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Image below content */}
+          <div style={{ marginBottom: '2rem' }}>
+            <div style={{ borderRadius: 18, overflow: 'hidden', width: '100%', boxShadow: '0 18px 48px rgba(0,0,0,0.7)' }}>
+              <img
+                loading="lazy"
+                decoding="async"
+                src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1400&q=85"
+                alt="Creative studio workspace"
+                style={{ display: 'block', width: '100%', height: 'auto', aspectRatio: '16/9', objectFit: 'cover', objectPosition: 'center' }}
               />
             </div>
           </div>
@@ -6386,12 +6454,14 @@ function GraphicDesignFinalPresentation() {
       }}/>
 
       <div className="relative z-10 max-w-[92rem] mx-auto px-6 sm:px-12">
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: '1fr 1.12fr',
-          gap: 'clamp(3rem, 6vw, 7rem)',
-          alignItems: 'center',
-        }}>
+        <div
+          className="hidden lg:grid"
+          style={{
+            gridTemplateColumns: '1fr 1.12fr',
+            gap: 'clamp(3rem, 6vw, 7rem)',
+            alignItems: 'center',
+          }}
+        >
 
           {/* ── LEFT: Text ── */}
           <div className="flex flex-col">
@@ -6416,13 +6486,13 @@ function GraphicDesignFinalPresentation() {
                 maxWidth: '26rem',
               }}
             >
-              Where strategy, visuals, and motion{' '}
+              Where Vision Becomes{' '}
               <em style={{
                 fontFamily: "'Instrument Serif', Georgia, serif",
                 fontStyle: 'italic', fontWeight: 400,
                 color: 'hsl(0 0% 48%)',
               }}>
-                come together.
+                Influence.
               </em>
             </h2>
 
@@ -6432,20 +6502,12 @@ function GraphicDesignFinalPresentation() {
               style={{ width: '2rem', height: '1px', background: 'hsl(195 90% 55% / 0.3)', marginBottom: 'clamp(1.8rem, 3vw, 2.5rem)' }}
             />
 
-            {/* Para 1 */}
+            {/* Para */}
             <p className="gdfp-body font-sans font-light" style={{
               fontSize: 'clamp(0.86rem, 1.3vw, 0.98rem)', lineHeight: 1.92,
-              color: 'hsl(0 0% 44%)', marginBottom: '1.4rem', maxWidth: '30rem',
+              color: 'hsl(0 0% 44%)', marginBottom: 'clamp(2rem, 3.5vw, 3rem)', maxWidth: '30rem',
             }}>
-              Once the creative direction is approved, every visual is refined with precision — from typography and composition to motion flow, lighting, colour balance, and overall presentation quality.
-            </p>
-
-            {/* Para 2 */}
-            <p className="gdfp-body font-sans font-light" style={{
-              fontSize: 'clamp(0.86rem, 1.3vw, 0.98rem)', lineHeight: 1.92,
-              color: 'hsl(0 0% 36%)', marginBottom: 'clamp(2rem, 3.5vw, 3rem)', maxWidth: '30rem',
-            }}>
-              The final delivery is designed to feel polished across every touchpoint, helping brands appear more premium, more memorable, and more visually consistent online.
+              Every project begins with strategy and ends with impact. We combine brand thinking, design excellence, motion craftsmanship, and digital storytelling to create work that captures attention, builds recognition, and delivers lasting value across every platform.
             </p>
 
             {/* Feature list */}
@@ -6665,6 +6727,105 @@ function GraphicDesignFinalPresentation() {
               </div>
             </div>
 
+          </div>
+
+        </div>
+
+        {/* ═══ MOBILE / TABLET LAYOUT (< lg) ═══ */}
+        <div className="block lg:hidden" style={{ paddingTop: '0.5rem' }}>
+
+          {/* Section marker */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '2rem' }}>
+            <div style={{ width: 20, height: 1, background: 'hsl(195 90% 55% / 0.55)' }}/>
+            <span style={{
+              fontFamily: 'var(--font-sans, sans-serif)',
+              fontSize: '0.57rem', letterSpacing: '0.34em',
+              color: 'hsl(195 90% 62%)', textTransform: 'uppercase',
+            }}>
+              Final Brand Presentation
+            </span>
+          </div>
+
+          {/* Heading */}
+          <h2 style={{
+            fontFamily: 'var(--font-sans, sans-serif)', fontWeight: 300,
+            fontSize: 'clamp(2rem, 7vw, 2.8rem)',
+            lineHeight: 1.1, letterSpacing: '-0.038em',
+            color: 'hsl(0 0% 94%)',
+            marginBottom: '1.5rem',
+          }}>
+            Where Vision Becomes{' '}
+            <em style={{
+              fontFamily: "'Instrument Serif', Georgia, serif",
+              fontStyle: 'italic', fontWeight: 400,
+              color: 'hsl(0 0% 48%)',
+            }}>
+              Influence.
+            </em>
+          </h2>
+
+          {/* Rule */}
+          <div style={{ width: '2rem', height: '1px', background: 'hsl(195 90% 55% / 0.3)', marginBottom: '1.5rem' }} />
+
+          {/* Paragraph */}
+          <p style={{
+            fontFamily: 'var(--font-sans, sans-serif)', fontWeight: 300,
+            fontSize: '0.95rem', lineHeight: 1.9,
+            color: 'hsl(0 0% 44%)',
+            marginBottom: '2.5rem',
+          }}>
+            Every project begins with strategy and ends with impact. We combine brand thinking,
+            design excellence, motion craftsmanship, and digital storytelling to create work that
+            captures attention, builds recognition, and delivers lasting value across every platform.
+          </p>
+
+          {/* 2×2 Process grid */}
+          <div style={{ marginBottom: '2.5rem' }}>
+            <div style={{
+              display: 'grid', gridTemplateColumns: '1fr 1fr',
+              gap: '1px',
+              background: 'hsl(0 0% 100% / 0.06)',
+              border: '1px solid hsl(0 0% 100% / 0.06)',
+              borderRadius: '16px',
+              overflow: 'hidden',
+            }}>
+              {([
+                ['01', 'Brief & Creative Direction'],
+                ['02', 'Concept & Visual Development'],
+                ['03', 'Design, Motion & Production'],
+                ['04', 'Refinement & Final Delivery'],
+              ] as const).map(([num, step]) => (
+                <div key={num} style={{
+                  padding: '1.25rem',
+                  background: 'hsl(215 18% 5%)',
+                  display: 'flex', flexDirection: 'column', gap: '0.55rem',
+                }}>
+                  <span style={{
+                    fontSize: '0.5rem', letterSpacing: '0.28em',
+                    color: 'hsl(195 90% 55% / 0.6)', textTransform: 'uppercase',
+                    fontFamily: 'monospace',
+                  }}>{num}</span>
+                  <span style={{
+                    fontFamily: 'var(--font-sans, sans-serif)', fontWeight: 300,
+                    fontSize: '0.83rem', color: 'hsl(0 0% 52%)', lineHeight: 1.5,
+                  }}>{step}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Full-width image */}
+          <div style={{
+            borderRadius: '20px', overflow: 'hidden',
+            boxShadow: '0 20px 50px hsl(0 0% 0% / 0.7), 0 1px 0 hsl(0 0% 100% / 0.05)',
+          }}>
+            <img
+              loading="lazy"
+              decoding="async"
+              src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1400&q=85"
+              alt="Creative design studio"
+              className="block w-full object-cover object-center h-[260px] sm:h-[360px]"
+            />
           </div>
 
         </div>

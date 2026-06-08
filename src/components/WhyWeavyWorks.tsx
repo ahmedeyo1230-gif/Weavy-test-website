@@ -1,375 +1,108 @@
-import { useEffect, useRef, useState } from 'react'
-import gsap from 'gsap'
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
+import { motion } from 'framer-motion'
+import { CheckCircle2, Clock, Scaling, Target } from 'lucide-react'
 
-const ROWS = [
+const features = [
   {
-    num: '01',
-    title: 'Strategy before design',
-    body: 'We define the audience, message, and conversion path before building the visual experience.',
+    icon: <CheckCircle2 className="w-5 h-5" />,
+    title: 'End-to-end ownership',
+    description:
+      'We handle the strategy, the code, the integrations, and the maintenance. You just get the results.',
   },
   {
-    num: '02',
-    title: 'Premium execution',
-    body: 'Every layout, animation, border, spacing decision, and interaction is refined to feel polished and intentional.',
+    icon: <Clock className="w-5 h-5" />,
+    title: 'Async-first delivery',
+    description:
+      'No unnecessary meetings. We communicate via Slack and Loom, delivering updates while you sleep.',
   },
   {
-    num: '03',
-    title: 'Automation with purpose',
-    body: 'We create systems that save time, improve response speed, and help businesses capture opportunities faster.',
+    icon: <Scaling className="w-5 h-5" />,
+    title: 'Built for scale from day one',
+    description:
+      'Our architectures are designed to handle 10× your current volume without breaking a sweat.',
   },
   {
-    num: '04',
-    title: 'Built to scale',
-    body: 'From launch to growth, every section is designed to stay consistent, responsive, and easy to improve.',
+    icon: <Target className="w-5 h-5" />,
+    title: 'Results-obsessed',
+    description:
+      "We tie our success to your metrics. If a system isn't saving you time or making you money, we rebuild it.",
   },
 ]
 
-function ImageFloat3D() {
-  const containerRef = useRef<HTMLDivElement>(null)
-
-  // Mouse-tracking values
-  const rawX = useMotionValue(0)
-  const rawY = useMotionValue(0)
-  const springX = useSpring(rawX, { stiffness: 60, damping: 18 })
-  const springY = useSpring(rawY, { stiffness: 60, damping: 18 })
-  const rotateX = useTransform(springY, [-0.5, 0.5], [10, -10])
-  const rotateY = useTransform(springX, [-0.5, 0.5], [-12, 12])
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = containerRef.current?.getBoundingClientRect()
-    if (!rect) return
-    rawX.set((e.clientX - rect.left) / rect.width - 0.5)
-    rawY.set((e.clientY - rect.top) / rect.height - 0.5)
-  }
-  const handleMouseLeave = () => {
-    rawX.set(0)
-    rawY.set(0)
-  }
-
-  return (
-    <div
-      ref={containerRef}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      style={{
-        order: 2,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        perspective: '900px',
-        width: '100%',
-      }}
-    >
-      {/* Ambient glow — static, behind everything */}
-      <div
-        aria-hidden="true"
-        style={{
-          position: 'absolute',
-          width: '80%',
-          height: '60%',
-          background: 'radial-gradient(ellipse 80% 80% at 50% 50%, hsl(199 89% 60% / 0.16) 0%, transparent 70%)',
-          filter: 'blur(40px)',
-          pointerEvents: 'none',
-          zIndex: 0,
-        }}
-      />
-
-      {/* Fade-in entry + continuous float + mouse 3D tilt */}
-      <motion.div
-        initial={{ opacity: 0, y: 32, scale: 0.94 }}
-        whileInView={{ opacity: 1, y: 0, scale: 1 }}
-        viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
-        animate={{ y: [0, -14, 0] }}
-        // @ts-ignore — Framer Motion allows mixing animate + whileInView
-        style={{
-          rotateX,
-          rotateY,
-          transformStyle: 'preserve-3d',
-          position: 'relative',
-          zIndex: 1,
-          width: '100%',
-          animationDuration: '5s',
-        }}
-      >
-        {/* Float loop wrapper */}
-        <motion.div
-          animate={{ y: [0, -14, 0] }}
-          transition={{ duration: 5, ease: 'easeInOut', repeat: Infinity, repeatType: 'loop' }}
-          style={{ transformStyle: 'preserve-3d' }}
-        >
-          <img
-            loading="lazy"
-            decoding="async"
-            src="/brand_assets/New_now.png"
-            alt="Weavy platform visual"
-            style={{
-              display: 'block',
-              width: '100%',
-              maxHeight: '540px',
-              objectFit: 'contain',
-              margin: '0 auto',
-              filter: 'drop-shadow(0 30px 90px rgba(56,189,248,0.22))',
-              transformStyle: 'preserve-3d',
-            }}
-          />
-        </motion.div>
-      </motion.div>
-    </div>
-  )
-}
-
 export default function WhyWeavyWorks() {
-  const sectionRef = useRef<HTMLElement>(null)
-  const [hoveredRow, setHoveredRow] = useState<number | null>(null)
-
-  useEffect(() => {
-    const el = sectionRef.current
-    if (!el) return
-
-    const textEls = el.querySelectorAll('.wyw-text')
-    const rowEls  = el.querySelectorAll('.wyw-row')
-
-    gsap.set(textEls, { opacity: 0, y: 34 })
-    gsap.set(rowEls,  { opacity: 0, y: 22 })
-
-    const obs = new IntersectionObserver(([entry]) => {
-      if (!entry.isIntersecting) return
-      const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
-      tl.to(textEls, { opacity: 1, y: 0, duration: 1.0, stagger: 0.14 }, 0)
-      tl.to(rowEls,  { opacity: 1, y: 0, duration: 0.75, stagger: 0.13 }, 0.22)
-      obs.disconnect()
-    }, { threshold: 0.1 })
-
-    obs.observe(el)
-    return () => obs.disconnect()
-  }, [])
-
   return (
     <section
-      ref={sectionRef}
-      className="relative w-full overflow-hidden"
-      style={{ background: '#010709', padding: 'clamp(5rem, 10vw, 9rem) 0' }}
+      className="py-32 px-6 relative overflow-hidden bg-background"
+      aria-label="Why Weavy Works"
     >
-      {/* Grain */}
-      <svg aria-hidden="true" className="pointer-events-none absolute inset-0 w-full h-full" style={{ opacity: 0.02 }}>
-        <filter id="wyw-gr">
-          <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" result="n"/>
-          <feColorMatrix type="saturate" values="0" in="n"/>
-        </filter>
-        <rect width="100%" height="100%" filter="url(#wyw-gr)" fill="white"/>
-      </svg>
-
-      {/* Ambient glow — right side */}
+      {/* Subtle dot grid */}
       <div
+        className="absolute inset-0 opacity-[0.025] pointer-events-none"
+        style={{ backgroundImage: 'radial-gradient(#fff 1px, transparent 1px)', backgroundSize: '32px 32px' }}
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0"
-        style={{
-          background: 'radial-gradient(ellipse 55% 60% at 100% 50%, hsl(199 89% 60% / 0.032) 0%, transparent 70%)',
-        }}
       />
 
-      {/* Top hairline */}
-      <div
-        aria-hidden="true"
-        style={{
-          position: 'absolute', top: 0, left: 0, right: 0, height: '1px',
-          background: 'linear-gradient(to right, transparent, hsl(0 0% 100% / 0.07) 30%, hsl(0 0% 100% / 0.07) 70%, transparent)',
-        }}
-      />
+      <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
 
-      <style>{`
-        .wyw-grid {
-          display: grid;
-          grid-template-columns: 1fr;
-          gap: clamp(2.5rem, 4vw, 4rem);
-          align-items: center;
-        }
-        @media (min-width: 1024px) {
-          .wyw-grid {
-            grid-template-columns: 0.9fr 0.7fr 1fr;
-          }
-        }
-      `}</style>
-      <div className="relative z-10 max-w-[88rem] mx-auto px-6 sm:px-10">
-        <div className="wyw-grid">
-
-          {/* ── LEFT: copy ── */}
-          <div className="lg:self-start lg:sticky lg:top-32" style={{ order: 1 }}>
-
-            {/* Label */}
-            <p
-              className="wyw-text font-sans font-light uppercase mb-6"
-              style={{
-                fontSize: '0.62rem',
-                letterSpacing: '0.32em',
-                color: 'hsl(199 89% 60% / 0.7)',
-              }}
-            >
-              Why Weavy Works
-            </p>
-
-            {/* Headline */}
-            <h2
-              className="wyw-text font-sans font-light mb-8"
-              style={{
-                fontSize: 'clamp(1.9rem, 3.8vw, 3.1rem)',
-                lineHeight: 1.1,
-                letterSpacing: '-0.035em',
-                color: 'hsl(0 0% 96%)',
-              }}
-            >
-              Built with strategy,{' '}
-              <em style={{
-                fontFamily: "'Instrument Serif', Georgia, serif",
-                fontStyle: 'italic',
-                fontWeight: 400,
-                color: 'hsl(0 0% 76%)',
-              }}>
-                polished
-              </em>{' '}
-              with design, powered by automation.
-            </h2>
-
-            {/* Accent rule */}
-            <div
-              className="wyw-text"
-              aria-hidden="true"
-              style={{
-                width: '2rem',
-                height: '1px',
-                background: 'hsl(199 89% 60% / 0.35)',
-                marginBottom: '1.8rem',
-              }}
-            />
-
-            {/* Supporting paragraph */}
-            <p
-              className="wyw-text font-sans font-light"
-              style={{
-                fontSize: 'clamp(0.88rem, 1.4vw, 1.02rem)',
-                lineHeight: 1.9,
-                color: 'hsl(0 0% 40%)',
-                maxWidth: '36rem',
-              }}
-            >
-              Weavy combines premium digital design with practical AI automation,
-              so every section, system, and interaction is created with a clear purpose:
-              attract attention, build trust, reduce manual work, and move visitors toward action.
-            </p>
-
-          </div>
-
-          {/* ── MIDDLE: 3D animated image ── */}
-          <ImageFloat3D />
-
-          {/* ── RIGHT: numbered rows ── */}
-          <div style={{ order: 3 }}>
-            {ROWS.map(({ num, title, body }, i) => (
-              <div
-                key={num}
-                className="wyw-row"
-                onMouseEnter={() => setHoveredRow(i)}
-                onMouseLeave={() => setHoveredRow(null)}
-                style={{
-                  position: 'relative',
-                  borderTop: `1px solid ${hoveredRow === i ? 'hsl(199 89% 60% / 0.16)' : 'hsl(0 0% 100% / 0.06)'}`,
-                  padding: '1.9rem 0 1.9rem 1.6rem',
-                  cursor: 'default',
-                  transition: 'border-color 0.3s ease',
-                }}
-              >
-                {/* Left accent bar — visible on hover */}
-                <div
-                  aria-hidden="true"
-                  style={{
-                    position: 'absolute',
-                    top: '1px',
-                    left: 0,
-                    bottom: 0,
-                    width: '1.5px',
-                    borderRadius: '1px',
-                    background: 'linear-gradient(to bottom, hsl(199 89% 60% / 0.7), hsl(199 89% 60% / 0.05))',
-                    opacity: hoveredRow === i ? 1 : 0,
-                    transition: 'opacity 0.3s ease',
-                  }}
-                />
-
-                {/* Row content — slides right on hover */}
-                <div
-                  style={{
-                    transform: hoveredRow === i ? 'translateX(5px)' : 'translateX(0)',
-                    transition: 'transform 0.35s cubic-bezier(0.16, 1, 0.3, 1)',
-                  }}
-                >
-                  {/* Number */}
-                  <span
-                    className="font-sans"
-                    style={{
-                      display: 'block',
-                      fontSize: '0.58rem',
-                      letterSpacing: '0.22em',
-                      textTransform: 'uppercase',
-                      color: hoveredRow === i
-                        ? 'hsl(199 89% 60%)'
-                        : 'hsl(199 89% 60% / 0.4)',
-                      marginBottom: '0.65rem',
-                      transition: 'color 0.3s ease',
-                    }}
-                  >
-                    {num}
-                  </span>
-
-                  {/* Title */}
-                  <p
-                    className="font-sans font-light"
-                    style={{
-                      fontSize: 'clamp(0.95rem, 1.6vw, 1.1rem)',
-                      lineHeight: 1.3,
-                      letterSpacing: '-0.02em',
-                      color: hoveredRow === i ? 'hsl(0 0% 94%)' : 'hsl(0 0% 76%)',
-                      marginBottom: '0.6rem',
-                      transition: 'color 0.3s ease',
-                    }}
-                  >
-                    {title}
-                  </p>
-
-                  {/* Body */}
-                  <p
-                    className="font-sans font-light"
-                    style={{
-                      fontSize: 'clamp(0.82rem, 1.2vw, 0.9rem)',
-                      lineHeight: 1.85,
-                      color: 'hsl(0 0% 34%)',
-                    }}
-                  >
-                    {body}
-                  </p>
-                </div>
-              </div>
-            ))}
-
-            {/* Closing bottom rule */}
-            <div
-              aria-hidden="true"
-              style={{ height: '1px', background: 'hsl(0 0% 100% / 0.06)' }}
-            />
-          </div>
-
+        {/* Left: sticky heading */}
+        <div className="lg:sticky lg:top-32">
+          <motion.p
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-xs uppercase tracking-widest text-accent-cyan/70 mb-5"
+          >
+            Why Weavy Works
+          </motion.p>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.05 }}
+            className="text-4xl md:text-5xl lg:text-6xl font-light tracking-tighter text-primary"
+          >
+            Built with{' '}
+            <span className="font-serif italic text-accent-cyan">strategy</span>,
+            powered by automation.
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.12 }}
+            className="mt-6 text-muted text-lg font-light max-w-md"
+          >
+            We operate differently than traditional agencies. We are an extension
+            of your team, focused purely on leverage.
+          </motion.p>
         </div>
-      </div>
 
-      {/* Bottom fade */}
-      <div
-        aria-hidden="true"
-        style={{
-          position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px',
-          background: 'linear-gradient(to bottom, transparent, #010709)',
-          pointerEvents: 'none',
-        }}
-      />
+        {/* Right: feature rows */}
+        <div className="flex flex-col gap-3">
+          {features.map((feature, index) => (
+            <motion.div
+              key={feature.title}
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: '-50px' }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="group flex gap-5 p-6 rounded-2xl hover:bg-surface/60 border border-transparent hover:border-border transition-all duration-300"
+            >
+              <div className="flex-shrink-0 w-11 h-11 rounded-full bg-surface border border-border flex items-center justify-center text-muted group-hover:text-accent-cyan group-hover:border-accent-cyan/30 transition-colors duration-300">
+                {feature.icon}
+              </div>
+              <div>
+                <h3 className="text-xl font-medium tracking-tight mb-2 text-primary">
+                  {feature.title}
+                </h3>
+                <p className="text-muted font-light leading-relaxed">
+                  {feature.description}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+      </div>
     </section>
   )
 }

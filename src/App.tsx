@@ -6,8 +6,6 @@ import About from './components/About'
 import Stats from './components/Stats'
 import WhyWeavyWorks from './components/WhyWeavyWorks'
 import SystemsShowcase from './components/SystemsShowcase'
-import ExceedingExpectations from './components/ExceedingExpectations'
-import LiveBrandSignals from './components/LiveBrandSignals'
 import TestimonialsSection from './components/Testimonials'
 import Footer from './components/Footer'
 
@@ -96,10 +94,8 @@ export default function App() {
               <VideoShowcase />
               <About />
               <Stats />
-              <WhyWeavyWorks />
               <SystemsShowcase />
-              <ExceedingExpectations />
-              <LiveBrandSignals />
+              <WhyWeavyWorks />
               <TestimonialsSection />
               <Footer />
             </>

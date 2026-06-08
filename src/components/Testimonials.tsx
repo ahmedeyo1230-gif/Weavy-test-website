@@ -1,163 +1,114 @@
-import { motion } from 'motion/react'
-import { TestimonialsColumn, type Testimonial } from './ui/testimonials-columns-1'
+import { motion } from 'framer-motion'
+import { Star } from 'lucide-react'
 
-const testimonials: Testimonial[] = [
+const testimonials = [
   {
-    text: "Weavy transformed our online presence entirely. The chatbot handles 80% of inquiries automatically — our team now focuses on closing deals.",
-    image: "https://randomuser.me/api/portraits/women/1.jpg",
-    name: "Briana Patton",
-    role: "Operations Manager",
+    name: 'Briana Patton',
+    role: 'Operations Manager',
+    image: 'https://randomuser.me/api/portraits/women/1.jpg',
+    quote:
+      'Weavy transformed our online presence entirely. The chatbot handles 80% of inquiries automatically — our team now focuses on closing deals instead of answering the same questions.',
   },
   {
-    text: "The automation systems they built save us hours every day. Implementation was smooth and the results were immediate.",
-    image: "https://randomuser.me/api/portraits/men/2.jpg",
-    name: "Bilal Ahmed",
-    role: "IT Manager",
+    name: 'Farhan Siddiqui',
+    role: 'Marketing Director',
+    image: 'https://randomuser.me/api/portraits/men/7.jpg',
+    quote:
+      'The AI chatbot on our website has become our best sales tool. It qualifies leads and books appointments automatically — 24/7, without us lifting a finger.',
   },
   {
-    text: "Our Instagram and WhatsApp bots now respond to leads 24/7. Engagement is up 3× since we started with Weavy.",
-    image: "https://randomuser.me/api/portraits/women/3.jpg",
-    name: "Saman Malik",
-    role: "Customer Support Lead",
+    name: 'Sana Sheikh',
+    role: 'Sales Manager',
+    image: 'https://randomuser.me/api/portraits/women/8.jpg',
+    quote:
+      'Onboarding was fast and the team genuinely understood our business. The results exceeded everything we expected. Measurable ROI from week one.',
   },
   {
-    text: "The bespoke website they delivered is stunning. Clean, fast, and exactly on brand. Clients constantly compliment it.",
-    image: "https://randomuser.me/api/portraits/men/4.jpg",
-    name: "Omar Raza",
-    role: "CEO",
+    name: 'Bilal Ahmed',
+    role: 'IT Manager',
+    image: 'https://randomuser.me/api/portraits/men/2.jpg',
+    quote:
+      'The automation systems they built save us hours every day. Implementation was smooth and the results were immediate. Best investment we made this year.',
   },
   {
-    text: "Social media went from a burden to a growth engine. The content strategy and scheduling system is exceptional.",
-    image: "https://randomuser.me/api/portraits/women/5.jpg",
-    name: "Zainab Hussain",
-    role: "Project Manager",
+    name: 'Zainab Hussain',
+    role: 'Project Manager',
+    image: 'https://randomuser.me/api/portraits/women/5.jpg',
+    quote:
+      'Social media went from a burden to a growth engine. The content strategy and scheduling system is exceptional. Our engagement has tripled.',
   },
   {
-    text: "Weavy's paid ad strategy doubled our lead volume within the first month. ROI has been consistently strong.",
-    image: "https://randomuser.me/api/portraits/women/6.jpg",
-    name: "Aliza Khan",
-    role: "Business Analyst",
-  },
-  {
-    text: "The AI chatbot on our website has become our best sales tool. It qualifies leads and books appointments automatically.",
-    image: "https://randomuser.me/api/portraits/men/7.jpg",
-    name: "Farhan Siddiqui",
-    role: "Marketing Director",
-  },
-  {
-    text: "Onboarding was fast and the team genuinely understood our business. The results exceeded everything we expected.",
-    image: "https://randomuser.me/api/portraits/women/8.jpg",
-    name: "Sana Sheikh",
-    role: "Sales Manager",
-  },
-  {
-    text: "Our conversion rate improved significantly after the website redesign and chatbot integration. Highly recommend.",
-    image: "https://randomuser.me/api/portraits/men/9.jpg",
-    name: "Hassan Ali",
-    role: "E-commerce Manager",
+    name: 'Omar Raza',
+    role: 'CEO',
+    image: 'https://randomuser.me/api/portraits/men/4.jpg',
+    quote:
+      'The bespoke website they delivered is stunning. Clean, fast, and exactly on brand. Clients constantly compliment it — it sets us apart from the competition.',
   },
 ]
-
-const firstColumn  = testimonials.slice(0, 3)
-const secondColumn = testimonials.slice(3, 6)
-const thirdColumn  = testimonials.slice(6, 9)
 
 export default function TestimonialsSection() {
   return (
     <section
-      className="relative w-full overflow-hidden"
-      style={{ backgroundColor: '#010709', padding: 'clamp(5rem, 10vw, 7rem) 0' }}
+      className="py-32 px-6 bg-background"
+      aria-label="Client Testimonials"
     >
-      {/* Top fade from Stats (#02080A) */}
-      <div
-        aria-hidden="true"
-        style={{
-          position: 'absolute', top: 0, left: 0, right: 0, height: '100px',
-          background: 'linear-gradient(to bottom, #02080A, transparent)',
-          pointerEvents: 'none', zIndex: 2,
-        }}
-      />
+      <div className="max-w-5xl mx-auto">
 
-      {/* Subtle top radial */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0"
-        style={{
-          background: 'radial-gradient(ellipse 60% 40% at 50% 0%, hsl(199 89% 60% / 0.05) 0%, transparent 70%)',
-        }}
-      />
-
-      {/* Bottom fade — blends into Footer background (#0a0a0a) */}
-      <div
-        aria-hidden="true"
-        style={{
-          position: 'absolute',
-          bottom: 0,
-          left: 0,
-          right: 0,
-          height: '180px',
-          background: 'linear-gradient(to bottom, transparent, #0a0a0a)',
-          pointerEvents: 'none',
-          zIndex: 20,
-        }}
-      />
-
-      <div className="relative z-10 max-w-[72rem] mx-auto px-6 sm:px-10">
-
-        {/* Heading */}
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           viewport={{ once: true }}
-          style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', maxWidth: '40rem', margin: '0 auto 4rem' }}
+          className="text-center mb-20"
         >
-          <p
-            className="font-sans font-light uppercase"
-            style={{ fontSize: '0.65rem', letterSpacing: '0.32em', color: 'hsl(199 89% 60% / 0.7)', marginBottom: '1.4rem' }}
-          >
-            Testimonials
-          </p>
-          <h2
-            className="font-sans font-light text-text"
-            style={{ fontSize: 'clamp(1.9rem, 4vw, 3.2rem)', lineHeight: 1.1, letterSpacing: '-0.038em', marginBottom: '1rem' }}
-          >
-            What our{' '}
-            <em style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400 }}>
-              clients say
-            </em>
+          <p className="text-xs uppercase tracking-widest text-accent-cyan/70 mb-4">Testimonials</p>
+          <h2 className="text-3xl md:text-5xl font-light tracking-tighter mb-4 text-primary">
+            Don't just take our{' '}
+            <span className="font-serif italic text-gold-shimmer">word</span>{' '}
+            for it
           </h2>
-          <p
-            className="font-sans font-light"
-            style={{ fontSize: 'clamp(0.85rem, 1.3vw, 0.95rem)', lineHeight: 1.8, color: 'hsl(0 0% 44%)', marginBottom: '2rem' }}
-          >
+          <p className="text-muted font-light max-w-lg mx-auto">
             Real results from businesses we've helped grow — faster, smarter, and at scale.
           </p>
-          <div
-            aria-hidden="true"
-            style={{
-              width: '3rem',
-              height: '1px',
-              background: 'linear-gradient(to right, transparent, hsl(0 0% 100% / 0.1), transparent)',
-            }}
-          />
         </motion.div>
 
-        {/* Columns */}
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            gap: '1.25rem',
-            maxHeight: '680px',
-            overflow: 'hidden',
-            maskImage: 'linear-gradient(to bottom, transparent, black 20%, black 80%, transparent)',
-            WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 20%, black 80%, transparent)',
-          }}
-        >
-          <TestimonialsColumn testimonials={firstColumn}  duration={18} />
-          <TestimonialsColumn testimonials={secondColumn} duration={22} className="hidden md:block" />
-          <TestimonialsColumn testimonials={thirdColumn}  duration={20} className="hidden lg:block" />
+        {/* Cards grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {testimonials.map((t, index) => (
+            <motion.div
+              key={t.name}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-50px' }}
+              transition={{ duration: 0.6, delay: index * 0.08 }}
+              className="bg-surface border border-border rounded-2xl p-7 flex flex-col gap-5 hover:border-accent-cyan/20 hover:shadow-[0_0_30px_rgba(58,179,232,0.04)] transition-all duration-500"
+            >
+              {/* Stars */}
+              <div className="flex gap-1">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-3.5 h-3.5 fill-accent-cyan text-accent-cyan opacity-80" />
+                ))}
+              </div>
+
+              {/* Quote */}
+              <p className="text-primary/90 font-light leading-relaxed text-sm flex-1">
+                "{t.quote}"
+              </p>
+
+              {/* Author */}
+              <div className="flex items-center gap-3 pt-1 border-t border-border/60">
+                <img
+                  src={t.image}
+                  alt={t.name}
+                  className="w-9 h-9 rounded-full object-cover border border-border"
+                />
+                <div>
+                  <p className="font-medium text-sm text-primary">{t.name}</p>
+                  <p className="text-xs text-muted mt-0.5">{t.role}</p>
+                </div>
+              </div>
+            </motion.div>
+          ))}
         </div>
 
       </div>

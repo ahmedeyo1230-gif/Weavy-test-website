@@ -11,8 +11,17 @@
   --color-accent: hsl(0 0% 96%);
   --color-text-primary: hsl(0 0% 96%);
 
+  /* Magic Patterns design tokens */
+  --color-background: #0a0a0a;
+  --color-primary: hsl(0 0% 96%);
+  --color-border: hsl(0 0% 10%);
+  --color-accent-cyan: #3ab3e8;
+  --color-accent-blue: #2563eb;
+  --color-gold: #d8b76a;
+
   --font-sans: 'Inter', system-ui, sans-serif;
   --font-display: 'Instrument Serif', Georgia, serif;
+  --font-serif: 'Instrument Serif', Georgia, serif;
 }
 
 html {
@@ -25,6 +34,28 @@ html {
 
 .accent-gradient {
   background: linear-gradient(to right, hsl(210 20% 40%), hsl(210 30% 80%));
+}
+
+/* ── Magic Patterns utilities ────────────────────────────────────────────── */
+.glass-panel {
+  background: hsl(0 0% 8% / 0.8);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid hsl(0 0% 100% / 0.1);
+}
+
+@keyframes shimmer {
+  0%   { background-position: 200% center; }
+  100% { background-position: -200% center; }
+}
+
+.text-gold-shimmer {
+  background: linear-gradient(to right, #d8b76a 20%, #fdf0d5 40%, #fdf0d5 60%, #d8b76a 80%);
+  background-size: 200% auto;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: shimmer 4s linear infinite;
 }
 
 /* ── Video section energy field ──────────────────────────────────────────── */
