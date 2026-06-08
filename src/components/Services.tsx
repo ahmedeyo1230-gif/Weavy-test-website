@@ -5451,7 +5451,7 @@ function GraphicDesignHero() {
           style={{
             display: 'block',
             width: '100%',
-            height: '95vh',
+            height: 'min(200vh, 1600px)',
             objectFit: 'cover',
             objectPosition: 'center top',
           }}
