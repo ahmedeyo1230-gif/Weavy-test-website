@@ -5431,6 +5431,12 @@ function ChatbotHero() {
 // ─── Graphic Design / Animation — Cinematic Hero ─────────────────────────────
 
 function GraphicDesignHero() {
+  const [expanded, setExpanded] = useState(false)
+
+  const desktopCollapsed = '95vh'
+  const desktopExpanded = 'min(300vh, 2400px)'
+  const desktopHeight = expanded ? desktopExpanded : desktopCollapsed
+
   return (
     <section
       id="graphic-design-hero"
@@ -5441,21 +5447,44 @@ function GraphicDesignHero() {
         paddingTop: 'clamp(3rem, 6vw, 5rem)',
       }}
     >
-      {/* Desktop: keep original image and behavior unchanged */}
+      {/* Desktop: collapsible hero image */}
       <div className="hidden lg:block">
-        <img
-          loading="lazy"
-          decoding="async"
-          src="/brand_assets/Claude_image.png"
-          alt="Graphic design and animation showcase"
-          style={{
-            display: 'block',
-            width: '100%',
-            height: 'min(300vh, 2400px)',
-            objectFit: 'cover',
-            objectPosition: 'center top',
-          }}
-        />
+        <div style={{ position: 'relative' }}>
+          <img
+            loading="lazy"
+            decoding="async"
+            src="/brand_assets/Claude_image.png"
+            alt="Graphic design and animation showcase"
+            style={{
+              display: 'block',
+              width: '100%',
+              height: desktopHeight,
+              objectFit: 'cover',
+              objectPosition: 'center top',
+            }}
+          />
+
+          {/* Collapse / Expand control (desktop only) */}
+          <button
+            aria-expanded={expanded}
+            onClick={() => setExpanded(v => !v)}
+            style={{
+              position: 'absolute',
+              right: 20,
+              top: 20,
+              zIndex: 30,
+              background: 'rgba(0,0,0,0.6)',
+              color: '#fff',
+              border: '1px solid rgba(255,255,255,0.08)',
+              padding: '0.55rem 0.85rem',
+              borderRadius: 999,
+              cursor: 'pointer',
+              backdropFilter: 'blur(6px)',
+            }}
+          >
+            {expanded ? 'Collapse' : 'Expand'}
+          </button>
+        </div>
       </div>
 
       {/* Mobile / Tablet: improved fitted image (only below lg) */}
