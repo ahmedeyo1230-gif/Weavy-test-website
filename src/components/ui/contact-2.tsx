@@ -460,7 +460,7 @@ export const Contact2 = ({
               className="flex flex-col gap-5"
             >
               {[
-                { Icon: Phone, label: "Phone", value: phone, href: `tel:${phone}` },
+                { Icon: Phone, label: "Phone", value: phone, href: `tel:${phone.replace(/\s/g, '')}` },
                 { Icon: Mail, label: "Email", value: email, href: `mailto:${email}` },
                 { Icon: Globe, label: "Web", value: web.label, href: web.url },
               ].map(({ Icon, label, value, href }) => (
