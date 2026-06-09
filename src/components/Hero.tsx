@@ -70,7 +70,7 @@ export function Navbar() {
     <motion.header
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
       className={`fixed left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-4xl transition-all duration-500 ${scrolled ? 'top-3' : 'top-4 md:top-6'}`}
     >
       <nav
@@ -169,7 +169,7 @@ export default function Hero() {
     hidden: { opacity: 0, y: 24, filter: 'blur(8px)' },
     visible: {
       opacity: 1, y: 0, filter: 'blur(0px)',
-      transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] },
+      transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] },
     },
   }
 
