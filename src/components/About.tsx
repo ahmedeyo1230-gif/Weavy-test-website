@@ -19,7 +19,7 @@ export default function About() {
         >
           <div className="relative rounded-3xl p-[1px] overflow-hidden group aspect-square">
             {/* Spinning conic gradient */}
-            <div className="absolute inset-[-100%] animate-spin-slow bg-[conic-gradient(from_0deg,transparent_70%,#3ab3e8_80%,#2563eb_100%)] opacity-40 group-hover:opacity-80 transition-opacity duration-500" />
+            <div className="absolute inset-[-100%] animate-spin-slow bg-[conic-gradient(from_0deg,transparent_70%,#3ab3e8_80%,#2563eb_100%)] opacity-40 group-hover:opacity-80 transition-opacity duration-500 will-change-transform" />
 
             {/* Inner card */}
             <div className="relative bg-surface rounded-[calc(1.5rem-1px)] h-full w-full p-10 flex flex-col justify-between z-10">

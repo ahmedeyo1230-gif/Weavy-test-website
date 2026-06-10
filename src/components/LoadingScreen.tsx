@@ -16,6 +16,8 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
   const [wordIndex,   setWordIndex]   = useState(0)
   const startRef = useRef<number | null>(null)
   const rafRef   = useRef<number | null>(null)
+  // Skip expensive filter:blur animation on mobile to reduce GPU load on first paint
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 1024
 
   // RAF counter — eased, 0 → 100 over 2700ms
   useEffect(() => {
@@ -64,9 +66,9 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
         <AnimatePresence mode="wait">
           <motion.span
             key={wordIndex}
-            initial={{ opacity: 0, y: 18, filter: 'blur(8px)' }}
-            animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-            exit={{ opacity: 0, y: -14, filter: 'blur(6px)' }}
+            initial={isMobile ? { opacity: 0, y: 14 } : { opacity: 0, y: 18, filter: 'blur(8px)' }}
+            animate={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, y: 0, filter: 'blur(0px)' }}
+            exit={isMobile ? { opacity: 0, y: -10 } : { opacity: 0, y: -14, filter: 'blur(6px)' }}
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
             className="font-display italic select-none"
             style={{

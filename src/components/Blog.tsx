@@ -887,29 +887,45 @@ const BCF_SOCIALS = [
 ]
 
 function BlogContactFooter() {
-  const marqueeRef = useRef<HTMLDivElement>(null)
-  const videoRef   = useRef<HTMLVideoElement>(null)
+  const marqueeRef   = useRef<HTMLDivElement>(null)
+  const videoRef     = useRef<HTMLVideoElement>(null)
+  const containerRef = useRef<HTMLElement>(null)
   const [ctaHover, setCtaHover] = useState(false)
 
-  // HLS video
+  // HLS video — only initialise when the footer scrolls into view
   useEffect(() => {
-    const video = videoRef.current
-    if (!video) return
+    const video     = videoRef.current
+    const container = containerRef.current
+    if (!video || !container) return
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+
     let cleanup: (() => void) | undefined
-    import('hls.js').then(({ default: Hls }) => {
-      if (!videoRef.current) return
-      if (Hls.isSupported()) {
-        const hls = new Hls({ startLevel: -1, autoStartLoad: true })
-        hls.loadSource(BCF_HLS)
-        hls.attachMedia(video)
-        hls.on(Hls.Events.MANIFEST_PARSED, () => { video.play().catch(() => {}) })
-        cleanup = () => hls.destroy()
-      } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-        video.src = BCF_HLS
-        video.play().catch(() => {})
-      }
-    })
-    return () => cleanup?.()
+    let initialized = false
+
+    const init = () => {
+      if (initialized) return
+      initialized = true
+      import('hls.js').then(({ default: Hls }) => {
+        if (!videoRef.current) return
+        if (Hls.isSupported()) {
+          const hls = new Hls({ startLevel: -1, maxBufferLength: 20, maxMaxBufferLength: 40 })
+          hls.loadSource(BCF_HLS)
+          hls.attachMedia(video)
+          hls.on(Hls.Events.MANIFEST_PARSED, () => { video.play().catch(() => {}) })
+          cleanup = () => hls.destroy()
+        } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+          video.src = BCF_HLS
+          video.play().catch(() => {})
+        }
+      })
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => { if (entries[0].isIntersecting) { init(); observer.disconnect() } },
+      { rootMargin: '200px' }
+    )
+    observer.observe(container)
+    return () => { observer.disconnect(); cleanup?.() }
   }, [])
 
   // GSAP marquee
@@ -921,7 +937,7 @@ function BlogContactFooter() {
   }, [])
 
   return (
-    <section className="relative bg-bg pt-16 md:pt-20 pb-8 md:pb-12 overflow-hidden">
+    <section ref={containerRef} className="relative bg-bg pt-16 md:pt-20 pb-8 md:pb-12 overflow-hidden">
 
       {/* Video background */}
       <div className="absolute inset-0" aria-hidden="true" style={{ zIndex: 0 }}>

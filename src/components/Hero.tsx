@@ -83,7 +83,7 @@ export function Navbar() {
       >
         {/* Logo */}
         <a href="#home" aria-label="Weavy" className="flex items-center shrink-0">
-          <img src={weavyLogo} alt="Weavy" className="w-11 h-11 md:w-12 md:h-12 object-contain" draggable={false} />
+          <img src={weavyLogo} alt="Weavy" className="w-11 h-11 md:w-12 md:h-12 object-contain" decoding="async" draggable={false} />
         </a>
 
         {/* Desktop links */}
@@ -162,20 +162,31 @@ export default function Hero() {
     return () => clearInterval(id)
   }, [])
 
+  // On mobile/tablet remove expensive filter:blur animation — just opacity + y
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 1024
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.15, delayChildren: 0.3 },
+      transition: { staggerChildren: isMobile ? 0.08 : 0.15, delayChildren: isMobile ? 0.1 : 0.3 },
     },
   }
-  const itemVariants = {
-    hidden: { opacity: 0, y: 24, filter: 'blur(8px)' },
-    visible: {
-      opacity: 1, y: 0, filter: 'blur(0px)',
-      transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] },
-    },
-  }
+  const itemVariants = isMobile
+    ? {
+        hidden: { opacity: 0, y: 16 },
+        visible: {
+          opacity: 1, y: 0,
+          transition: { duration: 0.55, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] },
+        },
+      }
+    : {
+        hidden: { opacity: 0, y: 24, filter: 'blur(8px)' },
+        visible: {
+          opacity: 1, y: 0, filter: 'blur(0px)',
+          transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] },
+        },
+      }
 
   return (
     <>

@@ -315,3 +315,39 @@ html, body, #root {
   outline-offset: 3px;
 }
 
+/* ── Mobile/tablet animation reductions (< lg = 1024px) ─────────────────── */
+@media (max-width: 1023px) {
+  /* Slow the about-card spinning border — less GPU work on mobile */
+  .about-card-border::before,
+  .about-card-border::after {
+    animation-duration: 12s;
+  }
+
+  /* Slow the generic spin-slow utility */
+  .animate-spin-slow {
+    animation-duration: 8s;
+  }
+
+  /* Touch devices never get hover, so disable hover-only transitions */
+  .gradient-border-hover {
+    animation: none;
+  }
+
+  /* Reduce expensive box-shadow on particle/energy elements */
+  .vid-particle {
+    animation-duration: 8s;
+  }
+}
+
+/* ── Respect prefers-reduced-motion ─────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
