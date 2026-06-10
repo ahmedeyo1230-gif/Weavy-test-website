@@ -4395,8 +4395,6 @@ function SocialMediaMarketing() {
                 }}
               >
                 <img
-                  loading="lazy"
-                  decoding="async"
                   src="/brand_assets/Watch_L.png"
                   alt="Instagram luxury watch campaign visual"
                   style={{
