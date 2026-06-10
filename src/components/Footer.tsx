@@ -52,10 +52,6 @@ function FooterVideo() {
     const container = containerRef.current
     if (!video || !container) return
 
-    // Skip autoplay on mobile / touch devices
-    const isMobile = window.innerWidth < 768 || navigator.maxTouchPoints > 0
-    if (isMobile) return
-
     // Skip if user prefers reduced motion
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
 
@@ -194,7 +190,7 @@ export default function Footer() {
       {/* Background video */}
       <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
         <FooterVideo />
-        <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.62)', pointerEvents: 'none' }} />
+        <div className="absolute inset-0 pointer-events-none bg-black/35 lg:bg-black/60" />
       </div>
 
       <div style={{ position: 'relative', zIndex: 1 }}>
