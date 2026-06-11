@@ -50,8 +50,8 @@ function HeroVideo() {
       className="absolute top-1/2 left-1/2 min-w-full min-h-full object-cover"
       style={{
         transform: 'translate(-50%, -50%)',
-        opacity: 0.62,
-        filter: 'brightness(1.12) contrast(1.18) saturate(1.08)',
+        opacity: 0.82,
+        filter: 'brightness(1.18) contrast(1.22) saturate(1.1)',
       }}
     />
   )
@@ -203,7 +203,7 @@ export default function Hero() {
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
           <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-accent-cyan/[0.07] rounded-full blur-[120px]" />
           <div className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-accent-blue/[0.07] rounded-full blur-[150px]" />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(10,10,10,0.55)_60%,#0a0a0a_88%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(10,10,10,0.38)_62%,#0a0a0a_90%)]" />
         </div>
 
         {/* Content */}
