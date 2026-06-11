@@ -50,7 +50,7 @@ function StatCounter({ value, suffix = '', prefix = '', label, delay = 0 }: Stat
 
 export default function Stats() {
   return (
-    <section className="py-24 px-6 border-y border-border bg-surface/30 relative overflow-hidden">
+    <section className="py-24 px-6 border-b border-border/50 bg-surface/30 relative overflow-hidden">
       <div
         className="absolute inset-0 pointer-events-none"
         aria-hidden="true"

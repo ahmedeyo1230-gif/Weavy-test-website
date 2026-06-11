@@ -46,12 +46,8 @@ export default function VideoShowcase() {
       id="showcase"
       aria-label="Video showcase"
       className="relative px-6 sm:px-10 pt-8 pb-36 md:pb-44 overflow-hidden"
-      style={{ background: '#02080A' }}
+      style={{ background: '#0a0a0a' }}
     >
-
-      {/* Top fade removed — Hero's bottom fade now targets #02080A directly,
-           so no hard line at the join. A redundant opaque band here would
-           re-introduce the color step we just eliminated. */}
 
       {/* ── Heading ── */}
       <div className="max-w-2xl mx-auto text-center mb-14">
@@ -178,7 +174,7 @@ export default function VideoShowcase() {
           left: 0,
           right: 0,
           height: '240px',
-          background: 'linear-gradient(to bottom, rgba(2,8,10,0), #0a0a0a 60%)',
+          background: 'linear-gradient(to bottom, rgba(10,10,10,0), #0a0a0a 60%)',
           pointerEvents: 'none',
           zIndex: 20,
         }}
