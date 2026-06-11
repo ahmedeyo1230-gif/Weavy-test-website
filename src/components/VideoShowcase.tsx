@@ -178,7 +178,7 @@ export default function VideoShowcase() {
           left: 0,
           right: 0,
           height: '240px',
-          background: 'linear-gradient(to bottom, transparent, #02080A 60%)',
+          background: 'linear-gradient(to bottom, rgba(2,8,10,0), #0a0a0a 60%)',
           pointerEvents: 'none',
           zIndex: 20,
         }}
