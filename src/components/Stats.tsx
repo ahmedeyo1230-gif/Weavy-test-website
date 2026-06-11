@@ -50,8 +50,15 @@ function StatCounter({ value, suffix = '', prefix = '', label, delay = 0 }: Stat
 
 export default function Stats() {
   return (
-    <section className="py-24 px-6 border-y border-border bg-surface/30">
-      <div className="max-w-6xl mx-auto">
+    <section className="py-24 px-6 border-y border-border bg-surface/30 relative overflow-hidden">
+      <div
+        className="absolute inset-0 pointer-events-none"
+        aria-hidden="true"
+        style={{
+          background: 'radial-gradient(ellipse 60% 80% at 50% 50%, hsl(199 89% 60% / 0.04) 0%, transparent 70%)',
+        }}
+      />
+      <div className="max-w-6xl mx-auto relative">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-12 md:gap-8 text-center md:text-left">
           <StatCounter value={50}  suffix="+"  label="Systems Built"       delay={0}   />
           <StatCounter value={3}               label="Continents"          delay={0.2} />

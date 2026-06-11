@@ -201,8 +201,9 @@ export default function Hero() {
 
         {/* Cinematic background glows */}
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-          <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-accent-cyan/[0.07] rounded-full blur-[120px]" />
-          <div className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-accent-blue/[0.07] rounded-full blur-[150px]" />
+          <div className="absolute top-1/4 left-1/4 w-[520px] h-[520px] bg-accent-cyan/[0.09] rounded-full blur-[130px]" />
+          <div className="absolute bottom-1/4 right-1/4 w-[620px] h-[620px] bg-accent-blue/[0.08] rounded-full blur-[150px]" />
+          <div className="absolute top-[60%] left-[30%] w-[400px] h-[400px] rounded-full blur-[110px]" style={{ background: 'hsl(270 50% 20% / 0.06)' }} />
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(10,10,10,0.38)_62%,#0a0a0a_90%)]" />
         </div>
 
@@ -268,13 +269,13 @@ export default function Hero() {
           >
             <a
               href="#contact"
-              className="inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-medium bg-primary text-background hover:bg-white hover:shadow-[0_0_24px_rgba(245,245,245,0.3)] transition-all duration-300"
+              className="btn-glow-primary inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-medium bg-primary text-background hover:bg-white hover:shadow-[0_0_28px_rgba(245,245,245,0.28)] transition-all duration-300"
             >
               Book a call →
             </a>
             <a
               href="#section-9"
-              className="inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-medium border border-border text-primary hover:border-white/30 hover:bg-white/5 transition-all duration-300"
+              className="inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-medium border border-border text-primary hover:border-white/25 hover:bg-white/[0.04] hover:shadow-[0_0_16px_hsl(199_89%_60%_/_0.08)] transition-all duration-300"
             >
               View systems
             </a>
