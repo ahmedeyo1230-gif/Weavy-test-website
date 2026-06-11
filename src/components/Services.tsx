@@ -5922,6 +5922,15 @@ function GraphicDesignServices() {
         </div>
 
       </div>
+
+      {/* Bottom fade — cleans vignette edge before SplitA */}
+      <div aria-hidden="true" style={{
+        position: 'absolute', bottom: 0, left: 0, right: 0,
+        height: '120px',
+        background: 'linear-gradient(to bottom, rgba(1,7,9,0), #010709)',
+        pointerEvents: 'none',
+        zIndex: 5,
+      }}/>
     </section>
   )
 }
@@ -5970,14 +5979,6 @@ function GraphicDesignSplitA() {
           'radial-gradient(ellipse 55% 75% at -5% 50%, hsl(25 95% 55% / 0.07) 0%, transparent 65%)',
           'radial-gradient(ellipse 30% 45% at 8% 18%,  hsl(185 90% 55% / 0.04) 0%, transparent 58%)',
         ].join(', '),
-      }}/>
-
-      {/* Top hairline separator */}
-      <div aria-hidden="true" style={{
-        position: 'absolute', top: 0, left: 0, right: 0,
-        height: '1px',
-        background: 'hsl(0 0% 100% / 0.05)',
-        zIndex: 2,
       }}/>
 
       <div className="relative z-10 max-w-[92rem] mx-auto px-6 sm:px-12">
