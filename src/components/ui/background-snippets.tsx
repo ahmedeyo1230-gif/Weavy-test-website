@@ -20,32 +20,3 @@ export function BackgroundSnippet() {
     </div>
   )
 }
-
-// ─── Video Showcase background ────────────────────────────────────────────────
-// Combines background-snippets.tsx (grid) + demo.tsx (dark radial bloom).
-// Colors adapted for Weavy always-dark palette: bg-white → transparent,
-// #f0f0f0 grid → cyan 5%, #d5c5ff radial → Weavy blue bloom from top.
-export const Component = () => {
-  return (
-    <div
-      aria-hidden="true"
-      className="absolute inset-0 h-full w-full pointer-events-none"
-      style={{
-        backgroundImage: [
-          'linear-gradient(to right,  rgba(58,179,232,0.05) 1px, transparent 1px)',
-          'linear-gradient(to bottom, rgba(58,179,232,0.05) 1px, transparent 1px)',
-        ].join(', '),
-        backgroundSize: '6rem 4rem',
-      }}
-    >
-      {/* demo.tsx radial: dark centre → Weavy-blue bloom at edges, origin near top */}
-      <div
-        className="absolute inset-0"
-        style={{
-          background:
-            'radial-gradient(125% 125% at 50% 10%, rgba(2,8,10,0) 35%, rgba(37,99,235,0.22) 100%)',
-        }}
-      />
-    </div>
-  )
-}

@@ -1,7 +1,6 @@
 // ─── Video Showcase ───────────────────────────────────────────────────────────
 
 import { useEffect, useRef, useState } from 'react'
-import { Component as VideoBackground } from '@/components/ui/background-snippets'
 
 const videoSrc = "https://pub-731d5e7deddb4fce94cef7393920d429.r2.dev/Video2_weavy.mp4"
 
@@ -50,9 +49,6 @@ export default function VideoShowcase() {
       style={{ background: '#02080A' }}
     >
 
-      {/* Grid + blue-bloom background — sits behind all content */}
-      <VideoBackground />
-
       {/* Top fade — absorbs any edge from Hero */}
       <div
         aria-hidden="true"
@@ -69,7 +65,7 @@ export default function VideoShowcase() {
       />
 
       {/* ── Heading ── */}
-      <div className="relative z-10 max-w-2xl mx-auto text-center mb-14">
+      <div className="max-w-2xl mx-auto text-center mb-14">
         <p
           className="font-sans font-light uppercase mb-5"
           style={{ fontSize: '0.65rem', letterSpacing: '0.32em', color: 'hsl(0 0% 36%)' }}
