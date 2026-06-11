@@ -5498,6 +5498,15 @@ function GraphicDesignHero() {
           />
         </div>
       </div>
+
+      {/* Bottom fade — blends hero image edge into Editorial */}
+      <div aria-hidden="true" style={{
+        position: 'absolute', bottom: 0, left: 0, right: 0,
+        height: '140px',
+        background: 'linear-gradient(to bottom, rgba(1,7,9,0), #010709)',
+        pointerEvents: 'none',
+        zIndex: 5,
+      }}/>
     </section>
   )
 }
@@ -5686,6 +5695,15 @@ function GraphicDesignEditorial() {
           className="w-full h-full"
         />
       </div>
+
+      {/* Bottom fade — above gallery (z-index 20) to mask the gallery's lower edge */}
+      <div aria-hidden="true" style={{
+        position: 'absolute', bottom: 0, left: 0, right: 0,
+        height: '160px',
+        background: 'linear-gradient(to bottom, rgba(1,7,9,0), #010709)',
+        pointerEvents: 'none',
+        zIndex: 20,
+      }}/>
     </section>
   )
 }
@@ -6905,13 +6923,6 @@ function GraphicDesignCTA() {
       <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
         zIndex: 1,
         background: 'radial-gradient(ellipse 70% 55% at 50% 50%, hsl(195 90% 55% / 0.05) 0%, transparent 68%)',
-      }}/>
-
-      {/* Top divider — hairline + glow */}
-      <div aria-hidden="true" style={{
-        position: 'absolute', top: 0, left: 0, right: 0, zIndex: 2,
-        height: '1px',
-        background: 'linear-gradient(to right, transparent, hsl(0 0% 100% / 0.08) 30%, hsl(0 0% 100% / 0.08) 70%, transparent)',
       }}/>
 
       <div className="relative z-10 max-w-[58rem] mx-auto px-6 sm:px-10 flex flex-col items-center text-center">
