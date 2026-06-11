@@ -5821,6 +5821,15 @@ function GraphicDesignServices() {
         background: 'radial-gradient(ellipse 110% 85% at 50% 50%, transparent 52%, hsl(0 0% 0% / 0.28) 100%)',
       }}/>
 
+      {/* Top fade — masks amber ambient glow at section boundary */}
+      <div aria-hidden="true" style={{
+        position: 'absolute', top: 0, left: 0, right: 0,
+        height: '120px',
+        background: 'linear-gradient(to bottom, #010709, rgba(1,7,9,0))',
+        pointerEvents: 'none',
+        zIndex: 5,
+      }}/>
+
       <div className="relative z-10 max-w-[78rem] mx-auto px-6 sm:px-12 flex flex-col items-center text-center">
 
         {/* Eyebrow */}
@@ -6124,6 +6133,15 @@ function GraphicDesignSplitA() {
           </div>
         </div>
       </div>
+
+      {/* Bottom fade — bridges into SplitB */}
+      <div aria-hidden="true" style={{
+        position: 'absolute', bottom: 0, left: 0, right: 0,
+        height: '120px',
+        background: 'linear-gradient(to bottom, rgba(1,7,9,0), #010709)',
+        pointerEvents: 'none',
+        zIndex: 5,
+      }}/>
     </section>
   )
 }
@@ -6155,7 +6173,7 @@ function GraphicDesignSplitB() {
     <section
       ref={ref}
       className="relative w-full overflow-hidden"
-      style={{ background: '#000000', padding: 'clamp(6rem, 10vw, 10rem) 0' }}
+      style={{ background: '#010709', padding: 'clamp(6rem, 10vw, 10rem) 0' }}
     >
       {/* Grain */}
       <svg aria-hidden="true" className="pointer-events-none absolute inset-0 w-full h-full" style={{ opacity: 0.024, zIndex: 1 }}>
@@ -6175,10 +6193,13 @@ function GraphicDesignSplitB() {
         ].join(', '),
       }}/>
 
-      {/* Top hairline */}
+      {/* Top fade — blends seamlessly from SplitA */}
       <div aria-hidden="true" style={{
         position: 'absolute', top: 0, left: 0, right: 0,
-        height: '1px', background: 'hsl(0 0% 100% / 0.05)', zIndex: 2,
+        height: '120px',
+        background: 'linear-gradient(to bottom, #010709, rgba(1,7,9,0))',
+        pointerEvents: 'none',
+        zIndex: 5,
       }}/>
 
       <div className="relative z-10 max-w-[92rem] mx-auto px-6 sm:px-12">
@@ -6367,6 +6388,15 @@ function GraphicDesignSplitB() {
 
         </div>
       </div>
+
+      {/* Bottom fade — bridges into FinalPresentation */}
+      <div aria-hidden="true" style={{
+        position: 'absolute', bottom: 0, left: 0, right: 0,
+        height: '120px',
+        background: 'linear-gradient(to bottom, rgba(1,7,9,0), #010709)',
+        pointerEvents: 'none',
+        zIndex: 5,
+      }}/>
     </section>
   )
 }
@@ -6441,12 +6471,6 @@ function GraphicDesignFinalPresentation() {
           'radial-gradient(ellipse 55% 65% at -2% 35%,  hsl(38 85% 58% / 0.05)  0%, transparent 65%)',
           'radial-gradient(ellipse 50% 60% at 102% 70%, hsl(195 90% 55% / 0.06) 0%, transparent 60%)',
         ].join(', '),
-      }}/>
-
-      {/* Top hairline */}
-      <div aria-hidden="true" style={{
-        position: 'absolute', top: 0, left: 0, right: 0,
-        height: '1px', background: 'hsl(0 0% 100% / 0.05)', zIndex: 2,
       }}/>
 
       <div className="relative z-10 max-w-[92rem] mx-auto px-6 sm:px-12">
@@ -10064,7 +10088,7 @@ export default function Services() {
         ref={bwd1Ref}
         id="bespoke-website-design-detail"
         className="relative w-full overflow-hidden"
-        style={{ background: '#010709', padding: 'clamp(5rem, 10vw, 8rem) 0', borderTop: '1px solid hsl(0 0% 10%)' }}
+        style={{ background: '#010709', padding: 'clamp(5rem, 10vw, 8rem) 0' }}
       >
         {/* Cyan-blue tint — center/right biased */}
         <div
@@ -10236,6 +10260,15 @@ export default function Services() {
 
           </div>
         </div>
+
+        {/* Bottom fade — softens boundary into Cinema Showcase */}
+        <div aria-hidden="true" style={{
+          position: 'absolute', bottom: 0, left: 0, right: 0,
+          height: '120px',
+          background: 'linear-gradient(to bottom, rgba(1,7,9,0), #010709)',
+          pointerEvents: 'none',
+          zIndex: 5,
+        }}/>
       </section>
 
       {/* ── Bespoke Website Design — Cinema Showcase (Section 2) ── */}
@@ -10270,6 +10303,15 @@ export default function Services() {
           position: 'absolute', inset: 0, pointerEvents: 'none',
           backgroundImage: 'radial-gradient(hsl(36 40% 70% / 0.028) 1px, transparent 1px)',
           backgroundSize: '26px 26px',
+        }}/>
+
+        {/* Top fade — masks warm ambient glow at the section boundary */}
+        <div aria-hidden="true" style={{
+          position: 'absolute', top: 0, left: 0, right: 0,
+          height: '120px',
+          background: 'linear-gradient(to bottom, #010709, rgba(1,7,9,0))',
+          pointerEvents: 'none',
+          zIndex: 5,
         }}/>
 
         <div className="relative z-10 w-full max-w-[72rem] mx-auto px-6 sm:px-10">
@@ -10470,6 +10512,15 @@ export default function Services() {
           </div>
 
         </div>
+
+        {/* Seamless blend into BespokeFollowUp — masks vignette edge */}
+        <div aria-hidden="true" style={{
+          position: 'absolute', bottom: 0, left: 0, right: 0,
+          height: '120px',
+          background: 'linear-gradient(to bottom, rgba(1,7,9,0), #010709)',
+          pointerEvents: 'none',
+          zIndex: 5,
+        }}/>
       </section>
 
       {/* ── Bespoke Website Design — cinematic follow-up ── */}
