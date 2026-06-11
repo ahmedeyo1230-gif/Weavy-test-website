@@ -49,20 +49,9 @@ export default function VideoShowcase() {
       style={{ background: '#02080A' }}
     >
 
-      {/* Top fade — absorbs any edge from Hero */}
-      <div
-        aria-hidden="true"
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          height: '80px',
-          background: 'linear-gradient(to bottom, #02080A, transparent)',
-          pointerEvents: 'none',
-          zIndex: 2,
-        }}
-      />
+      {/* Top fade removed — Hero's bottom fade now targets #02080A directly,
+           so no hard line at the join. A redundant opaque band here would
+           re-introduce the color step we just eliminated. */}
 
       {/* ── Heading ── */}
       <div className="max-w-2xl mx-auto text-center mb-14">

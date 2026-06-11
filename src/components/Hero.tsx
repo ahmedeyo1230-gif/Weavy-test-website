@@ -204,7 +204,7 @@ export default function Hero() {
           <div className="absolute top-1/4 left-1/4 w-[520px] h-[520px] bg-accent-cyan/[0.09] rounded-full blur-[130px]" />
           <div className="absolute bottom-1/4 right-1/4 w-[620px] h-[620px] bg-accent-blue/[0.08] rounded-full blur-[150px]" />
           <div className="absolute top-[60%] left-[30%] w-[400px] h-[400px] rounded-full blur-[110px]" style={{ background: 'hsl(270 50% 20% / 0.06)' }} />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(10,10,10,0.38)_62%,#0a0a0a_90%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(2,8,10,0.38)_62%,#02080A_90%)]" />
         </div>
 
         {/* Content */}
@@ -302,11 +302,11 @@ export default function Hero() {
           </div>
         </motion.div>
 
-        {/* Bottom fade */}
+        {/* Bottom fade — matches VideoShowcase #02080A so sections join seamlessly */}
         <div
-          className="pointer-events-none absolute bottom-0 left-0 right-0 h-40"
+          className="pointer-events-none absolute bottom-0 left-0 right-0 h-64"
           aria-hidden="true"
-          style={{ background: 'linear-gradient(to top, #0a0a0a, transparent)' }}
+          style={{ background: 'linear-gradient(to top, #02080A, rgba(2,8,10,0))' }}
         />
       </section>
     </>
