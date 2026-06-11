@@ -1,6 +1,7 @@
 // ─── Video Showcase ───────────────────────────────────────────────────────────
 
 import { useEffect, useRef, useState } from 'react'
+import { Component as VideoBackground } from '@/components/ui/background-snippets'
 
 const videoSrc = "https://pub-731d5e7deddb4fce94cef7393920d429.r2.dev/Video2_weavy.mp4"
 
@@ -45,9 +46,10 @@ export default function VideoShowcase() {
       ref={sectionRef}
       id="showcase"
       aria-label="Video showcase"
-      className="relative px-6 sm:px-10 pt-8 pb-36 md:pb-44 overflow-hidden"
+      className="relative z-0 px-6 sm:px-10 pt-8 pb-36 md:pb-44 overflow-hidden"
       style={{ background: '#02080A' }}
     >
+      <VideoBackground />
 
       {/* Top fade — absorbs any edge from Hero */}
       <div
