@@ -236,10 +236,12 @@ export default function Hero() {
 
           <motion.div
             variants={itemVariants}
-            className="text-lg sm:text-xl text-muted font-light mb-8 flex items-center justify-center gap-2 flex-wrap"
+            className="text-lg sm:text-xl text-muted font-light mb-8 flex items-center justify-center gap-[6px] flex-wrap"
           >
             <span>We</span>
-            <div className="relative inline-flex items-center justify-center w-[130px] sm:w-[155px] h-[40px]">
+            {/* inline-grid spacer: invisible widest word sets exact container width, no dead space */}
+            <span className="relative inline-grid">
+              <span className="invisible font-serif italic font-medium text-primary select-none" aria-hidden="true">Developers</span>
               <AnimatePresence mode="wait">
                 <motion.span
                   key={ROLES[roleIndex]}
@@ -247,12 +249,12 @@ export default function Hero() {
                   animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
                   exit={{ opacity: 0, y: -10, filter: 'blur(4px)' }}
                   transition={{ duration: 0.4 }}
-                  className="absolute text-primary font-medium font-serif italic"
+                  className="absolute inset-0 flex items-center justify-center text-primary font-medium font-serif italic whitespace-nowrap"
                 >
                   {ROLES[roleIndex]}
                 </motion.span>
               </AnimatePresence>
-            </div>
+            </span>
             <span>live in London.</span>
           </motion.div>
 
