@@ -403,6 +403,12 @@ body::after {
   50%       { opacity: 0.3; }
 }
 
+/* ── About section — live frequency bars ────────────────────────────────── */
+@keyframes live-bar {
+  from { transform: scaleY(0.18); opacity: 0.3; }
+  to   { transform: scaleY(1);    opacity: 1;   }
+}
+
 /* ── Stats stat-counter top accent ──────────────────────────────────────── */
 @keyframes stat-divider-glow {
   0%, 100% { opacity: 0.4; }
