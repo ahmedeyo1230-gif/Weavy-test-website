@@ -79,7 +79,7 @@ export function Navbar() {
     >
       <nav
         aria-label="Main navigation"
-        className="glass-panel rounded-full px-3 py-2 flex items-center justify-between gap-2"
+        className="glass-panel rounded-full px-3 py-1 flex items-center justify-between gap-2"
       >
         {/* Logo */}
         <a href="#home" aria-label="Weavy" className="flex items-center shrink-0">
