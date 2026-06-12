@@ -83,7 +83,7 @@ export function Navbar() {
       >
         {/* Logo */}
         <a href="#home" aria-label="Weavy" className="flex items-center shrink-0">
-          <img src={weavyLogo} alt="Weavy" className="w-[4.5rem] h-[4.5rem] md:w-20 md:h-20 object-contain" decoding="async" draggable={false} />
+          <img src={weavyLogo} alt="Weavy" className="w-[5.25rem] h-[5.25rem] md:w-24 md:h-24 object-contain" decoding="async" draggable={false} />
         </a>
 
         {/* Desktop links */}
