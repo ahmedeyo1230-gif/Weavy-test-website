@@ -59,6 +59,7 @@ export default function TestimonialsSection() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           className="text-center mb-20"
         >
           <p className="text-xs uppercase tracking-widest text-accent-cyan/70 mb-4">Testimonials</p>
@@ -80,7 +81,7 @@ export default function TestimonialsSection() {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-50px' }}
-              transition={{ duration: 0.6, delay: index * 0.08 }}
+              transition={{ duration: 0.6, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
               className="bg-surface border border-border rounded-2xl p-7 flex flex-col gap-5 hover:border-accent-cyan/20 hover:shadow-[0_0_30px_rgba(58,179,232,0.04)] transition-all duration-500"
             >
               {/* Stars */}

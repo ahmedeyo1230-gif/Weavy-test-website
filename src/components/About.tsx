@@ -14,7 +14,7 @@ export default function About() {
           initial={{ opacity: 0, x: -40 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="relative w-full max-w-md mx-auto lg:mx-0"
         >
           <div className="relative rounded-3xl p-[1px] overflow-hidden group aspect-square">
@@ -61,7 +61,7 @@ export default function About() {
           initial={{ opacity: 0, x: 40 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+          transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           className="space-y-8"
         >
           <h2

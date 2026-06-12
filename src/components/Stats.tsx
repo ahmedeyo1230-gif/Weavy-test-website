@@ -31,7 +31,7 @@ function StatCounter({ value, suffix = '', prefix = '', label, delay = 0 }: Stat
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-50px' }}
-      transition={{ duration: 0.6, delay }}
+      transition={{ duration: 0.6, delay, ease: [0.16, 1, 0.3, 1] }}
       className="flex flex-col items-center md:items-start space-y-2"
     >
       <div className="text-5xl md:text-6xl font-light tracking-tighter flex items-center text-primary">

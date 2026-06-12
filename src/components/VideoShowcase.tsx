@@ -1,13 +1,14 @@
 // ─── Video Showcase ───────────────────────────────────────────────────────────
 
 import { useEffect, useRef, useState } from 'react'
+import { motion } from 'framer-motion'
 
+const E: [number, number, number, number] = [0.16, 1, 0.3, 1]
 const videoSrc = "https://pub-731d5e7deddb4fce94cef7393920d429.r2.dev/Video2_weavy.mp4"
 
-
 export default function VideoShowcase() {
-  const videoRef     = useRef<HTMLVideoElement>(null)
-  const sectionRef   = useRef<HTMLElement>(null)
+  const videoRef   = useRef<HTMLVideoElement>(null)
+  const sectionRef = useRef<HTMLElement>(null)
   const [srcReady, setSrcReady] = useState(false)
 
   // Defer setting the video src until the section is near the viewport
@@ -26,7 +27,6 @@ export default function VideoShowcase() {
   useEffect(() => {
     const video = videoRef.current
     if (!video) return
-
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (!entry.isIntersecting || entry.intersectionRatio < 0.4) {
@@ -35,7 +35,6 @@ export default function VideoShowcase() {
       },
       { threshold: [0, 0.4] }
     )
-
     observer.observe(video)
     return () => observer.disconnect()
   }, [])
@@ -51,13 +50,22 @@ export default function VideoShowcase() {
 
       {/* ── Heading ── */}
       <div className="max-w-2xl mx-auto text-center mb-14">
-        <p
+        <motion.p
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: E }}
           className="font-sans font-light uppercase mb-5"
           style={{ fontSize: '0.65rem', letterSpacing: '0.32em', color: 'hsl(0 0% 36%)' }}
         >
           Live systems
-        </p>
-        <h2
+        </motion.p>
+
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.08, ease: E }}
           className="font-sans font-light text-text"
           style={{
             fontSize: 'clamp(1.85rem, 4vw, 3rem)',
@@ -72,8 +80,13 @@ export default function VideoShowcase() {
             </em>{' '}
             work
           </span>
-        </h2>
-        <p
+        </motion.h2>
+
+        <motion.p
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.16, ease: E }}
           className="mt-5 font-sans font-light"
           style={{
             fontSize: 'clamp(0.85rem, 1.4vw, 0.95rem)',
@@ -82,11 +95,17 @@ export default function VideoShowcase() {
           }}
         >
           Built to run without you. Automated end-to-end, at scale.
-        </p>
+        </motion.p>
       </div>
 
       {/* ── Screen wrapper ── */}
-      <div className="relative max-w-2xl mx-auto">
+      <motion.div
+        initial={{ opacity: 0, y: 48, scale: 0.97 }}
+        whileInView={{ opacity: 1, y: 0, scale: 1 }}
+        viewport={{ once: true, amount: 0.15 }}
+        transition={{ duration: 0.95, delay: 0.22, ease: E }}
+        className="relative max-w-2xl mx-auto"
+      >
 
         {/* Backlight — outer halo */}
         <div
@@ -163,9 +182,10 @@ export default function VideoShowcase() {
             </video>
           </div>
         </div>
-      </div>
 
-      {/* Seamless blend into next section — covers any glow edge */}
+      </motion.div>
+
+      {/* Seamless blend into next section */}
       <div
         aria-hidden="true"
         style={{

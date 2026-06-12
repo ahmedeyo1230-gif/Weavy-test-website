@@ -49,6 +49,7 @@ export default function WhyWeavyWorks() {
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             className="text-xs uppercase tracking-widest text-accent-cyan/70 mb-5"
           >
             Why Weavy Works
@@ -57,7 +58,7 @@ export default function WhyWeavyWorks() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.05 }}
+            transition={{ duration: 0.7, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
             className="text-4xl md:text-5xl lg:text-6xl font-light tracking-tighter text-primary"
           >
             Built with{' '}
@@ -68,7 +69,7 @@ export default function WhyWeavyWorks() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.12 }}
+            transition={{ duration: 0.7, delay: 0.16, ease: [0.16, 1, 0.3, 1] }}
             className="mt-6 text-muted text-lg font-light max-w-md"
           >
             We operate differently than traditional agencies. We are an extension
@@ -84,7 +85,7 @@ export default function WhyWeavyWorks() {
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: '-50px' }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              transition={{ duration: 0.55, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
               className="feature-card group flex gap-5 p-6 rounded-2xl hover:bg-surface/60 border border-transparent hover:border-border transition-all duration-300"
             >
               <div className="flex-shrink-0 w-11 h-11 rounded-full bg-surface border border-border flex items-center justify-center text-muted group-hover:text-accent-cyan group-hover:border-accent-cyan/30 transition-colors duration-300">

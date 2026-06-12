@@ -40,6 +40,7 @@ export default function SystemsShowcase() {
               initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
               className="text-xs uppercase tracking-widest text-accent-cyan/70 mb-4"
             >
               Systems in Motion
@@ -48,7 +49,7 @@ export default function SystemsShowcase() {
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
+              transition={{ duration: 0.7, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
               className="text-4xl md:text-5xl font-light tracking-tighter mb-6 text-primary"
             >
               Our{' '}
@@ -58,7 +59,7 @@ export default function SystemsShowcase() {
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.15 }}
+              transition={{ duration: 0.7, delay: 0.16, ease: [0.16, 1, 0.3, 1] }}
               className="text-muted text-lg font-light"
             >
               We don't sell hours. We sell outcomes. Here are the core architectures
@@ -75,7 +76,7 @@ export default function SystemsShowcase() {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-50px' }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
+              transition={{ duration: 0.6, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
               className="group relative bg-surface border border-border rounded-2xl p-8 md:p-10 transition-all duration-500 hover:border-accent-cyan/30 hover:shadow-[0_0_40px_rgba(58,179,232,0.05)] overflow-hidden"
             >
               {/* Top glow line on hover */}

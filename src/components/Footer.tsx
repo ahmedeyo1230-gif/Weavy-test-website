@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+import { motion } from 'framer-motion'
 import gsap from 'gsap'
 
 const HLS_SRC = 'https://stream.mux.com/Aa02T7oM1wH5Mk5EEVDYhbZ1ChcdhRsS2m1NYyx4Ua1g.m3u8'
@@ -208,7 +209,11 @@ export default function Footer() {
             padding: 'clamp(3.5rem, 7vw, 5.5rem) 1.5rem',
           }}
         >
-          <p
+          <motion.p
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             className="font-sans font-light"
             style={{
               fontSize: '0.68rem',
@@ -219,10 +224,14 @@ export default function Footer() {
             }}
           >
             Get in touch
-          </p>
+          </motion.p>
 
           {/* Main heading */}
-          <h2
+          <motion.h2
+            initial={{ opacity: 0, y: 28 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
             className="font-sans font-light text-text"
             style={{
               fontSize: 'clamp(1.9rem, 4vw, 3rem)',
@@ -238,10 +247,14 @@ export default function Footer() {
               amazing
             </em>{' '}
             together
-          </h2>
+          </motion.h2>
 
           {/* Subtext */}
-          <p
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.18, ease: [0.16, 1, 0.3, 1] }}
             className="font-sans font-light"
             style={{
               fontSize: 'clamp(0.88rem, 1.4vw, 1rem)',
@@ -254,8 +267,14 @@ export default function Footer() {
             Have a project in mind? I'd love to hear about it.{' '}
             <br />
             Let's discuss how we can work together.
-          </p>
+          </motion.p>
 
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.28, ease: [0.16, 1, 0.3, 1] }}
+          >
           <a
             href="mailto:hello@weavyautomation.com"
             className="font-sans font-light"
@@ -287,6 +306,7 @@ export default function Footer() {
           >
             hello@weavyautomation.com
           </a>
+          </motion.div>
         </div>
 
         {/* Footer bar */}
