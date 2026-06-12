@@ -82,7 +82,7 @@ export function Navbar() {
         className="glass-panel rounded-full px-3 py-0 flex items-center justify-between gap-2"
       >
         {/* Logo */}
-        <a href="#home" aria-label="Weavy" className="flex items-center shrink-0 -my-2">
+        <a href="#home" aria-label="Weavy" className="flex items-center shrink-0 -my-3">
           <img src={weavyLogo} alt="Weavy" className="w-[5.25rem] h-[5.25rem] md:w-24 md:h-24 object-contain" decoding="async" draggable={false} />
         </a>
 
