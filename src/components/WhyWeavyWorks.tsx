@@ -86,9 +86,10 @@ export default function WhyWeavyWorks() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: '-50px' }}
               transition={{ duration: 0.55, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="feature-card group flex gap-5 p-6 rounded-2xl hover:bg-surface/60 border border-transparent hover:border-border transition-all duration-300"
+              className="feature-card group flex gap-5 p-6 rounded-2xl hover:bg-surface/60 border border-transparent hover:border-border"
+              style={{ transition: 'background-color 250ms, border-color 250ms' }}
             >
-              <div className="flex-shrink-0 w-11 h-11 rounded-full bg-surface border border-border flex items-center justify-center text-muted group-hover:text-accent-cyan group-hover:border-accent-cyan/30 transition-colors duration-300">
+              <div className="flex-shrink-0 w-11 h-11 rounded-full bg-surface border border-border flex items-center justify-center text-muted group-hover:text-accent-cyan group-hover:border-accent-cyan/30" style={{ transition: 'color 250ms, border-color 250ms' }}>
                 {feature.icon}
               </div>
               <div>

@@ -242,9 +242,9 @@ export default function Footer() {
               marginBottom: '1.25rem',
             }}
           >
-            Let's create something{' '}
+            Let's build something{' '}
             <em style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400 }}>
-              amazing
+              remarkable
             </em>{' '}
             together
           </motion.h2>
@@ -264,7 +264,7 @@ export default function Footer() {
               marginBottom: '2.5rem',
             }}
           >
-            Have a project in mind? I'd love to hear about it.{' '}
+            Have a project in mind? We'd love to hear about it.{' '}
             <br />
             Let's discuss how we can work together.
           </motion.p>
@@ -277,7 +277,7 @@ export default function Footer() {
           >
           <a
             href="mailto:hello@weavyautomation.com"
-            className="font-sans font-light"
+            className="font-sans font-light footer-email-cta"
             style={{
               fontSize: 'clamp(1rem, 2.2vw, 1.45rem)',
               letterSpacing: '-0.01em',
@@ -289,7 +289,7 @@ export default function Footer() {
               background: 'hsl(0 0% 100% / 0.03)',
               backdropFilter: 'blur(12px)',
               display: 'inline-block',
-              transition: 'border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease',
+              transition: 'border-color 280ms, box-shadow 280ms, background 280ms, transform 100ms',
             }}
             onMouseEnter={e => {
               const el = e.currentTarget as HTMLAnchorElement
@@ -302,7 +302,10 @@ export default function Footer() {
               el.style.borderColor = 'hsl(0 0% 100% / 0.13)'
               el.style.boxShadow   = 'none'
               el.style.background  = 'hsl(0 0% 100% / 0.03)'
+              el.style.transform   = ''
             }}
+            onMouseDown={e => { (e.currentTarget as HTMLAnchorElement).style.transform = 'scale(0.97)' }}
+            onMouseUp={e => { (e.currentTarget as HTMLAnchorElement).style.transform = '' }}
           >
             hello@weavyautomation.com
           </a>
@@ -366,12 +369,6 @@ export default function Footer() {
 
       </div>
 
-      <style>{`
-        @keyframes footer-dot-pulse {
-          0%, 100% { opacity: 1; }
-          50%       { opacity: 0.3; }
-        }
-      `}</style>
     </footer>
   )
 }

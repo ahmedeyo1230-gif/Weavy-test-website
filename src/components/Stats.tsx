@@ -6,17 +6,18 @@ interface StatProps {
   suffix?: string
   prefix?: string
   label: string
+  description: string
   delay?: number
 }
 
-function StatCounter({ value, suffix = '', prefix = '', label, delay = 0 }: StatProps) {
+function StatCounter({ value, suffix = '', prefix = '', label, description, delay = 0 }: StatProps) {
   const nodeRef = useRef<HTMLSpanElement>(null)
   const inView  = useInView(nodeRef, { once: true, margin: '-50px' })
 
   useEffect(() => {
     if (!inView || !nodeRef.current) return
     const controls = animate(0, value, {
-      duration: 2,
+      duration: 1.8,
       delay,
       ease: 'easeOut',
       onUpdate(v) {
@@ -28,44 +29,67 @@ function StatCounter({ value, suffix = '', prefix = '', label, delay = 0 }: Stat
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-50px' }}
-      transition={{ duration: 0.6, delay, ease: [0.16, 1, 0.3, 1] }}
-      className="flex flex-col items-center md:items-start space-y-2"
+      transition={{ duration: 0.65, delay, ease: [0.16, 1, 0.3, 1] }}
+      className="flex flex-col items-center text-center px-6 py-8 relative group"
     >
-      <div className="text-5xl md:text-6xl font-light tracking-tighter flex items-center text-primary">
+      {/* Subtle top accent line that appears on hover */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-8 h-[1px] bg-gradient-to-r from-transparent via-accent-cyan/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+      <div className="text-5xl md:text-6xl lg:text-7xl font-light tracking-tighter flex items-start text-primary mb-3">
         {prefix && (
-          <span className="font-serif italic mr-1 text-muted">{prefix}</span>
+          <span className="font-serif italic text-muted text-3xl md:text-4xl mt-2 mr-0.5">{prefix}</span>
         )}
         <span ref={nodeRef}>0</span>
         {suffix && (
-          <span className="font-serif italic ml-1 text-accent-cyan">{suffix}</span>
+          <span className="font-serif italic text-accent-cyan text-3xl md:text-4xl mt-2">{suffix}</span>
         )}
       </div>
-      <p className="text-xs uppercase tracking-widest text-muted">{label}</p>
+      <p className="text-xs uppercase tracking-widest text-muted mb-2">{label}</p>
+      <p className="text-xs text-muted/50 font-light max-w-[120px] leading-relaxed">{description}</p>
     </motion.div>
   )
 }
 
 export default function Stats() {
   return (
-    <section className="py-24 px-6 border-b border-border/50 bg-surface/30 relative overflow-hidden">
+    <section className="py-20 px-6 relative overflow-hidden" style={{ background: '#0a0a0a' }}>
+      {/* Radial glow behind the panel */}
       <div
         className="absolute inset-0 pointer-events-none"
         aria-hidden="true"
         style={{
-          background: 'radial-gradient(ellipse 60% 80% at 50% 50%, hsl(199 89% 60% / 0.04) 0%, transparent 70%)',
+          background: 'radial-gradient(ellipse 70% 60% at 50% 50%, hsl(199 89% 60% / 0.045) 0%, transparent 70%)',
         }}
       />
-      <div className="max-w-6xl mx-auto relative">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-12 md:gap-8 text-center md:text-left">
-          <StatCounter value={50}  suffix="+"  label="Systems Built"       delay={0}   />
-          <StatCounter value={3}               label="Continents"          delay={0.2} />
-          <StatCounter value={2}   prefix="£" suffix="M+" label="Revenue Generated"  delay={0.4} />
-          <StatCounter value={100} suffix="%" label="Client Retention"    delay={0.6} />
+
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+        className="max-w-5xl mx-auto relative"
+      >
+        {/* Glass card */}
+        <div
+          className="rounded-3xl overflow-hidden"
+          style={{
+            background: 'hsl(0 0% 100% / 0.025)',
+            border: '1px solid hsl(0 0% 100% / 0.07)',
+            backdropFilter: 'blur(12px)',
+            boxShadow: '0 0 0 1px hsl(0 0% 100% / 0.03), 0 24px 64px -16px hsl(0 0% 0% / 0.5)',
+          }}
+        >
+          <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-y md:divide-y-0 divide-white/[0.06]">
+            <StatCounter value={50}  suffix="+"  label="Systems Built"      description="Delivered across industries"  delay={0}   />
+            <StatCounter value={3}               label="Continents"          description="Global reach, London roots"   delay={0.1} />
+            <StatCounter value={2}   prefix="£" suffix="M+" label="Revenue Generated" description="For our clients collectively" delay={0.2} />
+            <StatCounter value={100} suffix="%" label="Client Retention"    description="Because results speak"        delay={0.3} />
+          </div>
         </div>
-      </div>
+      </motion.div>
     </section>
   )
 }

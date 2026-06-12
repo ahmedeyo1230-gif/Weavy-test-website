@@ -1,27 +1,33 @@
 import { motion } from 'framer-motion'
 import { Bot, Workflow, MessageSquare, LineChart, ArrowRight } from 'lucide-react'
 
+const E: [number, number, number, number] = [0.16, 1, 0.3, 1]
+
 const services = [
   {
-    icon: <Bot className="w-6 h-6" />,
+    num: '01',
+    icon: <Bot className="w-5 h-5" />,
     title: 'AI Content Automation',
     description:
       'Auto-generate branded content at scale. We build custom LLM pipelines that understand your brand voice and output ready-to-publish assets.',
   },
   {
-    icon: <Workflow className="w-6 h-6" />,
+    num: '02',
+    icon: <Workflow className="w-5 h-5" />,
     title: 'Growth Systems',
     description:
       'Automated funnels, lead generation, and CRM workflows. Never let a lead slip through the cracks again with intelligent routing and follow-up.',
   },
   {
-    icon: <MessageSquare className="w-6 h-6" />,
+    num: '03',
+    icon: <MessageSquare className="w-5 h-5" />,
     title: 'Communication AI',
     description:
       'Intelligent chatbots, email automation, and social scheduling. Provide 24/7 support and engagement without expanding your team.',
   },
   {
-    icon: <LineChart className="w-6 h-6" />,
+    num: '04',
+    icon: <LineChart className="w-5 h-5" />,
     title: 'Brand Intelligence',
     description:
       'Live monitoring, analytics, and automated reporting. Real-time insights delivered directly to your Slack or inbox — automatically.',
@@ -40,7 +46,7 @@ export default function SystemsShowcase() {
               initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.6, ease: E }}
               className="text-xs uppercase tracking-widest text-accent-cyan/70 mb-4"
             >
               Systems in Motion
@@ -49,52 +55,81 @@ export default function SystemsShowcase() {
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.7, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.7, delay: 0.08, ease: E }}
               className="text-4xl md:text-5xl font-light tracking-tighter mb-6 text-primary"
             >
-              Our{' '}
-              <span className="font-serif italic text-accent-cyan">Systems</span>
+              Four core{' '}
+              <span className="font-serif italic text-accent-cyan">architectures</span>
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.7, delay: 0.16, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.7, delay: 0.16, ease: E }}
               className="text-muted text-lg font-light"
             >
               We don't sell hours. We sell outcomes. Here are the core architectures
               we deploy to scale your operations.
             </motion.p>
           </div>
+
+          <motion.a
+            href="#contact"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3, ease: E }}
+            className="hidden md:inline-flex items-center gap-2 text-sm text-muted hover:text-primary transition-colors duration-200 shrink-0 group cursor-pointer"
+          >
+            All services
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
+          </motion.a>
         </div>
 
         {/* Service cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           {services.map((service, index) => (
             <motion.div
               key={service.title}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-50px' }}
-              transition={{ duration: 0.6, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="group relative bg-surface border border-border rounded-2xl p-8 md:p-10 transition-all duration-500 hover:border-accent-cyan/30 hover:shadow-[0_0_40px_rgba(58,179,232,0.05)] overflow-hidden"
+              transition={{ duration: 0.6, delay: index * 0.1, ease: E }}
+              className="group relative bg-surface border border-border rounded-2xl p-8 md:p-10 overflow-hidden cursor-pointer"
+              style={{ transition: 'border-color 400ms, box-shadow 400ms' }}
+              onMouseEnter={e => {
+                const el = e.currentTarget as HTMLDivElement
+                el.style.borderColor = 'hsl(199 89% 60% / 0.3)'
+                el.style.boxShadow = '0 0 40px rgba(58,179,232,0.05)'
+              }}
+              onMouseLeave={e => {
+                const el = e.currentTarget as HTMLDivElement
+                el.style.borderColor = ''
+                el.style.boxShadow = ''
+              }}
             >
               {/* Top glow line on hover */}
-              <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-accent-cyan to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-accent-cyan/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-              <div className="w-12 h-12 rounded-full bg-background border border-border flex items-center justify-center text-primary mb-8 group-hover:text-accent-cyan group-hover:border-accent-cyan/30 transition-colors duration-300">
-                {service.icon}
+              {/* Number + icon row */}
+              <div className="flex items-center justify-between mb-8">
+                <span className="font-serif italic text-muted/40 text-4xl leading-none select-none">
+                  {service.num}
+                </span>
+                <div className="w-10 h-10 rounded-full bg-background border border-border flex items-center justify-center text-primary group-hover:text-accent-cyan group-hover:border-accent-cyan/30 transition-colors duration-300">
+                  {service.icon}
+                </div>
               </div>
 
-              <h3 className="text-2xl font-medium tracking-tight mb-4 text-primary">
+              <h3 className="text-xl font-medium tracking-tight mb-4 text-primary">
                 {service.title}
               </h3>
-              <p className="text-muted font-light leading-relaxed mb-8">
+              <p className="text-muted font-light leading-relaxed mb-8 text-sm">
                 {service.description}
               </p>
 
-              <div className="flex items-center text-sm font-medium text-primary group-hover:text-accent-cyan transition-colors duration-300 cursor-pointer w-fit">
-                Explore{' '}
+              <div className="flex items-center text-sm font-medium text-muted group-hover:text-accent-cyan transition-colors duration-300 w-fit">
+                Learn more
                 <ArrowRight className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" />
               </div>
             </motion.div>

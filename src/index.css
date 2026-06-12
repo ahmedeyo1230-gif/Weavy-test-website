@@ -326,9 +326,12 @@ body::after {
   transition: none;
   pointer-events: none;
 }
-.btn-glow-primary:hover::after {
-  left: 150%;
-  transition: left 0.52s ease;
+
+@media (hover: hover) and (pointer: fine) {
+  .btn-glow-primary:hover::after {
+    left: 150%;
+    transition: left 0.52s ease;
+  }
 }
 
 /* ── Feature card left accent ────────────────────────────────────────────── */
@@ -347,12 +350,15 @@ body::after {
   border-radius: 999px;
   opacity: 0;
   transform: scaleY(0.4);
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  transition: opacity 250ms ease, transform 250ms ease;
   pointer-events: none;
 }
-.feature-card:hover::before {
-  opacity: 1;
-  transform: scaleY(1);
+
+@media (hover: hover) and (pointer: fine) {
+  .feature-card:hover::before {
+    opacity: 1;
+    transform: scaleY(1);
+  }
 }
 
 /* ── Selection colour ────────────────────────────────────────────────────── */
@@ -389,6 +395,18 @@ body::after {
   .vid-particle {
     animation-duration: 8s;
   }
+}
+
+/* ── Footer status dot pulse ─────────────────────────────────────────────── */
+@keyframes footer-dot-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.3; }
+}
+
+/* ── Stats stat-counter top accent ──────────────────────────────────────── */
+@keyframes stat-divider-glow {
+  0%, 100% { opacity: 0.4; }
+  50%       { opacity: 1; }
 }
 
 /* ── Respect prefers-reduced-motion ─────────────────────────────────────── */

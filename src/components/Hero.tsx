@@ -96,7 +96,7 @@ export function Navbar() {
                   href={href}
                   aria-current={isActive ? 'page' : undefined}
                   onClick={() => setActive(label)}
-                  className={`relative block text-xs sm:text-sm px-3 py-1.5 rounded-full transition-colors duration-200 ${
+                  className={`relative block text-xs sm:text-sm px-3 py-1.5 rounded-full transition-colors duration-150 active:scale-[0.97] ${
                     isActive ? 'text-primary bg-white/10' : 'text-muted hover:text-primary hover:bg-white/5'
                   }`}
                 >
@@ -110,7 +110,8 @@ export function Navbar() {
         {/* CTA */}
         <a
           href="#contact"
-          className="hidden sm:inline-flex items-center gap-1.5 bg-primary text-background text-xs sm:text-sm px-4 py-2 rounded-full font-medium transition-all duration-200 hover:bg-white hover:shadow-[0_0_20px_rgba(245,245,245,0.25)] shrink-0"
+          className="hidden sm:inline-flex items-center gap-1.5 bg-primary text-background text-xs sm:text-sm px-4 py-2 rounded-full font-medium transition-colors duration-150 hover:bg-white hover:shadow-[0_0_20px_rgba(245,245,245,0.25)] active:scale-[0.97] shrink-0"
+          style={{ transition: 'color 150ms, background-color 150ms, box-shadow 150ms, transform 100ms' }}
         >
           Say hi →
         </a>
@@ -131,23 +132,37 @@ export function Navbar() {
       </nav>
 
       {/* Mobile dropdown */}
-      {menuOpen && (
-        <div className="sm:hidden mt-2 rounded-2xl glass-panel overflow-hidden">
-          <ul role="list">
-            {NAV_LINKS.map(({ label, href }) => (
-              <li key={label}>
-                <a
-                  href={href}
-                  onClick={() => { setActive(label); setMenuOpen(false) }}
-                  className="block text-sm px-5 py-3.5 text-muted hover:text-primary border-b border-border/40 last:border-0 transition-colors"
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            key="mobile-menu"
+            initial={{ opacity: 0, y: -8, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -6, scale: 0.98 }}
+            transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
+            className="sm:hidden mt-2 rounded-2xl glass-panel overflow-hidden"
+          >
+            <ul role="list">
+              {NAV_LINKS.map(({ label, href }, i) => (
+                <motion.li
+                  key={label}
+                  initial={{ opacity: 0, x: -8 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.15, delay: i * 0.04, ease: [0.16, 1, 0.3, 1] }}
                 >
-                  {label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+                  <a
+                    href={href}
+                    onClick={() => { setActive(label); setMenuOpen(false) }}
+                    className="block text-sm px-5 py-3.5 text-muted hover:text-primary border-b border-border/40 last:border-0 transition-colors duration-150 active:bg-white/5"
+                  >
+                    {label}
+                  </a>
+                </motion.li>
+              ))}
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.header>
   )
 }
@@ -271,13 +286,15 @@ export default function Hero() {
           >
             <a
               href="#contact"
-              className="btn-glow-primary inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-medium bg-primary text-background hover:bg-white hover:shadow-[0_0_28px_rgba(245,245,245,0.28)] transition-all duration-300"
+              className="btn-glow-primary inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-medium bg-primary text-background hover:bg-white hover:shadow-[0_0_28px_rgba(245,245,245,0.28)] active:scale-[0.97]"
+              style={{ transition: 'background-color 200ms, box-shadow 200ms, transform 100ms' }}
             >
               Book a call →
             </a>
             <a
               href="#section-9"
-              className="inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-medium border border-border text-primary hover:border-white/25 hover:bg-white/[0.04] hover:shadow-[0_0_16px_hsl(199_89%_60%_/_0.08)] transition-all duration-300"
+              className="inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-medium border border-border text-primary hover:border-white/25 hover:bg-white/[0.04] hover:shadow-[0_0_16px_hsl(199_89%_60%_/_0.08)] active:scale-[0.97]"
+              style={{ transition: 'border-color 200ms, background-color 200ms, box-shadow 200ms, transform 100ms' }}
             >
               View systems
             </a>

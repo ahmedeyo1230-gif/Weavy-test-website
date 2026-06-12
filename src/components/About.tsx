@@ -69,7 +69,7 @@ export default function About() {
             className="text-4xl md:text-5xl font-light tracking-tighter leading-tight text-primary"
           >
             We are a{' '}
-            <em className="font-serif italic">Triple&nbsp;X</em>{' '}
+            <em className="font-serif italic">full-stack</em>{' '}
             automation agency
           </h2>
 
@@ -90,7 +90,7 @@ export default function About() {
             {['Automation', 'Web Design', 'AI Chatbots', 'Content Systems', 'Video Editing'].map(tag => (
               <span
                 key={tag}
-                className="text-xs uppercase tracking-widest text-muted border border-border rounded-full px-4 py-1.5 hover:border-accent-cyan/40 hover:text-primary transition-colors duration-200"
+                className="text-xs uppercase tracking-widest text-muted border border-border rounded-full px-4 py-1.5 cursor-pointer hover:border-accent-cyan/40 hover:text-primary transition-colors duration-200"
               >
                 {tag}
               </span>
