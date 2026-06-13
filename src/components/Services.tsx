@@ -9990,7 +9990,7 @@ export default function Services() {
         id="bespoke-hero"
         className="relative w-screen overflow-hidden"
         style={{
-          height: 'clamp(600px, 78vw, 920px)',
+          height: 'clamp(300px, 44vw, 480px)',
           marginLeft: 'calc(-50vw + 50%)',
           marginRight: 'calc(-50vw + 50%)',
           background: '#010709',
@@ -10006,8 +10006,8 @@ export default function Services() {
           style={{
             position: 'absolute', inset: 0,
             width: '100%', height: '100%',
-            objectFit: 'cover',
-            objectPosition: 'center top',
+            objectFit: 'contain',
+            objectPosition: 'center center',
           }}
         />
 
