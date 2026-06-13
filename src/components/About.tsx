@@ -4,7 +4,7 @@ import { MapPin, Cpu, Zap } from 'lucide-react'
 
 const E: [number, number, number, number] = [0.16, 1, 0.3, 1]
 
-const TAGS = ['Automation', 'Web Design', 'AI Chatbots', 'Content Systems', 'Video Editing']
+const TAGS = ['Digital Marketing', 'Business Process Automation', 'Lead Generation', 'CRM Automation', 'Graphic Design', 'Paid Social Media Advertising']
 
 const SERVICE_MODULES = [
   { num: '01', label: 'Automation',      desc: 'End-to-end workflow systems'       },
