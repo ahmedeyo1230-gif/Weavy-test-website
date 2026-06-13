@@ -9989,12 +9989,12 @@ export default function Services() {
       <section
         id="bespoke-hero"
         className="relative w-screen overflow-hidden"
-        style={{
-          height: 'clamp(600px, 78vw, 920px)',
-          marginLeft: 'calc(-50vw + 50%)',
-          marginRight: 'calc(-50vw + 50%)',
-          background: '#010709',
-        }}
+          style={{
+            height: 'clamp(420px, 52vw, 720px)',
+            marginLeft: 'calc(-50vw + 50%)',
+            marginRight: 'calc(-50vw + 50%)',
+            background: '#010709',
+          }}
       >
         {/* Full-width background image */}
         <img

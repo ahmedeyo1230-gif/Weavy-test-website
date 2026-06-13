@@ -51,7 +51,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
     <div className="fixed inset-0 z-[9999] bg-bg flex flex-col">
 
       {/* ── Center: rotating word ── */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center gap-5">
+      <div className="absolute inset-0 flex flex-col items-center justify-center gap-2">
         <span
           className="font-sans font-light select-none"
           style={{
@@ -66,9 +66,9 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
         <AnimatePresence mode="wait">
           <motion.span
             key={wordIndex}
-            initial={isMobile ? { opacity: 0, y: 14 } : { opacity: 0, y: 18, filter: 'blur(8px)' }}
+            initial={isMobile ? { opacity: 0, y: 8 } : { opacity: 0, y: 10, filter: 'blur(6px)' }}
             animate={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, y: 0, filter: 'blur(0px)' }}
-            exit={isMobile ? { opacity: 0, y: -10 } : { opacity: 0, y: -14, filter: 'blur(6px)' }}
+            exit={isMobile ? { opacity: 0, y: -6 } : { opacity: 0, y: -8, filter: 'blur(4px)' }}
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
             className="font-display italic select-none"
             style={{
