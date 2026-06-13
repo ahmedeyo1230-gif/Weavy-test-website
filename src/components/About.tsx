@@ -9,7 +9,7 @@ const TAGS = ['Digital Marketing', 'Business Process Automation', 'Lead Generati
 const SERVICE_MODULES = [
   { num: '01', label: 'Automation',      desc: 'End-to-end workflow systems'       },
   { num: '02', label: 'Web Design',      desc: 'Bespoke, high-performance sites'   },
-  { num: '03', label: 'AI Chatbots',     desc: 'Intelligent 24/7 engagement'       },
+  { num: '03', label: 'Custom Chatbots', desc: 'Intelligent 24/7 engagement'       },
   { num: '04', label: 'Content Systems', desc: 'Scalable brand content at scale'   },
   { num: '05', label: 'Video Editing',   desc: 'Storytelling that drives results'  },
 ]
