@@ -9990,7 +9990,7 @@ export default function Services() {
         id="bespoke-hero"
         className="relative w-screen overflow-hidden"
         style={{
-          height: 'clamp(340px, 48vw, 520px)',
+          height: 'clamp(600px, 78vw, 920px)',
           marginLeft: 'calc(-50vw + 50%)',
           marginRight: 'calc(-50vw + 50%)',
           background: '#010709',
@@ -10025,111 +10025,6 @@ export default function Services() {
           backgroundImage: 'radial-gradient(hsl(210 40% 60% / 0.022) 1px, transparent 1px)',
           backgroundSize: '28px 28px',
         }}/>
-
-        {/* Floating icon keyframes */}
-        <style>{`
-          @keyframes bespoke-float-a {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50%       { transform: translateY(-9px) rotate(4deg); }
-          }
-          @keyframes bespoke-float-b {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            35%       { transform: translateY(-7px) rotate(-3deg); }
-            70%       { transform: translateY(-3px) rotate(2deg); }
-          }
-          @keyframes bespoke-float-c {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            45%       { transform: translateY(-11px) rotate(-5deg); }
-          }
-          @keyframes bespoke-icon-glow {
-            0%, 100% { opacity: 0.55; }
-            50%       { opacity: 0.9; }
-          }
-          @media (max-width: 639px) {
-            .bespoke-float-icons { display: none !important; }
-          }
-        `}</style>
-
-        {/* Floating icons — right half, laptop area; hidden on mobile */}
-        <div
-          className="bespoke-float-icons pointer-events-none absolute inset-0"
-          style={{ zIndex: 3 }}
-          aria-hidden="true"
-        >
-          {/* Globe — web presence */}
-          <div style={{
-            position: 'absolute', top: '22%', right: '26%',
-            width: 34, height: 34, borderRadius: 9,
-            background: 'hsl(199 89% 60% / 0.08)',
-            border: '1px solid hsl(199 89% 60% / 0.22)',
-            backdropFilter: 'blur(10px)',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            boxShadow: '0 0 18px -6px hsl(199 89% 60% / 0.45), inset 0 1px 0 hsl(0 0% 100% / 0.08)',
-            animation: 'bespoke-float-a 5.8s ease-in-out infinite',
-          }}>
-            <Globe size={14} strokeWidth={1.5} style={{ color: '#38BDF8', animation: 'bespoke-icon-glow 3.2s ease-in-out infinite' }} />
-          </div>
-
-          {/* Layers — design depth */}
-          <div style={{
-            position: 'absolute', top: '50%', right: '12%',
-            width: 34, height: 34, borderRadius: 9,
-            background: 'hsl(199 89% 60% / 0.06)',
-            border: '1px solid hsl(0 0% 100% / 0.1)',
-            backdropFilter: 'blur(10px)',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            boxShadow: '0 0 14px -6px hsl(199 89% 60% / 0.32), inset 0 1px 0 hsl(0 0% 100% / 0.06)',
-            animation: 'bespoke-float-b 6.4s ease-in-out infinite',
-            animationDelay: '1.4s',
-          }}>
-            <Layers size={14} strokeWidth={1.5} style={{ color: 'hsl(199 89% 68%)', animation: 'bespoke-icon-glow 3.8s ease-in-out infinite', animationDelay: '1.4s' }} />
-          </div>
-
-          {/* Sparkles — premium quality */}
-          <div style={{
-            position: 'absolute', bottom: '28%', right: '28%',
-            width: 34, height: 34, borderRadius: 9,
-            background: 'hsl(38 75% 62% / 0.08)',
-            border: '1px solid hsl(38 75% 62% / 0.18)',
-            backdropFilter: 'blur(10px)',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            boxShadow: '0 0 16px -6px hsl(38 75% 62% / 0.38), inset 0 1px 0 hsl(0 0% 100% / 0.07)',
-            animation: 'bespoke-float-c 7s ease-in-out infinite',
-            animationDelay: '0.8s',
-          }}>
-            <Sparkles size={14} strokeWidth={1.5} style={{ color: '#D6B875', animation: 'bespoke-icon-glow 4s ease-in-out infinite', animationDelay: '0.8s' }} />
-          </div>
-
-          {/* Zap — performance */}
-          <div style={{
-            position: 'absolute', top: '32%', right: '40%',
-            width: 30, height: 30, borderRadius: 8,
-            background: 'hsl(199 89% 60% / 0.06)',
-            border: '1px solid hsl(0 0% 100% / 0.08)',
-            backdropFilter: 'blur(8px)',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            boxShadow: '0 0 12px -5px hsl(199 89% 60% / 0.28)',
-            animation: 'bespoke-float-a 5.2s ease-in-out infinite',
-            animationDelay: '2.1s',
-          }}>
-            <Zap size={12} strokeWidth={1.5} style={{ color: 'hsl(199 89% 65%)', animation: 'bespoke-icon-glow 2.9s ease-in-out infinite', animationDelay: '2.1s' }} />
-          </div>
-
-          {/* Settings2 — custom systems */}
-          <div style={{
-            position: 'absolute', bottom: '24%', right: '14%',
-            width: 30, height: 30, borderRadius: 8,
-            background: 'hsl(0 0% 100% / 0.04)',
-            border: '1px solid hsl(0 0% 100% / 0.08)',
-            backdropFilter: 'blur(8px)',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            boxShadow: '0 0 10px -5px hsl(0 0% 100% / 0.18)',
-            animation: 'bespoke-float-b 6.8s ease-in-out infinite',
-            animationDelay: '1.8s',
-          }}>
-            <Settings2 size={12} strokeWidth={1.5} style={{ color: 'hsl(0 0% 52%)', animation: 'bespoke-icon-glow 3.6s ease-in-out infinite', animationDelay: '1.8s' }} />
-          </div>
-        </div>
 
         {/* Text content */}
         <div className="relative z-10 h-full flex items-center px-6 sm:px-12 lg:px-20">
