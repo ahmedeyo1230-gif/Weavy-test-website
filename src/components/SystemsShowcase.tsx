@@ -314,7 +314,7 @@ export default function SystemsShowcase() {
             </motion.p>
 
             <motion.a
-              href="#contact"
+              href="#section-9"
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
