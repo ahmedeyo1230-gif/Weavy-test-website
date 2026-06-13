@@ -9990,27 +9990,46 @@ export default function Services() {
         id="bespoke-hero"
         className="relative w-screen overflow-hidden"
         style={{
+          height: 'clamp(600px, 78vw, 920px)',
           marginLeft: 'calc(-50vw + 50%)',
           marginRight: 'calc(-50vw + 50%)',
           background: '#010709',
         }}
       >
+        {/* Full-width background image */}
+        <img
+          loading="lazy"
+          decoding="async"
+          src="/brand_assets/Website.png"
+          alt=""
+          aria-hidden="true"
+          style={{
+            position: 'absolute', inset: 0,
+            width: '100%', height: '100%',
+            objectFit: 'cover',
+            objectPosition: 'center top',
+          }}
+        />
+
+        {/* Dark gradient overlay — left-biased for text legibility */}
+        <div aria-hidden="true" style={{
+          position: 'absolute', inset: 0,
+          background: [
+            'linear-gradient(to right, hsl(0 0% 0% / 0.78) 0%, hsl(0 0% 0% / 0.45) 55%, hsl(0 0% 0% / 0.18) 100%)',
+            'linear-gradient(to top, hsl(0 0% 0% / 0.55) 0%, transparent 60%)',
+          ].join(', '),
+        }}/>
+
         {/* Dot grid texture */}
         <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
           backgroundImage: 'radial-gradient(hsl(210 40% 60% / 0.022) 1px, transparent 1px)',
           backgroundSize: '28px 28px',
         }}/>
 
-        {/* Two-column layout: text left | image right */}
-        <div
-          className="relative z-10 max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-[1fr_1.15fr] items-center"
-          style={{
-            gap: 'clamp(2rem, 5vw, 4rem)',
-            padding: 'clamp(3.5rem, 7vw, 5.5rem) clamp(1.5rem, 5vw, 5rem)',
-          }}
-        >
-          {/* Left: text */}
-          <div>
+        {/* Text content */}
+        <div className="relative z-10 h-full flex items-center px-6 sm:px-12 lg:px-20">
+          <div style={{ maxWidth: '44rem' }}>
+
             {/* Eyebrow */}
             <p
               className="font-sans font-light uppercase mb-5"
@@ -10065,30 +10084,13 @@ export default function Services() {
               No templates. No shortcuts. Every pixel is crafted around your
               goals, your audience, and the impression you want to leave.
             </p>
-          </div>
 
-          {/* Right: image — full image visible, no cropping */}
-          <div className="flex items-center justify-center lg:justify-end">
-            <img
-              loading="lazy"
-              decoding="async"
-              src="/brand_assets/Website.png"
-              alt="Bespoke website design preview"
-              style={{
-                display: 'block',
-                width: '100%',
-                maxWidth: '680px',
-                height: 'auto',
-                objectFit: 'contain',
-                borderRadius: '10px',
-              }}
-            />
           </div>
         </div>
 
         {/* Bottom fade into next section */}
         <div aria-hidden="true" className="pointer-events-none absolute left-0 right-0 bottom-0" style={{
-          height: '80px',
+          height: '100px',
           background: 'linear-gradient(to top, #010709 0%, transparent 100%)',
         }}/>
       </section>
