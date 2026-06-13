@@ -409,6 +409,12 @@ body::after {
   to   { transform: scaleY(1);    opacity: 1;   }
 }
 
+/* ── Systems orb — counter-clockwise ring ────────────────────────────────── */
+@keyframes orb-spin-ccw {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(-360deg); }
+}
+
 /* ── Stats stat-counter top accent ──────────────────────────────────────── */
 @keyframes stat-divider-glow {
   0%, 100% { opacity: 0.4; }
