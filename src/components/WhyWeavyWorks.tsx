@@ -34,10 +34,63 @@ export default function WhyWeavyWorks() {
       className="py-32 px-6 relative overflow-hidden bg-background"
       aria-label="Why Weavy Works"
     >
-      {/* Subtle dot grid */}
+      {/* Dot grid */}
       <div
-        className="absolute inset-0 opacity-[0.025] pointer-events-none"
-        style={{ backgroundImage: 'radial-gradient(#fff 1px, transparent 1px)', backgroundSize: '32px 32px' }}
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage: 'radial-gradient(circle, hsl(0 0% 100% / 0.045) 1px, transparent 1px)',
+          backgroundSize: '28px 28px',
+        }}
+        aria-hidden="true"
+      />
+
+      {/* Cyan/teal radial glow — upper left */}
+      <div
+        className="absolute pointer-events-none"
+        style={{
+          top: '-15%',
+          left: '-8%',
+          width: '60%',
+          height: '72%',
+          background:
+            'radial-gradient(ellipse at center, hsl(199 89% 58% / 0.07) 0%, hsl(210 80% 35% / 0.04) 40%, transparent 68%)',
+        }}
+        aria-hidden="true"
+      />
+
+      {/* Blue-green glow — lower right */}
+      <div
+        className="absolute pointer-events-none"
+        style={{
+          bottom: '-10%',
+          right: '-5%',
+          width: '50%',
+          height: '60%',
+          background:
+            'radial-gradient(ellipse at center, hsl(180 55% 28% / 0.055) 0%, transparent 65%)',
+        }}
+        aria-hidden="true"
+      />
+
+      {/* Dark charcoal gradient depth layer */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            'linear-gradient(148deg, hsl(210 35% 7% / 0.38) 0%, transparent 45%, hsl(180 30% 5% / 0.22) 100%)',
+        }}
+        aria-hidden="true"
+      />
+
+      {/* Cinematic noise texture */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          opacity: 0.022,
+          backgroundImage:
+            "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23g)'/%3E%3C/svg%3E\")",
+          backgroundSize: '256px 256px',
+        }}
         aria-hidden="true"
       />
 
