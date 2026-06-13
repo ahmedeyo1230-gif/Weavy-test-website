@@ -37,3 +37,4 @@ temporary screenshots/
 **/*.mp4
 **/*.mov
 **/*.webm
+!public/brand_assets/hero_section_chatbot.mp4

@@ -9996,20 +9996,23 @@ export default function Services() {
             background: '#010709',
           }}
       >
-        {/* Full-width background image */}
-        <img
-          loading="lazy"
-          decoding="async"
-          src="/brand_assets/Website.png"
-          alt=""
-          aria-hidden="true"
-          style={{
-            position: 'absolute', inset: 0,
-            width: '100%', height: '100%',
-            objectFit: 'cover',
-            objectPosition: 'center top',
-          }}
-        />
+        {/* Full-width background video */}
+<video
+  src="/brand_assets/hero_section_chatbot.mp4"
+  autoPlay
+  muted
+  loop
+  playsInline
+  aria-hidden="true"
+  style={{
+    position: 'absolute',
+    inset: 0,
+    width: '100%',
+    height: '100%',
+    objectFit: 'cover',
+    objectPosition: 'center top',
+  }}
+/>
 
         {/* Dark gradient overlay — left-biased for text legibility */}
         <div aria-hidden="true" style={{
