@@ -10256,12 +10256,15 @@ export default function Services() {
                   ].join(', ')
                 }}
               >
-                <img
-                  loading="lazy"
-                  decoding="async"
-                  src="/brand_assets/site-design.png"
-                  alt="Bespoke website design showcase"
-                  style={{ display: 'block', width: '100%', height: 'auto' }}
+                <video
+                  src="https://pub-731d5e7deddb4fce94cef7393920d429.r2.dev/hero_section_chatbot.mp4"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  aria-hidden="true"
+                  className="h-full w-full object-cover"
+                  style={{ display: 'block' }}
                 />
                 {/* Bottom vignette */}
                 <div aria-hidden="true" style={{
