@@ -10014,11 +10014,11 @@ export default function Services() {
   }}
 />
 
-        {/* Dark gradient overlay — left-biased for text legibility */}
+        {/* Dark gradient overlay — fully opaque left-third to mask video behind text */}
         <div aria-hidden="true" style={{
           position: 'absolute', inset: 0,
           background: [
-            'linear-gradient(to right, hsl(0 0% 0% / 0.78) 0%, hsl(0 0% 0% / 0.45) 55%, hsl(0 0% 0% / 0.18) 100%)',
+            'linear-gradient(to right, hsl(0 0% 0% / 1.0) 0%, hsl(0 0% 0% / 0.88) 38%, hsl(0 0% 0% / 0.32) 65%, hsl(0 0% 0% / 0.08) 100%)',
             'linear-gradient(to top, hsl(0 0% 0% / 0.55) 0%, transparent 60%)',
           ].join(', '),
         }}/>
