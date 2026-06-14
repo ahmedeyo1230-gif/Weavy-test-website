@@ -709,20 +709,22 @@ function BespokeCareStories() {
                 '0 0 0 1px hsl(36 30% 60% / 0.1)',
               ].join(', '),
             }}>
-              <img
-                loading="lazy"
-                decoding="async"
-                src="/brand_assets/Website_examples.png"
-                alt="CareWell — bespoke website designed for a care support brand"
-                style={{
-                  display: 'block',
-                  width: '100%',
-                  height: 'auto',
-                  maxHeight: 'clamp(300px, 38vw, 480px)',
-                  objectFit: 'cover',
-                  objectPosition: 'top center',
-                }}
-              />
+              <video
+  src="https://pub-731d5e7deddb4fce94cef7393920d429.r2.dev/hero_section_chatbot.mp4"
+  autoPlay
+  muted
+  loop
+  playsInline
+  aria-hidden="true"
+  style={{
+    display: 'block',
+    width: '100%',
+    height: 'auto',
+    maxHeight: 'clamp(300px, 38vw, 480px)',
+    objectFit: 'cover',
+    objectPosition: 'top center',
+  }}
+/>
               {/* Thin bottom vignette */}
               <div aria-hidden="true" style={{
                 position: 'absolute', bottom: 0, left: 0, right: 0, height: '28%',
@@ -10256,12 +10258,14 @@ export default function Services() {
                   ].join(', ')
                 }}
               >
-                <img
-                  loading="lazy"
-                  decoding="async"
-                  src="/brand_assets/site-design.png"
-                  alt="Bespoke website design showcase"
-                  style={{ display: 'block', width: '100%', height: 'auto' }}
+                <video
+                  src="https://pub-731d5e7deddb4fce94cef7393920d429.r2.dev/hero_section_chatbot.mp4"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  aria-hidden="true"
+                  style={{ display: 'block', width: '100%', height: 'auto', objectFit: 'cover' }}
                 />
                 {/* Bottom vignette */}
                 <div aria-hidden="true" style={{
