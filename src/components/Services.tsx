@@ -10259,9 +10259,9 @@ export default function Services() {
                 <img
                   loading="lazy"
                   decoding="async"
-                  src="/brand_assets/site-design.png"
+                  src="/brand_assets/HIGGSFIELD.png"
                   alt="Bespoke website design showcase"
-                  style={{ display: 'block', width: '100%', height: 'auto' }}
+                  style={{ display: 'block', width: '100%', height: 'auto', objectFit: 'contain' }}
                 />
                 {/* Bottom vignette */}
                 <div aria-hidden="true" style={{
