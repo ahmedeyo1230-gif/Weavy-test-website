@@ -9996,20 +9996,23 @@ export default function Services() {
             background: '#010709',
           }}
       >
-        {/* Full-width background image */}
-        <img
-          src="/brand_assets/HIGGSFIELD.png"
-          alt=""
-          aria-hidden="true"
-          style={{
-            position: 'absolute',
-            inset: 0,
-            width: '100%',
-            height: '100%',
-            objectFit: 'contain',
-            objectPosition: 'right center',
-          }}
-        />
+        {/* Full-width background video */}
+<video
+  src="/brand_assets/hero_section_chatbot.mp4"
+  autoPlay
+  muted
+  loop
+  playsInline
+  aria-hidden="true"
+  style={{
+    position: 'absolute',
+    inset: 0,
+    width: '100%',
+    height: '100%',
+    objectFit: 'cover',
+    objectPosition: 'center top',
+  }}
+/>
 
         {/* Dark gradient overlay — fully opaque left-third to mask video behind text */}
         <div aria-hidden="true" style={{
@@ -10256,9 +10259,9 @@ export default function Services() {
                 <img
                   loading="lazy"
                   decoding="async"
-                  src="/brand_assets/site-design.png"
+                  src="/brand_assets/HIGGSFIELD.png"
                   alt="Bespoke website design showcase"
-                  style={{ display: 'block', width: '100%', height: 'auto' }}
+                  style={{ display: 'block', width: '100%', height: 'auto', objectFit: 'contain' }}
                 />
                 {/* Bottom vignette */}
                 <div aria-hidden="true" style={{
