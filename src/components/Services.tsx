@@ -1387,12 +1387,6 @@ function BespokeWebDesignShowcase() {
         background: 'radial-gradient(ellipse 55% 60% at 100% 50%, hsl(199 89% 60% / 0.03) 0%, transparent 70%)',
       }} />
 
-      {/* Top hairline */}
-      <div aria-hidden="true" style={{
-        position: 'absolute', top: 0, left: 0, right: 0, height: '1px',
-        background: 'linear-gradient(to right, transparent, hsl(0 0% 100% / 0.07) 30%, hsl(0 0% 100% / 0.07) 70%, transparent)',
-      }} />
-
       <div className="relative z-10 max-w-[76rem] mx-auto px-6 sm:px-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20 items-center">
 
