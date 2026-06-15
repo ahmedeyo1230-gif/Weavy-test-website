@@ -372,6 +372,154 @@ function ContactFooter({ email }: { email: string }) {
   )
 }
 
+// ── Network Visual ────────────────────────────────────────────────────────────
+
+function NetworkVisual() {
+  const reduceMotion =
+    typeof window !== 'undefined'
+      ? window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      : false
+
+  return (
+    <div
+      aria-hidden="true"
+      className="pointer-events-none select-none w-full rounded-2xl border border-white/[0.06] bg-white/[0.015] overflow-hidden flex items-center justify-center"
+      style={{ minHeight: "260px" }}
+    >
+      <svg
+        viewBox="0 0 300 280"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        style={{ width: "90%", maxWidth: "280px" }}
+      >
+        <defs>
+          <filter id="nv-hub-glow" x="-80%" y="-80%" width="260%" height="260%">
+            <feGaussianBlur stdDeviation="7" result="blur" />
+            <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+          </filter>
+          <filter id="nv-node-glow" x="-100%" y="-100%" width="300%" height="300%">
+            <feGaussianBlur stdDeviation="4" result="blur" />
+            <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+          </filter>
+          <filter id="nv-dot-glow" x="-150%" y="-150%" width="400%" height="400%">
+            <feGaussianBlur stdDeviation="2.5" result="blur" />
+            <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+          </filter>
+
+          <path id="nvp1" d="M150,140 L105,85" />
+          <path id="nvp2" d="M150,140 L200,90" />
+          <path id="nvp3" d="M150,140 L215,195" />
+          <path id="nvp4" d="M105,85 L60,38" />
+          <path id="nvp5" d="M200,90 L235,45" />
+
+          <style>{`
+            @keyframes nv-breathe{0%,100%{opacity:.65}50%{opacity:1}}
+            @keyframes nv-breathe2{0%,100%{opacity:.4}50%{opacity:.82}}
+            @keyframes nv-halo{0%,100%{opacity:.07}50%{opacity:.18}}
+            @keyframes nv-hub-halo{0%,100%{opacity:.08}50%{opacity:.22}}
+            @keyframes nv-la{0%,100%{opacity:.12}50%{opacity:.42}}
+            @keyframes nv-lb{0%,100%{opacity:.08}50%{opacity:.34}}
+            @keyframes nv-lc{0%,100%{opacity:.14}50%{opacity:.38}}
+            @keyframes nv-ld{0%,100%{opacity:.06}50%{opacity:.26}}
+            .nv-hub{animation:nv-breathe 4s ease-in-out infinite}
+            .nv-hub-h{animation:nv-hub-halo 4s ease-in-out infinite}
+            .nv-na{animation:nv-breathe2 3.5s ease-in-out infinite}
+            .nv-nb{animation:nv-breathe2 4.5s ease-in-out infinite .8s}
+            .nv-nc{animation:nv-breathe2 3.8s ease-in-out infinite 1.4s}
+            .nv-nd{animation:nv-breathe2 5s ease-in-out infinite .3s}
+            .nv-ha{animation:nv-halo 3.5s ease-in-out infinite .4s}
+            .nv-hb{animation:nv-halo 4.5s ease-in-out infinite}
+            .nv-hc{animation:nv-halo 3.8s ease-in-out infinite 1.2s}
+            .nv-hd{animation:nv-halo 5s ease-in-out infinite .6s}
+            .l-a{animation:nv-la 6s ease-in-out infinite}
+            .l-b{animation:nv-lb 8s ease-in-out infinite 1s}
+            .l-c{animation:nv-lc 7s ease-in-out infinite 2s}
+            .l-d{animation:nv-ld 9s ease-in-out infinite .5s}
+            .l-e{animation:nv-la 5.5s ease-in-out infinite 3s}
+            .l-f{animation:nv-lb 7.5s ease-in-out infinite 1.5s}
+            .l-g{animation:nv-lc 8.5s ease-in-out infinite .8s}
+            .l-h{animation:nv-ld 6.5s ease-in-out infinite 2.5s}
+            .l-i{animation:nv-la 10s ease-in-out infinite 1.2s}
+            .l-j{animation:nv-lb 9.5s ease-in-out infinite 3.5s}
+            .l-k{animation:nv-lc 11s ease-in-out infinite .3s}
+            @media(prefers-reduced-motion:reduce){
+              .nv-hub,.nv-hub-h,.nv-na,.nv-nb,.nv-nc,.nv-nd,
+              .nv-ha,.nv-hb,.nv-hc,.nv-hd,
+              .l-a,.l-b,.l-c,.l-d,.l-e,.l-f,.l-g,.l-h,.l-i,.l-j,.l-k{animation:none}
+            }
+          `}</style>
+        </defs>
+
+        {/* Lines */}
+        <g strokeLinecap="round">
+          <line x1="150" y1="140" x2="105" y2="85"  stroke="#38BDF8" strokeWidth="0.5" className="l-a" />
+          <line x1="150" y1="140" x2="200" y2="90"  stroke="#38BDF8" strokeWidth="0.5" className="l-b" />
+          <line x1="150" y1="140" x2="215" y2="195" stroke="#22D3EE" strokeWidth="0.5" className="l-c" />
+          <line x1="150" y1="140" x2="80"  y2="200" stroke="#22D3EE" strokeWidth="0.5" className="l-d" />
+          <line x1="105" y1="85"  x2="200" y2="90"  stroke="#38BDF8" strokeWidth="0.4" className="l-e" />
+          <line x1="200" y1="90"  x2="215" y2="195" stroke="#0EA5E9" strokeWidth="0.4" className="l-f" />
+          <line x1="215" y1="195" x2="80"  y2="200" stroke="#22D3EE" strokeWidth="0.4" className="l-g" />
+          <line x1="80"  y1="200" x2="105" y2="85"  stroke="#0EA5E9" strokeWidth="0.4" className="l-h" />
+          <line x1="105" y1="85"  x2="60"  y2="38"  stroke="#38BDF8" strokeWidth="0.35" className="l-a" />
+          <line x1="200" y1="90"  x2="235" y2="45"  stroke="#38BDF8" strokeWidth="0.35" className="l-b" />
+          <line x1="215" y1="195" x2="265" y2="165" stroke="#0EA5E9" strokeWidth="0.35" className="l-c" />
+          <line x1="215" y1="195" x2="242" y2="258" stroke="#22D3EE" strokeWidth="0.35" className="l-i" />
+          <line x1="80"  y1="200" x2="110" y2="260" stroke="#22D3EE" strokeWidth="0.35" className="l-j" />
+          <line x1="80"  y1="200" x2="28"  y2="228" stroke="#0EA5E9" strokeWidth="0.35" className="l-k" />
+          <line x1="105" y1="85"  x2="35"  y2="115" stroke="#38BDF8" strokeWidth="0.35" className="l-d" />
+        </g>
+
+        {/* Traveling particles */}
+        {!reduceMotion && (
+          <g>
+            <circle r="1.5" fill="#38BDF8" filter="url(#nv-dot-glow)" opacity="0.9">
+              <animateMotion dur="5s" repeatCount="indefinite" begin="0s"><mpath href="#nvp1" /></animateMotion>
+            </circle>
+            <circle r="1.5" fill="#22D3EE" filter="url(#nv-dot-glow)" opacity="0.85">
+              <animateMotion dur="7s" repeatCount="indefinite" begin="1.5s"><mpath href="#nvp2" /></animateMotion>
+            </circle>
+            <circle r="1.2" fill="#38BDF8" filter="url(#nv-dot-glow)" opacity="0.75">
+              <animateMotion dur="6s" repeatCount="indefinite" begin="3s"><mpath href="#nvp3" /></animateMotion>
+            </circle>
+            <circle r="1.2" fill="#0EA5E9" filter="url(#nv-dot-glow)" opacity="0.7">
+              <animateMotion dur="8s" repeatCount="indefinite" begin="0.8s"><mpath href="#nvp4" /></animateMotion>
+            </circle>
+            <circle r="1.2" fill="#22D3EE" filter="url(#nv-dot-glow)" opacity="0.7">
+              <animateMotion dur="6.5s" repeatCount="indefinite" begin="2.2s"><mpath href="#nvp5" /></animateMotion>
+            </circle>
+          </g>
+        )}
+
+        {/* Node halos */}
+        <circle cx="105" cy="85"  r="12" fill="#38BDF8" filter="url(#nv-node-glow)" className="nv-ha" />
+        <circle cx="200" cy="90"  r="12" fill="#38BDF8" filter="url(#nv-node-glow)" className="nv-hb" />
+        <circle cx="215" cy="195" r="12" fill="#22D3EE" filter="url(#nv-node-glow)" className="nv-hc" />
+        <circle cx="80"  cy="200" r="12" fill="#22D3EE" filter="url(#nv-node-glow)" className="nv-hd" />
+        <circle cx="150" cy="140" r="20" fill="#38BDF8" filter="url(#nv-hub-glow)"  className="nv-hub-h" />
+
+        {/* Outer nodes */}
+        <circle cx="60"  cy="38"  r="1.8" fill="#38BDF8" className="nv-na" />
+        <circle cx="235" cy="45"  r="1.5" fill="#38BDF8" className="nv-nb" />
+        <circle cx="265" cy="165" r="1.5" fill="#0EA5E9" className="nv-nc" />
+        <circle cx="242" cy="258" r="1.8" fill="#22D3EE" className="nv-na" />
+        <circle cx="110" cy="260" r="1.5" fill="#0EA5E9" className="nv-nd" />
+        <circle cx="28"  cy="228" r="1.5" fill="#38BDF8" className="nv-nb" />
+        <circle cx="35"  cy="115" r="1.5" fill="#22D3EE" className="nv-nc" />
+
+        {/* Inner nodes */}
+        <circle cx="105" cy="85"  r="3" fill="#38BDF8" className="nv-na" />
+        <circle cx="200" cy="90"  r="3" fill="#38BDF8" className="nv-nb" />
+        <circle cx="215" cy="195" r="3" fill="#22D3EE" className="nv-nc" />
+        <circle cx="80"  cy="200" r="3" fill="#22D3EE" className="nv-nd" />
+
+        {/* Hub */}
+        <circle cx="150" cy="140" r="5.5" fill="#38BDF8" className="nv-hub" />
+        <circle cx="150" cy="140" r="2.5" fill="#E0F7FF" opacity="0.95" className="nv-hub" />
+      </svg>
+    </div>
+  )
+}
+
 // ── Main export ───────────────────────────────────────────────────────────────
 
 export const Contact2 = ({
@@ -495,6 +643,8 @@ export const Contact2 = ({
                   Available for new projects
                 </p>
               </div>
+
+              <NetworkVisual />
             </motion.div>
 
             {/* ── Right: form ── */}
