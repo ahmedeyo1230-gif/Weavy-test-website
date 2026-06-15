@@ -10253,12 +10253,14 @@ export default function Services() {
                   ].join(', ')
                 }}
               >
-                <img
-                  loading="lazy"
-                  decoding="async"
-                  src="/brand_assets/site-design.png"
-                  alt="Bespoke website design showcase"
-                  style={{ display: 'block', width: '100%', height: 'auto' }}
+                <video
+                  src="/brand_assets/chatbott_web.mp4"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  aria-label="Bespoke website design showcase"
+                  style={{ display: 'block', width: '100%', height: 'auto', objectFit: 'cover' }}
                 />
                 {/* Bottom vignette */}
                 <div aria-hidden="true" style={{
