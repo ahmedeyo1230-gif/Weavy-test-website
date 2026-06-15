@@ -676,7 +676,6 @@ function BespokeCareStories() {
       style={{
         background: '#010709',
         padding: 'clamp(5rem, 9vw, 8rem) 0',
-        borderTop: '1px solid hsl(0 0% 100% / 0.05)',
       }}
     >
       {/* Subtle warm ambient glow */}
@@ -1540,7 +1539,6 @@ function BespokeRealUsers() {
       style={{
         background: '#010709',
         padding: 'clamp(5rem, 10vw, 8rem) 0',
-        borderTop: '1px solid hsl(0 0% 100% / 0.05)',
       }}
     >
       {/* Subtle ambient glow */}
