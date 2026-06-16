@@ -5508,7 +5508,7 @@ function GraphicDesignHero() {
   // but allow expanding to a large (but not extreme) size for review.
   const [expanded, setExpanded] = useState(false)
 
-  const desktopCollapsed = '95vh'
+  const desktopCollapsed = 'clamp(440px, 62vh, 820px)'
   const desktopExpanded = 'min(400vh, 3200px)'
   const desktopHeight = expanded ? desktopExpanded : desktopCollapsed
 
