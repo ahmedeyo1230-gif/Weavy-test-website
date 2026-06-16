@@ -361,6 +361,10 @@ function BespokeFollowUp() {
         background: 'radial-gradient(ellipse 100% 90% at 50% 50%, transparent 44%, hsl(0 0% 0% / 0.3) 100%)',
       }}/>
 
+      {/* Section boundary fades — mask vignette/grain cutoff at overflow:hidden edges */}
+      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '120px', background: 'linear-gradient(to bottom, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
+      <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '150px', background: 'linear-gradient(to top, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
+
       {/* ════════════════════════════════════════════════════════
           UPPER — Full-width editorial header
       ════════════════════════════════════════════════════════ */}
@@ -683,6 +687,10 @@ function BespokeCareStories() {
         position: 'absolute', inset: 0, pointerEvents: 'none',
         background: 'radial-gradient(ellipse 60% 50% at 20% 55%, hsl(36 50% 55% / 0.04) 0%, transparent 65%)',
       }}/>
+
+      {/* Section boundary fades */}
+      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to bottom, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
+      <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to top, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
 
       <div className="relative z-10 max-w-[80rem] mx-auto px-6 sm:px-10">
         <div className="grid grid-cols-1 lg:grid-cols-[1.15fr_1fr] gap-12 lg:gap-16 items-center">
@@ -1159,6 +1167,10 @@ function BespokeProcessTimeline() {
         }}
       />
 
+      {/* Section boundary fades */}
+      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to bottom, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
+      <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to top, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
+
       <div className="relative z-10 max-w-[72rem] mx-auto px-6 sm:px-10">
 
         {/* Heading + para — centered */}
@@ -1386,6 +1398,10 @@ function BespokeWebDesignShowcase() {
         background: 'radial-gradient(ellipse 55% 60% at 100% 50%, hsl(199 89% 60% / 0.03) 0%, transparent 70%)',
       }} />
 
+      {/* Section boundary fades */}
+      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to bottom, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
+      <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to top, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
+
       <div className="relative z-10 max-w-[76rem] mx-auto px-6 sm:px-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20 items-center">
 
@@ -1550,6 +1566,10 @@ function BespokeRealUsers() {
         gridColor="hsl(0 0% 100% / 0.025)"
         gridSize="80px 56px"
       />
+
+      {/* Section boundary fades — mask grid pattern abrupt start/end */}
+      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '160px', background: 'linear-gradient(to bottom, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
+      <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to top, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
 
       <div className="relative z-10 max-w-[82rem] mx-auto px-6 sm:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.12fr] gap-14 lg:gap-20 items-start">
@@ -10105,6 +10125,9 @@ export default function Services() {
             ].join(', '),
           }}
         />
+
+        {/* Section boundary fades */}
+        <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to top, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
 
         <div className="relative z-10 max-w-[88rem] mx-auto px-6 sm:px-10">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.3fr] gap-16 lg:gap-14 items-center">

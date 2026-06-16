@@ -77,6 +77,10 @@ export function TestimonialsSection({
         }}
       />
 
+      {/* Section boundary fades — mask glow and dot grid at overflow:hidden edges */}
+      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to bottom, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
+      <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to top, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
+
       <div className="relative z-10 max-w-[72rem] mx-auto px-6 sm:px-10">
 
         {/* Header */}
