@@ -1434,6 +1434,7 @@ export default function ImageShowcase() {
           loop
           playsInline
           preload="metadata"
+          className="object-left lg:object-center"
           style={{
             position: 'absolute',
             inset: 0,
