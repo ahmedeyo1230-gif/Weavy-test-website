@@ -421,6 +421,37 @@ body::after {
   50%       { opacity: 1; }
 }
 
+/* ── Chatbot mockup animations ───────────────────────────────────────────── */
+@keyframes chatbot-float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-8px); }
+}
+
+@keyframes typing-dot {
+  0%, 60%, 100% { transform: translateY(0px); opacity: 0.35; }
+  30%            { transform: translateY(-4px); opacity: 1; }
+}
+
+@keyframes cursor-blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+@keyframes chatbot-status-pulse {
+  0%, 100% { opacity: 1;    box-shadow: 0 0 6px hsl(150 65% 52%); }
+  50%       { opacity: 0.55; box-shadow: 0 0 12px hsl(150 65% 52% / 0.85); }
+}
+
+@keyframes chatbot-card-glow-green {
+  0%, 75%, 100% { box-shadow: 0 8px 24px hsl(0 0% 0% / 0.45); }
+  88%            { box-shadow: 0 8px 24px hsl(0 0% 0% / 0.45), 0 0 24px hsl(150 60% 50% / 0.38); }
+}
+
+@keyframes chatbot-card-glow-blue {
+  0%, 75%, 100% { box-shadow: 0 8px 24px hsl(0 0% 0% / 0.45); }
+  88%            { box-shadow: 0 8px 24px hsl(0 0% 0% / 0.45), 0 0 24px hsl(205 85% 62% / 0.38); }
+}
+
 /* ── Respect prefers-reduced-motion ─────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   *,

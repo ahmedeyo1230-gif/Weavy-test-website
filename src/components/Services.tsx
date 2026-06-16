@@ -5219,6 +5219,38 @@ const CHATBOT_FEATURES = [
 ]
 
 function ChatbotMockup() {
+  const [showUser,   setShowUser]   = useState(false)
+  const [showTyping, setShowTyping] = useState(false)
+  const [showReply,  setShowReply]  = useState(false)
+
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setShowUser(true); setShowTyping(true); setShowReply(true)
+      return
+    }
+
+    const timers: ReturnType<typeof setTimeout>[] = []
+
+    const cycle = () => {
+      setShowUser(false); setShowTyping(false); setShowReply(false)
+      timers.push(setTimeout(() => setShowUser(true),   1200))
+      timers.push(setTimeout(() => setShowTyping(true), 2500))
+      timers.push(setTimeout(() => setShowReply(true),  4100))
+      timers.push(setTimeout(cycle, 8800))
+    }
+
+    const init = setTimeout(cycle, 400)
+    timers.push(init)
+    return () => timers.forEach(clearTimeout)
+  }, [])
+
+  const msgAnim = (show: boolean): React.CSSProperties => ({
+    opacity: show ? 1 : 0,
+    transform: show ? 'translateY(0)' : 'translateY(7px)',
+    transition: 'opacity 0.48s cubic-bezier(0.25, 1, 0.5, 1), transform 0.48s cubic-bezier(0.25, 1, 0.5, 1)',
+    pointerEvents: 'none',
+  })
+
   return (
     <div className="relative select-none" style={{ minHeight: '580px' }}>
 
@@ -5229,130 +5261,149 @@ function ChatbotMockup() {
         filter: 'blur(28px)',
       }}/>
 
-      {/* ── Main chat card ── */}
+      {/* ── Main chat card — centering wrapper (no animation here to avoid transform conflict) ── */}
       <div style={{
         position: 'absolute', left: '50%', top: '16px',
         transform: 'translateX(-50%)',
         width: '100%', maxWidth: '348px',
-        animation: 'chatbot-float 4.5s ease-in-out infinite',
         filter: 'drop-shadow(0 30px 50px hsl(195 90% 50% / 0.18))',
       }}>
-        {/* Gradient border shell */}
-        <div style={{
-          borderRadius: '20px', padding: '1px',
-          background: 'linear-gradient(148deg, hsl(195 85% 55% / 0.65), hsl(215 75% 52% / 0.18) 48%, hsl(195 85% 55% / 0.52))',
-          boxShadow: '0 0 40px -10px hsl(195 90% 55% / 0.26), 0 28px 56px -18px hsl(0 0% 0% / 0.65)',
-        }}>
+        {/* Float wrapper — owns the chatbot-float animation */}
+        <div style={{ animation: 'chatbot-float 4.5s ease-in-out infinite' }}>
+          {/* Gradient border shell */}
           <div style={{
-            borderRadius: '19px', overflow: 'hidden',
-            background: 'linear-gradient(155deg, hsl(215 30% 9%) 0%, hsl(215 20% 6%) 100%)',
+            borderRadius: '20px', padding: '1px',
+            background: 'linear-gradient(148deg, hsl(195 85% 55% / 0.65), hsl(215 75% 52% / 0.18) 48%, hsl(195 85% 55% / 0.52))',
+            boxShadow: '0 0 40px -10px hsl(195 90% 55% / 0.26), 0 28px 56px -18px hsl(0 0% 0% / 0.65)',
           }}>
-
-            {/* Header */}
             <div style={{
-              padding: '13px 17px', background: 'hsl(215 28% 8%)',
-              borderBottom: '1px solid hsl(0 0% 100% / 0.05)',
-              display: 'flex', alignItems: 'center', gap: '11px',
+              borderRadius: '19px', overflow: 'hidden',
+              background: 'linear-gradient(155deg, hsl(215 30% 9%) 0%, hsl(215 20% 6%) 100%)',
             }}>
+
+              {/* Header */}
               <div style={{
-                width: '33px', height: '33px', borderRadius: '50%', flexShrink: 0,
-                background: 'linear-gradient(135deg, hsl(195 90% 55%), hsl(215 80% 46%))',
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                boxShadow: '0 0 14px hsl(195 90% 55% / 0.55)',
+                padding: '13px 17px', background: 'hsl(215 28% 8%)',
+                borderBottom: '1px solid hsl(0 0% 100% / 0.05)',
+                display: 'flex', alignItems: 'center', gap: '11px',
               }}>
-                <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                  <rect x="3" y="5" width="14" height="11" rx="3.5" stroke="white" strokeWidth="1.4"/>
-                  <circle cx="7.5" cy="10.5" r="1.3" fill="white"/>
-                  <circle cx="12.5" cy="10.5" r="1.3" fill="white"/>
-                  <line x1="10" y1="5" x2="10" y2="2.5" stroke="white" strokeWidth="1.4" strokeLinecap="round"/>
-                  <circle cx="10" cy="2" r="1" fill="white"/>
-                </svg>
-              </div>
-              <div style={{ flex: 1 }}>
-                <div style={{ fontSize: '0.84rem', color: 'hsl(0 0% 92%)', fontFamily: 'Inter,sans-serif', fontWeight: 300, letterSpacing: '-0.01em' }}>AI Assistant</div>
-                <div style={{ fontSize: '0.67rem', fontFamily: 'Inter,sans-serif', display: 'flex', alignItems: 'center', gap: '5px', color: 'hsl(150 65% 52%)' }}>
-                  <span aria-hidden="true" style={{ width: '5px', height: '5px', borderRadius: '50%', background: 'hsl(150 65% 52%)', display: 'inline-block', boxShadow: '0 0 6px hsl(150 65% 52%)' }}/>
-                  Online · Trained on your data
+                <div style={{
+                  width: '33px', height: '33px', borderRadius: '50%', flexShrink: 0,
+                  background: 'linear-gradient(135deg, hsl(195 90% 55%), hsl(215 80% 46%))',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  boxShadow: '0 0 14px hsl(195 90% 55% / 0.55)',
+                }}>
+                  <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                    <rect x="3" y="5" width="14" height="11" rx="3.5" stroke="white" strokeWidth="1.4"/>
+                    <circle cx="7.5" cy="10.5" r="1.3" fill="white"/>
+                    <circle cx="12.5" cy="10.5" r="1.3" fill="white"/>
+                    <line x1="10" y1="5" x2="10" y2="2.5" stroke="white" strokeWidth="1.4" strokeLinecap="round"/>
+                    <circle cx="10" cy="2" r="1" fill="white"/>
+                  </svg>
                 </div>
-              </div>
-              <div aria-hidden="true" style={{ display: 'flex', gap: '4px' }}>
-                {[0,1,2].map(j => <span key={j} style={{ width: '3px', height: '3px', borderRadius: '50%', background: 'hsl(0 0% 28%)', display: 'block' }}/>)}
-              </div>
-            </div>
-
-            {/* Messages */}
-            <div style={{ padding: '18px 14px', display: 'flex', flexDirection: 'column', gap: '13px' }}>
-              {/* Bot */}
-              <div style={{ display: 'flex', gap: '9px', alignItems: 'flex-end' }}>
-                <div aria-hidden="true" style={{ width: '25px', height: '25px', borderRadius: '50%', background: 'linear-gradient(135deg, hsl(195 90% 55%), hsl(215 80% 46%))', flexShrink: 0 }}/>
-                <div style={{ background: 'hsl(215 22% 13%)', border: '1px solid hsl(0 0% 100% / 0.06)', borderRadius: '5px 14px 14px 14px', padding: '9px 13px', maxWidth: '80%' }}>
-                  <p style={{ fontSize: '0.77rem', color: 'hsl(0 0% 80%)', fontFamily: 'Inter,sans-serif', lineHeight: 1.65, margin: 0 }}>
-                    Hi! I'm your AI assistant, trained specifically for your business. How can I help?
-                  </p>
-                </div>
-              </div>
-
-              {/* User */}
-              <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                <div style={{ background: 'linear-gradient(135deg, hsl(205 78% 40%), hsl(215 72% 33%))', borderRadius: '14px 5px 14px 14px', padding: '9px 13px', maxWidth: '80%' }}>
-                  <p style={{ fontSize: '0.77rem', color: 'hsl(0 0% 94%)', fontFamily: 'Inter,sans-serif', lineHeight: 1.65, margin: 0 }}>
-                    Can I book a consultation for Thursday?
-                  </p>
-                </div>
-              </div>
-
-              {/* Bot reply */}
-              <div style={{ display: 'flex', gap: '9px', alignItems: 'flex-end' }}>
-                <div aria-hidden="true" style={{ width: '25px', height: '25px', borderRadius: '50%', background: 'linear-gradient(135deg, hsl(195 90% 55%), hsl(215 80% 46%))', flexShrink: 0 }}/>
-                <div style={{ background: 'hsl(215 22% 13%)', border: '1px solid hsl(0 0% 100% / 0.06)', borderRadius: '5px 14px 14px 14px', padding: '9px 13px', maxWidth: '80%' }}>
-                  <p style={{ fontSize: '0.77rem', color: 'hsl(0 0% 80%)', fontFamily: 'Inter,sans-serif', lineHeight: 1.65, margin: 0 }}>
-                    Thursday works! I have 2 pm and 4 pm available — which suits you?
-                  </p>
-                </div>
-              </div>
-
-              {/* Typing indicator */}
-              <div style={{ display: 'flex', gap: '9px', alignItems: 'flex-end' }}>
-                <div aria-hidden="true" style={{ width: '25px', height: '25px', borderRadius: '50%', background: 'linear-gradient(135deg, hsl(195 90% 55%), hsl(215 80% 46%))', flexShrink: 0 }}/>
-                <div style={{ background: 'hsl(215 22% 13%)', border: '1px solid hsl(0 0% 100% / 0.06)', borderRadius: '5px 14px 14px 14px', padding: '11px 15px', display: 'flex', gap: '5px', alignItems: 'center' }}>
-                  {[0,1,2].map(j => (
-                    <span key={j} aria-hidden="true" style={{
-                      width: '5px', height: '5px', borderRadius: '50%', display: 'block',
-                      background: 'hsl(195 85% 60%)',
-                      animation: `typing-dot 1.4s ease-in-out ${j * 0.18}s infinite`,
+                <div style={{ flex: 1 }}>
+                  <div style={{ fontSize: '0.84rem', color: 'hsl(0 0% 92%)', fontFamily: 'Inter,sans-serif', fontWeight: 300, letterSpacing: '-0.01em' }}>AI Assistant</div>
+                  <div style={{ fontSize: '0.67rem', fontFamily: 'Inter,sans-serif', display: 'flex', alignItems: 'center', gap: '5px', color: 'hsl(150 65% 52%)' }}>
+                    {/* Online dot — subtle pulse to simulate live connection */}
+                    <span aria-hidden="true" style={{
+                      width: '5px', height: '5px', borderRadius: '50%',
+                      background: 'hsl(150 65% 52%)', display: 'inline-block',
+                      boxShadow: '0 0 6px hsl(150 65% 52%)',
+                      animation: 'chatbot-status-pulse 2.6s ease-in-out infinite',
                     }}/>
-                  ))}
+                    Online · Trained on your data
+                  </div>
+                </div>
+                <div aria-hidden="true" style={{ display: 'flex', gap: '4px' }}>
+                  {[0,1,2].map(j => <span key={j} style={{ width: '3px', height: '3px', borderRadius: '50%', background: 'hsl(0 0% 28%)', display: 'block' }}/>)}
                 </div>
               </div>
-            </div>
 
-            {/* Input bar */}
-            <div style={{
-              padding: '10px 14px 13px', background: 'hsl(215 25% 7%)',
-              borderTop: '1px solid hsl(0 0% 100% / 0.04)',
-              display: 'flex', gap: '9px', alignItems: 'center',
-            }}>
-              <div style={{ flex: 1, padding: '8px 13px', borderRadius: '18px', background: 'hsl(215 18% 12%)', border: '1px solid hsl(0 0% 100% / 0.07)', fontSize: '0.75rem', color: 'hsl(0 0% 30%)', fontFamily: 'Inter,sans-serif' }}>
-                Ask me anything…
-              </div>
-              <div aria-hidden="true" style={{ width: '32px', height: '32px', borderRadius: '50%', flexShrink: 0, background: 'linear-gradient(135deg, hsl(195 90% 55%), hsl(215 80% 46%))', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 0 10px hsl(195 90% 55% / 0.4)' }}>
-                <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true">
-                  <path d="M2 6.5h9M7.5 3l3.5 3.5L7.5 10" stroke="white" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </div>
-            </div>
+              {/* Messages — space is always reserved; opacity drives visibility */}
+              <div style={{ padding: '18px 14px', display: 'flex', flexDirection: 'column', gap: '13px' }}>
 
+                {/* Bot greeting — always visible */}
+                <div style={{ display: 'flex', gap: '9px', alignItems: 'flex-end' }}>
+                  <div aria-hidden="true" style={{ width: '25px', height: '25px', borderRadius: '50%', background: 'linear-gradient(135deg, hsl(195 90% 55%), hsl(215 80% 46%))', flexShrink: 0 }}/>
+                  <div style={{ background: 'hsl(215 22% 13%)', border: '1px solid hsl(0 0% 100% / 0.06)', borderRadius: '5px 14px 14px 14px', padding: '9px 13px', maxWidth: '80%' }}>
+                    <p style={{ fontSize: '0.77rem', color: 'hsl(0 0% 80%)', fontFamily: 'Inter,sans-serif', lineHeight: 1.65, margin: 0 }}>
+                      Hi! I'm your AI assistant, trained specifically for your business. How can I help?
+                    </p>
+                  </div>
+                </div>
+
+                {/* User message — fades in at phase 1 */}
+                <div style={{ display: 'flex', justifyContent: 'flex-end', ...msgAnim(showUser) }}>
+                  <div style={{ background: 'linear-gradient(135deg, hsl(205 78% 40%), hsl(215 72% 33%))', borderRadius: '14px 5px 14px 14px', padding: '9px 13px', maxWidth: '80%' }}>
+                    <p style={{ fontSize: '0.77rem', color: 'hsl(0 0% 94%)', fontFamily: 'Inter,sans-serif', lineHeight: 1.65, margin: 0 }}>
+                      Can I book a consultation for Thursday?
+                    </p>
+                  </div>
+                </div>
+
+                {/* Bot reply — fades in at phase 3 (above typing in DOM = below typing in sequence) */}
+                <div style={{ display: 'flex', gap: '9px', alignItems: 'flex-end', ...msgAnim(showReply) }}>
+                  <div aria-hidden="true" style={{ width: '25px', height: '25px', borderRadius: '50%', background: 'linear-gradient(135deg, hsl(195 90% 55%), hsl(215 80% 46%))', flexShrink: 0 }}/>
+                  <div style={{ background: 'hsl(215 22% 13%)', border: '1px solid hsl(0 0% 100% / 0.06)', borderRadius: '5px 14px 14px 14px', padding: '9px 13px', maxWidth: '80%' }}>
+                    <p style={{ fontSize: '0.77rem', color: 'hsl(0 0% 80%)', fontFamily: 'Inter,sans-serif', lineHeight: 1.65, margin: 0 }}>
+                      Thursday works! I have 2 pm and 4 pm available — which suits you?
+                    </p>
+                  </div>
+                </div>
+
+                {/* Typing indicator — appears at phase 2, stays through phase 3+ */}
+                <div style={{ display: 'flex', gap: '9px', alignItems: 'flex-end', ...msgAnim(showTyping) }}>
+                  <div aria-hidden="true" style={{ width: '25px', height: '25px', borderRadius: '50%', background: 'linear-gradient(135deg, hsl(195 90% 55%), hsl(215 80% 46%))', flexShrink: 0 }}/>
+                  <div style={{ background: 'hsl(215 22% 13%)', border: '1px solid hsl(0 0% 100% / 0.06)', borderRadius: '5px 14px 14px 14px', padding: '11px 15px', display: 'flex', gap: '5px', alignItems: 'center' }}>
+                    {[0,1,2].map(j => (
+                      <span key={j} aria-hidden="true" style={{
+                        width: '5px', height: '5px', borderRadius: '50%', display: 'block',
+                        background: 'hsl(195 85% 60%)',
+                        animation: `typing-dot 1.4s ease-in-out ${j * 0.18}s infinite`,
+                      }}/>
+                    ))}
+                  </div>
+                </div>
+
+              </div>
+
+              {/* Input bar with blinking cursor */}
+              <div style={{
+                padding: '10px 14px 13px', background: 'hsl(215 25% 7%)',
+                borderTop: '1px solid hsl(0 0% 100% / 0.04)',
+                display: 'flex', gap: '9px', alignItems: 'center',
+              }}>
+                <div style={{
+                  flex: 1, padding: '8px 13px', borderRadius: '18px',
+                  background: 'hsl(215 18% 12%)', border: '1px solid hsl(0 0% 100% / 0.07)',
+                  fontSize: '0.75rem', color: 'hsl(0 0% 30%)', fontFamily: 'Inter,sans-serif',
+                  display: 'flex', alignItems: 'center',
+                }}>
+                  Ask me anything…
+                  <span aria-hidden="true" style={{
+                    color: 'hsl(195 85% 60%)', marginLeft: '1px',
+                    animation: 'cursor-blink 1.1s ease-in-out infinite',
+                    lineHeight: 1, fontSize: '0.78rem',
+                  }}>|</span>
+                </div>
+                <div aria-hidden="true" style={{ width: '32px', height: '32px', borderRadius: '50%', flexShrink: 0, background: 'linear-gradient(135deg, hsl(195 90% 55%), hsl(215 80% 46%))', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 0 10px hsl(195 90% 55% / 0.4)' }}>
+                  <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true">
+                    <path d="M2 6.5h9M7.5 3l3.5 3.5L7.5 10" stroke="white" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+
+            </div>
           </div>
         </div>
       </div>
 
-      {/* ── Floating stat cards ── */}
+      {/* ── Floating stat cards — float + occasional glow pulse ── */}
       <div aria-hidden="true" style={{
         position: 'absolute', top: '32px', right: '0',
         background: 'hsl(215 25% 9% / 0.92)', backdropFilter: 'blur(14px)',
         border: '1px solid hsl(150 60% 50% / 0.28)', borderRadius: '12px', padding: '10px 15px',
-        boxShadow: '0 8px 24px hsl(0 0% 0% / 0.45)',
-        animation: 'chatbot-float 5.5s ease-in-out 0.8s infinite',
+        animation: 'chatbot-float 5.5s ease-in-out 0.8s infinite, chatbot-card-glow-green 7s ease-in-out 1.5s infinite',
       }}>
         <div style={{ fontSize: '0.58rem', color: 'hsl(0 0% 40%)', fontFamily: 'Inter,sans-serif', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '4px' }}>Response</div>
         <div style={{ fontSize: '1.05rem', color: 'hsl(150 68% 54%)', fontFamily: 'Inter,sans-serif', fontWeight: 300, letterSpacing: '-0.02em' }}>{'< 0.8s'}</div>
@@ -5362,13 +5413,11 @@ function ChatbotMockup() {
         position: 'absolute', bottom: '64px', left: '0',
         background: 'hsl(215 25% 9% / 0.92)', backdropFilter: 'blur(14px)',
         border: '1px solid hsl(205 85% 62% / 0.28)', borderRadius: '12px', padding: '10px 15px',
-        boxShadow: '0 8px 24px hsl(0 0% 0% / 0.45)',
-        animation: 'chatbot-float 6s ease-in-out 0.3s infinite',
+        animation: 'chatbot-float 6s ease-in-out 0.3s infinite, chatbot-card-glow-blue 7s ease-in-out 4s infinite',
       }}>
         <div style={{ fontSize: '0.58rem', color: 'hsl(0 0% 40%)', fontFamily: 'Inter,sans-serif', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '4px' }}>Satisfaction</div>
         <div style={{ fontSize: '1.05rem', color: 'hsl(205 85% 62%)', fontFamily: 'Inter,sans-serif', fontWeight: 300, letterSpacing: '-0.02em' }}>97.4%</div>
       </div>
-
 
     </div>
   )
