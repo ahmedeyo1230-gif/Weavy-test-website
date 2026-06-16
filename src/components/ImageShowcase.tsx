@@ -1397,10 +1397,13 @@ export default function ImageShowcase() {
         className="relative w-full overflow-hidden"
         style={{ background: '#040B0E' }}
       >
-        <img
-          src="/brand_assets/portfolio.png"
-          alt="Weavy selected work"
-          decoding="async"
+        <video
+          src="https://pub-731d5e7deddb4fce94cef7393920d429.r2.dev/section-work.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
           style={{
             display: 'block',
             width: '100%',
