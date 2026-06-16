@@ -7852,7 +7852,7 @@ function UGCFindCreators() {
               }}
             >
               We find creators{' '}
-              <em style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400, color: 'hsl(195 80% 72%)' }}>
+              <em style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400 }}>
                 built for your brand.
               </em>
             </h2>
@@ -8164,7 +8164,7 @@ function UGCMonitoringReporting() {
               style={{ color: '#fff', fontSize: 'clamp(2rem, 5vw, 3rem)', lineHeight: 1.05, letterSpacing: '-0.035em', marginBottom: '1.6rem' }}
             >
               Every result,{' '}
-              <em style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400, color: 'hsl(195 80% 72%)' }}>
+              <em style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400 }}>
                 clearly reported.
               </em>
             </h2>
@@ -8387,7 +8387,7 @@ function UGCTrackingUrls() {
               style={{ color: '#fff', fontSize: 'clamp(1.9rem, 3.6vw, 3rem)', lineHeight: 1.08, letterSpacing: '-0.035em', marginBottom: '1.8rem' }}
             >
               Know exactly which creator,{' '}
-              <em style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400, color: 'hsl(195 80% 72%)' }}>
+              <em style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400 }}>
                 platform,
               </em>{' '}
               and placement is driving results.
