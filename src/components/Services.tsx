@@ -2142,7 +2142,6 @@ function ChatbotWhatsAppBusiness() {
       style={{
         background: '#010709',
         padding: 'clamp(5rem, 10vw, 8rem) 0',
-        borderTop: '1px solid hsl(0 0% 100% / 0.05)',
       }}
     >
       {/* Grid + bloom behind the right text column */}
@@ -2153,6 +2152,9 @@ function ChatbotWhatsAppBusiness() {
         gridColor="hsl(0 0% 100% / 0.024)"
         gridSize="80px 56px"
       />
+      {/* Section boundary fades */}
+      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to bottom, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
+      <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to top, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
 
       <div className="relative z-10 max-w-[84rem] mx-auto px-6 sm:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20 items-center">
@@ -2306,8 +2308,8 @@ function ChatbotInstagramDM() {
     <section
       ref={ref}
       id="instagram-chat"
-      className="relative w-full bg-bg overflow-hidden"
-      style={{ padding: 'clamp(5rem, 10vw, 8rem) 0', borderTop: '1px solid hsl(0 0% 10%)' }}
+      className="relative w-full overflow-hidden"
+      style={{ background: '#010709', padding: 'clamp(5rem, 10vw, 8rem) 0' }}
     >
       {/* ── Original Section 3 background effects — preserved exactly ── */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
@@ -2322,6 +2324,9 @@ function ChatbotInstagramDM() {
         backgroundImage: 'radial-gradient(hsl(320 40% 60% / 0.018) 1px, transparent 1px)',
         backgroundSize: '28px 28px',
       }}/>
+      {/* Section boundary fades */}
+      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to bottom, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
+      <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to top, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
 
       <div className="relative z-10 max-w-[84rem] mx-auto px-6 sm:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20 items-center">
@@ -2470,8 +2475,8 @@ function ChatbotFacebookMessenger() {
     <section
       ref={ref}
       id="facebook-messenger"
-      className="relative w-full bg-bg overflow-hidden"
-      style={{ padding: 'clamp(5rem, 10vw, 8rem) 0', borderTop: '1px solid hsl(0 0% 10%)' }}
+      className="relative w-full overflow-hidden"
+      style={{ background: '#010709', padding: 'clamp(5rem, 10vw, 8rem) 0' }}
     >
       {/* ── Original Section 4 backgrounds — preserved ── */}
       <MessengerGlowBackground />
@@ -2486,6 +2491,9 @@ function ChatbotFacebookMessenger() {
         backgroundImage: 'radial-gradient(hsl(215 50% 60% / 0.018) 1px, transparent 1px)',
         backgroundSize: '28px 28px',
       }}/>
+      {/* Section boundary fades */}
+      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to bottom, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
+      <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to top, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
 
       {/* ── Grid + radial bloom anchored to the text (right) column ── */}
       <GradientBlurBg
@@ -2664,7 +2672,7 @@ function ChatbotWorkflowSection() {
     <section
       ref={ref}
       className="relative w-full overflow-hidden"
-      style={{ background: '#010709', padding: 'clamp(5rem, 10vw, 8rem) 0', borderTop: '1px solid hsl(0 0% 8%)' }}
+      style={{ background: '#010709', padding: 'clamp(5rem, 10vw, 8rem) 0' }}
     >
       {/* Ambient glow */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
@@ -2679,6 +2687,9 @@ function ChatbotWorkflowSection() {
         backgroundImage: 'radial-gradient(hsl(199 89% 60% / 0.018) 1px, transparent 1px)',
         backgroundSize: '28px 28px',
       }}/>
+      {/* Section boundary fades */}
+      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to bottom, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
+      <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to top, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
 
       <div className="relative z-10 max-w-[80rem] mx-auto px-6 sm:px-10">
 
@@ -2850,7 +2861,7 @@ function ChatbotIntegrationsSection() {
     <section
       ref={ref}
       className="relative w-full overflow-hidden"
-      style={{ background: '#010709', padding: 'clamp(5rem, 10vw, 8rem) 0', borderTop: '1px solid hsl(0 0% 8%)' }}
+      style={{ background: '#010709', padding: 'clamp(5rem, 10vw, 8rem) 0' }}
     >
       {/* Ambient glow */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
@@ -2865,6 +2876,9 @@ function ChatbotIntegrationsSection() {
         backgroundImage: 'radial-gradient(hsl(199 89% 60% / 0.016) 1px, transparent 1px)',
         backgroundSize: '28px 28px',
       }}/>
+      {/* Section boundary fades */}
+      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to bottom, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
+      <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to top, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
 
       <div className="relative z-10 max-w-[82rem] mx-auto px-6 sm:px-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20 items-start">
@@ -3076,7 +3090,6 @@ function ChatbotTikTokAutomation() {
       style={{
         background: '#010709',
         padding: 'clamp(5rem, 10vw, 8rem) 0',
-        borderTop: '1px solid hsl(0 0% 100% / 0.05)',
       }}
     >
       {/* Grid + radial bloom behind the left text */}
@@ -3087,6 +3100,9 @@ function ChatbotTikTokAutomation() {
         gridColor="hsl(0 0% 100% / 0.025)"
         gridSize="80px 56px"
       />
+      {/* Section boundary fades */}
+      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to bottom, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
+      <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to top, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
 
       <div className="relative z-10 max-w-[84rem] mx-auto px-6 sm:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20 items-center">
@@ -10587,8 +10603,8 @@ export default function Services() {
       <section
         ref={chatbotRef}
         id="custom-chatbots-detail"
-        className="relative w-full bg-bg overflow-hidden"
-        style={{ padding: 'clamp(5rem, 10vw, 8rem) 0', borderTop: '1px solid hsl(0 0% 10%)' }}
+        className="relative w-full overflow-hidden"
+        style={{ background: '#010709', padding: 'clamp(5rem, 10vw, 8rem) 0' }}
       >
         {/* Ambient glows */}
         <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
@@ -10603,6 +10619,9 @@ export default function Services() {
           backgroundImage: 'radial-gradient(hsl(210 40% 60% / 0.018) 1px, transparent 1px)',
           backgroundSize: '28px 28px',
         }} />
+        {/* Section boundary fades */}
+        <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to bottom, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
+        <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to top, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
 
         <div className="relative z-10 max-w-[72rem] mx-auto px-6 sm:px-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-start">
@@ -10779,12 +10798,9 @@ export default function Services() {
           }}
         />
 
-        {/* Top hairline */}
-        <div
-          aria-hidden="true"
-          className="absolute top-0 left-0 right-0"
-          style={{ height: '1px', background: 'linear-gradient(to right, transparent, hsl(199 89% 60% / 0.18), transparent)' }}
-        />
+        {/* Section boundary fades */}
+        <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to bottom, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
+        <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to top, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
 
         <div className="relative z-10 max-w-[54rem] mx-auto px-6 sm:px-10 flex flex-col items-center text-center">
 
@@ -10833,12 +10849,6 @@ export default function Services() {
           />
         </div>
 
-        {/* Bottom hairline */}
-        <div
-          aria-hidden="true"
-          className="absolute bottom-0 left-0 right-0"
-          style={{ height: '1px', background: 'linear-gradient(to right, transparent, hsl(199 89% 60% / 0.18), transparent)' }}
-        />
       </section>
 
       {/* ── Custom Chatbots — Automation Workflow ── */}
