@@ -1394,7 +1394,7 @@ export default function ImageShowcase() {
       {/* ── Hero ── */}
       <section
         id="work"
-        className="relative w-full overflow-hidden h-[50vh] sm:h-[60vh] lg:h-auto"
+        className="relative w-full overflow-hidden h-[38vh] sm:h-[50vh] lg:h-auto"
         style={{ background: '#040B0E' }}
       >
         <video
@@ -1404,7 +1404,7 @@ export default function ImageShowcase() {
           loop
           playsInline
           preload="auto"
-          className="h-full object-cover object-left lg:h-auto lg:object-contain lg:object-center"
+          className="h-full object-contain object-top lg:h-auto lg:object-contain lg:object-center"
           style={{
             display: 'block',
             width: '100%',
