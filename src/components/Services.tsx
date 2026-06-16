@@ -3915,7 +3915,7 @@ function SocialMediaMarketing() {
                   {label}
                 </p>
                 {/* Desc */}
-                <p className="font-sans font-light" style={{ fontSize: '0.84rem', lineHeight: 1.75, color: 'hsl(0 0% 44%)' }}>
+                <p className="font-sans font-light" style={{ fontSize: '0.84rem', lineHeight: 1.75, color: 'hsl(0 0% 46%)' }}>
                   {desc}
                 </p>
               </div>
@@ -4370,14 +4370,14 @@ function SocialMediaMarketing() {
                   style={{
                     opacity: 0, transform: 'translateY(10px)',
                     fontSize: 'clamp(0.84rem, 1.2vw, 0.9rem)',
-                    color: 'hsl(0 0% 52%)',
+                    color: 'hsl(0 0% 58%)',
                     borderBottom: '1px solid hsl(0 0% 100% / 0.07)',
                     padding: '0.82rem 0',
                     cursor: 'default',
                     transition: 'color 0.25s ease',
                   }}
-                  onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = 'hsl(0 0% 86%)' }}
-                  onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = 'hsl(0 0% 52%)' }}
+                  onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = 'hsl(0 0% 88%)' }}
+                  onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = 'hsl(0 0% 58%)' }}
                 >
                   <span style={{ fontSize: '0.42rem', color: 'hsl(199 89% 60%)', flexShrink: 0 }}>◆</span>
                   {item}
