@@ -3266,6 +3266,7 @@ function SocialMediaMarketing() {
   const platRef     = useRef<HTMLElement>(null)
   const stratRef    = useRef<HTMLElement>(null)
   const proofRef    = useRef<HTMLElement>(null)
+  const engageRef   = useRef<HTMLElement>(null)
   const ctaRef      = useRef<HTMLElement>(null)
   const s6Ref       = useRef<HTMLElement>(null)
   const smFeatRef   = useRef<HTMLElement>(null)
@@ -3373,6 +3374,16 @@ function SocialMediaMarketing() {
         gsap.to(b, { y: i % 2 === 0 ? -7 : -9, duration: 3.6 + i * 0.5, ease: 'sine.inOut', yoyo: true, repeat: -1, delay: i * 0.4 })
       })
     }, '-=0.1')
+  }), [])
+
+  // ── Section 4.5: Stay Connected With Your Audience ──
+  useEffect(() => observe(engageRef, el => {
+    const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
+    tl.to(el.querySelectorAll('.smeng-label'),  { opacity: 1, y: 0, duration: 0.6 }, 0)
+    tl.to(el.querySelectorAll('.smeng-hword'),  { opacity: 1, y: 0, duration: 0.72, stagger: 0.09, ease: 'power3.out' }, 0.1)
+    tl.to(el.querySelectorAll('.smeng-body'),   { opacity: 1, y: 0, duration: 0.75 }, 0.22)
+    tl.to(el.querySelectorAll('.smeng-item'),   { opacity: 1, y: 0, duration: 0.5, stagger: 0.09 }, 0.3)
+    tl.to(el.querySelectorAll('.smeng-img'),    { opacity: 1, y: 0, duration: 1.2, ease: 'power2.out' }, 0.15)
   }), [])
 
   // ── Section 5: Platform-Ready Campaign Visuals ──
@@ -4237,6 +4248,182 @@ function SocialMediaMarketing() {
       </div>
 
       {/* Bottom fade — blends grain/dot textures into Section 5 */}
+      <div aria-hidden="true" className="pointer-events-none absolute left-0 right-0 bottom-0" style={{
+        height: '120px',
+        background: 'linear-gradient(to top, #010709 0%, transparent 100%)',
+        zIndex: 3,
+      }}/>
+    </section>
+
+    {/* ══ SECTION 4.5 — Stay Connected With Your Audience ═════════════════════ */}
+    <section
+      ref={engageRef}
+      className="relative w-full overflow-hidden"
+      style={{ background: '#010709', padding: 'clamp(6rem, 12vw, 10rem) 0' }}
+    >
+      {/* Top fade */}
+      <div aria-hidden="true" className="pointer-events-none absolute left-0 right-0 top-0" style={{
+        height: '120px',
+        background: 'linear-gradient(to bottom, #010709 0%, transparent 100%)',
+        zIndex: 3,
+      }}/>
+
+      {/* SVG grain texture */}
+      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+        style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', opacity: 0.04, pointerEvents: 'none', zIndex: 1 }}>
+        <filter id="smeng-noise">
+          <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" result="noise"/>
+          <feColorMatrix type="saturate" values="0" in="noise"/>
+        </filter>
+        <rect width="100%" height="100%" filter="url(#smeng-noise)" style={{ fill: 'white' }}/>
+      </svg>
+
+      {/* Dot grid */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
+        zIndex: 0,
+        backgroundImage: 'radial-gradient(hsl(210 40% 60% / 0.025) 1px, transparent 1px)',
+        backgroundSize: '32px 32px',
+      }}/>
+
+      {/* Ambient glow — left-biased (text side) */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
+        zIndex: 0,
+        background: [
+          'radial-gradient(ellipse 65% 55% at 22% 50%, hsl(199 89% 60% / 0.06) 0%, transparent 70%)',
+          'radial-gradient(ellipse 45% 40% at 78% 55%, hsl(240 60% 65% / 0.04) 0%, transparent 65%)',
+        ].join(', '),
+      }}/>
+
+      <div className="relative z-10 max-w-[82rem] mx-auto px-6 sm:px-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-12 xl:gap-20 items-center">
+
+          {/* ── LEFT: Text ── */}
+          <div className="flex flex-col justify-center">
+
+            {/* Eyebrow label */}
+            <span
+              className="smeng-label inline-flex items-center gap-2 mb-8 font-sans font-light uppercase self-start"
+              style={{
+                opacity: 0, transform: 'translateY(16px)',
+                fontSize: '0.63rem', letterSpacing: '0.3em',
+                color: 'hsl(199 89% 72%)',
+                border: '1px solid hsl(199 89% 65% / 0.28)',
+                borderRadius: '999px',
+                padding: '0.33rem 1.05rem',
+                background: 'hsl(199 89% 65% / 0.06)',
+              }}
+            >
+              <span aria-hidden="true" style={{ width: 5, height: 5, borderRadius: '50%', background: 'hsl(199 89% 65%)', boxShadow: '0 0 7px hsl(199 89% 65%)', flexShrink: 0 }}/>
+              Audience Engagement
+            </span>
+
+            {/* Heading — word-by-word reveal */}
+            <h2
+              className="font-sans font-light text-text mb-5"
+              style={{ fontSize: 'clamp(1.9rem, 3.6vw, 3rem)', lineHeight: 1.22, letterSpacing: '-0.035em' }}
+            >
+              {['Stay', 'Connected', 'With', 'Your'].map((word, i) => (
+                <span key={i} style={{ display: 'inline-block', overflow: 'hidden', verticalAlign: 'bottom', marginRight: '0.24em', paddingBottom: '0.05em' }}>
+                  <span className="smeng-hword" style={{ display: 'inline-block', transform: 'translateY(110%)', opacity: 0 }}>
+                    {word}
+                  </span>
+                </span>
+              ))}
+              <em style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400, display: 'inline-block', overflow: 'hidden', verticalAlign: 'bottom', paddingBottom: '0.05em' }}>
+                <span
+                  className="smeng-hword"
+                  style={{
+                    display: 'inline-block', transform: 'translateY(110%)', opacity: 0,
+                    background: 'linear-gradient(108deg, hsl(199 89% 74%) 0%, hsl(240 60% 74%) 55%, hsl(280 65% 74%) 100%)',
+                    WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
+                  }}
+                >
+                  Audience.
+                </span>
+              </em>
+            </h2>
+
+            {/* Accent rule */}
+            <div aria-hidden="true" style={{
+              height: 1,
+              background: 'linear-gradient(to right, hsl(199 89% 60% / 0.3), transparent)',
+              marginBottom: '1.8rem', maxWidth: '22rem',
+            }}/>
+
+            {/* Body */}
+            <p
+              className="smeng-body font-sans font-light mb-10"
+              style={{
+                opacity: 0, transform: 'translateY(18px)',
+                fontSize: 'clamp(0.87rem, 1.35vw, 0.97rem)',
+                lineHeight: 1.9, color: 'hsl(0 0% 46%)', maxWidth: '34rem',
+              }}
+            >
+              Social media is more than posting content. It's about building relationships, starting
+              conversations, and keeping your brand visible where your customers spend their time.
+              Through strategic content, audience engagement, and consistent communication, we help
+              businesses strengthen trust, increase visibility, and turn followers into loyal customers.
+            </p>
+
+            {/* Key points */}
+            <ul className="flex flex-col" style={{ borderTop: '1px solid hsl(0 0% 100% / 0.07)' }}>
+              {[
+                'Consistent Brand Presence',
+                'Meaningful Customer Engagement',
+                'Community Growth & Retention',
+                'Increased Reach & Visibility',
+              ].map(item => (
+                <li
+                  key={item}
+                  className="smeng-item flex items-center gap-3 font-sans font-light"
+                  style={{
+                    opacity: 0, transform: 'translateY(10px)',
+                    fontSize: 'clamp(0.84rem, 1.2vw, 0.9rem)',
+                    color: 'hsl(0 0% 58%)',
+                    borderBottom: '1px solid hsl(0 0% 100% / 0.07)',
+                    padding: '0.82rem 0',
+                    cursor: 'default',
+                    transition: 'color 0.25s ease',
+                  }}
+                  onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = 'hsl(0 0% 88%)' }}
+                  onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = 'hsl(0 0% 58%)' }}
+                >
+                  <span aria-hidden="true" style={{ fontSize: '0.42rem', color: 'hsl(199 89% 60%)', flexShrink: 0 }}>◆</span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+
+          </div>
+
+          {/* ── RIGHT: Image ── */}
+          <div className="flex items-center justify-center lg:justify-end">
+            <div
+              className="smeng-img w-full"
+              style={{
+                opacity: 0, transform: 'translateY(36px)',
+                maxWidth: '520px',
+                borderRadius: '20px',
+                overflow: 'hidden',
+                boxShadow: [
+                  '0 40px 80px -16px hsl(0 0% 0% / 0.85)',
+                  '0 0 0 1px hsl(199 89% 65% / 0.12)',
+                  '0 0 60px -18px hsl(199 89% 60% / 0.25)',
+                ].join(', '),
+              }}
+            >
+              <img
+                src="/brand_assets/Smiley_women.png"
+                alt="Person smiling while engaging with social media on their phone"
+                style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+              />
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      {/* Bottom fade */}
       <div aria-hidden="true" className="pointer-events-none absolute left-0 right-0 bottom-0" style={{
         height: '120px',
         background: 'linear-gradient(to top, #010709 0%, transparent 100%)',
