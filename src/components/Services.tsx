@@ -4391,7 +4391,7 @@ function SocialMediaMarketing() {
           <div className="flex flex-col sm:flex-row items-end gap-5 order-2">
 
             {/* Image 1: Instagram Watch — gallery-mounted tall frame */}
-            <div className="flex-1 relative" style={{ zIndex: 1 }}>
+            <div className="flex-1 relative w-full" style={{ zIndex: 1 }}>
               <div
                 className="s5cv-img-a"
                 style={{
@@ -4423,7 +4423,7 @@ function SocialMediaMarketing() {
                 }}
               >
                 <img
-                  src="/brand_assets/Watch_L.png"
+                  src="/brand_assets/Now_watch.png"
                   alt="Instagram luxury watch campaign visual"
                   style={{
                     position: 'absolute', inset: 0,
@@ -4451,7 +4451,7 @@ function SocialMediaMarketing() {
             </div>
 
             {/* Image 2: TikTok Shampoo — natural tall vertical */}
-            <div className="flex-1 relative" style={{ zIndex: 2 }}>
+            <div className="flex-1 relative w-full" style={{ zIndex: 2 }}>
               <div
                 className="s5cv-img-b"
                 style={{
