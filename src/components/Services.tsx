@@ -8414,7 +8414,7 @@ function UGCTrackingUrls() {
               {UGC_TRACKING_FEATURES.map(item => (
                 <li key={item} className="ugctu-feat" style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
                   <span aria-hidden="true" style={{ width: '5px', height: '5px', borderRadius: '50%', flexShrink: 0, background: 'hsl(160 65% 52%)', boxShadow: '0 0 6px hsl(160 65% 50% / 0.55)' }}/>
-                  <span className="font-sans font-light" style={{ fontSize: '0.88rem', color: 'hsl(0 0% 64%)', letterSpacing: '0.01em' }}>{item}</span>
+                  <span className="font-sans font-light" style={{ fontSize: '0.88rem', color: 'hsl(0 0% 68%)', letterSpacing: '0.01em' }}>{item}</span>
                 </li>
               ))}
             </ul>
