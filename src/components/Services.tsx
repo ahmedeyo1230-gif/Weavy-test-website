@@ -5557,7 +5557,7 @@ function GraphicDesignHero() {
               backdropFilter: 'blur(6px)',
             }}
           >
-            {expanded ? 'Collapse' : ''}
+            {expanded ? '' : ''}
           </button>
         </div>
       </div>
