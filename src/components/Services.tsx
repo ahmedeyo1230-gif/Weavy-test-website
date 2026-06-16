@@ -3878,7 +3878,7 @@ function SocialMediaMarketing() {
                 onMouseEnter={e => {
                   const num = e.currentTarget.querySelector('.sms-num') as HTMLElement | null
                   if (!num) return
-                  num.style.filter = 'drop-shadow(0 0 6px hsl(199 89% 60% / 0.8)) drop-shadow(0 0 14px hsl(199 89% 60% / 0.45))'
+                  num.style.filter = 'drop-shadow(0 0 6px hsl(0 0% 80% / 0.4))'
                   gsap.killTweensOf(num)
                   gsap.to(num, { scale: 1.12, duration: 0.25, ease: 'power2.out', transformOrigin: 'center center' })
                   gsap.to(num, { scale: 1, duration: 0.7, delay: 0.25, ease: 'elastic.out(1, 0.45)', transformOrigin: 'center center' })
@@ -3886,7 +3886,7 @@ function SocialMediaMarketing() {
                 onMouseLeave={e => {
                   const num = e.currentTarget.querySelector('.sms-num') as HTMLElement | null
                   if (!num) return
-                  num.style.filter = 'drop-shadow(0 0 4px hsl(199 89% 60% / 0.35))'
+                  num.style.filter = 'none'
                   gsap.killTweensOf(num)
                   gsap.to(num, { scale: 1, duration: 0.35, ease: 'power2.inOut', transformOrigin: 'center center' })
                 }}
@@ -3899,11 +3899,7 @@ function SocialMediaMarketing() {
                     letterSpacing: '0.18em',
                     minWidth: '2rem',
                     fontVariantNumeric: 'tabular-nums',
-                    background: 'linear-gradient(135deg, hsl(199 89% 78%) 0%, hsl(215 80% 68%) 60%, hsl(199 70% 60%) 100%)',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
-                    backgroundClip: 'text',
-                    filter: 'drop-shadow(0 0 4px hsl(199 89% 60% / 0.35))',
+                    color: 'hsl(0 0% 38%)',
                     transition: 'filter 0.3s ease',
                     display: 'inline-block',
                   }}
@@ -4173,7 +4169,7 @@ function SocialMediaMarketing() {
                     className="smpr-hword"
                     style={{
                       display: 'inline-block', transform: 'translateY(110%)', opacity: 0,
-                      background: 'linear-gradient(108deg, hsl(280 65% 74%) 0%, hsl(240 60% 74%) 50%, hsl(199 89% 74%) 100%)',
+                      background: 'linear-gradient(108deg, hsl(199 89% 74%) 0%, hsl(240 60% 74%) 55%, hsl(280 65% 74%) 100%)',
                       WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
                     }}
                   >
@@ -8354,8 +8350,8 @@ function UGCTrackingUrls() {
       {/* Ambient glow */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
         background: [
-          'radial-gradient(ellipse 55% 60% at 90% 50%, hsl(160 70% 45% / 0.045) 0%, transparent 65%)',
-          'radial-gradient(ellipse 38% 42% at 10% 55%, hsl(195 80% 50% / 0.03) 0%, transparent 60%)',
+          'radial-gradient(ellipse 48% 55% at 100% 50%, hsl(195 80% 50% / 0.045) 0%, transparent 65%)',
+          'radial-gradient(ellipse 35% 40% at 0% 55%, hsl(195 70% 40% / 0.03) 0%, transparent 60%)',
         ].join(', '),
       }}/>
 
@@ -8369,7 +8365,7 @@ function UGCTrackingUrls() {
       </svg>
 
       {/* Top separator */}
-      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '1px', background: 'linear-gradient(to right, transparent, hsl(160 65% 50% / 0.14), transparent)' }}/>
+      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '1px', background: 'linear-gradient(to right, transparent, hsl(195 80% 55% / 0.12), transparent)' }}/>
 
       <div className="relative z-10 max-w-[72rem] mx-auto px-6 sm:px-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20 items-center">
@@ -8377,12 +8373,12 @@ function UGCTrackingUrls() {
           {/* ── LEFT: text ── */}
           <div>
             <div className="ugctu-text ugc-step-label flex items-center gap-3 mb-6">
-              <span className="font-sans" style={{ fontSize: '0.6rem', letterSpacing: '0.32em', textTransform: 'uppercase', color: 'hsl(160 65% 55%)', flexShrink: 0 }}>04</span>
-              <div aria-hidden="true" style={{ width: '2rem', height: 1, background: 'hsl(160 65% 50% / 0.4)', flexShrink: 0 }}/>
-              <span className="font-sans" style={{ fontSize: '0.6rem', letterSpacing: '0.32em', textTransform: 'uppercase', color: 'hsl(160 65% 55%)' }}>Tracking URLs</span>
+              <span className="font-sans" style={{ fontSize: '0.6rem', letterSpacing: '0.32em', textTransform: 'uppercase', color: 'hsl(195 80% 62%)', flexShrink: 0 }}>04</span>
+              <div aria-hidden="true" style={{ width: '2rem', height: 1, background: 'hsl(195 80% 55% / 0.4)', flexShrink: 0 }}/>
+              <span className="font-sans" style={{ fontSize: '0.6rem', letterSpacing: '0.32em', textTransform: 'uppercase', color: 'hsl(195 80% 62%)' }}>Tracking URLs</span>
             </div>
 
-            <p className="ugctu-text font-sans" style={{ fontSize: '0.62rem', letterSpacing: '0.28em', textTransform: 'uppercase', color: 'hsl(160 60% 50% / 0.65)', marginBottom: '1.4rem' }}>
+            <p className="ugctu-text font-sans" style={{ fontSize: '0.62rem', letterSpacing: '0.28em', textTransform: 'uppercase', color: 'hsl(0 0% 40%)', marginBottom: '1.4rem' }}>
               Performance Visibility
             </p>
 
@@ -8391,13 +8387,13 @@ function UGCTrackingUrls() {
               style={{ color: '#fff', fontSize: 'clamp(1.9rem, 3.6vw, 3rem)', lineHeight: 1.08, letterSpacing: '-0.035em', marginBottom: '1.8rem' }}
             >
               Know exactly which creator,{' '}
-              <em style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400, color: 'hsl(160 65% 65%)' }}>
+              <em style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400, color: 'hsl(195 80% 72%)' }}>
                 platform,
               </em>{' '}
               and placement is driving results.
             </h2>
 
-            <div className="ugctu-text" aria-hidden="true" style={{ width: '2.5rem', height: 1, background: 'hsl(160 65% 50% / 0.38)', marginBottom: '1.8rem' }}/>
+            <div className="ugctu-text" aria-hidden="true" style={{ width: '2.5rem', height: 1, background: 'hsl(195 80% 55% / 0.38)', marginBottom: '1.8rem' }}/>
 
             <p className="ugctu-text font-sans font-light" style={{ fontSize: 'clamp(0.88rem, 1.4vw, 1.02rem)', lineHeight: 1.9, color: 'hsl(0 0% 52%)', marginBottom: '1.2rem' }}>
               Every campaign can be measured with clear tracking links and structured reporting,
@@ -8413,7 +8409,7 @@ function UGCTrackingUrls() {
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
               {UGC_TRACKING_FEATURES.map(item => (
                 <li key={item} className="ugctu-feat" style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
-                  <span aria-hidden="true" style={{ width: '5px', height: '5px', borderRadius: '50%', flexShrink: 0, background: 'hsl(160 65% 52%)', boxShadow: '0 0 6px hsl(160 65% 50% / 0.55)' }}/>
+                  <span aria-hidden="true" style={{ width: '5px', height: '5px', borderRadius: '50%', flexShrink: 0, background: 'hsl(195 80% 58%)', boxShadow: '0 0 6px hsl(195 80% 58% / 0.6)' }}/>
                   <span className="font-sans font-light" style={{ fontSize: '0.88rem', color: 'hsl(0 0% 68%)', letterSpacing: '0.01em' }}>{item}</span>
                 </li>
               ))}
