@@ -1425,8 +1425,8 @@ export default function ImageShowcase() {
 
       {/* ── Section 1 — Video showcase ── */}
       <section
-        className="relative w-full overflow-hidden"
-        style={{ background: '#040B0E', height: '100vh' }}
+        className="relative w-full overflow-hidden h-[50vh] sm:h-[65vh] lg:h-screen"
+        style={{ background: '#040B0E' }}
       >
         <video
           autoPlay
