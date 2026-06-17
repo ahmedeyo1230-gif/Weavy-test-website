@@ -318,13 +318,20 @@ function BespokeFollowUp() {
       gsap.to(reveals, { opacity: 1, y: 0, duration: 1.05, ease: 'power3.out', stagger: 0.1 })
       if (!hasCountedRef.current) {
         hasCountedRef.current = true
-        const run = (setter: (v: number) => void, target: number, step: number, ms: number) => {
-          let v = 0
-          const id = setInterval(() => { v = Math.min(v + step, target); setter(v); if (v >= target) clearInterval(id) }, ms)
-        }
-        run(setS1, 320, 7, 16)
-        run(setS2,  48, 1, 38)
-        run(setS3,  92, 2, 22)
+        const proxy = { s1: 0, s2: 0, s3: 0 }
+        gsap.to(proxy, {
+          s1: 320, s2: 48, s3: 92,
+          duration: 2.2,
+          ease: 'expo.out',
+          onUpdate() {
+            setS1(Math.round(proxy.s1))
+            setS2(Math.round(proxy.s2))
+            setS3(Math.round(proxy.s3))
+          },
+          onComplete() {
+            setS1(320); setS2(48); setS3(92)
+          },
+        })
       }
       obs.disconnect()
     }, { threshold: 0.08 })
