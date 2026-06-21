@@ -4390,7 +4390,7 @@ function SocialMediaMarketing() {
           className="smcs-img"
           style={{
             opacity: 0, transform: 'translateY(32px)',
-            maxWidth: '720px', margin: '0 auto clamp(3rem, 6vw, 5rem)',
+            maxWidth: '860px', margin: '0 auto clamp(3rem, 6vw, 5rem)',
           }}
         >
           <img
