@@ -3958,7 +3958,9 @@ function SocialMediaMarketing() {
                 <em style={{
                   fontFamily: "'Instrument Serif', Georgia, serif",
                   fontStyle: 'italic', fontWeight: 400,
-                  color: '#E7C873',
+                  background: 'linear-gradient(90deg, #95CAF1 0%, #9596E1 50%, #BE95E2 100%)',
+                  WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
                 }}>
                   strategy
                 </em>
