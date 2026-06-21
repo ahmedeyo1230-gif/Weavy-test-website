@@ -344,7 +344,7 @@ function BespokeFollowUp() {
     <section
       ref={ref}
       className="relative w-full overflow-hidden"
-      style={{ background: '#010709', padding: 'clamp(5rem, 8vw, 8rem) 0 clamp(4rem, 7vw, 7rem)' }}
+      style={{ background: '#071011', padding: 'clamp(5rem, 8vw, 8rem) 0 clamp(4rem, 7vw, 7rem)' }}
     >
       {/* ── Grain ── */}
       <svg aria-hidden="true" className="pointer-events-none absolute inset-0 w-full h-full" style={{ opacity: 0.026 }}>
@@ -358,8 +358,10 @@ function BespokeFollowUp() {
       {/* ── Ambient — centre-top bloom ── */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
         background: [
-          'radial-gradient(ellipse 70% 55% at 50% 28%, hsl(199 89% 60% / 0.06) 0%, transparent 70%)',
-          'radial-gradient(ellipse 35% 28% at 82% 72%, hsl(215 80% 55% / 0.025) 0%, transparent 60%)',
+          'radial-gradient(ellipse 70% 55% at 50% 28%, hsl(199 89% 60% / 0.07) 0%, transparent 70%)',
+          'radial-gradient(ellipse 35% 28% at 82% 72%, hsl(215 80% 55% / 0.03) 0%, transparent 60%)',
+          'radial-gradient(circle at 8% 85%, rgba(255,216,107,0.07), transparent 28%)',
+          'radial-gradient(circle at 92% 10%, rgba(255,216,107,0.05), transparent 25%)',
         ].join(', '),
       }}/>
 
@@ -369,8 +371,8 @@ function BespokeFollowUp() {
       }}/>
 
       {/* Section boundary fades — mask vignette/grain cutoff at overflow:hidden edges */}
-      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '120px', background: 'linear-gradient(to bottom, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
-      <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '150px', background: 'linear-gradient(to top, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
+      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '120px', background: 'linear-gradient(to bottom, #071011, transparent)', pointerEvents: 'none', zIndex: 2 }} />
+      <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '150px', background: 'linear-gradient(to top, #071011, transparent)', pointerEvents: 'none', zIndex: 2 }} />
 
       {/* ════════════════════════════════════════════════════════
           UPPER — Full-width editorial header
@@ -685,7 +687,7 @@ function BespokeCareStories() {
       ref={ref}
       className="relative w-full overflow-hidden"
       style={{
-        background: '#010709',
+        background: '#071011',
         padding: 'clamp(5rem, 9vw, 8rem) 0',
       }}
     >
@@ -696,8 +698,8 @@ function BespokeCareStories() {
       }}/>
 
       {/* Section boundary fades */}
-      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to bottom, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
-      <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to top, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
+      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to bottom, #071011, transparent)', pointerEvents: 'none', zIndex: 2 }} />
+      <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to top, #071011, transparent)', pointerEvents: 'none', zIndex: 2 }} />
 
       <div className="relative z-10 max-w-[80rem] mx-auto px-6 sm:px-10">
         <div className="grid grid-cols-1 lg:grid-cols-[1.15fr_1fr] gap-12 lg:gap-16 items-center">
@@ -916,10 +918,10 @@ function BespokeWebShowcase() {
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       className="relative w-full overflow-hidden"
-      style={{ background: '#010709', padding: 'clamp(6rem, 12vw, 10rem) 0 clamp(7rem, 14vw, 12rem)' }}
+      style={{ background: '#071011', padding: 'clamp(6rem, 12vw, 10rem) 0 clamp(7rem, 14vw, 12rem)' }}
     >
-      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '60px', background: 'linear-gradient(to bottom, #010709, transparent)', pointerEvents: 'none' }} />
-      <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '60px', background: 'linear-gradient(to bottom, transparent, #010709)', pointerEvents: 'none' }} />
+      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '60px', background: 'linear-gradient(to bottom, #071011, transparent)', pointerEvents: 'none' }} />
+      <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '60px', background: 'linear-gradient(to bottom, transparent, #071011)', pointerEvents: 'none' }} />
 
       <div className="relative z-10 max-w-[80rem] mx-auto px-6 sm:px-10">
 
@@ -1163,7 +1165,7 @@ function BespokeProcessTimeline() {
     <section
       ref={ref}
       className="relative w-full overflow-hidden"
-      style={{ background: '#010709', padding: 'clamp(5rem, 10vw, 8rem) 0' }}
+      style={{ background: '#071011', padding: 'clamp(5rem, 10vw, 8rem) 0' }}
     >
       {/* Ambient top glow */}
       <div
@@ -1175,8 +1177,8 @@ function BespokeProcessTimeline() {
       />
 
       {/* Section boundary fades */}
-      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to bottom, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
-      <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to top, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
+      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to bottom, #071011, transparent)', pointerEvents: 'none', zIndex: 2 }} />
+      <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to top, #071011, transparent)', pointerEvents: 'none', zIndex: 2 }} />
 
       <div className="relative z-10 max-w-[72rem] mx-auto px-6 sm:px-10">
 
@@ -1389,7 +1391,7 @@ function BespokeWebDesignShowcase() {
     <section
       ref={ref}
       className="relative w-full overflow-hidden"
-      style={{ background: '#010709', padding: 'clamp(5rem, 10vw, 9rem) 0' }}
+      style={{ background: '#071011', padding: 'clamp(5rem, 10vw, 9rem) 0' }}
     >
       {/* Grain */}
       <svg aria-hidden="true" className="pointer-events-none absolute inset-0 w-full h-full" style={{ opacity: 0.018 }}>
@@ -1406,8 +1408,8 @@ function BespokeWebDesignShowcase() {
       }} />
 
       {/* Section boundary fades */}
-      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to bottom, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
-      <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to top, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
+      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to bottom, #071011, transparent)', pointerEvents: 'none', zIndex: 2 }} />
+      <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to top, #071011, transparent)', pointerEvents: 'none', zIndex: 2 }} />
 
       <div className="relative z-10 max-w-[76rem] mx-auto px-6 sm:px-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20 items-center">
@@ -1520,7 +1522,7 @@ function BespokeWebDesignShowcase() {
       {/* Bottom fade */}
       <div aria-hidden="true" style={{
         position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px',
-        background: 'linear-gradient(to bottom, transparent, #010709)',
+        background: 'linear-gradient(to bottom, transparent, #071011)',
         pointerEvents: 'none',
       }} />
     </section>
@@ -1560,7 +1562,7 @@ function BespokeRealUsers() {
       ref={ref}
       className="relative w-full overflow-hidden"
       style={{
-        background: '#010709',
+        background: '#071011',
         padding: 'clamp(5rem, 10vw, 8rem) 0',
       }}
     >
@@ -1575,8 +1577,8 @@ function BespokeRealUsers() {
       />
 
       {/* Section boundary fades — mask grid pattern abrupt start/end */}
-      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '160px', background: 'linear-gradient(to bottom, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
-      <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to top, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
+      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '160px', background: 'linear-gradient(to bottom, #071011, transparent)', pointerEvents: 'none', zIndex: 2 }} />
+      <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to top, #071011, transparent)', pointerEvents: 'none', zIndex: 2 }} />
 
       <div className="relative z-10 max-w-[82rem] mx-auto px-6 sm:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.12fr] gap-14 lg:gap-20 items-start">
@@ -1873,12 +1875,12 @@ function BespokeContactFooter() {
         {/* Top fade — blends into section above */}
         <div
           className="absolute top-0 left-0 right-0 pointer-events-none"
-          style={{ height: '160px', background: 'linear-gradient(to bottom, #010709 0%, transparent 100%)', zIndex: 2 }}
+          style={{ height: '160px', background: 'linear-gradient(to bottom, #071011 0%, transparent 100%)', zIndex: 2 }}
         />
         {/* Bottom fade */}
         <div
           className="absolute bottom-0 left-0 right-0 pointer-events-none"
-          style={{ height: '200px', background: 'linear-gradient(to top, #010709 0%, transparent 100%)', zIndex: 2 }}
+          style={{ height: '200px', background: 'linear-gradient(to top, #071011 0%, transparent 100%)', zIndex: 2 }}
         />
       </div>
 
@@ -3504,7 +3506,7 @@ function SocialMediaMarketing() {
       ref={heroRef}
       id="social-media-marketing-detail"
       className="relative w-screen overflow-hidden"
-      style={{ height: 'clamp(460px, 58vw, 700px)', marginLeft: 'calc(-50vw + 50%)', marginRight: 'calc(-50vw + 50%)', background: '#010709' }}
+      style={{ height: 'clamp(460px, 58vw, 700px)', marginLeft: 'calc(-50vw + 50%)', marginRight: 'calc(-50vw + 50%)', background: '#071011' }}
     >
       {/* Full-width background video */}
       <video
@@ -3528,6 +3530,15 @@ function SocialMediaMarketing() {
       <div aria-hidden="true" style={{
         position: 'absolute', inset: 0,
         background: 'linear-gradient(to right, hsl(0 0% 0% / 0.72) 0%, hsl(0 0% 0% / 0.35) 60%, transparent 100%)',
+      }}/>
+
+      {/* Campaign energy — gold + purple spotlights */}
+      <div aria-hidden="true" style={{
+        position: 'absolute', inset: 0, pointerEvents: 'none',
+        background: [
+          'radial-gradient(circle at 28% 65%, rgba(255,216,107,0.09), transparent 28%)',
+          'radial-gradient(circle at 75% 25%, rgba(160,80,200,0.10), transparent 30%)',
+        ].join(', '),
       }}/>
 
       {/* Dot grid */}
@@ -3556,12 +3567,12 @@ function SocialMediaMarketing() {
     <section
       ref={platRef}
       className="relative w-full overflow-hidden"
-      style={{ background: '#010709', padding: 'clamp(6rem, 12vw, 10rem) 0' }}
+      style={{ background: '#071011', padding: 'clamp(6rem, 12vw, 10rem) 0' }}
     >
       {/* Top fade — blends seamlessly with Section 1 */}
       <div aria-hidden="true" className="pointer-events-none absolute left-0 right-0 top-0" style={{
         height: '120px',
-        background: 'linear-gradient(to bottom, #010709 0%, transparent 100%)',
+        background: 'linear-gradient(to bottom, #071011 0%, transparent 100%)',
         zIndex: 3,
       }}/>
 
@@ -3582,12 +3593,14 @@ function SocialMediaMarketing() {
         backgroundSize: '32px 32px',
       }}/>
 
-      {/* Barely-there atmospheric lift */}
+      {/* Campaign energy ambient — gold + purple depth glows */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
         zIndex: 0,
-        background: 'radial-gradient(ellipse 70% 55% at 60% 50%, hsl(199 30% 25% / 0.012) 0%, transparent 70%)',
-        filter: 'blur(160px)',
-        opacity: 0.6,
+        background: [
+          'radial-gradient(ellipse 55% 45% at 15% 70%, rgba(255,216,107,0.07), transparent 60%)',
+          'radial-gradient(ellipse 50% 50% at 85% 25%, rgba(150,70,190,0.08), transparent 55%)',
+          'radial-gradient(ellipse 70% 55% at 60% 50%, hsl(199 30% 25% / 0.012) 0%, transparent 70%)',
+        ].join(', '),
       }}/>
 
       <div className="relative z-10 max-w-[80rem] mx-auto px-6 sm:px-12">
@@ -3845,7 +3858,7 @@ function SocialMediaMarketing() {
       {/* Bottom fade — blends grain/dot textures into Section 3 */}
       <div aria-hidden="true" className="pointer-events-none absolute left-0 right-0 bottom-0" style={{
         height: '120px',
-        background: 'linear-gradient(to top, #010709 0%, transparent 100%)',
+        background: 'linear-gradient(to top, #071011 0%, transparent 100%)',
         zIndex: 3,
       }}/>
     </section>
@@ -3854,7 +3867,7 @@ function SocialMediaMarketing() {
     <section
       ref={stratRef}
       className="relative w-full overflow-hidden"
-      style={{ background: '#010709', padding: 'clamp(5rem, 10vw, 8rem) 0' }}
+      style={{ background: '#071011', padding: 'clamp(5rem, 10vw, 8rem) 0' }}
     >
       {/* Soft cinematic atmosphere */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
@@ -3950,12 +3963,12 @@ function SocialMediaMarketing() {
     <section
       ref={proofRef}
       className="relative w-full overflow-hidden"
-      style={{ background: '#010709', padding: 'clamp(6rem, 12vw, 10rem) 0' }}
+      style={{ background: '#071011', padding: 'clamp(6rem, 12vw, 10rem) 0' }}
     >
       {/* Top fade — blends seamlessly with Section 3 */}
       <div aria-hidden="true" className="pointer-events-none absolute left-0 right-0 top-0" style={{
         height: '120px',
-        background: 'linear-gradient(to bottom, #010709 0%, transparent 100%)',
+        background: 'linear-gradient(to bottom, #071011 0%, transparent 100%)',
         zIndex: 3,
       }}/>
 
@@ -4257,7 +4270,7 @@ function SocialMediaMarketing() {
       {/* Bottom fade — blends grain/dot textures into Section 5 */}
       <div aria-hidden="true" className="pointer-events-none absolute left-0 right-0 bottom-0" style={{
         height: '120px',
-        background: 'linear-gradient(to top, #010709 0%, transparent 100%)',
+        background: 'linear-gradient(to top, #071011 0%, transparent 100%)',
         zIndex: 3,
       }}/>
     </section>
@@ -4266,12 +4279,12 @@ function SocialMediaMarketing() {
     <section
       ref={engageRef}
       className="relative w-full overflow-hidden"
-      style={{ background: '#010709', padding: 'clamp(6rem, 12vw, 10rem) 0' }}
+      style={{ background: '#071011', padding: 'clamp(6rem, 12vw, 10rem) 0' }}
     >
       {/* Top fade */}
       <div aria-hidden="true" className="pointer-events-none absolute left-0 right-0 top-0" style={{
         height: '120px',
-        background: 'linear-gradient(to bottom, #010709 0%, transparent 100%)',
+        background: 'linear-gradient(to bottom, #071011 0%, transparent 100%)',
         zIndex: 3,
       }}/>
 
@@ -4433,7 +4446,7 @@ function SocialMediaMarketing() {
       {/* Bottom fade */}
       <div aria-hidden="true" className="pointer-events-none absolute left-0 right-0 bottom-0" style={{
         height: '120px',
-        background: 'linear-gradient(to top, #010709 0%, transparent 100%)',
+        background: 'linear-gradient(to top, #071011 0%, transparent 100%)',
         zIndex: 3,
       }}/>
     </section>
@@ -4442,12 +4455,12 @@ function SocialMediaMarketing() {
     <section
       ref={ctaRef}
       className="relative w-full overflow-hidden"
-      style={{ background: '#010709', padding: 'clamp(6rem, 12vw, 10rem) 0' }}
+      style={{ background: '#071011', padding: 'clamp(6rem, 12vw, 10rem) 0' }}
     >
       {/* Top fade */}
       <div aria-hidden="true" className="pointer-events-none absolute left-0 right-0 top-0" style={{
         height: '120px',
-        background: 'linear-gradient(to bottom, #010709 0%, transparent 100%)',
+        background: 'linear-gradient(to bottom, #071011 0%, transparent 100%)',
         zIndex: 3,
       }}/>
 
@@ -4705,7 +4718,7 @@ function SocialMediaMarketing() {
       {/* Bottom fade — blends into Section 6 */}
       <div aria-hidden="true" className="pointer-events-none absolute left-0 right-0 bottom-0" style={{
         height: '120px',
-        background: 'linear-gradient(to top, #010709 0%, transparent 100%)',
+        background: 'linear-gradient(to top, #071011 0%, transparent 100%)',
         zIndex: 3,
       }}/>
     </section>
@@ -4714,12 +4727,12 @@ function SocialMediaMarketing() {
     <section
       ref={s6Ref}
       className="relative w-full overflow-hidden"
-      style={{ background: '#010709', padding: 'clamp(6rem, 12vw, 10rem) 0' }}
+      style={{ background: '#071011', padding: 'clamp(6rem, 12vw, 10rem) 0' }}
     >
       {/* Top fade */}
       <div aria-hidden="true" className="pointer-events-none absolute left-0 right-0 top-0" style={{
         height: '120px',
-        background: 'linear-gradient(to bottom, #010709 0%, transparent 100%)',
+        background: 'linear-gradient(to bottom, #071011 0%, transparent 100%)',
         zIndex: 3,
       }}/>
 
@@ -4923,7 +4936,7 @@ function SocialMediaMarketing() {
       {/* Bottom fade */}
       <div aria-hidden="true" className="pointer-events-none absolute left-0 right-0 bottom-0" style={{
         height: '120px',
-        background: 'linear-gradient(to top, #010709 0%, transparent 100%)',
+        background: 'linear-gradient(to top, #071011 0%, transparent 100%)',
         zIndex: 3,
       }}/>
     </section>
@@ -4932,7 +4945,7 @@ function SocialMediaMarketing() {
     <section
       ref={smFeatRef}
       className="relative w-full overflow-hidden"
-      style={{ background: '#010709', padding: 'clamp(6rem, 12vw, 10rem) 0' }}
+      style={{ background: '#071011', padding: 'clamp(6rem, 12vw, 10rem) 0' }}
     >
       {/* Subtle grain */}
       <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
@@ -5142,7 +5155,7 @@ function SocialMediaMarketing() {
       {/* Bottom fade */}
       <div aria-hidden="true" className="pointer-events-none absolute left-0 right-0 bottom-0" style={{
         height: '100px',
-        background: 'linear-gradient(to top, #010709 0%, transparent 100%)',
+        background: 'linear-gradient(to top, #071011 0%, transparent 100%)',
         zIndex: 3,
       }}/>
     </section>
@@ -5200,7 +5213,7 @@ function S7ContactFooter() {
       {/* Top fade — blends seamlessly with Section 6 */}
       <div aria-hidden="true" className="pointer-events-none absolute left-0 right-0 top-0" style={{
         height: '120px',
-        background: 'linear-gradient(to bottom, #010709 0%, transparent 100%)',
+        background: 'linear-gradient(to bottom, #071011 0%, transparent 100%)',
         zIndex: 4,
       }}/>
 
@@ -5707,8 +5720,12 @@ function GraphicDesignHero() {
       id="graphic-design-hero"
       className="relative w-full"
       style={{
-        background: '#010709',
-        backgroundImage: 'radial-gradient(ellipse 65% 70% at 72% 50%, hsl(192 80% 14% / 0.28) 0%, transparent 70%)',
+        background: '#071011',
+        backgroundImage: [
+          'radial-gradient(circle at 15% 22%, rgba(255,216,107,0.10), transparent 30%)',
+          'radial-gradient(circle at 85% 75%, rgba(180,80,140,0.10), transparent 32%)',
+          'radial-gradient(ellipse 65% 70% at 72% 50%, hsl(192 80% 14% / 0.28) 0%, transparent 70%)',
+        ].join(', '),
         paddingTop: 'clamp(3rem, 6vw, 5rem)',
       }}
     >
@@ -5753,7 +5770,7 @@ function GraphicDesignHero() {
       </div>
 
       {/* Mobile / Tablet: improved fitted image (only below lg) */}
-      <div className="block lg:hidden w-full overflow-hidden bg-[#010709]">
+      <div className="block lg:hidden w-full overflow-hidden bg-[#071011]">
         <div className="relative mx-auto w-full max-w-[720px] overflow-hidden sm:rounded-[24px] aspect-[3/2]">
           <img
             loading="lazy"
@@ -5770,7 +5787,7 @@ function GraphicDesignHero() {
       <div aria-hidden="true" style={{
         position: 'absolute', bottom: 0, left: 0, right: 0,
         height: '140px',
-        background: 'linear-gradient(to bottom, rgba(1,7,9,0), #010709)',
+        background: 'linear-gradient(to bottom, rgba(1,7,9,0), #071011)',
         pointerEvents: 'none',
         zIndex: 5,
       }}/>
@@ -5856,7 +5873,7 @@ function GraphicDesignEditorial() {
     <section
       ref={ref}
       className="relative w-full overflow-hidden"
-      style={{ background: '#010709' }}
+      style={{ background: '#071011' }}
     >
       {/* ── Grain ── */}
       <svg aria-hidden="true" className="pointer-events-none absolute inset-0 w-full h-full" style={{ opacity: 0.026, zIndex: 1 }}>
@@ -5967,7 +5984,7 @@ function GraphicDesignEditorial() {
       <div aria-hidden="true" style={{
         position: 'absolute', bottom: 0, left: 0, right: 0,
         height: '160px',
-        background: 'linear-gradient(to bottom, rgba(1,7,9,0), #010709)',
+        background: 'linear-gradient(to bottom, rgba(1,7,9,0), #071011)',
         pointerEvents: 'none',
         zIndex: 20,
       }}/>
@@ -6080,7 +6097,7 @@ function GraphicDesignServices() {
     <section
       ref={ref}
       className="relative w-full overflow-hidden"
-      style={{ background: '#010709', padding: 'clamp(6rem, 10vw, 10rem) 0' }}
+      style={{ background: '#071011', padding: 'clamp(6rem, 10vw, 10rem) 0' }}
     >
       {/* Grain */}
       <svg aria-hidden="true" className="pointer-events-none absolute inset-0 w-full h-full" style={{ opacity: 0.028, zIndex: 1 }}>
@@ -6110,7 +6127,7 @@ function GraphicDesignServices() {
       <div aria-hidden="true" style={{
         position: 'absolute', top: 0, left: 0, right: 0,
         height: '120px',
-        background: 'linear-gradient(to bottom, #010709, rgba(1,7,9,0))',
+        background: 'linear-gradient(to bottom, #071011, rgba(1,7,9,0))',
         pointerEvents: 'none',
         zIndex: 5,
       }}/>
@@ -6212,7 +6229,7 @@ function GraphicDesignServices() {
       <div aria-hidden="true" style={{
         position: 'absolute', bottom: 0, left: 0, right: 0,
         height: '120px',
-        background: 'linear-gradient(to bottom, rgba(1,7,9,0), #010709)',
+        background: 'linear-gradient(to bottom, rgba(1,7,9,0), #071011)',
         pointerEvents: 'none',
         zIndex: 5,
       }}/>
@@ -6246,7 +6263,7 @@ function GraphicDesignSplitA() {
     <section
       ref={ref}
       className="relative w-full overflow-hidden"
-      style={{ background: '#010709', padding: 'clamp(6rem, 10vw, 10rem) 0' }}
+      style={{ background: '#071011', padding: 'clamp(6rem, 10vw, 10rem) 0' }}
     >
       {/* Grain */}
       <svg aria-hidden="true" className="pointer-events-none absolute inset-0 w-full h-full" style={{ opacity: 0.026, zIndex: 1 }}>
@@ -6424,7 +6441,7 @@ function GraphicDesignSplitA() {
       <div aria-hidden="true" style={{
         position: 'absolute', bottom: 0, left: 0, right: 0,
         height: '120px',
-        background: 'linear-gradient(to bottom, rgba(1,7,9,0), #010709)',
+        background: 'linear-gradient(to bottom, rgba(1,7,9,0), #071011)',
         pointerEvents: 'none',
         zIndex: 5,
       }}/>
@@ -6459,7 +6476,7 @@ function GraphicDesignSplitB() {
     <section
       ref={ref}
       className="relative w-full overflow-hidden"
-      style={{ background: '#010709', padding: 'clamp(6rem, 10vw, 10rem) 0' }}
+      style={{ background: '#071011', padding: 'clamp(6rem, 10vw, 10rem) 0' }}
     >
       {/* Grain */}
       <svg aria-hidden="true" className="pointer-events-none absolute inset-0 w-full h-full" style={{ opacity: 0.024, zIndex: 1 }}>
@@ -6483,7 +6500,7 @@ function GraphicDesignSplitB() {
       <div aria-hidden="true" style={{
         position: 'absolute', top: 0, left: 0, right: 0,
         height: '120px',
-        background: 'linear-gradient(to bottom, #010709, rgba(1,7,9,0))',
+        background: 'linear-gradient(to bottom, #071011, rgba(1,7,9,0))',
         pointerEvents: 'none',
         zIndex: 5,
       }}/>
@@ -6679,7 +6696,7 @@ function GraphicDesignSplitB() {
       <div aria-hidden="true" style={{
         position: 'absolute', bottom: 0, left: 0, right: 0,
         height: '120px',
-        background: 'linear-gradient(to bottom, rgba(1,7,9,0), #010709)',
+        background: 'linear-gradient(to bottom, rgba(1,7,9,0), #071011)',
         pointerEvents: 'none',
         zIndex: 5,
       }}/>
@@ -6739,7 +6756,7 @@ function GraphicDesignFinalPresentation() {
     <section
       ref={ref}
       className="relative w-full overflow-hidden"
-      style={{ background: '#010709', padding: 'clamp(6rem, 10vw, 10rem) 0' }}
+      style={{ background: '#071011', padding: 'clamp(6rem, 10vw, 10rem) 0' }}
     >
       {/* Grain */}
       <svg aria-hidden="true" className="pointer-events-none absolute inset-0 w-full h-full" style={{ opacity: 0.024, zIndex: 1 }}>
@@ -7140,7 +7157,7 @@ function GraphicDesignFinalPresentation() {
       {/* Bottom fade */}
       <div aria-hidden="true" className="pointer-events-none absolute left-0 right-0 bottom-0" style={{
         height: '100px',
-        background: 'linear-gradient(to top, #010709 0%, transparent 100%)',
+        background: 'linear-gradient(to top, #071011 0%, transparent 100%)',
         zIndex: 3,
       }}/>
     </section>
@@ -7175,7 +7192,7 @@ function GraphicDesignCTA() {
     <section
       ref={ref}
       className="relative w-full overflow-hidden"
-      style={{ background: '#010709', padding: 'clamp(6rem, 12vw, 10rem) 0' }}
+      style={{ background: '#071011', padding: 'clamp(6rem, 12vw, 10rem) 0' }}
     >
       {/* Grain */}
       <svg aria-hidden="true" className="pointer-events-none absolute inset-0 w-full h-full" style={{ opacity: 0.022, zIndex: 1 }}>
@@ -7309,7 +7326,7 @@ function GraphicDesignCTA() {
       {/* Bottom fade into contact footer */}
       <div aria-hidden="true" className="pointer-events-none absolute left-0 right-0 bottom-0" style={{
         height: '100px',
-        background: 'linear-gradient(to top, #010709 0%, transparent 100%)',
+        background: 'linear-gradient(to top, #071011 0%, transparent 100%)',
         zIndex: 3,
       }}/>
     </section>
@@ -7355,9 +7372,9 @@ function GraphicDesignContactFooter() {
         />
         <div className="absolute inset-0 bg-black/35 lg:bg-black/60" />
         <div className="absolute top-0 left-0 right-0 pointer-events-none"
-          style={{ height: '160px', background: 'linear-gradient(to bottom, #010709 0%, transparent 100%)', zIndex: 2 }} />
+          style={{ height: '160px', background: 'linear-gradient(to bottom, #071011 0%, transparent 100%)', zIndex: 2 }} />
         <div className="absolute bottom-0 left-0 right-0 pointer-events-none"
-          style={{ height: '200px', background: 'linear-gradient(to top, #010709 0%, transparent 100%)', zIndex: 2 }} />
+          style={{ height: '200px', background: 'linear-gradient(to top, #071011 0%, transparent 100%)', zIndex: 2 }} />
       </div>
 
       {/* ── Content ── */}
@@ -7628,7 +7645,11 @@ function UGCHero() {
 
       {/* Layered overlays */}
       <div aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'linear-gradient(108deg, hsl(0 0% 2% / 0.94) 0%, hsl(0 0% 2% / 0.62) 50%, hsl(0 0% 2% / 0.1) 100%)' }}/>
-      <div aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse 52% 75% at 2% 55%, hsl(0 72% 45% / 0.13) 0%, transparent 65%)' }}/>
+      <div aria-hidden="true" style={{ position: 'absolute', inset: 0, background: [
+        'radial-gradient(ellipse 52% 75% at 2% 55%, hsl(0 72% 45% / 0.13) 0%, transparent 65%)',
+        'radial-gradient(circle at 75% 80%, rgba(255,216,107,0.09), transparent 30%)',
+        'radial-gradient(circle at 55% 20%, rgba(255,140,80,0.07), transparent 28%)',
+      ].join(', ') }}/>
       <svg aria-hidden="true" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', opacity: 0.045, pointerEvents: 'none' }}>
         <filter id="ugc-g"><feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="3" stitchTiles="stitch" result="n"/><feColorMatrix type="saturate" values="0" in="n"/></filter>
         <rect width="100%" height="100%" filter="url(#ugc-g)" fill="white"/>
@@ -7703,10 +7724,15 @@ function UGCHero() {
     <section
       ref={editRef}
       className="relative w-full overflow-hidden"
-      style={{ background: '#010709', padding: 'clamp(5rem, 10vw, 8.5rem) 0' }}
+      style={{ background: '#0B1114', padding: 'clamp(5rem, 10vw, 8.5rem) 0' }}
     >
-      {/* Ambient glows */}
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{ background: ['radial-gradient(ellipse 50% 55% at 18% 62%, hsl(0 72% 48% / 0.055) 0%, transparent 65%)', 'radial-gradient(ellipse 38% 38% at 82% 28%, hsl(0 55% 38% / 0.035) 0%, transparent 60%)'].join(', ') }}/>
+      {/* Ambient glows — warm studio: red + gold + coral */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{ background: [
+        'radial-gradient(ellipse 50% 55% at 18% 62%, hsl(0 72% 48% / 0.055) 0%, transparent 65%)',
+        'radial-gradient(ellipse 38% 38% at 82% 28%, hsl(0 55% 38% / 0.035) 0%, transparent 60%)',
+        'radial-gradient(circle at 60% 85%, rgba(255,216,107,0.07), transparent 30%)',
+        'radial-gradient(circle at 90% 60%, rgba(255,130,70,0.06), transparent 28%)',
+      ].join(', ') }}/>
       <svg aria-hidden="true" className="pointer-events-none absolute inset-0 w-full h-full" style={{ opacity: 0.025 }}>
         <filter id="ugce-g"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" result="n"/><feColorMatrix type="saturate" values="0" in="n"/></filter>
         <rect width="100%" height="100%" filter="url(#ugce-g)" fill="white"/>
@@ -7874,7 +7900,7 @@ function UGCCreatorSelection() {
     <div ref={ref}>
 
       {/* ─── DESKTOP layout (≥1024px): image-left, text-right ─────────────────── */}
-      <section className="hidden lg:block" style={{ position: 'relative', background: '#010709', padding: 'clamp(5rem, 10vw, 9rem) 0', width: '100%', overflow: 'hidden' }}>
+      <section className="hidden lg:block" style={{ position: 'relative', background: '#0B1114', padding: 'clamp(5rem, 10vw, 9rem) 0', width: '100%', overflow: 'hidden' }}>
         {decorative}
         <div style={{ position: 'relative', zIndex: 10, width: '100%', maxWidth: '80rem', margin: '0 auto', padding: '0 2.5rem', boxSizing: 'border-box' }}>
           <div style={{ display: 'flex', gap: '5rem', alignItems: 'center' }}>
@@ -7899,7 +7925,7 @@ function UGCCreatorSelection() {
       </section>
 
       {/* ─── MOBILE / TABLET layout (<1024px): fully stacked column ───────────── */}
-      <section className="block lg:hidden w-full overflow-x-hidden px-6 py-16 sm:px-8" style={{ position: 'relative', background: '#010709' }}>
+      <section className="block lg:hidden w-full overflow-x-hidden px-6 py-16 sm:px-8" style={{ position: 'relative', background: '#0B1114' }}>
         {decorative}
         <div className="mx-auto flex w-full max-w-[680px] flex-col items-start gap-8" style={{ position: 'relative', zIndex: 10 }}>
 
@@ -8002,7 +8028,7 @@ function UGCFindCreators() {
     <section
       ref={ref}
       className="relative w-full overflow-hidden"
-      style={{ background: '#010709', padding: 'clamp(5rem, 10vw, 9rem) 0' }}
+      style={{ background: '#0B1114', padding: 'clamp(5rem, 10vw, 9rem) 0' }}
     >
       {/* Subtle ambient glow */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
@@ -8330,7 +8356,7 @@ function UGCMonitoringReporting() {
     <section
       ref={ref}
       className="ugcmr-layout-section"
-      style={{ position: 'relative', background: '#010709', padding: 'clamp(5rem, 10vw, 9rem) 0' }}
+      style={{ position: 'relative', background: '#0B1114', padding: 'clamp(5rem, 10vw, 9rem) 0' }}
     >
       {/* Ambient glow */}
       <div aria-hidden="true" style={{ pointerEvents: 'none', position: 'absolute', inset: 0, background: 'radial-gradient(ellipse 48% 55% at 0% 50%, hsl(195 80% 50% / 0.042) 0%, transparent 65%), radial-gradient(ellipse 35% 40% at 100% 60%, hsl(195 70% 40% / 0.028) 0%, transparent 60%)' }}/>
@@ -8539,7 +8565,7 @@ function UGCTrackingUrls() {
     <section
       ref={ref}
       className="relative w-full overflow-hidden"
-      style={{ background: '#010709', padding: 'clamp(5rem, 10vw, 9rem) 0' }}
+      style={{ background: '#0B1114', padding: 'clamp(5rem, 10vw, 9rem) 0' }}
     >
       {/* Ambient glow */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
@@ -8847,7 +8873,7 @@ function UGCPerfumeCampaign() {
     <section
       ref={ref}
       className="relative w-full overflow-hidden"
-      style={{ background: '#010709', padding: 'clamp(5rem, 10vw, 9rem) 0' }}
+      style={{ background: '#0B1114', padding: 'clamp(5rem, 10vw, 9rem) 0' }}
     >
       {/* Warm gold ambient */}
       <div
@@ -9222,7 +9248,7 @@ function UGCPerformanceSystem() {
     <section
       ref={sectionRef}
       className="relative w-full overflow-hidden"
-      style={{ background: '#010709', padding: 'clamp(5rem, 10vw, 9rem) 0' }}
+      style={{ background: '#0B1114', padding: 'clamp(5rem, 10vw, 9rem) 0' }}
     >
       {/* Subtle grain */}
       <svg aria-hidden="true" className="pointer-events-none absolute inset-0 w-full h-full" style={{ opacity: 0.016 }}>
@@ -9451,7 +9477,7 @@ function UGCPerformanceSystem() {
         aria-hidden="true"
         style={{
           position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px',
-          background: 'linear-gradient(to bottom, transparent, #010709)',
+          background: 'linear-gradient(to bottom, transparent, #0B1114)',
           pointerEvents: 'none',
         }}
       />
@@ -9577,7 +9603,7 @@ function UGCPracticeEcosystem() {
     <section
       ref={sectionRef}
       className="relative w-full overflow-hidden"
-      style={{ background: '#010709', padding: 'clamp(5rem, 10vw, 8rem) 0' }}
+      style={{ background: '#0B1114', padding: 'clamp(5rem, 10vw, 8rem) 0' }}
     >
       {/* Top hairline */}
       <div
@@ -9757,12 +9783,12 @@ function UGCContactFooter() {
         {/* Top fade */}
         <div
           className="absolute top-0 left-0 right-0 pointer-events-none"
-          style={{ height: '160px', background: 'linear-gradient(to bottom, #010709 0%, transparent 100%)', zIndex: 2 }}
+          style={{ height: '160px', background: 'linear-gradient(to bottom, #0B1114 0%, transparent 100%)', zIndex: 2 }}
         />
         {/* Bottom fade */}
         <div
           className="absolute bottom-0 left-0 right-0 pointer-events-none"
-          style={{ height: '200px', background: 'linear-gradient(to top, #010709 0%, transparent 100%)', zIndex: 2 }}
+          style={{ height: '200px', background: 'linear-gradient(to top, #0B1114 0%, transparent 100%)', zIndex: 2 }}
         />
       </div>
 
@@ -10260,7 +10286,7 @@ export default function Services() {
             height: 'clamp(420px, 52vw, 720px)',
             marginLeft: 'calc(-50vw + 50%)',
             marginRight: 'calc(-50vw + 50%)',
-            background: '#010709',
+            background: '#071011',
           }}
       >
         {/* Full-width background image */}
@@ -10291,6 +10317,15 @@ export default function Services() {
         <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
           backgroundImage: 'radial-gradient(hsl(210 40% 60% / 0.022) 1px, transparent 1px)',
           backgroundSize: '28px 28px',
+        }}/>
+
+        {/* Premium ambient — gold + cyan depth glows */}
+        <div aria-hidden="true" style={{
+          position: 'absolute', inset: 0, pointerEvents: 'none',
+          background: [
+            'radial-gradient(circle at 12% 80%, rgba(255,216,107,0.09), transparent 30%)',
+            'radial-gradient(circle at 20% 30%, hsl(190 90% 50% / 0.07), transparent 28%)',
+          ].join(', '),
         }}/>
 
         {/* Text content */}
@@ -10358,7 +10393,7 @@ export default function Services() {
         {/* Bottom fade into next section */}
         <div aria-hidden="true" className="pointer-events-none absolute left-0 right-0 bottom-0" style={{
           height: '100px',
-          background: 'linear-gradient(to top, #010709 0%, transparent 100%)',
+          background: 'linear-gradient(to top, #071011 0%, transparent 100%)',
         }}/>
       </section>
 
@@ -10367,7 +10402,7 @@ export default function Services() {
         ref={bwd1Ref}
         id="bespoke-website-design-detail"
         className="relative w-full overflow-hidden"
-        style={{ background: '#010709', padding: 'clamp(5rem, 10vw, 8rem) 0' }}
+        style={{ background: '#071011', padding: 'clamp(5rem, 10vw, 8rem) 0' }}
       >
         {/* Cyan-blue tint — center/right biased */}
         <div
@@ -10382,7 +10417,7 @@ export default function Services() {
         />
 
         {/* Section boundary fades */}
-        <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to top, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
+        <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to top, #071011, transparent)', pointerEvents: 'none', zIndex: 2 }} />
 
         <div className="relative z-10 max-w-[88rem] mx-auto px-6 sm:px-10">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.3fr] gap-16 lg:gap-14 items-center">
@@ -10549,7 +10584,7 @@ export default function Services() {
         <div aria-hidden="true" style={{
           position: 'absolute', bottom: 0, left: 0, right: 0,
           height: '120px',
-          background: 'linear-gradient(to bottom, rgba(1,7,9,0), #010709)',
+          background: 'linear-gradient(to bottom, rgba(1,7,9,0), #071011)',
           pointerEvents: 'none',
           zIndex: 5,
         }}/>
@@ -10560,7 +10595,7 @@ export default function Services() {
         ref={bwdCinemaRef}
         className="relative w-full overflow-hidden"
         style={{
-          background: '#010709',
+          background: '#071011',
           padding: 'clamp(6rem, 11vw, 10rem) 0 clamp(5rem, 9vw, 8rem)',
         }}
       >
@@ -10593,7 +10628,7 @@ export default function Services() {
         <div aria-hidden="true" style={{
           position: 'absolute', top: 0, left: 0, right: 0,
           height: '120px',
-          background: 'linear-gradient(to bottom, #010709, rgba(1,7,9,0))',
+          background: 'linear-gradient(to bottom, #071011, rgba(1,7,9,0))',
           pointerEvents: 'none',
           zIndex: 5,
         }}/>
@@ -10801,7 +10836,7 @@ export default function Services() {
         <div aria-hidden="true" style={{
           position: 'absolute', bottom: 0, left: 0, right: 0,
           height: '120px',
-          background: 'linear-gradient(to bottom, rgba(1,7,9,0), #010709)',
+          background: 'linear-gradient(to bottom, rgba(1,7,9,0), #071011)',
           pointerEvents: 'none',
           zIndex: 5,
         }}/>
@@ -10843,7 +10878,7 @@ export default function Services() {
         ref={chatbotRef}
         id="custom-chatbots-detail"
         className="relative w-full overflow-hidden"
-        style={{ background: '#010709', padding: 'clamp(5rem, 10vw, 8rem) 0' }}
+        style={{ background: '#071011', padding: 'clamp(5rem, 10vw, 8rem) 0' }}
       >
         {/* Ambient glows */}
         <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
