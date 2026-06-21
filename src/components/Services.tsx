@@ -3514,15 +3514,19 @@ function SocialMediaMarketing() {
       const s2 = el.querySelector('.smcs-val-2') as HTMLElement | null
       const s3 = el.querySelector('.smcs-val-3') as HTMLElement | null
       const p = { v1: 0, v2: 0, v3: 0 }
-      gsap.to(p, {
-        v1: 278, v2: 342, v3: 187,
-        duration: 2.2, ease: 'expo.out',
-        onUpdate: () => {
-          if (s1) s1.textContent = Math.round(p.v1) + '%'
-          if (s2) s2.textContent = Math.round(p.v2) + '%'
-          if (s3) s3.textContent = Math.round(p.v3) + '%'
-        },
-      })
+      gsap.fromTo(p,
+        { v1: 0, v2: 0, v3: 0 },
+        {
+          v1: 278, v2: 342, v3: 187,
+          duration: 1.5, ease: 'expo.out',
+          repeat: -1, repeatDelay: 1.5,
+          onUpdate: () => {
+            if (s1) s1.textContent = Math.round(p.v1) + '%'
+            if (s2) s2.textContent = Math.round(p.v2) + '%'
+            if (s3) s3.textContent = Math.round(p.v3) + '%'
+          },
+        }
+      )
     }, '-=0.15')
   }), [])
 
