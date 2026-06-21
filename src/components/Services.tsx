@@ -3279,6 +3279,7 @@ function SocialMediaMarketing() {
   const ctaRef      = useRef<HTMLElement>(null)
   const s6Ref       = useRef<HTMLElement>(null)
   const smFeatRef   = useRef<HTMLElement>(null)
+  const caseRef     = useRef<HTMLElement>(null)
 
   // Shared observer helper
   function observe(ref: React.RefObject<HTMLElement | null>, fn: (el: HTMLElement) => void) {
@@ -3497,6 +3498,32 @@ function SocialMediaMarketing() {
         }
       }
     }, '>')
+  }), [])
+
+  // ── Case Study section ──
+  useEffect(() => observe(caseRef, el => {
+    const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
+    tl.to(el.querySelectorAll('.smcs-label'),   { opacity: 1, y: 0, duration: 0.6 }, 0)
+    tl.to(el.querySelectorAll('.smcs-heading'), { opacity: 1, y: 0, duration: 0.85 }, 0.12)
+    tl.to(el.querySelectorAll('.smcs-intro'),   { opacity: 1, y: 0, duration: 0.75 }, 0.26)
+    tl.to(el.querySelectorAll('.smcs-img'),     { opacity: 1, y: 0, duration: 1.2, ease: 'power2.out' }, 0.36)
+    tl.to(el.querySelectorAll('.smcs-body'),    { opacity: 1, y: 0, duration: 0.7, stagger: 0.12 }, 0.58)
+    tl.to(el.querySelectorAll('.smcs-stat'),    { opacity: 1, y: 0, duration: 0.65, stagger: 0.15 }, 0.72)
+    tl.add(() => {
+      const s1 = el.querySelector('.smcs-val-1') as HTMLElement | null
+      const s2 = el.querySelector('.smcs-val-2') as HTMLElement | null
+      const s3 = el.querySelector('.smcs-val-3') as HTMLElement | null
+      const p = { v1: 0, v2: 0, v3: 0 }
+      gsap.to(p, {
+        v1: 278, v2: 342, v3: 187,
+        duration: 2.2, ease: 'expo.out',
+        onUpdate: () => {
+          if (s1) s1.textContent = Math.round(p.v1) + '%'
+          if (s2) s2.textContent = Math.round(p.v2) + '%'
+          if (s3) s3.textContent = Math.round(p.v3) + '%'
+        },
+      })
+    }, '-=0.15')
   }), [])
 
   return (
@@ -4273,6 +4300,194 @@ function SocialMediaMarketing() {
         background: 'linear-gradient(to top, #071011 0%, transparent 100%)',
         zIndex: 3,
       }}/>
+    </section>
+
+    {/* ══ CASE STUDY — Campaigns Designed To Turn Attention Into Revenue ════════ */}
+    <section
+      ref={caseRef}
+      className="relative w-full overflow-hidden"
+      style={{
+        background: [
+          'radial-gradient(circle at 20% 20%, rgba(255,216,107,0.08), transparent 28%)',
+          'radial-gradient(circle at 80% 70%, rgba(120,40,60,0.16), transparent 35%)',
+          'linear-gradient(180deg, #071011 0%, #0B1114 100%)',
+        ].join(', '),
+        padding: 'clamp(5rem, 10vw, 8.5rem) 0',
+      }}
+    >
+      {/* Top fade */}
+      <div aria-hidden="true" className="pointer-events-none absolute left-0 right-0 top-0" style={{ height: '120px', background: 'linear-gradient(to bottom, #071011 0%, transparent 100%)', zIndex: 3 }}/>
+
+      {/* SVG grain */}
+      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+        style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', opacity: 0.04, pointerEvents: 'none', zIndex: 1 }}>
+        <filter id="smcs-noise">
+          <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" result="noise"/>
+          <feColorMatrix type="saturate" values="0" in="noise"/>
+        </filter>
+        <rect width="100%" height="100%" filter="url(#smcs-noise)" style={{ fill: 'white' }}/>
+      </svg>
+
+      {/* Dot grid */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
+        zIndex: 0,
+        backgroundImage: 'radial-gradient(hsl(210 40% 60% / 0.02) 1px, transparent 1px)',
+        backgroundSize: '32px 32px',
+      }}/>
+
+      <div className="relative z-10 max-w-[72rem] mx-auto px-6 sm:px-10">
+
+        {/* ── Header ── */}
+        <div className="text-center mb-12 lg:mb-16">
+
+          <p
+            className="smcs-label font-sans font-medium uppercase inline-flex items-center gap-3 mb-5"
+            style={{
+              opacity: 0, transform: 'translateY(16px)',
+              fontSize: '0.62rem', letterSpacing: '0.32em', color: '#94A3B8',
+            }}
+          >
+            <span style={{ display: 'inline-block', width: 28, height: 1, background: 'rgba(255,216,107,0.45)' }}/>
+            Social Media Case Study
+            <span style={{ display: 'inline-block', width: 28, height: 1, background: 'rgba(255,216,107,0.45)' }}/>
+          </p>
+
+          <h2
+            className="smcs-heading font-sans font-light text-text"
+            style={{
+              opacity: 0, transform: 'translateY(22px)',
+              fontSize: 'clamp(1.9rem, 4vw, 3.1rem)',
+              lineHeight: 1.12, letterSpacing: '-0.035em',
+              marginBottom: '1.4rem',
+            }}
+          >
+            Campaigns Designed To{' '}
+            <em style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400 }}>
+              Turn Attention
+            </em>{' '}
+            Into Revenue
+          </h2>
+
+          <p
+            className="smcs-intro font-sans font-medium"
+            style={{
+              opacity: 0, transform: 'translateY(16px)',
+              fontSize: 'clamp(0.88rem, 1.4vw, 1rem)',
+              lineHeight: 1.8, color: '#CBD5E1',
+              maxWidth: '52rem', margin: '0 auto',
+            }}
+          >
+            We create premium social campaigns that combine strategy, content, paid advertising, and brand
+            positioning to help businesses attract the right audience and convert attention into measurable growth.
+          </p>
+
+        </div>
+
+        {/* ── Case Study Image ── */}
+        <div
+          className="smcs-img"
+          style={{
+            opacity: 0, transform: 'translateY(32px)',
+            maxWidth: '1100px', margin: '0 auto clamp(3rem, 6vw, 5rem)',
+          }}
+        >
+          <img
+            src="/brand_assets/beauty.png"
+            alt="Beauty brand social media campaign results — 278% increase in campaign performance"
+            loading="lazy"
+            decoding="async"
+            style={{
+              display: 'block',
+              width: '100%',
+              height: 'auto',
+              borderRadius: 'clamp(14px, 2vw, 22px)',
+              border: '1px solid rgba(255,255,255,0.12)',
+              boxShadow: '0 30px 90px rgba(0,0,0,0.35), 0 8px 32px rgba(0,0,0,0.25)',
+            }}
+          />
+        </div>
+
+        {/* ── Body text ── */}
+        <div style={{ maxWidth: '52rem', margin: '0 auto clamp(3rem, 6vw, 4.5rem)' }}>
+          {[
+            'Full-funnel social media campaigns built to move customers from discovery to trust, and from trust to action.',
+            'We combine content direction, paid social strategy, creative testing, retargeting, and brand positioning so every post, ad, and campaign has a clear business purpose.',
+            'The result is a stronger brand presence, better audience engagement, and a marketing system designed to increase visibility, leads, and revenue.',
+          ].map((text, i) => (
+            <p
+              key={i}
+              className="smcs-body font-sans font-medium"
+              style={{
+                opacity: 0, transform: 'translateY(16px)',
+                fontSize: 'clamp(0.9rem, 1.4vw, 1rem)',
+                lineHeight: 1.8, color: '#CBD5E1',
+                marginBottom: i < 2 ? '1.25rem' : 0,
+              }}
+            >
+              {text}
+            </p>
+          ))}
+        </div>
+
+        {/* ── Performance stats ── */}
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+          gap: 'clamp(1rem, 3vw, 1.75rem)',
+          maxWidth: '52rem', margin: '0 auto',
+        }}>
+          {[
+            { valClass: 'smcs-val-1', label: 'Increase In Campaign Performance', sublabel: 'Full-Funnel Performance Campaign' },
+            { valClass: 'smcs-val-2', label: 'Increase In Revenue Potential',    sublabel: 'Paid Social Scale Strategy' },
+            { valClass: 'smcs-val-3', label: 'Increase In Brand Engagement',     sublabel: 'Email + SMS Lifecycle Optimisation' },
+          ].map(({ valClass, label, sublabel }, i) => (
+            <div
+              key={i}
+              className="smcs-stat"
+              style={{
+                opacity: 0, transform: 'translateY(22px)',
+                padding: 'clamp(1.2rem, 3vw, 1.75rem)',
+                background: 'rgba(16,24,32,0.55)',
+                border: '1px solid rgba(255,255,255,0.07)',
+                borderRadius: '14px',
+                backdropFilter: 'blur(12px)',
+              }}
+            >
+              <p style={{
+                fontSize: '0.58rem', letterSpacing: '0.26em', textTransform: 'uppercase',
+                color: '#94A3B8', fontFamily: 'var(--font-sans, sans-serif)', fontWeight: 500,
+                marginBottom: '0.6rem',
+              }}>
+                {sublabel}
+              </p>
+              <p
+                className={valClass}
+                style={{
+                  fontFamily: "'Instrument Serif', Georgia, serif",
+                  fontStyle: 'italic', fontWeight: 400,
+                  fontSize: 'clamp(2.6rem, 5.5vw, 3.75rem)',
+                  lineHeight: 1, letterSpacing: '-0.025em',
+                  color: '#8B1E2D',
+                  marginBottom: '0.5rem',
+                }}
+              >
+                0%
+              </p>
+              <p style={{
+                fontSize: 'clamp(0.72rem, 1.1vw, 0.8rem)',
+                color: '#CBD5E1', fontFamily: 'var(--font-sans, sans-serif)',
+                fontWeight: 500, lineHeight: 1.55,
+              }}>
+                {label}
+              </p>
+            </div>
+          ))}
+        </div>
+
+      </div>
+
+      {/* Bottom fade */}
+      <div aria-hidden="true" className="pointer-events-none absolute left-0 right-0 bottom-0" style={{ height: '120px', background: 'linear-gradient(to top, #071011 0%, transparent 100%)', zIndex: 3 }}/>
     </section>
 
     {/* ══ SECTION 4.5 — Stay Connected With Your Audience ═════════════════════ */}
