@@ -3357,9 +3357,10 @@ function SocialMediaMarketing() {
   // ── Section 3: Strategy ──
   useEffect(() => observe(stratRef, el => {
     const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
-    tl.to(el.querySelectorAll('.sms-heading'), { opacity: 1, y: 0, duration: 0.8 }, 0)
-    tl.to(el.querySelectorAll('.sms-line'),    { scaleX: 1, duration: 0.6, stagger: 0.1, ease: 'power2.inOut' }, 0.2)
-    tl.to(el.querySelectorAll('.sms-item'),    { opacity: 1, x: 0, duration: 0.55, stagger: 0.09 }, 0.25)
+    tl.to(el.querySelectorAll('.sms-heading'),  { opacity: 1, y: 0, duration: 0.8 }, 0)
+    tl.to(el.querySelectorAll('.sms3-support'), { opacity: 1, y: 0, duration: 0.7 }, 0.2)
+    tl.to(el.querySelectorAll('.sms3-accent'),  { opacity: 0.55, scaleX: 1, duration: 0.65, ease: 'power2.inOut' }, 0.35)
+    tl.to(el.querySelectorAll('.sms3-card'),    { opacity: 1, y: 0, duration: 0.55, stagger: 0.08 }, 0.3)
   }), [])
 
   // ── Section 4: Brand Presence ──
@@ -3894,99 +3895,172 @@ function SocialMediaMarketing() {
       }}/>
     </section>
 
-    {/* ══ SECTION 3 — Content Strategy ═══════════════════════════════════════ */}
+    {/* ══ SECTION 3 — Content Strategy (premium redesign) ══════════════════════ */}
     <section
       ref={stratRef}
       className="relative w-full overflow-hidden"
-      style={{ background: '#071011', padding: 'clamp(5rem, 10vw, 8rem) 0' }}
-    >
-      {/* Soft cinematic atmosphere */}
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
+      style={{
         background: [
-          'radial-gradient(ellipse 70% 55% at 55% 50%, hsl(199 89% 60% / 0.07) 0%, transparent 70%)',
-          'radial-gradient(ellipse 45% 40% at 20% 75%, hsl(195 70% 50% / 0.05) 0%, transparent 65%)',
+          'radial-gradient(circle at 18% 25%, rgba(231,200,115,0.08), transparent 30%)',
+          'radial-gradient(circle at 82% 72%, rgba(80,180,180,0.08), transparent 32%)',
+          'linear-gradient(180deg, #071011 0%, #0B1114 100%)',
         ].join(', '),
-        filter: 'blur(60px)',
+        padding: 'clamp(5rem, 10vw, 8rem) 0',
+      }}
+    >
+      {/* SVG grain */}
+      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+        style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', opacity: 0.035, pointerEvents: 'none', zIndex: 1 }}>
+        <filter id="sms3-noise">
+          <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" result="n"/>
+          <feColorMatrix type="saturate" values="0" in="n"/>
+        </filter>
+        <rect width="100%" height="100%" filter="url(#sms3-noise)" fill="white"/>
+      </svg>
+
+      {/* Dot grid */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
+        zIndex: 0,
+        backgroundImage: 'radial-gradient(hsl(210 40% 60% / 0.02) 1px, transparent 1px)',
+        backgroundSize: '32px 32px',
       }}/>
 
-      <div className="relative z-10 max-w-[62rem] mx-auto px-6 sm:px-10">
+      <div className="relative z-10 max-w-[72rem] mx-auto px-6 sm:px-10">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.45fr] gap-14 lg:gap-20 items-start">
 
-        {/* Heading */}
-        <div className="mb-16">
-          <p className="sms-heading font-sans uppercase mb-4" style={{ opacity: 0, transform: 'translateY(20px)', fontSize: '0.7rem', letterSpacing: '0.3em', color: 'hsl(0 0% 40%)' }}>
-            What we deliver
-          </p>
-          <h2
-            className="sms-heading font-sans font-light text-text"
-            style={{ opacity: 0, transform: 'translateY(24px)', fontSize: 'clamp(1.8rem, 4vw, 3rem)', lineHeight: 1.08, letterSpacing: '-0.033em', maxWidth: '34rem' }}
-          >
-            Content backed by{' '}
-            <em style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400 }}>strategy</em>
-          </h2>
-        </div>
+          {/* ── LEFT: Heading block ── */}
+          <div>
+            {/* Eyebrow */}
+            <p
+              className="sms-heading font-sans font-medium uppercase mb-5 inline-flex items-center gap-3"
+              style={{
+                opacity: 0, transform: 'translateY(16px)',
+                fontSize: '0.62rem', letterSpacing: '0.30em', color: '#94A3B8',
+              }}
+            >
+              <span aria-hidden="true" style={{ display: 'inline-block', width: 22, height: 1, background: 'rgba(231,200,115,0.55)' }}/>
+              What we deliver
+            </p>
 
-        {/* Horizontal blocks */}
-        <div className="flex flex-col">
-          {STRATEGY_ITEMS.map(({ label, desc }, i) => (
-            <div key={i}>
+            {/* Main heading */}
+            <h2
+              className="sms-heading font-sans font-light mb-7"
+              style={{
+                opacity: 0, transform: 'translateY(24px)',
+                fontSize: 'clamp(2rem, 4.5vw, 3.4rem)',
+                lineHeight: 1.1, letterSpacing: '-0.035em',
+                color: '#F2F8FC',
+              }}
+            >
+              Content backed{' '}
+              <span style={{ display: 'block' }}>
+                by{' '}
+                <em style={{
+                  fontFamily: "'Instrument Serif', Georgia, serif",
+                  fontStyle: 'italic', fontWeight: 400,
+                  color: '#E7C873',
+                }}>
+                  strategy
+                </em>
+              </span>
+            </h2>
+
+            {/* Supporting sentence */}
+            <p
+              className="sms3-support font-sans font-medium"
+              style={{
+                opacity: 0, transform: 'translateY(16px)',
+                fontSize: 'clamp(0.88rem, 1.3vw, 0.97rem)',
+                lineHeight: 1.8, color: '#CBD5E1',
+                marginBottom: '2rem', maxWidth: '28rem',
+              }}
+            >
+              Every deliverable is designed to support brand visibility, audience growth, and measurable campaign performance.
+            </p>
+
+            {/* Champagne accent bar */}
+            <div
+              className="sms3-accent"
+              style={{
+                width: 44, height: 2,
+                background: 'linear-gradient(to right, #E7C873, rgba(231,200,115,0.25))',
+                borderRadius: 999,
+                opacity: 0, transform: 'scaleX(0)', transformOrigin: 'left center',
+              }}
+            />
+          </div>
+
+          {/* ── RIGHT: 6 premium glass cards ── */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+            {STRATEGY_ITEMS.map(({ label, desc }, i) => (
               <div
-                className="sms-line"
-                style={{ height: '1px', background: 'hsl(0 0% 100% / 0.07)', transformOrigin: 'left center', transform: 'scaleX(0)' }}
-                aria-hidden="true"
-              />
-              <div
-                className="sms-item flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-12 py-7"
-                style={{ opacity: 0, transform: 'translateX(-20px)' }}
+                key={i}
+                className="sms3-card"
+                style={{
+                  opacity: 0, transform: 'translateY(28px)',
+                  background: 'rgba(255,255,255,0.035)',
+                  border: '1px solid rgba(255,255,255,0.09)',
+                  borderRadius: '18px',
+                  padding: 'clamp(1.1rem, 2.5vw, 1.5rem)',
+                  backdropFilter: 'blur(8px)',
+                  cursor: 'default',
+                  transition: 'border-color 280ms ease, background-color 280ms ease',
+                }}
                 onMouseEnter={e => {
-                  const num = e.currentTarget.querySelector('.sms-num') as HTMLElement | null
-                  if (!num) return
-                  num.style.filter = 'drop-shadow(0 0 6px hsl(0 0% 80% / 0.4))'
-                  gsap.killTweensOf(num)
-                  gsap.to(num, { scale: 1.12, duration: 0.25, ease: 'power2.out', transformOrigin: 'center center' })
-                  gsap.to(num, { scale: 1, duration: 0.7, delay: 0.25, ease: 'elastic.out(1, 0.45)', transformOrigin: 'center center' })
+                  const card = e.currentTarget as HTMLElement
+                  gsap.to(card, { y: -5, duration: 0.28, ease: 'power2.out' })
+                  card.style.borderColor = 'rgba(231,200,115,0.28)'
+                  card.style.backgroundColor = 'rgba(255,255,255,0.058)'
                 }}
                 onMouseLeave={e => {
-                  const num = e.currentTarget.querySelector('.sms-num') as HTMLElement | null
-                  if (!num) return
-                  num.style.filter = 'none'
-                  gsap.killTweensOf(num)
-                  gsap.to(num, { scale: 1, duration: 0.35, ease: 'power2.inOut', transformOrigin: 'center center' })
+                  const card = e.currentTarget as HTMLElement
+                  gsap.to(card, { y: 0, duration: 0.32, ease: 'power2.out' })
+                  card.style.borderColor = 'rgba(255,255,255,0.09)'
+                  card.style.backgroundColor = 'rgba(255,255,255,0.035)'
                 }}
               >
                 {/* Number */}
                 <span
-                  className="sms-num font-sans shrink-0"
+                  className="font-sans font-medium"
                   style={{
-                    fontSize: '0.65rem',
-                    letterSpacing: '0.18em',
-                    minWidth: '2rem',
-                    fontVariantNumeric: 'tabular-nums',
-                    color: 'hsl(0 0% 38%)',
-                    transition: 'filter 0.3s ease',
-                    display: 'inline-block',
+                    display: 'block', marginBottom: '0.65rem',
+                    fontSize: '0.6rem', letterSpacing: '0.24em', textTransform: 'uppercase',
+                    color: '#E7C873',
                   }}
                 >
                   {String(i + 1).padStart(2, '0')}
                 </span>
-                {/* Label */}
-                <p className="font-sans font-light text-text shrink-0" style={{ fontSize: 'clamp(0.95rem, 1.5vw, 1.1rem)', letterSpacing: '-0.015em', minWidth: '18rem' }}>
+
+                {/* Thin champagne divider */}
+                <div aria-hidden="true" style={{ height: 1, background: 'rgba(231,200,115,0.14)', marginBottom: '0.8rem' }}/>
+
+                {/* Title */}
+                <h3
+                  className="font-sans font-medium"
+                  style={{
+                    fontSize: 'clamp(0.88rem, 1.3vw, 0.97rem)',
+                    letterSpacing: '-0.012em', lineHeight: 1.3,
+                    color: '#F2F8FC', marginBottom: '0.5rem',
+                  }}
+                >
                   {label}
-                </p>
-                {/* Desc */}
-                <p className="font-sans font-light" style={{ fontSize: '0.84rem', lineHeight: 1.75, color: '#F2F8FC' }}>
+                </h3>
+
+                {/* Description */}
+                <p
+                  className="font-sans"
+                  style={{
+                    fontSize: 'clamp(0.78rem, 1.1vw, 0.84rem)',
+                    lineHeight: 1.75, color: '#CBD5E1', fontWeight: 400,
+                  }}
+                >
                   {desc}
                 </p>
               </div>
-            </div>
-          ))}
-          {/* Final line */}
-          <div
-            className="sms-line"
-            style={{ height: '1px', background: 'hsl(0 0% 100% / 0.07)', transformOrigin: 'left center', transform: 'scaleX(0)' }}
-            aria-hidden="true"
-          />
-        </div>
+            ))}
+          </div>
 
+        </div>
       </div>
     </section>
 
