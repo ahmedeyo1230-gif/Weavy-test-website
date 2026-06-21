@@ -4390,7 +4390,7 @@ function SocialMediaMarketing() {
           className="smcs-img"
           style={{
             opacity: 0, transform: 'translateY(32px)',
-            maxWidth: '860px', margin: '0 auto clamp(3rem, 6vw, 5rem)',
+            maxWidth: '860px', margin: '0 auto clamp(2rem, 4vw, 3rem)',
           }}
         >
           <img
@@ -4410,7 +4410,12 @@ function SocialMediaMarketing() {
         </div>
 
         {/* ── Body text ── */}
-        <div style={{ maxWidth: '52rem', margin: '0 auto clamp(3rem, 6vw, 4.5rem)' }}>
+        <div style={{
+          maxWidth: '860px',
+          margin: '0 auto clamp(3rem, 6vw, 4.5rem)',
+          textAlign: 'center',
+          padding: '0 clamp(0px, 2vw, 0px)',
+        }}>
           {[
             'Full-funnel social media campaigns built to move customers from discovery to trust, and from trust to action.',
             'We combine content direction, paid social strategy, creative testing, retargeting, and brand positioning so every post, ad, and campaign has a clear business purpose.',
@@ -4421,9 +4426,13 @@ function SocialMediaMarketing() {
               className="smcs-body font-sans font-medium"
               style={{
                 opacity: 0, transform: 'translateY(16px)',
-                fontSize: 'clamp(0.9rem, 1.4vw, 1rem)',
+                fontSize: 'clamp(0.92rem, 1.5vw, 1.05rem)',
                 lineHeight: 1.8, color: '#CBD5E1',
-                marginBottom: i < 2 ? '1.25rem' : 0,
+                marginBottom: i < 2 ? '1.1rem' : 0,
+                maxWidth: '720px',
+                margin: i < 2
+                  ? '0 auto 1.1rem'
+                  : '0 auto',
               }}
             >
               {text}
