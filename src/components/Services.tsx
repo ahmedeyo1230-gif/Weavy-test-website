@@ -3361,6 +3361,7 @@ function SocialMediaMarketing() {
     tl.to(el.querySelectorAll('.sms3-support'), { opacity: 1, y: 0, duration: 0.7 }, 0.2)
     tl.to(el.querySelectorAll('.sms3-accent'),  { opacity: 0.55, scaleX: 1, duration: 0.65, ease: 'power2.inOut' }, 0.35)
     tl.to(el.querySelectorAll('.sms3-card'),    { opacity: 1, y: 0, duration: 0.55, stagger: 0.08 }, 0.3)
+    tl.to(el.querySelectorAll('.sms3-num'),     { opacity: 1, y: 0, duration: 0.6, stagger: 0.09, ease: 'power2.out' }, 0.48)
   }), [])
 
   // ── Section 4: Brand Presence ──
@@ -4023,11 +4024,14 @@ function SocialMediaMarketing() {
               >
                 {/* Number */}
                 <span
-                  className="font-sans font-medium"
+                  className="sms3-num font-sans font-medium"
                   style={{
                     display: 'block', marginBottom: '0.65rem',
                     fontSize: '0.6rem', letterSpacing: '0.24em', textTransform: 'uppercase',
-                    color: '#E7C873',
+                    background: 'linear-gradient(90deg, #95CAF1 0%, #9596E1 50%, #BE95E2 100%)',
+                    WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
+                    backgroundClip: 'text',
+                    opacity: 0, transform: 'translateY(10px)',
                   }}
                 >
                   {String(i + 1).padStart(2, '0')}
