@@ -3917,8 +3917,8 @@ function SocialMediaMarketing() {
             What we deliver
           </p>
           <h2
-            className="sms-heading font-sans font-light"
-            style={{ opacity: 0, transform: 'translateY(18px)', fontSize: 'clamp(0.88rem, 1.4vw, 1rem)', lineHeight: 1.9, color: 'hsl(0 0% 46%)', maxWidth: '34rem' }}
+            className="sms-heading font-sans font-light text-text"
+            style={{ opacity: 0, transform: 'translateY(24px)', fontSize: 'clamp(1.8rem, 4vw, 3rem)', lineHeight: 1.08, letterSpacing: '-0.033em', maxWidth: '34rem' }}
           >
             Content backed by{' '}
             <em style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400 }}>strategy</em>
