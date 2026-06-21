@@ -3723,7 +3723,7 @@ function SocialMediaMarketing() {
                   opacity: 0, transform: 'translateY(18px)',
                   fontSize: 'clamp(0.88rem, 1.4vw, 1rem)',
                   lineHeight: 1.9,
-                  color: 'hsl(0 0% 46%)',
+                  color: '#F2F8FC',
                   maxWidth: '34rem',
                 }}
               >
@@ -3745,7 +3745,7 @@ function SocialMediaMarketing() {
                     style={{
                       opacity: 0, transform: 'translateY(10px)',
                       fontSize: 'clamp(0.84rem, 1.2vw, 0.92rem)',
-                      color: 'hsl(0 0% 58%)',
+                      color: '#F2F8FC',
                       borderBottom: '1px solid hsl(0 0% 100% / 0.07)',
                       padding: '0.88rem 0',
                       cursor: 'default',
@@ -3756,7 +3756,7 @@ function SocialMediaMarketing() {
                       ((e.currentTarget as HTMLElement).querySelector('.smp-arrow') as HTMLElement | null)?.style.setProperty('opacity', '1')
                     }}
                     onMouseLeave={e => {
-                      (e.currentTarget as HTMLElement).style.color = 'hsl(0 0% 58%)';
+                      (e.currentTarget as HTMLElement).style.color = '#F2F8FC';
                       ((e.currentTarget as HTMLElement).querySelector('.smp-arrow') as HTMLElement | null)?.style.setProperty('opacity', '0.28')
                     }}
                   >
@@ -3973,7 +3973,7 @@ function SocialMediaMarketing() {
                   {label}
                 </p>
                 {/* Desc */}
-                <p className="font-sans font-light" style={{ fontSize: '0.84rem', lineHeight: 1.75, color: 'hsl(0 0% 46%)' }}>
+                <p className="font-sans font-light" style={{ fontSize: '0.84rem', lineHeight: 1.75, color: '#F2F8FC' }}>
                   {desc}
                 </p>
               </div>
@@ -4253,7 +4253,7 @@ function SocialMediaMarketing() {
                 style={{
                   opacity: 0, transform: 'translateY(18px)',
                   fontSize: 'clamp(0.88rem, 1.4vw, 1rem)',
-                  lineHeight: 1.9, color: 'hsl(0 0% 46%)', maxWidth: '34rem',
+                  lineHeight: 1.9, color: '#F2F8FC', maxWidth: '34rem',
                 }}
               >
                 We create high-converting social media experiences that make brands look professional,
@@ -4274,14 +4274,14 @@ function SocialMediaMarketing() {
                     style={{
                       opacity: 0, transform: 'translateY(10px)',
                       fontSize: 'clamp(0.84rem, 1.2vw, 0.92rem)',
-                      color: 'hsl(0 0% 58%)',
+                      color: '#F2F8FC',
                       borderBottom: '1px solid hsl(0 0% 100% / 0.07)',
                       padding: '0.88rem 0',
                       cursor: 'default',
                       transition: 'color 0.25s ease',
                     }}
                     onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = 'hsl(0 0% 88%)' }}
-                    onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = 'hsl(0 0% 58%)' }}
+                    onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = '#F2F8FC' }}
                   >
                     <span className="flex items-center gap-3">
                       <span style={{ fontSize: '0.7rem', color: 'hsl(280 65% 65%)', flexShrink: 0, width: '1.8rem', textAlign: 'center' }}>{stat}</span>
@@ -4379,7 +4379,7 @@ function SocialMediaMarketing() {
             style={{
               opacity: 0, transform: 'translateY(16px)',
               fontSize: 'clamp(0.88rem, 1.4vw, 1rem)',
-              lineHeight: 1.8, color: '#CBD5E1',
+              lineHeight: 1.8, color: '#F2F8FC',
               maxWidth: '52rem', margin: '0 auto',
             }}
           >
@@ -4431,7 +4431,7 @@ function SocialMediaMarketing() {
               style={{
                 opacity: 0, transform: 'translateY(16px)',
                 fontSize: 'clamp(0.92rem, 1.5vw, 1.05rem)',
-                lineHeight: 1.8, color: '#CBD5E1',
+                lineHeight: 1.8, color: '#F2F8FC',
                 marginBottom: i < 2 ? '1.1rem' : 0,
                 maxWidth: '720px',
                 margin: i < 2
@@ -4490,7 +4490,7 @@ function SocialMediaMarketing() {
               </p>
               <p style={{
                 fontSize: 'clamp(0.72rem, 1.1vw, 0.8rem)',
-                color: '#CBD5E1', fontFamily: 'var(--font-sans, sans-serif)',
+                color: '#F2F8FC', fontFamily: 'var(--font-sans, sans-serif)',
                 fontWeight: 500, lineHeight: 1.55,
               }}>
                 {label}
@@ -4606,7 +4606,7 @@ function SocialMediaMarketing() {
               style={{
                 opacity: 0, transform: 'translateY(18px)',
                 fontSize: 'clamp(0.87rem, 1.35vw, 0.97rem)',
-                lineHeight: 1.9, color: 'hsl(0 0% 46%)', maxWidth: '34rem',
+                lineHeight: 1.9, color: '#F2F8FC', maxWidth: '34rem',
               }}
             >
               Social media is more than posting content. It's about building relationships, starting
@@ -4629,14 +4629,14 @@ function SocialMediaMarketing() {
                   style={{
                     opacity: 0, transform: 'translateY(10px)',
                     fontSize: 'clamp(0.84rem, 1.2vw, 0.9rem)',
-                    color: 'hsl(0 0% 58%)',
+                    color: '#F2F8FC',
                     borderBottom: '1px solid hsl(0 0% 100% / 0.07)',
                     padding: '0.82rem 0',
                     cursor: 'default',
                     transition: 'color 0.25s ease',
                   }}
                   onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = 'hsl(0 0% 88%)' }}
-                  onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = 'hsl(0 0% 58%)' }}
+                  onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = '#F2F8FC' }}
                 >
                   <span aria-hidden="true" style={{ fontSize: '0.42rem', color: 'hsl(199 89% 60%)', flexShrink: 0 }}>◆</span>
                   {item}
@@ -4766,7 +4766,7 @@ function SocialMediaMarketing() {
               style={{
                 opacity: 0, transform: 'translateY(18px)',
                 fontSize: 'clamp(0.87rem, 1.35vw, 0.97rem)',
-                lineHeight: 1.9, color: 'hsl(0 0% 46%)', maxWidth: '34rem',
+                lineHeight: 1.9, color: '#F2F8FC', maxWidth: '34rem',
               }}
             >
               We design campaign visuals that feel native to Instagram, TikTok, Facebook, and paid social
@@ -4780,7 +4780,7 @@ function SocialMediaMarketing() {
               style={{
                 opacity: 0, transform: 'translateY(18px)',
                 fontSize: 'clamp(0.87rem, 1.35vw, 0.97rem)',
-                lineHeight: 1.9, color: 'hsl(0 0% 46%)', maxWidth: '34rem',
+                lineHeight: 1.9, color: '#F2F8FC', maxWidth: '34rem',
               }}
             >
               From luxury product posts to scroll-stopping short-form visuals, we create assets that
@@ -4803,14 +4803,14 @@ function SocialMediaMarketing() {
                   style={{
                     opacity: 0, transform: 'translateY(10px)',
                     fontSize: 'clamp(0.84rem, 1.2vw, 0.9rem)',
-                    color: 'hsl(0 0% 58%)',
+                    color: '#F2F8FC',
                     borderBottom: '1px solid hsl(0 0% 100% / 0.07)',
                     padding: '0.82rem 0',
                     cursor: 'default',
                     transition: 'color 0.25s ease',
                   }}
                   onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = 'hsl(0 0% 88%)' }}
-                  onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = 'hsl(0 0% 58%)' }}
+                  onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = '#F2F8FC' }}
                 >
                   <span style={{ fontSize: '0.42rem', color: 'hsl(199 89% 60%)', flexShrink: 0 }}>◆</span>
                   {item}
@@ -5036,7 +5036,7 @@ function SocialMediaMarketing() {
                 opacity: 0, transform: 'translateY(18px)',
                 fontSize: 'clamp(0.85rem, 1.3vw, 0.97rem)',
                 lineHeight: 1.9,
-                color: 'hsl(0 0% 38%)',
+                color: '#F2F8FC',
                 maxWidth: '42rem',
               }}
             >
@@ -5263,7 +5263,7 @@ function SocialMediaMarketing() {
               style={{
                 fontSize: 'clamp(0.85rem, 1.2vw, 0.94rem)',
                 lineHeight: 1.9,
-                color: 'hsl(0 0% 52%)',
+                color: '#F2F8FC',
                 maxWidth: '28rem',
               }}
             >
@@ -5300,7 +5300,7 @@ function SocialMediaMarketing() {
               style={{
                 fontSize: 'clamp(0.85rem, 1.2vw, 0.94rem)',
                 lineHeight: 1.9,
-                color: 'hsl(0 0% 52%)',
+                color: '#F2F8FC',
                 maxWidth: '28rem',
               }}
             >
@@ -5335,7 +5335,7 @@ function SocialMediaMarketing() {
               style={{
                 fontSize: 'clamp(0.85rem, 1.2vw, 0.94rem)',
                 lineHeight: 1.9,
-                color: 'hsl(0 0% 52%)',
+                color: '#F2F8FC',
                 maxWidth: '28rem',
               }}
             >
@@ -5371,7 +5371,7 @@ function SocialMediaMarketing() {
               style={{
                 fontSize: 'clamp(0.85rem, 1.2vw, 0.94rem)',
                 lineHeight: 1.9,
-                color: 'hsl(0 0% 52%)',
+                color: '#F2F8FC',
                 maxWidth: '28rem',
               }}
             >
