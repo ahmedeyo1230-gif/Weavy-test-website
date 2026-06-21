@@ -4427,16 +4427,13 @@ function SocialMediaMarketing() {
           ].map((text, i) => (
             <p
               key={i}
-              className="smcs-body font-sans font-medium"
+              className="smcs-body font-sans font-light"
               style={{
-                opacity: 0, transform: 'translateY(16px)',
-                fontSize: 'clamp(0.92rem, 1.5vw, 1.05rem)',
-                lineHeight: 1.8, color: '#CBD5E1',
-                marginBottom: i < 2 ? '1.1rem' : 0,
+                opacity: 0, transform: 'translateY(18px)',
+                fontSize: 'clamp(0.88rem, 1.4vw, 1rem)',
+                lineHeight: 1.9, color: 'hsl(0 0% 46%)',
                 maxWidth: '720px',
-                margin: i < 2
-                  ? '0 auto 1.1rem'
-                  : '0 auto',
+                margin: i < 2 ? '0 auto 1.1rem' : '0 auto',
               }}
             >
               {text}
