@@ -77,7 +77,12 @@ export default function About() {
     <section
       id="about"
       aria-labelledby="about-heading"
-      className="py-28 lg:py-36 px-6 relative bg-background overflow-hidden"
+      className="py-28 lg:py-36 px-6 relative overflow-hidden"
+      style={{
+        background:
+          'radial-gradient(ellipse 60% 50% at 80% 20%, rgba(80,180,180,0.06), transparent 55%),' +
+          '#0B1114',
+      }}
     >
       {/* Dot grid */}
       <div
@@ -134,8 +139,8 @@ export default function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.65, delay: 0.13, ease: E }}
-              className="space-y-4 text-muted font-light leading-relaxed"
-              style={{ fontSize: 'clamp(0.9rem, 1.15vw, 1.02rem)' }}
+              className="space-y-4 font-medium leading-relaxed"
+              style={{ fontSize: 'clamp(0.9rem, 1.15vw, 1.02rem)', color: '#CBD5E1', lineHeight: 1.8 }}
             >
               <p>
                 We craft bespoke websites, deploy AI-powered chatbots, and build intelligent
@@ -164,8 +169,8 @@ export default function About() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.35, delay: 0.22 + i * 0.055, ease: E }}
-                  className="inline-flex items-center gap-1.5 text-[11px] uppercase tracking-widest text-muted border border-border rounded-full px-4 py-2 cursor-pointer select-none"
-                  style={{ transition: 'border-color 200ms, color 200ms, background-color 200ms' }}
+                  className="inline-flex items-center gap-1.5 text-[11px] uppercase tracking-widest rounded-full px-4 py-2 cursor-pointer select-none"
+                  style={{ color: '#94A3B8', border: '1px solid rgba(255,255,255,0.10)', transition: 'border-color 200ms, color 200ms, background-color 200ms' }}
                   onMouseEnter={e => {
                     const el = e.currentTarget as HTMLElement
                     el.style.borderColor = 'hsl(199 89% 60% / 0.35)'
@@ -260,8 +265,8 @@ export default function About() {
               >
                 {/* Location */}
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2 text-[11px] uppercase tracking-widest text-muted/50">
-                    <MapPin className="w-3.5 h-3.5 text-muted/35 shrink-0" />
+                  <div className="flex items-center gap-2 text-[11px] uppercase tracking-widest" style={{ color: '#94A3B8' }}>
+                    <MapPin className="w-3.5 h-3.5 shrink-0" style={{ color: '#64748B' }} />
                     Location
                   </div>
                   <span className="text-sm font-medium text-primary/90">London, UK</span>
@@ -269,8 +274,8 @@ export default function About() {
 
                 {/* Focus */}
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2 text-[11px] uppercase tracking-widest text-muted/50">
-                    <Cpu className="w-3.5 h-3.5 text-muted/35 shrink-0" />
+                  <div className="flex items-center gap-2 text-[11px] uppercase tracking-widest" style={{ color: '#94A3B8' }}>
+                    <Cpu className="w-3.5 h-3.5 shrink-0" style={{ color: '#64748B' }} />
                     Focus
                   </div>
                   <span className="text-sm font-medium text-primary/90">AI & Automation</span>
@@ -278,8 +283,8 @@ export default function About() {
 
                 {/* Status */}
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2 text-[11px] uppercase tracking-widest text-muted/50">
-                    <Zap className="w-3.5 h-3.5 text-muted/35 shrink-0" />
+                  <div className="flex items-center gap-2 text-[11px] uppercase tracking-widest" style={{ color: '#94A3B8' }}>
+                    <Zap className="w-3.5 h-3.5 shrink-0" style={{ color: '#64748B' }} />
                     Status
                   </div>
                   <div className="flex items-center gap-2">
@@ -341,7 +346,7 @@ export default function About() {
                             boxShadow: `0 0 6px ${item.color}55`,
                           }}
                         />
-                        <span className="text-xs text-muted/65 font-light">{item.event}</span>
+                        <span className="text-xs font-medium" style={{ color: '#94A3B8' }}>{item.event}</span>
                       </div>
                       <span
                         className="text-[10px] text-muted/30 shrink-0 ml-3"
@@ -415,8 +420,8 @@ export default function About() {
               >
                 {svc.num}
               </div>
-              <div className="text-sm font-medium text-primary mb-1.5">{svc.label}</div>
-              <div className="text-xs text-muted/55 font-light leading-snug">{svc.desc}</div>
+              <div className="text-sm font-semibold text-primary mb-1.5">{svc.label}</div>
+              <div className="text-xs font-medium leading-snug" style={{ color: '#94A3B8' }}>{svc.desc}</div>
             </motion.div>
           ))}
         </div>

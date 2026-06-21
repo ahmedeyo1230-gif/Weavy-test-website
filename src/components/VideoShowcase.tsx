@@ -45,7 +45,7 @@ export default function VideoShowcase() {
       id="showcase"
       aria-label="Video showcase"
       className="relative px-6 sm:px-10 pt-8 pb-36 md:pb-44 overflow-hidden"
-      style={{ background: '#0a0a0a' }}
+      style={{ background: '#071011' }}
     >
 
       {/* ── Heading ── */}
@@ -56,7 +56,7 @@ export default function VideoShowcase() {
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: E }}
           className="font-sans font-light uppercase mb-5"
-          style={{ fontSize: '0.65rem', letterSpacing: '0.32em', color: 'hsl(0 0% 36%)' }}
+          style={{ fontSize: '0.65rem', letterSpacing: '0.32em', color: '#94A3B8' }}
         >
           Live systems
         </motion.p>
@@ -87,11 +87,12 @@ export default function VideoShowcase() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.16, ease: E }}
-          className="mt-5 font-sans font-light"
+          className="mt-5 font-sans"
           style={{
             fontSize: 'clamp(0.85rem, 1.4vw, 0.95rem)',
             lineHeight: 1.8,
-            color: 'hsl(0 0% 44%)',
+            color: '#CBD5E1',
+            fontWeight: 500,
           }}
         >
           Built to run without you. Automated end-to-end, at scale.

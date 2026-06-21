@@ -123,7 +123,8 @@ export default function WhyWeavyWorks() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.16, ease: [0.16, 1, 0.3, 1] }}
-            className="mt-6 text-muted text-lg font-light max-w-md"
+            className="mt-6 text-lg font-medium max-w-md"
+          style={{ color: '#CBD5E1', lineHeight: 1.75 }}
           >
             We operate differently than traditional agencies. We are an extension
             of your team, focused purely on leverage.
@@ -139,17 +140,28 @@ export default function WhyWeavyWorks() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: '-50px' }}
               transition={{ duration: 0.55, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="feature-card group flex gap-5 p-6 rounded-2xl hover:bg-surface/60 border border-transparent hover:border-border"
-              style={{ transition: 'background-color 250ms, border-color 250ms' }}
+              className="feature-card group flex gap-5 p-6 rounded-2xl border border-transparent"
+              style={{
+                transition: 'background-color 250ms, border-color 250ms',
+                background: 'transparent',
+              }}
+              onMouseEnter={e => {
+                (e.currentTarget as HTMLElement).style.background = 'rgba(16,24,32,0.7)'
+                ;(e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.09)'
+              }}
+              onMouseLeave={e => {
+                (e.currentTarget as HTMLElement).style.background = 'transparent'
+                ;(e.currentTarget as HTMLElement).style.borderColor = 'transparent'
+              }}
             >
-              <div className="flex-shrink-0 w-11 h-11 rounded-full bg-surface border border-border flex items-center justify-center text-muted group-hover:text-accent-cyan group-hover:border-accent-cyan/30" style={{ transition: 'color 250ms, border-color 250ms' }}>
+              <div className="flex-shrink-0 w-11 h-11 rounded-full flex items-center justify-center group-hover:text-accent-cyan group-hover:border-accent-cyan/30" style={{ background: '#101820', border: '1px solid rgba(255,255,255,0.10)', color: '#94A3B8', transition: 'color 250ms, border-color 250ms' }}>
                 {feature.icon}
               </div>
               <div>
                 <h3 className="text-xl font-medium tracking-tight mb-2 text-primary">
                   {feature.title}
                 </h3>
-                <p className="text-muted font-light leading-relaxed">
+                <p className="font-medium leading-relaxed" style={{ color: '#CBD5E1', lineHeight: 1.75 }}>
                   {feature.description}
                 </p>
               </div>

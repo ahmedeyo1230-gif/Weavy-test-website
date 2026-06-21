@@ -219,7 +219,7 @@ export default function Footer() {
               fontSize: '0.68rem',
               letterSpacing: '0.32em',
               textTransform: 'uppercase',
-              color: 'hsl(0 0% 36%)',
+              color: '#94A3B8',
               marginBottom: '2rem',
             }}
           >
@@ -259,7 +259,8 @@ export default function Footer() {
             style={{
               fontSize: 'clamp(0.88rem, 1.4vw, 1rem)',
               lineHeight: 1.8,
-              color: 'hsl(0 0% 44%)',
+              color: '#CBD5E1',
+              fontWeight: 500,
               maxWidth: '34rem',
               marginBottom: '2.5rem',
             }}
@@ -338,7 +339,7 @@ export default function Footer() {
             />
             <span
               className="font-sans font-light"
-              style={{ fontSize: '0.73rem', letterSpacing: '0.1em', color: 'hsl(0 0% 38%)' }}
+              style={{ fontSize: '0.73rem', letterSpacing: '0.1em', color: '#94A3B8' }}
             >
               Available for projects
             </span>
@@ -354,12 +355,12 @@ export default function Footer() {
                 rel="noopener noreferrer"
                 aria-label={label}
                 style={{
-                  color: 'hsl(0 0% 34%)',
+                  color: '#64748B',
                   display: 'flex',
                   transition: 'color 0.25s ease',
                 }}
-                onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.color = 'hsl(0 0% 78%)' }}
-                onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.color = 'hsl(0 0% 34%)' }}
+                onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.color = '#CBD5E1' }}
+                onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.color = '#64748B' }}
               >
                 {icon}
               </a>

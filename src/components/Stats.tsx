@@ -47,15 +47,15 @@ function StatCounter({ value, suffix = '', prefix = '', label, description, dela
           <span className="font-serif italic text-accent-cyan text-3xl md:text-4xl mt-2">{suffix}</span>
         )}
       </div>
-      <p className="text-xs uppercase tracking-widest text-muted mb-2">{label}</p>
-      <p className="text-xs text-muted/50 font-light max-w-[120px] leading-relaxed">{description}</p>
+      <p className="text-xs uppercase tracking-widest mb-2 font-medium" style={{ color: '#94A3B8', letterSpacing: '0.15em' }}>{label}</p>
+      <p className="text-xs font-medium max-w-[120px] leading-relaxed" style={{ color: '#64748B' }}>{description}</p>
     </motion.div>
   )
 }
 
 export default function Stats() {
   return (
-    <section className="py-20 px-6 relative overflow-hidden" style={{ background: '#0a0a0a' }}>
+    <section className="py-20 px-6 relative overflow-hidden" style={{ background: '#071011' }}>
       {/* Radial glow behind the panel */}
       <div
         className="absolute inset-0 pointer-events-none"
@@ -76,10 +76,10 @@ export default function Stats() {
         <div
           className="rounded-3xl overflow-hidden"
           style={{
-            background: 'hsl(0 0% 100% / 0.025)',
-            border: '1px solid hsl(0 0% 100% / 0.07)',
-            backdropFilter: 'blur(12px)',
-            boxShadow: '0 0 0 1px hsl(0 0% 100% / 0.03), 0 24px 64px -16px hsl(0 0% 0% / 0.5)',
+            background: 'rgba(16,24,32,0.7)',
+            border: '1px solid rgba(255,255,255,0.09)',
+            backdropFilter: 'blur(16px)',
+            boxShadow: '0 0 0 1px rgba(255,255,255,0.03), 0 24px 64px -16px rgba(0,0,0,0.6)',
           }}
         >
           <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-y md:divide-y-0 divide-white/[0.06]">

@@ -210,7 +210,13 @@ export default function Hero() {
       <section
         id="home"
         aria-labelledby="hero-heading"
-        className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background"
+        className="relative min-h-screen flex items-center justify-center overflow-hidden"
+        style={{
+          background:
+            'radial-gradient(circle at 20% 20%, rgba(255,216,107,0.07), transparent 28%),' +
+            'radial-gradient(circle at 80% 10%, rgba(80,180,180,0.07), transparent 30%),' +
+            '#071011',
+        }}
       >
         <HeroVideo />
 
@@ -231,7 +237,8 @@ export default function Hero() {
         >
           <motion.p
             variants={itemVariants}
-            className="text-[10px] sm:text-xs uppercase tracking-widest text-muted mb-6"
+            className="text-[10px] sm:text-xs uppercase tracking-widest mb-6 font-medium"
+            style={{ color: '#94A3B8', letterSpacing: '0.22em' }}
           >
             Automation Agency
           </motion.p>
@@ -251,7 +258,8 @@ export default function Hero() {
 
           <motion.div
             variants={itemVariants}
-            className="text-lg sm:text-xl text-muted font-light mb-8 flex items-center justify-center gap-[6px] flex-wrap"
+            className="text-lg sm:text-xl mb-8 flex items-center justify-center gap-[6px] flex-wrap font-light"
+            style={{ color: '#94A3B8' }}
           >
             <span>We</span>
             {/* inline-grid spacer: invisible widest word sets exact container width, no dead space */}
@@ -275,7 +283,8 @@ export default function Hero() {
 
           <motion.p
             variants={itemVariants}
-            className="text-muted max-w-xl mx-auto mb-12 leading-relaxed text-sm sm:text-base font-light"
+            className="max-w-xl mx-auto mb-12 leading-relaxed text-sm sm:text-base font-medium"
+            style={{ color: '#CBD5E1', lineHeight: 1.75 }}
           >
             Automating growth, content, and communication so your brand runs smarter — not harder.
           </motion.p>
@@ -319,11 +328,11 @@ export default function Hero() {
           </div>
         </motion.div>
 
-        {/* Bottom fade — same colour as both Hero and VideoShowcase bg (#0a0a0a) */}
+        {/* Bottom fade into VideoShowcase */}
         <div
           className="pointer-events-none absolute bottom-0 left-0 right-0 h-64"
           aria-hidden="true"
-          style={{ background: 'linear-gradient(to top, #0a0a0a, rgba(10,10,10,0))' }}
+          style={{ background: 'linear-gradient(to top, #071011, rgba(7,16,17,0))' }}
         />
       </section>
     </>

@@ -72,8 +72,9 @@ function Avatar({ initials, hue }: { initials: string; hue: number }) {
 export default function TestimonialsSection() {
   return (
     <section
-      className="py-32 px-6 bg-background"
+      className="py-32 px-6"
       aria-label="Client Testimonials"
+      style={{ background: '#071011' }}
     >
       <div className="max-w-6xl mx-auto">
 
@@ -91,7 +92,7 @@ export default function TestimonialsSection() {
             <span className="font-serif italic text-gold-shimmer">word</span>{' '}
             for it
           </h2>
-          <p className="text-muted font-light max-w-lg mx-auto text-sm leading-relaxed">
+          <p className="max-w-lg mx-auto text-sm font-medium leading-relaxed" style={{ color: '#CBD5E1', lineHeight: 1.75 }}>
             Real results from businesses we've helped grow — faster, smarter, and at scale.
           </p>
         </motion.div>
@@ -105,8 +106,12 @@ export default function TestimonialsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-50px' }}
               transition={{ duration: 0.6, delay: index * 0.07, ease: E }}
-              className="bg-surface border border-border rounded-2xl p-7 flex flex-col gap-5"
-              style={{ transition: 'border-color 400ms, box-shadow 400ms' }}
+              className="rounded-2xl p-7 flex flex-col gap-5"
+              style={{
+                background: '#101820',
+                border: '1px solid rgba(255,255,255,0.09)',
+                transition: 'border-color 400ms, box-shadow 400ms',
+              }}
               onMouseEnter={e => {
                 const el = e.currentTarget as HTMLDivElement
                 el.style.borderColor = 'hsl(199 89% 60% / 0.18)'
@@ -126,16 +131,16 @@ export default function TestimonialsSection() {
               </div>
 
               {/* Quote */}
-              <p className="text-primary/80 font-light leading-relaxed text-sm flex-1">
+              <p className="font-medium leading-relaxed text-sm flex-1" style={{ color: '#CBD5E1', lineHeight: 1.75 }}>
                 "{t.quote}"
               </p>
 
               {/* Author */}
-              <div className="flex items-center gap-3 pt-4 border-t border-border/50">
+              <div className="flex items-center gap-3 pt-4" style={{ borderTop: '1px solid rgba(255,255,255,0.07)' }}>
                 <Avatar initials={t.initials} hue={t.hue} />
                 <div>
-                  <p className="font-medium text-sm text-primary">{t.name}</p>
-                  <p className="text-xs text-muted mt-0.5">{t.role}</p>
+                  <p className="font-semibold text-sm text-primary">{t.name}</p>
+                  <p className="text-xs mt-0.5 font-medium" style={{ color: '#94A3B8' }}>{t.role}</p>
                 </div>
               </div>
             </motion.div>
