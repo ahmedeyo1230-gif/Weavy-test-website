@@ -4046,7 +4046,10 @@ function SocialMediaMarketing() {
                   style={{
                     fontSize: 'clamp(0.88rem, 1.3vw, 0.97rem)',
                     letterSpacing: '-0.012em', lineHeight: 1.3,
-                    color: '#F2F8FC', marginBottom: '0.5rem',
+                    marginBottom: '0.5rem',
+                    background: 'linear-gradient(90deg, #F6B7D2 0%, #E88CC3 45%, #C86AA5 100%)',
+                    WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
+                    backgroundClip: 'text',
                   }}
                 >
                   {label}
