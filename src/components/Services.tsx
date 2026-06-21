@@ -4363,9 +4363,11 @@ function SocialMediaMarketing() {
           >
             Campaigns Designed To{' '}
             <em style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400 }}>
-              Turn Attention
-            </em>{' '}
-            Into Revenue
+              <span style={{
+                background: 'linear-gradient(108deg, hsl(199 89% 74%) 0%, hsl(240 60% 74%) 55%, hsl(280 65% 74%) 100%)',
+                WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
+              }}>Turn Attention Into Revenue</span>
+            </em>
           </h2>
 
           <p
