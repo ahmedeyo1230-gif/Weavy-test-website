@@ -4426,7 +4426,7 @@ function SocialMediaMarketing() {
 
         {/* ══ EDITORIAL TWO-COLUMN ══════════════════════════════════════════════ */}
         <div
-          className="grid grid-cols-1 lg:grid-cols-[1fr_1.15fr] items-center"
+          className="grid grid-cols-1 lg:grid-cols-[1fr_1.35fr] items-center"
           style={{ gap: 'clamp(3rem, 6vw, 5rem)', marginBottom: 'clamp(4rem, 8vw, 6rem)' }}
         >
 
@@ -4490,9 +4490,9 @@ function SocialMediaMarketing() {
             {/* Value points */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1.05rem' }}>
               {[
-                'Full-funnel social media campaigns built to move customers from discovery to trust, and from trust to action.',
-                'We combine content direction, paid social strategy, creative testing, retargeting, and brand positioning so every post, ad, and campaign has a clear business purpose.',
-                'The result is a stronger brand presence, better audience engagement, and a marketing system designed to increase visibility, leads, and revenue.',
+                'Full-funnel campaigns that move customers from discovery to trust, and from trust to action.',
+                'Content, paid social, creative testing, and retargeting — every post and ad built around a clear business purpose.',
+                'Stronger brand presence, better engagement, and a marketing system built to grow visibility and revenue.',
               ].map((text, i) => (
                 <div
                   key={i}
