@@ -318,20 +318,13 @@ function BespokeFollowUp() {
       gsap.to(reveals, { opacity: 1, y: 0, duration: 1.05, ease: 'power3.out', stagger: 0.1 })
       if (!hasCountedRef.current) {
         hasCountedRef.current = true
-        const proxy = { s1: 0, s2: 0, s3: 0 }
-        gsap.to(proxy, {
-          s1: 320, s2: 48, s3: 92,
-          duration: 2.2,
-          ease: 'expo.out',
-          onUpdate() {
-            setS1(Math.round(proxy.s1))
-            setS2(Math.round(proxy.s2))
-            setS3(Math.round(proxy.s3))
-          },
-          onComplete() {
-            setS1(320); setS2(48); setS3(92)
-          },
-        })
+        const run = (setter: (v: number) => void, target: number, step: number, ms: number) => {
+          let v = 0
+          const id = setInterval(() => { v = Math.min(v + step, target); setter(v); if (v >= target) clearInterval(id) }, ms)
+        }
+        run(setS1, 320, 7, 16)
+        run(setS2,  48, 1, 38)
+        run(setS3,  92, 2, 22)
       }
       obs.disconnect()
     }, { threshold: 0.08 })
@@ -344,7 +337,7 @@ function BespokeFollowUp() {
     <section
       ref={ref}
       className="relative w-full overflow-hidden"
-      style={{ background: '#071011', padding: 'clamp(5rem, 8vw, 8rem) 0 clamp(4rem, 7vw, 7rem)' }}
+      style={{ background: '#010709', padding: 'clamp(5rem, 8vw, 8rem) 0 clamp(4rem, 7vw, 7rem)' }}
     >
       {/* ── Grain ── */}
       <svg aria-hidden="true" className="pointer-events-none absolute inset-0 w-full h-full" style={{ opacity: 0.026 }}>
@@ -358,10 +351,8 @@ function BespokeFollowUp() {
       {/* ── Ambient — centre-top bloom ── */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
         background: [
-          'radial-gradient(ellipse 70% 55% at 50% 28%, hsl(199 89% 60% / 0.07) 0%, transparent 70%)',
-          'radial-gradient(ellipse 35% 28% at 82% 72%, hsl(215 80% 55% / 0.03) 0%, transparent 60%)',
-          'radial-gradient(circle at 8% 85%, rgba(255,216,107,0.07), transparent 28%)',
-          'radial-gradient(circle at 92% 10%, rgba(255,216,107,0.05), transparent 25%)',
+          'radial-gradient(ellipse 70% 55% at 50% 28%, hsl(199 89% 60% / 0.06) 0%, transparent 70%)',
+          'radial-gradient(ellipse 35% 28% at 82% 72%, hsl(215 80% 55% / 0.025) 0%, transparent 60%)',
         ].join(', '),
       }}/>
 
@@ -371,8 +362,8 @@ function BespokeFollowUp() {
       }}/>
 
       {/* Section boundary fades — mask vignette/grain cutoff at overflow:hidden edges */}
-      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '120px', background: 'linear-gradient(to bottom, #071011, transparent)', pointerEvents: 'none', zIndex: 2 }} />
-      <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '150px', background: 'linear-gradient(to top, #071011, transparent)', pointerEvents: 'none', zIndex: 2 }} />
+      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '120px', background: 'linear-gradient(to bottom, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
+      <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '150px', background: 'linear-gradient(to top, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
 
       {/* ════════════════════════════════════════════════════════
           UPPER — Full-width editorial header
@@ -687,7 +678,7 @@ function BespokeCareStories() {
       ref={ref}
       className="relative w-full overflow-hidden"
       style={{
-        background: '#071011',
+        background: '#010709',
         padding: 'clamp(5rem, 9vw, 8rem) 0',
       }}
     >
@@ -698,8 +689,8 @@ function BespokeCareStories() {
       }}/>
 
       {/* Section boundary fades */}
-      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to bottom, #071011, transparent)', pointerEvents: 'none', zIndex: 2 }} />
-      <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to top, #071011, transparent)', pointerEvents: 'none', zIndex: 2 }} />
+      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to bottom, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
+      <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to top, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
 
       <div className="relative z-10 max-w-[80rem] mx-auto px-6 sm:px-10">
         <div className="grid grid-cols-1 lg:grid-cols-[1.15fr_1fr] gap-12 lg:gap-16 items-center">
@@ -918,10 +909,10 @@ function BespokeWebShowcase() {
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       className="relative w-full overflow-hidden"
-      style={{ background: '#071011', padding: 'clamp(6rem, 12vw, 10rem) 0 clamp(7rem, 14vw, 12rem)' }}
+      style={{ background: '#010709', padding: 'clamp(6rem, 12vw, 10rem) 0 clamp(7rem, 14vw, 12rem)' }}
     >
-      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '60px', background: 'linear-gradient(to bottom, #071011, transparent)', pointerEvents: 'none' }} />
-      <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '60px', background: 'linear-gradient(to bottom, transparent, #071011)', pointerEvents: 'none' }} />
+      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '60px', background: 'linear-gradient(to bottom, #010709, transparent)', pointerEvents: 'none' }} />
+      <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '60px', background: 'linear-gradient(to bottom, transparent, #010709)', pointerEvents: 'none' }} />
 
       <div className="relative z-10 max-w-[80rem] mx-auto px-6 sm:px-10">
 
@@ -1165,7 +1156,7 @@ function BespokeProcessTimeline() {
     <section
       ref={ref}
       className="relative w-full overflow-hidden"
-      style={{ background: '#071011', padding: 'clamp(5rem, 10vw, 8rem) 0' }}
+      style={{ background: '#010709', padding: 'clamp(5rem, 10vw, 8rem) 0' }}
     >
       {/* Ambient top glow */}
       <div
@@ -1177,8 +1168,8 @@ function BespokeProcessTimeline() {
       />
 
       {/* Section boundary fades */}
-      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to bottom, #071011, transparent)', pointerEvents: 'none', zIndex: 2 }} />
-      <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to top, #071011, transparent)', pointerEvents: 'none', zIndex: 2 }} />
+      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to bottom, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
+      <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to top, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
 
       <div className="relative z-10 max-w-[72rem] mx-auto px-6 sm:px-10">
 
@@ -1391,7 +1382,7 @@ function BespokeWebDesignShowcase() {
     <section
       ref={ref}
       className="relative w-full overflow-hidden"
-      style={{ background: '#071011', padding: 'clamp(5rem, 10vw, 9rem) 0' }}
+      style={{ background: '#010709', padding: 'clamp(5rem, 10vw, 9rem) 0' }}
     >
       {/* Grain */}
       <svg aria-hidden="true" className="pointer-events-none absolute inset-0 w-full h-full" style={{ opacity: 0.018 }}>
@@ -1408,8 +1399,8 @@ function BespokeWebDesignShowcase() {
       }} />
 
       {/* Section boundary fades */}
-      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to bottom, #071011, transparent)', pointerEvents: 'none', zIndex: 2 }} />
-      <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to top, #071011, transparent)', pointerEvents: 'none', zIndex: 2 }} />
+      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to bottom, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
+      <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to top, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
 
       <div className="relative z-10 max-w-[76rem] mx-auto px-6 sm:px-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20 items-center">
@@ -1522,7 +1513,7 @@ function BespokeWebDesignShowcase() {
       {/* Bottom fade */}
       <div aria-hidden="true" style={{
         position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px',
-        background: 'linear-gradient(to bottom, transparent, #071011)',
+        background: 'linear-gradient(to bottom, transparent, #010709)',
         pointerEvents: 'none',
       }} />
     </section>
@@ -1562,7 +1553,7 @@ function BespokeRealUsers() {
       ref={ref}
       className="relative w-full overflow-hidden"
       style={{
-        background: '#071011',
+        background: '#010709',
         padding: 'clamp(5rem, 10vw, 8rem) 0',
       }}
     >
@@ -1577,8 +1568,8 @@ function BespokeRealUsers() {
       />
 
       {/* Section boundary fades — mask grid pattern abrupt start/end */}
-      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '160px', background: 'linear-gradient(to bottom, #071011, transparent)', pointerEvents: 'none', zIndex: 2 }} />
-      <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to top, #071011, transparent)', pointerEvents: 'none', zIndex: 2 }} />
+      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '160px', background: 'linear-gradient(to bottom, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
+      <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to top, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
 
       <div className="relative z-10 max-w-[82rem] mx-auto px-6 sm:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.12fr] gap-14 lg:gap-20 items-start">
@@ -1875,12 +1866,12 @@ function BespokeContactFooter() {
         {/* Top fade — blends into section above */}
         <div
           className="absolute top-0 left-0 right-0 pointer-events-none"
-          style={{ height: '160px', background: 'linear-gradient(to bottom, #071011 0%, transparent 100%)', zIndex: 2 }}
+          style={{ height: '160px', background: 'linear-gradient(to bottom, #010709 0%, transparent 100%)', zIndex: 2 }}
         />
         {/* Bottom fade */}
         <div
           className="absolute bottom-0 left-0 right-0 pointer-events-none"
-          style={{ height: '200px', background: 'linear-gradient(to top, #071011 0%, transparent 100%)', zIndex: 2 }}
+          style={{ height: '200px', background: 'linear-gradient(to top, #010709 0%, transparent 100%)', zIndex: 2 }}
         />
       </div>
 
@@ -3275,11 +3266,9 @@ function SocialMediaMarketing() {
   const platRef     = useRef<HTMLElement>(null)
   const stratRef    = useRef<HTMLElement>(null)
   const proofRef    = useRef<HTMLElement>(null)
-  const engageRef   = useRef<HTMLElement>(null)
   const ctaRef      = useRef<HTMLElement>(null)
   const s6Ref       = useRef<HTMLElement>(null)
   const smFeatRef   = useRef<HTMLElement>(null)
-  const caseRef     = useRef<HTMLElement>(null)
 
   // Shared observer helper
   function observe(ref: React.RefObject<HTMLElement | null>, fn: (el: HTMLElement) => void) {
@@ -3357,11 +3346,9 @@ function SocialMediaMarketing() {
   // ── Section 3: Strategy ──
   useEffect(() => observe(stratRef, el => {
     const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
-    tl.to(el.querySelectorAll('.sms-heading'),  { opacity: 1, y: 0, duration: 0.8 }, 0)
-    tl.to(el.querySelectorAll('.sms3-support'), { opacity: 1, y: 0, duration: 0.7 }, 0.2)
-    tl.to(el.querySelectorAll('.sms3-accent'),  { opacity: 0.55, scaleX: 1, duration: 0.65, ease: 'power2.inOut' }, 0.35)
-    tl.to(el.querySelectorAll('.sms3-card'),    { opacity: 1, y: 0, duration: 0.55, stagger: 0.08 }, 0.3)
-    tl.to(el.querySelectorAll('.sms3-num'),     { opacity: 1, y: 0, duration: 0.6, stagger: 0.09, ease: 'power2.out' }, 0.48)
+    tl.to(el.querySelectorAll('.sms-heading'), { opacity: 1, y: 0, duration: 0.8 }, 0)
+    tl.to(el.querySelectorAll('.sms-line'),    { scaleX: 1, duration: 0.6, stagger: 0.1, ease: 'power2.inOut' }, 0.2)
+    tl.to(el.querySelectorAll('.sms-item'),    { opacity: 1, x: 0, duration: 0.55, stagger: 0.09 }, 0.25)
   }), [])
 
   // ── Section 4: Brand Presence ──
@@ -3386,16 +3373,6 @@ function SocialMediaMarketing() {
         gsap.to(b, { y: i % 2 === 0 ? -7 : -9, duration: 3.6 + i * 0.5, ease: 'sine.inOut', yoyo: true, repeat: -1, delay: i * 0.4 })
       })
     }, '-=0.1')
-  }), [])
-
-  // ── Section 4.5: Stay Connected With Your Audience ──
-  useEffect(() => observe(engageRef, el => {
-    const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
-    tl.to(el.querySelectorAll('.smeng-label'),  { opacity: 1, y: 0, duration: 0.6 }, 0)
-    tl.to(el.querySelectorAll('.smeng-hword'),  { opacity: 1, y: 0, duration: 0.72, stagger: 0.09, ease: 'power3.out' }, 0.1)
-    tl.to(el.querySelectorAll('.smeng-body'),   { opacity: 1, y: 0, duration: 0.75 }, 0.22)
-    tl.to(el.querySelectorAll('.smeng-item'),   { opacity: 1, y: 0, duration: 0.5, stagger: 0.09 }, 0.3)
-    tl.to(el.querySelectorAll('.smeng-img'),    { opacity: 1, y: 0, duration: 1.2, ease: 'power2.out' }, 0.15)
   }), [])
 
   // ── Section 5: Platform-Ready Campaign Visuals ──
@@ -3502,36 +3479,6 @@ function SocialMediaMarketing() {
     }, '>')
   }), [])
 
-  // ── Case Study section ──
-  useEffect(() => observe(caseRef, el => {
-    const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
-    tl.to(el.querySelectorAll('.smcs-label'),   { opacity: 1, y: 0, duration: 0.6 }, 0)
-    tl.to(el.querySelectorAll('.smcs-heading'), { opacity: 1, y: 0, duration: 0.85 }, 0.12)
-    tl.to(el.querySelectorAll('.smcs-intro'),   { opacity: 1, y: 0, duration: 0.75 }, 0.26)
-    tl.to(el.querySelectorAll('.smcs-img'),     { opacity: 1, y: 0, duration: 1.1, ease: 'power2.out' }, 0.32)
-    tl.to(el.querySelectorAll('.smcs-body'),    { opacity: 1, y: 0, duration: 0.65, stagger: 0.1 }, 0.44)
-    tl.to(el.querySelectorAll('.smcs-stat'),    { opacity: 1, y: 0, duration: 0.65, stagger: 0.14 }, 0.82)
-    tl.add(() => {
-      const s1 = el.querySelector('.smcs-val-1') as HTMLElement | null
-      const s2 = el.querySelector('.smcs-val-2') as HTMLElement | null
-      const s3 = el.querySelector('.smcs-val-3') as HTMLElement | null
-      const p = { v1: 0, v2: 0, v3: 0 }
-      gsap.fromTo(p,
-        { v1: 0, v2: 0, v3: 0 },
-        {
-          v1: 278, v2: 342, v3: 187,
-          duration: 1.5, ease: 'expo.out',
-          repeat: -1, repeatDelay: 1.5,
-          onUpdate: () => {
-            if (s1) s1.textContent = Math.round(p.v1) + '%'
-            if (s2) s2.textContent = Math.round(p.v2) + '%'
-            if (s3) s3.textContent = Math.round(p.v3) + '%'
-          },
-        }
-      )
-    }, '-=0.15')
-  }), [])
-
   return (
     <>
     {/* ══ SECTION 1 — Hero Showcase ══════════════════════════════════════════ */}
@@ -3539,7 +3486,7 @@ function SocialMediaMarketing() {
       ref={heroRef}
       id="social-media-marketing-detail"
       className="relative w-screen overflow-hidden"
-      style={{ height: 'clamp(460px, 58vw, 700px)', marginLeft: 'calc(-50vw + 50%)', marginRight: 'calc(-50vw + 50%)', background: '#071011' }}
+      style={{ height: 'clamp(460px, 58vw, 700px)', marginLeft: 'calc(-50vw + 50%)', marginRight: 'calc(-50vw + 50%)', background: '#010709' }}
     >
       {/* Full-width background video */}
       <video
@@ -3563,15 +3510,6 @@ function SocialMediaMarketing() {
       <div aria-hidden="true" style={{
         position: 'absolute', inset: 0,
         background: 'linear-gradient(to right, hsl(0 0% 0% / 0.72) 0%, hsl(0 0% 0% / 0.35) 60%, transparent 100%)',
-      }}/>
-
-      {/* Campaign energy — gold + purple spotlights */}
-      <div aria-hidden="true" style={{
-        position: 'absolute', inset: 0, pointerEvents: 'none',
-        background: [
-          'radial-gradient(circle at 28% 65%, rgba(255,216,107,0.09), transparent 28%)',
-          'radial-gradient(circle at 75% 25%, rgba(160,80,200,0.10), transparent 30%)',
-        ].join(', '),
       }}/>
 
       {/* Dot grid */}
@@ -3600,12 +3538,12 @@ function SocialMediaMarketing() {
     <section
       ref={platRef}
       className="relative w-full overflow-hidden"
-      style={{ background: '#071011', padding: 'clamp(6rem, 12vw, 10rem) 0' }}
+      style={{ background: '#010709', padding: 'clamp(6rem, 12vw, 10rem) 0' }}
     >
       {/* Top fade — blends seamlessly with Section 1 */}
       <div aria-hidden="true" className="pointer-events-none absolute left-0 right-0 top-0" style={{
         height: '120px',
-        background: 'linear-gradient(to bottom, #071011 0%, transparent 100%)',
+        background: 'linear-gradient(to bottom, #010709 0%, transparent 100%)',
         zIndex: 3,
       }}/>
 
@@ -3626,14 +3564,12 @@ function SocialMediaMarketing() {
         backgroundSize: '32px 32px',
       }}/>
 
-      {/* Campaign energy ambient — gold + purple depth glows */}
+      {/* Barely-there atmospheric lift */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
         zIndex: 0,
-        background: [
-          'radial-gradient(ellipse 55% 45% at 15% 70%, rgba(255,216,107,0.07), transparent 60%)',
-          'radial-gradient(ellipse 50% 50% at 85% 25%, rgba(150,70,190,0.08), transparent 55%)',
-          'radial-gradient(ellipse 70% 55% at 60% 50%, hsl(199 30% 25% / 0.012) 0%, transparent 70%)',
-        ].join(', '),
+        background: 'radial-gradient(ellipse 70% 55% at 60% 50%, hsl(199 30% 25% / 0.012) 0%, transparent 70%)',
+        filter: 'blur(160px)',
+        opacity: 0.6,
       }}/>
 
       <div className="relative z-10 max-w-[80rem] mx-auto px-6 sm:px-12">
@@ -3725,7 +3661,7 @@ function SocialMediaMarketing() {
                   opacity: 0, transform: 'translateY(18px)',
                   fontSize: 'clamp(0.88rem, 1.4vw, 1rem)',
                   lineHeight: 1.9,
-                  color: '#F2F8FC',
+                  color: 'hsl(0 0% 46%)',
                   maxWidth: '34rem',
                 }}
               >
@@ -3747,7 +3683,7 @@ function SocialMediaMarketing() {
                     style={{
                       opacity: 0, transform: 'translateY(10px)',
                       fontSize: 'clamp(0.84rem, 1.2vw, 0.92rem)',
-                      color: '#F2F8FC',
+                      color: 'hsl(0 0% 58%)',
                       borderBottom: '1px solid hsl(0 0% 100% / 0.07)',
                       padding: '0.88rem 0',
                       cursor: 'default',
@@ -3758,7 +3694,7 @@ function SocialMediaMarketing() {
                       ((e.currentTarget as HTMLElement).querySelector('.smp-arrow') as HTMLElement | null)?.style.setProperty('opacity', '1')
                     }}
                     onMouseLeave={e => {
-                      (e.currentTarget as HTMLElement).style.color = '#F2F8FC';
+                      (e.currentTarget as HTMLElement).style.color = 'hsl(0 0% 58%)';
                       ((e.currentTarget as HTMLElement).querySelector('.smp-arrow') as HTMLElement | null)?.style.setProperty('opacity', '0.28')
                     }}
                   >
@@ -3891,185 +3827,108 @@ function SocialMediaMarketing() {
       {/* Bottom fade — blends grain/dot textures into Section 3 */}
       <div aria-hidden="true" className="pointer-events-none absolute left-0 right-0 bottom-0" style={{
         height: '120px',
-        background: 'linear-gradient(to top, #071011 0%, transparent 100%)',
+        background: 'linear-gradient(to top, #010709 0%, transparent 100%)',
         zIndex: 3,
       }}/>
     </section>
 
-    {/* ══ SECTION 3 — Content Strategy (premium redesign) ══════════════════════ */}
+    {/* ══ SECTION 3 — Content Strategy ═══════════════════════════════════════ */}
     <section
       ref={stratRef}
       className="relative w-full overflow-hidden"
-      style={{
-        background: [
-          'radial-gradient(circle at 18% 25%, rgba(231,200,115,0.08), transparent 30%)',
-          'radial-gradient(circle at 82% 72%, rgba(80,180,180,0.08), transparent 32%)',
-          'linear-gradient(180deg, #071011 0%, #0B1114 100%)',
-        ].join(', '),
-        padding: 'clamp(5rem, 10vw, 8rem) 0',
-      }}
+      style={{ background: '#010709', padding: 'clamp(5rem, 10vw, 8rem) 0' }}
     >
-      {/* SVG grain */}
-      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-        style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', opacity: 0.035, pointerEvents: 'none', zIndex: 1 }}>
-        <filter id="sms3-noise">
-          <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" result="n"/>
-          <feColorMatrix type="saturate" values="0" in="n"/>
-        </filter>
-        <rect width="100%" height="100%" filter="url(#sms3-noise)" fill="white"/>
-      </svg>
-
-      {/* Dot grid */}
+      {/* Soft cinematic atmosphere */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
-        zIndex: 0,
-        backgroundImage: 'radial-gradient(hsl(210 40% 60% / 0.02) 1px, transparent 1px)',
-        backgroundSize: '32px 32px',
+        background: [
+          'radial-gradient(ellipse 70% 55% at 55% 50%, hsl(199 89% 60% / 0.07) 0%, transparent 70%)',
+          'radial-gradient(ellipse 45% 40% at 20% 75%, hsl(195 70% 50% / 0.05) 0%, transparent 65%)',
+        ].join(', '),
+        filter: 'blur(60px)',
       }}/>
 
-      <div className="relative z-10 max-w-[72rem] mx-auto px-6 sm:px-10">
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.45fr] gap-14 lg:gap-20 items-start">
+      <div className="relative z-10 max-w-[62rem] mx-auto px-6 sm:px-10">
 
-          {/* ── LEFT: Heading block ── */}
-          <div>
-            {/* Eyebrow */}
-            <p
-              className="sms-heading font-sans font-medium uppercase mb-5 inline-flex items-center gap-3"
-              style={{
-                opacity: 0, transform: 'translateY(16px)',
-                fontSize: '0.62rem', letterSpacing: '0.30em', color: '#94A3B8',
-              }}
-            >
-              <span aria-hidden="true" style={{ display: 'inline-block', width: 22, height: 1, background: 'rgba(231,200,115,0.55)' }}/>
-              What we deliver
-            </p>
+        {/* Heading */}
+        <div className="mb-16">
+          <p className="sms-heading font-sans uppercase mb-4" style={{ opacity: 0, transform: 'translateY(20px)', fontSize: '0.7rem', letterSpacing: '0.3em', color: 'hsl(0 0% 40%)' }}>
+            What we deliver
+          </p>
+          <h2
+            className="sms-heading font-sans font-light text-text"
+            style={{ opacity: 0, transform: 'translateY(24px)', fontSize: 'clamp(1.8rem, 4vw, 3rem)', lineHeight: 1.08, letterSpacing: '-0.033em', maxWidth: '34rem' }}
+          >
+            Content backed by{' '}
+            <em style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400 }}>strategy</em>
+          </h2>
+        </div>
 
-            {/* Main heading */}
-            <h2
-              className="sms-heading font-sans font-light mb-7"
-              style={{
-                opacity: 0, transform: 'translateY(24px)',
-                fontSize: 'clamp(2rem, 4.5vw, 3.4rem)',
-                lineHeight: 1.1, letterSpacing: '-0.035em',
-                color: '#F2F8FC',
-              }}
-            >
-              Content backed{' '}
-              <span style={{ display: 'block' }}>
-                by{' '}
-                <em style={{
-                  fontFamily: "'Instrument Serif', Georgia, serif",
-                  fontStyle: 'italic', fontWeight: 400,
-                  background: 'linear-gradient(90deg, #95CAF1 0%, #9596E1 50%, #BE95E2 100%)',
-                  WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text',
-                }}>
-                  strategy
-                </em>
-              </span>
-            </h2>
-
-            {/* Supporting sentence */}
-            <p
-              className="sms3-support font-sans font-medium"
-              style={{
-                opacity: 0, transform: 'translateY(16px)',
-                fontSize: 'clamp(0.88rem, 1.3vw, 0.97rem)',
-                lineHeight: 1.8, color: '#CBD5E1',
-                marginBottom: '2rem', maxWidth: '28rem',
-              }}
-            >
-              Every deliverable is designed to support brand visibility, audience growth, and measurable campaign performance.
-            </p>
-
-            {/* Champagne accent bar */}
-            <div
-              className="sms3-accent"
-              style={{
-                width: 44, height: 2,
-                background: 'linear-gradient(to right, #E7C873, rgba(231,200,115,0.25))',
-                borderRadius: 999,
-                opacity: 0, transform: 'scaleX(0)', transformOrigin: 'left center',
-              }}
-            />
-          </div>
-
-          {/* ── RIGHT: 6 premium glass cards ── */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-            {STRATEGY_ITEMS.map(({ label, desc }, i) => (
+        {/* Horizontal blocks */}
+        <div className="flex flex-col">
+          {STRATEGY_ITEMS.map(({ label, desc }, i) => (
+            <div key={i}>
               <div
-                key={i}
-                className="sms3-card"
-                style={{
-                  opacity: 0, transform: 'translateY(28px)',
-                  background: 'rgba(255,255,255,0.035)',
-                  border: '1px solid rgba(255,255,255,0.09)',
-                  borderRadius: '18px',
-                  padding: 'clamp(1.1rem, 2.5vw, 1.5rem)',
-                  backdropFilter: 'blur(8px)',
-                  cursor: 'default',
-                  transition: 'border-color 280ms ease, background-color 280ms ease',
-                }}
+                className="sms-line"
+                style={{ height: '1px', background: 'hsl(0 0% 100% / 0.07)', transformOrigin: 'left center', transform: 'scaleX(0)' }}
+                aria-hidden="true"
+              />
+              <div
+                className="sms-item flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-12 py-7"
+                style={{ opacity: 0, transform: 'translateX(-20px)' }}
                 onMouseEnter={e => {
-                  const card = e.currentTarget as HTMLElement
-                  gsap.to(card, { y: -5, duration: 0.28, ease: 'power2.out' })
-                  card.style.borderColor = 'rgba(231,200,115,0.28)'
-                  card.style.backgroundColor = 'rgba(255,255,255,0.058)'
+                  const num = e.currentTarget.querySelector('.sms-num') as HTMLElement | null
+                  if (!num) return
+                  num.style.filter = 'drop-shadow(0 0 6px hsl(199 89% 60% / 0.8)) drop-shadow(0 0 14px hsl(199 89% 60% / 0.45))'
+                  gsap.killTweensOf(num)
+                  gsap.to(num, { scale: 1.12, duration: 0.25, ease: 'power2.out', transformOrigin: 'center center' })
+                  gsap.to(num, { scale: 1, duration: 0.7, delay: 0.25, ease: 'elastic.out(1, 0.45)', transformOrigin: 'center center' })
                 }}
                 onMouseLeave={e => {
-                  const card = e.currentTarget as HTMLElement
-                  gsap.to(card, { y: 0, duration: 0.32, ease: 'power2.out' })
-                  card.style.borderColor = 'rgba(255,255,255,0.09)'
-                  card.style.backgroundColor = 'rgba(255,255,255,0.035)'
+                  const num = e.currentTarget.querySelector('.sms-num') as HTMLElement | null
+                  if (!num) return
+                  num.style.filter = 'drop-shadow(0 0 4px hsl(199 89% 60% / 0.35))'
+                  gsap.killTweensOf(num)
+                  gsap.to(num, { scale: 1, duration: 0.35, ease: 'power2.inOut', transformOrigin: 'center center' })
                 }}
               >
                 {/* Number */}
                 <span
-                  className="sms3-num font-sans font-medium"
+                  className="sms-num font-sans shrink-0"
                   style={{
-                    display: 'block', marginBottom: '0.65rem',
-                    fontSize: '0.6rem', letterSpacing: '0.24em', textTransform: 'uppercase',
-                    background: 'linear-gradient(90deg, #95CAF1 0%, #9596E1 50%, #BE95E2 100%)',
-                    WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
+                    fontSize: '0.65rem',
+                    letterSpacing: '0.18em',
+                    minWidth: '2rem',
+                    fontVariantNumeric: 'tabular-nums',
+                    background: 'linear-gradient(135deg, hsl(199 89% 78%) 0%, hsl(215 80% 68%) 60%, hsl(199 70% 60%) 100%)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
                     backgroundClip: 'text',
-                    opacity: 0, transform: 'translateY(10px)',
+                    filter: 'drop-shadow(0 0 4px hsl(199 89% 60% / 0.35))',
+                    transition: 'filter 0.3s ease',
+                    display: 'inline-block',
                   }}
                 >
                   {String(i + 1).padStart(2, '0')}
                 </span>
-
-                {/* Thin champagne divider */}
-                <div aria-hidden="true" style={{ height: 1, background: 'rgba(231,200,115,0.14)', marginBottom: '0.8rem' }}/>
-
-                {/* Title */}
-                <h3
-                  className="font-sans font-medium"
-                  style={{
-                    fontSize: 'clamp(0.88rem, 1.3vw, 0.97rem)',
-                    letterSpacing: '-0.012em', lineHeight: 1.3,
-                    marginBottom: '0.5rem',
-                    background: 'linear-gradient(90deg, #F6B7D2 0%, #E88CC3 45%, #C86AA5 100%)',
-                    WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
-                    backgroundClip: 'text',
-                  }}
-                >
+                {/* Label */}
+                <p className="font-sans font-light text-text shrink-0" style={{ fontSize: 'clamp(0.95rem, 1.5vw, 1.1rem)', letterSpacing: '-0.015em', minWidth: '18rem' }}>
                   {label}
-                </h3>
-
-                {/* Description */}
-                <p
-                  className="font-sans"
-                  style={{
-                    fontSize: 'clamp(0.78rem, 1.1vw, 0.84rem)',
-                    lineHeight: 1.75, color: '#CBD5E1', fontWeight: 400,
-                  }}
-                >
+                </p>
+                {/* Desc */}
+                <p className="font-sans font-light" style={{ fontSize: '0.84rem', lineHeight: 1.75, color: 'hsl(0 0% 44%)' }}>
                   {desc}
                 </p>
               </div>
-            ))}
-          </div>
-
+            </div>
+          ))}
+          {/* Final line */}
+          <div
+            className="sms-line"
+            style={{ height: '1px', background: 'hsl(0 0% 100% / 0.07)', transformOrigin: 'left center', transform: 'scaleX(0)' }}
+            aria-hidden="true"
+          />
         </div>
+
       </div>
     </section>
 
@@ -4077,12 +3936,12 @@ function SocialMediaMarketing() {
     <section
       ref={proofRef}
       className="relative w-full overflow-hidden"
-      style={{ background: '#071011', padding: 'clamp(6rem, 12vw, 10rem) 0' }}
+      style={{ background: '#010709', padding: 'clamp(6rem, 12vw, 10rem) 0' }}
     >
       {/* Top fade — blends seamlessly with Section 3 */}
       <div aria-hidden="true" className="pointer-events-none absolute left-0 right-0 top-0" style={{
         height: '120px',
-        background: 'linear-gradient(to bottom, #071011 0%, transparent 100%)',
+        background: 'linear-gradient(to bottom, #010709 0%, transparent 100%)',
         zIndex: 3,
       }}/>
 
@@ -4314,7 +4173,7 @@ function SocialMediaMarketing() {
                     className="smpr-hword"
                     style={{
                       display: 'inline-block', transform: 'translateY(110%)', opacity: 0,
-                      background: 'linear-gradient(108deg, hsl(199 89% 74%) 0%, hsl(240 60% 74%) 55%, hsl(280 65% 74%) 100%)',
+                      background: 'linear-gradient(108deg, hsl(280 65% 74%) 0%, hsl(240 60% 74%) 50%, hsl(199 89% 74%) 100%)',
                       WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
                     }}
                   >
@@ -4336,7 +4195,7 @@ function SocialMediaMarketing() {
                 style={{
                   opacity: 0, transform: 'translateY(18px)',
                   fontSize: 'clamp(0.88rem, 1.4vw, 1rem)',
-                  lineHeight: 1.9, color: '#F2F8FC', maxWidth: '34rem',
+                  lineHeight: 1.9, color: 'hsl(0 0% 46%)', maxWidth: '34rem',
                 }}
               >
                 We create high-converting social media experiences that make brands look professional,
@@ -4357,14 +4216,14 @@ function SocialMediaMarketing() {
                     style={{
                       opacity: 0, transform: 'translateY(10px)',
                       fontSize: 'clamp(0.84rem, 1.2vw, 0.92rem)',
-                      color: '#F2F8FC',
+                      color: 'hsl(0 0% 58%)',
                       borderBottom: '1px solid hsl(0 0% 100% / 0.07)',
                       padding: '0.88rem 0',
                       cursor: 'default',
                       transition: 'color 0.25s ease',
                     }}
                     onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = 'hsl(0 0% 88%)' }}
-                    onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = '#F2F8FC' }}
+                    onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = 'hsl(0 0% 58%)' }}
                   >
                     <span className="flex items-center gap-3">
                       <span style={{ fontSize: '0.7rem', color: 'hsl(280 65% 65%)', flexShrink: 0, width: '1.8rem', textAlign: 'center' }}>{stat}</span>
@@ -4384,427 +4243,7 @@ function SocialMediaMarketing() {
       {/* Bottom fade — blends grain/dot textures into Section 5 */}
       <div aria-hidden="true" className="pointer-events-none absolute left-0 right-0 bottom-0" style={{
         height: '120px',
-        background: 'linear-gradient(to top, #071011 0%, transparent 100%)',
-        zIndex: 3,
-      }}/>
-    </section>
-
-    {/* ══ CASE STUDY — Campaigns Designed To Turn Attention Into Revenue ════════ */}
-    <section
-      ref={caseRef}
-      className="relative w-full overflow-hidden"
-      style={{
-        background: [
-          'radial-gradient(circle at 20% 20%, rgba(255,216,107,0.08), transparent 28%)',
-          'radial-gradient(circle at 80% 70%, rgba(120,40,60,0.16), transparent 35%)',
-          'linear-gradient(180deg, #071011 0%, #0B1114 100%)',
-        ].join(', '),
-        padding: 'clamp(5rem, 10vw, 8.5rem) 0',
-      }}
-    >
-      {/* Top fade */}
-      <div aria-hidden="true" className="pointer-events-none absolute left-0 right-0 top-0" style={{ height: '120px', background: 'linear-gradient(to bottom, #071011 0%, transparent 100%)', zIndex: 3 }}/>
-
-      {/* SVG grain */}
-      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-        style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', opacity: 0.04, pointerEvents: 'none', zIndex: 1 }}>
-        <filter id="smcs-noise">
-          <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" result="noise"/>
-          <feColorMatrix type="saturate" values="0" in="noise"/>
-        </filter>
-        <rect width="100%" height="100%" filter="url(#smcs-noise)" style={{ fill: 'white' }}/>
-      </svg>
-
-      {/* Dot grid */}
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
-        zIndex: 0,
-        backgroundImage: 'radial-gradient(hsl(210 40% 60% / 0.02) 1px, transparent 1px)',
-        backgroundSize: '32px 32px',
-      }}/>
-
-      <div className="relative z-10 max-w-[80rem] mx-auto px-6 sm:px-10">
-
-        {/* ══ EDITORIAL TWO-COLUMN ══════════════════════════════════════════════ */}
-        <div
-          className="grid grid-cols-1 lg:grid-cols-[1fr_1.35fr] items-center"
-          style={{ gap: 'clamp(3rem, 6vw, 5rem)', marginBottom: 'clamp(4rem, 8vw, 6rem)' }}
-        >
-
-          {/* ── LEFT: label · heading · intro · value points ── */}
-          <div>
-
-            {/* Eyebrow label */}
-            <p
-              className="smcs-label font-sans font-medium uppercase inline-flex items-center gap-3"
-              style={{
-                opacity: 0, transform: 'translateY(16px)',
-                fontSize: '0.6rem', letterSpacing: '0.34em', color: '#94A3B8',
-                marginBottom: '1.5rem',
-              }}
-            >
-              <span style={{ display: 'inline-block', width: 24, height: 1, background: 'rgba(255,216,107,0.5)' }}/>
-              Social Media Case Study
-              <span style={{ display: 'inline-block', width: 24, height: 1, background: 'rgba(255,216,107,0.5)' }}/>
-            </p>
-
-            {/* Heading */}
-            <h2
-              className="smcs-heading font-sans font-light text-text"
-              style={{
-                opacity: 0, transform: 'translateY(22px)',
-                fontSize: 'clamp(2rem, 4vw, 3.2rem)',
-                lineHeight: 1.1, letterSpacing: '-0.038em',
-                marginBottom: '1.6rem',
-              }}
-            >
-              Campaigns Designed To{' '}
-              <em style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400 }}>
-                <span style={{
-                  background: 'linear-gradient(108deg, hsl(199 89% 74%) 0%, hsl(240 60% 74%) 55%, hsl(280 65% 74%) 100%)',
-                  WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
-                }}>Turn Attention Into Revenue</span>
-              </em>
-            </h2>
-
-            {/* Champagne accent rule */}
-            <div style={{
-              width: '3rem', height: 1,
-              background: 'linear-gradient(to right, rgba(255,216,107,0.55), transparent)',
-              marginBottom: '1.4rem',
-            }}/>
-
-            {/* Intro */}
-            <p
-              className="smcs-intro font-sans font-medium"
-              style={{
-                opacity: 0, transform: 'translateY(16px)',
-                fontSize: 'clamp(0.9rem, 1.4vw, 1.02rem)',
-                lineHeight: 1.8, color: '#F2F8FC',
-                marginBottom: '2rem', maxWidth: '38rem',
-              }}
-            >
-              We create premium social campaigns that combine strategy, content, paid advertising, and brand
-              positioning to help businesses attract the right audience and convert attention into measurable growth.
-            </p>
-
-            {/* Value points */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.05rem' }}>
-              {[
-                'Full-funnel campaigns that move customers from discovery to trust, and from trust to action.',
-                'Content, paid social, creative testing, and retargeting — every post and ad built around a clear business purpose.',
-                'Stronger brand presence, better engagement, and a marketing system built to grow visibility and revenue.',
-              ].map((text, i) => (
-                <div
-                  key={i}
-                  className="smcs-body"
-                  style={{ opacity: 0, transform: 'translateY(14px)', display: 'flex', gap: '0.85rem', alignItems: 'flex-start' }}
-                >
-                  <span style={{
-                    flexShrink: 0, marginTop: '0.52rem',
-                    width: 5, height: 5, borderRadius: '50%',
-                    background: 'linear-gradient(135deg, hsl(199 89% 68%), hsl(240 60% 70%))',
-                    boxShadow: '0 0 7px hsl(199 89% 60% / 0.45)',
-                  }}/>
-                  <p className="font-sans font-medium" style={{
-                    fontSize: 'clamp(0.84rem, 1.25vw, 0.94rem)',
-                    lineHeight: 1.78, color: '#F2F8FC',
-                  }}>
-                    {text}
-                  </p>
-                </div>
-              ))}
-            </div>
-
-          </div>
-
-          {/* ── RIGHT: premium image frame ── */}
-          <div className="smcs-img" style={{ opacity: 0, transform: 'translateY(28px)', position: 'relative' }}>
-
-            {/* Ambient glow behind */}
-            <div aria-hidden="true" style={{
-              position: 'absolute', inset: '-48px',
-              background: 'radial-gradient(ellipse 75% 65% at 50% 50%, hsl(280 50% 45% / 0.14) 0%, transparent 72%)',
-              filter: 'blur(48px)', pointerEvents: 'none', zIndex: 0,
-            }}/>
-
-            {/* Glass image frame */}
-            <div style={{
-              position: 'relative', zIndex: 1,
-              borderRadius: 'clamp(16px, 2vw, 22px)',
-              overflow: 'hidden',
-              border: '1px solid rgba(255,255,255,0.1)',
-              boxShadow: [
-                '0 0 0 1px rgba(255,255,255,0.04) inset',
-                '0 48px 110px rgba(0,0,0,0.5)',
-                '0 8px 36px rgba(0,0,0,0.32)',
-              ].join(', '),
-              background: 'rgba(10,16,20,0.55)',
-            }}>
-
-              {/* Top shimmer line */}
-              <div aria-hidden="true" style={{
-                position: 'absolute', top: 0, left: 0, right: 0, height: 1, zIndex: 2,
-                background: 'linear-gradient(to right, transparent, rgba(255,255,255,0.14), transparent)',
-              }}/>
-
-              <img
-                src="/brand_assets/beauty.png"
-                alt="Beauty brand social media campaign — 278% performance increase"
-                loading="lazy"
-                decoding="async"
-                style={{ display: 'block', width: '100%', height: 'auto' }}
-              />
-
-              {/* Bottom vignette */}
-              <div aria-hidden="true" style={{
-                position: 'absolute', bottom: 0, left: 0, right: 0, height: '22%', zIndex: 2,
-                background: 'linear-gradient(to top, rgba(7,16,17,0.45) 0%, transparent 100%)',
-                pointerEvents: 'none',
-              }}/>
-            </div>
-
-          </div>
-
-        </div>
-
-        {/* ══ PERFORMANCE STATS ════════════════════════════════════════════════ */}
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-          gap: 'clamp(1rem, 2.5vw, 1.5rem)',
-          maxWidth: '62rem', margin: '0 auto',
-        }}>
-          {[
-            { valClass: 'smcs-val-1', label: 'Increase In Campaign Performance', sublabel: 'Full-Funnel Performance Campaign' },
-            { valClass: 'smcs-val-2', label: 'Increase In Revenue Potential',    sublabel: 'Paid Social Scale Strategy' },
-            { valClass: 'smcs-val-3', label: 'Increase In Brand Engagement',     sublabel: 'Email + SMS Lifecycle Optimisation' },
-          ].map(({ valClass, label, sublabel }, i) => (
-            <div
-              key={i}
-              className="smcs-stat"
-              style={{
-                opacity: 0, transform: 'translateY(22px)',
-                position: 'relative', overflow: 'hidden',
-                padding: 'clamp(1.3rem, 3vw, 1.9rem)',
-                background: 'rgba(14,20,28,0.65)',
-                border: '1px solid rgba(255,255,255,0.07)',
-                borderRadius: '16px',
-                backdropFilter: 'blur(16px)',
-              }}
-            >
-              {/* Top shimmer */}
-              <div aria-hidden="true" style={{
-                position: 'absolute', top: 0, left: 0, right: 0, height: 1,
-                background: 'linear-gradient(to right, transparent, rgba(255,255,255,0.08), transparent)',
-              }}/>
-              <p style={{
-                fontSize: '0.55rem', letterSpacing: '0.28em', textTransform: 'uppercase',
-                color: '#64748B', fontFamily: 'var(--font-sans, sans-serif)', fontWeight: 500,
-                marginBottom: '0.8rem',
-              }}>
-                {sublabel}
-              </p>
-              <p
-                className={valClass}
-                style={{
-                  fontFamily: "'Instrument Serif', Georgia, serif",
-                  fontStyle: 'italic', fontWeight: 400,
-                  fontSize: 'clamp(2.5rem, 5vw, 3.6rem)',
-                  lineHeight: 1, letterSpacing: '-0.02em',
-                  color: '#8B1E2D', marginBottom: '0.55rem',
-                }}
-              >
-                0%
-              </p>
-              <p style={{
-                fontSize: 'clamp(0.7rem, 1vw, 0.78rem)',
-                color: '#F2F8FC', fontFamily: 'var(--font-sans, sans-serif)',
-                fontWeight: 500, lineHeight: 1.5,
-              }}>
-                {label}
-              </p>
-            </div>
-          ))}
-        </div>
-
-      </div>
-
-      {/* Bottom fade */}
-      <div aria-hidden="true" className="pointer-events-none absolute left-0 right-0 bottom-0" style={{ height: '120px', background: 'linear-gradient(to top, #071011 0%, transparent 100%)', zIndex: 3 }}/>
-    </section>
-
-    {/* ══ SECTION 4.5 — Stay Connected With Your Audience ═════════════════════ */}
-    <section
-      ref={engageRef}
-      className="relative w-full overflow-hidden"
-      style={{ background: '#071011', padding: 'clamp(6rem, 12vw, 10rem) 0' }}
-    >
-      {/* Top fade */}
-      <div aria-hidden="true" className="pointer-events-none absolute left-0 right-0 top-0" style={{
-        height: '120px',
-        background: 'linear-gradient(to bottom, #071011 0%, transparent 100%)',
-        zIndex: 3,
-      }}/>
-
-      {/* SVG grain texture */}
-      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-        style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', opacity: 0.04, pointerEvents: 'none', zIndex: 1 }}>
-        <filter id="smeng-noise">
-          <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" result="noise"/>
-          <feColorMatrix type="saturate" values="0" in="noise"/>
-        </filter>
-        <rect width="100%" height="100%" filter="url(#smeng-noise)" style={{ fill: 'white' }}/>
-      </svg>
-
-      {/* Dot grid */}
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
-        zIndex: 0,
-        backgroundImage: 'radial-gradient(hsl(210 40% 60% / 0.025) 1px, transparent 1px)',
-        backgroundSize: '32px 32px',
-      }}/>
-
-      {/* Ambient glow — left-biased (text side) */}
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
-        zIndex: 0,
-        background: [
-          'radial-gradient(ellipse 65% 55% at 22% 50%, hsl(199 89% 60% / 0.06) 0%, transparent 70%)',
-          'radial-gradient(ellipse 45% 40% at 78% 55%, hsl(240 60% 65% / 0.04) 0%, transparent 65%)',
-        ].join(', '),
-      }}/>
-
-      <div className="relative z-10 max-w-[82rem] mx-auto px-6 sm:px-12">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-12 xl:gap-20 items-center">
-
-          {/* ── LEFT: Text ── */}
-          <div className="flex flex-col justify-center">
-
-            {/* Eyebrow label */}
-            <span
-              className="smeng-label inline-flex items-center gap-2 mb-8 font-sans font-light uppercase self-start"
-              style={{
-                opacity: 0, transform: 'translateY(16px)',
-                fontSize: '0.63rem', letterSpacing: '0.3em',
-                color: 'hsl(199 89% 72%)',
-                border: '1px solid hsl(199 89% 65% / 0.28)',
-                borderRadius: '999px',
-                padding: '0.33rem 1.05rem',
-                background: 'hsl(199 89% 65% / 0.06)',
-              }}
-            >
-              <span aria-hidden="true" style={{ width: 5, height: 5, borderRadius: '50%', background: 'hsl(199 89% 65%)', boxShadow: '0 0 7px hsl(199 89% 65%)', flexShrink: 0 }}/>
-              Audience Engagement
-            </span>
-
-            {/* Heading — word-by-word reveal */}
-            <h2
-              className="font-sans font-light text-text mb-5"
-              style={{ fontSize: 'clamp(1.9rem, 3.6vw, 3rem)', lineHeight: 1.22, letterSpacing: '-0.035em' }}
-            >
-              {['Stay', 'Connected', 'With', 'Your'].map((word, i) => (
-                <span key={i} style={{ display: 'inline-block', overflow: 'hidden', verticalAlign: 'bottom', marginRight: '0.24em', paddingBottom: '0.05em' }}>
-                  <span className="smeng-hword" style={{ display: 'inline-block', transform: 'translateY(110%)', opacity: 0 }}>
-                    {word}
-                  </span>
-                </span>
-              ))}
-              <em style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400, display: 'inline-block', overflow: 'hidden', verticalAlign: 'bottom', paddingBottom: '0.05em' }}>
-                <span
-                  className="smeng-hword"
-                  style={{
-                    display: 'inline-block', transform: 'translateY(110%)', opacity: 0,
-                    background: 'linear-gradient(108deg, hsl(199 89% 74%) 0%, hsl(240 60% 74%) 55%, hsl(280 65% 74%) 100%)',
-                    WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
-                  }}
-                >
-                  Audience.
-                </span>
-              </em>
-            </h2>
-
-            {/* Accent rule */}
-            <div aria-hidden="true" style={{
-              height: 1,
-              background: 'linear-gradient(to right, hsl(199 89% 60% / 0.3), transparent)',
-              marginBottom: '1.8rem', maxWidth: '22rem',
-            }}/>
-
-            {/* Body */}
-            <p
-              className="smeng-body font-sans font-light mb-10"
-              style={{
-                opacity: 0, transform: 'translateY(18px)',
-                fontSize: 'clamp(0.87rem, 1.35vw, 0.97rem)',
-                lineHeight: 1.9, color: '#F2F8FC', maxWidth: '34rem',
-              }}
-            >
-              Social media is more than posting content. It's about building relationships, starting
-              conversations, and keeping your brand visible where your customers spend their time.
-              Through strategic content, audience engagement, and consistent communication, we help
-              businesses strengthen trust, increase visibility, and turn followers into loyal customers.
-            </p>
-
-            {/* Key points */}
-            <ul className="flex flex-col" style={{ borderTop: '1px solid hsl(0 0% 100% / 0.07)' }}>
-              {[
-                'Consistent Brand Presence',
-                'Meaningful Customer Engagement',
-                'Community Growth & Retention',
-                'Increased Reach & Visibility',
-              ].map(item => (
-                <li
-                  key={item}
-                  className="smeng-item flex items-center gap-3 font-sans font-light"
-                  style={{
-                    opacity: 0, transform: 'translateY(10px)',
-                    fontSize: 'clamp(0.84rem, 1.2vw, 0.9rem)',
-                    color: '#F2F8FC',
-                    borderBottom: '1px solid hsl(0 0% 100% / 0.07)',
-                    padding: '0.82rem 0',
-                    cursor: 'default',
-                    transition: 'color 0.25s ease',
-                  }}
-                  onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = 'hsl(0 0% 88%)' }}
-                  onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = '#F2F8FC' }}
-                >
-                  <span aria-hidden="true" style={{ fontSize: '0.42rem', color: 'hsl(199 89% 60%)', flexShrink: 0 }}>◆</span>
-                  {item}
-                </li>
-              ))}
-            </ul>
-
-          </div>
-
-          {/* ── RIGHT: Image ── */}
-          <div className="flex items-center justify-center lg:justify-end">
-            <div
-              className="smeng-img w-full"
-              style={{
-                opacity: 0, transform: 'translateY(36px)',
-                maxWidth: '520px',
-                borderRadius: '20px',
-                overflow: 'hidden',
-                boxShadow: [
-                  '0 40px 80px -16px hsl(0 0% 0% / 0.85)',
-                  '0 0 0 1px hsl(199 89% 65% / 0.12)',
-                  '0 0 60px -18px hsl(199 89% 60% / 0.25)',
-                ].join(', '),
-              }}
-            >
-              <img
-                src="/brand_assets/Smiley_women.png"
-                alt="Person smiling while engaging with social media on their phone"
-                style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-              />
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      {/* Bottom fade */}
-      <div aria-hidden="true" className="pointer-events-none absolute left-0 right-0 bottom-0" style={{
-        height: '120px',
-        background: 'linear-gradient(to top, #071011 0%, transparent 100%)',
+        background: 'linear-gradient(to top, #010709 0%, transparent 100%)',
         zIndex: 3,
       }}/>
     </section>
@@ -4813,12 +4252,12 @@ function SocialMediaMarketing() {
     <section
       ref={ctaRef}
       className="relative w-full overflow-hidden"
-      style={{ background: '#071011', padding: 'clamp(6rem, 12vw, 10rem) 0' }}
+      style={{ background: '#010709', padding: 'clamp(6rem, 12vw, 10rem) 0' }}
     >
       {/* Top fade */}
       <div aria-hidden="true" className="pointer-events-none absolute left-0 right-0 top-0" style={{
         height: '120px',
-        background: 'linear-gradient(to bottom, #071011 0%, transparent 100%)',
+        background: 'linear-gradient(to bottom, #010709 0%, transparent 100%)',
         zIndex: 3,
       }}/>
 
@@ -4894,7 +4333,8 @@ function SocialMediaMarketing() {
               style={{
                 opacity: 0, transform: 'translateY(18px)',
                 fontSize: 'clamp(0.87rem, 1.35vw, 0.97rem)',
-                lineHeight: 1.9, color: '#F2F8FC', maxWidth: '34rem',
+                lineHeight: 1.9, color: 'hsl(0 0% 46%)', maxWidth: '34rem',
+                fontFamily: "'Poppins', sans-serif",
               }}
             >
               We design campaign visuals that feel native to Instagram, TikTok, Facebook, and paid social
@@ -4908,7 +4348,8 @@ function SocialMediaMarketing() {
               style={{
                 opacity: 0, transform: 'translateY(18px)',
                 fontSize: 'clamp(0.87rem, 1.35vw, 0.97rem)',
-                lineHeight: 1.9, color: '#F2F8FC', maxWidth: '34rem',
+                lineHeight: 1.9, color: 'hsl(0 0% 46%)', maxWidth: '34rem',
+                fontFamily: "'Poppins', sans-serif",
               }}
             >
               From luxury product posts to scroll-stopping short-form visuals, we create assets that
@@ -4931,14 +4372,15 @@ function SocialMediaMarketing() {
                   style={{
                     opacity: 0, transform: 'translateY(10px)',
                     fontSize: 'clamp(0.84rem, 1.2vw, 0.9rem)',
-                    color: '#F2F8FC',
+                    color: 'hsl(0 0% 52%)',
                     borderBottom: '1px solid hsl(0 0% 100% / 0.07)',
                     padding: '0.82rem 0',
                     cursor: 'default',
                     transition: 'color 0.25s ease',
+                    fontFamily: "'Poppins', sans-serif",
                   }}
-                  onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = 'hsl(0 0% 88%)' }}
-                  onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = '#F2F8FC' }}
+                  onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = 'hsl(0 0% 86%)' }}
+                  onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = 'hsl(0 0% 52%)' }}
                 >
                   <span style={{ fontSize: '0.42rem', color: 'hsl(199 89% 60%)', flexShrink: 0 }}>◆</span>
                   {item}
@@ -4952,7 +4394,7 @@ function SocialMediaMarketing() {
           <div className="flex flex-col sm:flex-row items-end gap-5 order-2">
 
             {/* Image 1: Instagram Watch — gallery-mounted tall frame */}
-            <div className="flex-1 relative w-full" style={{ zIndex: 1 }}>
+            <div className="flex-1 relative" style={{ zIndex: 1 }}>
               <div
                 className="s5cv-img-a"
                 style={{
@@ -4984,7 +4426,7 @@ function SocialMediaMarketing() {
                 }}
               >
                 <img
-                  src="/brand_assets/Now_watch.png"
+                  src="/brand_assets/Watch_L.png"
                   alt="Instagram luxury watch campaign visual"
                   style={{
                     position: 'absolute', inset: 0,
@@ -5004,7 +4446,7 @@ function SocialMediaMarketing() {
                   zIndex: 2,
                 }}>
                   <span style={{ width: 4, height: 4, borderRadius: '50%', background: 'hsl(199 89% 60%)', flexShrink: 0 }}/>
-                  <span style={{ fontSize: '0.55rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'hsl(199 89% 68%)', fontFamily: 'sans-serif', fontWeight: 300 }}>
+                  <span style={{ fontSize: '0.55rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'hsl(199 89% 68%)', fontFamily: "'Poppins', sans-serif", fontWeight: 300 }}>
                     Instagram
                   </span>
                 </div>
@@ -5012,7 +4454,7 @@ function SocialMediaMarketing() {
             </div>
 
             {/* Image 2: TikTok Shampoo — natural tall vertical */}
-            <div className="flex-1 relative w-full" style={{ zIndex: 2 }}>
+            <div className="flex-1 relative" style={{ zIndex: 2 }}>
               <div
                 className="s5cv-img-b"
                 style={{
@@ -5061,7 +4503,7 @@ function SocialMediaMarketing() {
                   zIndex: 2,
                 }}>
                   <span style={{ width: 4, height: 4, borderRadius: '50%', background: 'hsl(280 65% 65%)', flexShrink: 0 }}/>
-                  <span style={{ fontSize: '0.55rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'hsl(280 65% 72%)', fontFamily: 'sans-serif', fontWeight: 300 }}>
+                  <span style={{ fontSize: '0.55rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'hsl(280 65% 72%)', fontFamily: "'Poppins', sans-serif", fontWeight: 300 }}>
                     TikTok
                   </span>
                 </div>
@@ -5076,7 +4518,7 @@ function SocialMediaMarketing() {
       {/* Bottom fade — blends into Section 6 */}
       <div aria-hidden="true" className="pointer-events-none absolute left-0 right-0 bottom-0" style={{
         height: '120px',
-        background: 'linear-gradient(to top, #071011 0%, transparent 100%)',
+        background: 'linear-gradient(to top, #010709 0%, transparent 100%)',
         zIndex: 3,
       }}/>
     </section>
@@ -5085,12 +4527,12 @@ function SocialMediaMarketing() {
     <section
       ref={s6Ref}
       className="relative w-full overflow-hidden"
-      style={{ background: '#071011', padding: 'clamp(6rem, 12vw, 10rem) 0' }}
+      style={{ background: '#010709', padding: 'clamp(6rem, 12vw, 10rem) 0' }}
     >
       {/* Top fade */}
       <div aria-hidden="true" className="pointer-events-none absolute left-0 right-0 top-0" style={{
         height: '120px',
-        background: 'linear-gradient(to bottom, #071011 0%, transparent 100%)',
+        background: 'linear-gradient(to bottom, #010709 0%, transparent 100%)',
         zIndex: 3,
       }}/>
 
@@ -5164,7 +4606,7 @@ function SocialMediaMarketing() {
                 opacity: 0, transform: 'translateY(18px)',
                 fontSize: 'clamp(0.85rem, 1.3vw, 0.97rem)',
                 lineHeight: 1.9,
-                color: '#F2F8FC',
+                color: 'hsl(0 0% 38%)',
                 maxWidth: '42rem',
               }}
             >
@@ -5294,7 +4736,7 @@ function SocialMediaMarketing() {
       {/* Bottom fade */}
       <div aria-hidden="true" className="pointer-events-none absolute left-0 right-0 bottom-0" style={{
         height: '120px',
-        background: 'linear-gradient(to top, #071011 0%, transparent 100%)',
+        background: 'linear-gradient(to top, #010709 0%, transparent 100%)',
         zIndex: 3,
       }}/>
     </section>
@@ -5303,7 +4745,7 @@ function SocialMediaMarketing() {
     <section
       ref={smFeatRef}
       className="relative w-full overflow-hidden"
-      style={{ background: '#071011', padding: 'clamp(6rem, 12vw, 10rem) 0' }}
+      style={{ background: '#010709', padding: 'clamp(6rem, 12vw, 10rem) 0' }}
     >
       {/* Subtle grain */}
       <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
@@ -5391,7 +4833,7 @@ function SocialMediaMarketing() {
               style={{
                 fontSize: 'clamp(0.85rem, 1.2vw, 0.94rem)',
                 lineHeight: 1.9,
-                color: '#F2F8FC',
+                color: 'hsl(0 0% 52%)',
                 maxWidth: '28rem',
               }}
             >
@@ -5428,7 +4870,7 @@ function SocialMediaMarketing() {
               style={{
                 fontSize: 'clamp(0.85rem, 1.2vw, 0.94rem)',
                 lineHeight: 1.9,
-                color: '#F2F8FC',
+                color: 'hsl(0 0% 52%)',
                 maxWidth: '28rem',
               }}
             >
@@ -5463,7 +4905,7 @@ function SocialMediaMarketing() {
               style={{
                 fontSize: 'clamp(0.85rem, 1.2vw, 0.94rem)',
                 lineHeight: 1.9,
-                color: '#F2F8FC',
+                color: 'hsl(0 0% 52%)',
                 maxWidth: '28rem',
               }}
             >
@@ -5499,7 +4941,7 @@ function SocialMediaMarketing() {
               style={{
                 fontSize: 'clamp(0.85rem, 1.2vw, 0.94rem)',
                 lineHeight: 1.9,
-                color: '#F2F8FC',
+                color: 'hsl(0 0% 52%)',
                 maxWidth: '28rem',
               }}
             >
@@ -5513,7 +4955,7 @@ function SocialMediaMarketing() {
       {/* Bottom fade */}
       <div aria-hidden="true" className="pointer-events-none absolute left-0 right-0 bottom-0" style={{
         height: '100px',
-        background: 'linear-gradient(to top, #071011 0%, transparent 100%)',
+        background: 'linear-gradient(to top, #010709 0%, transparent 100%)',
         zIndex: 3,
       }}/>
     </section>
@@ -5571,7 +5013,7 @@ function S7ContactFooter() {
       {/* Top fade — blends seamlessly with Section 6 */}
       <div aria-hidden="true" className="pointer-events-none absolute left-0 right-0 top-0" style={{
         height: '120px',
-        background: 'linear-gradient(to bottom, #071011 0%, transparent 100%)',
+        background: 'linear-gradient(to bottom, #010709 0%, transparent 100%)',
         zIndex: 4,
       }}/>
 
@@ -6078,12 +5520,8 @@ function GraphicDesignHero() {
       id="graphic-design-hero"
       className="relative w-full"
       style={{
-        background: '#071011',
-        backgroundImage: [
-          'radial-gradient(circle at 15% 22%, rgba(255,216,107,0.10), transparent 30%)',
-          'radial-gradient(circle at 85% 75%, rgba(180,80,140,0.10), transparent 32%)',
-          'radial-gradient(ellipse 65% 70% at 72% 50%, hsl(192 80% 14% / 0.28) 0%, transparent 70%)',
-        ].join(', '),
+        background: '#010709',
+        backgroundImage: 'radial-gradient(ellipse 65% 70% at 72% 50%, hsl(192 80% 14% / 0.28) 0%, transparent 70%)',
         paddingTop: 'clamp(3rem, 6vw, 5rem)',
       }}
     >
@@ -6128,7 +5566,7 @@ function GraphicDesignHero() {
       </div>
 
       {/* Mobile / Tablet: improved fitted image (only below lg) */}
-      <div className="block lg:hidden w-full overflow-hidden bg-[#071011]">
+      <div className="block lg:hidden w-full overflow-hidden bg-[#010709]">
         <div className="relative mx-auto w-full max-w-[720px] overflow-hidden sm:rounded-[24px] aspect-[3/2]">
           <img
             loading="lazy"
@@ -6145,7 +5583,7 @@ function GraphicDesignHero() {
       <div aria-hidden="true" style={{
         position: 'absolute', bottom: 0, left: 0, right: 0,
         height: '140px',
-        background: 'linear-gradient(to bottom, rgba(1,7,9,0), #071011)',
+        background: 'linear-gradient(to bottom, rgba(1,7,9,0), #010709)',
         pointerEvents: 'none',
         zIndex: 5,
       }}/>
@@ -6231,7 +5669,7 @@ function GraphicDesignEditorial() {
     <section
       ref={ref}
       className="relative w-full overflow-hidden"
-      style={{ background: '#071011' }}
+      style={{ background: '#010709' }}
     >
       {/* ── Grain ── */}
       <svg aria-hidden="true" className="pointer-events-none absolute inset-0 w-full h-full" style={{ opacity: 0.026, zIndex: 1 }}>
@@ -6342,7 +5780,7 @@ function GraphicDesignEditorial() {
       <div aria-hidden="true" style={{
         position: 'absolute', bottom: 0, left: 0, right: 0,
         height: '160px',
-        background: 'linear-gradient(to bottom, rgba(1,7,9,0), #071011)',
+        background: 'linear-gradient(to bottom, rgba(1,7,9,0), #010709)',
         pointerEvents: 'none',
         zIndex: 20,
       }}/>
@@ -6455,7 +5893,7 @@ function GraphicDesignServices() {
     <section
       ref={ref}
       className="relative w-full overflow-hidden"
-      style={{ background: '#071011', padding: 'clamp(6rem, 10vw, 10rem) 0' }}
+      style={{ background: '#010709', padding: 'clamp(6rem, 10vw, 10rem) 0' }}
     >
       {/* Grain */}
       <svg aria-hidden="true" className="pointer-events-none absolute inset-0 w-full h-full" style={{ opacity: 0.028, zIndex: 1 }}>
@@ -6485,7 +5923,7 @@ function GraphicDesignServices() {
       <div aria-hidden="true" style={{
         position: 'absolute', top: 0, left: 0, right: 0,
         height: '120px',
-        background: 'linear-gradient(to bottom, #071011, rgba(1,7,9,0))',
+        background: 'linear-gradient(to bottom, #010709, rgba(1,7,9,0))',
         pointerEvents: 'none',
         zIndex: 5,
       }}/>
@@ -6587,7 +6025,7 @@ function GraphicDesignServices() {
       <div aria-hidden="true" style={{
         position: 'absolute', bottom: 0, left: 0, right: 0,
         height: '120px',
-        background: 'linear-gradient(to bottom, rgba(1,7,9,0), #071011)',
+        background: 'linear-gradient(to bottom, rgba(1,7,9,0), #010709)',
         pointerEvents: 'none',
         zIndex: 5,
       }}/>
@@ -6621,7 +6059,7 @@ function GraphicDesignSplitA() {
     <section
       ref={ref}
       className="relative w-full overflow-hidden"
-      style={{ background: '#071011', padding: 'clamp(6rem, 10vw, 10rem) 0' }}
+      style={{ background: '#010709', padding: 'clamp(6rem, 10vw, 10rem) 0' }}
     >
       {/* Grain */}
       <svg aria-hidden="true" className="pointer-events-none absolute inset-0 w-full h-full" style={{ opacity: 0.026, zIndex: 1 }}>
@@ -6799,7 +6237,7 @@ function GraphicDesignSplitA() {
       <div aria-hidden="true" style={{
         position: 'absolute', bottom: 0, left: 0, right: 0,
         height: '120px',
-        background: 'linear-gradient(to bottom, rgba(1,7,9,0), #071011)',
+        background: 'linear-gradient(to bottom, rgba(1,7,9,0), #010709)',
         pointerEvents: 'none',
         zIndex: 5,
       }}/>
@@ -6834,7 +6272,7 @@ function GraphicDesignSplitB() {
     <section
       ref={ref}
       className="relative w-full overflow-hidden"
-      style={{ background: '#071011', padding: 'clamp(6rem, 10vw, 10rem) 0' }}
+      style={{ background: '#010709', padding: 'clamp(6rem, 10vw, 10rem) 0' }}
     >
       {/* Grain */}
       <svg aria-hidden="true" className="pointer-events-none absolute inset-0 w-full h-full" style={{ opacity: 0.024, zIndex: 1 }}>
@@ -6858,7 +6296,7 @@ function GraphicDesignSplitB() {
       <div aria-hidden="true" style={{
         position: 'absolute', top: 0, left: 0, right: 0,
         height: '120px',
-        background: 'linear-gradient(to bottom, #071011, rgba(1,7,9,0))',
+        background: 'linear-gradient(to bottom, #010709, rgba(1,7,9,0))',
         pointerEvents: 'none',
         zIndex: 5,
       }}/>
@@ -7054,7 +6492,7 @@ function GraphicDesignSplitB() {
       <div aria-hidden="true" style={{
         position: 'absolute', bottom: 0, left: 0, right: 0,
         height: '120px',
-        background: 'linear-gradient(to bottom, rgba(1,7,9,0), #071011)',
+        background: 'linear-gradient(to bottom, rgba(1,7,9,0), #010709)',
         pointerEvents: 'none',
         zIndex: 5,
       }}/>
@@ -7114,7 +6552,7 @@ function GraphicDesignFinalPresentation() {
     <section
       ref={ref}
       className="relative w-full overflow-hidden"
-      style={{ background: '#071011', padding: 'clamp(6rem, 10vw, 10rem) 0' }}
+      style={{ background: '#010709', padding: 'clamp(6rem, 10vw, 10rem) 0' }}
     >
       {/* Grain */}
       <svg aria-hidden="true" className="pointer-events-none absolute inset-0 w-full h-full" style={{ opacity: 0.024, zIndex: 1 }}>
@@ -7515,7 +6953,7 @@ function GraphicDesignFinalPresentation() {
       {/* Bottom fade */}
       <div aria-hidden="true" className="pointer-events-none absolute left-0 right-0 bottom-0" style={{
         height: '100px',
-        background: 'linear-gradient(to top, #071011 0%, transparent 100%)',
+        background: 'linear-gradient(to top, #010709 0%, transparent 100%)',
         zIndex: 3,
       }}/>
     </section>
@@ -7550,7 +6988,7 @@ function GraphicDesignCTA() {
     <section
       ref={ref}
       className="relative w-full overflow-hidden"
-      style={{ background: '#071011', padding: 'clamp(6rem, 12vw, 10rem) 0' }}
+      style={{ background: '#010709', padding: 'clamp(6rem, 12vw, 10rem) 0' }}
     >
       {/* Grain */}
       <svg aria-hidden="true" className="pointer-events-none absolute inset-0 w-full h-full" style={{ opacity: 0.022, zIndex: 1 }}>
@@ -7684,7 +7122,7 @@ function GraphicDesignCTA() {
       {/* Bottom fade into contact footer */}
       <div aria-hidden="true" className="pointer-events-none absolute left-0 right-0 bottom-0" style={{
         height: '100px',
-        background: 'linear-gradient(to top, #071011 0%, transparent 100%)',
+        background: 'linear-gradient(to top, #010709 0%, transparent 100%)',
         zIndex: 3,
       }}/>
     </section>
@@ -7730,9 +7168,9 @@ function GraphicDesignContactFooter() {
         />
         <div className="absolute inset-0 bg-black/35 lg:bg-black/60" />
         <div className="absolute top-0 left-0 right-0 pointer-events-none"
-          style={{ height: '160px', background: 'linear-gradient(to bottom, #071011 0%, transparent 100%)', zIndex: 2 }} />
+          style={{ height: '160px', background: 'linear-gradient(to bottom, #010709 0%, transparent 100%)', zIndex: 2 }} />
         <div className="absolute bottom-0 left-0 right-0 pointer-events-none"
-          style={{ height: '200px', background: 'linear-gradient(to top, #071011 0%, transparent 100%)', zIndex: 2 }} />
+          style={{ height: '200px', background: 'linear-gradient(to top, #010709 0%, transparent 100%)', zIndex: 2 }} />
       </div>
 
       {/* ── Content ── */}
@@ -8003,11 +7441,7 @@ function UGCHero() {
 
       {/* Layered overlays */}
       <div aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'linear-gradient(108deg, hsl(0 0% 2% / 0.94) 0%, hsl(0 0% 2% / 0.62) 50%, hsl(0 0% 2% / 0.1) 100%)' }}/>
-      <div aria-hidden="true" style={{ position: 'absolute', inset: 0, background: [
-        'radial-gradient(ellipse 52% 75% at 2% 55%, hsl(0 72% 45% / 0.13) 0%, transparent 65%)',
-        'radial-gradient(circle at 75% 80%, rgba(255,216,107,0.09), transparent 30%)',
-        'radial-gradient(circle at 55% 20%, rgba(255,140,80,0.07), transparent 28%)',
-      ].join(', ') }}/>
+      <div aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse 52% 75% at 2% 55%, hsl(0 72% 45% / 0.13) 0%, transparent 65%)' }}/>
       <svg aria-hidden="true" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', opacity: 0.045, pointerEvents: 'none' }}>
         <filter id="ugc-g"><feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="3" stitchTiles="stitch" result="n"/><feColorMatrix type="saturate" values="0" in="n"/></filter>
         <rect width="100%" height="100%" filter="url(#ugc-g)" fill="white"/>
@@ -8082,15 +7516,10 @@ function UGCHero() {
     <section
       ref={editRef}
       className="relative w-full overflow-hidden"
-      style={{ background: '#0B1114', padding: 'clamp(5rem, 10vw, 8.5rem) 0' }}
+      style={{ background: '#010709', padding: 'clamp(5rem, 10vw, 8.5rem) 0' }}
     >
-      {/* Ambient glows — warm studio: red + gold + coral */}
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{ background: [
-        'radial-gradient(ellipse 50% 55% at 18% 62%, hsl(0 72% 48% / 0.055) 0%, transparent 65%)',
-        'radial-gradient(ellipse 38% 38% at 82% 28%, hsl(0 55% 38% / 0.035) 0%, transparent 60%)',
-        'radial-gradient(circle at 60% 85%, rgba(255,216,107,0.07), transparent 30%)',
-        'radial-gradient(circle at 90% 60%, rgba(255,130,70,0.06), transparent 28%)',
-      ].join(', ') }}/>
+      {/* Ambient glows */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{ background: ['radial-gradient(ellipse 50% 55% at 18% 62%, hsl(0 72% 48% / 0.055) 0%, transparent 65%)', 'radial-gradient(ellipse 38% 38% at 82% 28%, hsl(0 55% 38% / 0.035) 0%, transparent 60%)'].join(', ') }}/>
       <svg aria-hidden="true" className="pointer-events-none absolute inset-0 w-full h-full" style={{ opacity: 0.025 }}>
         <filter id="ugce-g"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" result="n"/><feColorMatrix type="saturate" values="0" in="n"/></filter>
         <rect width="100%" height="100%" filter="url(#ugce-g)" fill="white"/>
@@ -8258,7 +7687,7 @@ function UGCCreatorSelection() {
     <div ref={ref}>
 
       {/* ─── DESKTOP layout (≥1024px): image-left, text-right ─────────────────── */}
-      <section className="hidden lg:block" style={{ position: 'relative', background: '#0B1114', padding: 'clamp(5rem, 10vw, 9rem) 0', width: '100%', overflow: 'hidden' }}>
+      <section className="hidden lg:block" style={{ position: 'relative', background: '#010709', padding: 'clamp(5rem, 10vw, 9rem) 0', width: '100%', overflow: 'hidden' }}>
         {decorative}
         <div style={{ position: 'relative', zIndex: 10, width: '100%', maxWidth: '80rem', margin: '0 auto', padding: '0 2.5rem', boxSizing: 'border-box' }}>
           <div style={{ display: 'flex', gap: '5rem', alignItems: 'center' }}>
@@ -8283,7 +7712,7 @@ function UGCCreatorSelection() {
       </section>
 
       {/* ─── MOBILE / TABLET layout (<1024px): fully stacked column ───────────── */}
-      <section className="block lg:hidden w-full overflow-x-hidden px-6 py-16 sm:px-8" style={{ position: 'relative', background: '#0B1114' }}>
+      <section className="block lg:hidden w-full overflow-x-hidden px-6 py-16 sm:px-8" style={{ position: 'relative', background: '#010709' }}>
         {decorative}
         <div className="mx-auto flex w-full max-w-[680px] flex-col items-start gap-8" style={{ position: 'relative', zIndex: 10 }}>
 
@@ -8386,7 +7815,7 @@ function UGCFindCreators() {
     <section
       ref={ref}
       className="relative w-full overflow-hidden"
-      style={{ background: '#0B1114', padding: 'clamp(5rem, 10vw, 9rem) 0' }}
+      style={{ background: '#010709', padding: 'clamp(5rem, 10vw, 9rem) 0' }}
     >
       {/* Subtle ambient glow */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
@@ -8430,7 +7859,7 @@ function UGCFindCreators() {
               }}
             >
               We find creators{' '}
-              <em style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400 }}>
+              <em style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400, color: 'hsl(195 80% 72%)' }}>
                 built for your brand.
               </em>
             </h2>
@@ -8714,7 +8143,7 @@ function UGCMonitoringReporting() {
     <section
       ref={ref}
       className="ugcmr-layout-section"
-      style={{ position: 'relative', background: '#0B1114', padding: 'clamp(5rem, 10vw, 9rem) 0' }}
+      style={{ position: 'relative', background: '#010709', padding: 'clamp(5rem, 10vw, 9rem) 0' }}
     >
       {/* Ambient glow */}
       <div aria-hidden="true" style={{ pointerEvents: 'none', position: 'absolute', inset: 0, background: 'radial-gradient(ellipse 48% 55% at 0% 50%, hsl(195 80% 50% / 0.042) 0%, transparent 65%), radial-gradient(ellipse 35% 40% at 100% 60%, hsl(195 70% 40% / 0.028) 0%, transparent 60%)' }}/>
@@ -8742,7 +8171,7 @@ function UGCMonitoringReporting() {
               style={{ color: '#fff', fontSize: 'clamp(2rem, 5vw, 3rem)', lineHeight: 1.05, letterSpacing: '-0.035em', marginBottom: '1.6rem' }}
             >
               Every result,{' '}
-              <em style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400 }}>
+              <em style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400, color: 'hsl(195 80% 72%)' }}>
                 clearly reported.
               </em>
             </h2>
@@ -8923,13 +8352,13 @@ function UGCTrackingUrls() {
     <section
       ref={ref}
       className="relative w-full overflow-hidden"
-      style={{ background: '#0B1114', padding: 'clamp(5rem, 10vw, 9rem) 0' }}
+      style={{ background: '#010709', padding: 'clamp(5rem, 10vw, 9rem) 0' }}
     >
       {/* Ambient glow */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
         background: [
-          'radial-gradient(ellipse 48% 55% at 100% 50%, hsl(195 80% 50% / 0.045) 0%, transparent 65%)',
-          'radial-gradient(ellipse 35% 40% at 0% 55%, hsl(195 70% 40% / 0.03) 0%, transparent 60%)',
+          'radial-gradient(ellipse 55% 60% at 90% 50%, hsl(160 70% 45% / 0.045) 0%, transparent 65%)',
+          'radial-gradient(ellipse 38% 42% at 10% 55%, hsl(195 80% 50% / 0.03) 0%, transparent 60%)',
         ].join(', '),
       }}/>
 
@@ -8943,7 +8372,7 @@ function UGCTrackingUrls() {
       </svg>
 
       {/* Top separator */}
-      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '1px', background: 'linear-gradient(to right, transparent, hsl(195 80% 55% / 0.12), transparent)' }}/>
+      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '1px', background: 'linear-gradient(to right, transparent, hsl(160 65% 50% / 0.14), transparent)' }}/>
 
       <div className="relative z-10 max-w-[72rem] mx-auto px-6 sm:px-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20 items-center">
@@ -8951,12 +8380,12 @@ function UGCTrackingUrls() {
           {/* ── LEFT: text ── */}
           <div>
             <div className="ugctu-text ugc-step-label flex items-center gap-3 mb-6">
-              <span className="font-sans" style={{ fontSize: '0.6rem', letterSpacing: '0.32em', textTransform: 'uppercase', color: 'hsl(195 80% 62%)', flexShrink: 0 }}>04</span>
-              <div aria-hidden="true" style={{ width: '2rem', height: 1, background: 'hsl(195 80% 55% / 0.4)', flexShrink: 0 }}/>
-              <span className="font-sans" style={{ fontSize: '0.6rem', letterSpacing: '0.32em', textTransform: 'uppercase', color: 'hsl(195 80% 62%)' }}>Tracking URLs</span>
+              <span className="font-sans" style={{ fontSize: '0.6rem', letterSpacing: '0.32em', textTransform: 'uppercase', color: 'hsl(160 65% 55%)', flexShrink: 0 }}>04</span>
+              <div aria-hidden="true" style={{ width: '2rem', height: 1, background: 'hsl(160 65% 50% / 0.4)', flexShrink: 0 }}/>
+              <span className="font-sans" style={{ fontSize: '0.6rem', letterSpacing: '0.32em', textTransform: 'uppercase', color: 'hsl(160 65% 55%)' }}>Tracking URLs</span>
             </div>
 
-            <p className="ugctu-text font-sans" style={{ fontSize: '0.62rem', letterSpacing: '0.28em', textTransform: 'uppercase', color: 'hsl(0 0% 40%)', marginBottom: '1.4rem' }}>
+            <p className="ugctu-text font-sans" style={{ fontSize: '0.62rem', letterSpacing: '0.28em', textTransform: 'uppercase', color: 'hsl(160 60% 50% / 0.65)', marginBottom: '1.4rem' }}>
               Performance Visibility
             </p>
 
@@ -8965,13 +8394,13 @@ function UGCTrackingUrls() {
               style={{ color: '#fff', fontSize: 'clamp(1.9rem, 3.6vw, 3rem)', lineHeight: 1.08, letterSpacing: '-0.035em', marginBottom: '1.8rem' }}
             >
               Know exactly which creator,{' '}
-              <em style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400 }}>
+              <em style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400, color: 'hsl(160 65% 65%)' }}>
                 platform,
               </em>{' '}
               and placement is driving results.
             </h2>
 
-            <div className="ugctu-text" aria-hidden="true" style={{ width: '2.5rem', height: 1, background: 'hsl(195 80% 55% / 0.38)', marginBottom: '1.8rem' }}/>
+            <div className="ugctu-text" aria-hidden="true" style={{ width: '2.5rem', height: 1, background: 'hsl(160 65% 50% / 0.38)', marginBottom: '1.8rem' }}/>
 
             <p className="ugctu-text font-sans font-light" style={{ fontSize: 'clamp(0.88rem, 1.4vw, 1.02rem)', lineHeight: 1.9, color: 'hsl(0 0% 52%)', marginBottom: '1.2rem' }}>
               Every campaign can be measured with clear tracking links and structured reporting,
@@ -8987,8 +8416,8 @@ function UGCTrackingUrls() {
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
               {UGC_TRACKING_FEATURES.map(item => (
                 <li key={item} className="ugctu-feat" style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
-                  <span aria-hidden="true" style={{ width: '5px', height: '5px', borderRadius: '50%', flexShrink: 0, background: 'hsl(195 80% 58%)', boxShadow: '0 0 6px hsl(195 80% 58% / 0.6)' }}/>
-                  <span className="font-sans font-light" style={{ fontSize: '0.88rem', color: 'hsl(0 0% 68%)', letterSpacing: '0.01em' }}>{item}</span>
+                  <span aria-hidden="true" style={{ width: '5px', height: '5px', borderRadius: '50%', flexShrink: 0, background: 'hsl(160 65% 52%)', boxShadow: '0 0 6px hsl(160 65% 50% / 0.55)' }}/>
+                  <span className="font-sans font-light" style={{ fontSize: '0.88rem', color: 'hsl(0 0% 64%)', letterSpacing: '0.01em' }}>{item}</span>
                 </li>
               ))}
             </ul>
@@ -9231,7 +8660,7 @@ function UGCPerfumeCampaign() {
     <section
       ref={ref}
       className="relative w-full overflow-hidden"
-      style={{ background: '#0B1114', padding: 'clamp(5rem, 10vw, 9rem) 0' }}
+      style={{ background: '#010709', padding: 'clamp(5rem, 10vw, 9rem) 0' }}
     >
       {/* Warm gold ambient */}
       <div
@@ -9606,7 +9035,7 @@ function UGCPerformanceSystem() {
     <section
       ref={sectionRef}
       className="relative w-full overflow-hidden"
-      style={{ background: '#0B1114', padding: 'clamp(5rem, 10vw, 9rem) 0' }}
+      style={{ background: '#010709', padding: 'clamp(5rem, 10vw, 9rem) 0' }}
     >
       {/* Subtle grain */}
       <svg aria-hidden="true" className="pointer-events-none absolute inset-0 w-full h-full" style={{ opacity: 0.016 }}>
@@ -9835,7 +9264,7 @@ function UGCPerformanceSystem() {
         aria-hidden="true"
         style={{
           position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px',
-          background: 'linear-gradient(to bottom, transparent, #0B1114)',
+          background: 'linear-gradient(to bottom, transparent, #010709)',
           pointerEvents: 'none',
         }}
       />
@@ -9961,7 +9390,7 @@ function UGCPracticeEcosystem() {
     <section
       ref={sectionRef}
       className="relative w-full overflow-hidden"
-      style={{ background: '#0B1114', padding: 'clamp(5rem, 10vw, 8rem) 0' }}
+      style={{ background: '#010709', padding: 'clamp(5rem, 10vw, 8rem) 0' }}
     >
       {/* Top hairline */}
       <div
@@ -10141,12 +9570,12 @@ function UGCContactFooter() {
         {/* Top fade */}
         <div
           className="absolute top-0 left-0 right-0 pointer-events-none"
-          style={{ height: '160px', background: 'linear-gradient(to bottom, #0B1114 0%, transparent 100%)', zIndex: 2 }}
+          style={{ height: '160px', background: 'linear-gradient(to bottom, #010709 0%, transparent 100%)', zIndex: 2 }}
         />
         {/* Bottom fade */}
         <div
           className="absolute bottom-0 left-0 right-0 pointer-events-none"
-          style={{ height: '200px', background: 'linear-gradient(to top, #0B1114 0%, transparent 100%)', zIndex: 2 }}
+          style={{ height: '200px', background: 'linear-gradient(to top, #010709 0%, transparent 100%)', zIndex: 2 }}
         />
       </div>
 
@@ -10644,7 +10073,7 @@ export default function Services() {
             height: 'clamp(420px, 52vw, 720px)',
             marginLeft: 'calc(-50vw + 50%)',
             marginRight: 'calc(-50vw + 50%)',
-            background: '#071011',
+            background: '#010709',
           }}
       >
         {/* Full-width background image */}
@@ -10675,15 +10104,6 @@ export default function Services() {
         <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
           backgroundImage: 'radial-gradient(hsl(210 40% 60% / 0.022) 1px, transparent 1px)',
           backgroundSize: '28px 28px',
-        }}/>
-
-        {/* Premium ambient — gold + cyan depth glows */}
-        <div aria-hidden="true" style={{
-          position: 'absolute', inset: 0, pointerEvents: 'none',
-          background: [
-            'radial-gradient(circle at 12% 80%, rgba(255,216,107,0.09), transparent 30%)',
-            'radial-gradient(circle at 20% 30%, hsl(190 90% 50% / 0.07), transparent 28%)',
-          ].join(', '),
         }}/>
 
         {/* Text content */}
@@ -10751,7 +10171,7 @@ export default function Services() {
         {/* Bottom fade into next section */}
         <div aria-hidden="true" className="pointer-events-none absolute left-0 right-0 bottom-0" style={{
           height: '100px',
-          background: 'linear-gradient(to top, #071011 0%, transparent 100%)',
+          background: 'linear-gradient(to top, #010709 0%, transparent 100%)',
         }}/>
       </section>
 
@@ -10760,7 +10180,7 @@ export default function Services() {
         ref={bwd1Ref}
         id="bespoke-website-design-detail"
         className="relative w-full overflow-hidden"
-        style={{ background: '#071011', padding: 'clamp(5rem, 10vw, 8rem) 0' }}
+        style={{ background: '#010709', padding: 'clamp(5rem, 10vw, 8rem) 0' }}
       >
         {/* Cyan-blue tint — center/right biased */}
         <div
@@ -10775,7 +10195,7 @@ export default function Services() {
         />
 
         {/* Section boundary fades */}
-        <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to top, #071011, transparent)', pointerEvents: 'none', zIndex: 2 }} />
+        <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to top, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
 
         <div className="relative z-10 max-w-[88rem] mx-auto px-6 sm:px-10">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.3fr] gap-16 lg:gap-14 items-center">
@@ -10942,7 +10362,7 @@ export default function Services() {
         <div aria-hidden="true" style={{
           position: 'absolute', bottom: 0, left: 0, right: 0,
           height: '120px',
-          background: 'linear-gradient(to bottom, rgba(1,7,9,0), #071011)',
+          background: 'linear-gradient(to bottom, rgba(1,7,9,0), #010709)',
           pointerEvents: 'none',
           zIndex: 5,
         }}/>
@@ -10953,7 +10373,7 @@ export default function Services() {
         ref={bwdCinemaRef}
         className="relative w-full overflow-hidden"
         style={{
-          background: '#071011',
+          background: '#010709',
           padding: 'clamp(6rem, 11vw, 10rem) 0 clamp(5rem, 9vw, 8rem)',
         }}
       >
@@ -10986,7 +10406,7 @@ export default function Services() {
         <div aria-hidden="true" style={{
           position: 'absolute', top: 0, left: 0, right: 0,
           height: '120px',
-          background: 'linear-gradient(to bottom, #071011, rgba(1,7,9,0))',
+          background: 'linear-gradient(to bottom, #010709, rgba(1,7,9,0))',
           pointerEvents: 'none',
           zIndex: 5,
         }}/>
@@ -11194,7 +10614,7 @@ export default function Services() {
         <div aria-hidden="true" style={{
           position: 'absolute', bottom: 0, left: 0, right: 0,
           height: '120px',
-          background: 'linear-gradient(to bottom, rgba(1,7,9,0), #071011)',
+          background: 'linear-gradient(to bottom, rgba(1,7,9,0), #010709)',
           pointerEvents: 'none',
           zIndex: 5,
         }}/>
@@ -11236,7 +10656,7 @@ export default function Services() {
         ref={chatbotRef}
         id="custom-chatbots-detail"
         className="relative w-full overflow-hidden"
-        style={{ background: '#071011', padding: 'clamp(5rem, 10vw, 8rem) 0' }}
+        style={{ background: '#010709', padding: 'clamp(5rem, 10vw, 8rem) 0' }}
       >
         {/* Ambient glows */}
         <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
