@@ -32,8 +32,8 @@ export default function About() { // no diagonal lines bg
           top: 0,
           left: 0,
           right: 0,
-          height: '160px',
-          background: 'linear-gradient(to bottom, #071011 0%, transparent 100%)',
+          height: '220px',
+          background: 'linear-gradient(to bottom, #0B1114 0%, rgba(11,17,20,0.6) 45%, transparent 100%)',
           pointerEvents: 'none',
           zIndex: 1,
         }}
