@@ -171,7 +171,7 @@ export default function About() { // no diagonal lines bg
             <div
               className="relative w-full"
               style={{
-                transform: 'scale(1.13)',
+                transform: 'scale(1.22) translateX(5%)',
                 maskImage: 'radial-gradient(ellipse 88% 82% at 52% 50%, black 45%, transparent 100%)',
                 WebkitMaskImage: 'radial-gradient(ellipse 88% 82% at 52% 50%, black 45%, transparent 100%)',
               }}
