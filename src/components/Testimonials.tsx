@@ -163,6 +163,21 @@ export default function TestimonialsSection() {
         </div>
 
       </div>
+
+      {/* Bottom blend — dissolves into Footer boundary */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+          right: 0,
+          height: '200px',
+          background: 'linear-gradient(to bottom, transparent 0%, rgba(7,16,17,0.5) 50%, #071011 100%)',
+          pointerEvents: 'none',
+          zIndex: 10,
+        }}
+      />
     </section>
   )
 }

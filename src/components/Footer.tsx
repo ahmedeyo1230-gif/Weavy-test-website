@@ -173,7 +173,7 @@ export default function Footer() {
       className="relative w-full bg-bg overflow-hidden"
       style={{ paddingTop: 'clamp(4rem, 8vw, 5rem)' }}
     >
-      {/* Top fade — blends from Testimonials background (#010709) */}
+      {/* Top blend — continues from Testimonials boundary */}
       <div
         aria-hidden="true"
         style={{
@@ -181,8 +181,8 @@ export default function Footer() {
           top: 0,
           left: 0,
           right: 0,
-          height: '120px',
-          background: 'linear-gradient(to bottom, #0a0a0a, transparent)',
+          height: '220px',
+          background: 'linear-gradient(to bottom, #071011 0%, rgba(7,16,17,0.65) 40%, rgba(7,16,17,0.2) 72%, transparent 100%)',
           pointerEvents: 'none',
           zIndex: 10,
         }}
