@@ -106,47 +106,6 @@ export default function VideoShowcase() {
         className="relative max-w-3xl mx-auto"
       >
 
-        {/* Backlight — outer halo */}
-        <div
-          aria-hidden="true"
-          style={{
-            position: 'absolute',
-            inset: '-80px',
-            zIndex: 0,
-            background:
-              'radial-gradient(ellipse 90% 75% at 50% 50%, hsl(215 85% 58% / 0.22), hsl(225 60% 40% / 0.08) 55%, transparent 72%)',
-            filter: 'blur(56px)',
-          }}
-        />
-
-        {/* Backlight — tight bright core */}
-        <div
-          aria-hidden="true"
-          style={{
-            position: 'absolute',
-            inset: '-24px',
-            zIndex: 0,
-            background:
-              'radial-gradient(ellipse 85% 70% at 50% 50%, hsl(210 100% 78% / 0.18), hsl(218 80% 62% / 0.10) 50%, transparent 72%)',
-            filter: 'blur(20px)',
-          }}
-        />
-
-        {/* Floor reflection */}
-        <div
-          aria-hidden="true"
-          style={{
-            position: 'absolute',
-            bottom: '-64px',
-            left: '15%',
-            right: '15%',
-            height: '64px',
-            zIndex: 0,
-            background:
-              'radial-gradient(ellipse 85% 100% at 50% 0%, hsl(212 80% 60% / 0.12), transparent 70%)',
-            filter: 'blur(20px)',
-          }}
-        />
 
         {/* Screen frame */}
         <div

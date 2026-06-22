@@ -48,7 +48,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
   }, [])
 
   return (
-    <div className="fixed inset-0 z-[9999] bg-bg flex flex-col">
+    <div className="fixed inset-0 z-[9999] flex flex-col" style={{ background: '#000000' }}>
 
       {/* ── Center: rotating word ── */}
       <div className="absolute inset-0 flex flex-col items-center justify-center gap-2">
@@ -58,7 +58,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
             fontSize: '0.6rem',
             letterSpacing: '0.36em',
             textTransform: 'uppercase',
-            color: 'hsl(0 0% 22%)',
+            color: 'hsl(0 0% 100%)',
           }}
         >
           Weavy
@@ -75,7 +75,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
               fontSize: 'clamp(2.8rem, 8vw, 5.5rem)',
               lineHeight: 1,
               letterSpacing: '-0.03em',
-              color: 'hsl(0 0% 88%)',
+              color: 'hsl(0 0% 100%)',
             }}
           >
             {WORDS[wordIndex]}
@@ -105,7 +105,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
               fontSize: 'clamp(2.6rem, 5vw, 3.8rem)',
               lineHeight: 1,
               letterSpacing: '-0.05em',
-              color: 'hsl(0 0% 88%)',
+              color: 'hsl(0 0% 100%)',
               userSelect: 'none',
               fontVariantNumeric: 'tabular-nums',
             }}
@@ -119,7 +119,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
               fontSize: 'clamp(0.9rem, 1.8vw, 1.2rem)',
               lineHeight: 1,
               letterSpacing: '-0.02em',
-              color: 'hsl(0 0% 36%)',
+              color: 'hsl(0 0% 100%)',
               userSelect: 'none',
             }}
           >
