@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { NoiseSectionBg } from './ui/noise-background'
 
 const E: [number, number, number, number] = [0.16, 1, 0.3, 1]
 
@@ -12,7 +13,7 @@ const SERVICE_MODULES = [
   { num: '05', label: 'Video Editing',   desc: 'Storytelling that drives results'  },
 ]
 
-export default function About() { // no diagonal lines bg
+export default function About() {
   return (
     <section
       id="about"
@@ -24,6 +25,9 @@ export default function About() { // no diagonal lines bg
           '#0B1114',
       }}
     >
+      {/* Noise + faded grid + cyan spotlight background */}
+      <NoiseSectionBg />
+
       {/* Dot grid */}
       <div
         className="absolute inset-0 pointer-events-none"
