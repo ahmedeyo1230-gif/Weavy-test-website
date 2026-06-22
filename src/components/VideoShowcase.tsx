@@ -105,7 +105,7 @@ export default function VideoShowcase() {
         whileInView={{ opacity: 1, y: 0, scale: 1 }}
         viewport={{ once: true, amount: 0.15 }}
         transition={{ duration: 0.95, delay: 0.22, ease: E }}
-        className="relative max-w-2xl mx-auto"
+        className="relative max-w-3xl mx-auto"
       >
 
         {/* Backlight — outer halo */}
