@@ -45,7 +45,7 @@ export default function About() {
       <div className="max-w-6xl mx-auto">
 
         {/* ─── Main editorial grid ─────────────────────────────────────── */}
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.55fr] gap-12 xl:gap-16 items-center mb-14 lg:mb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.25fr] gap-12 xl:gap-16 items-center mb-14 lg:mb-20">
 
           {/* ── Left: headline + body + tags + accent line ── */}
           <div className="flex flex-col gap-7 lg:pt-2">
