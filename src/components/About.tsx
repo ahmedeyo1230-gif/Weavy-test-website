@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion'
-import { DiagonalLinesBg } from './ui/grid-background'
 
 const E: [number, number, number, number] = [0.16, 1, 0.3, 1]
 
@@ -25,9 +24,6 @@ export default function About() {
           '#0B1114',
       }}
     >
-      {/* Diagonal lines atmospheric layer */}
-      <DiagonalLinesBg />
-
       {/* Dot grid */}
       <div
         className="absolute inset-0 pointer-events-none"
