@@ -275,7 +275,22 @@ function ArchitecturePanel() {
 
 export default function SystemsShowcase() {
   return (
-    <section id="section-9" className="py-32 px-6 bg-background overflow-hidden">
+    <section id="section-9" className="py-32 px-6 bg-background overflow-hidden relative">
+
+      {/* Top blend — continues from Stats section boundary */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          height: '120px',
+          background: 'linear-gradient(to bottom, #071011 0%, rgba(7,16,17,0.4) 55%, transparent 100%)',
+          pointerEvents: 'none',
+          zIndex: 1,
+        }}
+      />
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.45fr] gap-12 lg:gap-20 items-center">
 

@@ -90,6 +90,21 @@ export default function Stats() {
           </div>
         </div>
       </motion.div>
+
+      {/* Bottom blend — dissolves card shadow before section boundary */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+          right: 0,
+          height: '120px',
+          background: 'linear-gradient(to bottom, transparent 0%, rgba(7,16,17,0.55) 55%, #071011 100%)',
+          pointerEvents: 'none',
+          zIndex: 10,
+        }}
+      />
     </section>
   )
 }
