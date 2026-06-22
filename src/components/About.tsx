@@ -164,7 +164,7 @@ export default function About() {
               }}
             >
               <img
-                src="/brand_assets/dashboard.png"
+                src="/brand_assets/dashboard1.png"
                 alt="Weavy automation dashboard"
                 loading="lazy"
                 decoding="async"
@@ -172,9 +172,8 @@ export default function About() {
                   display: 'block',
                   width: '100%',
                   height: 'auto',
-                  minHeight: 'clamp(260px, 36vw, 480px)',
                   objectFit: 'contain',
-                  objectPosition: 'center top',
+                  objectPosition: 'center center',
                 }}
               />
             </div>
