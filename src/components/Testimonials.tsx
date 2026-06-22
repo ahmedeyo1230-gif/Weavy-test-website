@@ -72,10 +72,25 @@ function Avatar({ initials, hue }: { initials: string; hue: number }) {
 export default function TestimonialsSection() {
   return (
     <section
-      className="py-32 px-6"
+      className="py-32 px-6 relative"
       aria-label="Client Testimonials"
       style={{ background: '#071011' }}
     >
+      {/* Top blend — continues from WhyWeavyWorks boundary */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          height: '160px',
+          background: 'linear-gradient(to bottom, #071011 0%, rgba(7,16,17,0.5) 50%, transparent 100%)',
+          pointerEvents: 'none',
+          zIndex: 1,
+        }}
+      />
+
       <div className="max-w-6xl mx-auto">
 
         {/* Header */}
