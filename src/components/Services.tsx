@@ -4426,7 +4426,7 @@ function SocialMediaMarketing() {
 
         {/* ══ EDITORIAL TWO-COLUMN ══════════════════════════════════════════════ */}
         <div
-          className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] items-center"
+          className="grid grid-cols-1 lg:grid-cols-[1fr_1.15fr] items-center"
           style={{ gap: 'clamp(3rem, 6vw, 5rem)', marginBottom: 'clamp(4rem, 8vw, 6rem)' }}
         >
 
