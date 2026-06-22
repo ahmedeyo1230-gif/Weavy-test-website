@@ -406,7 +406,7 @@ function BespokeFollowUp() {
           {/* Body copy + editorial stat numbers */}
           <div className="bfu3-r" style={{ maxWidth: '26rem', paddingBottom: '0.5rem' }}>
             <p className="font-sans font-light mb-10" style={{
-              fontSize: 'clamp(0.84rem, 1.3vw, 0.98rem)', lineHeight: 1.9, color: 'hsl(0 0% 40%)',
+              fontSize: 'clamp(0.84rem, 1.3vw, 0.98rem)', lineHeight: 1.9, color: '#F2F8FC',
             }}>
               Your website should do more than look good. We build clear, fast, and persuasive
               experiences that help people understand your value and take action.
@@ -784,7 +784,7 @@ function BespokeCareStories() {
               style={{
                 fontSize: 'clamp(0.86rem, 1.35vw, 0.98rem)',
                 lineHeight: 1.85,
-                color: 'hsl(0 0% 50%)',
+                color: '#F2F8FC',
                 maxWidth: '34rem',
                 marginBottom: '1.2rem',
               }}
@@ -797,7 +797,7 @@ function BespokeCareStories() {
               style={{
                 fontSize: 'clamp(0.86rem, 1.35vw, 0.98rem)',
                 lineHeight: 1.85,
-                color: 'hsl(0 0% 38%)',
+                color: '#F2F8FC',
                 maxWidth: '34rem',
                 marginBottom: '2.4rem',
               }}
@@ -833,7 +833,7 @@ function BespokeCareStories() {
                   <span style={{
                     fontFamily: 'Inter, sans-serif', fontWeight: 300,
                     fontSize: 'clamp(0.8rem, 1.2vw, 0.88rem)',
-                    letterSpacing: '0.02em', color: 'hsl(0 0% 46%)',
+                    letterSpacing: '0.02em', color: '#F2F8FC',
                   }}>
                     {item}
                   </span>
@@ -927,10 +927,10 @@ function BespokeWebShowcase() {
               built to perform.
             </em>
           </h2>
-          <p className="bws-header font-sans font-light" style={{ fontSize: 'clamp(0.84rem, 1.3vw, 0.97rem)', lineHeight: 1.9, color: 'hsl(0 0% 38%)', marginBottom: '1rem' }}>
+          <p className="bws-header font-sans font-light" style={{ fontSize: 'clamp(0.84rem, 1.3vw, 0.97rem)', lineHeight: 1.9, color: '#F2F8FC', marginBottom: '1rem' }}>
             Every site we build is a precision-crafted system — visual, functional, and designed to earn trust from the first scroll. We don't use templates. Every layout, interaction, and detail is shaped around your brand and your audience.
           </p>
-          <p className="bws-header font-sans font-light" style={{ fontSize: 'clamp(0.84rem, 1.3vw, 0.97rem)', lineHeight: 1.9, color: 'hsl(0 0% 32%)' }}>
+          <p className="bws-header font-sans font-light" style={{ fontSize: 'clamp(0.84rem, 1.3vw, 0.97rem)', lineHeight: 1.9, color: '#F2F8FC' }}>
             From real estate platforms and service businesses to e-commerce brands and creative studios — we build websites that feel premium, load fast, and convert visitors into clients.
           </p>
           {/* Tags */}
@@ -1193,7 +1193,7 @@ function BespokeProcessTimeline() {
             style={{
               fontSize: 'clamp(0.88rem, 1.5vw, 1.02rem)',
               lineHeight: 1.85,
-              color: 'hsl(0 0% 50%)',
+              color: '#F2F8FC',
             }}
           >
             We guide every project through a clear process, so your website feels
@@ -1284,7 +1284,7 @@ function BespokeProcessTimeline() {
                   style={{
                     fontSize: '0.84rem',
                     lineHeight: 1.75,
-                    color: 'hsl(0 0% 46%)',
+                    color: '#F2F8FC',
                     maxWidth: '16rem',
                   }}
                 >
@@ -1444,7 +1444,7 @@ function BespokeWebDesignShowcase() {
             <p className="bwds-para1 font-sans font-light mb-5" style={{
               fontSize: 'clamp(0.88rem, 1.4vw, 1rem)',
               lineHeight: 1.9,
-              color: 'hsl(0 0% 44%)',
+              color: '#F2F8FC',
             }}>
               We design websites that feel polished from the first glance, with clear structure,
               refined visuals, and user journeys that help visitors understand your value quickly.
@@ -1454,7 +1454,7 @@ function BespokeWebDesignShowcase() {
             <p className="bwds-para2 font-sans font-light mb-10" style={{
               fontSize: 'clamp(0.88rem, 1.4vw, 1rem)',
               lineHeight: 1.9,
-              color: 'hsl(0 0% 38%)',
+              color: '#F2F8FC',
             }}>
               Every page is shaped around clarity, trust, and conversion — from the first
               hero section to the final call to action.
@@ -1471,7 +1471,7 @@ function BespokeWebDesignShowcase() {
                   </svg>
                   <span className="font-sans font-light" style={{
                     fontSize: 'clamp(0.82rem, 1.2vw, 0.9rem)',
-                    color: 'hsl(0 0% 60%)',
+                    color: '#F2F8FC',
                     letterSpacing: '0.01em',
                   }}>
                     {feat}
@@ -1616,7 +1616,7 @@ function BespokeRealUsers() {
               style={{
                 fontSize: 'clamp(0.88rem, 1.4vw, 1rem)',
                 lineHeight: 1.88,
-                color: 'hsl(0 0% 42%)',
+                color: '#F2F8FC',
                 maxWidth: '30rem',
               }}
             >
@@ -1715,7 +1715,7 @@ function BespokeRealUsers() {
                         style={{
                           fontSize: '0.83rem',
                           lineHeight: 1.78,
-                          color: 'hsl(0 0% 40%)',
+                          color: '#F2F8FC',
                         }}
                       >
                         {desc}
@@ -1943,7 +1943,7 @@ function BespokeContactFooter() {
           style={{
             fontSize: 'clamp(0.84rem, 1.35vw, 0.96rem)',
             lineHeight: 1.9,
-            color: 'hsl(0 0% 40%)',
+            color: '#F2F8FC',
             maxWidth: '34rem',
           }}
         >
