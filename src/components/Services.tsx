@@ -3378,7 +3378,8 @@ function SocialMediaMarketing() {
 
   // ── Section 5: Beauty Campaign Showcase ──
   useEffect(() => observe(beautyRef, el => {
-    const imgEl = el.querySelector('.smbs-img') as HTMLElement | null
+    const imgEl  = el.querySelector('.smbs-img') as HTMLElement | null
+    const numEl  = el.querySelector('.smbs-num-val') as HTMLElement | null
     const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
     tl.to(el.querySelectorAll('.smbs-label'),  { opacity: 1, y: 0, duration: 0.6 }, 0)
     tl.to(el.querySelectorAll('.smbs-hword'),  { opacity: 1, y: 0, duration: 0.72, stagger: 0.09, ease: 'power3.out' }, 0.1)
@@ -3387,6 +3388,18 @@ function SocialMediaMarketing() {
     tl.to(el.querySelectorAll('.smbs-img'),    { opacity: 1, y: 0, duration: 1.2,  ease: 'power2.out' }, 0.15)
     tl.add(() => {
       if (imgEl) gsap.to(imgEl, { y: -10, duration: 4.8, ease: 'sine.inOut', yoyo: true, repeat: -1 })
+      // Looping counter: 0 → 3.8 over 1.5s, then pause 1.5s, repeat (total 3s cycle)
+      if (numEl) {
+        const counter = { val: 0 }
+        gsap.to(counter, {
+          val: 3.8,
+          duration: 1.5,
+          ease: 'power2.out',
+          repeat: -1,
+          repeatDelay: 1.5,
+          onUpdate: () => { numEl.innerText = counter.val.toFixed(1) },
+        })
+      }
     }, '-=0.1')
   }), [])
 
@@ -4360,7 +4373,7 @@ function SocialMediaMarketing() {
             >
               <p className="font-sans" style={{ fontSize: '0.56rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: 'hsl(199 89% 65%)', marginBottom: '0.26rem', fontFamily: "'Poppins', sans-serif" }}>Conversion Lift</p>
               <p className="font-sans font-light text-text" style={{ fontSize: '1.55rem', letterSpacing: '-0.036em', lineHeight: 1, fontFamily: "'Poppins', sans-serif" }}>
-                3.8<span style={{ fontSize: '0.9rem', color: 'hsl(199 89% 60%)' }}>×</span>
+                <span className="smbs-num-val">3.8</span><span style={{ fontSize: '0.9rem', color: 'hsl(199 89% 60%)' }}>×</span>
               </p>
               <p className="font-sans font-light" style={{ fontSize: '0.6rem', color: 'hsl(0 0% 36%)', marginTop: '0.2rem', fontFamily: "'Poppins', sans-serif" }}>avg. campaign lift</p>
             </div>
