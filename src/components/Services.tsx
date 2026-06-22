@@ -3508,9 +3508,9 @@ function SocialMediaMarketing() {
     tl.to(el.querySelectorAll('.smcs-label'),   { opacity: 1, y: 0, duration: 0.6 }, 0)
     tl.to(el.querySelectorAll('.smcs-heading'), { opacity: 1, y: 0, duration: 0.85 }, 0.12)
     tl.to(el.querySelectorAll('.smcs-intro'),   { opacity: 1, y: 0, duration: 0.75 }, 0.26)
-    tl.to(el.querySelectorAll('.smcs-body'),    { opacity: 1, y: 0, duration: 0.7, stagger: 0.1 }, 0.42)
-    tl.to(el.querySelectorAll('.smcs-img'),     { opacity: 1, y: 0, duration: 1.2, ease: 'power2.out' }, 0.78)
-    tl.to(el.querySelectorAll('.smcs-stat'),    { opacity: 1, y: 0, duration: 0.65, stagger: 0.15 }, 0.92)
+    tl.to(el.querySelectorAll('.smcs-img'),     { opacity: 1, y: 0, duration: 1.1, ease: 'power2.out' }, 0.32)
+    tl.to(el.querySelectorAll('.smcs-body'),    { opacity: 1, y: 0, duration: 0.65, stagger: 0.1 }, 0.44)
+    tl.to(el.querySelectorAll('.smcs-stat'),    { opacity: 1, y: 0, duration: 0.65, stagger: 0.14 }, 0.82)
     tl.add(() => {
       const s1 = el.querySelector('.smcs-val-1') as HTMLElement | null
       const s2 = el.querySelector('.smcs-val-2') as HTMLElement | null
@@ -4422,109 +4422,157 @@ function SocialMediaMarketing() {
         backgroundSize: '32px 32px',
       }}/>
 
-      <div className="relative z-10 max-w-[72rem] mx-auto px-6 sm:px-10">
+      <div className="relative z-10 max-w-[80rem] mx-auto px-6 sm:px-10">
 
-        {/* ── Full text block (label → heading → intro → supporting) ── */}
-        <div style={{ maxWidth: '860px', margin: '0 auto', textAlign: 'center', marginBottom: 'clamp(2.5rem, 5vw, 4rem)' }}>
+        {/* ══ EDITORIAL TWO-COLUMN ══════════════════════════════════════════════ */}
+        <div
+          className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] items-center"
+          style={{ gap: 'clamp(3rem, 6vw, 5rem)', marginBottom: 'clamp(4rem, 8vw, 6rem)' }}
+        >
 
-          <p
-            className="smcs-label font-sans font-medium uppercase inline-flex items-center gap-3"
-            style={{
-              opacity: 0, transform: 'translateY(16px)',
-              fontSize: '0.62rem', letterSpacing: '0.32em', color: '#94A3B8',
-              marginBottom: '1.1rem',
-            }}
-          >
-            <span style={{ display: 'inline-block', width: 28, height: 1, background: 'rgba(255,216,107,0.45)' }}/>
-            Social Media Case Study
-            <span style={{ display: 'inline-block', width: 28, height: 1, background: 'rgba(255,216,107,0.45)' }}/>
-          </p>
+          {/* ── LEFT: label · heading · intro · value points ── */}
+          <div>
 
-          <h2
-            className="smcs-heading font-sans font-light text-text"
-            style={{
-              opacity: 0, transform: 'translateY(22px)',
-              fontSize: 'clamp(1.9rem, 4vw, 3.1rem)',
-              lineHeight: 1.12, letterSpacing: '-0.035em',
-              marginBottom: '1.3rem',
-            }}
-          >
-            Campaigns Designed To{' '}
-            <em style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400 }}>
-              <span style={{
-                background: 'linear-gradient(108deg, hsl(199 89% 74%) 0%, hsl(240 60% 74%) 55%, hsl(280 65% 74%) 100%)',
-                WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
-              }}>Turn Attention Into Revenue</span>
-            </em>
-          </h2>
+            {/* Eyebrow label */}
+            <p
+              className="smcs-label font-sans font-medium uppercase inline-flex items-center gap-3"
+              style={{
+                opacity: 0, transform: 'translateY(16px)',
+                fontSize: '0.6rem', letterSpacing: '0.34em', color: '#94A3B8',
+                marginBottom: '1.5rem',
+              }}
+            >
+              <span style={{ display: 'inline-block', width: 24, height: 1, background: 'rgba(255,216,107,0.5)' }}/>
+              Social Media Case Study
+              <span style={{ display: 'inline-block', width: 24, height: 1, background: 'rgba(255,216,107,0.5)' }}/>
+            </p>
 
-          <p
-            className="smcs-intro font-sans font-medium"
-            style={{
-              opacity: 0, transform: 'translateY(16px)',
-              fontSize: 'clamp(0.88rem, 1.4vw, 1rem)',
-              lineHeight: 1.8, color: '#F2F8FC',
-              maxWidth: '46rem', margin: '0 auto',
-              marginBottom: 'clamp(1.5rem, 3vw, 2rem)',
-            }}
-          >
-            We create premium social campaigns that combine strategy, content, paid advertising, and brand
-            positioning to help businesses attract the right audience and convert attention into measurable growth.
-          </p>
+            {/* Heading */}
+            <h2
+              className="smcs-heading font-sans font-light text-text"
+              style={{
+                opacity: 0, transform: 'translateY(22px)',
+                fontSize: 'clamp(2rem, 4vw, 3.2rem)',
+                lineHeight: 1.1, letterSpacing: '-0.038em',
+                marginBottom: '1.6rem',
+              }}
+            >
+              Campaigns Designed To{' '}
+              <em style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400 }}>
+                <span style={{
+                  background: 'linear-gradient(108deg, hsl(199 89% 74%) 0%, hsl(240 60% 74%) 55%, hsl(280 65% 74%) 100%)',
+                  WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
+                }}>Turn Attention Into Revenue</span>
+              </em>
+            </h2>
 
-          {/* Supporting sentences */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(0.9rem, 2vw, 1.1rem)', maxWidth: '720px', margin: '0 auto' }}>
-            {[
-              'Full-funnel social media campaigns built to move customers from discovery to trust, and from trust to action.',
-              'We combine content direction, paid social strategy, creative testing, retargeting, and brand positioning so every post, ad, and campaign has a clear business purpose.',
-              'The result is a stronger brand presence, better audience engagement, and a marketing system designed to increase visibility, leads, and revenue.',
-            ].map((text, i) => (
-              <p
-                key={i}
-                className="smcs-body font-sans font-medium"
-                style={{
-                  opacity: 0, transform: 'translateY(16px)',
-                  fontSize: 'clamp(0.88rem, 1.4vw, 1rem)',
-                  lineHeight: 1.8, color: '#F2F8FC',
-                }}
-              >
-                {text}
-              </p>
-            ))}
+            {/* Champagne accent rule */}
+            <div style={{
+              width: '3rem', height: 1,
+              background: 'linear-gradient(to right, rgba(255,216,107,0.55), transparent)',
+              marginBottom: '1.4rem',
+            }}/>
+
+            {/* Intro */}
+            <p
+              className="smcs-intro font-sans font-medium"
+              style={{
+                opacity: 0, transform: 'translateY(16px)',
+                fontSize: 'clamp(0.9rem, 1.4vw, 1.02rem)',
+                lineHeight: 1.8, color: '#F2F8FC',
+                marginBottom: '2rem', maxWidth: '38rem',
+              }}
+            >
+              We create premium social campaigns that combine strategy, content, paid advertising, and brand
+              positioning to help businesses attract the right audience and convert attention into measurable growth.
+            </p>
+
+            {/* Value points */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.05rem' }}>
+              {[
+                'Full-funnel social media campaigns built to move customers from discovery to trust, and from trust to action.',
+                'We combine content direction, paid social strategy, creative testing, retargeting, and brand positioning so every post, ad, and campaign has a clear business purpose.',
+                'The result is a stronger brand presence, better audience engagement, and a marketing system designed to increase visibility, leads, and revenue.',
+              ].map((text, i) => (
+                <div
+                  key={i}
+                  className="smcs-body"
+                  style={{ opacity: 0, transform: 'translateY(14px)', display: 'flex', gap: '0.85rem', alignItems: 'flex-start' }}
+                >
+                  <span style={{
+                    flexShrink: 0, marginTop: '0.52rem',
+                    width: 5, height: 5, borderRadius: '50%',
+                    background: 'linear-gradient(135deg, hsl(199 89% 68%), hsl(240 60% 70%))',
+                    boxShadow: '0 0 7px hsl(199 89% 60% / 0.45)',
+                  }}/>
+                  <p className="font-sans font-medium" style={{
+                    fontSize: 'clamp(0.84rem, 1.25vw, 0.94rem)',
+                    lineHeight: 1.78, color: '#F2F8FC',
+                  }}>
+                    {text}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+          </div>
+
+          {/* ── RIGHT: premium image frame ── */}
+          <div className="smcs-img" style={{ opacity: 0, transform: 'translateY(28px)', position: 'relative' }}>
+
+            {/* Ambient glow behind */}
+            <div aria-hidden="true" style={{
+              position: 'absolute', inset: '-48px',
+              background: 'radial-gradient(ellipse 75% 65% at 50% 50%, hsl(280 50% 45% / 0.14) 0%, transparent 72%)',
+              filter: 'blur(48px)', pointerEvents: 'none', zIndex: 0,
+            }}/>
+
+            {/* Glass image frame */}
+            <div style={{
+              position: 'relative', zIndex: 1,
+              borderRadius: 'clamp(16px, 2vw, 22px)',
+              overflow: 'hidden',
+              border: '1px solid rgba(255,255,255,0.1)',
+              boxShadow: [
+                '0 0 0 1px rgba(255,255,255,0.04) inset',
+                '0 48px 110px rgba(0,0,0,0.5)',
+                '0 8px 36px rgba(0,0,0,0.32)',
+              ].join(', '),
+              background: 'rgba(10,16,20,0.55)',
+            }}>
+
+              {/* Top shimmer line */}
+              <div aria-hidden="true" style={{
+                position: 'absolute', top: 0, left: 0, right: 0, height: 1, zIndex: 2,
+                background: 'linear-gradient(to right, transparent, rgba(255,255,255,0.14), transparent)',
+              }}/>
+
+              <img
+                src="/brand_assets/beauty.png"
+                alt="Beauty brand social media campaign — 278% performance increase"
+                loading="lazy"
+                decoding="async"
+                style={{ display: 'block', width: '100%', height: 'auto' }}
+              />
+
+              {/* Bottom vignette */}
+              <div aria-hidden="true" style={{
+                position: 'absolute', bottom: 0, left: 0, right: 0, height: '22%', zIndex: 2,
+                background: 'linear-gradient(to top, rgba(7,16,17,0.45) 0%, transparent 100%)',
+                pointerEvents: 'none',
+              }}/>
+            </div>
+
           </div>
 
         </div>
 
-        {/* ── Case Study Image — below full text block ── */}
-        <div
-          className="smcs-img"
-          style={{
-            opacity: 0, transform: 'translateY(32px)',
-            maxWidth: '900px', margin: '0 auto clamp(3rem, 6vw, 4.5rem)',
-          }}
-        >
-          <img
-            src="/brand_assets/beauty.png"
-            alt="Beauty brand social media campaign results — 278% increase in campaign performance"
-            loading="lazy"
-            decoding="async"
-            style={{
-              display: 'block',
-              width: '100%',
-              height: 'auto',
-              borderRadius: 'clamp(18px, 2vw, 24px)',
-              border: '1px solid rgba(255,255,255,0.12)',
-              boxShadow: '0 30px 90px rgba(0,0,0,0.35), 0 8px 32px rgba(0,0,0,0.25)',
-            }}
-          />
-        </div>
-
-        {/* ── Performance stats ── */}
+        {/* ══ PERFORMANCE STATS ════════════════════════════════════════════════ */}
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-          gap: 'clamp(1rem, 3vw, 1.75rem)',
-          maxWidth: '52rem', margin: '0 auto',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+          gap: 'clamp(1rem, 2.5vw, 1.5rem)',
+          maxWidth: '62rem', margin: '0 auto',
         }}>
           {[
             { valClass: 'smcs-val-1', label: 'Increase In Campaign Performance', sublabel: 'Full-Funnel Performance Campaign' },
@@ -4536,17 +4584,23 @@ function SocialMediaMarketing() {
               className="smcs-stat"
               style={{
                 opacity: 0, transform: 'translateY(22px)',
-                padding: 'clamp(1.2rem, 3vw, 1.75rem)',
-                background: 'rgba(16,24,32,0.55)',
+                position: 'relative', overflow: 'hidden',
+                padding: 'clamp(1.3rem, 3vw, 1.9rem)',
+                background: 'rgba(14,20,28,0.65)',
                 border: '1px solid rgba(255,255,255,0.07)',
-                borderRadius: '14px',
-                backdropFilter: 'blur(12px)',
+                borderRadius: '16px',
+                backdropFilter: 'blur(16px)',
               }}
             >
+              {/* Top shimmer */}
+              <div aria-hidden="true" style={{
+                position: 'absolute', top: 0, left: 0, right: 0, height: 1,
+                background: 'linear-gradient(to right, transparent, rgba(255,255,255,0.08), transparent)',
+              }}/>
               <p style={{
-                fontSize: '0.58rem', letterSpacing: '0.26em', textTransform: 'uppercase',
-                color: '#94A3B8', fontFamily: 'var(--font-sans, sans-serif)', fontWeight: 500,
-                marginBottom: '0.6rem',
+                fontSize: '0.55rem', letterSpacing: '0.28em', textTransform: 'uppercase',
+                color: '#64748B', fontFamily: 'var(--font-sans, sans-serif)', fontWeight: 500,
+                marginBottom: '0.8rem',
               }}>
                 {sublabel}
               </p>
@@ -4555,18 +4609,17 @@ function SocialMediaMarketing() {
                 style={{
                   fontFamily: "'Instrument Serif', Georgia, serif",
                   fontStyle: 'italic', fontWeight: 400,
-                  fontSize: 'clamp(2.6rem, 5.5vw, 3.75rem)',
-                  lineHeight: 1, letterSpacing: '-0.025em',
-                  color: '#8B1E2D',
-                  marginBottom: '0.5rem',
+                  fontSize: 'clamp(2.5rem, 5vw, 3.6rem)',
+                  lineHeight: 1, letterSpacing: '-0.02em',
+                  color: '#8B1E2D', marginBottom: '0.55rem',
                 }}
               >
                 0%
               </p>
               <p style={{
-                fontSize: 'clamp(0.72rem, 1.1vw, 0.8rem)',
+                fontSize: 'clamp(0.7rem, 1vw, 0.78rem)',
                 color: '#F2F8FC', fontFamily: 'var(--font-sans, sans-serif)',
-                fontWeight: 500, lineHeight: 1.55,
+                fontWeight: 500, lineHeight: 1.5,
               }}>
                 {label}
               </p>
