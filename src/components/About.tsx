@@ -169,9 +169,8 @@ export default function About() { // no diagonal lines bg
             transition={{ duration: 0.9, delay: 0.2, ease: E }}
           >
             <div
-              className="relative w-full"
+              className="relative w-full lg:[transform:scale(1.22)_translateX(5%)]"
               style={{
-                transform: 'scale(1.22) translateX(5%)',
                 maskImage: 'radial-gradient(ellipse 88% 82% at 52% 50%, black 45%, transparent 100%)',
                 WebkitMaskImage: 'radial-gradient(ellipse 88% 82% at 52% 50%, black 45%, transparent 100%)',
               }}
