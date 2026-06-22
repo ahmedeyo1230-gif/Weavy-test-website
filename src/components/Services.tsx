@@ -3266,6 +3266,7 @@ function SocialMediaMarketing() {
   const platRef     = useRef<HTMLElement>(null)
   const stratRef    = useRef<HTMLElement>(null)
   const proofRef    = useRef<HTMLElement>(null)
+  const beautyRef   = useRef<HTMLElement>(null)
   const ctaRef      = useRef<HTMLElement>(null)
   const s6Ref       = useRef<HTMLElement>(null)
   const smFeatRef   = useRef<HTMLElement>(null)
@@ -3375,7 +3376,21 @@ function SocialMediaMarketing() {
     }, '-=0.1')
   }), [])
 
-  // ── Section 5: Platform-Ready Campaign Visuals ──
+  // ── Section 5: Beauty Campaign Showcase ──
+  useEffect(() => observe(beautyRef, el => {
+    const imgEl = el.querySelector('.smbs-img') as HTMLElement | null
+    const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
+    tl.to(el.querySelectorAll('.smbs-label'),  { opacity: 1, y: 0, duration: 0.6 }, 0)
+    tl.to(el.querySelectorAll('.smbs-hword'),  { opacity: 1, y: 0, duration: 0.72, stagger: 0.09, ease: 'power3.out' }, 0.1)
+    tl.to(el.querySelectorAll('.smbs-body'),   { opacity: 1, y: 0, duration: 0.75, stagger: 0.12 }, 0.22)
+    tl.to(el.querySelectorAll('.smbs-item'),   { opacity: 1, y: 0, duration: 0.5,  stagger: 0.09 }, 0.3)
+    tl.to(el.querySelectorAll('.smbs-img'),    { opacity: 1, y: 0, duration: 1.2,  ease: 'power2.out' }, 0.15)
+    tl.add(() => {
+      if (imgEl) gsap.to(imgEl, { y: -10, duration: 4.8, ease: 'sine.inOut', yoyo: true, repeat: -1 })
+    }, '-=0.1')
+  }), [])
+
+  // ── Section 6: Platform-Ready Campaign Visuals ──
   useEffect(() => observe(ctaRef, el => {
     const imgAFrame = el.querySelector('.s5cv-img-a') as HTMLElement | null
     const imgBFrame = el.querySelector('.s5cv-img-b') as HTMLElement | null
@@ -4248,7 +4263,248 @@ function SocialMediaMarketing() {
       }}/>
     </section>
 
-    {/* ══ SECTION 5 — Platform-Ready Campaign Visuals ══════════════════════════ */}
+    {/* ══ SECTION 5 — Beauty Campaign Showcase ════════════════════════════════ */}
+    <section
+      ref={beautyRef}
+      className="relative w-full overflow-hidden"
+      style={{ background: '#010709', padding: 'clamp(6rem, 12vw, 10rem) 0' }}
+    >
+      {/* Top fade */}
+      <div aria-hidden="true" className="pointer-events-none absolute left-0 right-0 top-0" style={{
+        height: '120px',
+        background: 'linear-gradient(to bottom, #010709 0%, transparent 100%)',
+        zIndex: 3,
+      }}/>
+
+      {/* Dot grid */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
+        zIndex: 0,
+        backgroundImage: 'radial-gradient(hsl(210 40% 60% / 0.025) 1px, transparent 1px)',
+        backgroundSize: '32px 32px',
+      }}/>
+
+      {/* Ambient glow — left-biased */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
+        zIndex: 0,
+        background: [
+          'radial-gradient(ellipse 70% 60% at 25% 50%, hsl(280 65% 65% / 0.07) 0%, transparent 70%)',
+          'radial-gradient(ellipse 50% 40% at 15% 40%, hsl(199 89% 60% / 0.04) 0%, transparent 60%)',
+          'radial-gradient(ellipse 60% 50% at 50% 100%, hsl(280 60% 40% / 0.04) 0%, transparent 65%)',
+        ].join(', '),
+      }}/>
+
+      <div className="relative z-10 max-w-[82rem] mx-auto px-6 sm:px-12">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-16 lg:gap-12 xl:gap-20 items-center">
+
+          {/* ── LEFT: beauty.png image ── */}
+          <div className="relative">
+            <div
+              className="smbs-img relative rounded-2xl overflow-hidden"
+              style={{
+                opacity: 0, transform: 'translateY(36px)',
+                boxShadow: [
+                  '0 48px 96px -16px hsl(0 0% 0% / 0.9)',
+                  '0 0 0 1px hsl(280 65% 65% / 0.14)',
+                  '0 0 72px -18px hsl(280 65% 65% / 0.32)',
+                ].join(', '),
+                transition: 'transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.6s ease',
+              }}
+              onMouseEnter={e => {
+                (e.currentTarget as HTMLElement).style.transform = 'translateY(-6px) scale(1.01)'
+                ;(e.currentTarget as HTMLElement).style.boxShadow = [
+                  '0 64px 120px -14px hsl(0 0% 0% / 0.94)',
+                  '0 0 0 1px hsl(280 65% 65% / 0.26)',
+                  '0 0 96px -14px hsl(280 65% 65% / 0.46)',
+                ].join(', ')
+              }}
+              onMouseLeave={e => {
+                (e.currentTarget as HTMLElement).style.transform = 'none'
+                ;(e.currentTarget as HTMLElement).style.boxShadow = [
+                  '0 48px 96px -16px hsl(0 0% 0% / 0.9)',
+                  '0 0 0 1px hsl(280 65% 65% / 0.14)',
+                  '0 0 72px -18px hsl(280 65% 65% / 0.32)',
+                ].join(', ')
+              }}
+            >
+              <img
+                loading="lazy"
+                decoding="async"
+                src="/brand_assets/beauty.png"
+                alt="Beauty brand social media campaign showcase"
+                style={{ display: 'block', width: '100%', height: 'auto' }}
+              />
+              <div aria-hidden="true" style={{
+                position: 'absolute', inset: 0,
+                background: 'linear-gradient(135deg, hsl(280 65% 65% / 0.06) 0%, hsl(199 89% 60% / 0.05) 100%)',
+                mixBlendMode: 'screen', pointerEvents: 'none',
+              }}/>
+              <div aria-hidden="true" style={{
+                position: 'absolute', inset: 0,
+                background: 'linear-gradient(to bottom, transparent 60%, hsl(270 20% 3% / 0.55) 100%)',
+                pointerEvents: 'none',
+              }}/>
+            </div>
+
+            {/* Floating stat badge */}
+            <div
+              className="smbs-img absolute -bottom-4 right-0 sm:bottom-5 sm:right-5"
+              style={{
+                opacity: 0, transform: 'translateY(16px)',
+                background: 'hsl(0 0% 4% / 0.92)',
+                backdropFilter: 'blur(20px)',
+                border: '1px solid hsl(199 89% 60% / 0.22)',
+                borderRadius: '0.875rem',
+                padding: '0.85rem 1.25rem',
+                boxShadow: '0 8px 28px -8px hsl(0 0% 0% / 0.6), 0 0 24px -8px hsl(199 89% 60% / 0.22)',
+              }}
+            >
+              <p className="font-sans" style={{ fontSize: '0.56rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: 'hsl(199 89% 65%)', marginBottom: '0.26rem', fontFamily: "'Poppins', sans-serif" }}>Conversion Lift</p>
+              <p className="font-sans font-light text-text" style={{ fontSize: '1.55rem', letterSpacing: '-0.036em', lineHeight: 1, fontFamily: "'Poppins', sans-serif" }}>
+                3.8<span style={{ fontSize: '0.9rem', color: 'hsl(199 89% 60%)' }}>×</span>
+              </p>
+              <p className="font-sans font-light" style={{ fontSize: '0.6rem', color: 'hsl(0 0% 36%)', marginTop: '0.2rem', fontFamily: "'Poppins', sans-serif" }}>avg. campaign lift</p>
+            </div>
+          </div>
+
+          {/* ── RIGHT: copy ── */}
+          <div className="relative flex flex-col justify-center">
+
+            {/* Ghost watermark */}
+            <div aria-hidden="true" style={{
+              position: 'absolute', top: '-2rem', right: '-1rem',
+              fontSize: 'clamp(6rem, 14vw, 12rem)',
+              lineHeight: 0.82, letterSpacing: '-0.06em',
+              color: 'transparent',
+              WebkitTextStroke: '1px hsl(0 0% 100% / 0.03)',
+              userSelect: 'none', pointerEvents: 'none', zIndex: 0,
+              fontFamily: 'sans-serif', fontWeight: 300,
+            }}>
+              Beauty
+            </div>
+
+            <div className="relative z-10 flex flex-col">
+
+              {/* Section label */}
+              <p
+                className="smbs-label font-sans uppercase mb-6"
+                style={{
+                  opacity: 0, transform: 'translateY(16px)',
+                  fontSize: '0.6rem', letterSpacing: '0.32em',
+                  color: 'hsl(0 0% 32%)', fontWeight: 300,
+                  fontFamily: "'Poppins', sans-serif",
+                }}
+              >
+                SECTION 05
+              </p>
+
+              {/* Heading */}
+              <h2
+                className="smbs-heading font-sans font-light text-text mb-5"
+                style={{ fontSize: 'clamp(1.9rem, 3.6vw, 3rem)', lineHeight: 1.22, letterSpacing: '-0.035em' }}
+              >
+                {['Visuals', 'that', 'stop', 'the'].map((word, i) => (
+                  <span key={i} style={{ display: 'inline-block', overflow: 'hidden', verticalAlign: 'bottom', marginRight: '0.24em', paddingBottom: '0.05em' }}>
+                    <span className="smbs-hword" style={{ display: 'inline-block', transform: 'translateY(110%)', opacity: 0 }}>
+                      {word}
+                    </span>
+                  </span>
+                ))}
+                <em style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400, display: 'inline-block', overflow: 'hidden', verticalAlign: 'bottom', paddingBottom: '0.05em' }}>
+                  <span
+                    className="smbs-hword"
+                    style={{
+                      display: 'inline-block', transform: 'translateY(110%)', opacity: 0,
+                      background: 'linear-gradient(108deg, hsl(280 65% 74%) 0%, hsl(240 60% 74%) 50%, hsl(199 89% 74%) 100%)',
+                      WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
+                    }}
+                  >
+                    scroll cold.
+                  </span>
+                </em>
+              </h2>
+
+              {/* Accent rule */}
+              <div style={{
+                height: 1,
+                background: 'linear-gradient(to right, hsl(280 65% 65% / 0.35), transparent)',
+                marginBottom: '1.6rem', maxWidth: '20rem',
+              }}/>
+
+              {/* Body 1 */}
+              <p
+                className="smbs-body font-sans font-light mb-5"
+                style={{
+                  opacity: 0, transform: 'translateY(18px)',
+                  fontSize: 'clamp(0.87rem, 1.35vw, 0.97rem)',
+                  lineHeight: 1.9, color: 'hsl(0 0% 46%)', maxWidth: '34rem',
+                  fontFamily: "'Poppins', sans-serif",
+                }}
+              >
+                We produce beauty and lifestyle visuals engineered for social performance — content
+                that looks editorial, feels on-brand, and drives measurable results across Instagram,
+                TikTok, and paid placements.
+              </p>
+
+              {/* Body 2 */}
+              <p
+                className="smbs-body font-sans font-light mb-10"
+                style={{
+                  opacity: 0, transform: 'translateY(18px)',
+                  fontSize: 'clamp(0.87rem, 1.35vw, 0.97rem)',
+                  lineHeight: 1.9, color: 'hsl(0 0% 46%)', maxWidth: '34rem',
+                  fontFamily: "'Poppins', sans-serif",
+                }}
+              >
+                From luxury skincare to high-end fragrance and cosmetics, every creative is
+                crafted to reflect premium positioning and connect instantly with the right audience.
+              </p>
+
+              {/* Bullet list */}
+              <ul className="flex flex-col" style={{ borderTop: '1px solid hsl(0 0% 100% / 0.07)' }}>
+                {[
+                  'Editorial beauty and lifestyle photography',
+                  'Luxury skincare & cosmetics campaign visuals',
+                  'Short-form video reels for organic and paid',
+                  'Influencer-style UGC creative direction',
+                  'Platform-optimised carousel and story formats',
+                ].map(item => (
+                  <li
+                    key={item}
+                    className="smbs-item flex items-center gap-3 font-sans font-light"
+                    style={{
+                      opacity: 0, transform: 'translateY(10px)',
+                      fontSize: 'clamp(0.84rem, 1.2vw, 0.9rem)',
+                      color: 'hsl(0 0% 52%)',
+                      borderBottom: '1px solid hsl(0 0% 100% / 0.07)',
+                      padding: '0.82rem 0',
+                      cursor: 'default',
+                      transition: 'color 0.25s ease',
+                      fontFamily: "'Poppins', sans-serif",
+                    }}
+                    onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = 'hsl(0 0% 86%)' }}
+                    onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = 'hsl(0 0% 52%)' }}
+                  >
+                    <span style={{ fontSize: '0.42rem', color: 'hsl(280 65% 65%)', flexShrink: 0 }}>◆</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      {/* Bottom fade */}
+      <div aria-hidden="true" className="pointer-events-none absolute left-0 right-0 bottom-0" style={{
+        height: '120px',
+        background: 'linear-gradient(to top, #010709 0%, transparent 100%)',
+        zIndex: 3,
+      }}/>
+    </section>
+
+    {/* ══ SECTION 6 — Platform-Ready Campaign Visuals ══════════════════════════ */}
     <section
       ref={ctaRef}
       className="relative w-full overflow-hidden"
@@ -4291,7 +4547,7 @@ function SocialMediaMarketing() {
                 color: 'hsl(0 0% 32%)', fontWeight: 300,
               }}
             >
-              SECTION 05
+              SECTION 06
             </p>
 
             {/* Headline */}
