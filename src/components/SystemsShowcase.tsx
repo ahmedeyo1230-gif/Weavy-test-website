@@ -285,8 +285,8 @@ export default function SystemsShowcase() {
           top: 0,
           left: 0,
           right: 0,
-          height: '220px',
-          background: 'linear-gradient(to bottom, #071011 0%, rgba(7,16,17,0.65) 40%, rgba(7,16,17,0.2) 72%, transparent 100%)',
+          height: '120px',
+          background: 'linear-gradient(to bottom, #071011 0%, rgba(7,16,17,0.4) 55%, transparent 100%)',
           pointerEvents: 'none',
           zIndex: 1,
         }}

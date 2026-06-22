@@ -99,8 +99,8 @@ export default function Stats() {
           bottom: 0,
           left: 0,
           right: 0,
-          height: '280px',
-          background: 'linear-gradient(to bottom, transparent 0%, rgba(7,16,17,0.15) 25%, rgba(7,16,17,0.55) 55%, rgba(7,16,17,0.88) 78%, #071011 100%)',
+          height: '120px',
+          background: 'linear-gradient(to bottom, transparent 0%, rgba(7,16,17,0.55) 55%, #071011 100%)',
           pointerEvents: 'none',
           zIndex: 10,
         }}
