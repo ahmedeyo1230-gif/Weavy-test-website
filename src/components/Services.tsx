@@ -3508,9 +3508,9 @@ function SocialMediaMarketing() {
     tl.to(el.querySelectorAll('.smcs-label'),   { opacity: 1, y: 0, duration: 0.6 }, 0)
     tl.to(el.querySelectorAll('.smcs-heading'), { opacity: 1, y: 0, duration: 0.85 }, 0.12)
     tl.to(el.querySelectorAll('.smcs-intro'),   { opacity: 1, y: 0, duration: 0.75 }, 0.26)
-    tl.to(el.querySelectorAll('.smcs-img'),     { opacity: 1, y: 0, duration: 1.2, ease: 'power2.out' }, 0.36)
-    tl.to(el.querySelectorAll('.smcs-body'),    { opacity: 1, y: 0, duration: 0.7, stagger: 0.12 }, 0.58)
-    tl.to(el.querySelectorAll('.smcs-stat'),    { opacity: 1, y: 0, duration: 0.65, stagger: 0.15 }, 0.72)
+    tl.to(el.querySelectorAll('.smcs-body'),    { opacity: 1, y: 0, duration: 0.7, stagger: 0.1 }, 0.42)
+    tl.to(el.querySelectorAll('.smcs-img'),     { opacity: 1, y: 0, duration: 1.2, ease: 'power2.out' }, 0.78)
+    tl.to(el.querySelectorAll('.smcs-stat'),    { opacity: 1, y: 0, duration: 0.65, stagger: 0.15 }, 0.92)
     tl.add(() => {
       const s1 = el.querySelector('.smcs-val-1') as HTMLElement | null
       const s2 = el.querySelector('.smcs-val-2') as HTMLElement | null
@@ -4424,14 +4424,15 @@ function SocialMediaMarketing() {
 
       <div className="relative z-10 max-w-[72rem] mx-auto px-6 sm:px-10">
 
-        {/* ── Header ── */}
-        <div className="text-center mb-12 lg:mb-16">
+        {/* ── Full text block (label → heading → intro → supporting) ── */}
+        <div style={{ maxWidth: '860px', margin: '0 auto', textAlign: 'center', marginBottom: 'clamp(2.5rem, 5vw, 4rem)' }}>
 
           <p
-            className="smcs-label font-sans font-medium uppercase inline-flex items-center gap-3 mb-5"
+            className="smcs-label font-sans font-medium uppercase inline-flex items-center gap-3"
             style={{
               opacity: 0, transform: 'translateY(16px)',
               fontSize: '0.62rem', letterSpacing: '0.32em', color: '#94A3B8',
+              marginBottom: '1.1rem',
             }}
           >
             <span style={{ display: 'inline-block', width: 28, height: 1, background: 'rgba(255,216,107,0.45)' }}/>
@@ -4445,7 +4446,7 @@ function SocialMediaMarketing() {
               opacity: 0, transform: 'translateY(22px)',
               fontSize: 'clamp(1.9rem, 4vw, 3.1rem)',
               lineHeight: 1.12, letterSpacing: '-0.035em',
-              marginBottom: '1.4rem',
+              marginBottom: '1.3rem',
             }}
           >
             Campaigns Designed To{' '}
@@ -4463,21 +4464,43 @@ function SocialMediaMarketing() {
               opacity: 0, transform: 'translateY(16px)',
               fontSize: 'clamp(0.88rem, 1.4vw, 1rem)',
               lineHeight: 1.8, color: '#F2F8FC',
-              maxWidth: '52rem', margin: '0 auto',
+              maxWidth: '46rem', margin: '0 auto',
+              marginBottom: 'clamp(1.5rem, 3vw, 2rem)',
             }}
           >
             We create premium social campaigns that combine strategy, content, paid advertising, and brand
             positioning to help businesses attract the right audience and convert attention into measurable growth.
           </p>
 
+          {/* Supporting sentences */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(0.9rem, 2vw, 1.1rem)', maxWidth: '720px', margin: '0 auto' }}>
+            {[
+              'Full-funnel social media campaigns built to move customers from discovery to trust, and from trust to action.',
+              'We combine content direction, paid social strategy, creative testing, retargeting, and brand positioning so every post, ad, and campaign has a clear business purpose.',
+              'The result is a stronger brand presence, better audience engagement, and a marketing system designed to increase visibility, leads, and revenue.',
+            ].map((text, i) => (
+              <p
+                key={i}
+                className="smcs-body font-sans font-medium"
+                style={{
+                  opacity: 0, transform: 'translateY(16px)',
+                  fontSize: 'clamp(0.88rem, 1.4vw, 1rem)',
+                  lineHeight: 1.8, color: '#F2F8FC',
+                }}
+              >
+                {text}
+              </p>
+            ))}
+          </div>
+
         </div>
 
-        {/* ── Case Study Image ── */}
+        {/* ── Case Study Image — below full text block ── */}
         <div
           className="smcs-img"
           style={{
             opacity: 0, transform: 'translateY(32px)',
-            maxWidth: '860px', margin: '0 auto clamp(2rem, 4vw, 3rem)',
+            maxWidth: '900px', margin: '0 auto clamp(3rem, 6vw, 4.5rem)',
           }}
         >
           <img
@@ -4489,42 +4512,11 @@ function SocialMediaMarketing() {
               display: 'block',
               width: '100%',
               height: 'auto',
-              borderRadius: 'clamp(14px, 2vw, 22px)',
+              borderRadius: 'clamp(18px, 2vw, 24px)',
               border: '1px solid rgba(255,255,255,0.12)',
               boxShadow: '0 30px 90px rgba(0,0,0,0.35), 0 8px 32px rgba(0,0,0,0.25)',
             }}
           />
-        </div>
-
-        {/* ── Body text ── */}
-        <div style={{
-          maxWidth: '860px',
-          margin: '0 auto clamp(3rem, 6vw, 4.5rem)',
-          textAlign: 'center',
-          padding: '0 clamp(0px, 2vw, 0px)',
-        }}>
-          {[
-            'Full-funnel social media campaigns built to move customers from discovery to trust, and from trust to action.',
-            'We combine content direction, paid social strategy, creative testing, retargeting, and brand positioning so every post, ad, and campaign has a clear business purpose.',
-            'The result is a stronger brand presence, better audience engagement, and a marketing system designed to increase visibility, leads, and revenue.',
-          ].map((text, i) => (
-            <p
-              key={i}
-              className="smcs-body font-sans font-medium"
-              style={{
-                opacity: 0, transform: 'translateY(16px)',
-                fontSize: 'clamp(0.92rem, 1.5vw, 1.05rem)',
-                lineHeight: 1.8, color: '#F2F8FC',
-                marginBottom: i < 2 ? '1.1rem' : 0,
-                maxWidth: '720px',
-                margin: i < 2
-                  ? '0 auto 1.1rem'
-                  : '0 auto',
-              }}
-            >
-              {text}
-            </p>
-          ))}
         </div>
 
         {/* ── Performance stats ── */}
