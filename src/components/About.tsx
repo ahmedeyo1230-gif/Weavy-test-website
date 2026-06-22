@@ -1,6 +1,4 @@
-import { useEffect, useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { MapPin, Cpu, Zap } from 'lucide-react'
+import { motion } from 'framer-motion'
 
 const E: [number, number, number, number] = [0.16, 1, 0.3, 1]
 
@@ -13,64 +11,6 @@ const SERVICE_MODULES = [
   { num: '04', label: 'Content Systems', desc: 'Scalable brand content at scale'   },
   { num: '05', label: 'Video Editing',   desc: 'Storytelling that drives results'  },
 ]
-
-const ACTIVITY = [
-  { event: 'Content batch generated', ago: '2m ago',  color: '#22C55E' },
-  { event: 'Lead pipeline synced',    ago: '8m ago',  color: '#38BDF8' },
-  { event: 'Social queue scheduled',  ago: '14m ago', color: '#38BDF8' },
-]
-
-const BAR_HEIGHTS  = [45, 75, 100, 55, 88, 42, 92, 68, 78, 38]
-const BAR_DURATIONS = [0.75, 0.9, 0.65, 1.0, 0.8, 0.7, 0.85, 0.95, 0.72, 0.88]
-
-function LiveBars() {
-  return (
-    <div className="flex items-end gap-[3px]" style={{ height: '28px' }}>
-      {BAR_HEIGHTS.map((h, i) => (
-        <div
-          key={i}
-          style={{
-            width: '3px',
-            height: `${h}%`,
-            borderRadius: '2px',
-            transformOrigin: 'bottom center',
-            background: i % 3 === 0
-              ? 'hsl(199 89% 60% / 0.88)'
-              : 'hsl(199 89% 60% / 0.42)',
-            animation: `live-bar ${BAR_DURATIONS[i]}s ease-in-out infinite alternate`,
-            animationDelay: `${i * 0.07}s`,
-          }}
-        />
-      ))}
-    </div>
-  )
-}
-
-function TaskCounter() {
-  const [count, setCount] = useState(127)
-  useEffect(() => {
-    const id = setInterval(
-      () => setCount(n => n + Math.floor(Math.random() * 3) + 1),
-      2800,
-    )
-    return () => clearInterval(id)
-  }, [])
-  return (
-    <AnimatePresence mode="wait">
-      <motion.span
-        key={count}
-        initial={{ opacity: 0, y: 4 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -4 }}
-        transition={{ duration: 0.18 }}
-        className="text-xs text-accent-cyan tabular-nums"
-        style={{ fontFamily: 'monospace' }}
-      >
-        {count}
-      </motion.span>
-    </AnimatePresence>
-  )
-}
 
 export default function About() {
   return (
@@ -205,7 +145,7 @@ export default function About() {
 
           </div>
 
-          {/* ── Right: Glass dashboard card ── */}
+          {/* ── Right: Dashboard image ── */}
           <motion.div
             initial={{ opacity: 0, y: 40, scale: 0.97 }}
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
@@ -215,166 +155,26 @@ export default function About() {
             <div
               className="relative rounded-2xl overflow-hidden"
               style={{
-                background: 'hsl(0 0% 100% / 0.025)',
                 border: '1px solid hsl(0 0% 100% / 0.08)',
-                backdropFilter: 'blur(28px) saturate(1.5)',
                 boxShadow:
                   '0 0 0 1px hsl(0 0% 100% / 0.025),' +
                   '0 32px 72px -16px hsl(0 0% 0% / 0.55),' +
                   '0 0 80px -24px hsl(199 89% 60% / 0.1)',
               }}
             >
-              {/* Corner glow */}
-              <div
-                className="absolute top-0 right-0 w-44 h-44 pointer-events-none"
-                aria-hidden="true"
+              <img
+                src="/brand_assets/dashboard.png"
+                alt="Weavy automation dashboard"
+                loading="lazy"
+                decoding="async"
                 style={{
-                  background:
-                    'radial-gradient(circle at top right, hsl(199 89% 60% / 0.1), transparent 65%)',
+                  display: 'block',
+                  width: '100%',
+                  height: 'auto',
+                  objectFit: 'contain',
+                  objectPosition: 'center top',
                 }}
               />
-
-              {/* ─ Header ─ */}
-              <div
-                className="relative flex items-center justify-between px-6 py-4"
-                style={{ borderBottom: '1px solid hsl(0 0% 100% / 0.06)' }}
-              >
-                <span className="text-base font-light tracking-tighter text-primary">
-                  Weavy<span className="font-serif italic text-accent-cyan">.</span>
-                </span>
-                <div className="flex items-center gap-4">
-                  <span className="text-[10px] uppercase tracking-widest text-muted/45">
-                    Est. 2023
-                  </span>
-                  <div className="flex items-center gap-1.5">
-                    <span className="relative flex h-1.5 w-1.5">
-                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-cyan opacity-60" />
-                      <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-accent-cyan" />
-                    </span>
-                    <span className="text-[10px] uppercase tracking-widest text-accent-cyan/75">
-                      Live
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-              {/* ─ Info rows ─ */}
-              <div
-                className="relative px-6 py-5 space-y-[18px]"
-                style={{ borderBottom: '1px solid hsl(0 0% 100% / 0.05)' }}
-              >
-                {/* Location */}
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2 text-[11px] uppercase tracking-widest" style={{ color: '#94A3B8' }}>
-                    <MapPin className="w-3.5 h-3.5 shrink-0" style={{ color: '#64748B' }} />
-                    Location
-                  </div>
-                  <span className="text-sm font-medium text-primary/90">London, UK</span>
-                </div>
-
-                {/* Focus */}
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2 text-[11px] uppercase tracking-widest" style={{ color: '#94A3B8' }}>
-                    <Cpu className="w-3.5 h-3.5 shrink-0" style={{ color: '#64748B' }} />
-                    Focus
-                  </div>
-                  <span className="text-sm font-medium text-primary/90">AI & Automation</span>
-                </div>
-
-                {/* Status */}
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2 text-[11px] uppercase tracking-widest" style={{ color: '#94A3B8' }}>
-                    <Zap className="w-3.5 h-3.5 shrink-0" style={{ color: '#64748B' }} />
-                    Status
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="relative flex h-1.5 w-1.5">
-                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-70" />
-                      <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-green-400" />
-                    </span>
-                    <span
-                      className="text-sm font-medium"
-                      style={{ color: 'hsl(142 65% 52%)' }}
-                    >
-                      Accepting clients
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-              {/* ─ Live systems panel ─ */}
-              <div className="relative px-6 py-5">
-
-                {/* Panel header */}
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-[10px] uppercase tracking-widest text-muted/45">
-                    Live Systems
-                  </span>
-                  <div className="flex items-center gap-1.5 text-[10px] text-muted/35">
-                    <TaskCounter />
-                    <span>tasks / day</span>
-                  </div>
-                </div>
-
-                {/* Frequency bars */}
-                <div className="flex items-end justify-between mb-5">
-                  <LiveBars />
-                  <span className="text-[10px] text-muted/25 uppercase tracking-widest">
-                    Active
-                  </span>
-                </div>
-
-                {/* Thin divider */}
-                <div
-                  className="mb-4"
-                  style={{
-                    height: '1px',
-                    background:
-                      'linear-gradient(to right, transparent, hsl(0 0% 100% / 0.07), transparent)',
-                  }}
-                />
-
-                {/* Activity feed */}
-                <div className="space-y-3">
-                  {ACTIVITY.map((item, i) => (
-                    <div key={i} className="flex items-center justify-between">
-                      <div className="flex items-center gap-2.5">
-                        <div
-                          className="w-[5px] h-[5px] rounded-full shrink-0"
-                          style={{
-                            background: item.color,
-                            boxShadow: `0 0 6px ${item.color}55`,
-                          }}
-                        />
-                        <span className="text-xs font-medium" style={{ color: '#94A3B8' }}>{item.event}</span>
-                      </div>
-                      <span
-                        className="text-[10px] text-muted/30 shrink-0 ml-3"
-                        style={{ fontFamily: 'monospace' }}
-                      >
-                        {item.ago}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* ─ Card footer ─ */}
-              <div
-                className="flex items-center justify-between px-6 py-3.5"
-                style={{ borderTop: '1px solid hsl(0 0% 100% / 0.04)' }}
-              >
-                <span
-                  className="text-[10px] text-muted/28 uppercase tracking-widest"
-                  style={{ fontFamily: 'monospace' }}
-                >
-                  SYS v2.4.1
-                </span>
-                <span className="text-[10px] text-accent-cyan/35 uppercase tracking-widest">
-                  Weavy Automation Ltd.
-                </span>
-              </div>
-
             </div>
           </motion.div>
 
