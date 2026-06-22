@@ -84,8 +84,8 @@ export default function TestimonialsSection() {
           top: 0,
           left: 0,
           right: 0,
-          height: '160px',
-          background: 'linear-gradient(to bottom, #071011 0%, rgba(7,16,17,0.5) 50%, transparent 100%)',
+          height: '260px',
+          background: 'linear-gradient(to bottom, #071011 0%, rgba(7,16,17,0.7) 38%, rgba(7,16,17,0.25) 68%, transparent 100%)',
           pointerEvents: 'none',
           zIndex: 1,
         }}

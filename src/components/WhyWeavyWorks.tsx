@@ -183,8 +183,8 @@ export default function WhyWeavyWorks() {
           bottom: 0,
           left: 0,
           right: 0,
-          height: '200px',
-          background: 'linear-gradient(to bottom, transparent 0%, rgba(7,16,17,0.5) 50%, #071011 100%)',
+          height: '360px',
+          background: 'linear-gradient(to bottom, transparent 0%, rgba(7,16,17,0.18) 28%, rgba(7,16,17,0.58) 58%, rgba(7,16,17,0.9) 80%, #071011 100%)',
           pointerEvents: 'none',
           zIndex: 10,
         }}
