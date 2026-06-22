@@ -12,7 +12,7 @@ const SERVICE_MODULES = [
   { num: '05', label: 'Video Editing',   desc: 'Storytelling that drives results'  },
 ]
 
-export default function About() {
+export default function About() { // no diagonal lines bg
   return (
     <section
       id="about"
