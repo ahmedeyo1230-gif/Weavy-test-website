@@ -213,7 +213,6 @@ export default function Hero() {
         className="relative min-h-screen flex items-center justify-center overflow-hidden"
         style={{
           background:
-            'radial-gradient(circle at 20% 20%, rgba(255,216,107,0.07), transparent 28%),' +
             'radial-gradient(circle at 80% 10%, rgba(80,180,180,0.07), transparent 30%),' +
             '#071011',
         }}
@@ -223,7 +222,6 @@ export default function Hero() {
         {/* Cinematic background glows */}
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
           <div className="absolute top-1/4 left-1/4 w-[520px] h-[520px] bg-accent-cyan/[0.09] rounded-full blur-[130px]" />
-          <div className="absolute bottom-1/4 right-1/4 w-[620px] h-[620px] bg-accent-blue/[0.08] rounded-full blur-[150px]" />
           <div className="absolute top-[60%] left-[30%] w-[400px] h-[400px] rounded-full blur-[110px]" style={{ background: 'hsl(270 50% 20% / 0.06)' }} />
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(10,10,10,0.38)_62%,#0a0a0a_90%)]" />
         </div>

@@ -134,8 +134,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
             style={{
               scaleX: rawProgress,
               transformOrigin: 'left center',
-              background: 'linear-gradient(to right, hsl(210 20% 40%), hsl(210 30% 80%))',
-              boxShadow: '0 0 8px hsl(210 60% 70% / 0.35)',
+              background: 'linear-gradient(to right, hsl(0 0% 28%), hsl(0 0% 52%))',
             }}
           />
         </div>

@@ -73,13 +73,11 @@ export default function VideoShowcase() {
             letterSpacing: '-0.035em',
           }}
         >
-          <span className="shimmer-gold">
             Watch the{' '}
             <em style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400 }}>
               system
             </em>{' '}
             work
-          </span>
         </motion.h2>
 
         <motion.p
