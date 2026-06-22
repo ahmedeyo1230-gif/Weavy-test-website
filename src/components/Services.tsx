@@ -2226,7 +2226,7 @@ function ChatbotWhatsAppBusiness() {
 
             <p
               className="cbwb-body font-sans font-light"
-              style={{ fontSize: 'clamp(0.88rem, 1.4vw, 1rem)', lineHeight: 1.88, color: 'hsl(0 0% 50%)', maxWidth: '32rem', marginBottom: '1.3rem' }}
+              style={{ fontSize: 'clamp(0.88rem, 1.4vw, 1rem)', lineHeight: 1.88, color: '#F2F8FC', maxWidth: '32rem', marginBottom: '1.3rem' }}
             >
               Turn WhatsApp into a faster customer support and sales channel. We build intelligent
               chatbots that answer common questions, guide people through your services, collect
@@ -2235,7 +2235,7 @@ function ChatbotWhatsAppBusiness() {
 
             <p
               className="cbwb-body font-sans font-light"
-              style={{ fontSize: 'clamp(0.88rem, 1.4vw, 1rem)', lineHeight: 1.88, color: 'hsl(0 0% 38%)', maxWidth: '32rem', marginBottom: '2.6rem' }}
+              style={{ fontSize: 'clamp(0.88rem, 1.4vw, 1rem)', lineHeight: 1.88, color: '#F2F8FC', maxWidth: '32rem', marginBottom: '2.6rem' }}
             >
               From menus, bookings, FAQs, locations, pricing, product details, and lead capture,
               your WhatsApp chatbot becomes a reliable assistant that helps convert more
@@ -2255,7 +2255,7 @@ function ChatbotWhatsAppBusiness() {
                     background: 'hsl(142 60% 52%)',
                     flexShrink: 0,
                   }}/>
-                  <span className="font-sans font-light" style={{ fontSize: 'clamp(0.82rem, 1.2vw, 0.9rem)', letterSpacing: '0.02em', color: 'hsl(0 0% 52%)' }}>
+                  <span className="font-sans font-light" style={{ fontSize: 'clamp(0.82rem, 1.2vw, 0.9rem)', letterSpacing: '0.02em', color: '#F2F8FC' }}>
                     {item}
                   </span>
                 </li>
@@ -2352,7 +2352,7 @@ function ChatbotInstagramDM() {
 
             <p
               className="cbid-body font-sans font-light"
-              style={{ fontSize: 'clamp(0.88rem, 1.4vw, 1rem)', lineHeight: 1.88, color: 'hsl(0 0% 50%)', maxWidth: '32rem', marginBottom: '1.3rem' }}
+              style={{ fontSize: 'clamp(0.88rem, 1.4vw, 1rem)', lineHeight: 1.88, color: '#F2F8FC', maxWidth: '32rem', marginBottom: '1.3rem' }}
             >
               Turn Instagram messages into a faster customer journey. We build DM automation
               that replies instantly, answers common questions, captures enquiries, and guides
@@ -2361,7 +2361,7 @@ function ChatbotInstagramDM() {
 
             <p
               className="cbid-body font-sans font-light"
-              style={{ fontSize: 'clamp(0.88rem, 1.4vw, 1rem)', lineHeight: 1.88, color: 'hsl(0 0% 38%)', maxWidth: '32rem', marginBottom: '2.6rem' }}
+              style={{ fontSize: 'clamp(0.88rem, 1.4vw, 1rem)', lineHeight: 1.88, color: '#F2F8FC', maxWidth: '32rem', marginBottom: '2.6rem' }}
             >
               From FAQs and service details to lead qualification and follow-up messages, your
               Instagram inbox becomes a smarter system that helps convert attention into real
@@ -2381,7 +2381,7 @@ function ChatbotInstagramDM() {
                     background: 'hsl(320 70% 65%)',
                     flexShrink: 0,
                   }}/>
-                  <span className="font-sans font-light" style={{ fontSize: 'clamp(0.82rem, 1.2vw, 0.9rem)', letterSpacing: '0.02em', color: 'hsl(0 0% 52%)' }}>
+                  <span className="font-sans font-light" style={{ fontSize: 'clamp(0.82rem, 1.2vw, 0.9rem)', letterSpacing: '0.02em', color: '#F2F8FC' }}>
                     {item}
                   </span>
                 </li>
@@ -2567,7 +2567,7 @@ function ChatbotFacebookMessenger() {
 
             <p
               className="cbfm-body font-sans font-light"
-              style={{ fontSize: 'clamp(0.88rem, 1.4vw, 1rem)', lineHeight: 1.88, color: 'hsl(0 0% 50%)', maxWidth: '32rem', marginBottom: '1.3rem' }}
+              style={{ fontSize: 'clamp(0.88rem, 1.4vw, 1rem)', lineHeight: 1.88, color: '#F2F8FC', maxWidth: '32rem', marginBottom: '1.3rem' }}
             >
               Keep your brand responsive with Messenger automation that answers questions
               instantly, guides users to the right information, and helps turn everyday
@@ -2576,7 +2576,7 @@ function ChatbotFacebookMessenger() {
 
             <p
               className="cbfm-body font-sans font-light"
-              style={{ fontSize: 'clamp(0.88rem, 1.4vw, 1rem)', lineHeight: 1.88, color: 'hsl(0 0% 38%)', maxWidth: '32rem', marginBottom: '2.6rem' }}
+              style={{ fontSize: 'clamp(0.88rem, 1.4vw, 1rem)', lineHeight: 1.88, color: '#F2F8FC', maxWidth: '32rem', marginBottom: '2.6rem' }}
             >
               From product questions and booking support to lead capture and follow-ups, we
               design Messenger workflows that reduce response time, improve consistency, and
@@ -2596,7 +2596,7 @@ function ChatbotFacebookMessenger() {
                     background: 'hsl(215 85% 65%)',
                     flexShrink: 0,
                   }}/>
-                  <span className="font-sans font-light" style={{ fontSize: 'clamp(0.82rem, 1.2vw, 0.9rem)', letterSpacing: '0.02em', color: 'hsl(0 0% 52%)' }}>
+                  <span className="font-sans font-light" style={{ fontSize: 'clamp(0.82rem, 1.2vw, 0.9rem)', letterSpacing: '0.02em', color: '#F2F8FC' }}>
                     {item}
                   </span>
                 </li>
@@ -2605,7 +2605,7 @@ function ChatbotFacebookMessenger() {
 
             <p
               className="cbfm-closing font-sans font-light"
-              style={{ fontSize: 'clamp(0.8rem, 1.2vw, 0.88rem)', lineHeight: 1.8, color: 'hsl(0 0% 30%)', maxWidth: '30rem', fontStyle: 'italic' }}
+              style={{ fontSize: 'clamp(0.8rem, 1.2vw, 0.88rem)', lineHeight: 1.8, color: '#F2F8FC', maxWidth: '30rem', fontStyle: 'italic' }}
             >
               Designed to help businesses stay available, professional, and efficient without
               relying only on manual replies.
@@ -2722,7 +2722,7 @@ function ChatbotWorkflowSection() {
             style={{
               fontSize: 'clamp(0.88rem, 1.4vw, 1rem)',
               lineHeight: 1.88,
-              color: 'hsl(0 0% 45%)',
+              color: '#F2F8FC',
               maxWidth: '36rem',
               margin: '0 auto',
             }}
@@ -3148,7 +3148,7 @@ function ChatbotTikTokAutomation() {
               style={{
                 fontSize: 'clamp(0.88rem, 1.4vw, 1rem)',
                 lineHeight: 1.88,
-                color: 'hsl(0 0% 50%)',
+                color: '#F2F8FC',
                 maxWidth: '32rem',
                 marginBottom: '1.3rem',
               }}
@@ -3161,7 +3161,7 @@ function ChatbotTikTokAutomation() {
               style={{
                 fontSize: 'clamp(0.88rem, 1.4vw, 1rem)',
                 lineHeight: 1.88,
-                color: 'hsl(0 0% 38%)',
+                color: '#F2F8FC',
                 maxWidth: '32rem',
                 marginBottom: '2.6rem',
               }}
@@ -3187,7 +3187,7 @@ function ChatbotTikTokAutomation() {
                     style={{
                       fontSize: 'clamp(0.82rem, 1.2vw, 0.9rem)',
                       letterSpacing: '0.02em',
-                      color: 'hsl(0 0% 52%)',
+                      color: '#F2F8FC',
                     }}
                   >
                     {item}
@@ -10958,7 +10958,7 @@ export default function Services() {
 
               <div className="cb-divider w-full h-px mb-10" style={{ background: 'linear-gradient(to right, hsl(195 90% 55% / 0.45), transparent)' }} aria-hidden="true" />
 
-              <p className="cb-intro font-sans font-light mb-10" style={{ fontSize: 'clamp(0.9rem, 1.5vw, 1.05rem)', lineHeight: 1.8, color: 'hsl(0 0% 56%)' }}>
+              <p className="cb-intro font-sans font-light mb-10" style={{ fontSize: 'clamp(0.9rem, 1.5vw, 1.05rem)', lineHeight: 1.8, color: '#F2F8FC' }}>
                 AI-powered chatbots built to automate, engage, and scale your operations —
                 designed around real workflows, not generic scripts.
               </p>
@@ -11000,7 +11000,7 @@ export default function Services() {
                       <div className="font-sans font-light text-text mb-1" style={{ fontSize: '0.84rem', letterSpacing: '-0.01em' }}>
                         {title}
                       </div>
-                      <div className="font-sans font-light" style={{ fontSize: '0.76rem', color: 'hsl(0 0% 46%)', lineHeight: 1.65 }}>
+                      <div className="font-sans font-light" style={{ fontSize: '0.76rem', color: '#F2F8FC', lineHeight: 1.65 }}>
                         {desc}
                       </div>
                     </div>
@@ -11014,7 +11014,7 @@ export default function Services() {
                   <p className="font-sans mb-2" style={{ fontSize: '0.68rem', letterSpacing: '0.26em', textTransform: 'uppercase', color: 'hsl(195 80% 55%)' }}>
                     Who it's for
                   </p>
-                  <p className="font-sans font-light" style={{ fontSize: 'clamp(0.85rem, 1.3vw, 0.95rem)', lineHeight: 1.8, color: 'hsl(0 0% 52%)' }}>
+                  <p className="font-sans font-light" style={{ fontSize: 'clamp(0.85rem, 1.3vw, 0.95rem)', lineHeight: 1.8, color: '#F2F8FC' }}>
                     Real estate, dentists, law firms, accounting firms, fashion brands, and more.
                   </p>
                 </div>
@@ -11022,7 +11022,7 @@ export default function Services() {
                   <p className="font-sans mb-2" style={{ fontSize: '0.68rem', letterSpacing: '0.26em', textTransform: 'uppercase', color: 'hsl(195 80% 55%)' }}>
                     Why it matters
                   </p>
-                  <p className="font-sans font-light" style={{ fontSize: 'clamp(0.85rem, 1.3vw, 0.95rem)', lineHeight: 1.8, color: 'hsl(0 0% 52%)' }}>
+                  <p className="font-sans font-light" style={{ fontSize: 'clamp(0.85rem, 1.3vw, 0.95rem)', lineHeight: 1.8, color: '#F2F8FC' }}>
                     Manual support limits scale. Custom chatbots handle volume instantly,
                     improve response time, and convert more interactions into results.
                   </p>
@@ -11140,12 +11140,12 @@ export default function Services() {
               fontSize: 'clamp(1.1rem, 2.4vw, 1.75rem)',
               lineHeight: 1.65,
               letterSpacing: '-0.022em',
-              color: 'hsl(0 0% 82%)',
+              color: '#F2F8FC',
             }}
           >
             Automate conversations. Capture more leads. Support customers instantly across your website, WhatsApp, Instagram DM, and Facebook Messenger —
             {' '}
-            <span style={{ color: 'hsl(0 0% 96%)' }}>
+            <span style={{ color: '#F2F8FC' }}>
               all from one intelligent AI-powered system built to scale your business 24/7.
             </span>
           </p>
