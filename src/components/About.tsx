@@ -154,13 +154,10 @@ export default function About() {
             transition={{ duration: 0.9, delay: 0.2, ease: E }}
           >
             <div
-              className="relative rounded-2xl overflow-hidden w-full"
+              className="relative w-full"
               style={{
-                border: '1px solid hsl(0 0% 100% / 0.08)',
-                boxShadow:
-                  '0 0 0 1px hsl(0 0% 100% / 0.025),' +
-                  '0 32px 72px -16px hsl(0 0% 0% / 0.55),' +
-                  '0 0 80px -24px hsl(199 89% 60% / 0.1)',
+                maskImage: 'radial-gradient(ellipse 88% 82% at 52% 50%, black 45%, transparent 100%)',
+                WebkitMaskImage: 'radial-gradient(ellipse 88% 82% at 52% 50%, black 45%, transparent 100%)',
               }}
             >
               <img
