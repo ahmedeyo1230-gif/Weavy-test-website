@@ -45,7 +45,7 @@ export default function About() {
       <div className="max-w-6xl mx-auto">
 
         {/* ─── Main editorial grid ─────────────────────────────────────── */}
-        <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 xl:gap-24 items-start mb-14 lg:mb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-12 xl:gap-20 items-center mb-14 lg:mb-20">
 
           {/* ── Left: headline + body + tags + accent line ── */}
           <div className="flex flex-col gap-7 lg:pt-2">
@@ -147,13 +147,14 @@ export default function About() {
 
           {/* ── Right: Dashboard image ── */}
           <motion.div
+            className="w-full"
             initial={{ opacity: 0, y: 40, scale: 0.97 }}
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.9, delay: 0.2, ease: E }}
           >
             <div
-              className="relative rounded-2xl overflow-hidden"
+              className="relative rounded-2xl overflow-hidden w-full"
               style={{
                 border: '1px solid hsl(0 0% 100% / 0.08)',
                 boxShadow:
@@ -171,6 +172,7 @@ export default function About() {
                   display: 'block',
                   width: '100%',
                   height: 'auto',
+                  minHeight: 'clamp(260px, 36vw, 480px)',
                   objectFit: 'contain',
                   objectPosition: 'center top',
                 }}
