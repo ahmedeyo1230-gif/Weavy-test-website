@@ -24,6 +24,21 @@ export default function About() { // no diagonal lines bg
           '#0B1114',
       }}
     >
+      {/* Top fade — blends from VideoShowcase into this section */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          height: '160px',
+          background: 'linear-gradient(to bottom, #071011 0%, transparent 100%)',
+          pointerEvents: 'none',
+          zIndex: 1,
+        }}
+      />
+
       {/* Dot grid */}
       <div
         className="absolute inset-0 pointer-events-none"
