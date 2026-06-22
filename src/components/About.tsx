@@ -240,6 +240,21 @@ export default function About() { // no diagonal lines bg
         </div>
 
       </div>
+
+      {/* Bottom blend — dissolves #0B1114 into Stats' #071011 */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+          right: 0,
+          height: '280px',
+          background: 'linear-gradient(to bottom, transparent 0%, rgba(7,16,17,0.22) 30%, rgba(7,16,17,0.65) 60%, rgba(7,16,17,0.92) 82%, #071011 100%)',
+          pointerEvents: 'none',
+          zIndex: 10,
+        }}
+      />
     </section>
   )
 }

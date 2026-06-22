@@ -56,6 +56,21 @@ function StatCounter({ value, suffix = '', prefix = '', label, description, dela
 export default function Stats() {
   return (
     <section className="py-20 px-6 relative overflow-hidden" style={{ background: '#071011' }}>
+      {/* Top blend — continues from About's #0B1114 */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          height: '180px',
+          background: 'linear-gradient(to bottom, #071011 0%, rgba(7,16,17,0.6) 42%, rgba(7,16,17,0.18) 72%, transparent 100%)',
+          pointerEvents: 'none',
+          zIndex: 10,
+        }}
+      />
+
       {/* Radial glow behind the panel */}
       <div
         className="absolute inset-0 pointer-events-none"
