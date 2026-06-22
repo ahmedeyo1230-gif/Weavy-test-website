@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion'
-import { DarkGradientBg } from './ui/elegant-dark-pattern'
 
 const E: [number, number, number, number] = [0.16, 1, 0.3, 1]
 
@@ -25,9 +24,6 @@ export default function About() { // no diagonal lines bg
           '#0B1114',
       }}
     >
-      {/* Elegant dark pattern — skewed cyan streaks + noise + dot overlay */}
-      <DarkGradientBg />
-
       {/* Dot grid */}
       <div
         className="absolute inset-0 pointer-events-none"
