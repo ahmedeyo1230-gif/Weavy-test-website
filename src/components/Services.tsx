@@ -6349,14 +6349,7 @@ function GraphicDesignSplitA() {
       }}/>
 
       <div className="relative z-10 max-w-[92rem] mx-auto px-6 sm:px-12">
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: '1.25fr 1fr',
-            gap: 'clamp(3rem, 6vw, 6rem)',
-            alignItems: 'center',
-          }}
-        >
+        <div className="grid grid-cols-1 lg:grid-cols-[1.25fr_1fr] gap-12 lg:gap-[clamp(3rem,6vw,6rem)] items-center">
 
           {/* ── LEFT: Image ── */}
           <div className="gdsa-img" style={{ position: 'relative' }}>
@@ -6378,7 +6371,7 @@ function GraphicDesignSplitA() {
                 style={{
                   display: 'block',
                   width: '100%',
-                  height: 'clamp(580px, 68vw, 800px)',
+                  height: 'clamp(280px, 68vw, 800px)',
                   objectFit: 'cover',
                   objectPosition: 'center center',
                 }}
