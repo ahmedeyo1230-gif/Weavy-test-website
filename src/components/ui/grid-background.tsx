@@ -4,6 +4,31 @@ interface GridBackgroundProps {
   className?: string;
 }
 
+/**
+ * Diagonal 45° repeating-line pattern — dark sections only.
+ * Uses the site's cyan accent at ultra-low opacity so it reads as
+ * a subtle atmospheric texture without competing with content.
+ */
+export const DiagonalLinesBg = ({ className }: GridBackgroundProps) => {
+  return (
+    <div
+      aria-hidden="true"
+      className={cn("absolute inset-0 z-0 pointer-events-none", className)}
+      style={{
+        backgroundImage: `
+          repeating-linear-gradient(
+            45deg,
+            rgba(31, 196, 241, 0.055) 0px,
+            rgba(31, 196, 241, 0)     1.5px,
+            transparent               1.5px,
+            transparent               28px
+          )
+        `,
+      }}
+    />
+  );
+};
+
 /** Complex multiplier grid — dark sections only.
  *  Horizontal rules + 45°/−45° cross-hatch in green & magenta,
  *  with a soft green radial accent. Intended as a z-[1] atmospheric layer. */

@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { CheckCircle2, Clock, Scaling, Target } from 'lucide-react'
+import { DiagonalLinesBg } from './ui/grid-background'
 
 const features = [
   {
@@ -34,6 +35,9 @@ export default function WhyWeavyWorks() {
       className="py-32 px-6 relative overflow-hidden bg-background"
       aria-label="Why Weavy Works"
     >
+      {/* Diagonal lines atmospheric layer */}
+      <DiagonalLinesBg />
+
       {/* Dot grid */}
       <div
         className="absolute inset-0 pointer-events-none"
