@@ -6014,14 +6014,14 @@ function GraphicDesignEditorial() {
 
           <div className="gde-r" style={{ maxWidth: '26rem', paddingBottom: '0.5rem' }}>
             <p className="font-sans font-light mb-7" style={{
-              fontSize: 'clamp(0.84rem, 1.3vw, 0.98rem)', lineHeight: 1.9, color: 'hsl(0 0% 40%)',
+              fontSize: 'clamp(0.84rem, 1.3vw, 0.98rem)', lineHeight: 1.9, color: '#F2F8FC',
             }}>
               Every brand deserves a visual language that is impossible to ignore. We design and
               animate premium assets — from complete identity systems to campaign-ready motion
               graphics — built to perform across every screen and platform.
             </p>
             <p className="font-sans font-light" style={{
-              fontSize: 'clamp(0.84rem, 1.3vw, 0.98rem)', lineHeight: 1.9, color: 'hsl(0 0% 32%)',
+              fontSize: 'clamp(0.84rem, 1.3vw, 0.98rem)', lineHeight: 1.9, color: '#F2F8FC',
             }}>
               From concept to delivery, our creative process is shaped around clarity and impact.
               Cinematic animations, social-first creatives, and high-production brand visuals
@@ -6234,7 +6234,7 @@ function GraphicDesignServices() {
           style={{
             fontSize: 'clamp(0.86rem, 1.3vw, 1rem)',
             lineHeight: 1.88,
-            color: 'hsl(0 0% 38%)',
+            color: '#F2F8FC',
             maxWidth: '36rem',
             marginBottom: 'clamp(3.5rem, 6vw, 5.5rem)',
           }}
@@ -6447,7 +6447,7 @@ function GraphicDesignSplitA() {
               style={{
                 fontSize: 'clamp(0.86rem, 1.3vw, 1rem)',
                 lineHeight: 1.92,
-                color: 'hsl(0 0% 38%)',
+                color: '#F2F8FC',
                 maxWidth: '30rem',
                 marginBottom: 'clamp(2rem, 3.5vw, 3rem)',
               }}
@@ -6617,7 +6617,7 @@ function GraphicDesignSplitB() {
             {/* Body */}
             <p className="gdsb-t font-sans font-light" style={{
               fontSize: 'clamp(0.86rem, 1.3vw, 1rem)',
-              lineHeight: 1.92, color: 'hsl(0 0% 36%)',
+              lineHeight: 1.92, color: '#F2F8FC',
               maxWidth: '28rem',
               marginBottom: 'clamp(2.5rem, 4vw, 3.5rem)',
             }}>
@@ -6641,7 +6641,7 @@ function GraphicDesignSplitB() {
                 }}>
                   <span className="font-sans font-light" style={{
                     fontSize: 'clamp(0.88rem, 1.1vw, 0.9rem)',
-                    color: 'hsl(0 0% 48%)', letterSpacing: '0.01em',
+                    color: '#F2F8FC', letterSpacing: '0.01em',
                   }}>{step}</span>
                   <span className="font-sans" style={{
                     fontSize: '0.58rem', letterSpacing: '0.22em',
@@ -6696,7 +6696,7 @@ function GraphicDesignSplitB() {
             <p style={{
               fontFamily: 'var(--font-sans, sans-serif)', fontWeight: 300,
               fontSize: '0.98rem', lineHeight: 1.85,
-              color: 'hsl(0 0% 44%)', margin: 0, marginBottom: '1.25rem'
+              color: '#F2F8FC', margin: 0, marginBottom: '1.25rem'
             }}>
               Every project begins with strategy and ends with impact. We combine brand thinking, design excellence, motion craftsmanship, and digital storytelling to create work that captures attention, builds recognition, and delivers lasting value across every platform.
             </p>
@@ -6886,7 +6886,7 @@ function GraphicDesignFinalPresentation() {
             {/* Para */}
             <p className="gdfp-body font-sans font-light" style={{
               fontSize: 'clamp(0.86rem, 1.3vw, 0.98rem)', lineHeight: 1.92,
-              color: 'hsl(0 0% 44%)', marginBottom: 'clamp(2rem, 3.5vw, 3rem)', maxWidth: '30rem',
+              color: '#F2F8FC', marginBottom: 'clamp(2rem, 3.5vw, 3rem)', maxWidth: '30rem',
             }}>
               Every project begins with strategy and ends with impact. We combine brand thinking, design excellence, motion craftsmanship, and digital storytelling to create work that captures attention, builds recognition, and delivers lasting value across every platform.
             </p>
@@ -6911,7 +6911,7 @@ function GraphicDesignFinalPresentation() {
                       <path d="M1.5 4L3 5.5L6.5 2" stroke="hsl(195 90% 62%)" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
                   </div>
-                  <span className="font-sans font-light" style={{ fontSize: 'clamp(0.82rem, 1.2vw, 0.92rem)', color: 'hsl(0 0% 54%)', letterSpacing: '0.01em' }}>
+                  <span className="font-sans font-light" style={{ fontSize: 'clamp(0.82rem, 1.2vw, 0.92rem)', color: '#F2F8FC', letterSpacing: '0.01em' }}>
                     {item}
                   </span>
                 </li>
@@ -6921,7 +6921,7 @@ function GraphicDesignFinalPresentation() {
             {/* Closing line */}
             <p className="gdfp-close font-sans font-light" style={{
               fontSize: 'clamp(0.78rem, 1.1vw, 0.88rem)', lineHeight: 1.85,
-              color: 'hsl(0 0% 28%)', maxWidth: '28rem',
+              color: '#F2F8FC', maxWidth: '28rem',
               borderLeft: '2px solid hsl(195 90% 55% / 0.18)',
               paddingLeft: '1rem',
             }}>
@@ -7152,7 +7152,7 @@ function GraphicDesignFinalPresentation() {
           <p style={{
             fontFamily: 'var(--font-sans, sans-serif)', fontWeight: 300,
             fontSize: '0.95rem', lineHeight: 1.9,
-            color: 'hsl(0 0% 44%)',
+            color: '#F2F8FC',
             marginBottom: '2.5rem',
           }}>
             Every project begins with strategy and ends with impact. We combine brand thinking,
@@ -7188,7 +7188,7 @@ function GraphicDesignFinalPresentation() {
                   }}>{num}</span>
                   <span style={{
                     fontFamily: 'var(--font-sans, sans-serif)', fontWeight: 300,
-                    fontSize: '0.83rem', color: 'hsl(0 0% 52%)', lineHeight: 1.5,
+                    fontSize: '0.83rem', color: '#F2F8FC', lineHeight: 1.5,
                   }}>{step}</span>
                 </div>
               ))}
@@ -7316,7 +7316,7 @@ function GraphicDesignCTA() {
           style={{
             fontSize: 'clamp(0.88rem, 1.4vw, 1rem)',
             lineHeight: 1.9,
-            color: 'hsl(0 0% 40%)',
+            color: '#F2F8FC',
             maxWidth: '38rem',
             marginBottom: 'clamp(2.8rem, 5vw, 4rem)',
           }}
@@ -7479,7 +7479,7 @@ function GraphicDesignContactFooter() {
 
         {/* Subtext */}
         <p className="font-sans font-light text-center mb-14 px-6"
-          style={{ fontSize: 'clamp(0.84rem, 1.35vw, 0.96rem)', lineHeight: 1.9, color: 'hsl(0 0% 40%)', maxWidth: '34rem' }}>
+          style={{ fontSize: 'clamp(0.84rem, 1.35vw, 0.96rem)', lineHeight: 1.9, color: '#F2F8FC', maxWidth: '34rem' }}>
           Have a project in mind? We&apos;d love to hear about it. Let&apos;s discuss how we can bring your vision to life.
         </p>
 
@@ -7733,7 +7733,7 @@ function UGCHero() {
           <div className="ugch-r" aria-hidden="true" style={{ width: '3.5rem', height: 1, background: 'hsl(0 72% 58% / 0.5)', marginBottom: '1.5rem' }}/>
 
           {/* Body */}
-          <p className="ugch-r font-sans font-light" style={{ fontSize: 'clamp(0.9rem, 1.45vw, 1.06rem)', lineHeight: 1.82, color: 'hsl(0 0% 62%)', maxWidth: '30rem', marginBottom: '2.2rem' }}>
+          <p className="ugch-r font-sans font-light" style={{ fontSize: 'clamp(0.9rem, 1.45vw, 1.06rem)', lineHeight: 1.82, color: '#F2F8FC', maxWidth: '30rem', marginBottom: '2.2rem' }}>
             We match your brand with creators who genuinely connect with your audience —
             producing content that feels native, converts at scale, and makes people stop scrolling.
           </p>
@@ -7741,7 +7741,7 @@ function UGCHero() {
           {/* Platform pills */}
           <div className="ugch-r flex flex-wrap gap-2">
             {['TikTok', 'Instagram Reels', 'YouTube Shorts', 'LinkedIn'].map(p => (
-              <span key={p} className="font-sans" style={{ fontSize: '0.68rem', letterSpacing: '0.05em', padding: '0.32rem 0.8rem', borderRadius: 999, border: '1px solid hsl(0 0% 100% / 0.11)', color: 'hsl(0 0% 68%)', background: 'hsl(0 0% 100% / 0.04)', backdropFilter: 'blur(8px)' }}>{p}</span>
+              <span key={p} className="font-sans" style={{ fontSize: '0.68rem', letterSpacing: '0.05em', padding: '0.32rem 0.8rem', borderRadius: 999, border: '1px solid hsl(0 0% 100% / 0.11)', color: '#F2F8FC', background: 'hsl(0 0% 100% / 0.04)', backdropFilter: 'blur(8px)' }}>{p}</span>
             ))}
           </div>
         </div>
@@ -7800,10 +7800,10 @@ function UGCHero() {
               <em style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400, color: 'hsl(0 72% 70%)' }}>people</em>,<br/>not brands.
             </h2>
             <div className="ugce-r" aria-hidden="true" style={{ width: '2.5rem', height: 1, background: 'hsl(0 72% 58% / 0.4)', marginBottom: '1.5rem' }}/>
-            <p className="ugce-r font-sans font-light" style={{ fontSize: 'clamp(0.88rem, 1.35vw, 1rem)', lineHeight: 1.92, color: 'hsl(0 0% 50%)', maxWidth: '32rem' }}>
+            <p className="ugce-r font-sans font-light" style={{ fontSize: 'clamp(0.88rem, 1.35vw, 1rem)', lineHeight: 1.92, color: '#F2F8FC', maxWidth: '32rem' }}>
               92% of consumers trust peer recommendations over brand advertising. At Weavy, we close that gap —
               pairing your brand with authentic creators whose content converts because it{' '}
-              <span style={{ color: 'hsl(0 0% 72%)' }}>feels real</span>.
+              <span style={{ color: '#F2F8FC' }}>feels real</span>.
             </p>
           </div>
 
@@ -7822,7 +7822,7 @@ function UGCHero() {
                   data-decimals={decimals}
                   style={{ fontSize: 'clamp(2rem, 3.2vw, 2.7rem)', letterSpacing: '-0.05em', color: 'hsl(0 72% 66%)', lineHeight: 1, minWidth: '4.2rem' }}
                 >0{suffix}</span>
-                <span className="font-sans font-light" style={{ fontSize: '0.84rem', lineHeight: 1.55, color: 'hsl(0 0% 50%)' }}>{desc}</span>
+                <span className="font-sans font-light" style={{ fontSize: '0.84rem', lineHeight: 1.55, color: '#F2F8FC' }}>{desc}</span>
               </div>
             ))}
           </div>
@@ -7837,7 +7837,7 @@ function UGCHero() {
               <span aria-hidden="true" className="font-sans font-light" style={{ position: 'absolute', top: '1.1rem', right: '1.3rem', fontSize: '3.8rem', lineHeight: 1, letterSpacing: '-0.06em', color: 'hsl(0 72% 52% / 0.07)', userSelect: 'none' }}>{num}</span>
               <div aria-hidden="true" style={{ width: '1.8rem', height: 2, background: 'hsl(0 72% 58% / 0.55)', borderRadius: 2, marginBottom: '1.25rem' }}/>
               <h3 className="font-sans font-light" style={{ color: '#fff', fontSize: 'clamp(0.95rem, 1.4vw, 1.08rem)', letterSpacing: '-0.01em', lineHeight: 1.28, marginBottom: '0.88rem' }}>{title}</h3>
-              <p className="font-sans font-light" style={{ fontSize: '0.81rem', lineHeight: 1.78, color: 'hsl(0 0% 44%)' }}>{desc}</p>
+              <p className="font-sans font-light" style={{ fontSize: '0.81rem', lineHeight: 1.78, color: '#F2F8FC' }}>{desc}</p>
             </div>
           ))}
         </div>
@@ -7925,12 +7925,12 @@ function UGCCreatorSelection() {
   const bodyText = (
     <>
       <div className="ugccs-text" aria-hidden="true" style={{ width: '2.5rem', height: 1, background: 'hsl(195 80% 55% / 0.38)', marginBottom: '1.6rem' }}/>
-      <p className="ugccs-text font-sans font-light w-full max-w-none text-left text-base leading-8 sm:text-lg" style={{ color: 'hsl(0 0% 52%)', marginBottom: '1.2rem' }}>
+      <p className="ugccs-text font-sans font-light w-full max-w-none text-left text-base leading-8 sm:text-lg" style={{ color: '#F2F8FC', marginBottom: '1.2rem' }}>
         Every creator we recommend is validated by their numbers. We look beyond follower count
         and dig into engagement rate, average views, and audience quality — so your budget
         goes to creators who actually perform.
       </p>
-      <p className="ugccs-text font-sans font-light w-full max-w-none text-left text-base leading-8 sm:text-lg" style={{ color: 'hsl(0 0% 40%)', marginBottom: '2rem' }}>
+      <p className="ugccs-text font-sans font-light w-full max-w-none text-left text-base leading-8 sm:text-lg" style={{ color: '#F2F8FC', marginBottom: '2rem' }}>
         No guessing, no wasted spend. We present the metrics that matter so you can
         select with confidence and brief creators who are built to deliver.
       </p>
@@ -7938,7 +7938,7 @@ function UGCCreatorSelection() {
         {UGC_INSIGHTS.map((item) => (
           <li key={item} style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
             <span aria-hidden="true" style={{ width: '5px', height: '5px', borderRadius: '50%', background: 'hsl(195 80% 58%)', boxShadow: '0 0 6px hsl(195 80% 58% / 0.6)', flexShrink: 0 }}/>
-            <span className="font-sans font-light" style={{ fontSize: '0.88rem', color: 'hsl(0 0% 68%)', letterSpacing: '0.01em' }}>{item}</span>
+            <span className="font-sans font-light" style={{ fontSize: '0.88rem', color: '#F2F8FC', letterSpacing: '0.01em' }}>{item}</span>
           </li>
         ))}
       </ul>
@@ -8006,7 +8006,7 @@ function UGCCreatorSelection() {
               and dig into engagement rate, average views, and audience quality — so your budget
               goes to creators who actually perform.
             </p>
-            <p className="w-full max-w-none text-left text-base leading-7 sm:text-lg sm:leading-8" style={{ color: 'hsl(0 0% 40%)' }}>
+            <p className="w-full max-w-none text-left text-base leading-7 sm:text-lg sm:leading-8" style={{ color: '#F2F8FC' }}>
               No guessing, no wasted spend. We present the metrics that matter so you can
               select with confidence and brief creators who are built to deliver.
             </p>
@@ -8014,7 +8014,7 @@ function UGCCreatorSelection() {
               {UGC_INSIGHTS.map((item) => (
                 <li key={item} style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
                   <span aria-hidden="true" style={{ width: '5px', height: '5px', borderRadius: '50%', background: 'hsl(195 80% 58%)', boxShadow: '0 0 6px hsl(195 80% 58% / 0.6)', flexShrink: 0 }}/>
-                  <span className="font-sans font-light" style={{ fontSize: '0.88rem', color: 'hsl(0 0% 68%)', letterSpacing: '0.01em' }}>{item}</span>
+                  <span className="font-sans font-light" style={{ fontSize: '0.88rem', color: '#F2F8FC', letterSpacing: '0.01em' }}>{item}</span>
                 </li>
               ))}
             </ul>
@@ -8136,7 +8136,7 @@ function UGCFindCreators() {
             {/* Paragraph 1 */}
             <p
               className="ugcfc-text font-sans font-light"
-              style={{ fontSize: 'clamp(0.88rem, 1.4vw, 1.02rem)', lineHeight: 1.9, color: 'hsl(0 0% 52%)', marginBottom: '1.4rem' }}
+              style={{ fontSize: 'clamp(0.88rem, 1.4vw, 1.02rem)', lineHeight: 1.9, color: '#F2F8FC', marginBottom: '1.4rem' }}
             >
               We identify creators who match your brand style, audience, and campaign goals.
               Instead of choosing random influencers, we focus on authentic faces who can naturally
@@ -8146,7 +8146,7 @@ function UGCFindCreators() {
             {/* Paragraph 2 */}
             <p
               className="ugcfc-text font-sans font-light"
-              style={{ fontSize: 'clamp(0.88rem, 1.4vw, 1.02rem)', lineHeight: 1.9, color: 'hsl(0 0% 40%)' }}
+              style={{ fontSize: 'clamp(0.88rem, 1.4vw, 1.02rem)', lineHeight: 1.9, color: '#F2F8FC' }}
             >
               From lifestyle fit to on-camera confidence, every creator is selected with intention —
               so your UGC campaign feels personal, relatable, and built for performance.
@@ -8438,11 +8438,11 @@ function UGCMonitoringReporting() {
               </em>
             </h2>
             <div className="ugcmr-text" aria-hidden="true" style={{ width: '2.5rem', height: 1, background: 'hsl(195 80% 55% / 0.38)', marginBottom: '1.6rem' }}/>
-            <p className="ugcmr-text font-sans font-light" style={{ fontSize: '1rem', lineHeight: 2, color: 'hsl(0 0% 52%)', marginBottom: '1.2rem' }}>
+            <p className="ugcmr-text font-sans font-light" style={{ fontSize: '1rem', lineHeight: 2, color: '#F2F8FC', marginBottom: '1.2rem' }}>
               During the campaign, we track and collect every piece of published UGC across Instagram,
               including Stories, TikTok, and YouTube, so your content stays organised and easy to review.
             </p>
-            <p className="ugcmr-text font-sans font-light" style={{ fontSize: '1rem', lineHeight: 2, color: 'hsl(0 0% 40%)', marginBottom: '2rem' }}>
+            <p className="ugcmr-text font-sans font-light" style={{ fontSize: '1rem', lineHeight: 2, color: '#F2F8FC', marginBottom: '2rem' }}>
               At the end of each month, we provide clear reporting with downloadable media assets,
               campaign performance insights, and key results such as impressions, clicks, leads, and sales.
             </p>
@@ -8450,7 +8450,7 @@ function UGCMonitoringReporting() {
               {UGC_REPORT_POINTS.map(item => (
                 <li key={item} style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
                   <span aria-hidden="true" style={{ width: '5px', height: '5px', borderRadius: '50%', background: 'hsl(195 80% 58%)', boxShadow: '0 0 6px hsl(195 80% 58% / 0.6)', flexShrink: 0 }}/>
-                  <span className="font-sans font-light" style={{ fontSize: '0.88rem', color: 'hsl(0 0% 68%)', letterSpacing: '0.01em' }}>{item}</span>
+                  <span className="font-sans font-light" style={{ fontSize: '0.88rem', color: '#F2F8FC', letterSpacing: '0.01em' }}>{item}</span>
                 </li>
               ))}
             </ul>
@@ -8664,13 +8664,13 @@ function UGCTrackingUrls() {
 
             <div className="ugctu-text" aria-hidden="true" style={{ width: '2.5rem', height: 1, background: 'hsl(160 65% 50% / 0.38)', marginBottom: '1.8rem' }}/>
 
-            <p className="ugctu-text font-sans font-light" style={{ fontSize: 'clamp(0.88rem, 1.4vw, 1.02rem)', lineHeight: 1.9, color: 'hsl(0 0% 52%)', marginBottom: '1.2rem' }}>
+            <p className="ugctu-text font-sans font-light" style={{ fontSize: 'clamp(0.88rem, 1.4vw, 1.02rem)', lineHeight: 1.9, color: '#F2F8FC', marginBottom: '1.2rem' }}>
               Every campaign can be measured with clear tracking links and structured reporting,
               so you are not relying on guesswork. Each creator, post, story, reel, or video can
               be monitored to understand where the strongest results are coming from.
             </p>
 
-            <p className="ugctu-text font-sans font-light" style={{ fontSize: 'clamp(0.88rem, 1.4vw, 1.02rem)', lineHeight: 1.9, color: 'hsl(0 0% 40%)', marginBottom: '2.4rem' }}>
+            <p className="ugctu-text font-sans font-light" style={{ fontSize: 'clamp(0.88rem, 1.4vw, 1.02rem)', lineHeight: 1.9, color: '#F2F8FC', marginBottom: '2.4rem' }}>
               From impressions and clicks to leads, enquiries, and sales, the reporting view
               helps you see what is working, what needs improving, and where to focus the next campaign.
             </p>
@@ -8679,7 +8679,7 @@ function UGCTrackingUrls() {
               {UGC_TRACKING_FEATURES.map(item => (
                 <li key={item} className="ugctu-feat" style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
                   <span aria-hidden="true" style={{ width: '5px', height: '5px', borderRadius: '50%', flexShrink: 0, background: 'hsl(160 65% 52%)', boxShadow: '0 0 6px hsl(160 65% 50% / 0.55)' }}/>
-                  <span className="font-sans font-light" style={{ fontSize: '0.88rem', color: 'hsl(0 0% 64%)', letterSpacing: '0.01em' }}>{item}</span>
+                  <span className="font-sans font-light" style={{ fontSize: '0.88rem', color: '#F2F8FC', letterSpacing: '0.01em' }}>{item}</span>
                 </li>
               ))}
             </ul>
@@ -9118,17 +9118,17 @@ function UGCPerfumeCampaign() {
                   {/* Heart */}
                   <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '3px' }}>
                     <div style={{ color: 'hsl(0 0% 80%)', lineHeight: 0 }}><IgHeart /></div>
-                    <span style={{ fontFamily: "'Inter', sans-serif", fontSize: '0.5rem', color: 'hsl(0 0% 52%)', letterSpacing: '0.02em' }}>12.8K</span>
+                    <span style={{ fontFamily: "'Inter', sans-serif", fontSize: '0.5rem', color: '#F2F8FC', letterSpacing: '0.02em' }}>12.8K</span>
                   </div>
                   {/* Comment */}
                   <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '3px' }}>
                     <div style={{ color: 'hsl(0 0% 80%)', lineHeight: 0 }}><IgComment /></div>
-                    <span style={{ fontFamily: "'Inter', sans-serif", fontSize: '0.5rem', color: 'hsl(0 0% 52%)', letterSpacing: '0.02em' }}>348</span>
+                    <span style={{ fontFamily: "'Inter', sans-serif", fontSize: '0.5rem', color: '#F2F8FC', letterSpacing: '0.02em' }}>348</span>
                   </div>
                   {/* Share */}
                   <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '3px' }}>
                     <div style={{ color: 'hsl(0 0% 80%)', lineHeight: 0 }}><IgShare /></div>
-                    <span style={{ fontFamily: "'Inter', sans-serif", fontSize: '0.5rem', color: 'hsl(0 0% 52%)', letterSpacing: '0.02em' }}>Share</span>
+                    <span style={{ fontFamily: "'Inter', sans-serif", fontSize: '0.5rem', color: '#F2F8FC', letterSpacing: '0.02em' }}>Share</span>
                   </div>
                   {/* Save */}
                   <div style={{ color: 'hsl(0 0% 80%)', lineHeight: 0 }}><IgSave /></div>
@@ -9146,7 +9146,7 @@ function UGCPerfumeCampaign() {
                 <p style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 500, fontSize: '0.66rem', color: 'hsl(0 0% 82%)', marginBottom: '3px', letterSpacing: '-0.01em' }}>
                   12.8K likes
                 </p>
-                <p style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 300, fontSize: '0.64rem', color: 'hsl(0 0% 52%)', lineHeight: 1.55, margin: 0 }}>
+                <p style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 300, fontSize: '0.64rem', color: '#F2F8FC', lineHeight: 1.55, margin: 0 }}>
                   <span style={{ fontWeight: 500, color: 'hsl(0 0% 82%)' }}>allure.ugc</span>
                   {' '}Unboxing a fragrance made for everyday elegance. Soft, polished, and impossible to ignore.
                 </p>
@@ -9194,14 +9194,14 @@ function UGCPerfumeCampaign() {
             <div className="ugcpc-text" aria-hidden="true" style={{ width: '2.5rem', height: 1, background: 'hsl(38 70% 55% / 0.4)', marginBottom: '1.8rem' }} />
 
             {/* Paragraph 1 */}
-            <p className="ugcpc-text font-sans font-light" style={{ fontSize: 'clamp(0.88rem, 1.4vw, 1.02rem)', lineHeight: 1.9, color: 'hsl(0 0% 52%)', marginBottom: '1.2rem' }}>
+            <p className="ugcpc-text font-sans font-light" style={{ fontSize: 'clamp(0.88rem, 1.4vw, 1.02rem)', lineHeight: 1.9, color: '#F2F8FC', marginBottom: '1.2rem' }}>
               This style of creator-led content brings the product into a real lifestyle moment.
               The unboxing, reaction, and close product reveal help the fragrance feel more personal,
               more desirable, and easier for viewers to trust.
             </p>
 
             {/* Paragraph 2 */}
-            <p className="ugcpc-text font-sans font-light" style={{ fontSize: 'clamp(0.88rem, 1.4vw, 1.02rem)', lineHeight: 1.9, color: 'hsl(0 0% 40%)', marginBottom: '2.4rem' }}>
+            <p className="ugcpc-text font-sans font-light" style={{ fontSize: 'clamp(0.88rem, 1.4vw, 1.02rem)', lineHeight: 1.9, color: '#F2F8FC', marginBottom: '2.4rem' }}>
               From the first package reveal to the final product recommendation, the video is designed
               to feel natural while still keeping the brand premium, clear, and visually engaging.
             </p>
@@ -9211,7 +9211,7 @@ function UGCPerfumeCampaign() {
               {UGC_PERFUME_FEATURES.map(item => (
                 <li key={item} className="ugcpc-feat" style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
                   <span aria-hidden="true" style={{ width: '5px', height: '5px', borderRadius: '50%', flexShrink: 0, background: 'hsl(38 75% 58%)', boxShadow: '0 0 6px hsl(38 75% 55% / 0.55)' }} />
-                  <span className="font-sans font-light" style={{ fontSize: '0.88rem', color: 'hsl(0 0% 64%)', letterSpacing: '0.01em' }}>{item}</span>
+                  <span className="font-sans font-light" style={{ fontSize: '0.88rem', color: '#F2F8FC', letterSpacing: '0.01em' }}>{item}</span>
                 </li>
               ))}
             </ul>
@@ -9219,7 +9219,7 @@ function UGCPerfumeCampaign() {
             {/* Closing line */}
             <p
               className="ugcpc-text font-sans font-light"
-              style={{ fontSize: '0.82rem', lineHeight: 1.8, color: 'hsl(0 0% 30%)', borderLeft: '1px solid hsl(38 60% 50% / 0.25)', paddingLeft: '1rem', fontStyle: 'italic' }}
+              style={{ fontSize: '0.82rem', lineHeight: 1.8, color: '#F2F8FC', borderLeft: '1px solid hsl(38 60% 50% / 0.25)', paddingLeft: '1rem', fontStyle: 'italic' }}
             >
               Perfect for brands that want content that feels authentic without losing a luxury finish.
             </p>
@@ -9381,7 +9381,7 @@ function UGCPerformanceSystem() {
               style={{
                 fontSize: 'clamp(0.85rem, 1.35vw, 0.98rem)',
                 lineHeight: 1.9,
-                color: 'hsl(0 0% 38%)',
+                color: '#F2F8FC',
                 marginBottom: '1.4rem',
               }}
             >
@@ -9395,7 +9395,7 @@ function UGCPerformanceSystem() {
               style={{
                 fontSize: 'clamp(0.85rem, 1.35vw, 0.98rem)',
                 lineHeight: 1.9,
-                color: 'hsl(0 0% 38%)',
+                color: '#F2F8FC',
               }}
             >
               From creative direction and creator-style scripting to content delivery and
@@ -9441,7 +9441,7 @@ function UGCPerformanceSystem() {
                   fontSize: 'clamp(0.82rem, 1.3vw, 0.95rem)',
                   lineHeight: 1.5,
                   letterSpacing: '-0.015em',
-                  color: 'hsl(0 0% 65%)',
+                  color: '#F2F8FC',
                 }}
               >
                 Four pillars that shape every campaign.
@@ -9741,7 +9741,7 @@ function UGCPracticeEcosystem() {
                 style={{
                   fontSize: 'clamp(0.8rem, 1.1vw, 0.88rem)',
                   lineHeight: 1.82,
-                  color: 'hsl(0 0% 40%)',
+                  color: '#F2F8FC',
                 }}
               >
                 {body}
