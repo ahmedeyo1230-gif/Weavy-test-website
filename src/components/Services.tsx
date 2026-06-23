@@ -1859,10 +1859,12 @@ function BespokeContactFooter() {
             height: '100%',
             objectFit: 'cover',
             display: 'block',
+            opacity: 0.88,
+            filter: 'brightness(1.06) contrast(1.38) saturate(1.15)',
           }}
         />
-        {/* Heavy overlay — bg-black/60 */}
-        <div className="absolute inset-0 bg-black/35 lg:bg-black/60" />
+        {/* Heavy overlay */}
+        <div className="absolute inset-0 bg-black/28 lg:bg-black/52" />
         {/* Top fade — blends into section above */}
         <div
           className="absolute top-0 left-0 right-0 pointer-events-none"
@@ -5248,7 +5250,7 @@ function ContactVideo() {
         muted loop playsInline
         aria-hidden="true"
         className="absolute top-1/2 left-1/2 min-w-full min-h-full object-cover"
-        style={{ transform: 'translate(-50%, -50%) scaleY(-1)' }}
+        style={{ transform: 'translate(-50%, -50%) scaleY(-1)', opacity: 0.88, filter: 'brightness(1.06) contrast(1.38) saturate(1.15)' }}
       />
     </div>
   )
@@ -5290,7 +5292,7 @@ function S7ContactFooter() {
       <div className="absolute inset-0 overflow-hidden">
         <ContactVideo />
         {/* Heavy overlay */}
-        <div className="absolute inset-0 bg-black/35 lg:bg-black/60" />
+        <div className="absolute inset-0 bg-black/28 lg:bg-black/52" />
         {/* Edge vignette */}
         <div className="absolute inset-0" style={{
           background: 'radial-gradient(ellipse 80% 70% at 50% 50%, transparent 30%, hsl(0 0% 0% / 0.55) 100%)',
@@ -7426,9 +7428,9 @@ function GraphicDesignContactFooter() {
           ref={videoRef}
           muted loop playsInline aria-hidden="true"
           className="scale-y-[-1]"
-          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', display: 'block', opacity: 0.88, filter: 'brightness(1.06) contrast(1.38) saturate(1.15)' }}
         />
-        <div className="absolute inset-0 bg-black/35 lg:bg-black/60" />
+        <div className="absolute inset-0 bg-black/28 lg:bg-black/52" />
         <div className="absolute top-0 left-0 right-0 pointer-events-none"
           style={{ height: '160px', background: 'linear-gradient(to bottom, #010709 0%, transparent 100%)', zIndex: 2 }} />
         <div className="absolute bottom-0 left-0 right-0 pointer-events-none"
@@ -9825,10 +9827,12 @@ function UGCContactFooter() {
             height: '100%',
             objectFit: 'cover',
             display: 'block',
+            opacity: 0.88,
+            filter: 'brightness(1.06) contrast(1.38) saturate(1.15)',
           }}
         />
         {/* Heavy overlay */}
-        <div className="absolute inset-0 bg-black/35 lg:bg-black/60" />
+        <div className="absolute inset-0 bg-black/28 lg:bg-black/52" />
         {/* Top fade */}
         <div
           className="absolute top-0 left-0 right-0 pointer-events-none"
