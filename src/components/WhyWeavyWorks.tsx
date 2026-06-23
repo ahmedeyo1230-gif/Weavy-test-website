@@ -29,6 +29,132 @@ const features = [
   },
 ]
 
+function AutomationOrb() {
+  return (
+    <div style={{ width: 300, height: 300, position: 'relative', flexShrink: 0 }}>
+      <svg
+        viewBox="0 0 280 280"
+        width="300"
+        height="300"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+        style={{ display: 'block' }}
+      >
+        <defs>
+          <radialGradient id="ww-bg-glow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%"   stopColor="#0EA5E9" stopOpacity="0.15" />
+            <stop offset="55%"  stopColor="#003B46" stopOpacity="0.07" />
+            <stop offset="100%" stopColor="#000000" stopOpacity="0" />
+          </radialGradient>
+          <radialGradient id="ww-sphere" cx="35%" cy="28%" r="65%">
+            <stop offset="0%"   stopColor="#1B3D52" />
+            <stop offset="40%"  stopColor="#0C1D2A" />
+            <stop offset="100%" stopColor="#020A0F" />
+          </radialGradient>
+          <radialGradient id="ww-sphere-edge" cx="50%" cy="50%" r="50%">
+            <stop offset="72%"  stopColor="#0EA5E9" stopOpacity="0" />
+            <stop offset="100%" stopColor="#0EA5E9" stopOpacity="0.28" />
+          </radialGradient>
+          <filter id="ww-node-glow" x="-150%" y="-150%" width="400%" height="400%">
+            <feGaussianBlur stdDeviation="2.5" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+          <filter id="ww-core-glow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="10" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
+
+        {/* Ambient background glow */}
+        <circle cx="140" cy="140" r="128" fill="url(#ww-bg-glow)" className="ww-glow-breathe" />
+
+        {/* Outer orbit ring — CCW */}
+        <g className="ww-orbit-1">
+          <ellipse cx="140" cy="140" rx="120" ry="36"
+            fill="none" stroke="#0EA5E9" strokeWidth="0.55" strokeOpacity="0.22" />
+          <circle cx="260" cy="140" r="3.5" fill="#0EA5E9" filter="url(#ww-node-glow)" />
+          <circle cx="20"  cy="140" r="2.5" fill="#7DDCFF" fillOpacity="0.75" filter="url(#ww-node-glow)" />
+        </g>
+
+        {/* Middle orbit ring — CW */}
+        <g className="ww-orbit-2">
+          <ellipse cx="140" cy="140" rx="96" ry="29"
+            fill="none" stroke="#7DDCFF" strokeWidth="0.5" strokeOpacity="0.18" />
+          <circle cx="236" cy="140" r="3"   fill="#7DDCFF" fillOpacity="0.80" filter="url(#ww-node-glow)" />
+          <circle cx="44"  cy="140" r="2"   fill="#0EA5E9" fillOpacity="0.60" filter="url(#ww-node-glow)" />
+        </g>
+
+        {/* Inner orbit ring — CW faster */}
+        <g className="ww-orbit-3">
+          <ellipse cx="140" cy="140" rx="70" ry="21"
+            fill="none" stroke="#0EA5E9" strokeWidth="0.45" strokeOpacity="0.30" />
+          <circle cx="210" cy="140" r="2.5" fill="#0EA5E9" fillOpacity="0.70" filter="url(#ww-node-glow)" />
+        </g>
+
+        {/* Core glow behind sphere */}
+        <circle cx="140" cy="140" r="52" fill="#0B3040" className="ww-orb-pulse" filter="url(#ww-core-glow)" />
+
+        {/* Core sphere body */}
+        <circle cx="140" cy="140" r="48" fill="url(#ww-sphere)" />
+
+        {/* Sphere edge rim light */}
+        <circle cx="140" cy="140" r="48" fill="url(#ww-sphere-edge)" />
+
+        {/* Specular highlight */}
+        <ellipse cx="126" cy="122" rx="16" ry="11" fill="#7DDCFF" fillOpacity="0.055" />
+
+        {/* Inner ring details on sphere surface */}
+        <circle cx="140" cy="140" r="34" fill="none"
+          stroke="#0EA5E9" strokeWidth="0.4" strokeOpacity="0.18" strokeDasharray="4 8" />
+        <circle cx="140" cy="140" r="20" fill="none"
+          stroke="#7DDCFF" strokeWidth="0.3" strokeOpacity="0.14" />
+
+        {/* Central core dot */}
+        <circle cx="140" cy="140" r="4" fill="#0EA5E9" fillOpacity="0.65" filter="url(#ww-node-glow)" />
+        <circle cx="140" cy="140" r="2" fill="#7DDCFF" />
+
+        {/* Axis crosshair on sphere */}
+        <line x1="140" y1="93"  x2="140" y2="187"
+          stroke="#0EA5E9" strokeWidth="0.3" strokeOpacity="0.10" />
+        <line x1="93"  y1="140" x2="187" y2="140"
+          stroke="#0EA5E9" strokeWidth="0.3" strokeOpacity="0.10" />
+
+        {/* Corner data nodes */}
+        <g opacity="0.65">
+          <rect x="36" y="44" width="9" height="9" rx="2"
+            fill="#071011" stroke="#0EA5E9" strokeWidth="0.8" />
+          <line x1="45" y1="48" x2="97" y2="99"
+            stroke="#0EA5E9" strokeWidth="0.4" strokeOpacity="0.22" strokeDasharray="2 7" />
+        </g>
+        <g opacity="0.50">
+          <rect x="234" y="44" width="9" height="9" rx="2"
+            fill="#071011" stroke="#7DDCFF" strokeWidth="0.8" />
+          <line x1="234" y1="48" x2="183" y2="99"
+            stroke="#7DDCFF" strokeWidth="0.4" strokeOpacity="0.18" strokeDasharray="2 7" />
+        </g>
+        <g opacity="0.50">
+          <rect x="234" y="226" width="9" height="9" rx="2"
+            fill="#071011" stroke="#0EA5E9" strokeWidth="0.8" />
+          <line x1="234" y1="226" x2="183" y2="181"
+            stroke="#0EA5E9" strokeWidth="0.4" strokeOpacity="0.18" strokeDasharray="2 7" />
+        </g>
+        <g opacity="0.45">
+          <rect x="36" y="226" width="9" height="9" rx="2"
+            fill="#071011" stroke="#7DDCFF" strokeWidth="0.8" />
+          <line x1="45" y1="230" x2="97" y2="181"
+            stroke="#7DDCFF" strokeWidth="0.4" strokeOpacity="0.16" strokeDasharray="2 7" />
+        </g>
+      </svg>
+    </div>
+  )
+}
+
 export default function WhyWeavyWorks() {
   return (
     <section
@@ -113,10 +239,10 @@ export default function WhyWeavyWorks() {
         aria-hidden="true"
       />
 
-      <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[1fr_300px_1fr] gap-12 lg:gap-8 xl:gap-12 items-center">
 
-        {/* Left: sticky heading */}
-        <div className="lg:sticky lg:top-32">
+        {/* Left: heading */}
+        <div>
           <motion.p
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -143,12 +269,23 @@ export default function WhyWeavyWorks() {
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.16, ease: [0.16, 1, 0.3, 1] }}
             className="mt-6 text-lg font-medium max-w-md"
-          style={{ color: '#CBD5E1', lineHeight: 1.75 }}
+            style={{ color: '#CBD5E1', lineHeight: 1.75 }}
           >
             We operate differently than traditional agencies. We are an extension
             of your team, focused purely on leverage.
           </motion.p>
         </div>
+
+        {/* Center: 3D automation orb */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.88 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1.0, delay: 0.18, ease: [0.16, 1, 0.3, 1] }}
+          className="flex items-center justify-center py-6 lg:py-0"
+        >
+          <AutomationOrb />
+        </motion.div>
 
         {/* Right: feature rows */}
         <div className="flex flex-col gap-3">
