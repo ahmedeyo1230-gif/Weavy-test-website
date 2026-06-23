@@ -4315,7 +4315,6 @@ function SocialMediaMarketing() {
               className="smbs-img relative rounded-2xl overflow-hidden"
               style={{
                 opacity: 0, transform: 'translateY(36px)',
-                height: 'clamp(460px, 62vh, 720px)',
                 boxShadow: [
                   '0 48px 96px -16px hsl(0 0% 0% / 0.9)',
                   '0 0 0 1px hsl(280 65% 65% / 0.14)',
@@ -4345,7 +4344,7 @@ function SocialMediaMarketing() {
                 decoding="async"
                 src="/brand_assets/beauty.png"
                 alt="Beauty brand social media campaign showcase"
-                style={{ display: 'block', width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center center' }}
+                style={{ display: 'block', width: '100%', height: 'auto' }}
               />
               <div aria-hidden="true" style={{
                 position: 'absolute', inset: 0,
