@@ -74,7 +74,7 @@ export default function TestimonialsSection() {
     <section
       className="py-32 px-6 relative"
       aria-label="Client Testimonials"
-      style={{ background: '#071011' }}
+      style={{ background: '#06080A' }}
     >
       {/* Top blend — continues from WhyWeavyWorks boundary */}
       <div
