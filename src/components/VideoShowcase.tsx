@@ -172,7 +172,7 @@ export default function VideoShowcase() {
         whileInView={{ opacity: 1, y: 0, scale: 1 }}
         viewport={{ once: true, amount: 0.15 }}
         transition={{ duration: 0.95, delay: 0.22, ease: E }}
-        className="relative w-full max-w-3xl md:max-w-4xl lg:max-w-5xl mx-auto"
+        className="relative w-full max-w-2xl md:max-w-3xl lg:max-w-4xl mx-auto"
         style={{ zIndex: 5 }}
       >
 
