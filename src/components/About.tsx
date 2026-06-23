@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { BorderRotate } from './ui/animated-gradient-border'
 
 const E: [number, number, number, number] = [0.16, 1, 0.3, 1]
 
@@ -202,39 +203,47 @@ export default function About() { // no diagonal lines bg
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-20px' }}
               transition={{ duration: 0.5, delay: i * 0.07, ease: E }}
-              className="group relative rounded-xl px-5 py-5 overflow-hidden cursor-pointer"
-              style={{
-                background: 'hsl(0 0% 100% / 0.018)',
-                border: '1px solid hsl(0 0% 100% / 0.06)',
-                transition: 'border-color 280ms, background-color 280ms',
-              }}
-              onMouseEnter={e => {
-                const el = e.currentTarget as HTMLDivElement
-                el.style.borderColor = 'hsl(199 89% 60% / 0.22)'
-                el.style.backgroundColor = 'hsl(0 0% 100% / 0.03)'
-              }}
-              onMouseLeave={e => {
-                const el = e.currentTarget as HTMLDivElement
-                el.style.borderColor = 'hsl(0 0% 100% / 0.06)'
-                el.style.backgroundColor = 'hsl(0 0% 100% / 0.018)'
-              }}
             >
-              {/* Top accent line */}
-              <div
-                className="absolute top-0 left-0 right-0 h-px opacity-0 group-hover:opacity-100"
-                style={{
-                  background:
-                    'linear-gradient(to right, transparent, hsl(199 89% 60% / 0.5), transparent)',
-                  transition: 'opacity 280ms',
-                }}
-              />
-              <div
-                className="text-xs font-serif italic text-muted/35 mb-3 select-none"
+              <BorderRotate
+                animationMode="auto-rotate"
+                gradientColors={{ primary: '#003B46', secondary: '#0EA5E9', accent: '#7DDCFF' }}
+                backgroundColor="transparent"
+                borderWidth={2}
+                borderRadius={12}
+                animationSpeed={4}
+                className="h-full"
               >
-                {svc.num}
-              </div>
-              <div className="text-sm font-semibold text-primary mb-1.5">{svc.label}</div>
-              <div className="text-xs font-medium leading-snug" style={{ color: '#94A3B8' }}>{svc.desc}</div>
+                <div
+                  className="group relative rounded-xl px-5 py-5 overflow-hidden cursor-pointer h-full"
+                  style={{
+                    background: 'hsl(0 0% 100% / 0.018)',
+                    transition: 'background-color 280ms',
+                  }}
+                  onMouseEnter={e => {
+                    const el = e.currentTarget as HTMLDivElement
+                    el.style.backgroundColor = 'hsl(0 0% 100% / 0.03)'
+                  }}
+                  onMouseLeave={e => {
+                    const el = e.currentTarget as HTMLDivElement
+                    el.style.backgroundColor = 'hsl(0 0% 100% / 0.018)'
+                  }}
+                >
+                  {/* Top accent line */}
+                  <div
+                    className="absolute top-0 left-0 right-0 h-px opacity-0 group-hover:opacity-100"
+                    style={{
+                      background:
+                        'linear-gradient(to right, transparent, hsl(199 89% 60% / 0.5), transparent)',
+                      transition: 'opacity 280ms',
+                    }}
+                  />
+                  <div className="text-xs font-serif italic text-muted/35 mb-3 select-none">
+                    {svc.num}
+                  </div>
+                  <div className="text-sm font-semibold text-primary mb-1.5">{svc.label}</div>
+                  <div className="text-xs font-medium leading-snug" style={{ color: '#94A3B8' }}>{svc.desc}</div>
+                </div>
+              </BorderRotate>
             </motion.div>
           ))}
         </div>
