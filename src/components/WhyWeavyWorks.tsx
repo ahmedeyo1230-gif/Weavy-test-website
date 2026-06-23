@@ -29,153 +29,197 @@ const features = [
   },
 ]
 
+/* ─────────────────────────────────────────────────────────
+   AutomationOrb
+   Premium SVG glass-sphere with three orbit rings and
+   animateMotion traveling data dots.
+   ViewBox 0 0 380 380, centre (190, 190).
+───────────────────────────────────────────────────────── */
 function AutomationOrb() {
   return (
     <div
       className="w-full mx-auto"
-      style={{ maxWidth: 320, aspectRatio: '1' }}
+      style={{ maxWidth: 340, aspectRatio: '1' }}
       aria-hidden="true"
     >
       <svg
-        viewBox="0 0 360 360"
+        viewBox="0 0 380 380"
         width="100%"
         height="100%"
         xmlns="http://www.w3.org/2000/svg"
         style={{ display: 'block', overflow: 'visible' }}
       >
         <defs>
-          <radialGradient id="ww2-bg" cx="50%" cy="50%" r="50%">
-            <stop offset="0%"   stopColor="#0EA5E9" stopOpacity="0.13" />
-            <stop offset="55%"  stopColor="#003B46" stopOpacity="0.06" />
+          {/* Ambient glow */}
+          <radialGradient id="ww3-bg" cx="50%" cy="50%" r="50%">
+            <stop offset="0%"   stopColor="#0EA5E9" stopOpacity="0.12" />
+            <stop offset="48%"  stopColor="#003B46" stopOpacity="0.06" />
             <stop offset="100%" stopColor="#000000" stopOpacity="0" />
           </radialGradient>
-          <radialGradient id="ww2-sphere" cx="32%" cy="26%" r="70%">
-            <stop offset="0%"   stopColor="#1C4060" />
-            <stop offset="30%"  stopColor="#0E2235" />
-            <stop offset="68%"  stopColor="#060F18" />
-            <stop offset="100%" stopColor="#020810" />
+
+          {/* Glass-sphere body — 7-stop gradient */}
+          <radialGradient id="ww3-sphere" cx="34%" cy="27%" r="72%">
+            <stop offset="0%"   stopColor="#224668" />
+            <stop offset="14%"  stopColor="#163452" />
+            <stop offset="32%"  stopColor="#0D2038" />
+            <stop offset="52%"  stopColor="#081626" />
+            <stop offset="72%"  stopColor="#050E1A" />
+            <stop offset="88%"  stopColor="#030A12" />
+            <stop offset="100%" stopColor="#010609" />
           </radialGradient>
-          <radialGradient id="ww2-rim" cx="50%" cy="50%" r="50%">
-            <stop offset="68%"  stopColor="#0EA5E9" stopOpacity="0" />
-            <stop offset="92%"  stopColor="#0EA5E9" stopOpacity="0.28" />
-            <stop offset="100%" stopColor="#7DDCFF" stopOpacity="0.14" />
+
+          {/* Rim edge glow */}
+          <radialGradient id="ww3-rim" cx="50%" cy="50%" r="50%">
+            <stop offset="64%"  stopColor="#0EA5E9" stopOpacity="0"    />
+            <stop offset="88%"  stopColor="#0EA5E9" stopOpacity="0.32" />
+            <stop offset="100%" stopColor="#7DDCFF" stopOpacity="0.16" />
           </radialGradient>
-          <filter id="ww2-dot-glow" x="-400%" y="-400%" width="900%" height="900%">
-            <feGaussianBlur stdDeviation="3" result="blur" />
+
+          {/* Front-face glass reflection */}
+          <radialGradient id="ww3-reflect" cx="42%" cy="38%" r="58%">
+            <stop offset="0%"   stopColor="#7DDCFF" stopOpacity="0.10" />
+            <stop offset="100%" stopColor="#7DDCFF" stopOpacity="0"    />
+          </radialGradient>
+
+          {/* Traveling-dot glow filter */}
+          <filter id="ww3-dot" x="-400%" y="-400%" width="900%" height="900%">
+            <feGaussianBlur stdDeviation="3.2" result="b" />
             <feMerge>
-              <feMergeNode in="blur" />
+              <feMergeNode in="b" />
               <feMergeNode in="SourceGraphic" />
             </feMerge>
           </filter>
-          <filter id="ww2-core-glow" x="-55%" y="-55%" width="210%" height="210%">
-            <feGaussianBlur stdDeviation="14" result="blur" />
+
+          {/* Core halo filter */}
+          <filter id="ww3-halo" x="-60%" y="-60%" width="220%" height="220%">
+            <feGaussianBlur stdDeviation="18" result="b" />
             <feMerge>
-              <feMergeNode in="blur" />
+              <feMergeNode in="b" />
               <feMergeNode in="SourceGraphic" />
             </feMerge>
+          </filter>
+
+          {/* Inner-shadow depth filter */}
+          <filter id="ww3-shadow" x="-25%" y="-25%" width="150%" height="150%">
+            <feGaussianBlur stdDeviation="9" />
           </filter>
         </defs>
 
-        {/* Ambient background glow */}
-        <circle cx="180" cy="180" r="162" fill="url(#ww2-bg)" className="ww2-glow-breathe" />
+        {/* ── Ambient glow ── */}
+        <circle cx="190" cy="190" r="176" fill="url(#ww3-bg)" className="ww3-glow-breathe" />
 
-        {/* ── Orbit 1: nearly flat, CCW dots ── */}
+        {/* ── Orbit 1 — nearly flat, CCW, 2 dots ── */}
         <g>
-          <ellipse cx="180" cy="180" rx="148" ry="44"
-            fill="none" stroke="#0EA5E9" strokeWidth="0.55" strokeOpacity="0.20"
-            strokeDasharray="3 9" />
-          {/* dot A */}
-          <circle r="3" fill="#0EA5E9" className="ww2-traveling-dot" filter="url(#ww2-dot-glow)">
-            <animateMotion dur="15s" repeatCount="indefinite"
-              path="M328,180 A148,44 0 1,0 32,180 A148,44 0 1,0 328,180" />
+          <ellipse cx="190" cy="190" rx="152" ry="46"
+            fill="none" stroke="#0EA5E9" strokeWidth="0.6" strokeOpacity="0.22"
+            strokeDasharray="3 10" />
+          <circle r="3.5" fill="#0EA5E9" className="ww3-traveling-dot" filter="url(#ww3-dot)">
+            <animateMotion dur="16s" repeatCount="indefinite"
+              path="M342,190 A152,46 0 1,0 38,190 A152,46 0 1,0 342,190" />
           </circle>
-          {/* dot B — staggered half-lap */}
-          <circle r="2" fill="#7DDCFF" className="ww2-traveling-dot" filter="url(#ww2-dot-glow)">
-            <animateMotion dur="15s" begin="-7.5s" repeatCount="indefinite"
-              path="M328,180 A148,44 0 1,0 32,180 A148,44 0 1,0 328,180" />
+          <circle r="2.2" fill="#7DDCFF" className="ww3-traveling-dot" filter="url(#ww3-dot)">
+            <animateMotion dur="16s" begin="-8s" repeatCount="indefinite"
+              path="M342,190 A152,46 0 1,0 38,190 A152,46 0 1,0 342,190" />
           </circle>
         </g>
 
-        {/* ── Orbit 2: tilted 65°, CW dots ── */}
-        <g transform="rotate(65 180 180)">
-          <ellipse cx="180" cy="180" rx="112" ry="34"
-            fill="none" stroke="#7DDCFF" strokeWidth="0.5" strokeOpacity="0.17"
-            strokeDasharray="2 7" />
-          {/* dot A */}
-          <circle r="2.5" fill="#7DDCFF" className="ww2-traveling-dot" filter="url(#ww2-dot-glow)">
-            <animateMotion dur="11s" repeatCount="indefinite"
-              path="M292,180 A112,34 0 1,1 68,180 A112,34 0 1,1 292,180" />
+        {/* ── Orbit 2 — tilted 62°, CW, 2 dots ── */}
+        <g transform="rotate(62 190 190)">
+          <ellipse cx="190" cy="190" rx="118" ry="36"
+            fill="none" stroke="#7DDCFF" strokeWidth="0.5" strokeOpacity="0.18"
+            strokeDasharray="2 8" />
+          <circle r="3" fill="#7DDCFF" className="ww3-traveling-dot" filter="url(#ww3-dot)">
+            <animateMotion dur="12s" repeatCount="indefinite"
+              path="M308,190 A118,36 0 1,1 72,190 A118,36 0 1,1 308,190" />
           </circle>
-          {/* dot B */}
-          <circle r="1.8" fill="#0EA5E9" className="ww2-traveling-dot" filter="url(#ww2-dot-glow)">
-            <animateMotion dur="11s" begin="-5.5s" repeatCount="indefinite"
-              path="M292,180 A112,34 0 1,1 68,180 A112,34 0 1,1 292,180" />
+          <circle r="2" fill="#0EA5E9" className="ww3-traveling-dot" filter="url(#ww3-dot)">
+            <animateMotion dur="12s" begin="-6s" repeatCount="indefinite"
+              path="M308,190 A118,36 0 1,1 72,190 A118,36 0 1,1 308,190" />
           </circle>
         </g>
 
-        {/* ── Orbit 3: tilted −40°, fastest CCW ── */}
-        <g transform="rotate(-40 180 180)">
-          <ellipse cx="180" cy="180" rx="78" ry="24"
-            fill="none" stroke="#0EA5E9" strokeWidth="0.5" strokeOpacity="0.28"
+        {/* ── Orbit 3 — tilted −38°, CCW, 1 dot ── */}
+        <g transform="rotate(-38 190 190)">
+          <ellipse cx="190" cy="190" rx="84" ry="26"
+            fill="none" stroke="#0EA5E9" strokeWidth="0.5" strokeOpacity="0.30"
             strokeDasharray="3 6" />
-          {/* dot */}
-          <circle r="2.5" fill="#0EA5E9" className="ww2-traveling-dot" filter="url(#ww2-dot-glow)">
-            <animateMotion dur="7.5s" repeatCount="indefinite"
-              path="M258,180 A78,24 0 1,0 102,180 A78,24 0 1,0 258,180" />
+          <circle r="2.8" fill="#0EA5E9" className="ww3-traveling-dot" filter="url(#ww3-dot)">
+            <animateMotion dur="8s" repeatCount="indefinite"
+              path="M274,190 A84,26 0 1,0 106,190 A84,26 0 1,0 274,190" />
           </circle>
         </g>
 
-        {/* Core sphere glow */}
-        <circle cx="180" cy="180" r="65" fill="#082840" className="ww2-orb-pulse" filter="url(#ww2-core-glow)" />
+        {/* ── Sphere: halo (behind body) ── */}
+        <circle cx="190" cy="190" r="80" fill="#082840" className="ww3-orb-pulse" filter="url(#ww3-halo)" />
 
-        {/* Core sphere body */}
-        <circle cx="180" cy="180" r="55" fill="url(#ww2-sphere)" />
+        {/* ── Sphere: inner-shadow depth layer ── */}
+        <circle cx="204" cy="208" r="56" fill="#010609" opacity="0.55" filter="url(#ww3-shadow)" />
 
-        {/* Sphere rim light */}
-        <circle cx="180" cy="180" r="55" fill="url(#ww2-rim)" />
+        {/* ── Sphere: glass body ── */}
+        <circle cx="190" cy="190" r="72" fill="url(#ww3-sphere)" />
 
-        {/* Equatorial band — depth illusion */}
-        <ellipse cx="180" cy="180" rx="55" ry="13"
-          fill="none" stroke="#0EA5E9" strokeWidth="0.4" strokeOpacity="0.15" />
+        {/* ── Sphere: rim light ── */}
+        <circle cx="190" cy="190" r="72" fill="url(#ww3-rim)" />
 
-        {/* Inner dashed ring details on sphere surface */}
-        <circle cx="180" cy="180" r="40" fill="none"
-          stroke="#0EA5E9" strokeWidth="0.4" strokeOpacity="0.16" strokeDasharray="4 10" />
-        <circle cx="180" cy="180" r="26" fill="none"
-          stroke="#7DDCFF" strokeWidth="0.3" strokeOpacity="0.12" />
+        {/* ── Sphere: front-face glass reflection ── */}
+        <ellipse cx="172" cy="164" rx="34" ry="24" fill="url(#ww3-reflect)" />
 
-        {/* Specular highlight */}
-        <ellipse cx="161" cy="158" rx="19" ry="13" fill="#7DDCFF" fillOpacity="0.055" />
-        <ellipse cx="154" cy="152" rx="6"  ry="4"  fill="#FFFFFF" fillOpacity="0.038" />
+        {/* ── Sphere: equatorial band ── */}
+        <ellipse cx="190" cy="190" rx="72" ry="16"
+          fill="none" stroke="#0EA5E9" strokeWidth="0.5" strokeOpacity="0.16" />
 
-        {/* Axis crosshair on sphere */}
-        <line x1="180" y1="126" x2="180" y2="234" stroke="#0EA5E9" strokeWidth="0.3" strokeOpacity="0.10" />
-        <line x1="126" y1="180" x2="234" y2="180" stroke="#0EA5E9" strokeWidth="0.3" strokeOpacity="0.10" />
+        {/* ── Sphere: surface detail rings ── */}
+        <circle cx="190" cy="190" r="54"
+          fill="none" stroke="#0EA5E9" strokeWidth="0.4" strokeOpacity="0.14" strokeDasharray="4 10" />
+        <circle cx="190" cy="190" r="36"
+          fill="none" stroke="#7DDCFF" strokeWidth="0.3" strokeOpacity="0.11" />
+        <circle cx="190" cy="190" r="20"
+          fill="none" stroke="#0EA5E9" strokeWidth="0.3" strokeOpacity="0.09" />
 
-        {/* Central core dot */}
-        <circle cx="180" cy="180" r="5"   fill="#0EA5E9" fillOpacity="0.70" filter="url(#ww2-dot-glow)" />
-        <circle cx="180" cy="180" r="2.5" fill="#7DDCFF" />
+        {/* ── Sphere: axis lines ── */}
+        <line x1="190" y1="120" x2="190" y2="260" stroke="#0EA5E9" strokeWidth="0.3" strokeOpacity="0.11" />
+        <line x1="120" y1="190" x2="260" y2="190" stroke="#0EA5E9" strokeWidth="0.3" strokeOpacity="0.11" />
 
-        {/* Connection whiskers toward left / right edges */}
-        <line x1="32"  y1="180" x2="0"   y2="180" stroke="#0EA5E9" strokeWidth="0.4" strokeOpacity="0.16" strokeDasharray="2 5" />
-        <line x1="328" y1="180" x2="360" y2="180" stroke="#0EA5E9" strokeWidth="0.4" strokeOpacity="0.16" strokeDasharray="2 5" />
+        {/* ── Sphere: specular highlights ── */}
+        <ellipse cx="168" cy="158" rx="23" ry="16" fill="#7DDCFF" fillOpacity="0.065" />
+        <ellipse cx="160" cy="150" rx="10" ry="7"  fill="#7DDCFF" fillOpacity="0.045" />
+        <ellipse cx="155" cy="145" rx="4"  ry="3"  fill="#FFFFFF"  fillOpacity="0.06"  />
 
-        {/* Corner data nodes */}
-        <g opacity="0.60">
-          <rect x="28" y="28" width="11" height="11" rx="2.5" fill="#071011" stroke="#0EA5E9" strokeWidth="0.9" />
-          <line x1="39" y1="33" x2="129" y2="128" stroke="#0EA5E9" strokeWidth="0.35" strokeOpacity="0.20" strokeDasharray="2 8" />
+        {/* ── Sphere: central core dot ── */}
+        <circle cx="190" cy="190" r="6.5" fill="#0EA5E9" fillOpacity="0.72" filter="url(#ww3-dot)" />
+        <circle cx="190" cy="190" r="3.2" fill="#7DDCFF" />
+        <circle cx="190" cy="190" r="1.2" fill="#FFFFFF" />
+
+        {/* ── Connection whiskers ── */}
+        <line x1="38"  y1="190" x2="0"   y2="190"
+          stroke="#0EA5E9" strokeWidth="0.45" strokeOpacity="0.15" strokeDasharray="2 5" />
+        <line x1="342" y1="190" x2="380" y2="190"
+          stroke="#0EA5E9" strokeWidth="0.45" strokeOpacity="0.15" strokeDasharray="2 5" />
+
+        {/* ── Corner data nodes ── */}
+        <g opacity="0.62">
+          <rect x="22" y="22" width="12" height="12" rx="3"
+            fill="#071011" stroke="#0EA5E9" strokeWidth="0.9" />
+          <line x1="34"  y1="28"  x2="123" y2="123"
+            stroke="#0EA5E9" strokeWidth="0.35" strokeOpacity="0.22" strokeDasharray="2 8" />
         </g>
-        <g opacity="0.48">
-          <rect x="321" y="28" width="11" height="11" rx="2.5" fill="#071011" stroke="#7DDCFF" strokeWidth="0.9" />
-          <line x1="321" y1="33" x2="231" y2="128" stroke="#7DDCFF" strokeWidth="0.35" strokeOpacity="0.17" strokeDasharray="2 8" />
+        <g opacity="0.50">
+          <rect x="346" y="22" width="12" height="12" rx="3"
+            fill="#071011" stroke="#7DDCFF" strokeWidth="0.9" />
+          <line x1="346" y1="28"  x2="257" y2="123"
+            stroke="#7DDCFF" strokeWidth="0.35" strokeOpacity="0.18" strokeDasharray="2 8" />
         </g>
-        <g opacity="0.48">
-          <rect x="321" y="321" width="11" height="11" rx="2.5" fill="#071011" stroke="#0EA5E9" strokeWidth="0.9" />
-          <line x1="321" y1="321" x2="231" y2="232" stroke="#0EA5E9" strokeWidth="0.35" strokeOpacity="0.17" strokeDasharray="2 8" />
+        <g opacity="0.50">
+          <rect x="346" y="346" width="12" height="12" rx="3"
+            fill="#071011" stroke="#0EA5E9" strokeWidth="0.9" />
+          <line x1="346" y1="346" x2="257" y2="257"
+            stroke="#0EA5E9" strokeWidth="0.35" strokeOpacity="0.18" strokeDasharray="2 8" />
         </g>
-        <g opacity="0.42">
-          <rect x="28" y="321" width="11" height="11" rx="2.5" fill="#071011" stroke="#7DDCFF" strokeWidth="0.9" />
-          <line x1="39" y1="326" x2="129" y2="232" stroke="#7DDCFF" strokeWidth="0.35" strokeOpacity="0.15" strokeDasharray="2 8" />
+        <g opacity="0.44">
+          <rect x="22" y="346" width="12" height="12" rx="3"
+            fill="#071011" stroke="#7DDCFF" strokeWidth="0.9" />
+          <line x1="34"  y1="352" x2="123" y2="257"
+            stroke="#7DDCFF" strokeWidth="0.35" strokeOpacity="0.16" strokeDasharray="2 8" />
         </g>
       </svg>
     </div>
@@ -188,22 +232,17 @@ export default function WhyWeavyWorks() {
       className="py-32 px-6 relative overflow-hidden bg-background"
       aria-label="Why Weavy Works"
     >
-      {/* Top blend — continues from SystemsShowcase boundary */}
+      {/* Top blend */}
       <div
         aria-hidden="true"
         style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
+          position: 'absolute', top: 0, left: 0, right: 0,
           height: '220px',
           background: 'linear-gradient(to bottom, #071011 0%, rgba(7,16,17,0.65) 40%, rgba(7,16,17,0.2) 72%, transparent 100%)',
-          pointerEvents: 'none',
-          zIndex: 10,
+          pointerEvents: 'none', zIndex: 10,
         }}
       />
 
-      {/* Diagonal lines atmospheric layer */}
       <DiagonalLinesBg />
 
       {/* Dot grid */}
@@ -216,57 +255,40 @@ export default function WhyWeavyWorks() {
         aria-hidden="true"
       />
 
-      {/* Cyan/teal radial glow — upper left */}
-      <div
-        className="absolute pointer-events-none"
+      {/* Upper-left cyan glow */}
+      <div className="absolute pointer-events-none" aria-hidden="true"
         style={{
-          top: '-15%',
-          left: '-8%',
-          width: '60%',
-          height: '72%',
-          background:
-            'radial-gradient(ellipse at center, hsl(199 89% 58% / 0.07) 0%, hsl(210 80% 35% / 0.04) 40%, transparent 68%)',
+          top: '-15%', left: '-8%', width: '60%', height: '72%',
+          background: 'radial-gradient(ellipse at center, hsl(199 89% 58% / 0.07) 0%, hsl(210 80% 35% / 0.04) 40%, transparent 68%)',
         }}
-        aria-hidden="true"
       />
 
-      {/* Blue-green glow — lower right */}
-      <div
-        className="absolute pointer-events-none"
+      {/* Lower-right glow */}
+      <div className="absolute pointer-events-none" aria-hidden="true"
         style={{
-          bottom: '-10%',
-          right: '-5%',
-          width: '50%',
-          height: '60%',
-          background:
-            'radial-gradient(ellipse at center, hsl(180 55% 28% / 0.055) 0%, transparent 65%)',
+          bottom: '-10%', right: '-5%', width: '50%', height: '60%',
+          background: 'radial-gradient(ellipse at center, hsl(180 55% 28% / 0.055) 0%, transparent 65%)',
         }}
-        aria-hidden="true"
       />
 
-      {/* Dark charcoal gradient depth layer */}
-      <div
-        className="absolute inset-0 pointer-events-none"
+      {/* Depth overlay */}
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true"
         style={{
-          background:
-            'linear-gradient(148deg, hsl(210 35% 7% / 0.38) 0%, transparent 45%, hsl(180 30% 5% / 0.22) 100%)',
+          background: 'linear-gradient(148deg, hsl(210 35% 7% / 0.38) 0%, transparent 45%, hsl(180 30% 5% / 0.22) 100%)',
         }}
-        aria-hidden="true"
       />
 
-      {/* Cinematic noise texture */}
-      <div
-        className="absolute inset-0 pointer-events-none"
+      {/* Noise texture */}
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true"
         style={{
           opacity: 0.022,
-          backgroundImage:
-            "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23g)'/%3E%3C/svg%3E\")",
+          backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23g)'/%3E%3C/svg%3E\")",
           backgroundSize: '256px 256px',
         }}
-        aria-hidden="true"
       />
 
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[1fr_320px_1fr] gap-12 lg:gap-8 xl:gap-12 items-center">
+      {/* ── 3-column grid ── */}
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[1fr_340px_1fr] gap-12 lg:gap-6 xl:gap-10 items-center">
 
         {/* Left: heading */}
         <div>
@@ -303,12 +325,12 @@ export default function WhyWeavyWorks() {
           </motion.p>
         </div>
 
-        {/* Center: automation orb */}
+        {/* Centre: automation orb */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.88 }}
+          initial={{ opacity: 0, scale: 0.86 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 1.0, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 1.1, delay: 0.22, ease: [0.16, 1, 0.3, 1] }}
           className="flex items-center justify-center py-6 lg:py-0"
         >
           <AutomationOrb />
@@ -357,18 +379,14 @@ export default function WhyWeavyWorks() {
 
       </div>
 
-      {/* Bottom blend — dissolves atmospheric overlays before section boundary */}
+      {/* Bottom blend */}
       <div
         aria-hidden="true"
         style={{
-          position: 'absolute',
-          bottom: 0,
-          left: 0,
-          right: 0,
+          position: 'absolute', bottom: 0, left: 0, right: 0,
           height: '380px',
           background: 'linear-gradient(to bottom, transparent 0%, rgba(1,7,9,0.14) 24%, rgba(1,7,9,0.50) 50%, rgba(1,7,9,0.86) 75%, #010709 100%)',
-          pointerEvents: 'none',
-          zIndex: 10,
+          pointerEvents: 'none', zIndex: 10,
         }}
       />
     </section>
