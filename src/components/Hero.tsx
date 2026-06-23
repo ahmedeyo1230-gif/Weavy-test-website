@@ -330,7 +330,7 @@ export default function Hero() {
         <div
           className="pointer-events-none absolute bottom-0 left-0 right-0 h-64"
           aria-hidden="true"
-          style={{ background: 'linear-gradient(to top, #010709 0%, #02080A 20%, rgba(2,8,10,0.6) 55%, transparent 100%)' }}
+          style={{ background: 'linear-gradient(to top, #071011, rgba(7,16,17,0))' }}
         />
       </section>
     </>
