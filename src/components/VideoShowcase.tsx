@@ -7,16 +7,18 @@ const E: [number, number, number, number] = [0.16, 1, 0.3, 1]
 const videoSrc = "https://pub-731d5e7deddb4fce94cef7393920d429.r2.dev/Video2_weavy.mp4"
 
 const PARTICLES = [
-  { top: '14%', left: '7%',  delay: 0    },
-  { top: '22%', left: '89%', delay: 1.4  },
-  { top: '62%', left: '4%',  delay: 2.2  },
-  { top: '72%', left: '93%', delay: 0.8  },
-  { top: '38%', left: '11%', delay: 3.1  },
-  { top: '78%', left: '79%', delay: 1.9  },
-  { top: '18%', left: '74%', delay: 2.7  },
-  { top: '52%', left: '86%', delay: 0.5  },
-  { top: '88%', left: '32%', delay: 3.6  },
-  { top: '10%', left: '52%', delay: 1.1  },
+  { top: '12%', left: '6%',  delay: 0    },
+  { top: '20%', left: '88%', delay: 1.4  },
+  { top: '60%', left: '3%',  delay: 2.2  },
+  { top: '70%', left: '94%', delay: 0.8  },
+  { top: '36%', left: '10%', delay: 3.1  },
+  { top: '76%', left: '80%', delay: 1.9  },
+  { top: '16%', left: '75%', delay: 2.7  },
+  { top: '50%', left: '87%', delay: 0.5  },
+  { top: '85%', left: '30%', delay: 3.6  },
+  { top: '8%',  left: '50%', delay: 1.1  },
+  { top: '44%', left: '2%',  delay: 2.9  },
+  { top: '28%', left: '96%', delay: 0.3  },
 ]
 
 export default function VideoShowcase() {
@@ -24,7 +26,6 @@ export default function VideoShowcase() {
   const sectionRef = useRef<HTMLElement>(null)
   const [srcReady, setSrcReady] = useState(false)
 
-  // Defer setting the video src until the section is near the viewport
   useEffect(() => {
     const el = sectionRef.current
     if (!el) return
@@ -36,7 +37,6 @@ export default function VideoShowcase() {
     return () => observer.disconnect()
   }, [])
 
-  // Pause when scrolled offscreen
   useEffect(() => {
     const video = videoRef.current
     if (!video) return
@@ -57,41 +57,55 @@ export default function VideoShowcase() {
       ref={sectionRef}
       id="showcase"
       aria-label="Video showcase"
-      className="relative px-6 sm:px-10 pt-8 pb-36 md:pb-44 overflow-hidden"
+      className="relative px-4 sm:px-8 lg:px-12 pt-10 pb-28 md:pb-36 overflow-hidden"
       style={{ background: '#071011' }}
     >
 
-      {/* ── Dot grid ── */}
+      {/* ── Primary dot grid ── */}
       <div
         aria-hidden="true"
         style={{
           position: 'absolute',
           inset: 0,
-          backgroundImage: 'radial-gradient(circle, rgba(125,220,255,0.055) 1px, transparent 1px)',
-          backgroundSize: '32px 32px',
+          backgroundImage: 'radial-gradient(circle, rgba(125,220,255,0.09) 1px, transparent 1px)',
+          backgroundSize: '28px 28px',
           pointerEvents: 'none',
           zIndex: 1,
         }}
       />
 
-      {/* ── Large ambient glow centred on video ── */}
+      {/* ── Secondary coarser dot grid for layered depth ── */}
       <div
         aria-hidden="true"
         style={{
           position: 'absolute',
-          top: '48%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-          width: '900px',
-          height: '600px',
-          background: 'radial-gradient(ellipse at center, rgba(43,168,217,0.09) 0%, rgba(43,168,217,0.04) 45%, transparent 70%)',
-          filter: 'blur(48px)',
+          inset: 0,
+          backgroundImage: 'radial-gradient(circle, rgba(125,220,255,0.04) 1.5px, transparent 1.5px)',
+          backgroundSize: '80px 80px',
+          backgroundPosition: '14px 14px',
           pointerEvents: 'none',
           zIndex: 1,
         }}
       />
 
-      {/* ── Ambient particles ── */}
+      {/* ── Wide outer glow ── */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          width: '1100px',
+          height: '700px',
+          background: 'radial-gradient(ellipse at center, rgba(43,168,217,0.13) 0%, rgba(43,168,217,0.06) 40%, transparent 68%)',
+          filter: 'blur(56px)',
+          pointerEvents: 'none',
+          zIndex: 1,
+        }}
+      />
+
+      {/* ── Particles ── */}
       {PARTICLES.map((p, i) => (
         <div
           key={i}
@@ -102,13 +116,13 @@ export default function VideoShowcase() {
       ))}
 
       {/* ── Heading ── */}
-      <div className="max-w-2xl mx-auto text-center mb-14" style={{ position: 'relative', zIndex: 5 }}>
+      <div className="max-w-2xl mx-auto text-center mb-8 sm:mb-10" style={{ position: 'relative', zIndex: 5 }}>
         <motion.p
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: E }}
-          className="font-sans font-light uppercase mb-5"
+          className="font-sans font-light uppercase mb-4"
           style={{ fontSize: '0.65rem', letterSpacing: '0.32em', color: '#94A3B8' }}
         >
           Live systems
@@ -140,7 +154,7 @@ export default function VideoShowcase() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.16, ease: E }}
-          className="mt-5 font-sans"
+          className="mt-4 font-sans"
           style={{
             fontSize: 'clamp(0.85rem, 1.4vw, 0.95rem)',
             lineHeight: 1.8,
@@ -152,40 +166,67 @@ export default function VideoShowcase() {
         </motion.p>
       </div>
 
-      {/* ── Screen wrapper ── */}
+      {/* ── Screen wrapper — wider on desktop ── */}
       <motion.div
         initial={{ opacity: 0, y: 48, scale: 0.97 }}
         whileInView={{ opacity: 1, y: 0, scale: 1 }}
         viewport={{ once: true, amount: 0.15 }}
         transition={{ duration: 0.95, delay: 0.22, ease: E }}
-        className="relative max-w-3xl mx-auto"
+        className="relative w-full max-w-3xl md:max-w-4xl lg:max-w-5xl mx-auto"
         style={{ zIndex: 5 }}
       >
 
-        {/* Tight teal glow directly behind video */}
+        {/* Strong close glow behind video */}
         <div
           aria-hidden="true"
           style={{
             position: 'absolute',
-            inset: '-50px',
-            background: 'radial-gradient(ellipse 85% 80% at 50% 50%, rgba(125,220,255,0.10) 0%, rgba(43,168,217,0.05) 50%, transparent 72%)',
-            filter: 'blur(24px)',
+            inset: '-60px',
+            background:
+              'radial-gradient(ellipse 80% 75% at 50% 50%, rgba(125,220,255,0.16) 0%, rgba(43,168,217,0.08) 45%, transparent 68%)',
+            filter: 'blur(32px)',
             zIndex: 0,
             pointerEvents: 'none',
           }}
+        />
+
+        {/* Outer ring glow */}
+        <div
+          aria-hidden="true"
+          style={{
+            position: 'absolute',
+            inset: '-120px',
+            background:
+              'radial-gradient(ellipse 70% 65% at 50% 50%, rgba(43,168,217,0.06) 0%, transparent 60%)',
+            filter: 'blur(50px)',
+            zIndex: 0,
+            pointerEvents: 'none',
+          }}
+        />
+
+        {/* Side accent lines — hidden on small screens */}
+        <div
+          aria-hidden="true"
+          className="hidden lg:block"
+          style={{ position: 'absolute', right: 'calc(100% + 12px)', top: '50%', width: '72px', height: '1px', background: 'linear-gradient(to left, rgba(125,220,255,0.35), transparent)', zIndex: 3, pointerEvents: 'none' }}
+        />
+        <div
+          aria-hidden="true"
+          className="hidden lg:block"
+          style={{ position: 'absolute', left: 'calc(100% + 12px)', top: '50%', width: '72px', height: '1px', background: 'linear-gradient(to right, rgba(125,220,255,0.35), transparent)', zIndex: 3, pointerEvents: 'none' }}
         />
 
         {/* Corner decorations + screen frame */}
         <div style={{ position: 'relative', zIndex: 1 }}>
 
           {/* Top-left */}
-          <div aria-hidden="true" style={{ position: 'absolute', top: '-6px', left: '-6px', width: '20px', height: '20px', borderTop: '1px solid rgba(125,220,255,0.4)', borderLeft: '1px solid rgba(125,220,255,0.4)', pointerEvents: 'none', zIndex: 3 }} />
+          <div aria-hidden="true" style={{ position: 'absolute', top: '-7px', left: '-7px', width: '28px', height: '28px', borderTop: '1.5px solid rgba(125,220,255,0.5)', borderLeft: '1.5px solid rgba(125,220,255,0.5)', pointerEvents: 'none', zIndex: 3 }} />
           {/* Top-right */}
-          <div aria-hidden="true" style={{ position: 'absolute', top: '-6px', right: '-6px', width: '20px', height: '20px', borderTop: '1px solid rgba(125,220,255,0.4)', borderRight: '1px solid rgba(125,220,255,0.4)', pointerEvents: 'none', zIndex: 3 }} />
+          <div aria-hidden="true" style={{ position: 'absolute', top: '-7px', right: '-7px', width: '28px', height: '28px', borderTop: '1.5px solid rgba(125,220,255,0.5)', borderRight: '1.5px solid rgba(125,220,255,0.5)', pointerEvents: 'none', zIndex: 3 }} />
           {/* Bottom-left */}
-          <div aria-hidden="true" style={{ position: 'absolute', bottom: '-6px', left: '-6px', width: '20px', height: '20px', borderBottom: '1px solid rgba(125,220,255,0.4)', borderLeft: '1px solid rgba(125,220,255,0.4)', pointerEvents: 'none', zIndex: 3 }} />
+          <div aria-hidden="true" style={{ position: 'absolute', bottom: '-7px', left: '-7px', width: '28px', height: '28px', borderBottom: '1.5px solid rgba(125,220,255,0.5)', borderLeft: '1.5px solid rgba(125,220,255,0.5)', pointerEvents: 'none', zIndex: 3 }} />
           {/* Bottom-right */}
-          <div aria-hidden="true" style={{ position: 'absolute', bottom: '-6px', right: '-6px', width: '20px', height: '20px', borderBottom: '1px solid rgba(125,220,255,0.4)', borderRight: '1px solid rgba(125,220,255,0.4)', pointerEvents: 'none', zIndex: 3 }} />
+          <div aria-hidden="true" style={{ position: 'absolute', bottom: '-7px', right: '-7px', width: '28px', height: '28px', borderBottom: '1.5px solid rgba(125,220,255,0.5)', borderRight: '1.5px solid rgba(125,220,255,0.5)', pointerEvents: 'none', zIndex: 3 }} />
 
           {/* Screen frame */}
           <div
@@ -195,14 +236,27 @@ export default function VideoShowcase() {
               borderRadius: '1.25rem',
               overflow: 'hidden',
               backgroundColor: 'hsl(0 0% 4%)',
-              border: '1px solid rgba(125,220,255,0.14)',
+              border: '1px solid rgba(125,220,255,0.18)',
               boxShadow:
                 '0 2px 4px rgba(0,0,0,0.6),' +
-                '0 24px 64px rgba(0,0,0,0.7),' +
-                '0 0 0 1px rgba(125,220,255,0.06),' +
-                '0 0 48px rgba(43,168,217,0.10)',
+                '0 32px 80px rgba(0,0,0,0.75),' +
+                '0 0 0 1px rgba(125,220,255,0.08),' +
+                '0 0 70px rgba(43,168,217,0.14)',
             }}
           >
+            {/* Top accent line */}
+            <div
+              aria-hidden="true"
+              style={{
+                position: 'absolute',
+                top: 0, left: 0, right: 0,
+                height: '1px',
+                background: 'linear-gradient(to right, transparent 5%, rgba(125,220,255,0.6) 30%, rgba(125,220,255,0.8) 50%, rgba(125,220,255,0.6) 70%, transparent 95%)',
+                zIndex: 6,
+                pointerEvents: 'none',
+              }}
+            />
+
             {/* Scan line */}
             <div aria-hidden="true" style={{ position: 'absolute', inset: 0, zIndex: 5, pointerEvents: 'none', overflow: 'hidden' }}>
               <div className="vs-scan-line" />
