@@ -4,7 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Globe, Bot, BarChart2, Sparkles, Video, Settings2, Plug, Clock, UserCheck, CalendarDays, Zap, Camera, Target, Layers } from 'lucide-react'
 import { MessengerGlowBackground } from './ui/background-components'
 import { TestimonialsSection } from './ui/testimonials-1'
-import { GridBackground, DarkGridBg, DarkNoiseBg } from './ui/grid-background'
+import { GridBackground, DarkGridBg } from './ui/grid-background'
 import { BeamsBackgroundLayer } from './ui/beams-background'
 import { CircularGallery, type GalleryItem } from './ui/circular-gallery'
 import { GradientBlurBg } from './ui/gradient-blur-bg'
@@ -10645,9 +10645,6 @@ export default function Services() {
       >
         {/* Dark 40 px slate grid — structural depth layer */}
         <DarkGridBg />
-
-        {/* Chromatic dot noise — purple/blue/pink grain overlay */}
-        <DarkNoiseBg />
 
         {/* Ambient warm glow — upper center */}
         <div aria-hidden="true" style={{
