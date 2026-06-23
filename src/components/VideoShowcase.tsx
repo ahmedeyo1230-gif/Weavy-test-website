@@ -61,6 +61,21 @@ export default function VideoShowcase() {
       style={{ background: '#071011' }}
     >
 
+      {/* Top fade — blends from Hero */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          height: '240px',
+          background: 'linear-gradient(to bottom, #010709 0%, rgba(1,7,9,0.75) 30%, rgba(1,7,9,0.22) 62%, transparent 100%)',
+          pointerEvents: 'none',
+          zIndex: 4,
+        }}
+      />
+
       {/* ── Primary dot grid ── */}
       <div
         aria-hidden="true"

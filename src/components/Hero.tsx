@@ -328,9 +328,12 @@ export default function Hero() {
 
         {/* Bottom fade into VideoShowcase */}
         <div
-          className="pointer-events-none absolute bottom-0 left-0 right-0 h-64"
+          className="pointer-events-none absolute bottom-0 left-0 right-0"
           aria-hidden="true"
-          style={{ background: 'linear-gradient(to top, #071011, rgba(7,16,17,0))' }}
+          style={{
+            height: '340px',
+            background: 'linear-gradient(to top, #010709 0%, #020A0B 14%, rgba(2,10,11,0.85) 36%, rgba(2,10,11,0.42) 58%, rgba(2,10,11,0.1) 80%, transparent 100%)',
+          }}
         />
       </section>
     </>
