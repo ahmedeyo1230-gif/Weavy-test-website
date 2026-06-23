@@ -70,7 +70,7 @@ export const GridBackground = ({ className }: GridBackgroundProps) => {
 };
 
 /**
- * Dark noise — staggered purple / blue / pink 1 px dots at three grid scales.
+ * Dark noise — staggered purple / blue / pink dots at three grid scales.
  * Adds premium chromatic grain to dark sections. Matches the dark-noise demo.
  */
 export const DarkNoiseBg = ({ className }: GridBackgroundProps) => {
@@ -80,9 +80,9 @@ export const DarkNoiseBg = ({ className }: GridBackgroundProps) => {
       className={cn("absolute inset-0 z-0 pointer-events-none", className)}
       style={{
         backgroundImage: `
-          radial-gradient(circle at 1px 1px, rgba(139, 92, 246, 0.20) 1px, transparent 0),
-          radial-gradient(circle at 1px 1px, rgba(59, 130, 246, 0.18) 1px, transparent 0),
-          radial-gradient(circle at 1px 1px, rgba(236, 72, 153, 0.15) 1px, transparent 0)
+          radial-gradient(circle at 1.5px 1.5px, rgba(139, 92, 246, 0.45) 1.5px, transparent 0),
+          radial-gradient(circle at 1.5px 1.5px, rgba(59, 130, 246, 0.40) 1.5px, transparent 0),
+          radial-gradient(circle at 1.5px 1.5px, rgba(236, 72, 153, 0.35) 1.5px, transparent 0)
         `,
         backgroundSize: "20px 20px, 30px 30px, 25px 25px",
         backgroundPosition: "0 0, 10px 10px, 15px 5px",
