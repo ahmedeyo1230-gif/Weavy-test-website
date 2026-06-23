@@ -79,6 +79,55 @@ html {
   animation: shimmer 4s linear infinite;
 }
 
+/* ── Video Showcase — ice shimmer on heading ─────────────────────────────── */
+.shimmer-ice {
+  background: linear-gradient(90deg, #ffffff 0%, #ffffff 35%, #7ddcff 50%, #ffffff 65%, #ffffff 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 7s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .shimmer-ice { animation: none; -webkit-text-fill-color: #ffffff; }
+}
+
+/* ── Video Showcase — ambient particles ──────────────────────────────────── */
+.vs-particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: rgba(125, 220, 255, 0.55);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 2;
+  animation: vs-particle-pulse 4s ease-in-out infinite;
+}
+@keyframes vs-particle-pulse {
+  0%, 100% { opacity: 0.1;  transform: scale(1); }
+  50%       { opacity: 0.55; transform: scale(2); }
+}
+
+/* ── Video Showcase — scan line ──────────────────────────────────────────── */
+.vs-scan-line {
+  position: absolute;
+  left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent 0%, rgba(125,220,255,0.35) 30%, rgba(125,220,255,0.55) 50%, rgba(125,220,255,0.35) 70%, transparent 100%);
+  animation: vs-scan 10s ease-in-out infinite;
+  top: -1px;
+}
+@keyframes vs-scan {
+  0%   { top: -1px;   opacity: 0;   }
+  4%   { opacity: 0.8; }
+  96%  { opacity: 0.45; }
+  100% { top: 100%;   opacity: 0;   }
+}
+@media (prefers-reduced-motion: reduce) {
+  .vs-scan-line { animation: none; }
+  .vs-particle  { animation: none; }
+}
+
 /* ── Video section energy field ──────────────────────────────────────────── */
 @keyframes energy-breathe {
   0%, 100% { opacity: 0.6;  transform: scale(1); }
