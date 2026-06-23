@@ -177,6 +177,22 @@ html {
   .water-drop         { animation: none; opacity: 0; }
 }
 
+/* ── Why Weavy Works — Automation Orb ───────────────────────────────────── */
+@keyframes ww2-orb-pulse {
+  0%, 100% { opacity: 0.50; }
+  50%       { opacity: 0.82; }
+}
+@keyframes ww2-glow-breathe {
+  0%, 100% { opacity: 0.85; }
+  50%       { opacity: 1.00; }
+}
+.ww2-orb-pulse    { animation: ww2-orb-pulse    3.5s ease-in-out infinite; }
+.ww2-glow-breathe { animation: ww2-glow-breathe 4.5s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .ww2-traveling-dot                   { display: none; }
+  .ww2-orb-pulse, .ww2-glow-breathe   { animation: none; }
+}
+
 /* ── Video section energy field ──────────────────────────────────────────── */
 @keyframes energy-breathe {
   0%, 100% { opacity: 0.6;  transform: scale(1); }

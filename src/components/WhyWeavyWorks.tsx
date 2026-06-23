@@ -29,6 +29,159 @@ const features = [
   },
 ]
 
+function AutomationOrb() {
+  return (
+    <div
+      className="w-full mx-auto"
+      style={{ maxWidth: 320, aspectRatio: '1' }}
+      aria-hidden="true"
+    >
+      <svg
+        viewBox="0 0 360 360"
+        width="100%"
+        height="100%"
+        xmlns="http://www.w3.org/2000/svg"
+        style={{ display: 'block', overflow: 'visible' }}
+      >
+        <defs>
+          <radialGradient id="ww2-bg" cx="50%" cy="50%" r="50%">
+            <stop offset="0%"   stopColor="#0EA5E9" stopOpacity="0.13" />
+            <stop offset="55%"  stopColor="#003B46" stopOpacity="0.06" />
+            <stop offset="100%" stopColor="#000000" stopOpacity="0" />
+          </radialGradient>
+          <radialGradient id="ww2-sphere" cx="32%" cy="26%" r="70%">
+            <stop offset="0%"   stopColor="#1C4060" />
+            <stop offset="30%"  stopColor="#0E2235" />
+            <stop offset="68%"  stopColor="#060F18" />
+            <stop offset="100%" stopColor="#020810" />
+          </radialGradient>
+          <radialGradient id="ww2-rim" cx="50%" cy="50%" r="50%">
+            <stop offset="68%"  stopColor="#0EA5E9" stopOpacity="0" />
+            <stop offset="92%"  stopColor="#0EA5E9" stopOpacity="0.28" />
+            <stop offset="100%" stopColor="#7DDCFF" stopOpacity="0.14" />
+          </radialGradient>
+          <filter id="ww2-dot-glow" x="-400%" y="-400%" width="900%" height="900%">
+            <feGaussianBlur stdDeviation="3" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+          <filter id="ww2-core-glow" x="-55%" y="-55%" width="210%" height="210%">
+            <feGaussianBlur stdDeviation="14" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
+
+        {/* Ambient background glow */}
+        <circle cx="180" cy="180" r="162" fill="url(#ww2-bg)" className="ww2-glow-breathe" />
+
+        {/* ── Orbit 1: nearly flat, CCW dots ── */}
+        <g>
+          <ellipse cx="180" cy="180" rx="148" ry="44"
+            fill="none" stroke="#0EA5E9" strokeWidth="0.55" strokeOpacity="0.20"
+            strokeDasharray="3 9" />
+          {/* dot A */}
+          <circle r="3" fill="#0EA5E9" className="ww2-traveling-dot" filter="url(#ww2-dot-glow)">
+            <animateMotion dur="15s" repeatCount="indefinite"
+              path="M328,180 A148,44 0 1,0 32,180 A148,44 0 1,0 328,180" />
+          </circle>
+          {/* dot B — staggered half-lap */}
+          <circle r="2" fill="#7DDCFF" className="ww2-traveling-dot" filter="url(#ww2-dot-glow)">
+            <animateMotion dur="15s" begin="-7.5s" repeatCount="indefinite"
+              path="M328,180 A148,44 0 1,0 32,180 A148,44 0 1,0 328,180" />
+          </circle>
+        </g>
+
+        {/* ── Orbit 2: tilted 65°, CW dots ── */}
+        <g transform="rotate(65 180 180)">
+          <ellipse cx="180" cy="180" rx="112" ry="34"
+            fill="none" stroke="#7DDCFF" strokeWidth="0.5" strokeOpacity="0.17"
+            strokeDasharray="2 7" />
+          {/* dot A */}
+          <circle r="2.5" fill="#7DDCFF" className="ww2-traveling-dot" filter="url(#ww2-dot-glow)">
+            <animateMotion dur="11s" repeatCount="indefinite"
+              path="M292,180 A112,34 0 1,1 68,180 A112,34 0 1,1 292,180" />
+          </circle>
+          {/* dot B */}
+          <circle r="1.8" fill="#0EA5E9" className="ww2-traveling-dot" filter="url(#ww2-dot-glow)">
+            <animateMotion dur="11s" begin="-5.5s" repeatCount="indefinite"
+              path="M292,180 A112,34 0 1,1 68,180 A112,34 0 1,1 292,180" />
+          </circle>
+        </g>
+
+        {/* ── Orbit 3: tilted −40°, fastest CCW ── */}
+        <g transform="rotate(-40 180 180)">
+          <ellipse cx="180" cy="180" rx="78" ry="24"
+            fill="none" stroke="#0EA5E9" strokeWidth="0.5" strokeOpacity="0.28"
+            strokeDasharray="3 6" />
+          {/* dot */}
+          <circle r="2.5" fill="#0EA5E9" className="ww2-traveling-dot" filter="url(#ww2-dot-glow)">
+            <animateMotion dur="7.5s" repeatCount="indefinite"
+              path="M258,180 A78,24 0 1,0 102,180 A78,24 0 1,0 258,180" />
+          </circle>
+        </g>
+
+        {/* Core sphere glow */}
+        <circle cx="180" cy="180" r="65" fill="#082840" className="ww2-orb-pulse" filter="url(#ww2-core-glow)" />
+
+        {/* Core sphere body */}
+        <circle cx="180" cy="180" r="55" fill="url(#ww2-sphere)" />
+
+        {/* Sphere rim light */}
+        <circle cx="180" cy="180" r="55" fill="url(#ww2-rim)" />
+
+        {/* Equatorial band — depth illusion */}
+        <ellipse cx="180" cy="180" rx="55" ry="13"
+          fill="none" stroke="#0EA5E9" strokeWidth="0.4" strokeOpacity="0.15" />
+
+        {/* Inner dashed ring details on sphere surface */}
+        <circle cx="180" cy="180" r="40" fill="none"
+          stroke="#0EA5E9" strokeWidth="0.4" strokeOpacity="0.16" strokeDasharray="4 10" />
+        <circle cx="180" cy="180" r="26" fill="none"
+          stroke="#7DDCFF" strokeWidth="0.3" strokeOpacity="0.12" />
+
+        {/* Specular highlight */}
+        <ellipse cx="161" cy="158" rx="19" ry="13" fill="#7DDCFF" fillOpacity="0.055" />
+        <ellipse cx="154" cy="152" rx="6"  ry="4"  fill="#FFFFFF" fillOpacity="0.038" />
+
+        {/* Axis crosshair on sphere */}
+        <line x1="180" y1="126" x2="180" y2="234" stroke="#0EA5E9" strokeWidth="0.3" strokeOpacity="0.10" />
+        <line x1="126" y1="180" x2="234" y2="180" stroke="#0EA5E9" strokeWidth="0.3" strokeOpacity="0.10" />
+
+        {/* Central core dot */}
+        <circle cx="180" cy="180" r="5"   fill="#0EA5E9" fillOpacity="0.70" filter="url(#ww2-dot-glow)" />
+        <circle cx="180" cy="180" r="2.5" fill="#7DDCFF" />
+
+        {/* Connection whiskers toward left / right edges */}
+        <line x1="32"  y1="180" x2="0"   y2="180" stroke="#0EA5E9" strokeWidth="0.4" strokeOpacity="0.16" strokeDasharray="2 5" />
+        <line x1="328" y1="180" x2="360" y2="180" stroke="#0EA5E9" strokeWidth="0.4" strokeOpacity="0.16" strokeDasharray="2 5" />
+
+        {/* Corner data nodes */}
+        <g opacity="0.60">
+          <rect x="28" y="28" width="11" height="11" rx="2.5" fill="#071011" stroke="#0EA5E9" strokeWidth="0.9" />
+          <line x1="39" y1="33" x2="129" y2="128" stroke="#0EA5E9" strokeWidth="0.35" strokeOpacity="0.20" strokeDasharray="2 8" />
+        </g>
+        <g opacity="0.48">
+          <rect x="321" y="28" width="11" height="11" rx="2.5" fill="#071011" stroke="#7DDCFF" strokeWidth="0.9" />
+          <line x1="321" y1="33" x2="231" y2="128" stroke="#7DDCFF" strokeWidth="0.35" strokeOpacity="0.17" strokeDasharray="2 8" />
+        </g>
+        <g opacity="0.48">
+          <rect x="321" y="321" width="11" height="11" rx="2.5" fill="#071011" stroke="#0EA5E9" strokeWidth="0.9" />
+          <line x1="321" y1="321" x2="231" y2="232" stroke="#0EA5E9" strokeWidth="0.35" strokeOpacity="0.17" strokeDasharray="2 8" />
+        </g>
+        <g opacity="0.42">
+          <rect x="28" y="321" width="11" height="11" rx="2.5" fill="#071011" stroke="#7DDCFF" strokeWidth="0.9" />
+          <line x1="39" y1="326" x2="129" y2="232" stroke="#7DDCFF" strokeWidth="0.35" strokeOpacity="0.15" strokeDasharray="2 8" />
+        </g>
+      </svg>
+    </div>
+  )
+}
+
 export default function WhyWeavyWorks() {
   return (
     <section
@@ -113,10 +266,10 @@ export default function WhyWeavyWorks() {
         aria-hidden="true"
       />
 
-      <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[1fr_320px_1fr] gap-12 lg:gap-8 xl:gap-12 items-center">
 
-        {/* Left: sticky heading */}
-        <div className="lg:sticky lg:top-32">
+        {/* Left: heading */}
+        <div>
           <motion.p
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -143,12 +296,23 @@ export default function WhyWeavyWorks() {
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.16, ease: [0.16, 1, 0.3, 1] }}
             className="mt-6 text-lg font-medium max-w-md"
-          style={{ color: '#CBD5E1', lineHeight: 1.75 }}
+            style={{ color: '#CBD5E1', lineHeight: 1.75 }}
           >
             We operate differently than traditional agencies. We are an extension
             of your team, focused purely on leverage.
           </motion.p>
         </div>
+
+        {/* Center: automation orb */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.88 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1.0, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          className="flex items-center justify-center py-6 lg:py-0"
+        >
+          <AutomationOrb />
+        </motion.div>
 
         {/* Right: feature rows */}
         <div className="flex flex-col gap-3">
@@ -173,7 +337,10 @@ export default function WhyWeavyWorks() {
                 ;(e.currentTarget as HTMLElement).style.borderColor = 'transparent'
               }}
             >
-              <div className="flex-shrink-0 w-11 h-11 rounded-full flex items-center justify-center group-hover:text-accent-cyan group-hover:border-accent-cyan/30" style={{ background: '#101820', border: '1px solid rgba(255,255,255,0.10)', color: '#94A3B8', transition: 'color 250ms, border-color 250ms' }}>
+              <div
+                className="flex-shrink-0 w-11 h-11 rounded-full flex items-center justify-center group-hover:text-accent-cyan group-hover:border-accent-cyan/30"
+                style={{ background: '#101820', border: '1px solid rgba(255,255,255,0.10)', color: '#94A3B8', transition: 'color 250ms, border-color 250ms' }}
+              >
                 {feature.icon}
               </div>
               <div>
