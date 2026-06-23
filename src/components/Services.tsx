@@ -4,7 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Globe, Bot, BarChart2, Sparkles, Video, Settings2, Plug, Clock, UserCheck, CalendarDays, Zap, Camera, Target, Layers } from 'lucide-react'
 import { MessengerGlowBackground } from './ui/background-components'
 import { TestimonialsSection } from './ui/testimonials-1'
-import { GridBackground } from './ui/grid-background'
+import { GridBackground, DarkGridBg } from './ui/grid-background'
 import { BeamsBackgroundLayer } from './ui/beams-background'
 import { CircularGallery, type GalleryItem } from './ui/circular-gallery'
 import { GradientBlurBg } from './ui/gradient-blur-bg'
@@ -339,6 +339,9 @@ function BespokeFollowUp() {
       className="relative w-full overflow-hidden"
       style={{ background: '#010709', padding: 'clamp(5rem, 8vw, 8rem) 0 clamp(4rem, 7vw, 7rem)' }}
     >
+      {/* ── Dark 40 px slate grid — base depth layer ── */}
+      <DarkGridBg />
+
       {/* ── Grain ── */}
       <svg aria-hidden="true" className="pointer-events-none absolute inset-0 w-full h-full" style={{ opacity: 0.026 }}>
         <filter id="bfu3-gr">
@@ -1557,14 +1560,16 @@ function BespokeRealUsers() {
         padding: 'clamp(5rem, 10vw, 8rem) 0',
       }}
     >
-      {/* Subtle ambient glow */}
-      {/* Grid + radial bloom behind the left text */}
+      {/* Dark 40 px slate grid — visible depth layer */}
+      <DarkGridBg />
+
+      {/* Cyan radial accent bloom — sits above the grid */}
       <GradientBlurBg
         accentColor="hsl(199 89% 60% / 0.09)"
         accentPosition="22% 55%"
         accentRadius="580px"
-        gridColor="hsl(0 0% 100% / 0.025)"
-        gridSize="80px 56px"
+        gridColor="transparent"
+        gridSize="40px 40px"
       />
 
       {/* Section boundary fades — mask grid pattern abrupt start/end */}
