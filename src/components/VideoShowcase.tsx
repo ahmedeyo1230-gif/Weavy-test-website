@@ -58,7 +58,7 @@ export default function VideoShowcase() {
       id="showcase"
       aria-label="Video showcase"
       className="relative px-4 sm:px-8 lg:px-12 pt-10 pb-28 md:pb-36 overflow-hidden"
-      style={{ background: '#071011' }}
+      style={{ background: '#010709' }}
     >
 
       {/* Top fade — blends from Hero */}
