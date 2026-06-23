@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { motion, useInView, animate } from 'framer-motion'
+import { BorderRotate } from './ui/animated-gradient-border'
 
 interface StatProps {
   value: number
@@ -87,14 +88,17 @@ export default function Stats() {
         transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         className="max-w-5xl mx-auto relative"
       >
-        {/* Glass card */}
-        <div
-          className="rounded-3xl overflow-hidden"
+        {/* Glass card with animated blue sea gradient border */}
+        <BorderRotate
+          gradientColors={{ primary: '#003B46', secondary: '#0EA5E9', accent: '#7DDCFF' }}
+          backgroundColor="rgba(16,24,32,0.7)"
+          borderWidth={1}
+          borderRadius={24}
+          animationSpeed={6}
           style={{
-            background: 'rgba(16,24,32,0.7)',
-            border: '1px solid rgba(255,255,255,0.09)',
             backdropFilter: 'blur(16px)',
-            boxShadow: '0 0 0 1px rgba(255,255,255,0.03), 0 24px 64px -16px rgba(0,0,0,0.6)',
+            boxShadow: '0 0 0 1px rgba(125,220,255,0.06), 0 24px 64px -16px rgba(0,0,0,0.6)',
+            overflow: 'hidden',
           }}
         >
           <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-y md:divide-y-0 divide-white/[0.06]">
@@ -103,7 +107,7 @@ export default function Stats() {
             <StatCounter value={2}   prefix="£" suffix="M+" label="Revenue Generated" description="For our clients collectively" delay={0.2} />
             <StatCounter value={100} suffix="%" label="Client Retention"    description="Because results speak"        delay={0.3} />
           </div>
-        </div>
+        </BorderRotate>
       </motion.div>
 
       {/* Bottom blend — dissolves card shadow before section boundary */}

@@ -28,9 +28,9 @@ interface BorderRotateProps extends Omit<HTMLAttributes<HTMLDivElement>, 'classN
 }
 
 const defaultGradientColors = {
-  primary: '#584827',
-  secondary: '#c7a03c',
-  accent: '#f9de90',
+  primary: '#003B46',
+  secondary: '#0EA5E9',
+  accent: '#7DDCFF',
 };
 
 const BorderRotate: React.FC<BorderRotateProps> = ({
@@ -39,7 +39,7 @@ const BorderRotate: React.FC<BorderRotateProps> = ({
   animationMode = 'auto-rotate',
   animationSpeed = 5,
   gradientColors = defaultGradientColors,
-  backgroundColor = '#2d230f',
+  backgroundColor = '#0D1820',
   borderWidth = 2,
   borderRadius = 20,
   style = {},
