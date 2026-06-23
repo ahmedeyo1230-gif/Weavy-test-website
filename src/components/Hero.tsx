@@ -50,8 +50,8 @@ function HeroVideo() {
       className="absolute top-1/2 left-1/2 min-w-full min-h-full object-cover"
       style={{
         transform: 'translate(-50%, -50%)',
-        opacity: 0.82,
-        filter: 'brightness(1.18) contrast(1.22) saturate(1.1)',
+        opacity: 0.88,
+        filter: 'brightness(1.06) contrast(1.38) saturate(1.15)',
       }}
     />
   )
@@ -75,7 +75,7 @@ export function Navbar() {
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
-      className={`fixed left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-4xl transition-all duration-500 ${scrolled ? 'top-1.5' : 'top-2 md:top-3'}`}
+      className={`fixed left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-4xl transition-all duration-500 ${scrolled ? 'top-0.5' : 'top-1 md:top-1.5'}`}
     >
       <nav
         aria-label="Main navigation"
@@ -241,18 +241,35 @@ export default function Hero() {
             Automation Agency
           </motion.p>
 
-          <motion.h1
-            id="hero-heading"
-            variants={itemVariants}
-            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-light tracking-tighter leading-[1.1] mb-8 max-w-4xl text-primary"
-          >
-            We build{' '}
-            <em className="font-serif italic">systems</em>
-            {' '}that{' '}
-            <em className="font-serif italic">scale</em>
-            <br className="hidden sm:block" />
-            {' '}your business
-          </motion.h1>
+          <div className="relative">
+            {/* Water shimmer layer around heading */}
+            <div className="hero-water-layer" aria-hidden="true">
+              <div className="water-shimmer-line" style={{ top: '18%',  animationDelay: '0s',    animationDuration: '10s' }} />
+              <div className="water-shimmer-line" style={{ top: '52%',  animationDelay: '3.8s',  animationDuration: '13s' }} />
+              <div className="water-shimmer-line" style={{ top: '82%',  animationDelay: '7.2s',  animationDuration: '9.5s' }} />
+              <div className="water-drop" style={{ left: '4%',  top: '40%', animationDelay: '0s',   animationDuration: '7s'   }} />
+              <div className="water-drop" style={{ left: '96%', top: '25%', animationDelay: '2.4s', animationDuration: '8.5s' }} />
+              <div className="water-drop" style={{ left: '18%', top: '8%',  animationDelay: '4.8s', animationDuration: '6.8s' }} />
+              <div className="water-drop" style={{ left: '82%', top: '70%', animationDelay: '1.2s', animationDuration: '9.2s' }} />
+              <div className="water-drop" style={{ left: '48%', top: '3%',  animationDelay: '3.3s', animationDuration: '7.8s' }} />
+              <div className="water-drop" style={{ left: '10%', top: '85%', animationDelay: '6.1s', animationDuration: '8s'   }} />
+              <div className="water-drop" style={{ left: '88%', top: '15%', animationDelay: '0.7s', animationDuration: '7.2s' }} />
+              <div className="water-drop" style={{ left: '62%', top: '92%', animationDelay: '5.5s', animationDuration: '6.5s' }} />
+            </div>
+
+            <motion.h1
+              id="hero-heading"
+              variants={itemVariants}
+              className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-light tracking-tighter leading-[1.1] mb-8 max-w-4xl text-primary relative z-10"
+            >
+              We build{' '}
+              <em className="font-serif italic">systems</em>
+              {' '}that{' '}
+              <em className="font-serif italic">scale</em>
+              <br className="hidden sm:block" />
+              {' '}your business
+            </motion.h1>
+          </div>
 
           <motion.div
             variants={itemVariants}

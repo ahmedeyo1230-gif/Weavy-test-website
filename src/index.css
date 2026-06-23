@@ -128,6 +128,55 @@ html {
   .vs-particle  { animation: none; }
 }
 
+/* ── Hero water shimmer & droplet effect ────────────────────────────────── */
+.hero-water-layer {
+  position: absolute;
+  inset: -48px -96px;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+.water-shimmer-line {
+  position: absolute;
+  left: -65%;
+  width: 55%;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(125,220,255,0.10) 30%,
+    rgba(165,240,255,0.22) 50%,
+    rgba(125,220,255,0.10) 70%,
+    transparent 100%
+  );
+  border-radius: 2px;
+  animation: water-shimmer-sweep 10s ease-in-out infinite;
+}
+@keyframes water-shimmer-sweep {
+  0%   { left: -65%; opacity: 0; }
+  6%   { opacity: 1; }
+  90%  { opacity: 0.5; }
+  100% { left: 130%; opacity: 0; }
+}
+.water-drop {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: rgba(125, 220, 255, 0.5);
+  animation: water-drop-rise 7s ease-in-out infinite;
+}
+@keyframes water-drop-rise {
+  0%   { opacity: 0;   transform: translateY(0)    scale(1); }
+  12%  { opacity: 0.55; }
+  80%  { opacity: 0.12; }
+  100% { opacity: 0;   transform: translateY(-38px) scale(0.4); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .water-shimmer-line { animation: none; opacity: 0; }
+  .water-drop         { animation: none; opacity: 0; }
+}
+
 /* ── Video section energy field ──────────────────────────────────────────── */
 @keyframes energy-breathe {
   0%, 100% { opacity: 0.6;  transform: scale(1); }
