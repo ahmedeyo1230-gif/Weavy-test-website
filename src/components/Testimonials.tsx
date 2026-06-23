@@ -85,7 +85,7 @@ export default function TestimonialsSection() {
           left: 0,
           right: 0,
           height: '260px',
-          background: 'linear-gradient(to bottom, #071011 0%, rgba(7,16,17,0.7) 38%, rgba(7,16,17,0.25) 68%, transparent 100%)',
+          background: 'linear-gradient(to bottom, #06080A 0%, rgba(6,8,10,0.7) 38%, rgba(6,8,10,0.25) 68%, transparent 100%)',
           pointerEvents: 'none',
           zIndex: 1,
         }}
@@ -123,7 +123,7 @@ export default function TestimonialsSection() {
               transition={{ duration: 0.6, delay: index * 0.07, ease: E }}
               className="rounded-2xl p-7 flex flex-col gap-5"
               style={{
-                background: '#101820',
+                background: '#0C0E10',
                 border: '1px solid rgba(255,255,255,0.09)',
                 transition: 'border-color 400ms, box-shadow 400ms',
               }}
@@ -173,7 +173,7 @@ export default function TestimonialsSection() {
           left: 0,
           right: 0,
           height: '200px',
-          background: 'linear-gradient(to bottom, transparent 0%, rgba(7,16,17,0.5) 50%, #071011 100%)',
+          background: 'linear-gradient(to bottom, transparent 0%, rgba(6,8,10,0.5) 50%, #06080A 100%)',
           pointerEvents: 'none',
           zIndex: 10,
         }}
