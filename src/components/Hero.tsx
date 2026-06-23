@@ -57,120 +57,6 @@ function HeroVideo() {
   )
 }
 
-// ─── Wave SVG (SMIL path morphing) ───────────────────────────────────────────
-
-function WaveSVG() {
-  return (
-    <svg
-      className="hero-wave-svg"
-      viewBox="0 0 1440 900"
-      preserveAspectRatio="none"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden="true"
-    >
-      <defs>
-        <linearGradient id="hw-g1" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%"   stopColor="#0EA5E9" stopOpacity="0.09" />
-          <stop offset="55%"  stopColor="#003B46" stopOpacity="0.05" />
-          <stop offset="100%" stopColor="#003B46" stopOpacity="0.03" />
-        </linearGradient>
-        <linearGradient id="hw-g2" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%"   stopColor="#7DDCFF" stopOpacity="0.055" />
-          <stop offset="100%" stopColor="#003B46" stopOpacity="0.025" />
-        </linearGradient>
-      </defs>
-      {/* Main wave — crests near heading level (~42 % from top) */}
-      <path fill="url(#hw-g1)">
-        <animate
-          attributeName="d"
-          dur="12s"
-          repeatCount="indefinite"
-          calcMode="spline"
-          keyTimes="0;0.28;0.46;0.54;0.75;1"
-          keySplines="0.42 0 0.58 1;0.42 0 0.18 1;0.18 0 0.42 1;0.42 0 0.58 1;0.42 0 0.58 1"
-          values={[
-            'M0,858 C360,848 720,864 1080,852 C1260,845 1380,857 1440,852 L1440,900 L0,900 Z',
-            'M0,588 C360,560 720,615 1080,576 C1260,552 1380,596 1440,570 L1440,900 L0,900 Z',
-            'M0,378 C360,326 720,410 1080,354 C1260,298 1380,386 1440,340 L1440,900 L0,900 Z',
-            'M0,398 C360,346 720,430 1080,374 C1260,318 1380,406 1440,360 L1440,900 L0,900 Z',
-            'M0,644 C360,620 720,663 1080,633 C1260,612 1380,648 1440,628 L1440,900 L0,900 Z',
-            'M0,858 C360,848 720,864 1080,852 C1260,845 1380,857 1440,852 L1440,900 L0,900 Z',
-          ].join(';')}
-        />
-      </path>
-      {/* Secondary wave — 4 s phase offset for layered depth */}
-      <path fill="url(#hw-g2)">
-        <animate
-          attributeName="d"
-          dur="12s"
-          begin="-4s"
-          repeatCount="indefinite"
-          calcMode="spline"
-          keyTimes="0;0.28;0.46;0.54;0.75;1"
-          keySplines="0.42 0 0.58 1;0.42 0 0.18 1;0.18 0 0.42 1;0.42 0 0.58 1;0.42 0 0.58 1"
-          values={[
-            'M0,870 C360,858 720,878 1080,864 C1260,856 1380,870 1440,862 L1440,900 L0,900 Z',
-            'M0,624 C360,596 720,648 1080,612 C1260,588 1380,628 1440,602 L1440,900 L0,900 Z',
-            'M0,414 C360,368 720,448 1080,394 C1260,344 1380,420 1440,382 L1440,900 L0,900 Z',
-            'M0,434 C360,388 720,468 1080,414 C1260,364 1380,440 1440,402 L1440,900 L0,900 Z',
-            'M0,672 C360,648 720,692 1080,662 C1260,640 1380,676 1440,656 L1440,900 L0,900 Z',
-            'M0,870 C360,858 720,878 1080,864 C1260,856 1380,870 1440,862 L1440,900 L0,900 Z',
-          ].join(';')}
-        />
-      </path>
-    </svg>
-  )
-}
-
-// ─── Splash / mist / ripple particle layer ───────────────────────────────────
-
-const DROPS = [
-  { l:'36%', t:'40%', d:'0s'    }, { l:'41%', t:'42%', d:'0.35s' },
-  { l:'46%', t:'38%', d:'0.7s'  }, { l:'50%', t:'41%', d:'1.05s' },
-  { l:'54%', t:'39%', d:'1.4s'  }, { l:'59%', t:'43%', d:'1.75s' },
-  { l:'64%', t:'40%', d:'2.1s'  }, { l:'31%', t:'45%', d:'0.5s'  },
-  { l:'69%', t:'45%', d:'1.2s'  }, { l:'44%', t:'47%', d:'2.45s' },
-  { l:'56%', t:'47%', d:'2.8s'  }, { l:'48%', t:'36%', d:'3.15s' },
-  { l:'52%', t:'36%', d:'3.5s'  }, { l:'38%', t:'49%', d:'1.9s'  },
-  { l:'62%', t:'49%', d:'2.6s'  },
-] as const
-
-const ARC_DROPS = [
-  { l:'45%', t:'44%', d:'0.5s',  cls:'hero-splash-arc-r' },
-  { l:'55%', t:'44%', d:'1.0s',  cls:'hero-splash-arc-l' },
-  { l:'38%', t:'46%', d:'1.5s',  cls:'hero-splash-arc-l' },
-  { l:'62%', t:'46%', d:'2.0s',  cls:'hero-splash-arc-r' },
-  { l:'50%', t:'42%', d:'0.25s', cls:'hero-splash-arc-r' },
-  { l:'42%', t:'40%', d:'2.55s', cls:'hero-splash-arc-l' },
-] as const
-
-function SplashLayer() {
-  return (
-    <div className="absolute inset-0 pointer-events-none" aria-hidden="true" style={{ zIndex: 3 }}>
-      {/* Mist clouds */}
-      <div className="hero-mist-cloud" style={{ width:'420px', height:'190px', top:'36%', left:'50%', marginLeft:'-210px', marginTop:'-95px' }} />
-      <div className="hero-mist-cloud" style={{ width:'280px', height:'120px', top:'43%', left:'33%', marginLeft:'-140px', marginTop:'-60px', animationDelay:'-1.8s' }} />
-      <div className="hero-mist-cloud" style={{ width:'240px', height:'110px', top:'43%', left:'67%', marginLeft:'-120px', marginTop:'-55px', animationDelay:'-0.9s' }} />
-      {/* Crest shimmer lines */}
-      <div className="hero-crest-line" style={{ width:'360px', left:'50%', marginLeft:'-180px', top:'43.5%', animationDelay:'-0.2s' }} />
-      <div className="hero-crest-line" style={{ width:'200px', left:'29%', marginLeft:'-100px', top:'45.5%', animationDelay:'-1.0s', opacity:0.55 }} />
-      <div className="hero-crest-line" style={{ width:'180px', left:'71%', marginLeft:'-90px',  top:'45.5%', animationDelay:'-2.0s', opacity:0.50 }} />
-      {/* Ripple rings */}
-      <div className="hero-ripple-ring" style={{ width:'130px', height:'130px', top:'43%', left:'50%', marginLeft:'-65px', marginTop:'-65px' }} />
-      <div className="hero-ripple-ring" style={{ width:'80px',  height:'80px',  top:'43%', left:'37%', marginLeft:'-40px', marginTop:'-40px', animationDelay:'-0.7s' }} />
-      <div className="hero-ripple-ring" style={{ width:'90px',  height:'90px',  top:'43%', left:'63%', marginLeft:'-45px', marginTop:'-45px', animationDelay:'-1.4s' }} />
-      {/* Small droplets */}
-      {DROPS.map(({ l, t, d }, i) => (
-        <div key={i} className="hero-splash-drop" style={{ left:l, top:t, animationDelay:d }} />
-      ))}
-      {/* Arc drops */}
-      {ARC_DROPS.map(({ l, t, d, cls }, i) => (
-        <div key={i} className={cls} style={{ left:l, top:t, animationDelay:d }} />
-      ))}
-    </div>
-  )
-}
-
 // ─── Navbar ───────────────────────────────────────────────────────────────────
 
 export function Navbar() {
@@ -339,10 +225,6 @@ export default function Hero() {
           <div className="absolute top-[60%] left-[30%] w-[400px] h-[400px] rounded-full blur-[110px]" style={{ background: 'hsl(270 50% 20% / 0.06)' }} />
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(10,10,10,0.38)_62%,#0a0a0a_90%)]" />
         </div>
-
-        {/* Wave rises from section bottom to heading level, splashes & recedes */}
-        <WaveSVG />
-        <SplashLayer />
 
         {/* Content */}
         <motion.div
