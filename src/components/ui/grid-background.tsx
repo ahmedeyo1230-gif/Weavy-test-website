@@ -69,24 +69,3 @@ export const GridBackground = ({ className }: GridBackgroundProps) => {
   );
 };
 
-/**
- * Dark faded grid — slate-toned 40 px grid lines at low opacity.
- * Adapted from the dark-basic-grid demo. Use on sections with a very
- * dark background (#010709 / #0f172a) where subtle depth is needed.
- */
-export const DarkGridBg = ({ className }: GridBackgroundProps) => {
-  return (
-    <div
-      aria-hidden="true"
-      className={cn("absolute inset-0 z-0 pointer-events-none", className)}
-      style={{
-        backgroundImage: `
-          linear-gradient(to right, rgba(148,163,184,0.20) 1px, transparent 1px),
-          linear-gradient(to bottom, rgba(148,163,184,0.20) 1px, transparent 1px)
-        `,
-        backgroundSize: "40px 40px",
-      }}
-    />
-  );
-};
-
