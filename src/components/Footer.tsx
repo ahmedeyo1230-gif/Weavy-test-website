@@ -204,6 +204,7 @@ export default function Footer() {
         {/* CTA */}
         <div
           style={{
+            position: 'relative',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -211,6 +212,19 @@ export default function Footer() {
             padding: 'clamp(3.5rem, 7vw, 5.5rem) 1.5rem',
           }}
         >
+          {/* Mobile/tablet readability overlay — behind heading & sentences only, not over marquee */}
+          <div
+            aria-hidden="true"
+            className="lg:hidden"
+            style={{
+              position: 'absolute',
+              inset: '-2rem -100vw',
+              background: 'radial-gradient(ellipse 80% 90% at 50% 50%, rgba(1,7,9,0.78) 0%, rgba(1,7,9,0.62) 55%, rgba(1,7,9,0.25) 80%, transparent 100%)',
+              pointerEvents: 'none',
+              zIndex: 0,
+            }}
+          />
+
           <motion.p
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -218,6 +232,8 @@ export default function Footer() {
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             className="font-sans font-light"
             style={{
+              position: 'relative',
+              zIndex: 1,
               fontSize: '0.68rem',
               letterSpacing: '0.32em',
               textTransform: 'uppercase',
@@ -236,12 +252,15 @@ export default function Footer() {
             transition={{ duration: 0.8, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
             className="font-sans font-light text-text"
             style={{
+              position: 'relative',
+              zIndex: 1,
               fontSize: 'clamp(1.9rem, 4vw, 3rem)',
               lineHeight: 1.08,
               letterSpacing: '-0.03em',
               whiteSpace: 'nowrap',
               maxWidth: 'none',
               marginBottom: '1.25rem',
+              textShadow: '0 2px 24px rgba(0,0,0,0.85)',
             }}
           >
             Let's build something{' '}
@@ -259,12 +278,15 @@ export default function Footer() {
             transition={{ duration: 0.7, delay: 0.18, ease: [0.16, 1, 0.3, 1] }}
             className="font-sans font-light"
             style={{
+              position: 'relative',
+              zIndex: 1,
               fontSize: 'clamp(0.88rem, 1.4vw, 1rem)',
               lineHeight: 1.8,
               color: '#CBD5E1',
               fontWeight: 500,
               maxWidth: '34rem',
               marginBottom: '2.5rem',
+              textShadow: '0 1px 16px rgba(0,0,0,0.75)',
             }}
           >
             Have a project in mind? We'd love to hear about it.{' '}
@@ -277,6 +299,7 @@ export default function Footer() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.28, ease: [0.16, 1, 0.3, 1] }}
+            style={{ position: 'relative', zIndex: 1 }}
           >
           <a
             href="mailto:hello@weavyautomation.com"
