@@ -51,21 +51,9 @@ function HeroVideo() {
       style={{
         transform: 'translate(-50%, -50%)',
         opacity: 0.88,
-        filter: 'brightness(1.10) contrast(1.50) saturate(1.25)',
+        filter: 'brightness(1.06) contrast(1.38) saturate(1.15)',
       }}
     />
-  )
-}
-
-// ─── Sea layer — two rising wave bodies + ambient glow ───────────────────────
-
-function SeaEffects() {
-  return (
-    <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
-      <div className="hero-sea-ambient" />
-      <div className="hero-sea-wave-1" />
-      <div className="hero-sea-wave-2" />
-    </div>
   )
 }
 
@@ -238,9 +226,6 @@ export default function Hero() {
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(10,10,10,0.38)_62%,#0a0a0a_90%)]" />
         </div>
 
-        {/* Cinematic sea layer — wave rises from bottom toward heading */}
-        <SeaEffects />
-
         {/* Content */}
         <motion.div
           variants={containerVariants}
@@ -257,10 +242,6 @@ export default function Hero() {
           </motion.p>
 
           <div className="relative">
-            {/* Glow bloom + sweep shimmers fired when wave crests at heading level */}
-            <div className="hero-heading-sea-glow" aria-hidden="true" />
-            <div className="hero-heading-wave-shimmer" aria-hidden="true" />
-            <div className="hero-heading-wave-shimmer" aria-hidden="true" style={{ top: '28%', animationDelay: '-0.65s', opacity: 0.72 }} />
             {/* Water shimmer layer around heading */}
             <div className="hero-water-layer" aria-hidden="true">
               <div className="water-shimmer-line" style={{ top: '18%',  animationDelay: '0s',    animationDuration: '10s' }} />

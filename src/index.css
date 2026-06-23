@@ -144,9 +144,9 @@ html {
   background: linear-gradient(
     to right,
     transparent 0%,
-    rgba(125,220,255,0.17) 30%,
-    rgba(165,240,255,0.42) 50%,
-    rgba(125,220,255,0.17) 70%,
+    rgba(125,220,255,0.10) 30%,
+    rgba(165,240,255,0.22) 50%,
+    rgba(125,220,255,0.10) 70%,
     transparent 100%
   );
   border-radius: 2px;
@@ -163,7 +163,7 @@ html {
   width: 2px;
   height: 2px;
   border-radius: 50%;
-  background: rgba(125, 220, 255, 0.68);
+  background: rgba(125, 220, 255, 0.5);
   animation: water-drop-rise 7s ease-in-out infinite;
 }
 @keyframes water-drop-rise {
@@ -175,146 +175,6 @@ html {
 @media (prefers-reduced-motion: reduce) {
   .water-shimmer-line { animation: none; opacity: 0; }
   .water-drop         { animation: none; opacity: 0; }
-}
-
-/* ── Hero Sea Layer — rising wave + heading glow ──────────────────────── */
-
-/* Wave 1 — main swell, crests near heading level */
-@keyframes hero-sea-rise-1 {
-  0%   { transform: translateY(56vh); opacity: 0.60; }
-  38%  { transform: translateY(16vh); opacity: 0.92; }
-  50%  { transform: translateY(8vh);  opacity: 1.00; }
-  62%  { transform: translateY(12vh); opacity: 0.92; }
-  82%  { transform: translateY(32vh); opacity: 0.75; }
-  100% { transform: translateY(56vh); opacity: 0.60; }
-}
-/* Wave 2 — secondary swell, 3.8 s behind */
-@keyframes hero-sea-rise-2 {
-  0%   { transform: translateY(60vh); opacity: 0.48; }
-  38%  { transform: translateY(20vh); opacity: 0.82; }
-  50%  { transform: translateY(12vh); opacity: 0.90; }
-  62%  { transform: translateY(16vh); opacity: 0.82; }
-  82%  { transform: translateY(36vh); opacity: 0.62; }
-  100% { transform: translateY(60vh); opacity: 0.48; }
-}
-/* Ambient deep-sea glow — breathes with the swell */
-@keyframes hero-sea-breathe {
-  0%, 100% { opacity: 0.65; }
-  50%       { opacity: 1.00; }
-}
-/* Heading glow — pulses as the wave crests beneath it */
-@keyframes hero-heading-glow {
-  0%,  34% { opacity: 0;    }
-  47%       { opacity: 0.80; }
-  53%       { opacity: 1.00; }
-  66%       { opacity: 0.70; }
-  86%       { opacity: 0.12; }
-  100%      { opacity: 0;    }
-}
-/* Heading shimmer — single wave-crest sweep across the text */
-@keyframes hero-heading-shimmer {
-  0%,  38% { left: -72%; opacity: 0;    }
-  42%       { opacity: 1.00;             }
-  57%       { left: 130%; opacity: 0;    }
-  100%      { left: 130%; opacity: 0;    }
-}
-
-/* Deep ambient glow radiating up from the bottom */
-.hero-sea-ambient {
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  height: 70%;
-  background: radial-gradient(
-    ellipse 90% 62% at 50% 100%,
-    rgba(14,165,233,0.13) 0%,
-    rgba(0,82,115,0.06)   44%,
-    transparent           72%
-  );
-  animation: hero-sea-breathe 7s ease-in-out infinite;
-  pointer-events: none;
-}
-/* Wave body 1 — rich ocean teal with elliptical crest edge */
-.hero-sea-wave-1 {
-  position: absolute;
-  left: -6%; right: -6%;
-  bottom: 0;
-  height: 74vh;
-  background: linear-gradient(
-    to top,
-    rgba(4, 58, 78, 0.64)   0%,
-    rgba(10,122,165,0.18)   40%,
-    rgba(14,165,233,0.10)   65%,
-    rgba(125,220,255,0.04)  82%,
-    transparent             100%
-  );
-  border-radius: 44% 56% 0 0 / 20% 20% 0 0;
-  animation: hero-sea-rise-1 11s ease-in-out infinite;
-  pointer-events: none;
-}
-/* Wave body 2 — lighter, slightly narrower, offset phase */
-.hero-sea-wave-2 {
-  position: absolute;
-  left: -4%; right: -4%;
-  bottom: 0;
-  height: 70vh;
-  background: linear-gradient(
-    to top,
-    rgba(2, 40, 55, 0.42)   0%,
-    rgba(125,220,255,0.09)  50%,
-    transparent             100%
-  );
-  border-radius: 56% 44% 0 0 / 24% 18% 0 0;
-  animation: hero-sea-rise-2 11s ease-in-out infinite;
-  animation-delay: -3.8s;
-  pointer-events: none;
-}
-/* Glow bloom beneath the heading, lit by the approaching wave */
-.hero-heading-sea-glow {
-  position: absolute;
-  bottom: -36px;
-  left: -22%; right: -22%;
-  height: 72px;
-  background: radial-gradient(
-    ellipse 80% 100% at 50% 100%,
-    rgba(14,165,233,0.20) 0%,
-    rgba(125,220,255,0.08) 44%,
-    transparent 72%
-  );
-  filter: blur(18px);
-  animation: hero-heading-glow 11s ease-in-out infinite;
-  pointer-events: none;
-}
-/* Wave-crest shimmer that sweeps across the heading at the swell's peak */
-.hero-heading-wave-shimmer {
-  position: absolute;
-  top: 50%;
-  left: -72%;
-  width: 64%;
-  height: 1px;
-  background: linear-gradient(
-    to right,
-    transparent            0%,
-    rgba(125,220,255,0.50) 28%,
-    rgba(200,242,255,0.88) 50%,
-    rgba(125,220,255,0.50) 72%,
-    transparent            100%
-  );
-  border-radius: 2px;
-  animation: hero-heading-shimmer 11s ease-in-out infinite;
-  pointer-events: none;
-}
-
-@media (max-width: 768px) {
-  .hero-sea-wave-1  { opacity: 0.72; }
-  .hero-sea-wave-2  { opacity: 0.58; }
-  .hero-sea-ambient { opacity: 0.72; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .hero-sea-wave-1,
-  .hero-sea-wave-2     { animation: none; transform: translateY(100vh); }
-  .hero-sea-ambient,
-  .hero-heading-sea-glow,
-  .hero-heading-wave-shimmer { animation: none; opacity: 0; }
 }
 
 /* ── Why Weavy Works — Automation Orb ───────────────────────────────────── */
