@@ -82,7 +82,7 @@ export function Navbar() {
         className="glass-panel rounded-full px-3 py-0 flex items-center justify-between gap-2"
       >
         {/* Logo */}
-        <a href="#home" aria-label="Weavy" className="flex items-center shrink-0 -my-3">
+        <a href="#home" aria-label="Weavy" className="flex items-center shrink-0 -my-3 ml-2">
           <img src={weavyLogo} alt="Weavy" className="w-[4.75rem] h-[4.75rem] md:w-24 md:h-24 object-contain" decoding="async" draggable={false} />
         </a>
 
@@ -235,7 +235,7 @@ export default function Hero() {
         >
           <motion.p
             variants={itemVariants}
-            className="text-[10px] sm:text-xs uppercase tracking-widest mb-6 font-medium"
+            className="text-[10px] sm:text-xs uppercase tracking-widest mb-6 mt-3 font-medium"
             style={{ color: '#94A3B8', letterSpacing: '0.22em' }}
           >
             Automation Agency
