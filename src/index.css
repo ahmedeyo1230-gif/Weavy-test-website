@@ -177,51 +177,6 @@ html {
   .water-drop         { animation: none; opacity: 0; }
 }
 
-/* ── Why Weavy Works — Automation Orb ───────────────────────────────────── */
-@keyframes ww-orbit-cw {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
-}
-@keyframes ww-orbit-ccw {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(-360deg); }
-}
-@keyframes ww-orb-pulse {
-  0%, 100% { opacity: 0.52; }
-  50%       { opacity: 0.80; }
-}
-@keyframes ww-glow-breathe {
-  0%, 100% { opacity: 0.88; }
-  50%       { opacity: 1; }
-}
-.ww-orbit-1 {
-  transform-box: view-box;
-  transform-origin: 140px 140px;
-  animation: ww-orbit-ccw 24s linear infinite;
-}
-.ww-orbit-2 {
-  transform-box: view-box;
-  transform-origin: 140px 140px;
-  animation: ww-orbit-cw 32s linear infinite;
-  animation-delay: -8s;
-}
-.ww-orbit-3 {
-  transform-box: view-box;
-  transform-origin: 140px 140px;
-  animation: ww-orbit-cw 17s linear infinite;
-  animation-delay: -4s;
-}
-.ww-orb-pulse {
-  animation: ww-orb-pulse 3.5s ease-in-out infinite;
-}
-.ww-glow-breathe {
-  animation: ww-glow-breathe 4.5s ease-in-out infinite;
-}
-@media (prefers-reduced-motion: reduce) {
-  .ww-orbit-1, .ww-orbit-2, .ww-orbit-3,
-  .ww-orb-pulse, .ww-glow-breathe { animation: none; }
-}
-
 /* ── Video section energy field ──────────────────────────────────────────── */
 @keyframes energy-breathe {
   0%, 100% { opacity: 0.6;  transform: scale(1); }
