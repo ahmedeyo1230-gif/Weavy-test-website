@@ -172,8 +172,8 @@ export default function Footer() {
   return (
     <footer
       id="contact"
-      className="relative w-full bg-bg overflow-hidden"
-      style={{ paddingTop: 'clamp(4rem, 8vw, 5rem)' }}
+      className="relative w-full overflow-hidden"
+      style={{ background: '#06080A', paddingTop: 'clamp(4rem, 8vw, 5rem)' }}
     >
       {/* Top blend — continues from Testimonials boundary */}
       <div
@@ -184,7 +184,7 @@ export default function Footer() {
           left: 0,
           right: 0,
           height: '220px',
-          background: 'linear-gradient(to bottom, #071011 0%, rgba(7,16,17,0.65) 40%, rgba(7,16,17,0.2) 72%, transparent 100%)',
+          background: 'linear-gradient(to bottom, #06080A 0%, rgba(6,8,10,0.65) 40%, rgba(6,8,10,0.2) 72%, transparent 100%)',
           pointerEvents: 'none',
           zIndex: 10,
         }}
