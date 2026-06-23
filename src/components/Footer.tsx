@@ -111,6 +111,8 @@ function FooterVideo() {
           minWidth: '100%', minHeight: '100%',
           objectFit: 'cover',
           transform: 'translate(-50%, -50%) scaleY(-1)',
+          opacity: 0.88,
+          filter: 'brightness(1.06) contrast(1.38) saturate(1.15)',
         }}
       />
     </div>
@@ -191,7 +193,7 @@ export default function Footer() {
       {/* Background video */}
       <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
         <FooterVideo />
-        <div className="absolute inset-0 pointer-events-none bg-black/35 lg:bg-black/60" />
+        <div className="absolute inset-0 pointer-events-none bg-black/28 lg:bg-black/52" />
       </div>
 
       <div style={{ position: 'relative', zIndex: 1 }}>
