@@ -70,28 +70,6 @@ export const GridBackground = ({ className }: GridBackgroundProps) => {
 };
 
 /**
- * Dark noise — staggered purple / blue / pink 1 px dots at three grid scales.
- * Adds premium chromatic grain to dark hero sections with photos underneath.
- */
-export const DarkNoiseBg = ({ className }: GridBackgroundProps) => {
-  return (
-    <div
-      aria-hidden="true"
-      className={cn("absolute inset-0 z-0 pointer-events-none", className)}
-      style={{
-        backgroundImage: `
-          radial-gradient(circle at 1px 1px, rgba(139, 92, 246, 0.20) 1px, transparent 0),
-          radial-gradient(circle at 1px 1px, rgba(59, 130, 246, 0.18) 1px, transparent 0),
-          radial-gradient(circle at 1px 1px, rgba(236, 72, 153, 0.15) 1px, transparent 0)
-        `,
-        backgroundSize: "20px 20px, 30px 30px, 25px 25px",
-        backgroundPosition: "0 0, 10px 10px, 15px 5px",
-      }}
-    />
-  );
-};
-
-/**
  * Dark faded grid — 40 px slate-toned lines at 20 % opacity.
  * Matches the dark-basic-grid demo. Use on very dark sections (#010709)
  * where a subtle structural depth is needed without adding colour.
