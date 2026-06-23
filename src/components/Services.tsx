@@ -4,7 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Globe, Bot, BarChart2, Sparkles, Video, Settings2, Plug, Clock, UserCheck, CalendarDays, Zap, Camera, Target, Layers } from 'lucide-react'
 import { MessengerGlowBackground } from './ui/background-components'
 import { TestimonialsSection } from './ui/testimonials-1'
-import { GridBackground, DarkGridBg } from './ui/grid-background'
+import { GridBackground, DarkGridBg, NoiseCanvasBg } from './ui/grid-background'
 import { BeamsBackgroundLayer } from './ui/beams-background'
 import { CircularGallery, type GalleryItem } from './ui/circular-gallery'
 import { GradientBlurBg } from './ui/gradient-blur-bg'
@@ -6538,14 +6538,8 @@ function GraphicDesignSplitB() {
       className="relative w-full overflow-hidden"
       style={{ background: '#010709', padding: 'clamp(6rem, 10vw, 10rem) 0' }}
     >
-      {/* Grain */}
-      <svg aria-hidden="true" className="pointer-events-none absolute inset-0 w-full h-full" style={{ opacity: 0.024, zIndex: 1 }}>
-        <filter id="gdsb-gr">
-          <feTurbulence type="fractalNoise" baseFrequency="0.64" numOctaves="3" stitchTiles="stitch" result="n"/>
-          <feColorMatrix type="saturate" values="0" in="n"/>
-        </filter>
-        <rect width="100%" height="100%" filter="url(#gdsb-gr)" fill="white"/>
-      </svg>
+      {/* Animated canvas grain + orange spotlight + dot grid */}
+      <NoiseCanvasBg />
 
       {/* Subtle cool ambient from right */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{

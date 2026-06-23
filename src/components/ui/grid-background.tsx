@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 
 interface GridBackgroundProps {
@@ -66,6 +67,63 @@ export const GridBackground = ({ className }: GridBackgroundProps) => {
         backgroundSize: "40px 40px, 40px 40px, 100% 100%",
       }}
     />
+  );
+};
+
+/**
+ * Animated canvas grain + orange top spotlight + masked dot grid.
+ * Matches the dark-noise-effect11 demo. Use on dark sections where
+ * you want visible film-grain texture with a warm orange glow at top.
+ */
+const NoiseCanvas = ({ patternRefreshInterval = 3, patternAlpha = 20 }: { patternRefreshInterval?: number; patternAlpha?: number }) => {
+  const ref = useRef<HTMLCanvasElement | null>(null);
+  useEffect(() => {
+    const c = ref.current;
+    if (!c) return;
+    const ctx = c.getContext("2d", { alpha: true });
+    if (!ctx) return;
+    let f = 0, id = 0;
+    const S = 1024;
+    const resize = () => { c.width = S; c.height = S; c.style.width = "100%"; c.style.height = "100%"; };
+    const draw = () => {
+      const img = ctx.createImageData(S, S);
+      const d = img.data;
+      for (let i = 0; i < d.length; i += 4) {
+        const v = Math.random() * 255;
+        d[i] = v; d[i + 1] = v; d[i + 2] = v; d[i + 3] = patternAlpha;
+      }
+      ctx.putImageData(img, 0, 0);
+    };
+    const loop = () => { if (f % patternRefreshInterval === 0) draw(); f++; id = requestAnimationFrame(loop); };
+    window.addEventListener("resize", resize);
+    resize();
+    loop();
+    return () => { window.removeEventListener("resize", resize); cancelAnimationFrame(id); };
+  }, [patternRefreshInterval, patternAlpha]);
+  return <canvas ref={ref} className="pointer-events-none absolute inset-0 w-full h-full" style={{ imageRendering: "pixelated" }} />;
+};
+
+export const NoiseCanvasBg = ({ className }: GridBackgroundProps) => {
+  return (
+    <div
+      aria-hidden="true"
+      className={cn("absolute inset-0 z-0 pointer-events-none overflow-hidden", className)}
+    >
+      {/* Orange radial spotlight from top */}
+      <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse 90% 70% at 50% -10%, rgba(251,146,60,0.20) 0%, transparent 70%)' }} />
+      {/* Masked dot grid */}
+      <div
+        className="absolute inset-0"
+        style={{
+          backgroundImage: 'radial-gradient(rgba(226,232,240,0.6) 1px, transparent 1px)',
+          backgroundSize: '18px 18px',
+          maskImage: 'radial-gradient(circle at 50% 50%, #000 60%, transparent 100%)',
+          WebkitMaskImage: 'radial-gradient(circle at 50% 50%, #000 60%, transparent 100%)',
+        }}
+      />
+      {/* Animated film grain */}
+      <NoiseCanvas patternAlpha={20} patternRefreshInterval={3} />
+    </div>
   );
 };
 
