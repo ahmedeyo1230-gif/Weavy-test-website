@@ -171,7 +171,8 @@ export default function Footer() {
     <footer
       id="contact"
       className="relative w-full overflow-hidden"
-      style={{ background: '#000000', paddingTop: 'clamp(4rem, 8vw, 5rem)' }}
+      style={{ background: '#000000' }}
+      style={{ paddingTop: 'clamp(4rem, 8vw, 5rem)' }}
     >
       {/* Top blend — continues from Testimonials boundary */}
       <div
