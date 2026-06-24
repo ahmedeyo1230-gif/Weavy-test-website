@@ -115,7 +115,7 @@ export const NoiseCanvasBg = ({ className }: GridBackgroundProps) => {
       <div
         className="absolute inset-0"
         style={{
-          backgroundImage: 'radial-gradient(rgba(226,232,240,0.6) 1px, transparent 1px)',
+          backgroundImage: 'radial-gradient(rgba(226,232,240,0.15) 1px, transparent 1px)',
           backgroundSize: '18px 18px',
           maskImage: 'radial-gradient(circle at 50% 50%, #000 60%, transparent 100%)',
           WebkitMaskImage: 'radial-gradient(circle at 50% 50%, #000 60%, transparent 100%)',
