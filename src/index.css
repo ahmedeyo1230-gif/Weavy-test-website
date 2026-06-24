@@ -600,6 +600,13 @@ body::after {
   88%            { box-shadow: 0 8px 24px hsl(0 0% 0% / 0.45), 0 0 24px hsl(205 85% 62% / 0.38); }
 }
 
+/* ── Social Media Section 5 — desktop-only image height ─────────────────── */
+@media (min-width: 1024px) {
+  .smbs-img {
+    height: 200px !important;
+  }
+}
+
 /* ── Respect prefers-reduced-motion ─────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   *,
