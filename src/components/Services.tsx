@@ -6507,7 +6507,7 @@ function GraphicDesignSplitA() {
       {/* Bottom fade — bridges into SplitB */}
       <div aria-hidden="true" style={{
         position: 'absolute', bottom: 0, left: 0, right: 0,
-        height: '120px',
+        height: '220px',
         background: 'linear-gradient(to bottom, rgba(1,7,9,0), #010709)',
         pointerEvents: 'none',
         zIndex: 5,
@@ -6560,8 +6560,8 @@ function GraphicDesignSplitB() {
       {/* Top fade — blends seamlessly from SplitA */}
       <div aria-hidden="true" style={{
         position: 'absolute', top: 0, left: 0, right: 0,
-        height: '120px',
-        background: 'linear-gradient(to bottom, #010709, rgba(1,7,9,0))',
+        height: '240px',
+        background: 'linear-gradient(to bottom, #010709 0%, rgba(1,7,9,0.85) 40%, rgba(1,7,9,0) 100%)',
         pointerEvents: 'none',
         zIndex: 5,
       }}/>
