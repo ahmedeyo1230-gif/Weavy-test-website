@@ -382,7 +382,7 @@ function BespokeFollowUp() {
               02 — Conversion-Focused Design
             </span>
           </div>
-          <span style={{ fontSize: '0.6rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'hsl(0 0% 52%)', fontFamily: 'var(--font-sans, sans-serif)' }}>
+          <span style={{ fontSize: '0.6rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'hsl(0 0% 74%)', fontFamily: 'var(--font-sans, sans-serif)' }}>
             Bespoke Website Design
           </span>
         </div>
@@ -400,14 +400,14 @@ function BespokeFollowUp() {
             <p style={{
               fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400,
               fontSize: 'clamp(3.8rem, 8.5vw, 7.5rem)',
-              color: 'hsl(0 0% 64%)', display: 'block',
+              color: 'hsl(0 0% 82%)', display: 'block',
             }}>to convert.</p>
           </div>
 
           {/* Body copy + editorial stat numbers */}
           <div className="bfu3-r" style={{ maxWidth: '26rem', paddingBottom: '0.5rem' }}>
             <p className="font-sans font-light mb-10" style={{
-              fontSize: 'clamp(0.84rem, 1.3vw, 0.98rem)', lineHeight: 1.9, color: '#F2F8FC',
+              fontSize: 'clamp(0.84rem, 1.3vw, 0.98rem)', lineHeight: 1.9, color: '#FFFFFF',
             }}>
               Your website should do more than look good. We build clear, fast, and persuasive
               experiences that help people understand your value and take action.
@@ -429,7 +429,7 @@ function BespokeFollowUp() {
                   <p style={{
                     fontFamily: 'var(--font-sans, sans-serif)', fontSize: '0.6rem',
                     letterSpacing: '0.16em', textTransform: 'uppercase',
-                    color: 'hsl(0 0% 56%)', fontWeight: 400,
+                    color: 'hsl(0 0% 76%)', fontWeight: 400,
                   }}>{label}</p>
                 </div>
               ))}
