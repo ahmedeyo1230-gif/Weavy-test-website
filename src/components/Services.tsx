@@ -382,7 +382,7 @@ function BespokeFollowUp() {
               02 — Conversion-Focused Design
             </span>
           </div>
-          <span style={{ fontSize: '0.6rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'hsl(0 0% 28%)', fontFamily: 'var(--font-sans, sans-serif)' }}>
+          <span style={{ fontSize: '0.6rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'hsl(0 0% 52%)', fontFamily: 'var(--font-sans, sans-serif)' }}>
             Bespoke Website Design
           </span>
         </div>
@@ -400,7 +400,7 @@ function BespokeFollowUp() {
             <p style={{
               fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400,
               fontSize: 'clamp(3.8rem, 8.5vw, 7.5rem)',
-              color: 'hsl(0 0% 44%)', display: 'block',
+              color: 'hsl(0 0% 64%)', display: 'block',
             }}>to convert.</p>
           </div>
 
@@ -429,7 +429,7 @@ function BespokeFollowUp() {
                   <p style={{
                     fontFamily: 'var(--font-sans, sans-serif)', fontSize: '0.6rem',
                     letterSpacing: '0.16em', textTransform: 'uppercase',
-                    color: 'hsl(0 0% 32%)', fontWeight: 400,
+                    color: 'hsl(0 0% 56%)', fontWeight: 400,
                   }}>{label}</p>
                 </div>
               ))}
