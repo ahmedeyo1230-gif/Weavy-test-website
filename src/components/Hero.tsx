@@ -140,7 +140,14 @@ export function Navbar() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -6, scale: 0.98 }}
             transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
-            className="sm:hidden mt-2 rounded-2xl glass-panel overflow-hidden"
+            className="sm:hidden mt-2 rounded-2xl overflow-hidden"
+            style={{
+              background: 'rgba(1, 7, 9, 0.97)',
+              backdropFilter: 'blur(24px)',
+              WebkitBackdropFilter: 'blur(24px)',
+              border: '1px solid rgba(255, 255, 255, 0.10)',
+              boxShadow: '0 12px 40px rgba(0,0,0,0.7), 0 2px 8px rgba(0,0,0,0.5)',
+            }}
           >
             <ul role="list">
               {NAV_LINKS.map(({ label, href }, i) => (
@@ -153,7 +160,18 @@ export function Navbar() {
                   <a
                     href={href}
                     onClick={() => { setActive(label); setMenuOpen(false) }}
-                    className="block text-sm px-5 py-3.5 text-muted hover:text-primary border-b border-border/40 last:border-0 transition-colors duration-150 active:bg-white/5"
+                    className="block px-6 py-4 last:border-0 transition-all duration-150"
+                    style={{
+                      color: 'rgba(248, 250, 252, 0.92)',
+                      fontSize: '0.92rem',
+                      letterSpacing: '0.015em',
+                      fontWeight: 400,
+                      borderBottom: '1px solid rgba(255,255,255,0.07)',
+                    }}
+                    onTouchStart={e => { (e.currentTarget as HTMLAnchorElement).style.backgroundColor = 'rgba(255,255,255,0.06)' }}
+                    onTouchEnd={e => { (e.currentTarget as HTMLAnchorElement).style.backgroundColor = '' }}
+                    onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.color = '#fff'; (e.currentTarget as HTMLAnchorElement).style.backgroundColor = 'rgba(255,255,255,0.05)' }}
+                    onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.color = 'rgba(248,250,252,0.92)'; (e.currentTarget as HTMLAnchorElement).style.backgroundColor = '' }}
                   >
                     {label}
                   </a>
