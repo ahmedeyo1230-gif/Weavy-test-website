@@ -3,6 +3,7 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Globe, Bot, BarChart2, Sparkles, Video, Settings2, Plug, Clock, UserCheck, CalendarDays, Zap, Camera, Target, Layers } from 'lucide-react'
 import { MessengerGlowBackground, SoftYellowGlow } from './ui/background-components'
+import { DarkIndigoTopGlow } from './ui/background-snippets'
 import { TestimonialsSection } from './ui/testimonials-1'
 import { GridBackground, DarkGridBg, NoiseCanvasBg, DarkSphereGridBg } from './ui/grid-background'
 import { BeamsBackgroundLayer } from './ui/beams-background'
@@ -6836,6 +6837,9 @@ function GraphicDesignFinalPresentation() {
         </filter>
         <rect width="100%" height="100%" filter="url(#gdfp-gr)" fill="white"/>
       </svg>
+
+      {/* Indigo radial from top — centred violet orb bleeding in from above */}
+      <DarkIndigoTopGlow />
 
       {/* Ambient — champagne left + cyan right */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{

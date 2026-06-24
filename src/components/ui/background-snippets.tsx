@@ -1,3 +1,15 @@
+export function DarkIndigoTopGlow() {
+  return (
+    <div
+      aria-hidden="true"
+      className="absolute inset-0 z-0 pointer-events-none"
+      style={{
+        background: 'radial-gradient(ellipse 80% 80% at 50% -20%, rgba(120,119,198,0.18), transparent)',
+      }}
+    />
+  )
+}
+
 export function BackgroundSnippet() {
   return (
     <div
