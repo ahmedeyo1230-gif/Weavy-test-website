@@ -6766,7 +6766,7 @@ function GraphicDesignSplitB() {
       {/* Bottom fade — bridges into FinalPresentation */}
       <div aria-hidden="true" style={{
         position: 'absolute', bottom: 0, left: 0, right: 0,
-        height: '120px',
+        height: '220px',
         background: 'linear-gradient(to bottom, rgba(1,7,9,0), #010709)',
         pointerEvents: 'none',
         zIndex: 5,
@@ -6840,6 +6840,15 @@ function GraphicDesignFinalPresentation() {
 
       {/* Indigo radial from top — centred violet orb bleeding in from above */}
       <DarkIndigoTopGlow />
+
+      {/* Top fade — eases indigo glow in from Section 5 */}
+      <div aria-hidden="true" style={{
+        position: 'absolute', top: 0, left: 0, right: 0,
+        height: '240px',
+        background: 'linear-gradient(to bottom, #010709 0%, rgba(1,7,9,0.85) 40%, rgba(1,7,9,0) 100%)',
+        pointerEvents: 'none',
+        zIndex: 5,
+      }}/>
 
       {/* Ambient — champagne left + cyan right */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
