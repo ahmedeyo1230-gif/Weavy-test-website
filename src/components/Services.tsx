@@ -6299,7 +6299,7 @@ function GraphicDesignServices() {
       {/* Bottom fade — cleans vignette edge before SplitA */}
       <div aria-hidden="true" style={{
         position: 'absolute', bottom: 0, left: 0, right: 0,
-        height: '120px',
+        height: '220px',
         background: 'linear-gradient(to bottom, rgba(1,7,9,0), #010709)',
         pointerEvents: 'none',
         zIndex: 5,
@@ -6347,6 +6347,15 @@ function GraphicDesignSplitA() {
         </filter>
         <rect width="100%" height="100%" filter="url(#gdsa-gr)" fill="white"/>
       </svg>
+
+      {/* Top fade — eases grid texture in from Section 3 */}
+      <div aria-hidden="true" style={{
+        position: 'absolute', top: 0, left: 0, right: 0,
+        height: '240px',
+        background: 'linear-gradient(to bottom, #010709 0%, rgba(1,7,9,0.85) 40%, rgba(1,7,9,0) 100%)',
+        pointerEvents: 'none',
+        zIndex: 5,
+      }}/>
 
       {/* Orange ambient bloom from left — echoes Firefly-12 lighting */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
