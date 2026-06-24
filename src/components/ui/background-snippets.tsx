@@ -10,6 +10,29 @@ export function DarkIndigoTopGlow() {
   )
 }
 
+export function DarkGridWithBlueGlow() {
+  return (
+    <div
+      aria-hidden="true"
+      className="absolute inset-0 pointer-events-none"
+      style={{
+        backgroundImage: `
+          linear-gradient(to right,  hsl(0 0% 100% / 0.032) 1px, transparent 1px),
+          linear-gradient(to bottom, hsl(0 0% 100% / 0.032) 1px, transparent 1px)
+        `,
+        backgroundSize: '6rem 4rem',
+      }}
+    >
+      <div
+        className="absolute inset-0"
+        style={{
+          background: 'radial-gradient(circle 500px at 50% 200px, rgba(201,235,255,0.07), transparent)',
+        }}
+      />
+    </div>
+  )
+}
+
 export function BackgroundSnippet() {
   return (
     <div

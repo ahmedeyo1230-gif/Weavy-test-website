@@ -3,7 +3,7 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Globe, Bot, BarChart2, Sparkles, Video, Settings2, Plug, Clock, UserCheck, CalendarDays, Zap, Camera, Target, Layers } from 'lucide-react'
 import { MessengerGlowBackground, SoftYellowGlow } from './ui/background-components'
-import { DarkIndigoTopGlow } from './ui/background-snippets'
+import { DarkIndigoTopGlow, DarkGridWithBlueGlow } from './ui/background-snippets'
 import { TestimonialsSection } from './ui/testimonials-1'
 import { GridBackground, DarkGridBg, NoiseCanvasBg, DarkSphereGridBg } from './ui/grid-background'
 import { BeamsBackgroundLayer } from './ui/beams-background'
@@ -1558,7 +1558,9 @@ function BespokeRealUsers() {
         padding: 'clamp(5rem, 10vw, 8rem) 0',
       }}
     >
-      {/* Subtle ambient glow */}
+      {/* 6rem×4rem white grid + centred blue radial glow */}
+      <DarkGridWithBlueGlow />
+
       {/* Grid + radial bloom behind the left text */}
       <GradientBlurBg
         accentColor="hsl(199 89% 60% / 0.09)"
