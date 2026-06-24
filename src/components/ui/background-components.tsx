@@ -1,3 +1,23 @@
+import { cn } from "@/lib/utils";
+
+interface GlowProps {
+  className?: string;
+}
+
+export const SoftYellowGlow = ({ className }: GlowProps) => {
+  return (
+    <div
+      aria-hidden="true"
+      className={cn("absolute inset-0 z-0 pointer-events-none", className)}
+      style={{
+        backgroundImage: `radial-gradient(circle at center, #FFF991 0%, transparent 70%)`,
+        opacity: 0.045,
+        mixBlendMode: "screen",
+      }}
+    />
+  );
+};
+
 export function MessengerGlowBackground() {
   return (
     <>

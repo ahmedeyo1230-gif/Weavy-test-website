@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Globe, Bot, BarChart2, Sparkles, Video, Settings2, Plug, Clock, UserCheck, CalendarDays, Zap, Camera, Target, Layers } from 'lucide-react'
-import { MessengerGlowBackground } from './ui/background-components'
+import { MessengerGlowBackground, SoftYellowGlow } from './ui/background-components'
 import { TestimonialsSection } from './ui/testimonials-1'
 import { GridBackground, DarkGridBg, NoiseCanvasBg, DarkSphereGridBg } from './ui/grid-background'
 import { BeamsBackgroundLayer } from './ui/beams-background'
@@ -6167,6 +6167,9 @@ function GraphicDesignServices() {
       className="relative w-full overflow-hidden"
       style={{ background: '#010709', padding: 'clamp(6rem, 10vw, 10rem) 0' }}
     >
+      {/* Soft yellow glow — centred warm orb, screen blend on dark bg */}
+      <SoftYellowGlow />
+
       {/* Grain */}
       <svg aria-hidden="true" className="pointer-events-none absolute inset-0 w-full h-full" style={{ opacity: 0.028, zIndex: 1 }}>
         <filter id="gdsvs-gr">
