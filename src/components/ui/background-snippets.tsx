@@ -17,24 +17,16 @@ export function DarkGridWithBlueGlow() {
       className="absolute inset-0 pointer-events-none"
       style={{
         backgroundImage: `
-          linear-gradient(to right,  hsl(0 0% 100% / 0.06) 1px, transparent 1px),
-          linear-gradient(to bottom, hsl(0 0% 100% / 0.06) 1px, transparent 1px)
+          linear-gradient(to right,  hsl(0 0% 100% / 0.032) 1px, transparent 1px),
+          linear-gradient(to bottom, hsl(0 0% 100% / 0.032) 1px, transparent 1px)
         `,
         backgroundSize: '6rem 4rem',
       }}
     >
-      {/* Purple glow — top-right, from background-snippets variant */}
       <div
         className="absolute inset-0"
         style={{
-          background: 'radial-gradient(circle 800px at 100% 200px, rgba(213,197,255,0.13), transparent)',
-        }}
-      />
-      {/* Blue glow — centred top, from demo variant */}
-      <div
-        className="absolute inset-0"
-        style={{
-          background: 'radial-gradient(circle 500px at 50% 200px, rgba(201,235,255,0.10), transparent)',
+          background: 'radial-gradient(circle 500px at 50% 200px, rgba(201,235,255,0.07), transparent)',
         }}
       />
     </div>
