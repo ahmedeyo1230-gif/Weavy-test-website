@@ -10667,7 +10667,7 @@ export default function Services() {
         }}
       >
         {/* Dark 40 px slate grid — structural depth layer */}
-        <DarkGridBg />
+        <DarkGridBg className="opacity-40" />
 
         {/* Ambient warm glow — upper center */}
         <div aria-hidden="true" style={{
