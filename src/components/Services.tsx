@@ -4,7 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Globe, Bot, BarChart2, Sparkles, Video, Settings2, Plug, Clock, UserCheck, CalendarDays, Zap, Camera, Target, Layers } from 'lucide-react'
 import { MessengerGlowBackground } from './ui/background-components'
 import { TestimonialsSection } from './ui/testimonials-1'
-import { GridBackground, DarkGridBg, NoiseCanvasBg } from './ui/grid-background'
+import { GridBackground, DarkGridBg, NoiseCanvasBg, DarkSphereGridBg } from './ui/grid-background'
 import { BeamsBackgroundLayer } from './ui/beams-background'
 import { CircularGallery, type GalleryItem } from './ui/circular-gallery'
 import { GradientBlurBg } from './ui/gradient-blur-bg'
@@ -6333,6 +6333,9 @@ function GraphicDesignSplitA() {
       className="relative w-full overflow-hidden"
       style={{ background: '#010709', padding: 'clamp(6rem, 10vw, 10rem) 0' }}
     >
+      {/* Dark sphere grid — 32 px slate lines + centred violet orb */}
+      <DarkSphereGridBg />
+
       {/* Grain */}
       <svg aria-hidden="true" className="pointer-events-none absolute inset-0 w-full h-full" style={{ opacity: 0.026, zIndex: 1 }}>
         <filter id="gdsa-gr">

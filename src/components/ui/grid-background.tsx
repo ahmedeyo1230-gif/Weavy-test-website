@@ -128,6 +128,28 @@ export const NoiseCanvasBg = ({ className }: GridBackgroundProps) => {
 };
 
 /**
+ * Dark sphere grid — 32 px slate grid lines + centered purple radial glow.
+ * Matches the dark-sphere-grid demo. Adds structural depth with a soft
+ * violet orb at the section centre.
+ */
+export const DarkSphereGridBg = ({ className }: GridBackgroundProps) => {
+  return (
+    <div
+      aria-hidden="true"
+      className={cn("absolute inset-0 z-0 pointer-events-none", className)}
+      style={{
+        backgroundImage: `
+          linear-gradient(to right,  rgba(71,85,105,0.30) 1px, transparent 1px),
+          linear-gradient(to bottom, rgba(71,85,105,0.30) 1px, transparent 1px),
+          radial-gradient(circle at 50% 50%, rgba(139,92,246,0.15) 0%, transparent 70%)
+        `,
+        backgroundSize: "32px 32px, 32px 32px, 100% 100%",
+      }}
+    />
+  );
+};
+
+/**
  * Dark faded grid — 40 px slate-toned lines at 20 % opacity.
  * Matches the dark-basic-grid demo. Use on very dark sections (#010709)
  * where a subtle structural depth is needed without adding colour.
