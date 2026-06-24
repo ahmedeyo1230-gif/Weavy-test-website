@@ -4663,10 +4663,10 @@ function SocialMediaMarketing() {
           </div>
 
           {/* ── RIGHT: image showcase ── */}
-          <div className="flex flex-col sm:flex-row items-end gap-5 order-2">
+          <div className="flex flex-col sm:flex-row sm:items-end gap-5 order-2">
 
             {/* Image 1: Instagram Watch — gallery-mounted tall frame */}
-            <div className="flex-1 relative" style={{ zIndex: 1 }}>
+            <div className="flex-1 relative w-full sm:w-auto" style={{ zIndex: 1 }}>
               <div
                 className="s5cv-img-a"
                 style={{
