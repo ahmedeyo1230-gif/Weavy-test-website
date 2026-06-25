@@ -8,6 +8,7 @@ import WhyWeavyWorks from './components/WhyWeavyWorks'
 import SystemsShowcase from './components/SystemsShowcase'
 import TestimonialsSection from './components/Testimonials'
 import Footer from './components/Footer'
+import WhatsAppFloatingButton from './components/WhatsAppFloatingButton'
 
 // Heavy pages — loaded only when navigated to
 const Services     = lazy(() => import('./components/Services'))
@@ -66,6 +67,7 @@ export default function App() {
   return (
     <>
       {!loaded && <LoadingScreen onComplete={() => setLoaded(true)} />}
+      {loaded && <WhatsAppFloatingButton />}
       {loaded && (
         <>
           {showServices ? (
