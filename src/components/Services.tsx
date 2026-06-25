@@ -4,6 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Globe, Bot, BarChart2, Sparkles, Video, Settings2, Plug, Clock, UserCheck, CalendarDays, Zap, Camera, Target, Layers } from 'lucide-react'
 import { MessengerGlowBackground, SoftYellowGlow } from './ui/background-components'
 import { DarkIndigoTopGlow, DarkGridWithBlueGlow } from './ui/background-snippets'
+import { BGPattern } from './ui/bg-pattern'
 import { TestimonialsSection } from './ui/testimonials-1'
 import { GridBackground, DarkGridBg, NoiseCanvasBg, DarkSphereGridBg } from './ui/grid-background'
 import { BeamsBackgroundLayer } from './ui/beams-background'
@@ -4816,6 +4817,16 @@ function SocialMediaMarketing() {
         backgroundImage: 'radial-gradient(hsl(210 40% 60% / 0.022) 1px, transparent 1px)',
         backgroundSize: '32px 32px',
       }}/>
+
+      {/* BGPattern grid — fade-edges mask, adapted for dark section */}
+      <BGPattern
+        variant="grid"
+        mask="fade-edges"
+        size={32}
+        fill="hsl(0 0% 100% / 0.04)"
+        className="pointer-events-none"
+        style={{ zIndex: 0 }}
+      />
 
       {/* Warm amber atmospheric tint */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
