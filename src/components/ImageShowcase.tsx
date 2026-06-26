@@ -1424,33 +1424,35 @@ export default function ImageShowcase() {
 
       {/* ── Section 1 — Video showcase ── */}
       <section
-        className="relative w-full overflow-hidden h-[50vh] sm:h-[65vh] lg:h-screen"
-        style={{ background: '#040B0E' }}
+        className="relative w-full overflow-hidden"
+        style={{ background: '#040B0E', padding: 'clamp(1.5rem, 3vw, 2.5rem) 0' }}
       >
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          className="object-left lg:object-center"
-          style={{
-            position: 'absolute',
-            inset: 0,
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover',
-            display: 'block',
-          }}
-        >
-          <source src="https://pub-731d5e7deddb4fce94cef7393920d429.r2.dev/HERO_SECTION2.mp4" type="video/mp4" />
-        </video>
+        <div className="relative max-w-4xl mx-auto px-4 sm:px-8">
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            style={{
+              display: 'block',
+              width: '100%',
+              height: 'auto',
+              aspectRatio: '16 / 9',
+              objectFit: 'cover',
+              objectPosition: 'center center',
+              borderRadius: '0.75rem',
+            }}
+          >
+            <source src="https://pub-731d5e7deddb4fce94cef7393920d429.r2.dev/HERO_SECTION2.mp4" type="video/mp4" />
+          </video>
+        </div>
 
         {/* Bottom blend into gallery */}
         <div
           aria-hidden="true"
           style={{
-            position: 'absolute', bottom: 0, left: 0, right: 0, height: '120px',
+            position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px',
             background: 'linear-gradient(to bottom, transparent, #010709)',
             pointerEvents: 'none', zIndex: 2,
           }}
