@@ -1427,7 +1427,7 @@ export default function ImageShowcase() {
         className="relative w-full overflow-hidden"
         style={{ background: '#040B0E', padding: 'clamp(1.5rem, 3vw, 2.5rem) 0' }}
       >
-        <div className="relative max-w-[81rem] mx-auto px-4 sm:px-8">
+        <div className="relative max-w-[109rem] mx-auto px-4 sm:px-8">
           <video
             autoPlay
             muted
