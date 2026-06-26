@@ -193,7 +193,7 @@ export default function Footer() {
       {/* Background video */}
       <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
         <FooterVideo />
-        <div className="absolute inset-0 pointer-events-none bg-black/28 lg:bg-black/52" />
+        <div className="absolute inset-0 pointer-events-none bg-black/12 lg:bg-black/22" />
       </div>
 
       <div style={{ position: 'relative', zIndex: 1 }}>
