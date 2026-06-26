@@ -23,8 +23,8 @@ const ALL_ARTICLES: Article[] = [
     excerpt:
       'A polished website is not enough. The best websites guide visitors, build trust, answer objections, and turn attention into clear action.',
     readTime: '5 min read',
-    image: '/brand_assets/dashboard1.png',
-    imageAlt: 'Weavy automation dashboard showing sales funnel analytics',
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80',
+    imageAlt: 'Laptop showing website analytics and conversion data',
     body: [
       'A strong website is not just a digital brochure. It should guide visitors through a clear journey, explain your value quickly, remove doubt, and make the next step feel obvious.',
       'When a visitor lands on your website, they are usually asking three things: what do you offer, can I trust you, and what should I do next? A sales-focused website answers those questions with strong messaging, clear structure, proof, and simple calls to action.',
@@ -39,8 +39,8 @@ const ALL_ARTICLES: Article[] = [
     excerpt:
       'AI chatbots help businesses answer questions, capture leads, manage bookings, and support customers instantly across websites, WhatsApp, Instagram DM, and Messenger.',
     readTime: '4 min read',
-    image: '/brand_assets/HIGGSFIELD.png',
-    imageAlt: 'AI chatbot automation interface for customer communication',
+    image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=800&q=80',
+    imageAlt: 'AI robot representing automated chatbot customer communication',
     body: [
       'Customers expect fast answers. If they have to wait too long, they often leave, forget, or choose another business. AI chatbots help reduce that gap by giving people instant support when they need it.',
       'A well-built chatbot can answer common questions, explain services, collect lead details, handle bookings, and guide visitors to the right next step. It can work across websites, WhatsApp, Instagram DM, and Messenger, giving customers a smoother experience.',
@@ -55,8 +55,8 @@ const ALL_ARTICLES: Article[] = [
     excerpt:
       'Growth becomes easier when content is planned, designed, scheduled, and measured with a clear strategy instead of random posting.',
     readTime: '6 min read',
-    image: '/brand_assets/Smiley_women.png',
-    imageAlt: 'Social media content creation and brand storytelling',
+    image: 'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&w=800&q=80',
+    imageAlt: 'Social media platform icons on a smartphone screen',
     body: [
       'Social media growth becomes difficult when content is created randomly. A consistent system makes it easier to plan, design, publish, and measure content with purpose.',
       'A strong social media system includes content pillars, posting structure, creative direction, scheduling, reporting, and performance review. This helps every post support a wider brand goal instead of existing on its own.',
@@ -71,8 +71,8 @@ const ALL_ARTICLES: Article[] = [
     excerpt:
       'Strong visuals help people recognise, remember, and trust your brand across websites, social platforms, campaigns, and content.',
     readTime: '5 min read',
-    image: '/brand_assets/Watch_L.png',
-    imageAlt: 'Luxury brand visual identity and premium product photography',
+    image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80',
+    imageAlt: 'Designer working on brand identity and digital visual systems',
     body: [
       'People often judge a brand before reading a single sentence. Colours, typography, layout, imagery, and motion all shape how trustworthy and professional a business feels.',
       'A strong visual identity creates recognition across every platform. It helps your website, social media, campaigns, presentations, and content feel connected instead of scattered.',
@@ -433,13 +433,13 @@ function FeaturedArticle({ onRead }: { onRead: () => void }) {
             height: '100%',
             objectFit: 'cover',
             objectPosition: 'center',
-            opacity: 0.7,
-            filter: 'brightness(0.85) contrast(1.08) saturate(0.9)',
+            opacity: 0.82,
+            filter: 'brightness(0.52) contrast(1.22) saturate(0.6)',
             transition: 'opacity 0.45s ease, transform 0.65s cubic-bezier(0.16,1,0.3,1)',
             transform: hovered ? 'scale(1.03)' : 'scale(1)',
           }}
         />
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 35%, #060f0e 100%)' }} />
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(6,15,14,0.18) 0%, rgba(6,15,14,0.55) 60%, #060f0e 100%)' }} />
       </div>
 
       {/* Content */}
@@ -537,8 +537,8 @@ function ArticleCard({
             height: '100%',
             objectFit: 'cover',
             objectPosition: 'center',
-            opacity: 0.68,
-            filter: 'brightness(0.82) contrast(1.08) saturate(0.85)',
+            opacity: 0.85,
+            filter: 'brightness(0.52) contrast(1.22) saturate(0.6)',
             transition: 'opacity 0.45s ease, transform 0.65s cubic-bezier(0.16,1,0.3,1)',
             transform: hovered ? 'scale(1.04)' : 'scale(1)',
           }}
