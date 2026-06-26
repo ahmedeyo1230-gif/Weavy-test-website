@@ -886,35 +886,19 @@ function TopicsStrip() {
 
 function TopicPill({ label, index }: { label: string; index: number }) {
   const [hovered, setHovered] = useState(false)
-  const isActive = index === 1
+  const base = {
+    border: '1px solid rgba(30, 111, 130, 0.45)',
+    background: 'rgba(6, 17, 20, 0.70)',
+    color: 'rgba(191, 239, 255, 0.80)',
+    boxShadow: 'none',
+  }
 
-  const base = isActive
-    ? {
-        border: '1px solid rgba(125, 220, 255, 0.80)',
-        background: 'rgba(9, 37, 49, 0.85)',
-        color: '#7DDCFF',
-        boxShadow: '0 0 28px rgba(125, 220, 255, 0.22)',
-      }
-    : {
-        border: '1px solid rgba(30, 111, 130, 0.45)',
-        background: 'rgba(6, 17, 20, 0.70)',
-        color: 'rgba(191, 239, 255, 0.80)',
-        boxShadow: 'none',
-      }
-
-  const hover = isActive
-    ? {
-        border: '1px solid rgba(125, 220, 255, 0.95)',
-        background: 'rgba(9, 45, 60, 0.90)',
-        color: '#fff',
-        boxShadow: '0 0 36px rgba(125, 220, 255, 0.30)',
-      }
-    : {
-        border: '1px solid rgba(125, 220, 255, 0.70)',
-        background: 'rgba(9, 32, 39, 0.80)',
-        color: '#fff',
-        boxShadow: '0 0 24px rgba(125, 220, 255, 0.16)',
-      }
+  const hover = {
+    border: '1px solid rgba(125, 220, 255, 0.70)',
+    background: 'rgba(9, 32, 39, 0.80)',
+    color: '#fff',
+    boxShadow: '0 0 24px rgba(125, 220, 255, 0.16)',
+  }
 
   const current = hovered ? hover : base
 
