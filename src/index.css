@@ -54,6 +54,14 @@ html {
   background: linear-gradient(to right, hsl(210 20% 40%), hsl(210 30% 80%));
 }
 
+/* ── Navbar position ─────────────────────────────────────────────────────── */
+.navbar-pos        { top: 10px; transition: top 500ms cubic-bezier(0.16,1,0.3,1); }
+.navbar-pos.is-scrolled { top: 3px; }
+@media (min-width: 768px) {
+  .navbar-pos       { top: 5px; }
+  .navbar-pos.is-scrolled { top: 2px; }
+}
+
 /* ── Magic Patterns utilities ────────────────────────────────────────────── */
 .glass-panel {
   background: hsl(205 40% 5% / 0.82);

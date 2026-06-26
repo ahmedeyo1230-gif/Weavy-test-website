@@ -75,8 +75,7 @@ export function Navbar() {
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
-      className="fixed left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-4xl"
-      style={{ top: scrolled ? '3px' : '8px', transition: 'top 500ms cubic-bezier(0.16,1,0.3,1)' }}
+      className={`fixed left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-4xl navbar-pos${scrolled ? ' is-scrolled' : ''}`}
     >
       <nav
         aria-label="Main navigation"
