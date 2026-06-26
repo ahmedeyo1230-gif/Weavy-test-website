@@ -269,7 +269,7 @@ export default function About() { // no diagonal lines bg
               </div>
               <div
                 className="text-xs font-mono select-none mb-3"
-                style={{ color: '#FFD86B', opacity: 0.75 }}
+                style={{ color: '#D6B85A', opacity: 0.75 }}
               >
                 {svc.num}
               </div>
@@ -280,7 +280,7 @@ export default function About() { // no diagonal lines bg
                   return (
                     <>
                       {parts[0]}
-                      <span style={{ color: '#FFD86B', opacity: 0.88 }}>{svc.highlight}</span>
+                      <span style={{ color: '#D6B85A', opacity: 0.88 }}>{svc.highlight}</span>
                       {parts[1]}
                     </>
                   )
