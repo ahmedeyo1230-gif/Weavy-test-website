@@ -392,6 +392,29 @@ html {
 }
 
 
+/* ── Service card gold line glint ────────────────────────────────────────── */
+@keyframes gold-line-glint {
+  0%, 18%  { transform: translateX(-120%); }
+  68%, 100% { transform: translateX(220%); }
+}
+
+.gold-line-glint {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 20%,
+    rgba(255, 255, 210, 0.80) 50%,
+    transparent 80%
+  );
+  animation: gold-line-glint 4.5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gold-line-glint { animation: none; opacity: 0; }
+}
+
 /* ── About section — service keyword shimmer ────────────────────────────── */
 @keyframes weavy-service-shimmer {
   0%   { background-position: 0% center; }

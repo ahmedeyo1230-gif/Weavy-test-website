@@ -251,8 +251,11 @@ export default function About() { // no diagonal lines bg
                   background: 'linear-gradient(to right, #FFD86B, rgba(255,216,107,0.15))',
                   opacity: 0.55,
                   borderRadius: '0 0 2px 2px',
+                  overflow: 'hidden',
                 }}
-              />
+              >
+                <div className="gold-line-glint" />
+              </div>
               <div
                 className="text-xs font-mono select-none mb-3"
                 style={{ color: '#FFD86B', opacity: 0.75 }}
