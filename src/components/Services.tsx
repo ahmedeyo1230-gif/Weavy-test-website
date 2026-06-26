@@ -10504,7 +10504,7 @@ export default function Services() {
                   fontFamily: "'Instrument Serif', Georgia, serif",
                   fontStyle: 'italic',
                   fontWeight: 400,
-                  background: 'linear-gradient(115deg, #F8FAFC 10%, #E8C97A 45%, #BFA45A 75%, #E8C97A 100%)',
+                  background: 'linear-gradient(115deg, #F8FAFC 5%, #A7F3D0 30%, #2DD4BF 60%, #0F766E 100%)',
                   WebkitBackgroundClip: 'text',
                   backgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
