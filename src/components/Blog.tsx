@@ -886,6 +886,37 @@ function TopicsStrip() {
 
 function TopicPill({ label, index }: { label: string; index: number }) {
   const [hovered, setHovered] = useState(false)
+  const isActive = index === 1
+
+  const base = isActive
+    ? {
+        border: '1px solid rgba(125, 220, 255, 0.80)',
+        background: 'rgba(9, 37, 49, 0.85)',
+        color: '#7DDCFF',
+        boxShadow: '0 0 28px rgba(125, 220, 255, 0.22)',
+      }
+    : {
+        border: '1px solid rgba(30, 111, 130, 0.45)',
+        background: 'rgba(6, 17, 20, 0.70)',
+        color: 'rgba(191, 239, 255, 0.80)',
+        boxShadow: 'none',
+      }
+
+  const hover = isActive
+    ? {
+        border: '1px solid rgba(125, 220, 255, 0.95)',
+        background: 'rgba(9, 45, 60, 0.90)',
+        color: '#fff',
+        boxShadow: '0 0 36px rgba(125, 220, 255, 0.30)',
+      }
+    : {
+        border: '1px solid rgba(125, 220, 255, 0.70)',
+        background: 'rgba(9, 32, 39, 0.80)',
+        color: '#fff',
+        boxShadow: '0 0 24px rgba(125, 220, 255, 0.16)',
+      }
+
+  const current = hovered ? hover : base
 
   return (
     <motion.span
@@ -900,15 +931,16 @@ function TopicPill({ label, index }: { label: string; index: number }) {
         alignItems: 'center',
         padding: '0.55rem 1.2rem',
         borderRadius: '999px',
-        border: `1px solid ${hovered ? 'hsl(195 70% 55% / 0.4)' : 'hsl(0 0% 100% / 0.1)'}`,
-        background: hovered ? 'hsl(195 40% 8% / 0.7)' : 'hsl(0 0% 100% / 0.03)',
+        border: current.border,
+        background: current.background,
+        boxShadow: current.boxShadow,
         fontFamily: "'Inter', system-ui, sans-serif",
         fontWeight: 300,
         fontSize: 'clamp(0.72rem, 1.1vw, 0.82rem)',
         letterSpacing: '0.04em',
-        color: hovered ? 'hsl(195 70% 72%)' : 'hsl(0 0% 46%)',
+        color: current.color,
         cursor: 'default',
-        transition: 'border-color 0.3s ease, background 0.3s ease, color 0.3s ease',
+        transition: 'border 0.3s ease, background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease',
         userSelect: 'none',
         whiteSpace: 'nowrap',
       }}
