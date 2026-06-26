@@ -678,15 +678,21 @@ function BespokeCareStories() {
       ref={ref}
       className="relative w-full overflow-hidden"
       style={{
-        background: '#010709',
+        background: 'radial-gradient(ellipse 90% 70% at 35% 50%, #07141A 0%, #010709 65%)',
         padding: 'clamp(5rem, 9vw, 8rem) 0',
       }}
     >
-      {/* Subtle warm ambient glow */}
+      {/* Champagne gold depth layer */}
       <div aria-hidden="true" style={{
         position: 'absolute', inset: 0, pointerEvents: 'none',
-        background: 'radial-gradient(ellipse 60% 50% at 20% 55%, hsl(36 50% 55% / 0.04) 0%, transparent 65%)',
+        background: [
+          'radial-gradient(ellipse 55% 50% at 22% 52%, rgba(200,175,100,0.055) 0%, transparent 68%)',
+          'radial-gradient(ellipse 36% 30% at 70% 45%, rgba(7,20,26,0.55) 0%, transparent 60%)',
+        ].join(', '),
       }}/>
+
+      {/* Flowing light line */}
+      <div aria-hidden="true" className="bwd1-mesh-line pointer-events-none absolute inset-0" style={{ zIndex: 0 }} />
 
       {/* Section boundary fades */}
       <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to bottom, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
@@ -697,11 +703,11 @@ function BespokeCareStories() {
 
           {/* ── LEFT: Image ── */}
           <div className="bcs-img relative">
-            {/* Soft glow behind image */}
+            {/* Champagne gold ambient glow behind image */}
             <div aria-hidden="true" style={{
               position: 'absolute', inset: '-24px',
-              background: 'radial-gradient(ellipse 75% 65% at 50% 50%, hsl(36 45% 55% / 0.07) 0%, transparent 70%)',
-              filter: 'blur(28px)',
+              background: 'radial-gradient(ellipse 75% 65% at 50% 50%, rgba(200,175,90,0.08) 0%, transparent 70%)',
+              filter: 'blur(36px)',
               pointerEvents: 'none',
             }}/>
 
@@ -748,7 +754,7 @@ function BespokeCareStories() {
               style={{
                 fontSize: '0.64rem',
                 letterSpacing: '0.34em',
-                color: 'hsl(36 40% 58%)',
+                color: '#E8C97A',
                 marginBottom: '1.4rem',
               }}
             >
@@ -774,7 +780,8 @@ function BespokeCareStories() {
               <em style={{ display: 'inline-block', overflow: 'hidden', verticalAlign: 'bottom', paddingBottom: '0.04em',
                 fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400 }}>
                 <span className="bcs-hword" style={{ display: 'inline-block', transform: 'translateY(110%)', opacity: 0,
-                  color: 'hsl(36 45% 70%)' }}>Human.</span>
+                  background: 'linear-gradient(115deg, #F8FAFC 10%, #E8C97A 45%, #BFA45A 75%, #E8C97A 100%)',
+                  WebkitBackgroundClip: 'text', backgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Human.</span>
               </em>
             </h2>
 
@@ -784,7 +791,7 @@ function BespokeCareStories() {
               style={{
                 fontSize: 'clamp(0.86rem, 1.35vw, 0.98rem)',
                 lineHeight: 1.85,
-                color: '#F2F8FC',
+                color: '#D7DCE2',
                 maxWidth: '34rem',
                 marginBottom: '1.2rem',
               }}
@@ -797,7 +804,7 @@ function BespokeCareStories() {
               style={{
                 fontSize: 'clamp(0.86rem, 1.35vw, 0.98rem)',
                 lineHeight: 1.85,
-                color: '#F2F8FC',
+                color: '#D7DCE2',
                 maxWidth: '34rem',
                 marginBottom: '2.4rem',
               }}
@@ -828,12 +835,13 @@ function BespokeCareStories() {
                 >
                   <span style={{
                     display: 'inline-block', width: '18px', height: '1px',
-                    background: 'hsl(36 40% 58%)', flexShrink: 0,
+                    background: 'linear-gradient(to right, #E8C97A, #BFA45A)',
+                    opacity: 0.75, flexShrink: 0,
                   }}/>
                   <span style={{
                     fontFamily: 'Inter, sans-serif', fontWeight: 300,
                     fontSize: 'clamp(0.8rem, 1.2vw, 0.88rem)',
-                    letterSpacing: '0.02em', color: '#F2F8FC',
+                    letterSpacing: '0.02em', color: '#D7DCE2',
                   }}>
                     {item}
                   </span>
