@@ -129,7 +129,7 @@ function ArticleDetail({
           fontWeight: 300,
           fontSize: '0.78rem',
           letterSpacing: '0.04em',
-          color: backHover ? '#fff' : 'hsl(0 0% 38%)',
+          color: backHover ? '#fff' : 'hsl(0 0% 60%)',
           transition: 'color 0.28s ease',
         }}
       >
@@ -179,7 +179,7 @@ function ArticleDetail({
             fontFamily: "'Inter', system-ui, sans-serif",
             fontWeight: 300,
             fontSize: '0.66rem',
-            color: 'hsl(0 0% 28%)',
+            color: 'hsl(0 0% 54%)',
             letterSpacing: '0.05em',
           }}
         >
@@ -235,7 +235,7 @@ function ArticleDetail({
               fontWeight: 300,
               fontSize: 'clamp(0.95rem, 1.6vw, 1.08rem)',
               lineHeight: 1.95,
-              color: 'hsl(0 0% 52%)',
+              color: 'hsl(0 0% 72%)',
               margin: 0,
             }}
           >
@@ -269,10 +269,10 @@ function ArticleDetail({
           fontWeight: 300,
           fontSize: '0.78rem',
           letterSpacing: '0.04em',
-          color: 'hsl(0 0% 34%)',
+          color: 'hsl(0 0% 58%)',
         }}
         onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.color = '#fff' }}
-        onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.color = 'hsl(0 0% 34%)' }}
+        onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.color = 'hsl(0 0% 58%)' }}
       >
         ← Back to articles
       </button>
@@ -332,7 +332,7 @@ function BlogHeader() {
             fontFamily: "'Instrument Serif', Georgia, serif",
             fontStyle: 'italic',
             fontWeight: 400,
-            color: 'hsl(0 0% 52%)',
+            color: 'hsl(0 0% 68%)',
           }}
         >
           smarter digital systems.
@@ -349,7 +349,7 @@ function BlogHeader() {
           fontWeight: 300,
           fontSize: 'clamp(0.88rem, 1.4vw, 1rem)',
           lineHeight: 1.9,
-          color: 'hsl(0 0% 38%)',
+          color: 'hsl(0 0% 64%)',
           maxWidth: '44rem',
           marginBottom: 'clamp(2.5rem, 5vw, 4rem)',
         }}
@@ -450,7 +450,7 @@ function FeaturedArticle({ onRead }: { onRead: () => void }) {
             {FEATURED.category}
           </span>
           <span style={{ display: 'inline-block', width: 1, height: 10, background: 'hsl(0 0% 100% / 0.12)' }} />
-          <span style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 300, fontSize: '0.66rem', color: 'hsl(0 0% 28%)', letterSpacing: '0.05em' }}>
+          <span style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 300, fontSize: '0.66rem', color: 'hsl(0 0% 54%)', letterSpacing: '0.05em' }}>
             {FEATURED.readTime}
           </span>
         </div>
@@ -461,12 +461,12 @@ function FeaturedArticle({ onRead }: { onRead: () => void }) {
 
         <div style={{ width: hovered ? '3.5rem' : '2.2rem', height: '1px', background: 'hsl(195 70% 55% / 0.45)', transition: 'width 0.45s ease' }} />
 
-        <p style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 300, fontSize: 'clamp(0.88rem, 1.45vw, 1.02rem)', lineHeight: 1.88, color: 'hsl(0 0% 38%)', maxWidth: '42rem', margin: 0 }}>
+        <p style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 300, fontSize: 'clamp(0.88rem, 1.45vw, 1.02rem)', lineHeight: 1.88, color: 'hsl(0 0% 64%)', maxWidth: '42rem', margin: 0 }}>
           {FEATURED.excerpt}
         </p>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.55rem' }}>
-          <span style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 300, fontSize: '0.76rem', letterSpacing: '0.05em', color: hovered ? 'hsl(195 80% 68%)' : 'hsl(0 0% 38%)', borderBottom: `1px solid ${hovered ? 'hsl(195 70% 55% / 0.5)' : 'hsl(0 0% 100% / 0.1)'}`, paddingBottom: '2px', transition: 'color 0.32s ease, border-color 0.32s ease' }}>
+          <span style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 300, fontSize: '0.76rem', letterSpacing: '0.05em', color: hovered ? 'hsl(195 80% 68%)' : 'hsl(0 0% 62%)', borderBottom: `1px solid ${hovered ? 'hsl(195 70% 55% / 0.5)' : 'hsl(0 0% 100% / 0.1)'}`, paddingBottom: '2px', transition: 'color 0.32s ease, border-color 0.32s ease' }}>
             Read article
           </span>
           <span style={{ fontSize: '0.82rem', color: hovered ? 'hsl(195 80% 68%)' : 'hsl(0 0% 30%)', display: 'inline-block', transition: 'color 0.32s ease, transform 0.32s ease', transform: hovered ? 'translateX(5px)' : 'translateX(0)' }}>
@@ -565,12 +565,12 @@ function ArticleCard({
 
       <div style={{ width: hovered ? '2.4rem' : '1.2rem', height: '1px', background: hovered ? 'hsl(195 70% 55% / 0.72)' : 'hsl(195 70% 55% / 0.2)', transition: 'width 0.42s ease, background 0.35s ease' }} />
 
-      <p style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 300, fontSize: 'clamp(0.8rem, 1.2vw, 0.88rem)', lineHeight: 1.82, color: 'hsl(0 0% 33%)', margin: 0, flex: 1 }}>
+      <p style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 300, fontSize: 'clamp(0.8rem, 1.2vw, 0.88rem)', lineHeight: 1.82, color: 'hsl(0 0% 62%)', margin: 0, flex: 1 }}>
         {article.excerpt}
       </p>
 
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '0.3rem', paddingTop: '1rem', borderTop: '1px solid hsl(0 0% 100% / 0.05)' }}>
-        <span style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 300, fontSize: '0.63rem', color: 'hsl(0 0% 24%)', letterSpacing: '0.04em' }}>
+        <span style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 300, fontSize: '0.63rem', color: 'hsl(0 0% 50%)', letterSpacing: '0.04em' }}>
           {article.readTime}
         </span>
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
