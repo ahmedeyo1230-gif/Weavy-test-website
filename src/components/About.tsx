@@ -84,7 +84,17 @@ export default function About() { // no diagonal lines bg
               className="text-4xl md:text-5xl lg:text-[3.25rem] font-light tracking-tighter leading-[1.1] text-primary"
             >
               We are a{' '}
-              <em className="font-serif italic">full-stack</em>
+              <em
+                className="font-serif italic"
+                style={{
+                  background: 'linear-gradient(90deg, #ffffff 0%, #7DDCFF 40%, #2BA8D9 70%, #7DDCFF 100%)',
+                  backgroundSize: '200% auto',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
+                  animation: 'gradientShift 4s linear infinite',
+                }}
+              >full-stack</em>
               <br className="hidden sm:block" />
               {' '}automation agency
             </motion.h2>
