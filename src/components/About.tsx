@@ -109,7 +109,7 @@ export default function About() { // no diagonal lines bg
             >
               <p>
                 We craft <span className="weavy-shimmer-text">bespoke websites</span>, deploy{' '}
-                <span className="weavy-shimmer-text">AI-powered chatbots</span>, and build
+                <span className="weavy-shimmer-text">smart chatbots</span>, and build
                 intelligent systems for{' '}
                 <span className="weavy-shimmer-text">digital marketing</span>,{' '}
                 <span className="weavy-shimmer-text">social media automation</span>,{' '}
