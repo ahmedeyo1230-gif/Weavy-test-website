@@ -253,7 +253,7 @@ export default function Hero() {
         >
           <motion.p
             variants={itemVariants}
-            className="text-[10px] sm:text-xs tracking-widest mb-6 mt-6 font-medium"
+            className="text-[11px] sm:text-[13px] tracking-widest mb-6 mt-6 font-medium"
             style={{ color: '#94A3B8', letterSpacing: '0.22em' }}
           >
             TripleX <span className="uppercase">Automation Agency</span>
