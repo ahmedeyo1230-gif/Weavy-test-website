@@ -75,7 +75,7 @@ export function Navbar() {
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
-      className={`fixed left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-4xl transition-all duration-500 ${scrolled ? 'top-[4px]' : 'top-[14px] md:top-[10px]'}`}
+      className={`fixed left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-4xl transition-all duration-500 ${scrolled ? 'top-[2px]' : 'top-[8px] md:top-[6px]'}`}
     >
       <nav
         aria-label="Main navigation"
