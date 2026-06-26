@@ -11,6 +11,8 @@ interface Article {
   excerpt: string
   readTime: string
   body: string[]
+  image: string
+  imageAlt: string
 }
 
 const ALL_ARTICLES: Article[] = [
@@ -21,6 +23,8 @@ const ALL_ARTICLES: Article[] = [
     excerpt:
       'A polished website is not enough. The best websites guide visitors, build trust, answer objections, and turn attention into clear action.',
     readTime: '5 min read',
+    image: '/brand_assets/dashboard1.png',
+    imageAlt: 'Weavy automation dashboard showing sales funnel analytics',
     body: [
       'A strong website is not just a digital brochure. It should guide visitors through a clear journey, explain your value quickly, remove doubt, and make the next step feel obvious.',
       'When a visitor lands on your website, they are usually asking three things: what do you offer, can I trust you, and what should I do next? A sales-focused website answers those questions with strong messaging, clear structure, proof, and simple calls to action.',
@@ -35,6 +39,8 @@ const ALL_ARTICLES: Article[] = [
     excerpt:
       'AI chatbots help businesses answer questions, capture leads, manage bookings, and support customers instantly across websites, WhatsApp, Instagram DM, and Messenger.',
     readTime: '4 min read',
+    image: '/brand_assets/HIGGSFIELD.png',
+    imageAlt: 'AI chatbot automation interface for customer communication',
     body: [
       'Customers expect fast answers. If they have to wait too long, they often leave, forget, or choose another business. AI chatbots help reduce that gap by giving people instant support when they need it.',
       'A well-built chatbot can answer common questions, explain services, collect lead details, handle bookings, and guide visitors to the right next step. It can work across websites, WhatsApp, Instagram DM, and Messenger, giving customers a smoother experience.',
@@ -49,6 +55,8 @@ const ALL_ARTICLES: Article[] = [
     excerpt:
       'Growth becomes easier when content is planned, designed, scheduled, and measured with a clear strategy instead of random posting.',
     readTime: '6 min read',
+    image: '/brand_assets/Smiley_women.png',
+    imageAlt: 'Social media content creation and brand storytelling',
     body: [
       'Social media growth becomes difficult when content is created randomly. A consistent system makes it easier to plan, design, publish, and measure content with purpose.',
       'A strong social media system includes content pillars, posting structure, creative direction, scheduling, reporting, and performance review. This helps every post support a wider brand goal instead of existing on its own.',
@@ -63,6 +71,8 @@ const ALL_ARTICLES: Article[] = [
     excerpt:
       'Strong visuals help people recognise, remember, and trust your brand across websites, social platforms, campaigns, and content.',
     readTime: '5 min read',
+    image: '/brand_assets/Watch_L.png',
+    imageAlt: 'Luxury brand visual identity and premium product photography',
     body: [
       'People often judge a brand before reading a single sentence. Colours, typography, layout, imagery, and motion all shape how trustworthy and professional a business feels.',
       'A strong visual identity creates recognition across every platform. It helps your website, social media, campaigns, presentations, and content feel connected instead of scattered.',
@@ -392,13 +402,11 @@ function FeaturedArticle({ onRead }: { onRead: () => void }) {
         cursor: 'pointer',
         marginBottom: '1.25rem',
         background: '#060f0e',
-        padding: 'clamp(2.2rem, 5vw, 4rem)',
-        display: 'grid',
-        gridTemplateColumns: '1fr auto',
-        gap: '2rem',
-        alignItems: 'end',
+        display: 'flex',
+        flexDirection: 'column',
       }}
     >
+      {/* Top accent line */}
       <div
         aria-hidden="true"
         style={{
@@ -409,9 +417,33 @@ function FeaturedArticle({ onRead }: { onRead: () => void }) {
             ? 'linear-gradient(to right, hsl(195 70% 55%) 0%, hsl(215 80% 60%) 60%, transparent 100%)'
             : 'linear-gradient(to right, hsl(195 70% 55% / 0.3) 0%, transparent 60%)',
           transition: 'background 0.5s ease',
+          zIndex: 1,
         }}
       />
 
+      {/* Hero image banner */}
+      <div style={{ position: 'relative', width: '100%', aspectRatio: '21 / 8', overflow: 'hidden' }}>
+        <img
+          src={FEATURED.image}
+          alt={FEATURED.imageAlt}
+          decoding="async"
+          style={{
+            display: 'block',
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            objectPosition: 'center',
+            opacity: 0.7,
+            filter: 'brightness(0.85) contrast(1.08) saturate(0.9)',
+            transition: 'opacity 0.45s ease, transform 0.65s cubic-bezier(0.16,1,0.3,1)',
+            transform: hovered ? 'scale(1.03)' : 'scale(1)',
+          }}
+        />
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 35%, #060f0e 100%)' }} />
+      </div>
+
+      {/* Content */}
+      <div style={{ padding: 'clamp(2rem, 4.5vw, 3.5rem)', display: 'grid', gridTemplateColumns: '1fr auto', gap: '2rem', alignItems: 'end' }}>
       <div style={{ display: 'flex', flexDirection: 'column', gap: '1.6rem' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
           <span style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 300, fontSize: '0.56rem', letterSpacing: '0.32em', textTransform: 'uppercase', color: 'hsl(195 65% 62%)' }}>
@@ -446,6 +478,7 @@ function FeaturedArticle({ onRead }: { onRead: () => void }) {
       <span aria-hidden="true" style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontSize: 'clamp(6rem, 14vw, 14rem)', lineHeight: 1, letterSpacing: '-0.06em', color: hovered ? 'hsl(0 0% 100% / 0.04)' : 'hsl(0 0% 100% / 0.03)', userSelect: 'none', transition: 'color 0.4s ease', alignSelf: 'center' }}>
         {FEATURED.num}
       </span>
+      </div>{/* close content wrapper */}
     </motion.article>
   )
 }
@@ -484,14 +517,37 @@ function ArticleCard({
         transition: 'transform 0.5s cubic-bezier(0.16,1,0.3,1), border-color 0.4s ease, box-shadow 0.45s ease',
         cursor: 'pointer',
         background: '#060f0e',
-        padding: 'clamp(1.6rem, 3vw, 2.4rem)',
         display: 'flex',
         flexDirection: 'column',
-        gap: '1.1rem',
       }}
     >
-      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '1px', background: hovered ? 'linear-gradient(to right, hsl(195 70% 55% / 0.7) 0%, transparent 70%)' : 'linear-gradient(to right, hsl(195 70% 55% / 0.18) 0%, transparent 60%)', transition: 'background 0.45s ease' }} />
+      {/* Top accent line */}
+      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '1px', background: hovered ? 'linear-gradient(to right, hsl(195 70% 55% / 0.7) 0%, transparent 70%)' : 'linear-gradient(to right, hsl(195 70% 55% / 0.18) 0%, transparent 60%)', transition: 'background 0.45s ease', zIndex: 1 }} />
 
+      {/* Card image */}
+      <div style={{ position: 'relative', width: '100%', aspectRatio: '16 / 9', overflow: 'hidden' }}>
+        <img
+          src={article.image}
+          alt={article.imageAlt}
+          loading="lazy"
+          decoding="async"
+          style={{
+            display: 'block',
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            objectPosition: 'center',
+            opacity: 0.68,
+            filter: 'brightness(0.82) contrast(1.08) saturate(0.85)',
+            transition: 'opacity 0.45s ease, transform 0.65s cubic-bezier(0.16,1,0.3,1)',
+            transform: hovered ? 'scale(1.04)' : 'scale(1)',
+          }}
+        />
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 50%, #060f0e 100%)' }} />
+      </div>
+
+      {/* Text content */}
+      <div style={{ padding: 'clamp(1.4rem, 2.5vw, 2rem)', display: 'flex', flexDirection: 'column', gap: '1.1rem', flex: 1 }}>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <span style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 300, fontSize: '0.54rem', letterSpacing: '0.32em', textTransform: 'uppercase', color: 'hsl(195 65% 60%)' }}>
           {article.category}
@@ -526,6 +582,7 @@ function ArticleCard({
           </span>
         </div>
       </div>
+      </div>{/* close text content wrapper */}
     </motion.article>
   )
 }
