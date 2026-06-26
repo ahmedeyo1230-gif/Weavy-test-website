@@ -133,32 +133,46 @@ export default function About() { // no diagonal lines bg
               transition={{ duration: 0.55, delay: 0.2, ease: E }}
               className="flex flex-wrap gap-2"
             >
-              {TAGS.map((tag, i) => (
-                <motion.span
-                  key={tag}
-                  initial={{ opacity: 0, y: 8 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.35, delay: 0.22 + i * 0.055, ease: E }}
-                  className="inline-flex items-center gap-1.5 text-[11px] uppercase tracking-widest rounded-full px-4 py-2 cursor-pointer select-none"
-                  style={{ color: '#94A3B8', border: '1px solid rgba(255,255,255,0.10)', transition: 'border-color 200ms, color 200ms, background-color 200ms' }}
-                  onMouseEnter={e => {
-                    const el = e.currentTarget as HTMLElement
-                    el.style.borderColor = 'hsl(199 89% 60% / 0.35)'
-                    el.style.color = 'hsl(0 0% 90%)'
-                    el.style.backgroundColor = 'hsl(199 89% 60% / 0.04)'
-                  }}
-                  onMouseLeave={e => {
-                    const el = e.currentTarget as HTMLElement
-                    el.style.borderColor = ''
-                    el.style.color = ''
-                    el.style.backgroundColor = ''
-                  }}
-                >
-                  <span className="w-[5px] h-[5px] rounded-full bg-accent-cyan/35 shrink-0" />
-                  {tag}
-                </motion.span>
-              ))}
+              {TAGS.map((tag, i) => {
+                const isActive = i === 0
+                return (
+                  <motion.span
+                    key={tag}
+                    initial={{ opacity: 0, y: 8 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.35, delay: 0.22 + i * 0.055, ease: E }}
+                    className="inline-flex items-center gap-1.5 text-[11px] uppercase tracking-widest rounded-full px-4 py-2 cursor-pointer select-none"
+                    style={{
+                      color: isActive ? '#F8FAFC' : 'rgba(191,239,255,0.82)',
+                      border: `1px solid ${isActive ? 'rgba(125,220,255,0.68)' : 'rgba(43,168,217,0.38)'}`,
+                      backgroundColor: isActive ? 'rgba(6,22,30,0.70)' : 'rgba(6,17,20,0.50)',
+                      boxShadow: isActive ? '0 0 18px rgba(125,220,255,0.20)' : 'none',
+                      transition: 'border-color 200ms, color 200ms, background-color 200ms, box-shadow 200ms',
+                    }}
+                    onMouseEnter={e => {
+                      const el = e.currentTarget as HTMLElement
+                      el.style.borderColor = 'rgba(125,220,255,0.80)'
+                      el.style.color = '#ffffff'
+                      el.style.backgroundColor = 'rgba(9,32,39,0.80)'
+                      el.style.boxShadow = '0 0 22px rgba(125,220,255,0.22)'
+                    }}
+                    onMouseLeave={e => {
+                      const el = e.currentTarget as HTMLElement
+                      el.style.borderColor = isActive ? 'rgba(125,220,255,0.68)' : 'rgba(43,168,217,0.38)'
+                      el.style.color = isActive ? '#F8FAFC' : 'rgba(191,239,255,0.82)'
+                      el.style.backgroundColor = isActive ? 'rgba(6,22,30,0.70)' : 'rgba(6,17,20,0.50)'
+                      el.style.boxShadow = isActive ? '0 0 18px rgba(125,220,255,0.20)' : 'none'
+                    }}
+                  >
+                    <span
+                      className="w-[5px] h-[5px] rounded-full shrink-0"
+                      style={{ background: isActive ? '#7DDCFF' : 'rgba(43,168,217,0.72)' }}
+                    />
+                    {tag}
+                  </motion.span>
+                )
+              })}
             </motion.div>
 
             {/* Animated accent line */}
