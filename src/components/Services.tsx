@@ -2,10 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Globe, Bot, BarChart2, Sparkles, Video, Settings2, Plug, Clock, UserCheck, CalendarDays, Zap, Camera, Target, Layers } from 'lucide-react'
-import { MessengerGlowBackground, SoftYellowGlow } from './ui/background-components'
-import { DarkIndigoTopGlow } from './ui/background-snippets'
-import { BackgroundGradientSnippet } from './ui/background-gradient-snippet'
-import { BGPattern } from './ui/bg-pattern'
+import { MessengerGlowBackground } from './ui/background-components'
 import { TestimonialsSection } from './ui/testimonials-1'
 import { GridBackground, DarkGridBg, NoiseCanvasBg, DarkSphereGridBg } from './ui/grid-background'
 import { BeamsBackgroundLayer } from './ui/beams-background'
@@ -384,7 +381,7 @@ function BespokeFollowUp() {
               02 — Conversion-Focused Design
             </span>
           </div>
-          <span style={{ fontSize: '0.6rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'hsl(0 0% 74%)', fontFamily: 'var(--font-sans, sans-serif)' }}>
+          <span style={{ fontSize: '0.6rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'hsl(0 0% 28%)', fontFamily: 'var(--font-sans, sans-serif)' }}>
             Bespoke Website Design
           </span>
         </div>
@@ -402,14 +399,14 @@ function BespokeFollowUp() {
             <p style={{
               fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400,
               fontSize: 'clamp(3.8rem, 8.5vw, 7.5rem)',
-              color: 'hsl(0 0% 82%)', display: 'block',
+              color: 'hsl(0 0% 44%)', display: 'block',
             }}>to convert.</p>
           </div>
 
           {/* Body copy + editorial stat numbers */}
           <div className="bfu3-r" style={{ maxWidth: '26rem', paddingBottom: '0.5rem' }}>
             <p className="font-sans font-light mb-10" style={{
-              fontSize: 'clamp(0.84rem, 1.3vw, 0.98rem)', lineHeight: 1.9, color: '#FFFFFF',
+              fontSize: 'clamp(0.84rem, 1.3vw, 0.98rem)', lineHeight: 1.9, color: '#F2F8FC',
             }}>
               Your website should do more than look good. We build clear, fast, and persuasive
               experiences that help people understand your value and take action.
@@ -431,7 +428,7 @@ function BespokeFollowUp() {
                   <p style={{
                     fontFamily: 'var(--font-sans, sans-serif)', fontSize: '0.6rem',
                     letterSpacing: '0.16em', textTransform: 'uppercase',
-                    color: 'hsl(0 0% 76%)', fontWeight: 400,
+                    color: 'hsl(0 0% 32%)', fontWeight: 400,
                   }}>{label}</p>
                 </div>
               ))}
@@ -1560,9 +1557,7 @@ function BespokeRealUsers() {
         padding: 'clamp(5rem, 10vw, 8rem) 0',
       }}
     >
-      {/* 18px sky-blue grid + cyan radial bloom at top-center */}
-      <BackgroundGradientSnippet />
-
+      {/* Subtle ambient glow */}
       {/* Grid + radial bloom behind the left text */}
       <GradientBlurBg
         accentColor="hsl(199 89% 60% / 0.09)"
@@ -1855,7 +1850,6 @@ function BespokeContactFooter() {
           muted
           loop
           playsInline
-          preload="none"
           aria-hidden="true"
           className="scale-y-[-1]"
           style={{
@@ -4323,7 +4317,7 @@ function SocialMediaMarketing() {
               className="smbs-img relative rounded-2xl overflow-hidden"
               style={{
                 opacity: 0, transform: 'translateY(36px)',
-                height: window.innerWidth >= 1024 ? 'clamp(304px, 32vw, 437px)' : 'clamp(228px, 38vw, 342px)',
+                height: window.innerWidth >= 1024 ? '160px' : 'clamp(200px, 24vw, 320px)',
                 boxShadow: [
                   '0 48px 96px -16px hsl(0 0% 0% / 0.9)',
                   '0 0 0 1px hsl(280 65% 65% / 0.14)',
@@ -4706,8 +4700,6 @@ function SocialMediaMarketing() {
                 <img
                   src="/brand_assets/Watch_L.png"
                   alt="Instagram luxury watch campaign visual"
-                  loading="lazy"
-                  decoding="async"
                   style={{
                     position: 'absolute', inset: 0,
                     width: '100%', height: '100%',
@@ -4821,16 +4813,6 @@ function SocialMediaMarketing() {
         backgroundImage: 'radial-gradient(hsl(210 40% 60% / 0.022) 1px, transparent 1px)',
         backgroundSize: '32px 32px',
       }}/>
-
-      {/* BGPattern grid — fade-edges mask, adapted for dark section */}
-      <BGPattern
-        variant="grid"
-        mask="fade-edges"
-        size={32}
-        fill="hsl(0 0% 100% / 0.04)"
-        className="pointer-events-none"
-        style={{ zIndex: 0 }}
-      />
 
       {/* Warm amber atmospheric tint */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
@@ -5266,7 +5248,7 @@ function ContactVideo() {
     <div ref={containerRef} className="absolute inset-0">
       <video
         ref={videoRef}
-        muted loop playsInline preload="none"
+        muted loop playsInline
         aria-hidden="true"
         className="absolute top-1/2 left-1/2 min-w-full min-h-full object-cover"
         style={{ transform: 'translate(-50%, -50%) scaleY(-1)', opacity: 0.88, filter: 'brightness(1.06) contrast(1.38) saturate(1.15)' }}
@@ -6069,7 +6051,7 @@ function GraphicDesignEditorial() {
       {/* Bottom fade — above gallery (z-index 20) to mask the gallery's lower edge */}
       <div aria-hidden="true" style={{
         position: 'absolute', bottom: 0, left: 0, right: 0,
-        height: '220px',
+        height: '160px',
         background: 'linear-gradient(to bottom, rgba(1,7,9,0), #010709)',
         pointerEvents: 'none',
         zIndex: 20,
@@ -6185,9 +6167,6 @@ function GraphicDesignServices() {
       className="relative w-full overflow-hidden"
       style={{ background: '#010709', padding: 'clamp(6rem, 10vw, 10rem) 0' }}
     >
-      {/* Soft yellow glow — centred warm orb, screen blend on dark bg */}
-      <SoftYellowGlow />
-
       {/* Grain */}
       <svg aria-hidden="true" className="pointer-events-none absolute inset-0 w-full h-full" style={{ opacity: 0.028, zIndex: 1 }}>
         <filter id="gdsvs-gr">
@@ -6215,8 +6194,8 @@ function GraphicDesignServices() {
       {/* Top fade — masks amber ambient glow at section boundary */}
       <div aria-hidden="true" style={{
         position: 'absolute', top: 0, left: 0, right: 0,
-        height: '240px',
-        background: 'linear-gradient(to bottom, #010709 0%, rgba(1,7,9,0.85) 40%, rgba(1,7,9,0) 100%)',
+        height: '120px',
+        background: 'linear-gradient(to bottom, #010709, rgba(1,7,9,0))',
         pointerEvents: 'none',
         zIndex: 5,
       }}/>
@@ -6317,7 +6296,7 @@ function GraphicDesignServices() {
       {/* Bottom fade — cleans vignette edge before SplitA */}
       <div aria-hidden="true" style={{
         position: 'absolute', bottom: 0, left: 0, right: 0,
-        height: '220px',
+        height: '120px',
         background: 'linear-gradient(to bottom, rgba(1,7,9,0), #010709)',
         pointerEvents: 'none',
         zIndex: 5,
@@ -6365,15 +6344,6 @@ function GraphicDesignSplitA() {
         </filter>
         <rect width="100%" height="100%" filter="url(#gdsa-gr)" fill="white"/>
       </svg>
-
-      {/* Top fade — eases grid texture in from Section 3 */}
-      <div aria-hidden="true" style={{
-        position: 'absolute', top: 0, left: 0, right: 0,
-        height: '240px',
-        background: 'linear-gradient(to bottom, #010709 0%, rgba(1,7,9,0.85) 40%, rgba(1,7,9,0) 100%)',
-        pointerEvents: 'none',
-        zIndex: 5,
-      }}/>
 
       {/* Orange ambient bloom from left — echoes Firefly-12 lighting */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
@@ -6534,7 +6504,7 @@ function GraphicDesignSplitA() {
       {/* Bottom fade — bridges into SplitB */}
       <div aria-hidden="true" style={{
         position: 'absolute', bottom: 0, left: 0, right: 0,
-        height: '220px',
+        height: '120px',
         background: 'linear-gradient(to bottom, rgba(1,7,9,0), #010709)',
         pointerEvents: 'none',
         zIndex: 5,
@@ -6587,8 +6557,8 @@ function GraphicDesignSplitB() {
       {/* Top fade — blends seamlessly from SplitA */}
       <div aria-hidden="true" style={{
         position: 'absolute', top: 0, left: 0, right: 0,
-        height: '240px',
-        background: 'linear-gradient(to bottom, #010709 0%, rgba(1,7,9,0.85) 40%, rgba(1,7,9,0) 100%)',
+        height: '120px',
+        background: 'linear-gradient(to bottom, #010709, rgba(1,7,9,0))',
         pointerEvents: 'none',
         zIndex: 5,
       }}/>
@@ -6783,7 +6753,7 @@ function GraphicDesignSplitB() {
       {/* Bottom fade — bridges into FinalPresentation */}
       <div aria-hidden="true" style={{
         position: 'absolute', bottom: 0, left: 0, right: 0,
-        height: '220px',
+        height: '120px',
         background: 'linear-gradient(to bottom, rgba(1,7,9,0), #010709)',
         pointerEvents: 'none',
         zIndex: 5,
@@ -6854,18 +6824,6 @@ function GraphicDesignFinalPresentation() {
         </filter>
         <rect width="100%" height="100%" filter="url(#gdfp-gr)" fill="white"/>
       </svg>
-
-      {/* Indigo radial from top — centred violet orb bleeding in from above */}
-      <DarkIndigoTopGlow />
-
-      {/* Top fade — eases indigo glow in from Section 5 */}
-      <div aria-hidden="true" style={{
-        position: 'absolute', top: 0, left: 0, right: 0,
-        height: '240px',
-        background: 'linear-gradient(to bottom, #010709 0%, rgba(1,7,9,0.85) 40%, rgba(1,7,9,0) 100%)',
-        pointerEvents: 'none',
-        zIndex: 5,
-      }}/>
 
       {/* Ambient — champagne left + cyan right */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
@@ -7466,7 +7424,7 @@ function GraphicDesignContactFooter() {
       <div ref={containerRef} className="absolute inset-0" aria-hidden="true" style={{ zIndex: 0 }}>
         <video
           ref={videoRef}
-          muted loop playsInline preload="none" aria-hidden="true"
+          muted loop playsInline aria-hidden="true"
           className="scale-y-[-1]"
           style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', display: 'block', opacity: 0.88, filter: 'brightness(1.06) contrast(1.38) saturate(1.15)' }}
         />
@@ -9858,7 +9816,6 @@ function UGCContactFooter() {
           muted
           loop
           playsInline
-          preload="none"
           aria-hidden="true"
           className="scale-y-[-1]"
           style={{
@@ -10487,18 +10444,28 @@ export default function Services() {
         ref={bwd1Ref}
         id="bespoke-website-design-detail"
         className="relative w-full overflow-hidden"
-        style={{ background: '#010709', padding: 'clamp(5rem, 10vw, 8rem) 0' }}
+        style={{
+          background: 'radial-gradient(ellipse 90% 70% at 60% 50%, #07141A 0%, #010709 65%)',
+          padding: 'clamp(5rem, 10vw, 8rem) 0',
+        }}
       >
-        {/* Cyan-blue tint — center/right biased */}
+        {/* Subtle depth gradient */}
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-0"
           style={{
             background: [
-              'radial-gradient(ellipse 60% 55% at 68% 50%, hsl(199 89% 60% / 0.055) 0%, transparent 70%)',
-              'radial-gradient(ellipse 40% 35% at 50% 40%, hsl(205 80% 55% / 0.03) 0%, transparent 65%)',
+              'radial-gradient(ellipse 55% 50% at 68% 50%, rgba(200,175,100,0.055) 0%, transparent 70%)',
+              'radial-gradient(ellipse 38% 32% at 30% 45%, rgba(7,20,26,0.6) 0%, transparent 65%)',
             ].join(', '),
           }}
+        />
+
+        {/* Faint flowing light line — premium motion */}
+        <div
+          aria-hidden="true"
+          className="bwd1-mesh-line pointer-events-none absolute inset-0"
+          style={{ zIndex: 0 }}
         />
 
         {/* Section boundary fades */}
@@ -10525,14 +10492,22 @@ export default function Services() {
                 }}
               >
                 Bespoke{' '}
-                <em style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400 }}>
+                <em style={{
+                  fontFamily: "'Instrument Serif', Georgia, serif",
+                  fontStyle: 'italic',
+                  fontWeight: 400,
+                  background: 'linear-gradient(115deg, #F8FAFC 10%, #E8C97A 45%, #BFA45A 75%, #E8C97A 100%)',
+                  WebkitBackgroundClip: 'text',
+                  backgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                }}>
                   Website Design
                 </em>
               </h2>
 
               <div
                 className="bwd1-divider w-full h-px mb-10"
-                style={{ background: 'linear-gradient(to right, hsl(205 85% 62% / 0.3), transparent)' }}
+                style={{ background: 'linear-gradient(to right, rgba(200,175,100,0.35), rgba(200,175,100,0.08) 60%, transparent)' }}
                 aria-hidden="true"
               />
 
@@ -10541,7 +10516,7 @@ export default function Services() {
                 style={{
                   fontSize: 'clamp(0.9rem, 1.5vw, 1.05rem)',
                   lineHeight: 1.8,
-                  color: 'hsl(0 0% 56%)',
+                  color: '#D7DCE2',
                 }}
               >
                 Custom-built websites designed for clarity, performance, and impact. No templates.
@@ -10591,7 +10566,7 @@ export default function Services() {
                 style={{
                   fontSize: 'clamp(0.9rem, 1.5vw, 1.05rem)',
                   lineHeight: 1.8,
-                  color: 'hsl(0 0% 56%)',
+                  color: '#D7DCE2',
                 }}
               >
                 A generic site blends in. A bespoke build positions you to stand out and perform.
@@ -10601,11 +10576,11 @@ export default function Services() {
             {/* ── Right: website 3.png ── */}
             <div className="relative flex items-center justify-center lg:justify-end">
 
-              {/* Ambient glow behind image */}
+              {/* Champagne gold ambient glow behind image */}
               <div aria-hidden="true" style={{
                 position: 'absolute', inset: '-20px',
-                background: 'radial-gradient(ellipse 70% 60% at 55% 50%, hsl(205 85% 55% / 0.1) 0%, transparent 70%)',
-                filter: 'blur(40px)',
+                background: 'radial-gradient(ellipse 70% 60% at 55% 50%, rgba(200,175,90,0.08) 0%, transparent 70%)',
+                filter: 'blur(48px)',
                 pointerEvents: 'none',
               }}/>
 
@@ -10685,7 +10660,7 @@ export default function Services() {
         }}
       >
         {/* Dark 40 px slate grid — structural depth layer */}
-        <DarkGridBg className="opacity-40" />
+        <DarkGridBg />
 
         {/* Ambient warm glow — upper center */}
         <div aria-hidden="true" style={{
