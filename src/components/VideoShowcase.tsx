@@ -272,11 +272,6 @@ export default function VideoShowcase() {
               }}
             />
 
-            {/* Scan line */}
-            <div aria-hidden="true" style={{ position: 'absolute', inset: 0, zIndex: 5, pointerEvents: 'none', overflow: 'hidden' }}>
-              <div className="vs-scan-line" />
-            </div>
-
             <div style={{ position: 'relative', width: '100%', aspectRatio: '16 / 9' }}>
               <video
                 ref={videoRef}
