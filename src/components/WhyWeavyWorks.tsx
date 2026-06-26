@@ -347,29 +347,31 @@ export default function WhyWeavyWorks() {
               transition={{ duration: 0.55, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
               className="feature-card group flex gap-5 p-6 rounded-2xl border border-transparent"
               style={{
-                transition: 'background-color 250ms, border-color 250ms',
+                transition: 'background-color 250ms, border-color 250ms, box-shadow 250ms',
                 background: 'transparent',
               }}
               onMouseEnter={e => {
-                (e.currentTarget as HTMLElement).style.background = 'rgba(16,24,32,0.7)'
-                ;(e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.09)'
+                (e.currentTarget as HTMLElement).style.background = 'rgba(9,27,36,0.75)'
+                ;(e.currentTarget as HTMLElement).style.borderColor = 'rgba(125,220,255,0.22)'
+                ;(e.currentTarget as HTMLElement).style.boxShadow = '0 0 28px rgba(125,220,255,0.07)'
               }}
               onMouseLeave={e => {
                 (e.currentTarget as HTMLElement).style.background = 'transparent'
                 ;(e.currentTarget as HTMLElement).style.borderColor = 'transparent'
+                ;(e.currentTarget as HTMLElement).style.boxShadow = 'none'
               }}
             >
               <div
-                className="flex-shrink-0 w-11 h-11 rounded-full flex items-center justify-center group-hover:text-accent-cyan group-hover:border-accent-cyan/30"
-                style={{ background: '#101820', border: '1px solid rgba(255,255,255,0.10)', color: '#94A3B8', transition: 'color 250ms, border-color 250ms' }}
+                className="flex-shrink-0 w-11 h-11 rounded-full flex items-center justify-center"
+                style={{ background: 'rgba(6,22,30,0.9)', border: '1px solid rgba(125,220,255,0.30)', color: '#7DDCFF', boxShadow: '0 0 16px rgba(125,220,255,0.13)', transition: 'color 250ms, border-color 250ms, box-shadow 250ms' }}
               >
                 {feature.icon}
               </div>
               <div>
-                <h3 className="text-xl font-medium tracking-tight mb-2 text-primary">
+                <h3 className="text-xl font-medium tracking-tight mb-2" style={{ color: '#F8FAFC' }}>
                   {feature.title}
                 </h3>
-                <p className="font-medium leading-relaxed" style={{ color: '#CBD5E1', lineHeight: 1.75 }}>
+                <p className="font-medium leading-relaxed" style={{ color: 'rgba(255,255,255,0.72)', lineHeight: 1.75 }}>
                   {feature.description}
                 </p>
               </div>
