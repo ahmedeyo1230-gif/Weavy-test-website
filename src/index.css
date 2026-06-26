@@ -394,8 +394,8 @@ html {
 
 /* ── Service card gold line glint ────────────────────────────────────────── */
 @keyframes gold-line-glint {
-  0%, 18%  { transform: translateX(-120%); }
-  68%, 100% { transform: translateX(220%); }
+  from { transform: translateX(-100%); }
+  to   { transform: translateX(200%); }
 }
 
 .gold-line-glint {
@@ -403,11 +403,11 @@ html {
   inset: 0;
   background: linear-gradient(
     105deg,
-    transparent 20%,
+    transparent 25%,
     rgba(255, 255, 210, 0.80) 50%,
-    transparent 80%
+    transparent 75%
   );
-  animation: gold-line-glint 4.5s ease-in-out infinite;
+  animation: gold-line-glint 3.2s linear infinite;
   pointer-events: none;
 }
 
