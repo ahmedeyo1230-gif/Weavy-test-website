@@ -86,9 +86,9 @@ function ModuleRow({ svc, index }: { svc: ServiceDef; index: number }) {
       nodeRef.current.style.transform  = 'scale(1)'
     }
     if (iconRef.current) {
-      iconRef.current.style.borderColor = 'hsl(0 0% 100% / 0.08)'
-      iconRef.current.style.color       = 'hsl(0 0% 48%)'
-      iconRef.current.style.background  = 'hsl(0 0% 100% / 0.03)'
+      iconRef.current.style.borderColor = `rgb(${svc.glowRgb} / 0.28)`
+      iconRef.current.style.color       = svc.accent
+      iconRef.current.style.background  = `rgb(${svc.glowRgb} / 0.06)`
     }
     if (titleRef.current) titleRef.current.style.color = 'hsl(0 0% 90%)'
   }
@@ -139,9 +139,9 @@ function ModuleRow({ svc, index }: { svc: ServiceDef; index: number }) {
           ref={iconRef}
           className="flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center"
           style={{
-            border: '1px solid hsl(0 0% 100% / 0.08)',
-            color: 'hsl(0 0% 48%)',
-            background: 'hsl(0 0% 100% / 0.03)',
+            border: `1px solid rgb(${svc.glowRgb} / 0.28)`,
+            color: svc.accent,
+            background: `rgb(${svc.glowRgb} / 0.06)`,
             transition: 'border-color 220ms, color 220ms, background 220ms',
           }}
         >
@@ -153,7 +153,7 @@ function ModuleRow({ svc, index }: { svc: ServiceDef; index: number }) {
           <div className="flex items-baseline gap-2 mb-1.5">
             <span
               className="font-mono text-[10px] tracking-widest select-none shrink-0"
-              style={{ color: `${svc.accent}66` }}
+              style={{ color: `${svc.accent}bb` }}
             >
               {svc.num}
             </span>
@@ -165,7 +165,7 @@ function ModuleRow({ svc, index }: { svc: ServiceDef; index: number }) {
               {svc.title}
             </h3>
           </div>
-          <p className="text-xs leading-[1.72]" style={{ color: 'hsl(0 0% 40%)' }}>
+          <p className="text-xs leading-[1.72]" style={{ color: 'hsl(0 0% 60%)' }}>
             {svc.description}
           </p>
         </div>
