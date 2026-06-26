@@ -256,7 +256,7 @@ export default function Hero() {
             className="text-[10px] sm:text-xs uppercase tracking-widest mb-6 mt-6 font-medium"
             style={{ color: '#94A3B8', letterSpacing: '0.22em' }}
           >
-            Automation Agency
+            TripleX Automation Agency
           </motion.p>
 
           <div className="relative">
