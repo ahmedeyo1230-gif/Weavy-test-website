@@ -5,11 +5,11 @@ const E: [number, number, number, number] = [0.16, 1, 0.3, 1]
 const TAGS = ['Digital Marketing', 'Business Process Automation', 'Lead Generation', 'CRM Automation', 'Graphic Design', 'Paid Social Media Advertising']
 
 const SERVICE_MODULES = [
-  { num: '01', label: 'Automation',      desc: 'End-to-end workflow systems'       },
-  { num: '02', label: 'Web Design',      desc: 'Bespoke, high-performance sites'   },
-  { num: '03', label: 'Custom Chatbots', desc: 'Intelligent 24/7 engagement'       },
-  { num: '04', label: 'Content Systems', desc: 'Scalable brand content at scale'   },
-  { num: '05', label: 'Video Editing',   desc: 'Storytelling that drives results'  },
+  { num: '01', label: 'Automation',      desc: 'End-to-end workflow systems',      highlight: 'workflow systems'  },
+  { num: '02', label: 'Web Design',      desc: 'Bespoke, high-performance sites',  highlight: 'high-performance'  },
+  { num: '03', label: 'Custom Chatbots', desc: 'Intelligent 24/7 engagement',      highlight: '24/7 engagement'   },
+  { num: '04', label: 'Content Systems', desc: 'Scalable brand content at scale',  highlight: 'brand content'     },
+  { num: '05', label: 'Video Editing',   desc: 'Storytelling that drives results', highlight: 'drives results'    },
 ]
 
 export default function About() { // no diagonal lines bg
@@ -222,35 +222,56 @@ export default function About() { // no diagonal lines bg
               style={{
                 background: 'hsl(0 0% 100% / 0.018)',
                 border: '1px solid hsl(0 0% 100% / 0.06)',
-                transition: 'border-color 280ms, background-color 280ms',
+                transition: 'border-color 280ms, background-color 280ms, box-shadow 280ms, transform 280ms cubic-bezier(0.16,1,0.3,1)',
               }}
               onMouseEnter={e => {
                 const el = e.currentTarget as HTMLDivElement
-                el.style.borderColor = 'hsl(199 89% 60% / 0.22)'
-                el.style.backgroundColor = 'hsl(0 0% 100% / 0.03)'
+                el.style.borderColor = 'rgba(255,216,107,0.35)'
+                el.style.backgroundColor = 'rgba(255,216,107,0.03)'
+                el.style.boxShadow = '0 8px 32px rgba(255,216,107,0.10), 0 0 0 1px rgba(255,216,107,0.08)'
+                el.style.transform = 'translateY(-7px)'
               }}
               onMouseLeave={e => {
                 const el = e.currentTarget as HTMLDivElement
                 el.style.borderColor = 'hsl(0 0% 100% / 0.06)'
                 el.style.backgroundColor = 'hsl(0 0% 100% / 0.018)'
+                el.style.boxShadow = 'none'
+                el.style.transform = 'translateY(0)'
               }}
             >
-              {/* Top accent line */}
+              {/* Top-left gold accent line */}
               <div
-                className="absolute top-0 left-0 right-0 h-px opacity-0 group-hover:opacity-100"
+                aria-hidden="true"
                 style={{
-                  background:
-                    'linear-gradient(to right, transparent, hsl(199 89% 60% / 0.5), transparent)',
-                  transition: 'opacity 280ms',
+                  position: 'absolute',
+                  top: 0,
+                  left: '18px',
+                  width: '48px',
+                  height: '2px',
+                  background: 'linear-gradient(to right, #FFD86B, rgba(255,216,107,0.15))',
+                  opacity: 0.55,
+                  borderRadius: '0 0 2px 2px',
                 }}
               />
               <div
-                className="text-xs font-serif italic text-muted/35 mb-3 select-none"
+                className="text-xs font-mono select-none mb-3"
+                style={{ color: '#FFD86B', opacity: 0.75 }}
               >
                 {svc.num}
               </div>
-              <div className="text-sm font-semibold text-primary mb-1.5">{svc.label}</div>
-              <div className="text-xs font-medium leading-snug" style={{ color: '#94A3B8' }}>{svc.desc}</div>
+              <div className="text-sm font-semibold mb-1.5" style={{ color: '#F8FAFC' }}>{svc.label}</div>
+              <div className="text-xs font-medium leading-snug" style={{ color: '#94A3B8' }}>
+                {(() => {
+                  const parts = svc.desc.split(svc.highlight)
+                  return (
+                    <>
+                      {parts[0]}
+                      <span style={{ color: '#FFD86B', opacity: 0.88 }}>{svc.highlight}</span>
+                      {parts[1]}
+                    </>
+                  )
+                })()}
+              </div>
             </motion.div>
           ))}
         </div>
