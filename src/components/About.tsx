@@ -133,9 +133,7 @@ export default function About() { // no diagonal lines bg
               transition={{ duration: 0.55, delay: 0.2, ease: E }}
               className="flex flex-wrap gap-2"
             >
-              {TAGS.map((tag, i) => {
-                const isActive = i === 0
-                return (
+              {TAGS.map((tag, i) => (
                   <motion.span
                     key={tag}
                     initial={{ opacity: 0, y: 8 }}
@@ -144,35 +142,34 @@ export default function About() { // no diagonal lines bg
                     transition={{ duration: 0.35, delay: 0.22 + i * 0.055, ease: E }}
                     className="inline-flex items-center gap-1.5 text-[11px] uppercase tracking-widest rounded-full px-4 py-2 cursor-pointer select-none"
                     style={{
-                      color: isActive ? '#F8FAFC' : 'rgba(191,239,255,0.82)',
-                      border: `1px solid ${isActive ? 'rgba(125,220,255,0.68)' : 'rgba(43,168,217,0.38)'}`,
-                      backgroundColor: isActive ? 'rgba(6,22,30,0.70)' : 'rgba(6,17,20,0.50)',
-                      boxShadow: isActive ? '0 0 18px rgba(125,220,255,0.20)' : 'none',
+                      color: 'rgba(191,239,255,0.82)',
+                      border: '1px solid rgba(43,168,217,0.38)',
+                      backgroundColor: 'rgba(6,17,20,0.50)',
+                      boxShadow: 'none',
                       transition: 'border-color 200ms, color 200ms, background-color 200ms, box-shadow 200ms',
                     }}
                     onMouseEnter={e => {
                       const el = e.currentTarget as HTMLElement
-                      el.style.borderColor = 'rgba(125,220,255,0.80)'
+                      el.style.borderColor = 'rgba(125,220,255,0.70)'
                       el.style.color = '#ffffff'
                       el.style.backgroundColor = 'rgba(9,32,39,0.80)'
-                      el.style.boxShadow = '0 0 22px rgba(125,220,255,0.22)'
+                      el.style.boxShadow = '0 0 22px rgba(125,220,255,0.18)'
                     }}
                     onMouseLeave={e => {
                       const el = e.currentTarget as HTMLElement
-                      el.style.borderColor = isActive ? 'rgba(125,220,255,0.68)' : 'rgba(43,168,217,0.38)'
-                      el.style.color = isActive ? '#F8FAFC' : 'rgba(191,239,255,0.82)'
-                      el.style.backgroundColor = isActive ? 'rgba(6,22,30,0.70)' : 'rgba(6,17,20,0.50)'
-                      el.style.boxShadow = isActive ? '0 0 18px rgba(125,220,255,0.20)' : 'none'
+                      el.style.borderColor = 'rgba(43,168,217,0.38)'
+                      el.style.color = 'rgba(191,239,255,0.82)'
+                      el.style.backgroundColor = 'rgba(6,17,20,0.50)'
+                      el.style.boxShadow = 'none'
                     }}
                   >
                     <span
                       className="w-[5px] h-[5px] rounded-full shrink-0"
-                      style={{ background: isActive ? '#7DDCFF' : 'rgba(43,168,217,0.72)' }}
+                      style={{ background: 'rgba(43,168,217,0.72)' }}
                     />
                     {tag}
                   </motion.span>
-                )
-              })}
+                ))}
             </motion.div>
 
             {/* Animated accent line */}
