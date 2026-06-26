@@ -254,11 +254,11 @@ export default function Footer() {
             style={{
               position: 'relative',
               zIndex: 1,
-              fontSize: 'clamp(1.9rem, 4vw, 3rem)',
-              lineHeight: 1.08,
+              fontSize: 'clamp(1.55rem, 5.5vw, 3rem)',
+              lineHeight: 1.12,
               letterSpacing: '-0.03em',
-              whiteSpace: 'nowrap',
-              maxWidth: 'none',
+              whiteSpace: 'normal',
+              maxWidth: '100%',
               marginBottom: '1.25rem',
               textShadow: '0 2px 24px rgba(0,0,0,0.85)',
             }}
