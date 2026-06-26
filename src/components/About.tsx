@@ -108,9 +108,15 @@ export default function About() { // no diagonal lines bg
               style={{ fontSize: 'clamp(0.9rem, 1.15vw, 1.02rem)', color: '#CBD5E1', lineHeight: 1.8 }}
             >
               <p>
-                We craft bespoke websites, deploy AI-powered chatbots, and build intelligent
-                systems for digital marketing, social media automation, and UGC content — so
-                your brand operates at scale without adding headcount.
+                We craft <span className="weavy-shimmer-text">bespoke websites</span>, deploy{' '}
+                <span className="weavy-shimmer-text">AI-powered chatbots</span>, and build
+                intelligent systems for{' '}
+                <span className="weavy-shimmer-text">digital marketing</span>,{' '}
+                <span className="weavy-shimmer-text">social media automation</span>,{' '}
+                <span className="weavy-shimmer-text">UGC content</span>,{' '}
+                <span className="weavy-shimmer-text">graphic design & animation</span>, and{' '}
+                <span className="weavy-shimmer-text">video editing</span> — so your brand
+                operates at scale without adding headcount.
               </p>
               <p>
                 Operating out of London, we partner with high-growth brands to replace manual

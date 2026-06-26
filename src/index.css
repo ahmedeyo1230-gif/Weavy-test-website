@@ -392,6 +392,30 @@ html {
 }
 
 
+/* ── About section — service keyword shimmer ────────────────────────────── */
+@keyframes weavy-service-shimmer {
+  0%   { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+.weavy-shimmer-text {
+  background: linear-gradient(90deg, #e2f4ff 0%, #7DDCFF 38%, #2BA8D9 55%, #7DDCFF 72%, #e2f4ff 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: weavy-service-shimmer 7s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .weavy-shimmer-text {
+    animation: none;
+    background: linear-gradient(90deg, #7DDCFF, #2BA8D9);
+    background-size: 100% auto;
+  }
+}
+
 /* ── Animated gradient border ────────────────────────────────────────────── */
 @property --gradient-angle {
   syntax: '<angle>';
