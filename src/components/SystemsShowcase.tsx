@@ -17,7 +17,7 @@ const SERVICES: ServiceDef[] = [
   {
     num: '01',
     Icon: Bot,
-    title: 'AI Content Automation',
+    title: 'Content Automation',
     description:
       'Auto-generate branded content at scale. We build custom LLM pipelines that understand your brand voice and output ready-to-publish assets.',
     accent: '#38BDF8',
@@ -35,7 +35,7 @@ const SERVICES: ServiceDef[] = [
   {
     num: '03',
     Icon: MessageSquare,
-    title: 'Communication AI',
+    title: 'Communication',
     description:
       'Intelligent chatbots, email automation, and social scheduling. Provide 24/7 support and engagement without expanding your team.',
     accent: '#A855F7',
