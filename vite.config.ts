@@ -10,4 +10,17 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes('node_modules/react') || id.includes('node_modules/react-dom')) return 'vendor-react'
+          if (id.includes('node_modules/framer-motion')) return 'vendor-motion'
+          if (id.includes('node_modules/gsap')) return 'vendor-gsap'
+          if (id.includes('node_modules/hls.js')) return 'vendor-hls'
+        },
+      },
+    },
+    chunkSizeWarningLimit: 600,
+  },
 })

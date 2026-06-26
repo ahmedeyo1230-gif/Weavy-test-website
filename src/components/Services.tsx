@@ -1855,6 +1855,7 @@ function BespokeContactFooter() {
           muted
           loop
           playsInline
+          preload="none"
           aria-hidden="true"
           className="scale-y-[-1]"
           style={{
@@ -4705,6 +4706,8 @@ function SocialMediaMarketing() {
                 <img
                   src="/brand_assets/Watch_L.png"
                   alt="Instagram luxury watch campaign visual"
+                  loading="lazy"
+                  decoding="async"
                   style={{
                     position: 'absolute', inset: 0,
                     width: '100%', height: '100%',
@@ -5263,7 +5266,7 @@ function ContactVideo() {
     <div ref={containerRef} className="absolute inset-0">
       <video
         ref={videoRef}
-        muted loop playsInline
+        muted loop playsInline preload="none"
         aria-hidden="true"
         className="absolute top-1/2 left-1/2 min-w-full min-h-full object-cover"
         style={{ transform: 'translate(-50%, -50%) scaleY(-1)', opacity: 0.88, filter: 'brightness(1.06) contrast(1.38) saturate(1.15)' }}
@@ -7463,7 +7466,7 @@ function GraphicDesignContactFooter() {
       <div ref={containerRef} className="absolute inset-0" aria-hidden="true" style={{ zIndex: 0 }}>
         <video
           ref={videoRef}
-          muted loop playsInline aria-hidden="true"
+          muted loop playsInline preload="none" aria-hidden="true"
           className="scale-y-[-1]"
           style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', display: 'block', opacity: 0.88, filter: 'brightness(1.06) contrast(1.38) saturate(1.15)' }}
         />
@@ -9855,6 +9858,7 @@ function UGCContactFooter() {
           muted
           loop
           playsInline
+          preload="none"
           aria-hidden="true"
           className="scale-y-[-1]"
           style={{

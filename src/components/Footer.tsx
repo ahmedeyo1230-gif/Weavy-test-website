@@ -104,6 +104,7 @@ function FooterVideo() {
         muted
         loop
         playsInline
+        preload="none"
         aria-hidden="true"
         style={{
           position: 'absolute',

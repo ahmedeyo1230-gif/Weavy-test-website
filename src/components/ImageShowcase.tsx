@@ -1403,7 +1403,7 @@ export default function ImageShowcase() {
           muted
           loop
           playsInline
-          preload="auto"
+          preload="metadata"
           className="object-cover object-top h-[63vw] sm:h-[63vw] lg:h-auto lg:object-contain lg:object-center"
           style={{
             display: 'block',
