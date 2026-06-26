@@ -115,8 +115,8 @@ export default function About() { // no diagonal lines bg
                 <span className="weavy-shimmer-text">social media automation</span>,{' '}
                 <span className="weavy-shimmer-text">UGC content</span>,{' '}
                 <span className="weavy-shimmer-text">graphic design & animation</span>, and{' '}
-                <span className="weavy-shimmer-text">video editing</span> — so your brand
-                operates at scale without adding headcount.
+                <span className="weavy-shimmer-text">video editing</span>. So your business
+                handles more customers without extra employees.
               </p>
               <p>
                 Operating out of London, we partner with high-growth brands to replace manual
