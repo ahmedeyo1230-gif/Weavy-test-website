@@ -1404,7 +1404,7 @@ export default function ImageShowcase() {
           loop
           playsInline
           preload="auto"
-          className="object-cover object-top h-[66vw] sm:h-[66vw] lg:h-auto lg:object-contain lg:object-center"
+          className="object-cover object-top h-[63vw] sm:h-[63vw] lg:h-auto lg:object-contain lg:object-center"
           style={{
             display: 'block',
             width: '100%',
