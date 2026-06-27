@@ -10667,15 +10667,15 @@ export default function Services() {
         {/* Charcoal depth — blue-green radial base */}
         <div aria-hidden="true" style={{
           position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0,
-          background: 'radial-gradient(ellipse 90% 70% at 60% 55%, rgba(7,20,26,0.98) 0%, transparent 70%)',
+          background: 'radial-gradient(ellipse 90% 70% at 60% 55%, rgba(7,20,26,1.0) 0%, transparent 70%)',
         }}/>
 
         {/* Soft gold radial glow — behind mockup */}
         <div aria-hidden="true" style={{
           position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0,
           background: [
-            'radial-gradient(ellipse 60% 55% at 66% 58%, rgba(232,201,122,0.148) 0%, transparent 68%)',
-            'radial-gradient(ellipse 40% 35% at 66% 58%, rgba(191,164,90,0.111) 0%, transparent 55%)',
+            'radial-gradient(ellipse 60% 55% at 66% 58%, rgba(232,201,122,0.266) 0%, transparent 68%)',
+            'radial-gradient(ellipse 40% 35% at 66% 58%, rgba(191,164,90,0.200) 0%, transparent 55%)',
           ].join(', '),
           filter: 'blur(18px)',
         }}/>
@@ -10692,8 +10692,8 @@ export default function Services() {
         <div aria-hidden="true" style={{
           position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 1,
           background: [
-            'linear-gradient(to right,  rgba(1,7,9,0.95) 0%, transparent 22%, transparent 78%, rgba(1,7,9,0.95) 100%)',
-            'linear-gradient(to bottom, rgba(1,7,9,0.83) 0%, transparent 18%, transparent 84%, rgba(1,7,9,0.97) 100%)',
+            'linear-gradient(to right,  rgba(1,7,9,1.0) 0%, transparent 22%, transparent 78%, rgba(1,7,9,1.0) 100%)',
+            'linear-gradient(to bottom, rgba(1,7,9,1.0) 0%, transparent 18%, transparent 84%, rgba(1,7,9,1.0) 100%)',
           ].join(', '),
         }}/>
 

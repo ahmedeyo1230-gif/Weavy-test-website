@@ -65,7 +65,7 @@ html {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.032'/%3E%3C/svg%3E");
   background-size: 220px 220px;
   animation: bwdc-grain-shift 0.15s steps(1) infinite;
-  opacity: 0.39;
+  opacity: 0.65;
 }
 @keyframes bwdc-flow {
   0%   { transform: translateY(-40%); opacity: 0; }
@@ -83,11 +83,11 @@ html {
   pointer-events: none;
 }
 .bwdc-flow-line::before {
-  background: linear-gradient(to right, transparent 0%, rgba(232,201,122,0.196) 25%, rgba(232,201,122,0.308) 50%, rgba(232,201,122,0.196) 75%, transparent 100%);
+  background: linear-gradient(to right, transparent 0%, rgba(232,201,122,0.353) 25%, rgba(232,201,122,0.554) 50%, rgba(232,201,122,0.353) 75%, transparent 100%);
   animation: bwdc-flow 16s ease-in-out infinite;
 }
 .bwdc-flow-line::after {
-  background: linear-gradient(to right, transparent 0%, rgba(125,220,255,0.098) 30%, rgba(125,220,255,0.168) 50%, rgba(125,220,255,0.098) 70%, transparent 100%);
+  background: linear-gradient(to right, transparent 0%, rgba(125,220,255,0.176) 30%, rgba(125,220,255,0.302) 50%, rgba(125,220,255,0.176) 70%, transparent 100%);
   animation: bwdc-flow 16s ease-in-out infinite 8s;
 }
 @media (prefers-reduced-motion: reduce) {
@@ -96,9 +96,9 @@ html {
   .bwdc-flow-line::after { animation: none; opacity: 0; }
 }
 @media (max-width: 767px) {
-  .bwdc-grain  { opacity: 0.22; }
-  .bwdc-flow-line::before { opacity: 0.55; }
-  .bwdc-flow-line::after  { opacity: 0.45; }
+  .bwdc-grain  { opacity: 0.30; }
+  .bwdc-flow-line::before { opacity: 0.50; }
+  .bwdc-flow-line::after  { opacity: 0.40; }
 }
 
 /* ── Bespoke Website Section 2 — flowing light mesh ─────────────────────── */
