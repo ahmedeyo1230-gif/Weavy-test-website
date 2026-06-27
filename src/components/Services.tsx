@@ -10673,8 +10673,8 @@ export default function Services() {
           className="absolute inset-0 z-0 pointer-events-none"
           style={{
             backgroundImage: [
-              'linear-gradient(to right,  rgba(125,220,255,0.22) 1px, transparent 1px)',
-              'linear-gradient(to bottom, rgba(125,220,255,0.22) 1px, transparent 1px)',
+              'linear-gradient(to right,  rgba(125,220,255,0.16) 1px, transparent 1px)',
+              'linear-gradient(to bottom, rgba(125,220,255,0.16) 1px, transparent 1px)',
             ].join(', '),
             backgroundSize: '40px 40px',
             maskImage: 'radial-gradient(ellipse 100% 95% at 50% 50%, black 50%, transparent 95%)',
