@@ -10667,46 +10667,60 @@ export default function Services() {
           padding: 'clamp(6rem, 11vw, 10rem) 0 clamp(5rem, 9vw, 8rem)',
         }}
       >
-        {/* Subtle embedded teal grid — structural depth layer */}
-        <div
-          aria-hidden="true"
-          className="absolute inset-0 z-0 pointer-events-none"
-          style={{
-            backgroundImage: [
-              'linear-gradient(to right,  rgba(125,220,255,0.14) 1px, transparent 1px)',
-              'linear-gradient(to bottom, rgba(125,220,255,0.14) 1px, transparent 1px)',
-            ].join(', '),
-            backgroundSize: '40px 40px',
-            maskImage: 'radial-gradient(ellipse 110% 105% at 50% 50%, black 55%, transparent 98%)',
-            WebkitMaskImage: 'radial-gradient(ellipse 110% 105% at 50% 50%, black 55%, transparent 98%)',
-            mixBlendMode: 'soft-light',
-            opacity: 1,
-          }}
-        />
-
-        {/* Ambient warm glow — upper center */}
+        {/* Cinematic depth — blue-green radial base */}
         <div aria-hidden="true" style={{
-          position: 'absolute', inset: 0, pointerEvents: 'none',
+          position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0,
           background: [
-            'radial-gradient(ellipse 70% 50% at 50% 0%, hsl(36 60% 60% / 0.055) 0%, transparent 65%)',
-            'radial-gradient(ellipse 50% 40% at 50% 100%, hsl(28 40% 50% / 0.04) 0%, transparent 60%)',
+            'radial-gradient(ellipse 80% 60% at 62% 55%, rgba(7,20,26,0.85) 0%, transparent 70%)',
+            'radial-gradient(ellipse 55% 45% at 20% 35%, rgba(7,20,26,0.5) 0%, transparent 65%)',
           ].join(', '),
+        }}/>
+
+        {/* Champagne/warm radial glow — behind mockup (right side) */}
+        <div aria-hidden="true" style={{
+          position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0,
+          background: [
+            'radial-gradient(ellipse 55% 50% at 68% 58%, rgba(200,175,90,0.07) 0%, transparent 65%)',
+            'radial-gradient(ellipse 35% 30% at 50% 20%, rgba(125,200,220,0.04) 0%, transparent 60%)',
+          ].join(', '),
+        }}/>
+
+        {/* Diagonal architectural light beams */}
+        <div aria-hidden="true" className="bwdc-beams" style={{
+          position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0, overflow: 'hidden',
+        }}>
+          <div style={{
+            position: 'absolute', top: '-20%', left: '30%',
+            width: '1px', height: '160%',
+            background: 'linear-gradient(to bottom, transparent 0%, rgba(125,220,255,0.04) 30%, rgba(125,220,255,0.07) 50%, rgba(125,220,255,0.04) 70%, transparent 100%)',
+            transform: 'rotate(18deg)', transformOrigin: 'top center',
+          }}/>
+          <div style={{
+            position: 'absolute', top: '-20%', left: '55%',
+            width: '1px', height: '160%',
+            background: 'linear-gradient(to bottom, transparent 0%, rgba(200,175,90,0.03) 35%, rgba(200,175,90,0.055) 55%, rgba(200,175,90,0.03) 72%, transparent 100%)',
+            transform: 'rotate(18deg)', transformOrigin: 'top center',
+          }}/>
+          <div style={{
+            position: 'absolute', top: '-20%', left: '72%',
+            width: '1px', height: '160%',
+            background: 'linear-gradient(to bottom, transparent 0%, rgba(125,220,255,0.03) 30%, rgba(125,220,255,0.05) 52%, rgba(125,220,255,0.03) 70%, transparent 100%)',
+            transform: 'rotate(18deg)', transformOrigin: 'top center',
+          }}/>
+        </div>
+
+        {/* Film grain texture */}
+        <div aria-hidden="true" className="bwdc-grain" style={{
+          position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0,
         }}/>
 
         {/* Vignette edges */}
         <div aria-hidden="true" style={{
-          position: 'absolute', inset: 0, pointerEvents: 'none',
+          position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 1,
           background: [
-            'linear-gradient(to right,  hsl(210 20% 3% / 0.55) 0%, transparent 18%, transparent 82%, hsl(210 20% 3% / 0.55) 100%)',
-            'linear-gradient(to bottom, hsl(210 20% 3% / 0.35) 0%, transparent 14%, transparent 88%, hsl(210 20% 3% / 0.6) 100%)',
+            'linear-gradient(to right,  rgba(1,7,9,0.60) 0%, transparent 20%, transparent 80%, rgba(1,7,9,0.60) 100%)',
+            'linear-gradient(to bottom, rgba(1,7,9,0.40) 0%, transparent 16%, transparent 86%, rgba(1,7,9,0.65) 100%)',
           ].join(', '),
-        }}/>
-
-        {/* Fine dot grid */}
-        <div aria-hidden="true" style={{
-          position: 'absolute', inset: 0, pointerEvents: 'none',
-          backgroundImage: 'radial-gradient(hsl(36 40% 70% / 0.028) 1px, transparent 1px)',
-          backgroundSize: '26px 26px',
         }}/>
 
         {/* Top fade — masks warm ambient glow at the section boundary */}
