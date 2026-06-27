@@ -10667,8 +10667,21 @@ export default function Services() {
           padding: 'clamp(6rem, 11vw, 10rem) 0 clamp(5rem, 9vw, 8rem)',
         }}
       >
-        {/* Dark 40 px slate grid — structural depth layer */}
-        <DarkGridBg />
+        {/* Subtle embedded teal grid — structural depth layer */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 z-0 pointer-events-none"
+          style={{
+            backgroundImage: [
+              'linear-gradient(to right,  rgba(45,212,191,0.05) 1px, transparent 1px)',
+              'linear-gradient(to bottom, rgba(45,212,191,0.05) 1px, transparent 1px)',
+            ].join(', '),
+            backgroundSize: '40px 40px',
+            maskImage: 'radial-gradient(ellipse 75% 70% at 50% 50%, black 30%, transparent 85%)',
+            WebkitMaskImage: 'radial-gradient(ellipse 75% 70% at 50% 50%, black 30%, transparent 85%)',
+            opacity: 0.6,
+          }}
+        />
 
         {/* Ambient warm glow — upper center */}
         <div aria-hidden="true" style={{
