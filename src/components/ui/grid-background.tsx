@@ -166,10 +166,10 @@ export const BespokeCinemaArchBg = ({ className }: GridBackgroundProps) => {
         style={{
           position: 'absolute', inset: 0,
           backgroundImage: [
-            'repeating-linear-gradient(0deg,   rgba(255,255,255,0.018) 0, rgba(255,255,255,0.018) 1px, transparent 1px, transparent 40px)',
-            'repeating-linear-gradient(45deg,  rgba(45,212,191,0.055)  0, rgba(45,212,191,0.055)  1px, transparent 1px, transparent 22px)',
-            'repeating-linear-gradient(-45deg, rgba(125,220,255,0.04)  0, rgba(125,220,255,0.04)  1px, transparent 1px, transparent 32px)',
-            'repeating-linear-gradient(90deg,  rgba(255,255,255,0.015) 0, rgba(255,255,255,0.015) 1px, transparent 1px, transparent 80px)',
+            'repeating-linear-gradient(0deg,   rgba(255,255,255,0.020) 0, rgba(255,255,255,0.020) 1px, transparent 1px, transparent 40px)',
+            'repeating-linear-gradient(45deg,  rgba(45,212,191,0.061)  0, rgba(45,212,191,0.061)  1px, transparent 1px, transparent 22px)',
+            'repeating-linear-gradient(-45deg, rgba(125,220,255,0.044) 0, rgba(125,220,255,0.044) 1px, transparent 1px, transparent 32px)',
+            'repeating-linear-gradient(90deg,  rgba(255,255,255,0.017) 0, rgba(255,255,255,0.017) 1px, transparent 1px, transparent 80px)',
           ].join(', '),
           backgroundSize: '80px 80px, 44px 44px, 64px 64px, 80px 80px',
           backgroundPosition: '0 0, 0 0, 0 0, 40px 40px',
