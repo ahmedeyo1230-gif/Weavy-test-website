@@ -711,15 +711,6 @@ function BespokeCareStories() {
               pointerEvents: 'none',
             }}/>
 
-            {/* Outer teal halo */}
-            <div aria-hidden="true" style={{
-              position: 'absolute', inset: '-2px',
-              borderRadius: '20px',
-              background: 'linear-gradient(135deg, rgba(125,220,255,0.18) 0%, rgba(232,201,122,0.14) 50%, rgba(125,220,255,0.10) 100%)',
-              pointerEvents: 'none',
-              zIndex: 0,
-            }}/>
-
             {/* Image container */}
             <div
               style={{
@@ -727,34 +718,10 @@ function BespokeCareStories() {
                 zIndex: 1,
                 borderRadius: '18px',
                 overflow: 'hidden',
-                border: '1px solid rgba(125,220,255,0.22)',
                 boxShadow: [
-                  '0 0 0 1px rgba(232,201,122,0.12)',
-                  '0 0 40px rgba(125,220,255,0.12)',
                   '0 40px 90px -16px hsl(0 0% 0% / 0.82)',
                   '0 8px 24px -6px hsl(0 0% 0% / 0.45)',
                 ].join(', '),
-                transition: 'box-shadow 380ms cubic-bezier(0.16,1,0.3,1), transform 380ms cubic-bezier(0.16,1,0.3,1)',
-              }}
-              onMouseEnter={e => {
-                const el = e.currentTarget as HTMLDivElement
-                el.style.boxShadow = [
-                  '0 0 0 1px rgba(232,201,122,0.18)',
-                  '0 0 64px rgba(125,220,255,0.22)',
-                  '0 48px 100px -16px hsl(0 0% 0% / 0.88)',
-                  '0 8px 24px -6px hsl(0 0% 0% / 0.50)',
-                ].join(', ')
-                el.style.transform = 'translateY(-6px)'
-              }}
-              onMouseLeave={e => {
-                const el = e.currentTarget as HTMLDivElement
-                el.style.boxShadow = [
-                  '0 0 0 1px rgba(232,201,122,0.12)',
-                  '0 0 40px rgba(125,220,255,0.12)',
-                  '0 40px 90px -16px hsl(0 0% 0% / 0.82)',
-                  '0 8px 24px -6px hsl(0 0% 0% / 0.45)',
-                ].join(', ')
-                el.style.transform = 'translateY(0)'
               }}
             >
               <img
