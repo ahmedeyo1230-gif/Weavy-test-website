@@ -699,84 +699,94 @@ function BespokeCareStories() {
       <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to top, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
 
       <div className="relative z-10 max-w-[80rem] mx-auto px-6 sm:px-10">
-        <div className="grid grid-cols-1 lg:grid-cols-[1.35fr_1fr] gap-12 lg:gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.55fr_1fr] gap-12 lg:gap-20 items-center">
 
           {/* ── LEFT: Image ── */}
           <div className="bcs-img relative">
-            {/* Champagne gold ambient glow behind image */}
+            {/* Wide champagne + teal ambient glow behind image */}
             <div aria-hidden="true" style={{
-              position: 'absolute', inset: '-36px',
-              background: 'radial-gradient(ellipse 80% 70% at 50% 50%, rgba(200,175,90,0.11) 0%, transparent 70%)',
-              filter: 'blur(40px)',
+              position: 'absolute', inset: '-56px',
+              background: [
+                'radial-gradient(ellipse 80% 70% at 50% 50%, rgba(200,175,90,0.16) 0%, transparent 65%)',
+                'radial-gradient(ellipse 60% 50% at 50% 50%, rgba(125,220,255,0.08) 0%, transparent 70%)',
+              ].join(', '),
+              filter: 'blur(48px)',
               pointerEvents: 'none',
             }}/>
 
-            {/* Outer teal halo */}
-            <div aria-hidden="true" style={{
-              position: 'absolute', inset: '-2px',
-              borderRadius: '20px',
-              background: 'linear-gradient(135deg, rgba(125,220,255,0.18) 0%, rgba(232,201,122,0.14) 50%, rgba(125,220,255,0.10) 100%)',
-              pointerEvents: 'none',
-              zIndex: 0,
-            }}/>
+            {/* Rotating conic border + corner marks wrapper */}
+            <div className="bcs-frame-wrap" style={{ borderRadius: '18px' }}>
 
-            {/* Image container */}
-            <div
-              style={{
-                position: 'relative',
-                zIndex: 1,
-                borderRadius: '18px',
-                overflow: 'hidden',
-                border: '1px solid rgba(125,220,255,0.22)',
-                boxShadow: [
-                  '0 0 0 1px rgba(232,201,122,0.12)',
-                  '0 0 40px rgba(125,220,255,0.12)',
-                  '0 40px 90px -16px hsl(0 0% 0% / 0.82)',
-                  '0 8px 24px -6px hsl(0 0% 0% / 0.45)',
-                ].join(', '),
-                transition: 'box-shadow 380ms cubic-bezier(0.16,1,0.3,1), transform 380ms cubic-bezier(0.16,1,0.3,1)',
-              }}
-              onMouseEnter={e => {
-                const el = e.currentTarget as HTMLDivElement
-                el.style.boxShadow = [
-                  '0 0 0 1px rgba(232,201,122,0.18)',
-                  '0 0 64px rgba(125,220,255,0.22)',
-                  '0 48px 100px -16px hsl(0 0% 0% / 0.88)',
-                  '0 8px 24px -6px hsl(0 0% 0% / 0.50)',
-                ].join(', ')
-                el.style.transform = 'translateY(-6px)'
-              }}
-              onMouseLeave={e => {
-                const el = e.currentTarget as HTMLDivElement
-                el.style.boxShadow = [
-                  '0 0 0 1px rgba(232,201,122,0.12)',
-                  '0 0 40px rgba(125,220,255,0.12)',
-                  '0 40px 90px -16px hsl(0 0% 0% / 0.82)',
-                  '0 8px 24px -6px hsl(0 0% 0% / 0.45)',
-                ].join(', ')
-                el.style.transform = 'translateY(0)'
-              }}
-            >
-              <img
-                loading="lazy"
-                decoding="async"
-                src="/brand_assets/Website_examples.png"
-                alt="CareWell — bespoke website designed for a care support brand"
+              {/* Corner accents */}
+              <span aria-hidden="true" className="bcs-corner bcs-corner-tl" />
+              <span aria-hidden="true" className="bcs-corner bcs-corner-tr" />
+              <span aria-hidden="true" className="bcs-corner bcs-corner-bl" />
+              <span aria-hidden="true" className="bcs-corner bcs-corner-br" />
+
+              {/* Image container */}
+              <div
                 style={{
-                  display: 'block',
-                  width: '100%',
-                  height: 'auto',
-                  maxHeight: 'clamp(420px, 53vw, 672px)',
-                  objectFit: 'cover',
-                  objectPosition: 'top center',
+                  position: 'relative',
+                  zIndex: 1,
+                  borderRadius: '18px',
+                  overflow: 'hidden',
+                  border: '1px solid rgba(125,220,255,0.28)',
+                  boxShadow: [
+                    '0 0 0 1px rgba(232,201,122,0.16)',
+                    '0 0 50px rgba(125,220,255,0.18)',
+                    '0 0 90px rgba(232,201,122,0.10)',
+                    '0 48px 100px -16px hsl(0 0% 0% / 0.85)',
+                    '0 10px 28px -6px hsl(0 0% 0% / 0.50)',
+                  ].join(', '),
+                  transition: 'box-shadow 400ms cubic-bezier(0.16,1,0.3,1), transform 400ms cubic-bezier(0.16,1,0.3,1)',
                 }}
-              />
-              {/* Thin bottom vignette */}
-              <div aria-hidden="true" style={{
-                position: 'absolute', bottom: 0, left: 0, right: 0, height: '28%',
-                background: 'linear-gradient(to top, hsl(210 20% 3% / 0.35) 0%, transparent 100%)',
-                pointerEvents: 'none',
-              }}/>
+                onMouseEnter={e => {
+                  const el = e.currentTarget as HTMLDivElement
+                  el.style.boxShadow = [
+                    '0 0 0 1px rgba(232,201,122,0.26)',
+                    '0 0 80px rgba(125,220,255,0.30)',
+                    '0 0 130px rgba(232,201,122,0.16)',
+                    '0 56px 110px -16px hsl(0 0% 0% / 0.90)',
+                    '0 10px 28px -6px hsl(0 0% 0% / 0.55)',
+                  ].join(', ')
+                  el.style.transform = 'translateY(-8px)'
+                }}
+                onMouseLeave={e => {
+                  const el = e.currentTarget as HTMLDivElement
+                  el.style.boxShadow = [
+                    '0 0 0 1px rgba(232,201,122,0.16)',
+                    '0 0 50px rgba(125,220,255,0.18)',
+                    '0 0 90px rgba(232,201,122,0.10)',
+                    '0 48px 100px -16px hsl(0 0% 0% / 0.85)',
+                    '0 10px 28px -6px hsl(0 0% 0% / 0.50)',
+                  ].join(', ')
+                  el.style.transform = 'translateY(0)'
+                }}
+              >
+                {/* Animated scan line */}
+                <div aria-hidden="true" className="bcs-scan-line" />
+
+                <img
+                  loading="lazy"
+                  decoding="async"
+                  src="/brand_assets/Website_examples.png"
+                  alt="CareWell — bespoke website designed for a care support brand"
+                  style={{
+                    display: 'block',
+                    width: '100%',
+                    height: 'auto',
+                    maxHeight: 'clamp(560px, 72vw, 820px)',
+                    objectFit: 'cover',
+                    objectPosition: 'top center',
+                  }}
+                />
+                {/* Thin bottom vignette */}
+                <div aria-hidden="true" style={{
+                  position: 'absolute', bottom: 0, left: 0, right: 0, height: '28%',
+                  background: 'linear-gradient(to top, hsl(210 20% 3% / 0.40) 0%, transparent 100%)',
+                  pointerEvents: 'none',
+                }}/>
+              </div>
             </div>
           </div>
 
