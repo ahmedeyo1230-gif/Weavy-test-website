@@ -54,25 +54,51 @@ html {
   background: linear-gradient(to right, hsl(210 20% 40%), hsl(210 30% 80%));
 }
 
-/* ── Bespoke Section 3 Cinema — film grain + beam widths ────────────────── */
+/* ── Bespoke Section 3 Cinema — grain & flowing light line ──────────────── */
 @keyframes bwdc-grain-shift {
   0%,100% { transform: translate(0,0); }
-  20%      { transform: translate(-1px, 1px); }
-  40%      { transform: translate(1px, -1px); }
-  60%      { transform: translate(-1px, 0); }
-  80%      { transform: translate(0, 1px); }
+  25%      { transform: translate(-1px, 1px); }
+  50%      { transform: translate(1px, -1px); }
+  75%      { transform: translate(-1px, 0); }
 }
 .bwdc-grain {
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
-  background-size: 200px 200px;
-  animation: bwdc-grain-shift 0.12s steps(1) infinite;
-  opacity: 0.35;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.032'/%3E%3C/svg%3E");
+  background-size: 220px 220px;
+  animation: bwdc-grain-shift 0.15s steps(1) infinite;
+  opacity: 0.28;
 }
-.bwdc-beams div {
-  width: 2px !important;
+@keyframes bwdc-flow {
+  0%   { transform: translateY(-40%); opacity: 0; }
+  12%  { opacity: 1; }
+  88%  { opacity: 1; }
+  100% { transform: translateY(140%); opacity: 0; }
+}
+.bwdc-flow-line::before,
+.bwdc-flow-line::after {
+  content: '';
+  position: absolute;
+  left: -5%;
+  width: 110%;
+  height: 1px;
+  pointer-events: none;
+}
+.bwdc-flow-line::before {
+  background: linear-gradient(to right, transparent 0%, rgba(232,201,122,0.14) 25%, rgba(232,201,122,0.22) 50%, rgba(232,201,122,0.14) 75%, transparent 100%);
+  animation: bwdc-flow 16s ease-in-out infinite;
+}
+.bwdc-flow-line::after {
+  background: linear-gradient(to right, transparent 0%, rgba(125,220,255,0.07) 30%, rgba(125,220,255,0.12) 50%, rgba(125,220,255,0.07) 70%, transparent 100%);
+  animation: bwdc-flow 16s ease-in-out infinite 8s;
 }
 @media (prefers-reduced-motion: reduce) {
   .bwdc-grain { animation: none; }
+  .bwdc-flow-line::before,
+  .bwdc-flow-line::after { animation: none; opacity: 0; }
+}
+@media (max-width: 767px) {
+  .bwdc-grain  { opacity: 0.18; }
+  .bwdc-flow-line::before { opacity: 0.6; }
+  .bwdc-flow-line::after  { opacity: 0.5; }
 }
 
 /* ── Bespoke Website Section 2 — flowing light mesh ─────────────────────── */

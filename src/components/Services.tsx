@@ -10667,59 +10667,36 @@ export default function Services() {
           padding: 'clamp(6rem, 11vw, 10rem) 0 clamp(5rem, 9vw, 8rem)',
         }}
       >
-        {/* Cinematic depth — blue-green radial base */}
+        {/* Charcoal depth — blue-green radial base */}
+        <div aria-hidden="true" style={{
+          position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0,
+          background: 'radial-gradient(ellipse 90% 70% at 60% 55%, #07141A 0%, #010709 70%)',
+        }}/>
+
+        {/* Soft gold radial glow — behind mockup */}
         <div aria-hidden="true" style={{
           position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0,
           background: [
-            'radial-gradient(ellipse 80% 60% at 62% 55%, rgba(7,20,26,0.85) 0%, transparent 70%)',
-            'radial-gradient(ellipse 55% 45% at 20% 35%, rgba(7,20,26,0.5) 0%, transparent 65%)',
+            'radial-gradient(ellipse 60% 55% at 66% 58%, rgba(232,201,122,0.08) 0%, transparent 68%)',
+            'radial-gradient(ellipse 40% 35% at 66% 58%, rgba(191,164,90,0.06) 0%, transparent 55%)',
           ].join(', '),
+          filter: 'blur(18px)',
         }}/>
 
-        {/* Champagne/warm radial glow — behind mockup (right side) */}
-        <div aria-hidden="true" style={{
-          position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0,
-          background: [
-            'radial-gradient(ellipse 55% 50% at 68% 58%, rgba(200,175,90,0.07) 0%, transparent 65%)',
-            'radial-gradient(ellipse 35% 30% at 50% 20%, rgba(125,200,220,0.04) 0%, transparent 60%)',
-          ].join(', '),
-        }}/>
+        {/* Single flowing light line */}
+        <div aria-hidden="true" className="bwdc-flow-line pointer-events-none absolute inset-0" style={{ zIndex: 0 }} />
 
-        {/* Diagonal architectural light beams */}
-        <div aria-hidden="true" className="bwdc-beams" style={{
-          position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0, overflow: 'hidden',
-        }}>
-          <div style={{
-            position: 'absolute', top: '-20%', left: '30%',
-            width: '1px', height: '160%',
-            background: 'linear-gradient(to bottom, transparent 0%, rgba(125,220,255,0.04) 30%, rgba(125,220,255,0.07) 50%, rgba(125,220,255,0.04) 70%, transparent 100%)',
-            transform: 'rotate(18deg)', transformOrigin: 'top center',
-          }}/>
-          <div style={{
-            position: 'absolute', top: '-20%', left: '55%',
-            width: '1px', height: '160%',
-            background: 'linear-gradient(to bottom, transparent 0%, rgba(200,175,90,0.03) 35%, rgba(200,175,90,0.055) 55%, rgba(200,175,90,0.03) 72%, transparent 100%)',
-            transform: 'rotate(18deg)', transformOrigin: 'top center',
-          }}/>
-          <div style={{
-            position: 'absolute', top: '-20%', left: '72%',
-            width: '1px', height: '160%',
-            background: 'linear-gradient(to bottom, transparent 0%, rgba(125,220,255,0.03) 30%, rgba(125,220,255,0.05) 52%, rgba(125,220,255,0.03) 70%, transparent 100%)',
-            transform: 'rotate(18deg)', transformOrigin: 'top center',
-          }}/>
-        </div>
-
-        {/* Film grain texture */}
+        {/* Film grain */}
         <div aria-hidden="true" className="bwdc-grain" style={{
           position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0,
         }}/>
 
-        {/* Vignette edges */}
+        {/* Vignette */}
         <div aria-hidden="true" style={{
           position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 1,
           background: [
-            'linear-gradient(to right,  rgba(1,7,9,0.60) 0%, transparent 20%, transparent 80%, rgba(1,7,9,0.60) 100%)',
-            'linear-gradient(to bottom, rgba(1,7,9,0.40) 0%, transparent 16%, transparent 86%, rgba(1,7,9,0.65) 100%)',
+            'linear-gradient(to right,  rgba(1,7,9,0.55) 0%, transparent 22%, transparent 78%, rgba(1,7,9,0.55) 100%)',
+            'linear-gradient(to bottom, rgba(1,7,9,0.45) 0%, transparent 18%, transparent 84%, rgba(1,7,9,0.60) 100%)',
           ].join(', '),
         }}/>
 
