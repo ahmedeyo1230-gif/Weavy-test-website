@@ -718,7 +718,7 @@ function BespokeCareStories() {
                 zIndex: 1,
                 borderRadius: '18px',
                 overflow: 'hidden',
-                border: '1.5px solid rgba(255, 216, 80, 0.55)',
+                border: '3.5px solid rgba(255, 216, 80, 0.55)',
                 boxShadow: [
                   '0 0 0 1px rgba(255,200,40,0.18)',
                   '0 0 32px rgba(255,210,60,0.20)',
