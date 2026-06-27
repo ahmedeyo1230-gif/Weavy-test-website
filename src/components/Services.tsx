@@ -718,10 +718,37 @@ function BespokeCareStories() {
                 zIndex: 1,
                 borderRadius: '18px',
                 overflow: 'hidden',
+                border: '1.5px solid rgba(255, 216, 80, 0.55)',
                 boxShadow: [
+                  '0 0 0 1px rgba(255,200,40,0.18)',
+                  '0 0 32px rgba(255,210,60,0.20)',
+                  '0 0 72px rgba(255,200,40,0.10)',
                   '0 40px 90px -16px hsl(0 0% 0% / 0.82)',
                   '0 8px 24px -6px hsl(0 0% 0% / 0.45)',
                 ].join(', '),
+                transition: 'box-shadow 380ms cubic-bezier(0.16,1,0.3,1), transform 380ms cubic-bezier(0.16,1,0.3,1)',
+              }}
+              onMouseEnter={e => {
+                const el = e.currentTarget as HTMLDivElement
+                el.style.boxShadow = [
+                  '0 0 0 1px rgba(255,200,40,0.30)',
+                  '0 0 55px rgba(255,210,60,0.38)',
+                  '0 0 110px rgba(255,200,40,0.18)',
+                  '0 48px 100px -16px hsl(0 0% 0% / 0.88)',
+                  '0 8px 24px -6px hsl(0 0% 0% / 0.50)',
+                ].join(', ')
+                el.style.transform = 'translateY(-6px)'
+              }}
+              onMouseLeave={e => {
+                const el = e.currentTarget as HTMLDivElement
+                el.style.boxShadow = [
+                  '0 0 0 1px rgba(255,200,40,0.18)',
+                  '0 0 32px rgba(255,210,60,0.20)',
+                  '0 0 72px rgba(255,200,40,0.10)',
+                  '0 40px 90px -16px hsl(0 0% 0% / 0.82)',
+                  '0 8px 24px -6px hsl(0 0% 0% / 0.45)',
+                ].join(', ')
+                el.style.transform = 'translateY(0)'
               }}
             >
               <img
