@@ -10652,7 +10652,7 @@ export default function Services() {
         <div aria-hidden="true" style={{
           position: 'absolute', bottom: 0, left: 0, right: 0,
           height: '120px',
-          background: 'linear-gradient(to bottom, rgba(1,7,9,0), rgba(1,7,9,0.90))',
+          background: 'linear-gradient(to bottom, rgba(1,7,9,0), rgba(1,7,9,0.84))',
           pointerEvents: 'none',
           zIndex: 5,
         }}/>
@@ -10707,7 +10707,7 @@ export default function Services() {
         <div aria-hidden="true" style={{
           position: 'absolute', top: 0, left: 0, right: 0,
           height: '120px',
-          background: 'linear-gradient(to bottom, rgba(1,7,9,0.90), rgba(1,7,9,0))',
+          background: 'linear-gradient(to bottom, rgba(1,7,9,0.84), rgba(1,7,9,0))',
           pointerEvents: 'none',
           zIndex: 5,
         }}/>
