@@ -150,6 +150,45 @@ export const DarkSphereGridBg = ({ className }: GridBackgroundProps) => {
 };
 
 /**
+ * Bespoke Section 3 — cinema architecture background.
+ * Adapts the "Complex Multiplier Pattern" to site premium teal/champagne
+ * palette. Combines cross-hatch lines, a soft radial glow, and a
+ * radial mask so the texture fades at the edges.
+ */
+export const BespokeCinemaArchBg = ({ className }: GridBackgroundProps) => {
+  return (
+    <div
+      aria-hidden="true"
+      className={cn("absolute inset-0 z-0 pointer-events-none overflow-hidden", className)}
+    >
+      {/* Cross-hatch multiplier — dark teal/champagne adaptation */}
+      <div
+        style={{
+          position: 'absolute', inset: 0,
+          backgroundImage: [
+            'repeating-linear-gradient(0deg,   rgba(255,255,255,0.018) 0, rgba(255,255,255,0.018) 1px, transparent 1px, transparent 40px)',
+            'repeating-linear-gradient(45deg,  rgba(45,212,191,0.055)  0, rgba(45,212,191,0.055)  1px, transparent 1px, transparent 22px)',
+            'repeating-linear-gradient(-45deg, rgba(125,220,255,0.04)  0, rgba(125,220,255,0.04)  1px, transparent 1px, transparent 32px)',
+            'repeating-linear-gradient(90deg,  rgba(255,255,255,0.015) 0, rgba(255,255,255,0.015) 1px, transparent 1px, transparent 80px)',
+          ].join(', '),
+          backgroundSize: '80px 80px, 44px 44px, 64px 64px, 80px 80px',
+          backgroundPosition: '0 0, 0 0, 0 0, 40px 40px',
+          maskImage: 'radial-gradient(ellipse 90% 80% at 60% 55%, black 30%, transparent 88%)',
+          WebkitMaskImage: 'radial-gradient(ellipse 90% 80% at 60% 55%, black 30%, transparent 88%)',
+        }}
+      />
+      {/* Champagne radial accent — behind mockup focal point */}
+      <div
+        style={{
+          position: 'absolute', inset: 0,
+          background: 'radial-gradient(circle at 65% 58%, rgba(232,201,122,0.06) 0%, rgba(45,212,191,0.03) 40%, transparent 70%)',
+        }}
+      />
+    </div>
+  );
+};
+
+/**
  * Dark faded grid — 40 px slate-toned lines at 20 % opacity.
  * Matches the dark-basic-grid demo. Use on very dark sections (#010709)
  * where a subtle structural depth is needed without adding colour.

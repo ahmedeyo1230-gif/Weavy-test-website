@@ -4,7 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Globe, Bot, BarChart2, Sparkles, Video, Settings2, Plug, Clock, UserCheck, CalendarDays, Zap, Camera, Target, Layers } from 'lucide-react'
 import { MessengerGlowBackground } from './ui/background-components'
 import { TestimonialsSection } from './ui/testimonials-1'
-import { GridBackground, NoiseCanvasBg, DarkSphereGridBg } from './ui/grid-background'
+import { GridBackground, NoiseCanvasBg, DarkSphereGridBg, BespokeCinemaArchBg } from './ui/grid-background'
 import { BeamsBackgroundLayer } from './ui/beams-background'
 import { CircularGallery, type GalleryItem } from './ui/circular-gallery'
 import { GradientBlurBg } from './ui/gradient-blur-bg'
@@ -10667,10 +10667,13 @@ export default function Services() {
           padding: 'clamp(6rem, 11vw, 10rem) 0 clamp(5rem, 9vw, 8rem)',
         }}
       >
+        {/* Cross-hatch architecture texture */}
+        <BespokeCinemaArchBg />
+
         {/* Charcoal depth — blue-green radial base */}
         <div aria-hidden="true" style={{
           position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0,
-          background: 'radial-gradient(ellipse 90% 70% at 60% 55%, #07141A 0%, #010709 70%)',
+          background: 'radial-gradient(ellipse 90% 70% at 60% 55%, rgba(7,20,26,0.75) 0%, transparent 70%)',
         }}/>
 
         {/* Soft gold radial glow — behind mockup */}
