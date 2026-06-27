@@ -10853,14 +10853,15 @@ export default function Services() {
                   decoding="async"
                   src="/brand_assets/Property.png"
                   alt="Bespoke luxury real estate website showcase"
-                  style={{ display: 'block', width: '100%', height: 'auto' }}
+                  style={{ display: 'block', width: '100%', height: 'auto', filter: 'brightness(0.86) contrast(0.96) saturate(0.92)' }}
                 />
-                {/* Soft inner vignette on image edges */}
+                {/* Soft inner vignette on image edges + dark blend overlay */}
                 <div aria-hidden="true" style={{
                   position: 'absolute', inset: 0, pointerEvents: 'none',
                   background: [
+                    'rgba(1,7,9,0.12)',
                     'linear-gradient(to right,  hsl(28 20% 8% / 0.18) 0%, transparent 12%, transparent 88%, hsl(28 20% 8% / 0.18) 100%)',
-                    'linear-gradient(to bottom, transparent 70%, hsl(210 20% 3% / 0.55) 100%)',
+                    'linear-gradient(to bottom, transparent 70%, hsl(210 20% 3% / 0.45) 100%)',
                   ].join(', '),
                 }}/>
               </div>
