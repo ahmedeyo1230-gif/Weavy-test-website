@@ -699,7 +699,7 @@ function BespokeCareStories() {
       <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to top, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
 
       <div className="relative z-10 max-w-[80rem] mx-auto px-6 sm:px-10">
-        <div className="grid grid-cols-1 lg:grid-cols-[1.55fr_1fr] gap-12 lg:gap-20 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.85fr_1fr] gap-12 lg:gap-24 items-center">
 
           {/* ── LEFT: Image ── */}
           <div className="bcs-img relative">
@@ -733,7 +733,7 @@ function BespokeCareStories() {
                   display: 'block',
                   width: '100%',
                   height: 'auto',
-                  maxHeight: 'clamp(560px, 72vw, 820px)',
+                  maxHeight: 'clamp(700px, 88vw, 1080px)',
                   objectFit: 'cover',
                   objectPosition: 'top center',
                 }}
