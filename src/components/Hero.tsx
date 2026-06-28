@@ -241,7 +241,7 @@ export default function Hero() {
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
           <div className="absolute top-1/4 left-1/4 w-[520px] h-[520px] bg-accent-cyan/[0.09] rounded-full blur-[130px]" />
           <div className="absolute top-[60%] left-[30%] w-[400px] h-[400px] rounded-full blur-[110px]" style={{ background: 'hsl(270 50% 20% / 0.06)' }} />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(10,10,10,0.38)_62%,#0a0a0a_90%)]" />
+          <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse at center, transparent 0%, rgba(1,7,9,0.38) 62%, #010709 90%)' }} />
         </div>
 
         {/* Content */}
@@ -367,7 +367,7 @@ export default function Hero() {
           aria-hidden="true"
           style={{
             height: '340px',
-            background: 'linear-gradient(to top, #010709 0%, #020A0B 14%, rgba(2,10,11,0.85) 36%, rgba(2,10,11,0.42) 58%, rgba(2,10,11,0.1) 80%, transparent 100%)',
+            background: 'linear-gradient(to top, #010709 0%, #010709 10%, rgba(1,7,9,0.92) 28%, rgba(1,7,9,0.60) 50%, rgba(1,7,9,0.18) 75%, transparent 100%)',
           }}
         />
       </section>
