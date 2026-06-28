@@ -11005,8 +11005,8 @@ export default function Services() {
         <div aria-hidden="true" style={{
           position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0,
           background: [
-            'radial-gradient(ellipse 60% 55% at 66% 58%, rgba(232,201,122,0.266) 0%, transparent 68%)',
-            'radial-gradient(ellipse 40% 35% at 66% 58%, rgba(191,164,90,0.200) 0%, transparent 55%)',
+            'radial-gradient(ellipse 60% 55% at 66% 58%, rgba(232,201,122,0.160) 0%, transparent 68%)',
+            'radial-gradient(ellipse 40% 35% at 66% 58%, rgba(191,164,90,0.120) 0%, transparent 55%)',
           ].join(', '),
           filter: 'blur(18px)',
         }}/>
