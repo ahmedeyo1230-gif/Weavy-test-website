@@ -94,6 +94,8 @@ html {
   .bwdc-grain { animation: none; }
   .bwdc-flow-line::before,
   .bwdc-flow-line::after { animation: none; opacity: 0; }
+  /* Scroll indicator — keep line visible but static */
+  .scroll-indicator-light { animation: none !important; transform: translateY(50%) !important; opacity: 0.5 !important; }
 }
 @media (max-width: 767px) {
   .bwdc-grain  { opacity: 0.30; }

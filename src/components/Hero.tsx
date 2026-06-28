@@ -351,12 +351,21 @@ export default function Hero() {
           className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3"
           aria-hidden="true"
         >
-          <span className="text-[10px] uppercase tracking-widest text-muted">Scroll</span>
-          <div className="w-px h-14 bg-border relative overflow-hidden rounded-full">
+          <span
+            className="text-[10px] uppercase tracking-widest"
+            style={{ color: 'rgba(255,255,255,0.50)', letterSpacing: '0.26em' }}
+          >Scroll</span>
+          <div
+            className="relative overflow-hidden rounded-full"
+            style={{ width: '1px', height: '56px', background: 'rgba(255,255,255,0.14)' }}
+          >
             <motion.div
-              className="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-transparent via-accent-cyan to-transparent"
+              style={{
+                position: 'absolute', top: 0, left: 0, width: '100%', height: '50%',
+                background: 'linear-gradient(to bottom, transparent 0%, rgba(125,220,255,0.85) 50%, transparent 100%)',
+              }}
               animate={{ y: ['-100%', '200%'] }}
-              transition={{ repeat: Infinity, duration: 1.5, ease: 'linear' }}
+              transition={{ repeat: Infinity, duration: 2.8, ease: 'easeInOut' }}
             />
           </div>
         </motion.div>
