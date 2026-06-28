@@ -1085,31 +1085,73 @@ function BespokeWebShowcase() {
                   ))}
                 </div>
               </div>
-              {/* Hero — dark editorial */}
-              <div style={{ position: 'relative', height: '108px', background: 'linear-gradient(130deg, #060810 0%, #0D1018 40%, #080B14 70%, #050709 100%)', overflow: 'hidden', display: 'flex', alignItems: 'center', padding: '0 18px' }}>
-                <div style={{ position: 'absolute', right: '-5px', top: '-15px', width: '130px', height: '130px', borderRadius: '50%', background: 'radial-gradient(circle, rgba(125,220,255,0.07) 0%, transparent 65%)', filter: 'blur(8px)' }} />
-                <div style={{ position: 'absolute', right: '28px', top: '50%', transform: 'translateY(-50%)', width: '1px', height: '62px', background: 'linear-gradient(to bottom, transparent, rgba(200,168,90,0.55), transparent)', opacity: 0.55 }} />
-                <div style={{ position: 'relative', zIndex: 1 }}>
+              {/* Hero — studio editorial image composition */}
+              <div style={{ position: 'relative', height: '130px', overflow: 'hidden' }}>
+                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(130deg, #060810 0%, #0A0C14 38%, #080A12 68%, #050709 100%)' }} />
+                {/* Studio floor fade */}
+                <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '35%', background: 'linear-gradient(to top, rgba(6,8,14,0.92), transparent)' }} />
+                {/* Top-right ambient cyan glow */}
+                <div style={{ position: 'absolute', top: '-10%', right: '-5%', width: '42%', height: '60%', background: 'radial-gradient(circle, rgba(125,220,255,0.06) 0%, transparent 65%)', filter: 'blur(10px)' }} />
+                {/* Luxury product plinth (right side) */}
+                <div style={{ position: 'absolute', bottom: '14%', right: '12%', width: '24%', height: '42%', background: 'linear-gradient(to top, rgba(18,20,30,0.97), rgba(24,26,38,0.80))', borderRadius: '1px', boxShadow: '-3px 0 10px rgba(0,0,0,0.55)' }} />
+                {/* Vase / bottle object on plinth */}
+                <div style={{ position: 'absolute', bottom: '44%', right: '17%', width: '14%', height: '32%', background: 'linear-gradient(160deg, rgba(220,185,100,0.75) 0%, rgba(190,155,70,0.55) 38%, rgba(155,120,52,0.38) 100%)', borderRadius: '42% 42% 22% 22% / 32% 32% 12% 12%', boxShadow: '0 0 20px rgba(200,168,90,0.28), inset 2px 0 6px rgba(255,220,120,0.35)' }} />
+                {/* Spotlight cone from above */}
+                <div style={{ position: 'absolute', top: '-5%', right: '16%', width: '28%', height: '60%', background: 'radial-gradient(ellipse at 50% 0%, rgba(210,175,90,0.20) 0%, rgba(200,165,80,0.07) 48%, transparent 72%)', filter: 'blur(6px)' }} />
+                {/* Surface reflection */}
+                <div style={{ position: 'absolute', bottom: '5%', right: '14%', width: '22%', height: '10%', background: 'radial-gradient(ellipse at 50% 100%, rgba(200,168,90,0.16) 0%, transparent 68%)', filter: 'blur(3px)' }} />
+                {/* Vertical divider */}
+                <div style={{ position: 'absolute', top: '14%', bottom: '14%', left: '56%', width: '1px', background: 'linear-gradient(to bottom, transparent, rgba(200,168,90,0.22), transparent)' }} />
+                {/* Left text block */}
+                <div style={{ position: 'absolute', top: 0, bottom: 0, left: 0, width: '56%', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '0 18px', zIndex: 1 }}>
                   <p style={{ fontSize: '5.5px', letterSpacing: '0.28em', textTransform: 'uppercase', color: 'rgba(200,168,90,0.62)', marginBottom: '5px' }}>Award-Winning · London</p>
                   <h3 style={{ fontSize: 'clamp(11px, 1.7vw, 14px)', fontWeight: 800, color: '#EEF2F8', lineHeight: 1.12, letterSpacing: '-0.03em', marginBottom: '6px' }}>
                     We Build Brands<br />That Last.
                   </h3>
-                  <p style={{ fontSize: '7.5px', color: 'rgba(165,192,218,0.50)', lineHeight: 1.5, maxWidth: '175px' }}>
-                    Strategy, identity & digital presence for ambitious brands.
+                  <p style={{ fontSize: '7px', color: 'rgba(165,192,218,0.48)', lineHeight: 1.5 }}>
+                    Strategy, identity & digital presence.
                   </p>
                 </div>
               </div>
-              {/* Case study grid */}
+              {/* Case study grid — with image preview blocks */}
               <div style={{ padding: '10px 14px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
-                {[
-                  { name: 'KAIROS', tag: 'Brand Identity', bg: 'rgba(200,168,90,0.08)', border: 'rgba(200,168,90,0.14)', accent: 'rgba(200,168,90,0.60)' },
-                  { name: 'SOLENNE', tag: 'Web & Digital', bg: 'rgba(125,220,255,0.05)', border: 'rgba(125,220,255,0.10)', accent: 'rgba(125,220,255,0.50)' },
-                ].map(cs => (
-                  <div key={cs.name} style={{ padding: '9px 11px', borderRadius: '7px', background: cs.bg, border: `1px solid ${cs.border}` }}>
-                    <p style={{ fontSize: '5.5px', letterSpacing: '0.18em', color: cs.accent, marginBottom: '4px', textTransform: 'uppercase' }}>{cs.tag}</p>
-                    <p style={{ fontSize: '11px', fontWeight: 700, color: '#E4EBF4', letterSpacing: '-0.01em' }}>{cs.name}</p>
+                {/* KAIROS — brand identity */}
+                <div style={{ borderRadius: '7px', overflow: 'hidden', border: '1px solid rgba(200,168,90,0.14)' }}>
+                  <div style={{ height: '52px', position: 'relative', overflow: 'hidden', background: 'linear-gradient(135deg, #100A04 0%, #1A1208 100%)' }}>
+                    <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse at 55% 45%, rgba(200,168,90,0.18) 0%, rgba(160,128,55,0.07) 52%, transparent 72%)' }} />
+                    {/* Abstract logomark ring */}
+                    <div style={{ position: 'absolute', top: '18%', left: '16%', width: '34%', height: '60%', border: '1.5px solid rgba(200,168,90,0.55)', borderRadius: '50%' }} />
+                    {/* K strokes */}
+                    <div style={{ position: 'absolute', top: '32%', left: '28%', width: '3px', height: '28%', background: 'rgba(200,168,90,0.72)', transform: 'rotate(32deg)', transformOrigin: 'top left' }} />
+                    <div style={{ position: 'absolute', top: '34%', left: '28%', width: '3px', height: '26%', background: 'rgba(200,168,90,0.58)', transform: 'rotate(-28deg)', transformOrigin: 'top left' }} />
+                    {/* Gold particle */}
+                    <div style={{ position: 'absolute', top: '24%', right: '18%', width: '3px', height: '3px', background: 'rgba(220,185,100,0.55)', borderRadius: '50%', boxShadow: '0 0 6px rgba(200,168,90,0.50)' }} />
+                    <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '30%', background: 'linear-gradient(to top, rgba(12,9,4,0.80), transparent)' }} />
                   </div>
-                ))}
+                  <div style={{ padding: '6px 9px', background: 'rgba(200,168,90,0.06)' }}>
+                    <p style={{ fontSize: '5px', letterSpacing: '0.18em', color: 'rgba(200,168,90,0.60)', marginBottom: '3px', textTransform: 'uppercase' }}>Brand Identity</p>
+                    <p style={{ fontSize: '10px', fontWeight: 700, color: '#E4EBF4', letterSpacing: '-0.01em' }}>KAIROS</p>
+                  </div>
+                </div>
+                {/* SOLENNE — web layout preview */}
+                <div style={{ borderRadius: '7px', overflow: 'hidden', border: '1px solid rgba(125,220,255,0.10)' }}>
+                  <div style={{ height: '52px', position: 'relative', overflow: 'hidden', background: '#080B14' }}>
+                    <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse at 65% 30%, rgba(125,220,255,0.07) 0%, transparent 62%)' }} />
+                    {/* Layout lines */}
+                    <div style={{ position: 'absolute', top: '16%', left: '10%', width: '52%', height: '2px', background: 'rgba(220,232,245,0.22)', borderRadius: '1px' }} />
+                    <div style={{ position: 'absolute', top: '34%', left: '10%', width: '36%', height: '1.5px', background: 'rgba(180,205,225,0.13)', borderRadius: '1px' }} />
+                    <div style={{ position: 'absolute', top: '50%', left: '10%', width: '44%', height: '1.5px', background: 'rgba(180,205,225,0.10)', borderRadius: '1px' }} />
+                    {/* Right image block */}
+                    <div style={{ position: 'absolute', top: '10%', right: '8%', width: '27%', height: '72%', background: 'linear-gradient(135deg, rgba(125,220,255,0.09) 0%, rgba(80,160,200,0.04) 100%)', borderRadius: '3px', border: '0.5px solid rgba(125,220,255,0.13)' }} />
+                    {/* CTA button shape */}
+                    <div style={{ position: 'absolute', bottom: '14%', left: '10%', width: '24%', height: '12%', background: 'rgba(125,220,255,0.12)', borderRadius: '2px', border: '0.5px solid rgba(125,220,255,0.22)' }} />
+                    <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '28%', background: 'linear-gradient(to top, rgba(6,8,14,0.72), transparent)' }} />
+                  </div>
+                  <div style={{ padding: '6px 9px', background: 'rgba(125,220,255,0.04)' }}>
+                    <p style={{ fontSize: '5px', letterSpacing: '0.18em', color: 'rgba(125,220,255,0.50)', marginBottom: '3px', textTransform: 'uppercase' }}>Web & Digital</p>
+                    <p style={{ fontSize: '10px', fontWeight: 700, color: '#E4EBF4', letterSpacing: '-0.01em' }}>SOLENNE</p>
+                  </div>
+                </div>
               </div>
               {/* Footer bar */}
               <div style={{ padding: '8px 14px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTop: '1px solid rgba(255,255,255,0.04)' }}>
@@ -1166,27 +1208,42 @@ function BespokeWebShowcase() {
                 </div>
               </div>
 
-              {/* Hero — dark warm architectural night scene (CSS only) */}
-              <div style={{ position: 'relative', height: 'clamp(96px, 13vw, 140px)', overflow: 'hidden' }}>
-                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom right, #0E0A04 0%, #1C1208 35%, #120D06 65%, #070400 100%)' }} />
-                {/* Warm architectural glow */}
-                <div style={{ position: 'absolute', top: '5%', right: '20%', width: '48%', height: '90%', background: 'radial-gradient(ellipse at 50% 60%, rgba(215,172,82,0.20) 0%, rgba(180,118,38,0.10) 42%, transparent 70%)', filter: 'blur(7px)' }} />
-                <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '35%', background: 'linear-gradient(to top, rgba(200,158,56,0.08), transparent)' }} />
-                {/* Simulated building silhouettes */}
-                <div style={{ position: 'absolute', bottom: 0, right: '13%', width: '30%', height: '82%', background: 'linear-gradient(to top, rgba(26,19,8,0.96), rgba(32,23,10,0.68))', borderRadius: '2px 2px 0 0' }} />
-                <div style={{ position: 'absolute', bottom: 0, right: '28%', width: '17%', height: '96%', background: 'linear-gradient(to top, rgba(20,15,6,0.98), rgba(26,19,8,0.62))', borderRadius: '2px 2px 0 0' }} />
-                <div style={{ position: 'absolute', bottom: 0, right: '40%', width: '12%', height: '72%', background: 'linear-gradient(to top, rgba(18,13,5,0.95), rgba(22,16,7,0.55))', borderRadius: '2px 2px 0 0' }} />
-                {/* Window lights */}
-                {[
-                  { r: '15%', b: '56%' }, { r: '19%', b: '56%' }, { r: '15%', b: '67%' },
-                  { r: '29%', b: '70%' }, { r: '33%', b: '56%' }, { r: '17%', b: '45%' },
-                ].map((w, i) => (
-                  <div key={i} style={{ position: 'absolute', right: w.r, bottom: w.b, width: '2px', height: '2px', background: 'rgba(255,210,118,0.85)', borderRadius: '1px', boxShadow: '0 0 4px rgba(255,200,80,0.65)' }} />
+              {/* Hero — luxury villa night scene (CSS only) */}
+              <div style={{ position: 'relative', height: 'clamp(180px, 24vw, 260px)', overflow: 'hidden' }}>
+                {/* Sky: deep charcoal-blue fading to warm horizon */}
+                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, #090C14 0%, #10100C 42%, #1C1508 72%, #0E0A04 100%)' }} />
+                {/* Stars */}
+                {([{ l:'8%',t:'10%'},{l:'22%',t:'7%'},{l:'46%',t:'4%'},{l:'63%',t:'13%'},{l:'79%',t:'8%'},{l:'91%',t:'17%'},{l:'35%',t:'6%'},{l:'55%',t:'11%'}] as {l:string;t:string}[]).map((s,i)=>(
+                  <div key={i} style={{ position:'absolute', left:s.l, top:s.t, width:'1px', height:'1px', background:'rgba(255,255,255,0.38)', borderRadius:'50%' }} />
                 ))}
+                {/* Distant warm horizon glow */}
+                <div style={{ position:'absolute', bottom:'34%', left:'15%', right:'15%', height:'18%', background:'radial-gradient(ellipse at 50% 100%, rgba(215,170,72,0.22) 0%, transparent 70%)', filter:'blur(14px)' }} />
+                {/* Dark ground plane */}
+                <div style={{ position:'absolute', bottom:0, left:0, right:0, height:'28%', background:'linear-gradient(to top, rgba(8,6,3,1) 0%, rgba(10,8,4,0.90) 60%, transparent 100%)' }} />
+                {/* Reflection pool */}
+                <div style={{ position:'absolute', bottom:'10%', left:'10%', width:'36%', height:'5px', background:'linear-gradient(to right, rgba(180,148,58,0.12), rgba(215,178,72,0.28), rgba(180,148,58,0.12))', borderRadius:'2px', filter:'blur(1.5px)' }} />
+                {/* Main villa body (flat-roof modernist) */}
+                <div style={{ position:'absolute', bottom:'14%', left:'6%', width:'58%', height:'48%', background:'linear-gradient(to top, rgba(18,13,6,0.98) 0%, rgba(24,18,8,0.86) 100%)', borderRadius:'1px' }} />
+                {/* Upper overhang / second floor */}
+                <div style={{ position:'absolute', bottom:'44%', left:'4%', width:'63%', height:'16%', background:'linear-gradient(to top, rgba(22,17,8,0.94), rgba(28,21,9,0.78))', borderRadius:'1px' }} />
+                {/* Floor-to-ceiling windows — main floor */}
+                <div style={{ position:'absolute', bottom:'15%', left:'10%', width:'9%', height:'38%', background:'linear-gradient(to bottom, rgba(255,208,102,0.68) 0%, rgba(240,182,72,0.48) 55%, rgba(200,152,50,0.32) 100%)', boxShadow:'0 0 18px rgba(255,200,80,0.38), 0 0 48px rgba(255,180,60,0.14)', borderRadius:'1px' }} />
+                <div style={{ position:'absolute', bottom:'15%', left:'22%', width:'9%', height:'38%', background:'linear-gradient(to bottom, rgba(255,205,98,0.62) 0%, rgba(238,178,68,0.44) 55%, rgba(198,150,48,0.28) 100%)', boxShadow:'0 0 14px rgba(255,200,80,0.30)', borderRadius:'1px' }} />
+                <div style={{ position:'absolute', bottom:'15%', left:'35%', width:'7%', height:'38%', background:'rgba(255,200,80,0.24)', boxShadow:'0 0 10px rgba(255,200,80,0.20)', borderRadius:'1px' }} />
+                {/* Upper floor window strip */}
+                <div style={{ position:'absolute', bottom:'47%', left:'8%', width:'44%', height:'12%', background:'linear-gradient(to right, rgba(255,202,80,0.38), rgba(255,192,62,0.28), rgba(242,182,60,0.34), rgba(255,200,80,0.24))', boxShadow:'0 0 22px rgba(255,192,62,0.18)', borderRadius:'1px' }} />
+                {/* Exterior ground light spill */}
+                <div style={{ position:'absolute', bottom:'9%', left:'8%', width:'56%', height:'8%', background:'radial-gradient(ellipse at 30% 50%, rgba(255,200,80,0.14) 0%, transparent 65%)', filter:'blur(5px)' }} />
+                {/* Annex / garage right */}
+                <div style={{ position:'absolute', bottom:'14%', left:'50%', width:'18%', height:'32%', background:'rgba(16,12,5,0.96)', borderRadius:'1px' }} />
+                <div style={{ position:'absolute', bottom:'15%', left:'53%', width:'8%', height:'18%', background:'rgba(255,200,80,0.20)', borderRadius:'1px' }} />
+                {/* Right hedges / trees */}
+                <div style={{ position:'absolute', bottom:'14%', right:'6%', width:'16%', height:'56%', background:'linear-gradient(to top, rgba(8,12,6,0.96), rgba(12,16,8,0.72))', borderRadius:'50% 42% 0 0 / 62% 58% 0 0' }} />
+                <div style={{ position:'absolute', bottom:'14%', right:'17%', width:'10%', height:'42%', background:'linear-gradient(to top, rgba(8,12,6,0.92), rgba(10,14,7,0.62))', borderRadius:'42% 38% 0 0 / 52% 48% 0 0' }} />
                 {/* Text overlay */}
-                <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: '12px 22px', background: 'linear-gradient(to top, rgba(12,9,6,0.90) 0%, rgba(12,9,6,0.28) 55%, transparent 100%)' }}>
-                  <p style={{ fontSize: '5.5px', letterSpacing: '0.30em', textTransform: 'uppercase', color: 'rgba(200,168,90,0.68)', marginBottom: '4px' }}>Prime London · Est. 2001</p>
-                  <h3 style={{ fontSize: 'clamp(13px, 2vw, 18px)', fontWeight: 700, color: '#EDE0C4', lineHeight: 1.1, letterSpacing: '-0.02em', fontFamily: 'Georgia, serif' }}>
+                <div style={{ position:'absolute', inset:0, display:'flex', flexDirection:'column', justifyContent:'flex-end', padding:'14px 22px', background:'linear-gradient(to top, rgba(12,9,6,0.92) 0%, rgba(12,9,6,0.22) 52%, transparent 100%)' }}>
+                  <p style={{ fontSize:'5.5px', letterSpacing:'0.30em', textTransform:'uppercase', color:'rgba(200,168,90,0.70)', marginBottom:'5px' }}>Prime London · Est. 2001</p>
+                  <h3 style={{ fontSize:'clamp(13px, 2vw, 18px)', fontWeight:700, color:'#EDE0C4', lineHeight:1.1, letterSpacing:'-0.02em', fontFamily:'Georgia, serif' }}>
                     Extraordinary residences<br />for the distinguished few.
                   </h3>
                 </div>
@@ -1194,23 +1251,78 @@ function BespokeWebShowcase() {
 
               {/* Property card grid */}
               <div style={{ padding: '14px 22px', display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '10px' }}>
-                {[
-                  { name: 'Mayfair Penthouse',    bed: '4 bed', price: '£4,200,000' },
-                  { name: 'Chelsea Mews',          bed: '3 bed', price: '£2,850,000' },
-                  { name: 'Knightsbridge Manor',   bed: '6 bed', price: '£8,500,000' },
-                ].map((prop, i) => (
-                  <div key={i} style={{ borderRadius: '8px', overflow: 'hidden', border: '1px solid rgba(200,168,90,0.10)', background: 'rgba(200,168,90,0.03)' }}>
-                    <div style={{ height: '52px', position: 'relative', overflow: 'hidden', background: i === 0 ? 'linear-gradient(135deg, #18100500, #0E0A03)' : i === 1 ? 'linear-gradient(135deg, #10090300, #0B0702)' : 'linear-gradient(135deg, #1C130600, #110C04)' }}>
-                      <div style={{ position: 'absolute', inset: 0, background: `radial-gradient(ellipse at ${i === 0 ? '65%' : i === 1 ? '40%' : '55%'} 38%, rgba(200,158,${i === 0 ? '60' : i === 1 ? '52' : '70'},${i === 0 ? '0.15' : '0.12'}) 0%, transparent 62%)` }} />
-                      <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '55%', background: 'linear-gradient(to top, rgba(12,9,6,0.72), transparent)' }} />
-                    </div>
-                    <div style={{ padding: '7px 9px' }}>
-                      <p style={{ fontSize: '8px', fontWeight: 600, color: 'rgba(228,208,168,0.82)', marginBottom: '2px', lineHeight: 1.2 }}>{prop.name}</p>
-                      <p style={{ fontSize: '7px', color: 'rgba(180,158,118,0.52)', marginBottom: '4px' }}>{prop.bed}</p>
-                      <p style={{ fontSize: '10px', fontWeight: 700, color: '#C8A85A', letterSpacing: '-0.01em' }}>{prop.price}</p>
-                    </div>
+                {/* Card A — Mayfair Penthouse: high-rise dusk city view */}
+                <div style={{ borderRadius:'8px', overflow:'hidden', border:'1px solid rgba(200,168,90,0.10)', background:'rgba(200,168,90,0.03)' }}>
+                  <div style={{ height:'72px', position:'relative', overflow:'hidden' }}>
+                    <div style={{ position:'absolute', inset:0, background:'linear-gradient(to bottom, #0C1020 0%, #12141E 38%, #1A1610 65%, #100C06 100%)' }} />
+                    <div style={{ position:'absolute', bottom:0, left:0, right:0, height:'42%', background:'radial-gradient(ellipse at 45% 100%, rgba(255,200,80,0.18) 0%, transparent 65%)' }} />
+                    {/* Tower silhouettes */}
+                    {([{l:'6%',h:'62%'},{l:'19%',h:'78%'},{l:'31%',h:'55%'},{l:'44%',h:'85%'},{l:'58%',h:'66%'},{l:'70%',h:'50%'},{l:'80%',h:'72%'}] as {l:string;h:string}[]).map((b,j)=>(
+                      <div key={j} style={{ position:'absolute', bottom:0, left:b.l, width:'10%', height:b.h, background:'rgba(10,9,5,0.90)', border:'0.5px solid rgba(255,200,60,0.06)', borderBottom:'none' }} />
+                    ))}
+                    {/* Window grid dots */}
+                    {([{l:'8%',b:'48%'},{l:'12%',b:'48%'},{l:'8%',b:'62%'},{l:'21%',b:'55%'},{l:'21%',b:'68%'},{l:'45%',b:'58%'},{l:'49%',b:'58%'},{l:'45%',b:'72%'},{l:'82%',b:'50%'},{l:'82%',b:'63%'}] as {l:string;b:string}[]).map((w,k)=>(
+                      <div key={k} style={{ position:'absolute', left:w.l, bottom:w.b, width:'2px', height:'2px', background:'rgba(255,215,105,0.72)', borderRadius:'0.5px' }} />
+                    ))}
+                    <div style={{ position:'absolute', bottom:0, left:0, right:0, height:'38%', background:'linear-gradient(to top, rgba(10,8,4,0.88), transparent)' }} />
                   </div>
-                ))}
+                  <div style={{ padding:'7px 9px' }}>
+                    <p style={{ fontSize:'8px', fontWeight:600, color:'rgba(228,208,168,0.82)', marginBottom:'2px', lineHeight:1.2 }}>Mayfair Penthouse</p>
+                    <p style={{ fontSize:'7px', color:'rgba(180,158,118,0.52)', marginBottom:'4px' }}>4 bed</p>
+                    <p style={{ fontSize:'10px', fontWeight:700, color:'#C8A85A', letterSpacing:'-0.01em' }}>£4,200,000</p>
+                  </div>
+                </div>
+                {/* Card B — Chelsea Mews: warm-lit arched entrance */}
+                <div style={{ borderRadius:'8px', overflow:'hidden', border:'1px solid rgba(200,168,90,0.10)', background:'rgba(200,168,90,0.03)' }}>
+                  <div style={{ height:'72px', position:'relative', overflow:'hidden' }}>
+                    <div style={{ position:'absolute', inset:0, background:'linear-gradient(135deg, #1A0E08 0%, #241408 42%, #1A1008 78%, #0E0906 100%)' }} />
+                    {/* Arched doorway */}
+                    <div style={{ position:'absolute', bottom:'18%', left:'33%', width:'26%', height:'62%', background:'linear-gradient(to bottom, rgba(255,198,80,0.55) 0%, rgba(240,165,52,0.65) 58%, rgba(200,132,40,0.42) 100%)', borderRadius:'50% 50% 0 0 / 38% 38% 0 0', boxShadow:'0 0 22px rgba(255,185,62,0.40)' }} />
+                    {/* Door frame */}
+                    <div style={{ position:'absolute', bottom:'16%', left:'31%', width:'30%', height:'4%', background:'rgba(180,140,60,0.40)', borderRadius:'0 0 2px 2px' }} />
+                    {/* Ground glow from door light */}
+                    <div style={{ position:'absolute', bottom:0, left:'22%', right:'22%', height:'28%', background:'radial-gradient(ellipse at 50% 0%, rgba(255,182,60,0.22), transparent 72%)', filter:'blur(5px)' }} />
+                    {/* Side walls */}
+                    <div style={{ position:'absolute', top:0, left:0, bottom:0, width:'32%', background:'rgba(18,12,6,0.92)' }} />
+                    <div style={{ position:'absolute', top:0, right:0, bottom:0, width:'32%', background:'rgba(16,10,5,0.92)' }} />
+                    {/* Wall texture horizontal lines */}
+                    {[22,38,54,70].map(pct=>(
+                      <div key={pct} style={{ position:'absolute', top:`${pct}%`, left:'2%', right:'2%', height:'1px', background:'rgba(180,140,60,0.06)' }} />
+                    ))}
+                    <div style={{ position:'absolute', bottom:0, left:0, right:0, height:'35%', background:'linear-gradient(to top, rgba(10,7,4,0.90), transparent)' }} />
+                  </div>
+                  <div style={{ padding:'7px 9px' }}>
+                    <p style={{ fontSize:'8px', fontWeight:600, color:'rgba(228,208,168,0.82)', marginBottom:'2px', lineHeight:1.2 }}>Chelsea Mews</p>
+                    <p style={{ fontSize:'7px', color:'rgba(180,158,118,0.52)', marginBottom:'4px' }}>3 bed</p>
+                    <p style={{ fontSize:'10px', fontWeight:700, color:'#C8A85A', letterSpacing:'-0.01em' }}>£2,850,000</p>
+                  </div>
+                </div>
+                {/* Card C — Knightsbridge Manor: grand estate facade */}
+                <div style={{ borderRadius:'8px', overflow:'hidden', border:'1px solid rgba(200,168,90,0.10)', background:'rgba(200,168,90,0.03)' }}>
+                  <div style={{ height:'72px', position:'relative', overflow:'hidden' }}>
+                    <div style={{ position:'absolute', inset:0, background:'linear-gradient(to bottom, #07091C 0%, #0C0E22 35%, #121010 65%, #0A0806 100%)' }} />
+                    {/* Manor main body */}
+                    <div style={{ position:'absolute', bottom:'22%', left:'12%', width:'76%', height:'48%', background:'rgba(10,8,5,0.96)' }} />
+                    {/* Left wing */}
+                    <div style={{ position:'absolute', bottom:'22%', left:'5%', width:'14%', height:'34%', background:'rgba(10,8,5,0.94)' }} />
+                    {/* Right wing */}
+                    <div style={{ position:'absolute', bottom:'22%', right:'5%', width:'14%', height:'34%', background:'rgba(10,8,5,0.94)' }} />
+                    {/* Arched windows — warm lit */}
+                    {[18,30,43,57,69].map((lp,j)=>(
+                      <div key={j} style={{ position:'absolute', bottom:'38%', left:`${lp}%`, width:'6%', height:'16%', background:'rgba(255,212,118,0.52)', boxShadow:'0 0 6px rgba(255,200,80,0.42)', borderRadius:'50% 50% 0 0 / 45% 45% 0 0' }} />
+                    ))}
+                    {/* Front hedge row */}
+                    <div style={{ position:'absolute', bottom:'16%', left:'8%', right:'8%', height:'9%', background:'rgba(8,14,6,0.92)', borderRadius:'1px' }} />
+                    {/* Driveway centre line */}
+                    <div style={{ position:'absolute', bottom:0, left:'45%', width:'10%', height:'18%', background:'linear-gradient(to top, rgba(20,16,8,0.60), transparent)' }} />
+                    <div style={{ position:'absolute', bottom:0, left:0, right:0, height:'24%', background:'linear-gradient(to top, rgba(8,6,3,0.96), rgba(10,8,4,0.60), transparent)' }} />
+                  </div>
+                  <div style={{ padding:'7px 9px' }}>
+                    <p style={{ fontSize:'8px', fontWeight:600, color:'rgba(228,208,168,0.82)', marginBottom:'2px', lineHeight:1.2 }}>Knightsbridge Manor</p>
+                    <p style={{ fontSize:'7px', color:'rgba(180,158,118,0.52)', marginBottom:'4px' }}>6 bed</p>
+                    <p style={{ fontSize:'10px', fontWeight:700, color:'#C8A85A', letterSpacing:'-0.01em' }}>£8,500,000</p>
+                  </div>
+                </div>
               </div>
 
               {/* Stats bar */}
