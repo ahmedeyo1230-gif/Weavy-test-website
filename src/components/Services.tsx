@@ -1901,7 +1901,7 @@ function BespokeRealUsers() {
         accentColor="hsl(199 89% 60% / 0.09)"
         accentPosition="22% 55%"
         accentRadius="580px"
-        gridColor="hsl(0 0% 100% / 0.025)"
+        gridColor="hsl(0 0% 100% / 0.01)"
         gridSize="80px 56px"
       />
 
