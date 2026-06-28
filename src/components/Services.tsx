@@ -1114,14 +1114,33 @@ function BespokeWebShowcase() {
               <div style={{ padding: '10px 14px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
                 {/* KAIROS — luxury watch brand campaign */}
                 <div style={{ borderRadius: '7px', overflow: 'hidden', border: '1px solid rgba(200,168,90,0.14)' }}>
-                  <div style={{ height: '62px', position: 'relative', overflow: 'hidden', background: '#0A0808' }}>
-                    <img
-                      src="/brand_assets/Watch_L.png"
-                      alt="Luxury watch brand identity campaign"
-                      loading="lazy"
-                      style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', filter: 'brightness(0.70) saturate(0.82) contrast(1.05)' }}
-                    />
-                    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(5,4,3,0.90) 0%, rgba(5,4,3,0.18) 55%, transparent 100%)' }} />
+                  <div style={{ height: '62px', position: 'relative', overflow: 'hidden', background: '#080605' }}>
+                    {/* Warm charcoal background */}
+                    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(158deg, #0D0A07 0%, #0A0806 48%, #060504 80%, #080706 100%)' }} />
+                    {/* Stone surface plane */}
+                    <div style={{ position: 'absolute', bottom: '28%', left: 0, right: 0, height: '1px', background: 'linear-gradient(to right, transparent 8%, rgba(175,158,128,0.22) 22%, rgba(198,182,148,0.35) 52%, rgba(175,158,128,0.22) 78%, transparent 92%)' }} />
+                    <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '28%', background: 'linear-gradient(to top, rgba(10,8,6,0.96), rgba(13,10,7,0.50), rgba(11,9,6,0.08))' }} />
+                    {/* Overhead spotlight */}
+                    <div style={{ position: 'absolute', top: '-25%', left: '20%', width: '38%', height: '88%', background: 'radial-gradient(ellipse at 50% 4%, rgba(248,232,198,0.26) 0%, rgba(225,208,172,0.11) 28%, rgba(200,182,145,0.04) 55%, transparent 70%)', filter: 'blur(4px)' }} />
+                    {/* Bottle base shadow */}
+                    <div style={{ position: 'absolute', bottom: '27%', left: '20%', width: '18%', height: '2.5%', background: 'radial-gradient(ellipse at 50% 50%, rgba(4,3,2,0.92) 0%, transparent 65%)', filter: 'blur(3px)' }} />
+                    {/* Bottle body — tall slim glass */}
+                    <div style={{ position: 'absolute', bottom: '29%', left: '23.5%', width: '8.5%', height: '48%', background: 'linear-gradient(to right, rgba(8,6,4,0.90) 0%, rgba(35,26,16,0.58) 14%, rgba(195,172,122,0.65) 28%, rgba(235,220,185,0.82) 42%, rgba(220,202,165,0.70) 56%, rgba(30,22,14,0.55) 76%, rgba(6,4,3,0.88) 100%)', borderRadius: '10% 10% 4% 4% / 3% 3% 2% 2%' }} />
+                    {/* Specular glass highlight */}
+                    <div style={{ position: 'absolute', bottom: '32%', left: '25.8%', width: '2%', height: '40%', background: 'linear-gradient(to bottom, transparent, rgba(255,248,230,0.88) 28%, rgba(248,238,215,0.68) 68%, transparent)', borderRadius: '50%', filter: 'blur(0.5px)' }} />
+                    {/* Neck */}
+                    <div style={{ position: 'absolute', bottom: '73%', left: '23%', width: '9.5%', height: '7%', background: 'linear-gradient(to right, rgba(10,8,5,0.90), rgba(175,155,112,0.62) 42%, rgba(188,168,122,0.58) 58%, rgba(10,8,5,0.88))' }} />
+                    {/* Cap */}
+                    <div style={{ position: 'absolute', bottom: '80%', left: '22.5%', width: '10.5%', height: '9%', background: 'linear-gradient(to right, rgba(158,140,98,0.72) 0%, rgba(215,198,155,0.92) 35%, rgba(200,182,138,0.82) 65%, rgba(142,126,88,0.68) 100%)', borderRadius: '2px 2px 0 0' }} />
+                    {/* Cast shadow */}
+                    <div style={{ position: 'absolute', bottom: '14%', left: '16%', width: '26%', height: '14%', background: 'linear-gradient(to right, rgba(4,3,2,0.88) 0%, rgba(4,3,2,0.40) 48%, transparent 80%)', filter: 'blur(2.5px)' }} />
+                    {/* Gold brand mark right side */}
+                    <div style={{ position: 'absolute', top: '18%', right: '8%', width: '32%' }}>
+                      <div style={{ height: '0.8px', background: 'rgba(205,172,95,0.72)', marginBottom: '5px', width: '80%' }} />
+                      <div style={{ fontSize: '5.5px', fontWeight: 700, letterSpacing: '0.22em', color: 'rgba(215,185,115,0.85)', fontFamily: 'Georgia, serif', marginBottom: '4px' }}>KAIROS</div>
+                      <div style={{ height: '0.5px', background: 'rgba(200,168,90,0.34)', width: '58%', marginBottom: '3px' }} />
+                      <div style={{ height: '0.5px', background: 'rgba(200,168,90,0.18)', width: '44%' }} />
+                    </div>
                   </div>
                   <div style={{ padding: '6px 9px', background: 'rgba(200,168,90,0.06)' }}>
                     <p style={{ fontSize: '5px', letterSpacing: '0.18em', color: 'rgba(200,168,90,0.60)', marginBottom: '3px', textTransform: 'uppercase' }}>Brand Identity</p>
@@ -1130,14 +1149,51 @@ function BespokeWebShowcase() {
                 </div>
                 {/* SOLENNE — editorial portrait campaign */}
                 <div style={{ borderRadius: '7px', overflow: 'hidden', border: '1px solid rgba(125,220,255,0.10)' }}>
-                  <div style={{ height: '62px', position: 'relative', overflow: 'hidden', background: '#060810' }}>
-                    <img
-                      src="/brand_assets/Smiley_women.png"
-                      alt="Editorial brand photography campaign"
-                      loading="lazy"
-                      style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top', filter: 'brightness(0.62) saturate(0.78) contrast(1.10)' }}
-                    />
-                    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(4,6,12,0.90) 0%, rgba(4,6,12,0.22) 55%, transparent 100%)' }} />
+                  <div style={{ height: '62px', position: 'relative', overflow: 'hidden', background: '#040710' }}>
+                    {/* Deep navy background */}
+                    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(148deg, #060A1A 0%, #050812 38%, #040710 65%, #050916 100%)' }} />
+                    {/* Ambient blue glow */}
+                    <div style={{ position: 'absolute', bottom: '-5%', left: '5%', right: '30%', height: '50%', background: 'radial-gradient(ellipse at 42% 100%, rgba(45,105,255,0.12) 0%, rgba(32,82,220,0.05) 50%, transparent 72%)', filter: 'blur(8px)' }} />
+                    {/* Monitor bezel */}
+                    <div style={{ position: 'absolute', top: '7%', left: '6%', width: '58%', height: '64%', background: 'rgba(6,12,28,0.96)', borderRadius: '3px 3px 0 0', border: '0.5px solid rgba(55,100,215,0.32)' }}>
+                      <div style={{ position: 'absolute', inset: '5%', background: '#03060F', borderRadius: '1px', overflow: 'hidden' }}>
+                        {/* Nav bar */}
+                        <div style={{ height: '18%', background: 'rgba(4,8,18,1)', borderBottom: '0.5px solid rgba(50,90,200,0.25)', display: 'flex', alignItems: 'center', paddingLeft: '8%', gap: '8%' }}>
+                          <div style={{ width: '18%', height: '2px', background: 'rgba(95,175,255,0.58)', borderRadius: '1px' }} />
+                          {[0,1,2].map(n => <div key={n} style={{ width: '7%', height: '1.5px', background: 'rgba(72,138,230,0.22)', borderRadius: '1px' }} />)}
+                        </div>
+                        {/* Stat boxes */}
+                        <div style={{ padding: '5% 6% 3%', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '5%' }}>
+                          <div style={{ background: 'rgba(22,50,125,0.20)', border: '0.5px solid rgba(58,118,255,0.20)', borderRadius: '1.5px', padding: '5%' }}>
+                            <div style={{ height: '2px', background: 'rgba(95,175,255,0.48)', borderRadius: '1px', marginBottom: '2.5px', width: '65%' }} />
+                            <div style={{ height: '1.5px', background: 'rgba(72,138,230,0.22)', borderRadius: '1px', width: '82%' }} />
+                          </div>
+                          <div style={{ background: 'rgba(18,42,108,0.16)', border: '0.5px solid rgba(52,108,240,0.16)', borderRadius: '1.5px', padding: '5%' }}>
+                            <div style={{ height: '2px', background: 'rgba(78,162,255,0.40)', borderRadius: '1px', marginBottom: '2.5px', width: '52%' }} />
+                            <div style={{ height: '1.5px', background: 'rgba(65,128,218,0.18)', borderRadius: '1px', width: '72%' }} />
+                          </div>
+                        </div>
+                        {/* Bar chart */}
+                        <div style={{ paddingLeft: '6%', paddingRight: '6%', display: 'flex', gap: '3%', alignItems: 'flex-end', height: '11px' }}>
+                          {([55,78,42,92,65,88,58] as number[]).map((h,i) => (
+                            <div key={i} style={{ flex: 1, height: `${h}%`, background: (i===3||i===5) ? 'rgba(80,178,255,0.68)' : 'rgba(48,115,230,0.30)', borderRadius: '1px 1px 0 0' }} />
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                    {/* Monitor stand */}
+                    <div style={{ position: 'absolute', top: '71%', left: '31%', width: '4%', height: '15%', background: 'rgba(18,32,75,0.65)' }} />
+                    <div style={{ position: 'absolute', top: '84%', left: '24%', width: '17%', height: '3%', background: 'rgba(16,28,68,0.55)', borderRadius: '1px' }} />
+                    {/* Floating metric card right */}
+                    <div style={{ position: 'absolute', top: '10%', right: '5%', width: '28%', height: '58%', background: 'rgba(10,20,52,0.88)', border: '0.5px solid rgba(55,110,240,0.25)', borderRadius: '3px', padding: '8% 10%', display: 'flex', flexDirection: 'column', gap: '3.5px' }}>
+                      <div style={{ height: '1.5px', background: 'rgba(95,175,255,0.45)', borderRadius: '1px', width: '82%' }} />
+                      <div style={{ height: '1px', background: 'rgba(70,138,228,0.22)', borderRadius: '1px', width: '62%' }} />
+                      <div style={{ height: '1px', background: 'rgba(58,120,215,0.16)', borderRadius: '1px', width: '74%' }} />
+                      <div style={{ marginTop: '2px', height: '7px', background: 'rgba(38,95,245,0.24)', borderRadius: '1px', border: '0.5px solid rgba(78,158,255,0.28)' }} />
+                    </div>
+                    {/* Ambient glow top-right */}
+                    <div style={{ position: 'absolute', top: '-15%', right: '-5%', width: '38%', height: '55%', background: 'radial-gradient(ellipse at 80% 15%, rgba(55,125,255,0.09) 0%, transparent 62%)', filter: 'blur(10px)' }} />
+                    <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '22%', background: 'linear-gradient(to top, rgba(3,5,12,0.88), transparent)' }} />
                   </div>
                   <div style={{ padding: '6px 9px', background: 'rgba(125,220,255,0.04)' }}>
                     <p style={{ fontSize: '5px', letterSpacing: '0.18em', color: 'rgba(125,220,255,0.50)', marginBottom: '3px', textTransform: 'uppercase' }}>Web & Digital</p>
