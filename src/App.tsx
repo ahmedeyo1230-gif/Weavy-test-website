@@ -16,6 +16,65 @@ const ImageShowcase = lazy(() => import('./components/ImageShowcase'))
 const Blog         = lazy(() => import('./components/Blog'))
 const Contact      = lazy(() => import('./components/Contact'))
 
+const MARQUEE_ITEMS = [
+  'FASTER RESPONSE', 'MORE ENQUIRIES', 'LESS MANUAL WORK',
+  'PREMIUM BRAND PRESENCE', 'SMARTER CUSTOMER JOURNEYS',
+  'SCALABLE GROWTH', 'BUILT TO PERFORM', 'DESIGNED TO CONVERT',
+]
+
+function OutcomeMarquee() {
+  const items = [...MARQUEE_ITEMS, ...MARQUEE_ITEMS]
+  return (
+    <div
+      aria-hidden="true"
+      style={{
+        position: 'relative',
+        overflow: 'hidden',
+        background: 'rgba(1,7,9,0.45)',
+        borderTop: '1px solid rgba(125,220,255,0.07)',
+        borderBottom: '1px solid rgba(125,220,255,0.07)',
+        padding: '14px 0',
+      }}
+    >
+      {/* Left fade mask */}
+      <div style={{
+        position: 'absolute', top: 0, left: 0, bottom: 0, width: '100px',
+        background: 'linear-gradient(to right, #010709, transparent)',
+        zIndex: 2, pointerEvents: 'none',
+      }} />
+      {/* Right fade mask */}
+      <div style={{
+        position: 'absolute', top: 0, right: 0, bottom: 0, width: '100px',
+        background: 'linear-gradient(to left, #010709, transparent)',
+        zIndex: 2, pointerEvents: 'none',
+      }} />
+
+      <div className="outcome-marquee-track">
+        {items.map((text, i) => (
+          <span
+            key={i}
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0',
+              whiteSpace: 'nowrap',
+              fontSize: 'clamp(0.6rem, 1.1vw, 0.72rem)',
+              letterSpacing: '0.28em',
+              fontWeight: 500,
+              color: 'rgba(191,239,255,0.72)',
+              fontFamily: 'var(--font-sans)',
+              paddingRight: '3rem',
+            }}
+          >
+            {text}
+            <span style={{ marginLeft: '3rem', color: 'rgba(125,220,255,0.40)', fontSize: '0.6em' }}>·</span>
+          </span>
+        ))}
+      </div>
+    </div>
+  )
+}
+
 const MAIN_HASHES = ['#home', '#about', '#showcase', '']
 
 export default function App() {
@@ -94,6 +153,7 @@ export default function App() {
             <>
               <Hero />
               <VideoShowcase />
+              <OutcomeMarquee />
               <About />
               <Stats />
               <SystemsShowcase />
