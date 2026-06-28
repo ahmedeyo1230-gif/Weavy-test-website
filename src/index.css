@@ -62,8 +62,9 @@ html {
 .outcome-marquee-track {
   display: flex;
   width: max-content;
-  animation: marquee-scroll 34s linear infinite;
+  animation: marquee-scroll 36s linear infinite;
   will-change: transform;
+  transition: animation-duration 500ms;
 }
 @media (prefers-reduced-motion: reduce) {
   .outcome-marquee-track { animation: none; }

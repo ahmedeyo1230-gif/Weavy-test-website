@@ -23,51 +23,79 @@ const MARQUEE_ITEMS = [
 ]
 
 function OutcomeMarquee() {
+  const [hovered, setHovered] = useState(false)
   const items = [...MARQUEE_ITEMS, ...MARQUEE_ITEMS]
   return (
     <div
       aria-hidden="true"
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
       style={{
         position: 'relative',
         overflow: 'hidden',
-        background: 'rgba(1,7,9,0.45)',
-        borderTop: '1px solid rgba(125,220,255,0.07)',
-        borderBottom: '1px solid rgba(125,220,255,0.07)',
-        padding: '14px 0',
+        background: 'rgba(1,7,9,0.72)',
+        borderTop: '1px solid rgba(125,220,255,0.13)',
+        borderBottom: '1px solid rgba(125,220,255,0.13)',
+        padding: 'clamp(18px, 2.2vw, 26px) 0',
+        backdropFilter: 'blur(8px)',
+        WebkitBackdropFilter: 'blur(8px)',
+        boxShadow: '0 0 60px rgba(125,220,255,0.05) inset',
+        transition: 'box-shadow 500ms ease',
       }}
     >
+      {/* Ambient cyan glow centre */}
+      <div aria-hidden="true" style={{
+        position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0,
+        background: 'radial-gradient(ellipse 70% 100% at 50% 50%, rgba(125,220,255,0.04) 0%, transparent 70%)',
+      }} />
+
       {/* Left fade mask */}
       <div style={{
-        position: 'absolute', top: 0, left: 0, bottom: 0, width: '100px',
-        background: 'linear-gradient(to right, #010709, transparent)',
+        position: 'absolute', top: 0, left: 0, bottom: 0, width: '140px',
+        background: 'linear-gradient(to right, #010709 30%, transparent)',
         zIndex: 2, pointerEvents: 'none',
       }} />
       {/* Right fade mask */}
       <div style={{
-        position: 'absolute', top: 0, right: 0, bottom: 0, width: '100px',
-        background: 'linear-gradient(to left, #010709, transparent)',
+        position: 'absolute', top: 0, right: 0, bottom: 0, width: '140px',
+        background: 'linear-gradient(to left, #010709 30%, transparent)',
         zIndex: 2, pointerEvents: 'none',
       }} />
 
-      <div className="outcome-marquee-track">
+      <div
+        className="outcome-marquee-track"
+        style={{ animationDuration: hovered ? '68s' : '36s', position: 'relative', zIndex: 1 }}
+      >
         {items.map((text, i) => (
           <span
             key={i}
             style={{
               display: 'inline-flex',
               alignItems: 'center',
-              gap: '0',
               whiteSpace: 'nowrap',
-              fontSize: 'clamp(0.6rem, 1.1vw, 0.72rem)',
-              letterSpacing: '0.28em',
-              fontWeight: 500,
-              color: 'rgba(191,239,255,0.72)',
+              fontSize: 'clamp(0.72rem, 1.4vw, 0.92rem)',
+              letterSpacing: '0.30em',
+              fontWeight: 600,
               fontFamily: 'var(--font-sans)',
-              paddingRight: '3rem',
+              paddingRight: '3.5rem',
+              background: hovered
+                ? 'linear-gradient(90deg, #DDF7FF 0%, #7DDCFF 40%, #DDF7FF 70%, #BFE8FF 100%)'
+                : 'linear-gradient(90deg, rgba(191,239,255,0.80) 0%, rgba(125,220,255,0.95) 40%, rgba(191,239,255,0.80) 70%, rgba(221,247,255,0.85) 100%)',
+              backgroundClip: 'text',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              transition: 'all 500ms ease',
+              filter: hovered ? 'drop-shadow(0 0 8px rgba(125,220,255,0.45))' : 'none',
             }}
           >
             {text}
-            <span style={{ marginLeft: '3rem', color: 'rgba(125,220,255,0.40)', fontSize: '0.6em' }}>·</span>
+            <span style={{
+              marginLeft: '3.5rem',
+              background: 'rgba(125,220,255,0.45)',
+              WebkitBackgroundClip: 'unset',
+              WebkitTextFillColor: 'rgba(125,220,255,0.45)',
+              fontSize: '0.65em',
+            }}>·</span>
           </span>
         ))}
       </div>
