@@ -229,23 +229,25 @@ export default function About() { // no diagonal lines bg
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-20px' }}
               transition={{ duration: 0.5, delay: i * 0.07, ease: E }}
-              className="group relative rounded-xl px-5 py-5 overflow-hidden cursor-pointer"
+              className="group relative rounded-xl overflow-hidden cursor-pointer"
               style={{
-                background: 'hsl(0 0% 100% / 0.018)',
-                border: '1px solid hsl(0 0% 100% / 0.06)',
+                padding: '1.4rem 1.35rem 1.6rem',
+                minHeight: '9rem',
+                background: 'hsl(0 0% 100% / 0.022)',
+                border: '1px solid hsl(0 0% 100% / 0.07)',
                 transition: 'border-color 280ms, background-color 280ms, box-shadow 280ms, transform 280ms cubic-bezier(0.16,1,0.3,1)',
               }}
               onMouseEnter={e => {
                 const el = e.currentTarget as HTMLDivElement
-                el.style.borderColor = 'rgba(255,216,107,0.35)'
-                el.style.backgroundColor = 'rgba(255,216,107,0.03)'
-                el.style.boxShadow = '0 8px 32px rgba(255,216,107,0.10), 0 0 0 1px rgba(255,216,107,0.08)'
-                el.style.transform = 'translateY(-7px)'
+                el.style.borderColor = 'rgba(255,216,107,0.45)'
+                el.style.backgroundColor = 'rgba(255,216,107,0.045)'
+                el.style.boxShadow = '0 12px 40px rgba(255,216,107,0.14), 0 0 0 1px rgba(255,216,107,0.12)'
+                el.style.transform = 'translateY(-9px)'
               }}
               onMouseLeave={e => {
                 const el = e.currentTarget as HTMLDivElement
-                el.style.borderColor = 'hsl(0 0% 100% / 0.06)'
-                el.style.backgroundColor = 'hsl(0 0% 100% / 0.018)'
+                el.style.borderColor = 'hsl(0 0% 100% / 0.07)'
+                el.style.backgroundColor = 'hsl(0 0% 100% / 0.022)'
                 el.style.boxShadow = 'none'
                 el.style.transform = 'translateY(0)'
               }}
@@ -268,13 +270,13 @@ export default function About() { // no diagonal lines bg
                 <div className="gold-line-glint" />
               </div>
               <div
-                className="text-xs font-mono select-none mb-3"
-                style={{ color: '#D6B85A', opacity: 0.75 }}
+                className="font-mono select-none mb-4"
+                style={{ fontSize: '0.7rem', color: '#D6B85A', opacity: 0.75 }}
               >
                 {svc.num}
               </div>
-              <div className="text-sm font-semibold mb-1.5" style={{ color: '#F8FAFC' }}>{svc.label}</div>
-              <div className="text-xs font-medium leading-snug" style={{ color: '#94A3B8' }}>
+              <div className="font-semibold mb-2" style={{ fontSize: '0.9375rem', color: '#F8FAFC' }}>{svc.label}</div>
+              <div className="font-medium leading-relaxed" style={{ fontSize: '0.8rem', color: '#B0BAC8' }}>
                 {(() => {
                   const parts = svc.desc.split(svc.highlight)
                   return (
