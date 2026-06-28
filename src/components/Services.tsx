@@ -993,10 +993,10 @@ function BespokeWebShowcase() {
               built to perform.
             </em>
           </h2>
-          <p className="bws-header font-sans font-light" style={{ fontSize: 'clamp(0.84rem, 1.3vw, 0.97rem)', lineHeight: 1.9, color: 'rgba(200,215,228,0.68)', marginBottom: '1rem' }}>
+          <p className="bws-header font-sans font-light" style={{ fontSize: 'clamp(0.84rem, 1.3vw, 0.97rem)', lineHeight: 1.9, color: '#D3DCE2', marginBottom: '1rem' }}>
             Every site we build is a precision-crafted system — visual, functional, and designed to earn trust from the first scroll. We don't use templates. Every layout, interaction, and detail is shaped around your brand and your audience.
           </p>
-          <p className="bws-header font-sans font-light" style={{ fontSize: 'clamp(0.84rem, 1.3vw, 0.97rem)', lineHeight: 1.9, color: 'rgba(200,215,228,0.68)' }}>
+          <p className="bws-header font-sans font-light" style={{ fontSize: 'clamp(0.84rem, 1.3vw, 0.97rem)', lineHeight: 1.9, color: '#D3DCE2' }}>
             From real estate platforms and service businesses to e-commerce brands and creative studios — we build websites that feel premium, load fast, and convert visitors into clients.
           </p>
 
@@ -1006,34 +1006,34 @@ function BespokeWebShowcase() {
               <span
                 key={item.label}
                 style={{
-                  display: 'inline-flex', alignItems: 'center', gap: '0.4rem',
-                  padding: '0.38rem 1.05rem', borderRadius: '9999px',
-                  border: '1px solid rgba(200,168,90,0.28)',
-                  fontSize: '0.635rem', letterSpacing: '0.07em', fontWeight: 500,
-                  color: 'rgba(224,196,130,0.80)',
-                  background: 'rgba(200,168,90,0.04)',
-                  backdropFilter: 'blur(8px)',
-                  WebkitBackdropFilter: 'blur(8px)',
-                  boxShadow: '0 0 0 1px rgba(200,168,90,0.05) inset',
+                  display: 'inline-flex', alignItems: 'center', gap: '0.45rem',
+                  padding: '0.52rem 1.3rem', borderRadius: '9999px',
+                  border: '1px solid rgba(215,180,100,0.38)',
+                  fontSize: '0.72rem', letterSpacing: '0.07em', fontWeight: 500,
+                  color: '#E8C97A',
+                  background: 'rgba(200,168,90,0.06)',
+                  backdropFilter: 'blur(10px)',
+                  WebkitBackdropFilter: 'blur(10px)',
+                  boxShadow: '0 0 0 1px rgba(200,168,90,0.07) inset, 0 2px 12px rgba(200,168,90,0.08)',
                   transition: 'border-color 200ms, color 200ms, background 200ms, box-shadow 200ms',
                   cursor: 'default',
                 }}
                 onMouseEnter={e => {
                   const el = e.currentTarget as HTMLElement
-                  el.style.borderColor = 'rgba(220,188,108,0.55)'
-                  el.style.color = 'rgba(245,218,152,0.96)'
-                  el.style.background = 'rgba(200,168,90,0.10)'
-                  el.style.boxShadow = '0 0 20px rgba(200,168,90,0.16) inset, 0 0 28px rgba(200,168,90,0.12)'
+                  el.style.borderColor = 'rgba(228,200,122,0.60)'
+                  el.style.color = '#F5D98A'
+                  el.style.background = 'rgba(200,168,90,0.12)'
+                  el.style.boxShadow = '0 0 22px rgba(200,168,90,0.18) inset, 0 0 30px rgba(200,168,90,0.14)'
                 }}
                 onMouseLeave={e => {
                   const el = e.currentTarget as HTMLElement
-                  el.style.borderColor = 'rgba(200,168,90,0.28)'
-                  el.style.color = 'rgba(224,196,130,0.80)'
-                  el.style.background = 'rgba(200,168,90,0.04)'
-                  el.style.boxShadow = '0 0 0 1px rgba(200,168,90,0.05) inset'
+                  el.style.borderColor = 'rgba(215,180,100,0.38)'
+                  el.style.color = '#E8C97A'
+                  el.style.background = 'rgba(200,168,90,0.06)'
+                  el.style.boxShadow = '0 0 0 1px rgba(200,168,90,0.07) inset, 0 2px 12px rgba(200,168,90,0.08)'
                 }}
               >
-                <span style={{ fontSize: '0.68em', opacity: 0.72 }}>{item.icon}</span>
+                <span style={{ fontSize: '0.75em', opacity: 0.78 }}>{item.icon}</span>
                 {item.label}
               </span>
             ))}
