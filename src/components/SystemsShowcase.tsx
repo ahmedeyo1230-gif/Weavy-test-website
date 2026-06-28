@@ -292,7 +292,7 @@ export default function SystemsShowcase() {
         }}
       />
       <div className="max-w-6xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.45fr] gap-12 lg:gap-20 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.62fr] gap-12 lg:gap-20 items-center">
 
           {/* ── Left: text block ── */}
           <div>
@@ -358,7 +358,7 @@ export default function SystemsShowcase() {
           </div>
 
           {/* ── Right: architecture panel ── */}
-          <div className="relative">
+          <div className="relative" style={{ transform: 'scale(1.10)', transformOrigin: 'center top' }}>
             {/* Ambient glow behind panel */}
             <div
               className="absolute pointer-events-none"
