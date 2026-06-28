@@ -1085,33 +1085,18 @@ function BespokeWebShowcase() {
                   ))}
                 </div>
               </div>
-              {/* Hero — luxury perfume editorial product shot (CSS) */}
-              <div style={{ position: 'relative', height: '155px', overflow: 'hidden' }}>
-                {/* Studio void background */}
-                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(160deg, #050608 0%, #070910 38%, #060810 65%, #040608 100%)' }} />
-                {/* Subtle ceiling gradient */}
-                <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '55%', background: 'linear-gradient(to bottom, rgba(10,14,24,0.50) 0%, transparent 100%)' }} />
-                {/* Table surface plane */}
-                <div style={{ position: 'absolute', bottom: '26%', left: '44%', right: 0, height: '1px', background: 'linear-gradient(to right, rgba(180,200,240,0.06) 0%, rgba(200,215,250,0.18) 30%, rgba(200,215,248,0.24) 55%, rgba(185,205,240,0.12) 80%, transparent 100%)' }} />
-                {/* Marble table surface */}
-                <div style={{ position: 'absolute', bottom: '6%', right: '10%', width: '36%', height: '22%', background: 'linear-gradient(to bottom, rgba(225,230,242,0.11) 0%, rgba(200,210,228,0.07) 50%, rgba(180,190,215,0.04) 100%)' }} />
-                {/* Hard spotlight cone — from top-left toward product */}
-                <div style={{ position: 'absolute', top: '-15%', right: '22%', width: '40%', height: '75%', background: 'radial-gradient(ellipse at 42% 2%, rgba(220,228,248,0.26) 0%, rgba(200,212,242,0.12) 28%, rgba(175,192,232,0.05) 52%, transparent 72%)', filter: 'blur(5px)' }} />
-                {/* Ambient cool fill from right */}
-                <div style={{ position: 'absolute', top: 0, right: 0, width: '30%', height: '100%', background: 'radial-gradient(ellipse at 100% 38%, rgba(80,140,255,0.07) 0%, transparent 62%)' }} />
-                {/* Perfume bottle — tall slim glass form */}
-                {/* Shadow / base */}
-                <div style={{ position: 'absolute', bottom: '25%', right: '26%', width: '14%', height: '3%', background: 'radial-gradient(ellipse at 50% 50%, rgba(4,5,10,0.88) 0%, transparent 70%)', filter: 'blur(3px)' }} />
-                {/* Bottle body */}
-                <div style={{ position: 'absolute', bottom: '27%', right: '29%', width: '7%', height: '50%', background: 'linear-gradient(to right, rgba(18,26,52,0.88) 0%, rgba(60,90,158,0.42) 18%, rgba(185,210,252,0.68) 32%, rgba(230,240,255,0.80) 44%, rgba(210,228,255,0.65) 56%, rgba(55,85,152,0.44) 74%, rgba(14,20,46,0.85) 100%)', borderRadius: '12% 12% 6% 6% / 4% 4% 2% 2%' }} />
-                {/* Glass bright specular highlight */}
-                <div style={{ position: 'absolute', bottom: '30%', right: '34%', width: '2%', height: '42%', background: 'linear-gradient(to bottom, transparent 0%, rgba(248,252,255,0.82) 28%, rgba(235,245,255,0.62) 68%, transparent 100%)', borderRadius: '50%', filter: 'blur(0.8px)' }} />
-                {/* Bottle cap/lid */}
-                <div style={{ position: 'absolute', bottom: '76%', right: '28.5%', width: '8%', height: '9%', background: 'linear-gradient(to right, rgba(120,135,175,0.62) 0%, rgba(195,210,240,0.85) 42%, rgba(175,195,232,0.68) 70%, rgba(105,120,162,0.58) 100%)', borderRadius: '2px 2px 1px 1px' }} />
-                {/* Hard cast shadow on table */}
-                <div style={{ position: 'absolute', bottom: '6%', right: '8%', width: '20%', height: '22%', background: 'linear-gradient(to right, rgba(4,5,10,0.82) 0%, rgba(4,5,10,0.42) 48%, transparent 80%)', filter: 'blur(3px)' }} />
-                {/* Bottle surface reflection on table */}
-                <div style={{ position: 'absolute', bottom: '6%', right: '27%', width: '9%', height: '20%', background: 'linear-gradient(to top, transparent 0%, rgba(100,130,205,0.10) 45%, rgba(130,160,220,0.15) 80%, transparent 100%)', filter: 'blur(1.5px)' }} />
+              {/* Hero — editorial studio hero image */}
+              <div style={{ position: 'relative', height: '155px', overflow: 'hidden', background: '#050810' }}>
+                <img
+                  src="/brand_assets/beauty.png"
+                  alt="Premium editorial studio photography"
+                  loading="lazy"
+                  style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 20%', filter: 'brightness(0.60) saturate(0.80) contrast(1.08)' }}
+                />
+                {/* Dark left gradient for text legibility */}
+                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, rgba(5,8,16,0.95) 0%, rgba(5,8,16,0.72) 42%, rgba(5,8,16,0.18) 100%)' }} />
+                {/* Bottom vignette */}
+                <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '38%', background: 'linear-gradient(to top, rgba(4,6,12,0.78), transparent)' }} />
                 {/* Vertical divider */}
                 <div style={{ position: 'absolute', top: '12%', bottom: '12%', left: '54%', width: '1px', background: 'linear-gradient(to bottom, transparent, rgba(125,200,255,0.16), transparent)' }} />
                 {/* Left text block */}
@@ -1120,71 +1105,39 @@ function BespokeWebShowcase() {
                   <h3 style={{ fontSize: 'clamp(11px, 1.7vw, 14px)', fontWeight: 800, color: '#EEF2F8', lineHeight: 1.12, letterSpacing: '-0.03em', marginBottom: '6px' }}>
                     We Build Brands<br />That Last.
                   </h3>
-                  <p style={{ fontSize: '7px', color: 'rgba(165,192,218,0.48)', lineHeight: 1.5 }}>
+                  <p style={{ fontSize: '7px', color: 'rgba(165,192,218,0.58)', lineHeight: 1.5 }}>
                     Strategy, identity & digital presence.
                   </p>
                 </div>
               </div>
               {/* Case study grid — cinematic image blocks */}
               <div style={{ padding: '10px 14px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
-                {/* KAIROS — 3D-lit sphere brand identity shot */}
+                {/* KAIROS — luxury watch brand campaign */}
                 <div style={{ borderRadius: '7px', overflow: 'hidden', border: '1px solid rgba(200,168,90,0.14)' }}>
-                  <div style={{ height: '62px', position: 'relative', overflow: 'hidden', background: '#060507' }}>
-                    {/* Almost black warm background */}
-                    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(145deg, #080608 0%, #0C0A07 55%, #070508 100%)' }} />
-                    {/* Hard overhead spotlight */}
-                    <div style={{ position: 'absolute', top: '-25%', left: '20%', width: '46%', height: '72%', background: 'radial-gradient(ellipse at 50% 0%, rgba(240,218,148,0.38) 0%, rgba(215,192,118,0.16) 32%, rgba(190,165,90,0.05) 56%, transparent 70%)', filter: 'blur(2px)' }} />
-                    {/* 3D sphere — radial gradient simulates spherical lighting */}
-                    <div style={{ position: 'absolute', top: '20%', left: '14%', width: '34%', height: '60%', borderRadius: '50%', background: 'radial-gradient(circle at 33% 30%, rgba(248,228,165,0.96) 0%, rgba(218,188,112,0.78) 22%, rgba(175,140,70,0.55) 44%, rgba(110,82,28,0.40) 65%, rgba(22,16,6,0.88) 100%)', boxShadow: '0 0 14px rgba(200,165,82,0.22)' }} />
-                    {/* Specular highlight on sphere */}
-                    <div style={{ position: 'absolute', top: '22%', left: '18%', width: '11%', height: '20%', borderRadius: '50%', background: 'radial-gradient(circle, rgba(255,248,220,0.92) 0%, rgba(250,238,195,0.55) 45%, transparent 78%)', filter: 'blur(0.8px)' }} />
-                    {/* Cast shadow on table */}
-                    <div style={{ position: 'absolute', bottom: '4%', left: '10%', width: '40%', height: '14%', background: 'radial-gradient(ellipse at 42% 50%, rgba(4,3,2,0.92) 0%, transparent 62%)', filter: 'blur(4px)' }} />
-                    {/* Brand text marks (right side) */}
-                    <div style={{ position: 'absolute', top: '24%', right: '10%', width: '34%' }}>
-                      <div style={{ height: '1.5px', background: 'rgba(200,168,90,0.58)', marginBottom: '6px', width: '62%' }} />
-                      <div style={{ height: '1.5px', background: 'rgba(200,168,90,0.28)', marginBottom: '5px', width: '48%' }} />
-                      <div style={{ height: '1px', background: 'rgba(200,168,90,0.18)', width: '72%' }} />
-                    </div>
-                    <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '30%', background: 'linear-gradient(to top, rgba(5,4,3,0.88), transparent)' }} />
+                  <div style={{ height: '62px', position: 'relative', overflow: 'hidden', background: '#0A0808' }}>
+                    <img
+                      src="/brand_assets/Watch_L.png"
+                      alt="Luxury watch brand identity campaign"
+                      loading="lazy"
+                      style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', filter: 'brightness(0.70) saturate(0.82) contrast(1.05)' }}
+                    />
+                    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(5,4,3,0.90) 0%, rgba(5,4,3,0.18) 55%, transparent 100%)' }} />
                   </div>
                   <div style={{ padding: '6px 9px', background: 'rgba(200,168,90,0.06)' }}>
                     <p style={{ fontSize: '5px', letterSpacing: '0.18em', color: 'rgba(200,168,90,0.60)', marginBottom: '3px', textTransform: 'uppercase' }}>Brand Identity</p>
                     <p style={{ fontSize: '10px', fontWeight: 700, color: '#E4EBF4', letterSpacing: '-0.01em' }}>KAIROS</p>
                   </div>
                 </div>
-                {/* SOLENNE — glowing laptop device on dark editorial */}
+                {/* SOLENNE — editorial portrait campaign */}
                 <div style={{ borderRadius: '7px', overflow: 'hidden', border: '1px solid rgba(125,220,255,0.10)' }}>
-                  <div style={{ height: '62px', position: 'relative', overflow: 'hidden', background: '#05070D' }}>
-                    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, #060810 0%, #080B16 50%, #060910 100%)' }} />
-                    {/* Ambient depth gradient */}
-                    <div style={{ position: 'absolute', top: '-10%', left: '-5%', width: '55%', height: '70%', background: 'radial-gradient(ellipse at 30% 30%, rgba(45,75,165,0.09) 0%, transparent 62%)', filter: 'blur(8px)' }} />
-                    {/* Laptop screen bezel */}
-                    <div style={{ position: 'absolute', top: '8%', left: '8%', width: '66%', height: '56%', background: 'rgba(16,22,44,0.92)', borderRadius: '3px 3px 0 0', border: '0.5px solid rgba(55,85,155,0.28)' }}>
-                      {/* Screen interior */}
-                      <div style={{ position: 'absolute', inset: '6%', background: '#080D1C', borderRadius: '1px', overflow: 'hidden' }}>
-                        {/* Minimal web UI */}
-                        <div style={{ height: '20%', background: 'rgba(8,12,22,1)', borderBottom: '0.5px solid rgba(70,110,210,0.18)', display: 'flex', alignItems: 'center', paddingLeft: '8%', gap: '9%' }}>
-                          <div style={{ width: '18%', height: '2px', background: 'rgba(210,225,252,0.40)', borderRadius: '1px' }} />
-                          {[0,1,2].map(n => <div key={n} style={{ width: '8%', height: '1.5px', background: 'rgba(155,182,230,0.18)', borderRadius: '1px' }} />)}
-                        </div>
-                        <div style={{ padding: '8% 8% 0', display: 'flex', gap: '8%' }}>
-                          <div style={{ flex: 1 }}>
-                            <div style={{ height: '2.5px', background: 'rgba(220,235,255,0.38)', marginBottom: '4px', borderRadius: '1px' }} />
-                            <div style={{ height: '2px', background: 'rgba(180,205,238,0.20)', marginBottom: '3px', borderRadius: '1px', width: '78%' }} />
-                            <div style={{ height: '5px', background: 'rgba(90,150,255,0.28)', borderRadius: '1px', width: '32%', marginTop: '5px' }} />
-                          </div>
-                          <div style={{ width: '28%', height: '28px', background: 'linear-gradient(135deg, rgba(50,85,175,0.22) 0%, rgba(30,60,140,0.12) 100%)', borderRadius: '2px', border: '0.5px solid rgba(80,130,225,0.18)' }} />
-                        </div>
-                      </div>
-                    </div>
-                    {/* Laptop base */}
-                    <div style={{ position: 'absolute', top: '63%', left: '6%', width: '70%', height: '7%', background: 'linear-gradient(to bottom, rgba(28,36,68,0.78), rgba(18,24,50,0.58))', borderRadius: '0 0 2px 2px' }} />
-                    {/* Desk reflection */}
-                    <div style={{ position: 'absolute', top: '70%', left: '6%', width: '70%', height: '22%', background: 'linear-gradient(to bottom, rgba(8,16,48,0.35) 0%, transparent 100%)', filter: 'blur(2px)' }} />
-                    {/* Cool rim light */}
-                    <div style={{ position: 'absolute', top: 0, left: 0, width: '22%', height: '100%', background: 'radial-gradient(ellipse at 0% 42%, rgba(70,140,255,0.09) 0%, transparent 65%)' }} />
-                    <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '24%', background: 'linear-gradient(to top, rgba(4,6,12,0.82), transparent)' }} />
+                  <div style={{ height: '62px', position: 'relative', overflow: 'hidden', background: '#060810' }}>
+                    <img
+                      src="/brand_assets/Smiley_women.png"
+                      alt="Editorial brand photography campaign"
+                      loading="lazy"
+                      style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top', filter: 'brightness(0.62) saturate(0.78) contrast(1.10)' }}
+                    />
+                    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(4,6,12,0.90) 0%, rgba(4,6,12,0.22) 55%, transparent 100%)' }} />
                   </div>
                   <div style={{ padding: '6px 9px', background: 'rgba(125,220,255,0.04)' }}>
                     <p style={{ fontSize: '5px', letterSpacing: '0.18em', color: 'rgba(125,220,255,0.50)', marginBottom: '3px', textTransform: 'uppercase' }}>Web & Digital</p>
@@ -1247,51 +1200,20 @@ function BespokeWebShowcase() {
                 </div>
               </div>
 
-              {/* Hero — luxury villa twilight architectural shot (CSS) */}
+              {/* Hero — luxury property exterior (real photo) */}
               <div style={{ position: 'relative', height: 'clamp(200px, 26vw, 290px)', overflow: 'hidden' }}>
-                {/* Sky: multi-band twilight — prussian blue → violet mid → amber horizon */}
-                <div style={{ position:'absolute', inset:0, background:'linear-gradient(to bottom, #080C1C 0%, #0C0E20 20%, #10101A 38%, #18140E 58%, #221808 74%, #160E04 88%, #0C0802 100%)' }} />
-                {/* Atmospheric haze band at horizon */}
-                <div style={{ position:'absolute', bottom:'36%', left:0, right:0, height:'12%', background:'linear-gradient(to bottom, transparent, rgba(180,140,55,0.10), transparent)', filter:'blur(8px)' }} />
-                {/* Warm horizon glow — amber/gold */}
-                <div style={{ position:'absolute', bottom:'30%', left:'5%', right:'5%', height:'22%', background:'radial-gradient(ellipse at 45% 100%, rgba(220,175,72,0.28) 0%, rgba(195,148,50,0.12) 48%, transparent 72%)', filter:'blur(16px)' }} />
-                {/* Secondary cool violet mid-sky band */}
-                <div style={{ position:'absolute', top:'10%', left:0, right:0, height:'30%', background:'radial-gradient(ellipse at 60% 50%, rgba(80,65,140,0.10) 0%, transparent 65%)' }} />
-                {/* Stars */}
-                {([{l:'7%',t:'9%'},{l:'18%',t:'6%'},{l:'32%',t:'4%'},{l:'44%',t:'10%'},{l:'57%',t:'5%'},{l:'68%',t:'14%'},{l:'78%',t:'7%'},{l:'87%',t:'11%'},{l:'25%',t:'14%'},{l:'52%',t:'8%'},{l:'93%',t:'5%'}] as {l:string;t:string}[]).map((s,i)=>(
-                  <div key={i} style={{ position:'absolute', left:s.l, top:s.t, width:'1px', height:'1px', background:`rgba(255,255,255,${i%3===0?'0.45':'0.28'})`, borderRadius:'50%' }} />
-                ))}
-                {/* Foreground dark lawn */}
-                <div style={{ position:'absolute', bottom:0, left:0, right:0, height:'26%', background:'linear-gradient(to top, rgba(7,5,2,1) 0%, rgba(9,7,3,0.92) 55%, transparent 100%)' }} />
-                {/* SWIMMING POOL — teal/azure glow, centre-left foreground */}
-                <div style={{ position:'absolute', bottom:'14%', left:'8%', width:'42%', height:'7%', background:'linear-gradient(to right, rgba(20,80,90,0.40), rgba(30,120,130,0.65), rgba(40,140,150,0.70), rgba(30,120,130,0.60), rgba(18,70,82,0.38))', borderRadius:'1px', boxShadow:'0 0 18px rgba(30,180,200,0.20), 0 0 40px rgba(20,150,170,0.12)', filter:'blur(0.5px)' }} />
-                {/* Pool light reflection on ground above */}
-                <div style={{ position:'absolute', bottom:'18%', left:'10%', width:'38%', height:'10%', background:'radial-gradient(ellipse at 50% 100%, rgba(30,160,180,0.14) 0%, transparent 65%)', filter:'blur(6px)' }} />
-                {/* Villa main body — modernist flat-roof */}
-                <div style={{ position:'absolute', bottom:'20%', left:'5%', width:'60%', height:'46%', background:'linear-gradient(to top, rgba(16,12,5,0.98) 0%, rgba(20,16,7,0.90) 100%)' }} />
-                {/* Roof overhang extending left */}
-                <div style={{ position:'absolute', bottom:'56%', left:'3%', width:'66%', height:'10%', background:'linear-gradient(to top, rgba(14,10,4,0.96), rgba(18,14,6,0.80))' }} />
-                {/* Upper / second level */}
-                <div style={{ position:'absolute', bottom:'60%', left:'12%', width:'46%', height:'18%', background:'linear-gradient(to top, rgba(20,15,6,0.96), rgba(24,19,8,0.82))' }} />
-                {/* MAIN FLOOR windows — floor-to-ceiling, warm amber glow */}
-                <div style={{ position:'absolute', bottom:'21%', left:'9%', width:'10%', height:'34%', background:'linear-gradient(to bottom, rgba(255,210,105,0.72) 0%, rgba(245,185,72,0.52) 50%, rgba(210,155,48,0.34) 100%)', boxShadow:'0 0 20px rgba(255,200,78,0.42), 0 0 55px rgba(255,180,55,0.16)', borderRadius:'0.5px' }} />
-                <div style={{ position:'absolute', bottom:'21%', left:'22%', width:'10%', height:'34%', background:'linear-gradient(to bottom, rgba(255,208,100,0.65) 0%, rgba(240,180,68,0.46) 50%, rgba(205,150,46,0.30) 100%)', boxShadow:'0 0 16px rgba(255,200,78,0.34)', borderRadius:'0.5px' }} />
-                <div style={{ position:'absolute', bottom:'21%', left:'36%', width:'8%', height:'34%', background:'rgba(255,198,78,0.28)', boxShadow:'0 0 12px rgba(255,195,75,0.22)', borderRadius:'0.5px' }} />
-                {/* Upper level window band */}
-                <div style={{ position:'absolute', bottom:'66%', left:'14%', width:'40%', height:'10%', background:'linear-gradient(to right, rgba(255,205,82,0.42), rgba(248,192,62,0.32), rgba(238,182,58,0.36), rgba(255,200,80,0.26))', boxShadow:'0 0 24px rgba(255,192,62,0.20)', borderRadius:'0.5px' }} />
-                {/* Interior ambient spill on ground */}
-                <div style={{ position:'absolute', bottom:'16%', left:'7%', width:'58%', height:'6%', background:'radial-gradient(ellipse at 28% 50%, rgba(255,195,75,0.16) 0%, transparent 62%)', filter:'blur(6px)' }} />
-                {/* Annex / wing left */}
-                <div style={{ position:'absolute', bottom:'20%', left:'52%', width:'16%', height:'28%', background:'rgba(14,10,4,0.97)' }} />
-                <div style={{ position:'absolute', bottom:'21%', left:'55%', width:'7%', height:'16%', background:'rgba(255,198,78,0.22)' }} />
-                {/* Cypress trees — right side silhouettes */}
-                <div style={{ position:'absolute', bottom:'20%', right:'4%', width:'9%', height:'64%', background:'linear-gradient(to top, rgba(6,10,4,0.98), rgba(9,14,6,0.72))', borderRadius:'30% 28% 0 0 / 18% 16% 0 0' }} />
-                <div style={{ position:'absolute', bottom:'20%', right:'13%', width:'6%', height:'50%', background:'linear-gradient(to top, rgba(6,10,4,0.96), rgba(8,13,5,0.65))', borderRadius:'28% 26% 0 0 / 16% 14% 0 0' }} />
-                <div style={{ position:'absolute', bottom:'20%', right:'20%', width:'5%', height:'38%', background:'linear-gradient(to top, rgba(6,10,4,0.92), rgba(8,12,5,0.55))', borderRadius:'26% 24% 0 0 / 14% 12% 0 0' }} />
-                {/* Vignette */}
-                <div style={{ position:'absolute', inset:0, background:'radial-gradient(ellipse 95% 85% at 42% 50%, transparent 38%, rgba(4,3,2,0.45) 72%, rgba(4,3,2,0.72) 100%)', pointerEvents:'none' }} />
+                <img
+                  src="/brand_assets/Property.png"
+                  alt="Luxury property exterior at dusk"
+                  loading="lazy"
+                  style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 40%', filter: 'brightness(0.76) saturate(0.88) contrast(1.02)' }}
+                />
+                {/* Dark bottom gradient for text legibility */}
+                <div style={{ position:'absolute', inset:0, background:'linear-gradient(to top, rgba(10,7,4,0.95) 0%, rgba(8,6,3,0.30) 52%, rgba(5,4,2,0.08) 100%)' }} />
+                {/* Warm edge vignette */}
+                <div style={{ position:'absolute', inset:0, background:'radial-gradient(ellipse 95% 85% at 42% 50%, transparent 38%, rgba(4,3,2,0.42) 72%, rgba(4,3,2,0.70) 100%)' }} />
                 {/* Text overlay */}
-                <div style={{ position:'absolute', inset:0, display:'flex', flexDirection:'column', justifyContent:'flex-end', padding:'14px 22px', background:'linear-gradient(to top, rgba(10,7,4,0.94) 0%, rgba(10,7,4,0.18) 48%, transparent 100%)' }}>
+                <div style={{ position:'absolute', inset:0, display:'flex', flexDirection:'column', justifyContent:'flex-end', padding:'14px 22px' }}>
                   <p style={{ fontSize:'5.5px', letterSpacing:'0.30em', textTransform:'uppercase', color:'rgba(200,168,90,0.72)', marginBottom:'5px' }}>Prime London · Est. 2001</p>
                   <h3 style={{ fontSize:'clamp(13px, 2vw, 18px)', fontWeight:700, color:'#EDE0C4', lineHeight:1.1, letterSpacing:'-0.02em', fontFamily:'Georgia, serif' }}>
                     Extraordinary residences<br />for the distinguished few.
@@ -1301,26 +1223,16 @@ function BespokeWebShowcase() {
 
               {/* Property card grid */}
               <div style={{ padding: '14px 22px', display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '10px' }}>
-                {/* Card A — Mayfair Penthouse: golden-hour aerial city panorama */}
+                {/* Card A — Mayfair Penthouse */}
                 <div style={{ borderRadius:'8px', overflow:'hidden', border:'1px solid rgba(200,168,90,0.10)', background:'rgba(200,168,90,0.03)' }}>
                   <div style={{ height:'80px', position:'relative', overflow:'hidden' }}>
-                    {/* Sky: golden hour — deep amber horizon to prussian blue zenith */}
-                    <div style={{ position:'absolute', inset:0, background:'linear-gradient(to bottom, #0A0D1C 0%, #121018 28%, #1E1810 52%, #261C08 72%, #1C1204 90%, #120C02 100%)' }} />
-                    {/* Warm orange sun glow near horizon */}
-                    <div style={{ position:'absolute', bottom:'38%', left:'30%', width:'40%', height:'22%', background:'radial-gradient(ellipse at 50% 100%, rgba(240,175,60,0.35) 0%, rgba(220,145,40,0.14) 50%, transparent 72%)', filter:'blur(10px)' }} />
-                    {/* Atmospheric haze — warm band */}
-                    <div style={{ position:'absolute', bottom:'34%', left:0, right:0, height:'8%', background:'linear-gradient(to bottom, transparent, rgba(200,155,55,0.08), transparent)', filter:'blur(6px)' }} />
-                    {/* City tower silhouettes — varying heights for depth */}
-                    {([{l:'2%',h:'72%',w:'8%'},{l:'10%',h:'86%',w:'7%'},{l:'18%',h:'60%',w:'9%'},{l:'28%',h:'92%',w:'7%'},{l:'36%',h:'74%',w:'8%'},{l:'46%',h:'58%',w:'10%'},{l:'57%',h:'80%',w:'7%'},{l:'65%',h:'65%',w:'8%'},{l:'74%',h:'88%',w:'7%'},{l:'82%',h:'70%',w:'9%'},{l:'91%',h:'78%',w:'7%'}] as {l:string;h:string;w:string}[]).map((b,j)=>(
-                      <div key={j} style={{ position:'absolute', bottom:0, left:b.l, width:b.w, height:b.h, background:`rgba(${j%3===0?'8,7,3':'10,8,4'},${j%2===0?'0.92':'0.88'})`, borderRight:j%4===0?'0.5px solid rgba(255,195,55,0.07)':undefined }} />
-                    ))}
-                    {/* Window lights — varied density across towers */}
-                    {([{l:'3%',b:'55%'},{l:'7%',b:'55%'},{l:'3%',b:'68%'},{l:'11%',b:'62%'},{l:'11%',b:'75%'},{l:'15%',b:'68%'},{l:'29%',b:'65%'},{l:'33%',b:'65%'},{l:'29%',b:'78%'},{l:'33%',b:'78%'},{l:'47%',b:'48%'},{l:'51%',b:'48%'},{l:'58%',b:'60%'},{l:'62%',b:'60%'},{l:'58%',b:'72%'},{l:'75%',b:'58%'},{l:'79%',b:'58%'},{l:'75%',b:'70%'},{l:'83%',b:'54%'},{l:'87%',b:'62%'}] as {l:string;b:string}[]).map((w,k)=>(
-                      <div key={k} style={{ position:'absolute', left:w.l, bottom:w.b, width:'2px', height:'2px', background:`rgba(255,${k%3===0?'215':'205'},${k%4===0?'85':'100'},${k%2===0?'0.78':'0.65'})` }} />
-                    ))}
-                    {/* River / Thames suggestion — dark silver horizontal band */}
-                    <div style={{ position:'absolute', bottom:'25%', left:0, right:0, height:'4%', background:'linear-gradient(to right, rgba(25,30,45,0.60), rgba(35,42,58,0.75), rgba(42,50,68,0.80), rgba(35,42,58,0.72), rgba(22,28,42,0.55))', filter:'blur(1px)' }} />
-                    <div style={{ position:'absolute', bottom:0, left:0, right:0, height:'28%', background:'linear-gradient(to top, rgba(8,6,3,0.92), rgba(10,8,4,0.60), transparent)' }} />
+                    <img
+                      src="/brand_assets/Property.png"
+                      alt="Mayfair penthouse exterior"
+                      loading="lazy"
+                      style={{ position:'absolute', inset:0, width:'100%', height:'100%', objectFit:'cover', objectPosition:'15% 20%', filter:'brightness(0.72) saturate(0.85)' }}
+                    />
+                    <div style={{ position:'absolute', inset:0, background:'linear-gradient(to top, rgba(8,6,3,0.92) 0%, rgba(8,6,3,0.20) 55%, transparent 100%)' }} />
                   </div>
                   <div style={{ padding:'7px 9px' }}>
                     <p style={{ fontSize:'8px', fontWeight:600, color:'rgba(228,208,168,0.82)', marginBottom:'2px', lineHeight:1.2 }}>Mayfair Penthouse</p>
@@ -1328,30 +1240,16 @@ function BespokeWebShowcase() {
                     <p style={{ fontSize:'10px', fontWeight:700, color:'#C8A85A', letterSpacing:'-0.01em' }}>£4,200,000</p>
                   </div>
                 </div>
-                {/* Card B — Chelsea Mews: warm cobblestone entrance with arched door */}
+                {/* Card B — Chelsea Mews */}
                 <div style={{ borderRadius:'8px', overflow:'hidden', border:'1px solid rgba(200,168,90,0.10)', background:'rgba(200,168,90,0.03)' }}>
                   <div style={{ height:'80px', position:'relative', overflow:'hidden' }}>
-                    {/* Rich warm terracotta/amber tones */}
-                    <div style={{ position:'absolute', inset:0, background:'linear-gradient(to bottom, #1A0E07 0%, #221205 30%, #1C1006 60%, #120B04 85%, #0C0702 100%)' }} />
-                    {/* Stone wall texture — horizontal gradient bands */}
-                    {[15,30,45,60,75].map(pct=>(
-                      <div key={pct} style={{ position:'absolute', top:`${pct}%`, left:'2%', right:'2%', height:'1px', background:`rgba(185,145,65,${pct>55?'0.05':'0.04'})` }} />
-                    ))}
-                    {/* Left & right wall volumes */}
-                    <div style={{ position:'absolute', top:0, left:0, bottom:0, width:'30%', background:'linear-gradient(to right, rgba(16,10,4,0.96), rgba(22,14,5,0.82))' }} />
-                    <div style={{ position:'absolute', top:0, right:0, bottom:0, width:'30%', background:'linear-gradient(to left, rgba(14,8,3,0.96), rgba(20,12,5,0.78))' }} />
-                    {/* Arched doorway — warm amber glow */}
-                    <div style={{ position:'absolute', bottom:'15%', left:'34%', width:'28%', height:'68%', background:'linear-gradient(to bottom, rgba(255,205,85,0.62) 0%, rgba(245,172,55,0.72) 45%, rgba(215,145,42,0.55) 78%, rgba(180,118,35,0.38) 100%)', borderRadius:'50% 50% 0 0 / 40% 40% 0 0', boxShadow:'0 0 28px rgba(255,188,62,0.48)' }} />
-                    {/* Door frame details */}
-                    <div style={{ position:'absolute', bottom:'14%', left:'32%', width:'2%', height:'55%', background:'rgba(160,120,48,0.42)' }} />
-                    <div style={{ position:'absolute', bottom:'14%', right:'32%', width:'2%', height:'55%', background:'rgba(155,115,45,0.38)' }} />
-                    {/* Keystone arch highlight */}
-                    <div style={{ position:'absolute', bottom:'68%', left:'44%', width:'8%', height:'6%', background:'rgba(200,165,72,0.38)', borderRadius:'50%' }} />
-                    {/* Cobblestone / ground glow from door */}
-                    <div style={{ position:'absolute', bottom:0, left:'20%', right:'20%', height:'30%', background:'radial-gradient(ellipse at 50% 0%, rgba(255,185,62,0.28) 0%, rgba(235,158,45,0.12) 50%, transparent 75%)', filter:'blur(5px)' }} />
-                    {/* Atmospheric haze around door */}
-                    <div style={{ position:'absolute', bottom:'25%', left:'25%', right:'25%', height:'55%', background:'radial-gradient(ellipse at 50% 55%, rgba(255,195,68,0.12) 0%, transparent 65%)', filter:'blur(8px)' }} />
-                    <div style={{ position:'absolute', bottom:0, left:0, right:0, height:'35%', background:'linear-gradient(to top, rgba(9,6,3,0.92), rgba(10,7,3,0.45), transparent)' }} />
+                    <img
+                      src="/brand_assets/Property.png"
+                      alt="Chelsea mews property entrance"
+                      loading="lazy"
+                      style={{ position:'absolute', inset:0, width:'100%', height:'100%', objectFit:'cover', objectPosition:'60% 35%', filter:'brightness(0.68) saturate(0.82) sepia(0.06)' }}
+                    />
+                    <div style={{ position:'absolute', inset:0, background:'linear-gradient(to top, rgba(8,6,3,0.92) 0%, rgba(8,6,3,0.20) 55%, transparent 100%)' }} />
                   </div>
                   <div style={{ padding:'7px 9px' }}>
                     <p style={{ fontSize:'8px', fontWeight:600, color:'rgba(228,208,168,0.82)', marginBottom:'2px', lineHeight:1.2 }}>Chelsea Mews</p>
@@ -1359,33 +1257,16 @@ function BespokeWebShowcase() {
                     <p style={{ fontSize:'10px', fontWeight:700, color:'#C8A85A', letterSpacing:'-0.01em' }}>£2,850,000</p>
                   </div>
                 </div>
-                {/* Card C — Knightsbridge Manor: blue-hour grand estate with warm/cool contrast */}
+                {/* Card C — Knightsbridge Manor */}
                 <div style={{ borderRadius:'8px', overflow:'hidden', border:'1px solid rgba(200,168,90,0.10)', background:'rgba(200,168,90,0.03)' }}>
                   <div style={{ height:'80px', position:'relative', overflow:'hidden' }}>
-                    {/* Blue-hour sky: deep indigo above, warm amber glow near horizon */}
-                    <div style={{ position:'absolute', inset:0, background:'linear-gradient(to bottom, #06081C 0%, #0A0D24 25%, #0E1028 45%, #10100E 68%, #0E0C06 84%, #0A0804 100%)' }} />
-                    {/* Warm amber horizon glow behind manor */}
-                    <div style={{ position:'absolute', bottom:'36%', left:'15%', right:'15%', height:'20%', background:'radial-gradient(ellipse at 50% 100%, rgba(220,170,68,0.25) 0%, rgba(195,145,50,0.10) 50%, transparent 72%)', filter:'blur(12px)' }} />
-                    {/* Grand manor — main central block */}
-                    <div style={{ position:'absolute', bottom:'20%', left:'14%', width:'72%', height:'50%', background:'linear-gradient(to top, rgba(9,7,4,0.98), rgba(12,9,5,0.92))' }} />
-                    {/* Left wing */}
-                    <div style={{ position:'absolute', bottom:'20%', left:'6%', width:'12%', height:'36%', background:'rgba(8,6,4,0.96)' }} />
-                    {/* Right wing */}
-                    <div style={{ position:'absolute', bottom:'20%', right:'6%', width:'12%', height:'36%', background:'rgba(8,6,4,0.96)' }} />
-                    {/* Chimney stacks */}
-                    <div style={{ position:'absolute', bottom:'70%', left:'28%', width:'4%', height:'14%', background:'rgba(9,7,4,0.96)' }} />
-                    <div style={{ position:'absolute', bottom:'70%', right:'28%', width:'4%', height:'14%', background:'rgba(9,7,4,0.96)' }} />
-                    {/* Arched windows — warm interior vs cool sky contrast */}
-                    {[20,30,41,52,62,72].map((lp,j)=>(
-                      <div key={j} style={{ position:'absolute', bottom:'38%', left:`${lp}%`, width:'5%', height:'18%', background:`rgba(255,${j===2||j===3?'218':'210'},${j===2||j===3?'125':'108'},${j===2||j===3?'0.60':'0.48'})`, boxShadow:`0 0 ${j===2||j===3?'8':'6'}px rgba(255,200,80,${j===2||j===3?'0.48':'0.38'})`, borderRadius:'50% 50% 0 0 / 46% 46% 0 0' }} />
-                    ))}
-                    {/* Front garden / balustrade */}
-                    <div style={{ position:'absolute', bottom:'18%', left:'10%', right:'10%', height:'4%', background:'rgba(12,10,6,0.88)', borderRadius:'1px' }} />
-                    {/* Hedge parterre */}
-                    <div style={{ position:'absolute', bottom:'14%', left:'18%', right:'18%', height:'7%', background:'rgba(7,12,5,0.90)', borderRadius:'1px' }} />
-                    {/* Stone driveway approach */}
-                    <div style={{ position:'absolute', bottom:0, left:'42%', width:'16%', height:'18%', background:'linear-gradient(to top, rgba(18,15,8,0.55), transparent)' }} />
-                    <div style={{ position:'absolute', bottom:0, left:0, right:0, height:'22%', background:'linear-gradient(to top, rgba(7,5,2,0.95), rgba(9,7,3,0.55), transparent)' }} />
+                    <img
+                      src="/brand_assets/Property.png"
+                      alt="Knightsbridge manor estate"
+                      loading="lazy"
+                      style={{ position:'absolute', inset:0, width:'100%', height:'100%', objectFit:'cover', objectPosition:'82% 55%', filter:'brightness(0.64) saturate(0.80)' }}
+                    />
+                    <div style={{ position:'absolute', inset:0, background:'linear-gradient(to top, rgba(8,6,3,0.92) 0%, rgba(8,6,3,0.20) 55%, transparent 100%)' }} />
                   </div>
                   <div style={{ padding:'7px 9px' }}>
                     <p style={{ fontSize:'8px', fontWeight:600, color:'rgba(228,208,168,0.82)', marginBottom:'2px', lineHeight:1.2 }}>Knightsbridge Manor</p>
