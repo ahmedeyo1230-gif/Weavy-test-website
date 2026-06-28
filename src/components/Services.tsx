@@ -1041,7 +1041,7 @@ function BespokeWebShowcase() {
         </div>
 
         {/* ── Floating mockup stage ── */}
-        <div className="relative mx-auto" style={{ maxWidth: '980px', height: 'clamp(460px, 60vw, 680px)' }}>
+        <div className="relative mx-auto" style={{ maxWidth: '980px', height: 'clamp(540px, 70vw, 800px)' }}>
 
           {/* ── Card 2 — back (VAEL STUDIO · dark creative agency) ── */}
           <div
@@ -1049,7 +1049,7 @@ function BespokeWebShowcase() {
             className="hidden md:block"
             style={{
               position: 'absolute', top: 0, right: 0,
-              width: 'clamp(310px, 47%, 475px)',
+              width: 'clamp(365px, 55%, 558px)',
               zIndex: 0,
               transition: 'transform 0.9s cubic-bezier(0.16, 1, 0.3, 1)',
               transform: t2,
@@ -1126,7 +1126,7 @@ function BespokeWebShowcase() {
             ref={card1Ref}
             style={{
               position: 'absolute', bottom: 0, left: 0,
-              width: 'clamp(340px, 73%, 700px)',
+              width: 'clamp(400px, 86%, 820px)',
               zIndex: 1,
               transition: 'transform 0.9s cubic-bezier(0.16, 1, 0.3, 1)',
               transform: t1,
