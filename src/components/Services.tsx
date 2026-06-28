@@ -915,8 +915,8 @@ function BespokeWebShowcase() {
       if (!entry.isIntersecting) return
       const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
       tl.to(headerEls, { opacity: 1, y: 0, filter: 'blur(0px)', duration: 1.0, stagger: 0.12 }, 0)
-      tl.to(wrap1, { opacity: 1, y: 0, scale: 1, filter: 'blur(0px)', duration: 1.15 }, 0.25)
-      tl.to(wrap2, { opacity: 0.88, y: 0, scale: 1, filter: 'blur(0px)', duration: 1.05 }, 0.4)
+      tl.to(wrap1, { opacity: 0.88, y: 0, scale: 1, filter: 'blur(0px)', duration: 1.15 }, 0.25)
+      tl.to(wrap2, { opacity: 1, y: 0, scale: 1, filter: 'blur(0px)', duration: 1.05 }, 0.4)
       obs.disconnect()
     }, { threshold: 0.1 })
     obs.observe(el)
@@ -1048,9 +1048,9 @@ function BespokeWebShowcase() {
             ref={card2Ref}
             className="hidden md:block"
             style={{
-              position: 'absolute', top: 0, right: 0,
-              width: 'clamp(365px, 55%, 558px)',
-              zIndex: 0,
+              position: 'absolute', bottom: 0, right: 0,
+              width: 'clamp(438px, 66%, 670px)',
+              zIndex: 1,
               transition: 'transform 0.9s cubic-bezier(0.16, 1, 0.3, 1)',
               transform: t2,
               willChange: 'transform',
@@ -1167,9 +1167,9 @@ function BespokeWebShowcase() {
           <div
             ref={card1Ref}
             style={{
-              position: 'absolute', bottom: 0, left: 0,
-              width: 'clamp(400px, 86%, 820px)',
-              zIndex: 1,
+              position: 'absolute', top: 0, left: 0,
+              width: 'clamp(348px, 74%, 716px)',
+              zIndex: 0,
               transition: 'transform 0.9s cubic-bezier(0.16, 1, 0.3, 1)',
               transform: t1,
               willChange: 'transform',
