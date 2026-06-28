@@ -165,7 +165,7 @@ export default function App() {
             <>
               <Hero />
               <VideoShowcase />
-              <div style={{ marginTop: '76px' }}><OutcomeMarquee /></div>
+              <div style={{ paddingTop: '76px', background: '#010709' }}><OutcomeMarquee /></div>
               <About />
               <Stats />
               <SystemsShowcase />
