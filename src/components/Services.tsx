@@ -11210,7 +11210,8 @@ export default function Services() {
               className="bwdc-body font-sans font-light"
               style={{
                 fontSize: 'clamp(0.88rem, 1.4vw, 1rem)', lineHeight: 1.82,
-                color: 'hsl(0 0% 52%)', marginBottom: '1.4rem',
+                color: '#D3DCE2', marginBottom: '1.4rem',
+                textShadow: '0 1px 18px rgba(0,0,0,0.35)',
               }}
             >
               Every interface is carefully crafted with the same precision as luxury interiors and modern architecture — balancing clarity, emotion, performance, and visual sophistication.
@@ -11219,7 +11220,8 @@ export default function Services() {
               className="bwdc-body font-sans font-light"
               style={{
                 fontSize: 'clamp(0.88rem, 1.4vw, 1rem)', lineHeight: 1.82,
-                color: 'hsl(0 0% 40%)', marginBottom: '1.4rem',
+                color: '#C9D3D8', marginBottom: '1.4rem',
+                textShadow: '0 1px 18px rgba(0,0,0,0.35)',
               }}
             >
               No templates. No shortcuts. Each project begins with an in-depth understanding of your brand, your audience, and the impression you want to leave — then we build from the ground up.
@@ -11228,7 +11230,8 @@ export default function Services() {
               className="bwdc-body font-sans font-light"
               style={{
                 fontSize: 'clamp(0.88rem, 1.4vw, 1rem)', lineHeight: 1.82,
-                color: 'hsl(0 0% 34%)',
+                color: '#C9D3D8',
+                textShadow: '0 1px 18px rgba(0,0,0,0.35)',
               }}
             >
               The result is a digital presence that feels as considered and enduring as the finest architecture — built to perform, designed to last.
