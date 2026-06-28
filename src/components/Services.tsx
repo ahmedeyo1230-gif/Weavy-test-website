@@ -887,6 +887,14 @@ function BespokeCareStories() {
 
 // ─── Bespoke Web Showcase ─────────────────────────────────────────────────────
 
+const BWS_FEATURES = [
+  { icon: '◈', label: 'Bespoke Design' },
+  { icon: '⊞', label: 'Responsive' },
+  { icon: '↑', label: 'SEO Optimised' },
+  { icon: '⚡', label: 'Fast Loading' },
+  { icon: '→', label: 'Conversion-Focused' },
+]
+
 function BespokeWebShowcase() {
   const sectionRef = useRef<HTMLElement>(null)
   const card1Ref   = useRef<HTMLDivElement>(null)
@@ -908,7 +916,7 @@ function BespokeWebShowcase() {
       const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
       tl.to(headerEls, { opacity: 1, y: 0, filter: 'blur(0px)', duration: 1.0, stagger: 0.12 }, 0)
       tl.to(wrap1, { opacity: 1, y: 0, scale: 1, filter: 'blur(0px)', duration: 1.15 }, 0.25)
-      tl.to(wrap2, { opacity: 0.72, y: 0, scale: 1, filter: 'blur(0px)', duration: 1.05 }, 0.4)
+      tl.to(wrap2, { opacity: 0.88, y: 0, scale: 1, filter: 'blur(0px)', duration: 1.05 }, 0.4)
       obs.disconnect()
     }, { threshold: 0.1 })
     obs.observe(el)
@@ -927,19 +935,6 @@ function BespokeWebShowcase() {
   const t1 = `perspective(1400px) rotateX(${4  + mouse.y * 1.8}deg) rotateY(${-7  + mouse.x * 4}deg) rotateZ(-0.6deg)`
   const t2 = `perspective(1400px) rotateX(${5  + mouse.y * 1.2}deg) rotateY(${-10 + mouse.x * 2.5}deg) rotateZ(-1.2deg)`
 
-  /* ── Property photo helper ── */
-  const PropPhoto = ({ src, height = '80px' }: { src: string; height?: string }) => (
-    <div style={{ height, overflow: 'hidden', borderRadius: '6px' }}>
-      <img
-        loading="lazy"
-        decoding="async"
-        src={src}
-        alt="Property"
-        style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-      />
-    </div>
-  )
-
   return (
     <section
       ref={sectionRef}
@@ -948,162 +943,286 @@ function BespokeWebShowcase() {
       className="relative w-full overflow-hidden"
       style={{ background: '#010709', padding: 'clamp(6rem, 12vw, 10rem) 0 clamp(7rem, 14vw, 12rem)' }}
     >
-      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '60px', background: 'linear-gradient(to bottom, #010709, transparent)', pointerEvents: 'none' }} />
-      <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '60px', background: 'linear-gradient(to bottom, transparent, #010709)', pointerEvents: 'none' }} />
+      {/* Top / bottom blends */}
+      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to bottom, #010709, transparent)', pointerEvents: 'none', zIndex: 1 }} />
+      <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to top, #010709, transparent)', pointerEvents: 'none', zIndex: 1 }} />
+
+      {/* Ambient blue-green glow — centred behind heading */}
+      <div aria-hidden="true" style={{
+        position: 'absolute', top: '-8%', left: '50%', transform: 'translateX(-50%)',
+        width: '72%', height: '55%',
+        background: 'radial-gradient(ellipse at 50% 25%, rgba(43,168,217,0.10) 0%, rgba(25,120,160,0.04) 45%, transparent 70%)',
+        pointerEvents: 'none', zIndex: 0,
+      }} />
+      {/* Gold/champagne glow — behind right mockup */}
+      <div aria-hidden="true" style={{
+        position: 'absolute', bottom: '8%', right: '6%',
+        width: '52%', height: '50%',
+        background: 'radial-gradient(ellipse at 60% 55%, rgba(200,168,90,0.08) 0%, rgba(150,115,45,0.03) 45%, transparent 68%)',
+        filter: 'blur(22px)',
+        pointerEvents: 'none', zIndex: 0,
+      }} />
+
+      {/* Decorative concentric arc lines */}
+      {([
+        { size: '420px', opacity: 0.048 },
+        { size: '640px', opacity: 0.028 },
+        { size: '860px', opacity: 0.016 },
+      ] as { size: string; opacity: number }[]).map((arc, i) => (
+        <div key={i} aria-hidden="true" style={{
+          position: 'absolute',
+          width: arc.size, height: arc.size,
+          top: '48%', left: '52%',
+          transform: 'translate(-50%, -50%)',
+          border: `1px solid rgba(125,220,255,${arc.opacity})`,
+          borderRadius: '50%',
+          pointerEvents: 'none', zIndex: 0,
+        }} />
+      ))}
 
       <div className="relative z-10 max-w-[80rem] mx-auto px-6 sm:px-10">
 
         {/* ── Header ── */}
-        <div className="text-center mb-16 lg:mb-20" style={{ maxWidth: '44rem', margin: '0 auto clamp(4rem, 8vw, 5.5rem)' }}>
-          <p className="bws-header font-sans uppercase" style={{ fontSize: '0.58rem', letterSpacing: '0.34em', color: 'hsl(199 89% 60% / 0.65)', marginBottom: '1.1rem' }}>
+        <div className="text-center" style={{ maxWidth: '46rem', margin: '0 auto clamp(3.5rem, 7vw, 5rem)' }}>
+          <p className="bws-header font-sans uppercase" style={{ fontSize: '0.58rem', letterSpacing: '0.34em', color: 'rgba(125,220,255,0.55)', marginBottom: '1.2rem' }}>
             Website Showcase
           </p>
-          <h2 className="bws-header font-sans" style={{ fontSize: 'clamp(1.9rem, 4vw, 3.2rem)', lineHeight: 1.1, letterSpacing: '-0.038em', fontWeight: 300, color: 'hsl(0 0% 94%)', marginBottom: '1.4rem' }}>
+          <h2 className="bws-header font-sans" style={{ fontSize: 'clamp(1.9rem, 4vw, 3.2rem)', lineHeight: 1.1, letterSpacing: '-0.038em', fontWeight: 300, color: 'hsl(0 0% 94%)', marginBottom: '1.5rem' }}>
             Crafted to captivate,{' '}
-            <em style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400, color: 'hsl(0 0% 65%)' }}>
+            <em style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400, color: 'hsl(41 62% 66%)' }}>
               built to perform.
             </em>
           </h2>
-          <p className="bws-header font-sans font-light" style={{ fontSize: 'clamp(0.84rem, 1.3vw, 0.97rem)', lineHeight: 1.9, color: '#F2F8FC', marginBottom: '1rem' }}>
+          <p className="bws-header font-sans font-light" style={{ fontSize: 'clamp(0.84rem, 1.3vw, 0.97rem)', lineHeight: 1.9, color: 'rgba(200,215,228,0.68)', marginBottom: '1rem' }}>
             Every site we build is a precision-crafted system — visual, functional, and designed to earn trust from the first scroll. We don't use templates. Every layout, interaction, and detail is shaped around your brand and your audience.
           </p>
-          <p className="bws-header font-sans font-light" style={{ fontSize: 'clamp(0.84rem, 1.3vw, 0.97rem)', lineHeight: 1.9, color: '#F2F8FC' }}>
+          <p className="bws-header font-sans font-light" style={{ fontSize: 'clamp(0.84rem, 1.3vw, 0.97rem)', lineHeight: 1.9, color: 'rgba(200,215,228,0.68)' }}>
             From real estate platforms and service businesses to e-commerce brands and creative studios — we build websites that feel premium, load fast, and convert visitors into clients.
           </p>
-          {/* Tags */}
-          <div className="bws-header" style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '0.5rem', marginTop: '1.6rem' }}>
-            {['Bespoke Design', 'Responsive', 'SEO Optimised', 'Fast Loading', 'Conversion-Focused'].map(tag => (
-              <span key={tag} style={{ padding: '0.3rem 0.9rem', borderRadius: '9999px', border: '1px solid hsl(0 0% 100% / 0.1)', fontSize: '0.62rem', letterSpacing: '0.06em', color: 'hsl(0 0% 46%)', background: 'hsl(0 0% 100% / 0.03)' }}>
-                {tag}
+
+          {/* Premium glass feature pills */}
+          <div className="bws-header" style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '0.55rem', marginTop: '1.8rem' }}>
+            {BWS_FEATURES.map(item => (
+              <span
+                key={item.label}
+                style={{
+                  display: 'inline-flex', alignItems: 'center', gap: '0.4rem',
+                  padding: '0.38rem 1.05rem', borderRadius: '9999px',
+                  border: '1px solid rgba(200,168,90,0.28)',
+                  fontSize: '0.635rem', letterSpacing: '0.07em', fontWeight: 500,
+                  color: 'rgba(224,196,130,0.80)',
+                  background: 'rgba(200,168,90,0.04)',
+                  backdropFilter: 'blur(8px)',
+                  WebkitBackdropFilter: 'blur(8px)',
+                  boxShadow: '0 0 0 1px rgba(200,168,90,0.05) inset',
+                  transition: 'border-color 200ms, color 200ms, background 200ms, box-shadow 200ms',
+                  cursor: 'default',
+                }}
+                onMouseEnter={e => {
+                  const el = e.currentTarget as HTMLElement
+                  el.style.borderColor = 'rgba(220,188,108,0.55)'
+                  el.style.color = 'rgba(245,218,152,0.96)'
+                  el.style.background = 'rgba(200,168,90,0.10)'
+                  el.style.boxShadow = '0 0 20px rgba(200,168,90,0.16) inset, 0 0 28px rgba(200,168,90,0.12)'
+                }}
+                onMouseLeave={e => {
+                  const el = e.currentTarget as HTMLElement
+                  el.style.borderColor = 'rgba(200,168,90,0.28)'
+                  el.style.color = 'rgba(224,196,130,0.80)'
+                  el.style.background = 'rgba(200,168,90,0.04)'
+                  el.style.boxShadow = '0 0 0 1px rgba(200,168,90,0.05) inset'
+                }}
+              >
+                <span style={{ fontSize: '0.68em', opacity: 0.72 }}>{item.icon}</span>
+                {item.label}
               </span>
             ))}
           </div>
         </div>
 
         {/* ── Floating mockup stage ── */}
-        <div className="relative mx-auto" style={{ maxWidth: '980px', height: 'clamp(420px, 56vw, 620px)' }}>
+        <div className="relative mx-auto" style={{ maxWidth: '980px', height: 'clamp(460px, 60vw, 680px)' }}>
 
-          {/* ── Card 2 — back panel (Poley secondary view) ── */}
+          {/* ── Card 2 — back (VAEL STUDIO · dark creative agency) ── */}
           <div
             ref={card2Ref}
             className="hidden md:block"
-            style={{ position: 'absolute', top: 0, right: 0, width: 'clamp(360px, 50%, 520px)', zIndex: 0, transition: 'transform 0.9s cubic-bezier(0.16, 1, 0.3, 1)', transform: t2, willChange: 'transform' }}
+            style={{
+              position: 'absolute', top: 0, right: 0,
+              width: 'clamp(310px, 47%, 475px)',
+              zIndex: 0,
+              transition: 'transform 0.9s cubic-bezier(0.16, 1, 0.3, 1)',
+              transform: t2,
+              willChange: 'transform',
+            }}
           >
-            <div aria-hidden="true" style={{ position: 'absolute', bottom: '-28px', left: '8%', right: '8%', height: '40px', background: 'radial-gradient(ellipse 80% 100% at 50% 0%, rgba(0,0,0,0.22), transparent 80%)', filter: 'blur(16px)' }} />
-            <div style={{ background: '#FAF3E8', borderRadius: '14px', border: '1px solid rgba(0,0,0,0.07)', boxShadow: '0 32px 80px rgba(0,0,0,0.18), 0 6px 20px rgba(0,0,0,0.08)', overflow: 'hidden' }}>
+            <div aria-hidden="true" style={{ position: 'absolute', bottom: '-22px', left: '8%', right: '8%', height: '34px', background: 'radial-gradient(ellipse 80% 100% at 50% 0%, rgba(125,220,255,0.15), transparent 80%)', filter: 'blur(14px)' }} />
+            <div style={{
+              background: '#070B10',
+              borderRadius: '12px',
+              border: '1px solid rgba(125,220,255,0.11)',
+              boxShadow: '0 28px 72px rgba(0,0,0,0.60), 0 4px 18px rgba(0,0,0,0.38), 0 0 0 1px rgba(125,220,255,0.05)',
+              overflow: 'hidden',
+            }}>
               {/* Chrome */}
-              <div style={{ height: '30px', background: '#F0F0EE', borderBottom: '1px solid rgba(0,0,0,0.07)', display: 'flex', alignItems: 'center', padding: '0 12px', gap: '5px' }}>
-                <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#FF6058' }} />
-                <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#FFBD2E' }} />
-                <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#28CA41' }} />
-                <div style={{ flex: 1, height: '16px', background: '#E5E5E3', borderRadius: '4px', marginLeft: '8px', display: 'flex', alignItems: 'center', paddingLeft: '8px' }}>
-                  <span style={{ fontSize: '7.5px', color: '#AAA' }}>poley.co/listings</span>
+              <div style={{ height: '28px', background: '#0C1118', borderBottom: '1px solid rgba(125,220,255,0.07)', display: 'flex', alignItems: 'center', padding: '0 10px', gap: '5px' }}>
+                <div style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#FF6058', opacity: 0.65 }} />
+                <div style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#FFBD2E', opacity: 0.65 }} />
+                <div style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#28CA41', opacity: 0.65 }} />
+                <div style={{ flex: 1, height: '14px', background: '#121820', borderRadius: '4px', marginLeft: '8px', display: 'flex', alignItems: 'center', paddingLeft: '8px' }}>
+                  <span style={{ fontSize: '6.5px', color: 'rgba(125,200,255,0.32)', letterSpacing: '0.02em' }}>vaelstudio.com</span>
                 </div>
               </div>
               {/* Nav */}
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '11px 18px', borderBottom: '1px solid rgba(0,0,0,0.05)' }}>
-                <span style={{ fontSize: '11px', fontWeight: 800, letterSpacing: '0.07em', color: '#1A1A1A' }}>POLEY</span>
-                <div style={{ display: 'flex', gap: '16px' }}>
-                  {['Buy', 'Rent', 'Sell', 'Agents'].map(item => (
-                    <span key={item} style={{ fontSize: '9.5px', color: '#888' }}>{item}</span>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 16px', borderBottom: '1px solid rgba(255,255,255,0.045)' }}>
+                <div>
+                  <span style={{ fontSize: '10px', fontWeight: 800, letterSpacing: '0.14em', color: '#EEF2F8' }}>VAEL</span>
+                  <span style={{ fontSize: '5.5px', letterSpacing: '0.20em', color: 'rgba(125,200,255,0.40)', display: 'block', marginTop: '-1px' }}>CREATIVE STUDIO</span>
+                </div>
+                <div style={{ display: 'flex', gap: '14px' }}>
+                  {['Work', 'Studio', 'Services', 'Contact'].map(item => (
+                    <span key={item} style={{ fontSize: '7.5px', color: 'rgba(175,200,225,0.42)', letterSpacing: '0.03em' }}>{item}</span>
                   ))}
                 </div>
               </div>
-              {/* Featured listing hero image */}
-              <PropPhoto src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=600&q=75" height="90px" />
-              {/* Listing info */}
-              <div style={{ padding: '14px 18px' }}>
-                <p style={{ fontSize: '7.5px', letterSpacing: '0.14em', textTransform: 'uppercase', color: '#AAA', marginBottom: '5px' }}>Featured Listing · London</p>
-                <p style={{ fontSize: '14px', fontWeight: 700, color: '#111', lineHeight: 1.2, marginBottom: '6px' }}>Kensington Garden Villa</p>
-                <div style={{ display: 'flex', gap: '12px', fontSize: '9px', color: '#888', marginBottom: '12px' }}>
-                  <span>5 bed</span><span>·</span><span>4 bath</span><span>·</span><span>3,200 sq ft</span>
+              {/* Hero — dark editorial */}
+              <div style={{ position: 'relative', height: '108px', background: 'linear-gradient(130deg, #060810 0%, #0D1018 40%, #080B14 70%, #050709 100%)', overflow: 'hidden', display: 'flex', alignItems: 'center', padding: '0 18px' }}>
+                <div style={{ position: 'absolute', right: '-5px', top: '-15px', width: '130px', height: '130px', borderRadius: '50%', background: 'radial-gradient(circle, rgba(125,220,255,0.07) 0%, transparent 65%)', filter: 'blur(8px)' }} />
+                <div style={{ position: 'absolute', right: '28px', top: '50%', transform: 'translateY(-50%)', width: '1px', height: '62px', background: 'linear-gradient(to bottom, transparent, rgba(200,168,90,0.55), transparent)', opacity: 0.55 }} />
+                <div style={{ position: 'relative', zIndex: 1 }}>
+                  <p style={{ fontSize: '5.5px', letterSpacing: '0.28em', textTransform: 'uppercase', color: 'rgba(200,168,90,0.62)', marginBottom: '5px' }}>Award-Winning · London</p>
+                  <h3 style={{ fontSize: 'clamp(11px, 1.7vw, 14px)', fontWeight: 800, color: '#EEF2F8', lineHeight: 1.12, letterSpacing: '-0.03em', marginBottom: '6px' }}>
+                    We Build Brands<br />That Last.
+                  </h3>
+                  <p style={{ fontSize: '7.5px', color: 'rgba(165,192,218,0.50)', lineHeight: 1.5, maxWidth: '175px' }}>
+                    Strategy, identity & digital presence for ambitious brands.
+                  </p>
                 </div>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                  <span style={{ fontSize: '15px', fontWeight: 800, color: '#111', letterSpacing: '-0.02em' }}>£2,400,000</span>
-                  <div style={{ padding: '6px 14px', background: '#1A1A1A', borderRadius: '6px', fontSize: '9px', fontWeight: 600, color: '#FFF' }}>View Property</div>
+              </div>
+              {/* Case study grid */}
+              <div style={{ padding: '10px 14px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
+                {[
+                  { name: 'KAIROS', tag: 'Brand Identity', bg: 'rgba(200,168,90,0.08)', border: 'rgba(200,168,90,0.14)', accent: 'rgba(200,168,90,0.60)' },
+                  { name: 'SOLENNE', tag: 'Web & Digital', bg: 'rgba(125,220,255,0.05)', border: 'rgba(125,220,255,0.10)', accent: 'rgba(125,220,255,0.50)' },
+                ].map(cs => (
+                  <div key={cs.name} style={{ padding: '9px 11px', borderRadius: '7px', background: cs.bg, border: `1px solid ${cs.border}` }}>
+                    <p style={{ fontSize: '5.5px', letterSpacing: '0.18em', color: cs.accent, marginBottom: '4px', textTransform: 'uppercase' }}>{cs.tag}</p>
+                    <p style={{ fontSize: '11px', fontWeight: 700, color: '#E4EBF4', letterSpacing: '-0.01em' }}>{cs.name}</p>
+                  </div>
+                ))}
+              </div>
+              {/* Footer bar */}
+              <div style={{ padding: '8px 14px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTop: '1px solid rgba(255,255,255,0.04)' }}>
+                <span style={{ fontSize: '6.5px', color: 'rgba(125,200,255,0.28)', letterSpacing: '0.10em' }}>12+ Years · 180+ Brands</span>
+                <div style={{ padding: '4px 10px', borderRadius: '4px', background: 'rgba(125,220,255,0.07)', border: '1px solid rgba(125,220,255,0.16)', fontSize: '6.5px', fontWeight: 600, color: 'rgba(125,220,255,0.70)', letterSpacing: '0.06em' }}>
+                  View Work →
                 </div>
               </div>
             </div>
           </div>
 
-          {/* ── Card 1 — front panel (Poley main) ── */}
+          {/* ── Card 1 — front (ÉLARA RESIDENCES · dark luxury real estate) ── */}
           <div
             ref={card1Ref}
-            style={{ position: 'absolute', bottom: 0, left: 0, width: 'clamp(340px, 74%, 700px)', zIndex: 1, transition: 'transform 0.9s cubic-bezier(0.16, 1, 0.3, 1)', transform: t1, willChange: 'transform' }}
+            style={{
+              position: 'absolute', bottom: 0, left: 0,
+              width: 'clamp(340px, 73%, 700px)',
+              zIndex: 1,
+              transition: 'transform 0.9s cubic-bezier(0.16, 1, 0.3, 1)',
+              transform: t1,
+              willChange: 'transform',
+            }}
           >
-            <div aria-hidden="true" style={{ position: 'absolute', bottom: '-36px', left: '6%', right: '6%', height: '50px', background: 'radial-gradient(ellipse 80% 100% at 50% 0%, rgba(0,0,0,0.28), transparent 80%)', filter: 'blur(20px)' }} />
-            <div style={{ background: '#FAF3E8', borderRadius: '16px', border: '1px solid rgba(0,0,0,0.07)', boxShadow: '0 52px 130px rgba(0,0,0,0.22), 0 14px 40px rgba(0,0,0,0.1)', overflow: 'hidden' }}>
+            <div aria-hidden="true" style={{ position: 'absolute', bottom: '-34px', left: '6%', right: '6%', height: '48px', background: 'radial-gradient(ellipse 80% 100% at 50% 0%, rgba(200,168,90,0.20), transparent 80%)', filter: 'blur(20px)' }} />
+            <div style={{
+              background: '#0C0906',
+              borderRadius: '14px',
+              border: '1px solid rgba(200,168,90,0.14)',
+              boxShadow: '0 52px 120px rgba(0,0,0,0.68), 0 14px 38px rgba(0,0,0,0.42), 0 0 0 1px rgba(200,168,90,0.06)',
+              overflow: 'hidden',
+            }}>
               {/* Chrome */}
-              <div style={{ height: '36px', background: '#F2F2F0', borderBottom: '1px solid rgba(0,0,0,0.07)', display: 'flex', alignItems: 'center', padding: '0 14px', gap: '6px' }}>
-                <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#FF6058' }} />
-                <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#FFBD2E' }} />
-                <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#28CA41' }} />
-                <div style={{ flex: 1, height: '22px', background: '#E8E8E6', borderRadius: '6px', marginLeft: '12px', display: 'flex', alignItems: 'center', paddingLeft: '10px' }}>
-                  <span style={{ fontSize: '8.5px', color: '#AAA', letterSpacing: '0.02em' }}>poley.co</span>
+              <div style={{ height: '32px', background: '#12100A', borderBottom: '1px solid rgba(200,168,90,0.09)', display: 'flex', alignItems: 'center', padding: '0 12px', gap: '5px' }}>
+                <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#FF6058', opacity: 0.62 }} />
+                <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#FFBD2E', opacity: 0.62 }} />
+                <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#28CA41', opacity: 0.62 }} />
+                <div style={{ flex: 1, height: '18px', background: '#1A1510', borderRadius: '5px', marginLeft: '10px', display: 'flex', alignItems: 'center', paddingLeft: '10px' }}>
+                  <span style={{ fontSize: '7.5px', color: 'rgba(200,168,90,0.32)', letterSpacing: '0.02em' }}>elararesidences.com</span>
                 </div>
               </div>
               {/* Nav */}
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '13px 24px', borderBottom: '1px solid rgba(0,0,0,0.05)' }}>
-                <span style={{ fontSize: '13px', fontWeight: 900, letterSpacing: '0.07em', color: '#0A0A0A' }}>POLEY</span>
-                <div style={{ display: 'flex', gap: '20px' }}>
-                  {['Buy', 'Rent', 'Sell', 'New Homes', 'Agents'].map(item => (
-                    <span key={item} style={{ fontSize: '10px', color: '#888', letterSpacing: '0.01em' }}>{item}</span>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '11px 22px', borderBottom: '1px solid rgba(200,168,90,0.07)' }}>
+                <div>
+                  <span style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.20em', color: '#C8A85A', fontFamily: 'Georgia, serif' }}>ÉLARA</span>
+                  <span style={{ fontSize: '5.5px', letterSpacing: '0.24em', textTransform: 'uppercase', color: 'rgba(180,150,80,0.50)', display: 'block', marginTop: '-1px' }}>RESIDENCES</span>
+                </div>
+                <div style={{ display: 'flex', gap: '18px' }}>
+                  {['Collection', 'Locations', 'Invest', 'Contact'].map(item => (
+                    <span key={item} style={{ fontSize: '8.5px', color: 'rgba(200,178,135,0.42)', letterSpacing: '0.03em' }}>{item}</span>
                   ))}
                 </div>
-                <div style={{ padding: '6px 16px', background: '#0A0A0A', borderRadius: '7px', fontSize: '10px', fontWeight: 700, color: '#FFF', letterSpacing: '0.02em' }}>
-                  Book Valuation
+                <div style={{ padding: '5px 13px', borderRadius: '4px', background: 'rgba(200,168,90,0.10)', border: '1px solid rgba(200,168,90,0.30)', fontSize: '7.5px', fontWeight: 600, color: 'rgba(212,182,112,0.90)', letterSpacing: '0.06em' }}>
+                  Enquire
                 </div>
               </div>
-              {/* Hero copy */}
-              <div style={{ padding: '20px 24px 16px' }}>
-                <p style={{ fontSize: '8px', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#B0B0AE', marginBottom: '8px' }}>Premium Real Estate · Est. 2018</p>
-                <h3 style={{ fontSize: 'clamp(16px, 2.6vw, 22px)', fontWeight: 800, color: '#080808', lineHeight: 1.2, letterSpacing: '-0.03em', marginBottom: '8px' }}>
-                  Find your perfect home.<br />Live where you belong.
-                </h3>
-                <p style={{ fontSize: '10.5px', color: '#999', lineHeight: 1.65, marginBottom: '14px', maxWidth: '360px' }}>
-                  Discover premium properties across London, Manchester, and Edinburgh. Expert agents, seamless process, exceptional results.
-                </p>
-              </div>
-              {/* Property listing grid */}
-              <div style={{ padding: '0 24px 20px', display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '10px' }}>
-                {/* Listing 1 */}
-                <div style={{ border: '1px solid rgba(0,0,0,0.07)', borderRadius: '10px', overflow: 'hidden' }}>
-                  <PropPhoto src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=400&q=75" />
-                  <div style={{ padding: '8px 10px' }}>
-                    <p style={{ fontSize: '9.5px', fontWeight: 700, color: '#111', marginBottom: '2px' }}>Chelsea Townhouse</p>
-                    <p style={{ fontSize: '8px', color: '#AAA', marginBottom: '5px' }}>4 bed · 3 bath</p>
-                    <p style={{ fontSize: '11px', fontWeight: 800, color: '#111' }}>£1,850,000</p>
-                  </div>
-                </div>
-                {/* Listing 2 */}
-                <div style={{ border: '1px solid rgba(0,0,0,0.07)', borderRadius: '10px', overflow: 'hidden' }}>
-                  <PropPhoto src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=400&q=75" />
-                  <div style={{ padding: '8px 10px' }}>
-                    <p style={{ fontSize: '9.5px', fontWeight: 700, color: '#111', marginBottom: '2px' }}>City Penthouse</p>
-                    <p style={{ fontSize: '8px', color: '#AAA', marginBottom: '5px' }}>2 bed · 2 bath</p>
-                    <p style={{ fontSize: '11px', fontWeight: 800, color: '#111' }}>£950,000</p>
-                  </div>
-                </div>
-                {/* Listing 3 */}
-                <div style={{ border: '1px solid rgba(0,0,0,0.07)', borderRadius: '10px', overflow: 'hidden' }}>
-                  <PropPhoto src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=400&q=75" />
-                  <div style={{ padding: '8px 10px' }}>
-                    <p style={{ fontSize: '9.5px', fontWeight: 700, color: '#111', marginBottom: '2px' }}>Cotswolds Retreat</p>
-                    <p style={{ fontSize: '8px', color: '#AAA', marginBottom: '5px' }}>6 bed · 5 bath</p>
-                    <p style={{ fontSize: '11px', fontWeight: 800, color: '#111' }}>£3,200,000</p>
-                  </div>
-                </div>
-              </div>
-              {/* Stats bar */}
-              <div style={{ display: 'flex', borderTop: '1px solid rgba(0,0,0,0.06)' }}>
+
+              {/* Hero — dark warm architectural night scene (CSS only) */}
+              <div style={{ position: 'relative', height: 'clamp(96px, 13vw, 140px)', overflow: 'hidden' }}>
+                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom right, #0E0A04 0%, #1C1208 35%, #120D06 65%, #070400 100%)' }} />
+                {/* Warm architectural glow */}
+                <div style={{ position: 'absolute', top: '5%', right: '20%', width: '48%', height: '90%', background: 'radial-gradient(ellipse at 50% 60%, rgba(215,172,82,0.20) 0%, rgba(180,118,38,0.10) 42%, transparent 70%)', filter: 'blur(7px)' }} />
+                <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '35%', background: 'linear-gradient(to top, rgba(200,158,56,0.08), transparent)' }} />
+                {/* Simulated building silhouettes */}
+                <div style={{ position: 'absolute', bottom: 0, right: '13%', width: '30%', height: '82%', background: 'linear-gradient(to top, rgba(26,19,8,0.96), rgba(32,23,10,0.68))', borderRadius: '2px 2px 0 0' }} />
+                <div style={{ position: 'absolute', bottom: 0, right: '28%', width: '17%', height: '96%', background: 'linear-gradient(to top, rgba(20,15,6,0.98), rgba(26,19,8,0.62))', borderRadius: '2px 2px 0 0' }} />
+                <div style={{ position: 'absolute', bottom: 0, right: '40%', width: '12%', height: '72%', background: 'linear-gradient(to top, rgba(18,13,5,0.95), rgba(22,16,7,0.55))', borderRadius: '2px 2px 0 0' }} />
+                {/* Window lights */}
                 {[
-                  { val: '2,400+', label: 'Active Listings' },
-                  { val: '98%',    label: 'Client Satisfaction' },
-                  { val: '14 days', label: 'Avg. Time to Sell' },
+                  { r: '15%', b: '56%' }, { r: '19%', b: '56%' }, { r: '15%', b: '67%' },
+                  { r: '29%', b: '70%' }, { r: '33%', b: '56%' }, { r: '17%', b: '45%' },
+                ].map((w, i) => (
+                  <div key={i} style={{ position: 'absolute', right: w.r, bottom: w.b, width: '2px', height: '2px', background: 'rgba(255,210,118,0.85)', borderRadius: '1px', boxShadow: '0 0 4px rgba(255,200,80,0.65)' }} />
+                ))}
+                {/* Text overlay */}
+                <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: '12px 22px', background: 'linear-gradient(to top, rgba(12,9,6,0.90) 0%, rgba(12,9,6,0.28) 55%, transparent 100%)' }}>
+                  <p style={{ fontSize: '5.5px', letterSpacing: '0.30em', textTransform: 'uppercase', color: 'rgba(200,168,90,0.68)', marginBottom: '4px' }}>Prime London · Est. 2001</p>
+                  <h3 style={{ fontSize: 'clamp(13px, 2vw, 18px)', fontWeight: 700, color: '#EDE0C4', lineHeight: 1.1, letterSpacing: '-0.02em', fontFamily: 'Georgia, serif' }}>
+                    Extraordinary residences<br />for the distinguished few.
+                  </h3>
+                </div>
+              </div>
+
+              {/* Property card grid */}
+              <div style={{ padding: '14px 22px', display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '10px' }}>
+                {[
+                  { name: 'Mayfair Penthouse',    bed: '4 bed', price: '£4,200,000' },
+                  { name: 'Chelsea Mews',          bed: '3 bed', price: '£2,850,000' },
+                  { name: 'Knightsbridge Manor',   bed: '6 bed', price: '£8,500,000' },
+                ].map((prop, i) => (
+                  <div key={i} style={{ borderRadius: '8px', overflow: 'hidden', border: '1px solid rgba(200,168,90,0.10)', background: 'rgba(200,168,90,0.03)' }}>
+                    <div style={{ height: '52px', position: 'relative', overflow: 'hidden', background: i === 0 ? 'linear-gradient(135deg, #18100500, #0E0A03)' : i === 1 ? 'linear-gradient(135deg, #10090300, #0B0702)' : 'linear-gradient(135deg, #1C130600, #110C04)' }}>
+                      <div style={{ position: 'absolute', inset: 0, background: `radial-gradient(ellipse at ${i === 0 ? '65%' : i === 1 ? '40%' : '55%'} 38%, rgba(200,158,${i === 0 ? '60' : i === 1 ? '52' : '70'},${i === 0 ? '0.15' : '0.12'}) 0%, transparent 62%)` }} />
+                      <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '55%', background: 'linear-gradient(to top, rgba(12,9,6,0.72), transparent)' }} />
+                    </div>
+                    <div style={{ padding: '7px 9px' }}>
+                      <p style={{ fontSize: '8px', fontWeight: 600, color: 'rgba(228,208,168,0.82)', marginBottom: '2px', lineHeight: 1.2 }}>{prop.name}</p>
+                      <p style={{ fontSize: '7px', color: 'rgba(180,158,118,0.52)', marginBottom: '4px' }}>{prop.bed}</p>
+                      <p style={{ fontSize: '10px', fontWeight: 700, color: '#C8A85A', letterSpacing: '-0.01em' }}>{prop.price}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Stats bar */}
+              <div style={{ display: 'flex', borderTop: '1px solid rgba(200,168,90,0.07)' }}>
+                {[
+                  { val: '340+',  label: 'Elite Properties' },
+                  { val: '99%',   label: 'Client Retention'  },
+                  { val: '£2.1B', label: 'Total Sales'        },
                 ].map((stat, i) => (
-                  <div key={i} style={{ flex: 1, padding: '12px 16px', borderRight: i < 2 ? '1px solid rgba(0,0,0,0.06)' : 'none' }}>
-                    <div style={{ fontSize: 'clamp(12px, 1.8vw, 15px)', fontWeight: 800, color: '#0A0A0A', lineHeight: 1 }}>{stat.val}</div>
-                    <div style={{ fontSize: '8.5px', color: '#C0C0BE', marginTop: '3px' }}>{stat.label}</div>
+                  <div key={i} style={{ flex: 1, padding: '11px 16px', borderRight: i < 2 ? '1px solid rgba(200,168,90,0.07)' : 'none' }}>
+                    <div style={{ fontSize: 'clamp(11px, 1.6vw, 14px)', fontWeight: 700, color: '#C8A85A', lineHeight: 1, letterSpacing: '-0.01em' }}>{stat.val}</div>
+                    <div style={{ fontSize: '7px', color: 'rgba(180,158,118,0.48)', marginTop: '3px' }}>{stat.label}</div>
                   </div>
                 ))}
               </div>
