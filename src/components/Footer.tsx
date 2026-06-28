@@ -112,7 +112,7 @@ function FooterVideo() {
           minWidth: '100%', minHeight: '100%',
           objectFit: 'cover',
           transform: 'translate(-50%, -50%) scaleY(-1)',
-          opacity: 0.88,
+          opacity: 0.50,
           filter: 'brightness(1.06) contrast(1.38) saturate(1.15)',
         }}
       />
