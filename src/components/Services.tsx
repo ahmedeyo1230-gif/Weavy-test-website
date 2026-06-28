@@ -1910,7 +1910,7 @@ function BespokeRealUsers() {
       <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to top, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
 
       <div className="relative z-10 max-w-[82rem] mx-auto px-6 sm:px-12">
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.12fr] gap-14 lg:gap-20 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.30fr] gap-14 lg:gap-20 items-start">
 
           {/* ── LEFT: Editorial text ── */}
           <div style={{ paddingTop: 'clamp(0rem, 2vw, 2rem)' }}>
@@ -1985,7 +1985,7 @@ function BespokeRealUsers() {
               background: 'linear-gradient(to right, hsl(199 89% 60% / 0.7), hsl(205 80% 55% / 0.2), transparent)',
             }}/>
 
-            <div style={{ padding: 'clamp(1.6rem, 3vw, 2.4rem)' }}>
+            <div style={{ padding: 'clamp(1.9rem, 3.4vw, 2.8rem)' }}>
               {REAL_USER_ROWS.map(({ num, title, desc }, i) => (
                 <div key={num}>
                   {i > 0 && (
@@ -1998,7 +1998,7 @@ function BespokeRealUsers() {
                   <div
                     className="bru-row"
                     style={{
-                      padding: 'clamp(1.2rem, 2vw, 1.6rem) 0',
+                      padding: 'clamp(1.4rem, 2.2vw, 1.9rem) 0',
                       display: 'grid',
                       gridTemplateColumns: '2.4rem 1fr',
                       gap: '1rem',
@@ -2010,13 +2010,13 @@ function BespokeRealUsers() {
                       const el = e.currentTarget as HTMLElement
                       el.style.background = 'hsl(199 89% 60% / 0.04)'
                       const numEl = el.querySelector('.bru-num') as HTMLElement | null
-                      if (numEl) numEl.style.color = 'hsl(199 89% 68%)'
+                      if (numEl) numEl.style.color = '#7FD8FF'
                     }}
                     onMouseLeave={e => {
                       const el = e.currentTarget as HTMLElement
                       el.style.background = 'transparent'
                       const numEl = el.querySelector('.bru-num') as HTMLElement | null
-                      if (numEl) numEl.style.color = 'hsl(199 89% 60% / 0.55)'
+                      if (numEl) numEl.style.color = '#5ECFFF'
                     }}
                   >
                     {/* Number */}
@@ -2025,7 +2025,7 @@ function BespokeRealUsers() {
                       style={{
                         fontSize: '0.62rem',
                         letterSpacing: '0.14em',
-                        color: 'hsl(199 89% 60% / 0.55)',
+                        color: '#5ECFFF',
                         paddingTop: '0.2rem',
                         transition: 'color 0.3s ease',
                         fontVariantNumeric: 'tabular-nums',
@@ -2037,11 +2037,12 @@ function BespokeRealUsers() {
                     {/* Content */}
                     <div>
                       <p
-                        className="font-sans font-light"
+                        className="font-sans"
                         style={{
                           fontSize: 'clamp(0.9rem, 1.4vw, 1.02rem)',
                           letterSpacing: '-0.018em',
-                          color: 'hsl(0 0% 86%)',
+                          fontWeight: 500,
+                          color: '#EAF7FF',
                           marginBottom: '0.45rem',
                           lineHeight: 1.3,
                         }}
@@ -2053,7 +2054,7 @@ function BespokeRealUsers() {
                         style={{
                           fontSize: '0.83rem',
                           lineHeight: 1.78,
-                          color: '#F2F8FC',
+                          color: '#AEBBC4',
                         }}
                       >
                         {desc}
