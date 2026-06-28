@@ -23,13 +23,10 @@ const MARQUEE_ITEMS = [
 ]
 
 function OutcomeMarquee() {
-  const [hovered, setHovered] = useState(false)
   const items = [...MARQUEE_ITEMS, ...MARQUEE_ITEMS]
   return (
     <div
       aria-hidden="true"
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
       style={{
         position: 'relative',
         overflow: 'hidden',
@@ -40,7 +37,6 @@ function OutcomeMarquee() {
         backdropFilter: 'blur(8px)',
         WebkitBackdropFilter: 'blur(8px)',
         boxShadow: '0 0 60px rgba(125,220,255,0.05) inset',
-        transition: 'box-shadow 500ms ease',
       }}
     >
       {/* Ambient cyan glow centre */}
@@ -62,10 +58,7 @@ function OutcomeMarquee() {
         zIndex: 2, pointerEvents: 'none',
       }} />
 
-      <div
-        className="outcome-marquee-track"
-        style={{ animationDuration: hovered ? '68s' : '36s', position: 'relative', zIndex: 1 }}
-      >
+      <div className="outcome-marquee-track" style={{ position: 'relative', zIndex: 1 }}>
         {items.map((text, i) => (
           <span
             key={i}
@@ -78,9 +71,7 @@ function OutcomeMarquee() {
               fontWeight: 600,
               fontFamily: 'var(--font-sans)',
               paddingRight: '3.5rem',
-              color: hovered ? '#DDF7FF' : 'rgba(191,239,255,0.78)',
-              transition: 'color 400ms ease, text-shadow 400ms ease',
-              textShadow: hovered ? '0 0 18px rgba(125,220,255,0.40)' : 'none',
+              color: 'rgba(191,239,255,0.78)',
             }}
           >
             {text}
