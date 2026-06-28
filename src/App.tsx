@@ -78,22 +78,15 @@ function OutcomeMarquee() {
               fontWeight: 600,
               fontFamily: 'var(--font-sans)',
               paddingRight: '3.5rem',
-              background: hovered
-                ? 'linear-gradient(90deg, #DDF7FF 0%, #7DDCFF 40%, #DDF7FF 70%, #BFE8FF 100%)'
-                : 'linear-gradient(90deg, rgba(191,239,255,0.80) 0%, rgba(125,220,255,0.95) 40%, rgba(191,239,255,0.80) 70%, rgba(221,247,255,0.85) 100%)',
-              backgroundClip: 'text',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              transition: 'all 500ms ease',
-              filter: hovered ? 'drop-shadow(0 0 8px rgba(125,220,255,0.45))' : 'none',
+              color: hovered ? '#DDF7FF' : 'rgba(191,239,255,0.78)',
+              transition: 'color 400ms ease, text-shadow 400ms ease',
+              textShadow: hovered ? '0 0 18px rgba(125,220,255,0.40)' : 'none',
             }}
           >
             {text}
             <span style={{
               marginLeft: '3.5rem',
-              background: 'rgba(125,220,255,0.45)',
-              WebkitBackgroundClip: 'unset',
-              WebkitTextFillColor: 'rgba(125,220,255,0.45)',
+              color: 'rgba(125,220,255,0.45)',
               fontSize: '0.65em',
             }}>·</span>
           </span>
