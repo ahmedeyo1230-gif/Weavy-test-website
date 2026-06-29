@@ -275,12 +275,12 @@ export default function ConnectedSystems() {
 
           {/* ── Right: dashboard + floating cards ── */}
           <motion.div
-            initial={{ opacity: 0, x: 28, scale: 0.90 }}
-            whileInView={{ opacity: 1, x: 0, scale: 0.90 }}
+            initial={{ opacity: 0, x: 28, scale: 0.97 }}
+            whileInView={{ opacity: 1, x: 0, scale: 0.97 }}
             viewport={{ once: true }}
             transition={{ duration: 0.9, delay: 0.18, ease: E }}
             className="relative flex items-center justify-center"
-            style={{ minHeight: 640, transformOrigin: 'right center' }}
+            style={{ minHeight: 640, transformOrigin: 'center center' }}
           >
             {/* Floating cards — left side */}
             {FLOAT_CARDS.filter(c => c.left !== undefined).map(c => (
