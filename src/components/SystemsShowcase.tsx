@@ -275,7 +275,7 @@ function ArchitecturePanel() {
 
 export default function SystemsShowcase() {
   return (
-    <section id="section-9" className="py-32 px-6 bg-background overflow-hidden relative">
+    <section className="py-32 px-6 bg-background overflow-hidden relative">
 
       {/* Top blend — continues from Stats section boundary */}
       <div
