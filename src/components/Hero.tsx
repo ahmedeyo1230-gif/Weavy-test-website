@@ -52,6 +52,7 @@ function HeroVideo() {
         transform: 'translate(-50%, -50%)',
         opacity: 0.88,
         filter: 'brightness(1.06) contrast(1.38) saturate(1.15)',
+        pointerEvents: 'none',
       }}
     />
   )
@@ -95,7 +96,11 @@ export function Navbar() {
                 <a
                   href={href}
                   aria-current={isActive ? 'page' : undefined}
-                  onClick={() => setActive(label)}
+                  onClick={() => {
+                    setActive(label)
+                    // Dispatch after the anchor updates the hash — fires check() even on re-click
+                    requestAnimationFrame(() => window.dispatchEvent(new Event('hashchange')))
+                  }}
                   className={`relative block text-xs sm:text-sm px-3 py-1.5 rounded-full transition-colors duration-150 active:scale-[0.97] ${
                     isActive ? 'text-primary bg-white/10' : 'text-muted hover:text-primary hover:bg-white/5'
                   }`}
@@ -159,7 +164,11 @@ export function Navbar() {
                 >
                   <a
                     href={href}
-                    onClick={() => { setActive(label); setMenuOpen(false) }}
+                    onClick={() => {
+                      setActive(label)
+                      setMenuOpen(false)
+                      requestAnimationFrame(() => window.dispatchEvent(new Event('hashchange')))
+                    }}
                     className="block px-6 py-4 last:border-0 transition-all duration-150"
                     style={{
                       color: 'rgba(248, 250, 252, 0.92)',
