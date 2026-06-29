@@ -221,7 +221,7 @@ export default function About() { // no diagonal lines bg
         </div>
 
         {/* ─── Service modules strip ──────────────────────────────────── */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
           {SERVICE_MODULES.map((svc, i) => (
             <motion.div
               key={svc.label}
@@ -231,8 +231,8 @@ export default function About() { // no diagonal lines bg
               transition={{ duration: 0.5, delay: i * 0.07, ease: E }}
               className="group relative rounded-xl overflow-hidden cursor-pointer"
               style={{
-                padding: '1.4rem 1.35rem 1.6rem',
-                minHeight: '9rem',
+                padding: '1.75rem 1.6rem 2rem',
+                minHeight: '11rem',
                 background: 'hsl(0 0% 100% / 0.022)',
                 border: '1px solid hsl(0 0% 100% / 0.07)',
                 transition: 'border-color 280ms, background-color 280ms, box-shadow 280ms, transform 280ms cubic-bezier(0.16,1,0.3,1)',
@@ -270,13 +270,13 @@ export default function About() { // no diagonal lines bg
                 <div className="gold-line-glint" />
               </div>
               <div
-                className="font-mono select-none mb-4"
-                style={{ fontSize: '0.7rem', color: '#D6B85A', opacity: 0.75 }}
+                className="font-mono select-none mb-5"
+                style={{ fontSize: '0.75rem', color: '#D6B85A', opacity: 0.75 }}
               >
                 {svc.num}
               </div>
-              <div className="font-semibold mb-2" style={{ fontSize: '0.9375rem', color: '#F8FAFC' }}>{svc.label}</div>
-              <div className="font-medium leading-relaxed" style={{ fontSize: '0.8rem', color: '#B0BAC8' }}>
+              <div className="font-semibold mb-2" style={{ fontSize: '1.05rem', color: '#F8FAFC' }}>{svc.label}</div>
+              <div className="font-medium leading-relaxed" style={{ fontSize: '0.88rem', color: '#B0BAC8' }}>
                 {(() => {
                   const parts = svc.desc.split(svc.highlight)
                   return (
