@@ -2754,7 +2754,7 @@ function ChatbotFacebookMessenger() {
       ref={ref}
       id="facebook-messenger"
       className="relative w-full overflow-hidden"
-      style={{ background: '#010709', padding: 'clamp(5rem, 10vw, 8rem) 0' }}
+      style={{ background: '#010709', paddingTop: 'clamp(5rem, 10vw, 8rem)', paddingBottom: 'clamp(2rem, 3vw, 3rem)' }}
     >
       {/* ── Original Section 4 backgrounds — preserved ── */}
       <MessengerGlowBackground />
@@ -3367,7 +3367,8 @@ function ChatbotTikTokAutomation() {
       className="relative w-full overflow-hidden"
       style={{
         background: '#010709',
-        padding: 'clamp(5rem, 10vw, 8rem) 0',
+        paddingTop: 'clamp(2rem, 3vw, 3rem)',
+        paddingBottom: 'clamp(5rem, 10vw, 8rem)',
       }}
     >
       {/* Grid + radial bloom behind the left text */}
