@@ -367,6 +367,7 @@ export default function ConnectedSystems() {
           </div>
 
           {/* ── Right: dashboard + floating cards ── */}
+          <div className="lg:ml-[56px] lg:mt-[28px]">
           <motion.div
             initial={{ opacity: 0, x: 28, scale: 0.97 }}
             whileInView={{ opacity: 1, x: 0, scale: 0.97 }}
@@ -425,6 +426,7 @@ export default function ConnectedSystems() {
               zIndex: 0,
             }} />
           </motion.div>
+          </div>
 
         </div>
       </div>
