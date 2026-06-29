@@ -777,6 +777,14 @@ body::after {
   animation: cs-chart-shimmer 7s linear infinite;
 }
 
+@keyframes ugc-badge-float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-5px); }
+}
+.ugc-badge-float {
+  animation: ugc-badge-float 4.2s ease-in-out infinite;
+}
+
 /* ── Respect prefers-reduced-motion ─────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   *,

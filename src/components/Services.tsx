@@ -8152,49 +8152,53 @@ function UGCCreatorPhotoCard({ className = '' }: { className?: string }) {
       <img
         loading="lazy"
         decoding="async"
-        src="/brand_assets/ugc_creator_selection.webp"
-        alt="Premium UGC creator filming branded content in a studio"
-        style={{ display: 'block', width: '100%', height: 'auto', objectFit: 'cover' }}
+        src="/brand_assets/UGCCCC.webp"
+        alt="UGC creator filming beauty content with product setup"
+        style={{ display: 'block', width: '100%', height: 'auto', objectFit: 'cover', objectPosition: 'center top' }}
       />
 
       {/* Dark charcoal/teal blend overlay */}
       <div aria-hidden="true" style={{
         position: 'absolute', inset: 0, pointerEvents: 'none',
-        background: 'rgba(2,18,26,0.22)',
+        background: 'rgba(2,18,26,0.20)',
       }} />
 
       {/* Bottom gradient fade to site background */}
       <div aria-hidden="true" style={{
         position: 'absolute', inset: 0, pointerEvents: 'none',
-        background: 'linear-gradient(to bottom, transparent 42%, rgba(1,7,9,0.68) 100%)',
+        background: 'linear-gradient(to bottom, transparent 45%, rgba(1,7,9,0.65) 100%)',
       }} />
 
-      {/* Badge: Approved Creator — top left */}
-      <div style={{
-        position: 'absolute', top: '1.1rem', left: '1.1rem',
-        display: 'flex', alignItems: 'center', gap: '0.4rem',
-        background: 'rgba(3,10,14,0.76)',
-        backdropFilter: 'blur(10px)',
-        WebkitBackdropFilter: 'blur(10px)',
-        border: '1px solid rgba(52,211,153,0.38)',
-        borderRadius: '2rem',
-        padding: '0.32rem 0.85rem',
-      }}>
+      {/* Badge: Approved Creator — top left, floating */}
+      <div
+        className="ugc-badge-float"
+        style={{
+          position: 'absolute', top: '1.1rem', left: '1.1rem',
+          display: 'flex', alignItems: 'center', gap: '0.4rem',
+          background: 'rgba(3,10,14,0.76)',
+          backdropFilter: 'blur(10px)',
+          WebkitBackdropFilter: 'blur(10px)',
+          border: '1px solid rgba(52,211,153,0.38)',
+          borderRadius: '2rem',
+          padding: '0.32rem 0.85rem',
+          animationDelay: '0s',
+        }}
+      >
         <div style={{ width: 5, height: 5, borderRadius: '50%', background: '#34D399', boxShadow: '0 0 7px #34D399', flexShrink: 0 }} />
         <span style={{ fontSize: 9, fontWeight: 600, color: '#34D399', letterSpacing: '0.13em', textTransform: 'uppercase' }}>Approved Creator</span>
       </div>
 
-      {/* Metric badges — bottom */}
+      {/* Metric badges — bottom, floating with staggered delay */}
       <div style={{
         position: 'absolute', bottom: '1.2rem', left: '1.1rem', right: '1.1rem',
         display: 'flex', gap: '0.45rem', flexWrap: 'wrap',
       }}>
         {([
-          { label: 'Brand Fit',  val: '94%',  color: '#7DDCFF' },
-          { label: 'Engagement', val: '6.4%', color: '#A78BFA' },
-          { label: 'Avg Views',  val: '82K',  color: '#F0C56A' },
-        ] as { label: string; val: string; color: string }[]).map(({ label, val, color }) => (
-          <div key={label} style={{
+          { label: 'Brand Fit',  val: '94%',  color: '#7DDCFF', delay: '0.6s' },
+          { label: 'Engagement', val: '6.4%', color: '#A78BFA', delay: '1.2s' },
+          { label: 'Avg Views',  val: '82K',  color: '#F0C56A', delay: '1.8s' },
+        ] as { label: string; val: string; color: string; delay: string }[]).map(({ label, val, color, delay }) => (
+          <div key={label} className="ugc-badge-float" style={{
             display: 'flex', alignItems: 'center', gap: '0.38rem',
             background: 'rgba(3,10,14,0.78)',
             backdropFilter: 'blur(10px)',
@@ -8202,6 +8206,7 @@ function UGCCreatorPhotoCard({ className = '' }: { className?: string }) {
             border: `1px solid ${color}2e`,
             borderRadius: '2rem',
             padding: '0.3rem 0.78rem',
+            animationDelay: delay,
           }}>
             <span style={{ fontSize: 8, color: 'rgba(255,255,255,0.42)', letterSpacing: '0.10em', textTransform: 'uppercase' }}>{label}</span>
             <span style={{ fontSize: 10.5, fontWeight: 700, color, fontFamily: 'monospace' }}>{val}</span>
