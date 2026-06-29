@@ -8750,7 +8750,7 @@ function UGCMonitoringReporting() {
                 borderRadius: '1.4rem',
                 overflow: 'hidden',
                 width: '100%',
-                maxWidth: '380px',
+                maxWidth: '480px',
                 boxShadow: '0 0 0 1px hsl(195 80% 55% / 0.1), 0 32px 72px -16px hsl(0 0% 0% / 0.75), 0 0 48px -12px hsl(195 80% 50% / 0.08)',
               }}
             >
