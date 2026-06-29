@@ -10801,7 +10801,7 @@ export default function Services() {
 
               <p
                 className="bwd1-body font-sans font-light text-text mb-5"
-                style={{ fontSize: '0.78rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: 'hsl(0 0% 40%)' }}
+                style={{ fontSize: '0.78rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: '#7DDCFF', textShadow: '0 0 18px rgba(125,220,255,0.18)' }}
               >
                 What you get
               </p>
@@ -10832,7 +10832,7 @@ export default function Services() {
 
               <p
                 className="bwd1-body font-sans font-light text-text mb-5"
-                style={{ fontSize: '0.78rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: 'hsl(0 0% 40%)' }}
+                style={{ fontSize: '0.78rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: '#7DDCFF', textShadow: '0 0 18px rgba(125,220,255,0.18)' }}
               >
                 Why it matters
               </p>
