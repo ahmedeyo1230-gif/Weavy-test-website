@@ -1,3 +1,4 @@
+import { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 
 const E: [number, number, number, number] = [0.16, 1, 0.3, 1]
@@ -12,12 +13,52 @@ const FLOW_STEPS = [
 ]
 
 const FLOAT_CARDS = [
-  { label: 'New Lead',          sub: 'John Smith · just now',  color: '#7DDCFF', dot: '#22D3EE', top: '8%',  left: '-6%',  delay: 0    },
-  { label: 'WhatsApp Reply',    sub: 'Auto-sent · 0s delay',   color: '#34D399', dot: '#34D399', top: '34%', left: '-10%', delay: 0.14 },
-  { label: 'CRM Updated',       sub: 'HubSpot · synced',       color: '#A78BFA', dot: '#A78BFA', top: '63%', left: '-7%',  delay: 0.22 },
-  { label: 'Follow-up Sent',    sub: 'Email #1 · delivered',   color: '#34D399', dot: '#34D399', top: '8%',  right: '-6%', delay: 0.1  },
-  { label: 'Booking Confirmed', sub: 'Calendly · confirmed',   color: '#F0C56A', dot: '#F0C56A', top: '40%', right: '-10%',delay: 0.28 },
+  { label: 'New Lead',          sub: 'John Smith · just now',  color: '#7DDCFF', dot: '#22D3EE', top: '8%',  left: '-6%'   },
+  { label: 'WhatsApp Reply',    sub: 'Auto-sent · 0s delay',   color: '#34D399', dot: '#34D399', top: '34%', left: '-10%'  },
+  { label: 'CRM Updated',       sub: 'HubSpot · synced',       color: '#A78BFA', dot: '#A78BFA', top: '63%', left: '-7%'   },
+  { label: 'Follow-up Sent',    sub: 'Email #1 · delivered',   color: '#34D399', dot: '#34D399', top: '8%',  right: '-6%'  },
+  { label: 'Booking Confirmed', sub: 'Calendly · confirmed',   color: '#F0C56A', dot: '#F0C56A', top: '40%', right: '-10%' },
 ]
+
+/* ── Hooks ── */
+
+function useReducedMotion(): boolean {
+  const [reduced, setReduced] = useState(false)
+  useEffect(() => {
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)')
+    setReduced(mq.matches)
+    const handler = (e: MediaQueryListEvent) => setReduced(e.matches)
+    mq.addEventListener('change', handler)
+    return () => mq.removeEventListener('change', handler)
+  }, [])
+  return reduced
+}
+
+function useCountUp(target: number, duration: number, active: boolean, reduced: boolean): number {
+  const [val, setVal] = useState(0)
+  const started = useRef(false)
+  useEffect(() => {
+    if (!active) return
+    if (started.current) return
+    started.current = true
+    if (reduced) { setVal(target); return }
+    let startTs: number | null = null
+    let rafId: number
+    const tick = (ts: number) => {
+      if (!startTs) startTs = ts
+      const p = Math.min((ts - startTs) / duration, 1)
+      const eased = 1 - Math.pow(1 - p, 3)
+      setVal(Math.round(eased * target))
+      if (p < 1) rafId = requestAnimationFrame(tick)
+      else setVal(target)
+    }
+    rafId = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(rafId)
+  }, [active]) // eslint-disable-line react-hooks/exhaustive-deps
+  return val
+}
+
+/* ── Icon ── */
 
 function Icon({ type, color }: { type: string; color: string }) {
   const s = { width: 20, height: 20, fill: 'none', stroke: color, strokeWidth: 1.55, strokeLinecap: 'round' as const, strokeLinejoin: 'round' as const }
@@ -55,7 +96,8 @@ function Icon({ type, color }: { type: string; color: string }) {
 }
 
 /* ── Central dashboard mock ── */
-function DashboardMock() {
+
+function DashboardMock({ leads, reply, bookings }: { leads: number; reply: number; bookings: number }) {
   const bars = [42, 68, 55, 82, 61, 90, 74]
   return (
     <div
@@ -84,12 +126,12 @@ function DashboardMock() {
         </div>
       </div>
 
-      {/* Stat row */}
+      {/* Stat row — animated values */}
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 12, padding: '20px 20px 0' }}>
         {[
-          { v: '247', l: 'Leads',      c: '#7DDCFF' },
-          { v: '94%', l: 'Reply Rate', c: '#34D399' },
-          { v: '38',  l: 'Bookings',   c: '#F0C56A' },
+          { v: String(leads),     l: 'Leads',      c: '#7DDCFF' },
+          { v: `${reply}%`,       l: 'Reply Rate',  c: '#34D399' },
+          { v: String(bookings),  l: 'Bookings',    c: '#F0C56A' },
         ].map(({ v, l, c }) => (
           <div key={l} style={{ background: 'rgba(125,220,255,0.04)', border: `1px solid ${c}22`, borderRadius: 14, padding: '16px 12px', textAlign: 'center' }}>
             <div style={{ fontSize: 25, fontWeight: 600, color: c, lineHeight: 1.1, fontFamily: 'monospace' }}>{v}</div>
@@ -98,24 +140,36 @@ function DashboardMock() {
         ))}
       </div>
 
-      {/* Chart */}
+      {/* Chart — with shimmer sweep */}
       <div style={{ padding: '20px 20px 0' }}>
         <div style={{ fontSize: 11, color: 'rgba(125,220,255,0.4)', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 11 }}>Weekly Enquiries</div>
-        <div style={{ display: 'flex', alignItems: 'flex-end', gap: 7, height: 82 }}>
-          {bars.map((h, i) => (
-            <div key={i} style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-end', height: '100%' }}>
-              <div style={{
-                width: '100%',
-                height: `${h}%`,
-                borderRadius: '5px 5px 0 0',
-                background: i === 5
-                  ? 'linear-gradient(to top, rgba(125,220,255,0.72), rgba(125,220,255,0.32))'
-                  : i === 3
-                  ? 'linear-gradient(to top, rgba(52,211,153,0.65), rgba(52,211,153,0.28))'
-                  : 'linear-gradient(to top, rgba(125,220,255,0.22), rgba(125,220,255,0.08))',
-              }} />
-            </div>
-          ))}
+        <div style={{ position: 'relative', overflow: 'hidden' }}>
+          <div style={{ display: 'flex', alignItems: 'flex-end', gap: 7, height: 82 }}>
+            {bars.map((h, i) => (
+              <div key={i} style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-end', height: '100%' }}>
+                <div style={{
+                  width: '100%',
+                  height: `${h}%`,
+                  borderRadius: '5px 5px 0 0',
+                  background: i === 5
+                    ? 'linear-gradient(to top, rgba(125,220,255,0.72), rgba(125,220,255,0.32))'
+                    : i === 3
+                    ? 'linear-gradient(to top, rgba(52,211,153,0.65), rgba(52,211,153,0.28))'
+                    : 'linear-gradient(to top, rgba(125,220,255,0.22), rgba(125,220,255,0.08))',
+                }} />
+              </div>
+            ))}
+          </div>
+          {/* Shimmer sweep overlay */}
+          <div aria-hidden="true" style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 2, overflow: 'hidden' }}>
+            <div
+              className="cs-chart-shimmer"
+              style={{
+                position: 'absolute', top: 0, bottom: 0, left: 0, width: '45%',
+                background: 'linear-gradient(90deg, transparent 0%, rgba(125,220,255,0.11) 50%, transparent 100%)',
+              }}
+            />
+          </div>
         </div>
         <div style={{ height: 1, background: 'rgba(125,220,255,0.08)', marginTop: 6 }} />
       </div>
@@ -142,24 +196,43 @@ function DashboardMock() {
   )
 }
 
-/* ── Floating automation card ── */
-function FloatCard({ label, sub, color, dot, style }: { label: string; sub: string; color: string; dot: string; style: React.CSSProperties }) {
+/* ── Floating automation card — with pulse animation ── */
+
+function FloatCard({
+  label, sub, color, dot, pulseIndex, style,
+}: {
+  label: string; sub: string; color: string; dot: string; pulseIndex: number; style: React.CSSProperties
+}) {
+  const delay = `${pulseIndex * 0.45}s`
   return (
-    <div style={{
-      position: 'absolute',
-      ...style,
-      background: 'rgba(6,14,20,0.92)',
-      border: `1px solid ${color}28`,
-      borderRadius: 15,
-      padding: '13px 20px',
-      backdropFilter: 'blur(16px)',
-      WebkitBackdropFilter: 'blur(16px)',
-      boxShadow: `0 12px 44px rgba(0,0,0,0.62), 0 0 0 1px ${color}16`,
-      minWidth: 210,
-      zIndex: 10,
-    }}>
+    <div
+      className="cs-float-pulse"
+      style={{
+        position: 'absolute',
+        ...style,
+        background: 'rgba(6,14,20,0.92)',
+        border: `1px solid ${color}28`,
+        borderRadius: 15,
+        padding: '13px 20px',
+        backdropFilter: 'blur(16px)',
+        WebkitBackdropFilter: 'blur(16px)',
+        boxShadow: `0 12px 44px rgba(0,0,0,0.62), 0 0 0 1px ${color}16`,
+        minWidth: 210,
+        zIndex: 10,
+        animationDelay: delay,
+        animationDuration: '3.8s',
+      }}
+    >
       <div style={{ display: 'flex', alignItems: 'center', gap: 9 }}>
-        <div style={{ width: 10, height: 10, borderRadius: '50%', background: dot, boxShadow: `0 0 10px ${dot}`, flexShrink: 0 }} />
+        <div
+          className="cs-dot-pulse"
+          style={{
+            width: 10, height: 10, borderRadius: '50%',
+            background: dot, boxShadow: `0 0 10px ${dot}`, flexShrink: 0,
+            animationDelay: delay,
+            animationDuration: '3.8s',
+          }}
+        />
         <span style={{ fontSize: 14, fontWeight: 600, color: '#F1F5F9', letterSpacing: '0.01em' }}>{label}</span>
       </div>
       <div style={{ fontSize: 11.5, color: 'rgba(255,255,255,0.38)', marginTop: 5, paddingLeft: 19 }}>{sub}</div>
@@ -167,9 +240,31 @@ function FloatCard({ label, sub, color, dot, style }: { label: string; sub: stri
   )
 }
 
+/* ── Main export ── */
+
 export default function ConnectedSystems() {
+  const reduced = useReducedMotion()
+  const sectionRef = useRef<HTMLElement>(null)
+  const [inView, setInView] = useState(false)
+
+  useEffect(() => {
+    const el = sectionRef.current
+    if (!el) return
+    const obs = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setInView(true); obs.disconnect() } },
+      { threshold: 0.18 }
+    )
+    obs.observe(el)
+    return () => obs.disconnect()
+  }, [])
+
+  const leads    = useCountUp(247, 1800, inView, reduced)
+  const reply    = useCountUp(94,  1400, inView, reduced)
+  const bookings = useCountUp(38,  1100, inView, reduced)
+
   return (
     <section
+      ref={sectionRef}
       className="relative w-full overflow-hidden"
       style={{ background: '#010709', padding: 'clamp(5rem, 9vw, 8rem) 0' }}
       aria-label="Connected Systems"
@@ -209,7 +304,6 @@ export default function ConnectedSystems() {
               Connected Systems
             </motion.p>
 
-            {/* Heading ~13% larger */}
             <motion.h2
               initial={{ opacity: 0, y: 22 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -224,7 +318,6 @@ export default function ConnectedSystems() {
               </em>
             </motion.h2>
 
-            {/* Paragraph slightly larger */}
             <motion.p
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -237,7 +330,7 @@ export default function ConnectedSystems() {
               enquiry is captured, organised, and moved closer to conversion.
             </motion.p>
 
-            {/* Flow steps — larger icons, bigger text, more breathing room */}
+            {/* Flow steps */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
               {FLOW_STEPS.map((step, i) => (
                 <motion.div
@@ -282,27 +375,20 @@ export default function ConnectedSystems() {
             className="relative flex items-center justify-center"
             style={{ minHeight: 640, transformOrigin: 'center center' }}
           >
-            {/* Floating cards — left side */}
-            {FLOAT_CARDS.filter(c => c.left !== undefined).map(c => (
+            {/* Floating cards — all five with staggered pulse */}
+            {FLOAT_CARDS.map((c, i) => (
               <FloatCard
                 key={c.label}
                 label={c.label}
                 sub={c.sub}
                 color={c.color}
                 dot={c.dot}
-                style={{ top: c.top, left: c.left }}
-              />
-            ))}
-
-            {/* Floating cards — right side */}
-            {FLOAT_CARDS.filter(c => c.right !== undefined).map(c => (
-              <FloatCard
-                key={c.label}
-                label={c.label}
-                sub={c.sub}
-                color={c.color}
-                dot={c.dot}
-                style={{ top: c.top, right: c.right }}
+                pulseIndex={i}
+                style={{
+                  top: c.top,
+                  ...('left' in c ? { left: (c as { left: string }).left } : {}),
+                  ...('right' in c ? { right: (c as { right: string }).right } : {}),
+                }}
               />
             ))}
 
@@ -327,7 +413,7 @@ export default function ConnectedSystems() {
 
             {/* Central dashboard */}
             <div style={{ position: 'relative', zIndex: 5 }}>
-              <DashboardMock />
+              <DashboardMock leads={leads} reply={reply} bookings={bookings} />
             </div>
 
             {/* Ambient glow behind dashboard */}

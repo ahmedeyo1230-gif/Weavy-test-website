@@ -752,6 +752,31 @@ body::after {
   88%            { box-shadow: 0 8px 24px hsl(0 0% 0% / 0.45), 0 0 24px hsl(205 85% 62% / 0.38); }
 }
 
+/* ── Connected Systems visual animations ─────────────────────────────────── */
+@keyframes cs-card-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.70; }
+}
+@keyframes cs-dot-pulse {
+  0%, 100% { transform: scale(1);   opacity: 1;    }
+  50%       { transform: scale(1.7); opacity: 0.55; }
+}
+@keyframes cs-chart-shimmer {
+  0%   { transform: translateX(-100%); opacity: 0; }
+  4%   { opacity: 1; }
+  26%  { transform: translateX(200%);  opacity: 0; }
+  100% { transform: translateX(200%);  opacity: 0; }
+}
+.cs-float-pulse {
+  animation: cs-card-pulse 3.8s ease-in-out infinite;
+}
+.cs-dot-pulse {
+  animation: cs-dot-pulse 3.8s ease-in-out infinite;
+}
+.cs-chart-shimmer {
+  animation: cs-chart-shimmer 7s linear infinite;
+}
+
 /* ── Respect prefers-reduced-motion ─────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   *,
