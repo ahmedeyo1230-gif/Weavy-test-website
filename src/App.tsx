@@ -66,10 +66,10 @@ function OutcomeMarquee() {
               display: 'inline-flex',
               alignItems: 'center',
               whiteSpace: 'nowrap',
-              fontSize: 'clamp(0.72rem, 1.4vw, 0.92rem)',
-              letterSpacing: '0.30em',
+              fontSize: 'clamp(0.88rem, 1.72vw, 1.14rem)',
+              letterSpacing: '0.20em',
               fontWeight: 600,
-              fontFamily: 'var(--font-sans)',
+              fontFamily: "'Poppins', sans-serif",
               paddingRight: '3.5rem',
               color: 'rgba(191,239,255,0.78)',
             }}
