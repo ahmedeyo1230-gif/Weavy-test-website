@@ -6,6 +6,7 @@ import About from './components/About'
 import Stats from './components/Stats'
 import WhyWeavyWorks from './components/WhyWeavyWorks'
 import SystemsShowcase from './components/SystemsShowcase'
+import ConnectedSystems from './components/ConnectedSystems'
 import TestimonialsSection from './components/Testimonials'
 import Footer from './components/Footer'
 import WhatsAppFloatingButton from './components/WhatsAppFloatingButton'
@@ -170,6 +171,7 @@ export default function App() {
               <Stats />
               <SystemsShowcase />
               <WhyWeavyWorks />
+              <ConnectedSystems />
               <TestimonialsSection />
               <Footer />
             </>
