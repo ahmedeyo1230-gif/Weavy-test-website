@@ -8647,18 +8647,18 @@ function UGCMonitoringReporting() {
       @media (min-width: 1024px) {
         .ugcmr-layout-flex {
           flex-direction: row !important;
-          gap: 5rem !important;
+          gap: 4rem !important;
           align-items: center !important;
         }
         .ugcmr-layout-text {
           order: 2 !important;
           flex: 1 1 0 !important;
-          max-width: 50% !important;
+          max-width: 42% !important;
         }
         .ugcmr-layout-image {
           order: 1 !important;
-          flex: 1 1 0 !important;
-          max-width: 50% !important;
+          flex: 1.4 1 0 !important;
+          max-width: 58% !important;
           justify-content: flex-end !important;
         }
       }
@@ -8750,7 +8750,7 @@ function UGCMonitoringReporting() {
                 borderRadius: '1.4rem',
                 overflow: 'hidden',
                 width: '100%',
-                maxWidth: '560px',
+                maxWidth: '680px',
                 boxShadow: '0 0 0 1px hsl(195 80% 55% / 0.1), 0 32px 72px -16px hsl(0 0% 0% / 0.75), 0 0 48px -12px hsl(195 80% 50% / 0.08)',
               }}
             >
