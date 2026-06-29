@@ -95,14 +95,7 @@ export function Navbar() {
                 <a
                   href={href}
                   aria-current={isActive ? 'page' : undefined}
-                  onClick={(e) => {
-                    setActive(label)
-                    // If hash is already the target, hashchange won't fire — dispatch manually
-                    if (window.location.hash === href) {
-                      e.preventDefault()
-                      window.dispatchEvent(new Event('hashchange'))
-                    }
-                  }}
+                  onClick={() => setActive(label)}
                   className={`relative block text-xs sm:text-sm px-3 py-1.5 rounded-full transition-colors duration-150 active:scale-[0.97] ${
                     isActive ? 'text-primary bg-white/10' : 'text-muted hover:text-primary hover:bg-white/5'
                   }`}
@@ -166,14 +159,7 @@ export function Navbar() {
                 >
                   <a
                     href={href}
-                    onClick={(e) => {
-                      setActive(label)
-                      setMenuOpen(false)
-                      if (window.location.hash === href) {
-                        e.preventDefault()
-                        window.dispatchEvent(new Event('hashchange'))
-                      }
-                    }}
+                    onClick={() => { setActive(label); setMenuOpen(false) }}
                     className="block px-6 py-4 last:border-0 transition-all duration-150"
                     style={{
                       color: 'rgba(248, 250, 252, 0.92)',

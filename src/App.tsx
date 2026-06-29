@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, lazy, Suspense } from 'react'
+import { useState, useEffect, lazy, Suspense } from 'react'
 import LoadingScreen from './components/LoadingScreen'
 import Hero, { Navbar } from './components/Hero'
 import VideoShowcase from './components/VideoShowcase'
@@ -97,41 +97,39 @@ export default function App() {
   const [showBlog, setShowBlog] = useState(false)
   const [showContact, setShowContact] = useState(false)
 
-  const check = useCallback(() => {
-    const hash = window.location.hash
-    if (hash === '#section-9') {
-      setShowServices(true)
-      setShowWork(false)
-      setShowBlog(false)
-      setShowContact(false)
-    } else if (hash === '#work') {
-      setShowWork(true)
-      setShowServices(false)
-      setShowBlog(false)
-      setShowContact(false)
-    } else if (hash === '#blog') {
-      setShowBlog(true)
-      setShowServices(false)
-      setShowWork(false)
-      setShowContact(false)
-    } else if (hash === '#contact') {
-      setShowContact(true)
-      setShowServices(false)
-      setShowWork(false)
-      setShowBlog(false)
-    } else if (MAIN_HASHES.includes(hash)) {
-      setShowServices(false)
-      setShowWork(false)
-      setShowBlog(false)
-      setShowContact(false)
-    }
-  }, [])
-
   useEffect(() => {
-    check() // run on mount so direct URL loads / refreshes work
+    const check = () => {
+      const hash = window.location.hash
+      if (hash === '#section-9') {
+        setShowServices(true)
+        setShowWork(false)
+        setShowBlog(false)
+        setShowContact(false)
+      } else if (hash === '#work') {
+        setShowWork(true)
+        setShowServices(false)
+        setShowBlog(false)
+        setShowContact(false)
+      } else if (hash === '#blog') {
+        setShowBlog(true)
+        setShowServices(false)
+        setShowWork(false)
+        setShowContact(false)
+      } else if (hash === '#contact') {
+        setShowContact(true)
+        setShowServices(false)
+        setShowWork(false)
+        setShowBlog(false)
+      } else if (MAIN_HASHES.includes(hash)) {
+        setShowServices(false)
+        setShowWork(false)
+        setShowBlog(false)
+        setShowContact(false)
+      }
+    }
     window.addEventListener('hashchange', check)
     return () => window.removeEventListener('hashchange', check)
-  }, [check])
+  }, [])
 
   // Snap to top whenever the view switches
   useEffect(() => {
