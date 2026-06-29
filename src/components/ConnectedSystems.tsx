@@ -195,8 +195,7 @@ export default function ConnectedSystems() {
       <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 120, background: 'linear-gradient(to top, #010709, transparent)', pointerEvents: 'none' }} />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-10">
-        {/* Tighter gap to pull right visual closer to left text */}
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.18fr] gap-14 lg:gap-6 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.18fr] gap-14 lg:gap-16 items-center">
 
           {/* ── Left: text ── */}
           <div>
@@ -276,12 +275,12 @@ export default function ConnectedSystems() {
 
           {/* ── Right: dashboard + floating cards ── */}
           <motion.div
-            initial={{ opacity: 0, x: 28 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, x: 28, scale: 0.90 }}
+            whileInView={{ opacity: 1, x: 0, scale: 0.90 }}
             viewport={{ once: true }}
             transition={{ duration: 0.9, delay: 0.18, ease: E }}
             className="relative flex items-center justify-center"
-            style={{ minHeight: 640 }}
+            style={{ minHeight: 640, transformOrigin: 'right center' }}
           >
             {/* Floating cards — left side */}
             {FLOAT_CARDS.filter(c => c.left !== undefined).map(c => (
