@@ -127,7 +127,6 @@ export default function App() {
         setShowContact(false)
       }
     }
-    check() // run on mount so direct URL loads with a hash work
     window.addEventListener('hashchange', check)
     return () => window.removeEventListener('hashchange', check)
   }, [])
