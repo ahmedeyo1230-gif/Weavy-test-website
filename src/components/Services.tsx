@@ -10449,7 +10449,7 @@ export default function Services() {
     gsap.set(el.querySelectorAll('.bwd1-divider'), { opacity: 0, scaleX: 0, transformOrigin: 'left center' })
     gsap.set(el.querySelectorAll('.bwd1-body'),    { opacity: 0, y: 20 })
     gsap.set(el.querySelectorAll('.bwd1-list'),    { opacity: 0, y: 14 })
-    gsap.set(el.querySelectorAll('.bwd1-img'),     { opacity: 0, x: 32, scale: 0.98 })
+    gsap.set(el.querySelectorAll('.bwd1-img'),     { opacity: 0, x: 32, scale: 1.128 })
 
     const obs = new IntersectionObserver(([entry]) => {
       if (!entry.isIntersecting) return
@@ -10459,7 +10459,7 @@ export default function Services() {
       tl.to(el.querySelectorAll('.bwd1-divider'), { opacity: 1, scaleX: 1, duration: 0.9, ease: 'power2.inOut' }, 0.25)
       tl.to(el.querySelectorAll('.bwd1-body'),    { opacity: 1, y: 0, duration: 0.7, stagger: 0.12 }, 0.3)
       tl.to(el.querySelectorAll('.bwd1-list'),    { opacity: 1, y: 0, duration: 0.5, stagger: 0.08 }, 0.45)
-      tl.to(el.querySelectorAll('.bwd1-img'),     { opacity: 1, x: 0, scale: 1, duration: 1.1, ease: 'power2.out' }, 0.15)
+      tl.to(el.querySelectorAll('.bwd1-img'),     { opacity: 1, x: 0, scale: 1.15, duration: 1.1, ease: 'power2.out' }, 0.15)
       obs.disconnect()
     }, { threshold: 0.1 })
 
@@ -10862,7 +10862,7 @@ export default function Services() {
                 style={{
                   position: 'relative',
                   width: '100%',
-                  maxWidth: '820px',
+                  maxWidth: '960px',
                   borderRadius: '20px',
                   overflow: 'hidden',
                   boxShadow: [
