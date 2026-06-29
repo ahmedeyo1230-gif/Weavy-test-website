@@ -54,7 +54,7 @@ function Icon({ type, color }: { type: string; color: string }) {
   return null
 }
 
-/* ── Central dashboard mock — ~25% larger ── */
+/* ── Central dashboard mock ── */
 function DashboardMock() {
   const bars = [42, 68, 55, 82, 61, 90, 74]
   return (
@@ -62,52 +62,52 @@ function DashboardMock() {
       aria-hidden="true"
       style={{
         width: '100%',
-        maxWidth: 424,
-        borderRadius: 20,
+        maxWidth: 510,
+        borderRadius: 24,
         background: 'linear-gradient(145deg, rgba(8,20,28,0.96) 0%, rgba(4,10,18,0.98) 100%)',
         border: '1px solid rgba(125,220,255,0.14)',
-        boxShadow: '0 40px 100px -14px rgba(0,0,0,0.88), 0 0 0 1px rgba(125,220,255,0.07), 0 0 80px -20px rgba(125,220,255,0.22)',
-        padding: '0 0 22px',
+        boxShadow: '0 48px 120px -14px rgba(0,0,0,0.90), 0 0 0 1px rgba(125,220,255,0.07), 0 0 100px -20px rgba(125,220,255,0.26)',
+        padding: '0 0 26px',
         overflow: 'hidden',
         position: 'relative',
       }}
     >
       {/* Top bar */}
-      <div style={{ padding: '16px 22px 14px', borderBottom: '1px solid rgba(125,220,255,0.08)', display: 'flex', alignItems: 'center', gap: 9 }}>
-        <div style={{ display: 'flex', gap: 6 }}>
+      <div style={{ padding: '20px 26px 17px', borderBottom: '1px solid rgba(125,220,255,0.08)', display: 'flex', alignItems: 'center', gap: 10 }}>
+        <div style={{ display: 'flex', gap: 7 }}>
           {['rgba(255,90,90,0.7)','rgba(255,185,40,0.7)','rgba(50,215,100,0.7)'].map((c,i) => (
-            <div key={i} style={{ width: 10, height: 10, borderRadius: '50%', background: c }} />
+            <div key={i} style={{ width: 12, height: 12, borderRadius: '50%', background: c }} />
           ))}
         </div>
-        <div style={{ flex: 1, textAlign: 'center', fontSize: 10.5, color: 'rgba(125,220,255,0.45)', letterSpacing: '0.14em', textTransform: 'uppercase' }}>
+        <div style={{ flex: 1, textAlign: 'center', fontSize: 12.5, color: 'rgba(125,220,255,0.45)', letterSpacing: '0.14em', textTransform: 'uppercase' }}>
           Weavy · Automation Dashboard
         </div>
       </div>
 
       {/* Stat row */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 10, padding: '16px 16px 0' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 12, padding: '20px 20px 0' }}>
         {[
           { v: '247', l: 'Leads',      c: '#7DDCFF' },
           { v: '94%', l: 'Reply Rate', c: '#34D399' },
           { v: '38',  l: 'Bookings',   c: '#F0C56A' },
         ].map(({ v, l, c }) => (
-          <div key={l} style={{ background: 'rgba(125,220,255,0.04)', border: `1px solid ${c}22`, borderRadius: 12, padding: '13px 10px', textAlign: 'center' }}>
-            <div style={{ fontSize: 21, fontWeight: 600, color: c, lineHeight: 1.1, fontFamily: 'monospace' }}>{v}</div>
-            <div style={{ fontSize: 9.5, color: 'rgba(255,255,255,0.38)', letterSpacing: '0.1em', textTransform: 'uppercase', marginTop: 4 }}>{l}</div>
+          <div key={l} style={{ background: 'rgba(125,220,255,0.04)', border: `1px solid ${c}22`, borderRadius: 14, padding: '16px 12px', textAlign: 'center' }}>
+            <div style={{ fontSize: 25, fontWeight: 600, color: c, lineHeight: 1.1, fontFamily: 'monospace' }}>{v}</div>
+            <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.38)', letterSpacing: '0.1em', textTransform: 'uppercase', marginTop: 5 }}>{l}</div>
           </div>
         ))}
       </div>
 
       {/* Chart */}
-      <div style={{ padding: '16px 16px 0' }}>
-        <div style={{ fontSize: 9.5, color: 'rgba(125,220,255,0.4)', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 9 }}>Weekly Enquiries</div>
-        <div style={{ display: 'flex', alignItems: 'flex-end', gap: 6, height: 68 }}>
+      <div style={{ padding: '20px 20px 0' }}>
+        <div style={{ fontSize: 11, color: 'rgba(125,220,255,0.4)', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 11 }}>Weekly Enquiries</div>
+        <div style={{ display: 'flex', alignItems: 'flex-end', gap: 7, height: 82 }}>
           {bars.map((h, i) => (
             <div key={i} style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-end', height: '100%' }}>
               <div style={{
                 width: '100%',
                 height: `${h}%`,
-                borderRadius: '4px 4px 0 0',
+                borderRadius: '5px 5px 0 0',
                 background: i === 5
                   ? 'linear-gradient(to top, rgba(125,220,255,0.72), rgba(125,220,255,0.32))'
                   : i === 3
@@ -117,21 +117,21 @@ function DashboardMock() {
             </div>
           ))}
         </div>
-        <div style={{ height: 1, background: 'rgba(125,220,255,0.08)', marginTop: 5 }} />
+        <div style={{ height: 1, background: 'rgba(125,220,255,0.08)', marginTop: 6 }} />
       </div>
 
       {/* Activity feed */}
-      <div style={{ padding: '14px 16px 0' }}>
-        <div style={{ fontSize: 9.5, color: 'rgba(125,220,255,0.4)', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 9 }}>Live Activity</div>
+      <div style={{ padding: '17px 20px 0' }}>
+        <div style={{ fontSize: 11, color: 'rgba(125,220,255,0.4)', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 11 }}>Live Activity</div>
         {[
           { label: 'New lead: Emma Wilson',  time: '2s ago',  dot: '#7DDCFF' },
           { label: 'CRM synced · HubSpot',   time: '14s ago', dot: '#A78BFA' },
           { label: 'Follow-up email sent',   time: '1m ago',  dot: '#34D399' },
         ].map((r, i) => (
-          <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 9, padding: '6px 0', borderBottom: i < 2 ? '1px solid rgba(255,255,255,0.04)' : 'none' }}>
-            <div style={{ width: 6, height: 6, borderRadius: '50%', background: r.dot, flexShrink: 0, boxShadow: `0 0 7px ${r.dot}88` }} />
-            <div style={{ flex: 1, fontSize: 11, color: 'rgba(255,255,255,0.62)' }}>{r.label}</div>
-            <div style={{ fontSize: 9.5, color: 'rgba(255,255,255,0.28)' }}>{r.time}</div>
+          <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '7px 0', borderBottom: i < 2 ? '1px solid rgba(255,255,255,0.04)' : 'none' }}>
+            <div style={{ width: 7, height: 7, borderRadius: '50%', background: r.dot, flexShrink: 0, boxShadow: `0 0 8px ${r.dot}88` }} />
+            <div style={{ flex: 1, fontSize: 13, color: 'rgba(255,255,255,0.62)' }}>{r.label}</div>
+            <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.28)' }}>{r.time}</div>
           </div>
         ))}
       </div>
@@ -142,27 +142,27 @@ function DashboardMock() {
   )
 }
 
-/* ── Floating automation card — ~18% larger ── */
+/* ── Floating automation card ── */
 function FloatCard({ label, sub, color, dot, style }: { label: string; sub: string; color: string; dot: string; style: React.CSSProperties }) {
   return (
     <div style={{
       position: 'absolute',
       ...style,
-      background: 'rgba(6,14,20,0.90)',
+      background: 'rgba(6,14,20,0.92)',
       border: `1px solid ${color}28`,
-      borderRadius: 12,
-      padding: '11px 16px',
-      backdropFilter: 'blur(14px)',
-      WebkitBackdropFilter: 'blur(14px)',
-      boxShadow: `0 10px 36px rgba(0,0,0,0.58), 0 0 0 1px ${color}16`,
-      minWidth: 174,
+      borderRadius: 15,
+      padding: '13px 20px',
+      backdropFilter: 'blur(16px)',
+      WebkitBackdropFilter: 'blur(16px)',
+      boxShadow: `0 12px 44px rgba(0,0,0,0.62), 0 0 0 1px ${color}16`,
+      minWidth: 210,
       zIndex: 10,
     }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-        <div style={{ width: 8, height: 8, borderRadius: '50%', background: dot, boxShadow: `0 0 9px ${dot}`, flexShrink: 0 }} />
-        <span style={{ fontSize: 12, fontWeight: 600, color: '#F1F5F9', letterSpacing: '0.01em' }}>{label}</span>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 9 }}>
+        <div style={{ width: 10, height: 10, borderRadius: '50%', background: dot, boxShadow: `0 0 10px ${dot}`, flexShrink: 0 }} />
+        <span style={{ fontSize: 14, fontWeight: 600, color: '#F1F5F9', letterSpacing: '0.01em' }}>{label}</span>
       </div>
-      <div style={{ fontSize: 10, color: 'rgba(255,255,255,0.38)', marginTop: 4, paddingLeft: 16 }}>{sub}</div>
+      <div style={{ fontSize: 11.5, color: 'rgba(255,255,255,0.38)', marginTop: 5, paddingLeft: 19 }}>{sub}</div>
     </div>
   )
 }
@@ -281,7 +281,7 @@ export default function ConnectedSystems() {
             viewport={{ once: true }}
             transition={{ duration: 0.9, delay: 0.18, ease: E }}
             className="relative flex items-center justify-center"
-            style={{ minHeight: 520 }}
+            style={{ minHeight: 640 }}
           >
             {/* Floating cards — left side */}
             {FLOAT_CARDS.filter(c => c.left !== undefined).map(c => (
