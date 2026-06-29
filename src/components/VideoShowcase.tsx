@@ -276,7 +276,6 @@ export default function VideoShowcase() {
               <video
                 ref={videoRef}
                 controls
-                loop
                 playsInline
                 preload={srcReady ? 'metadata' : 'none'}
                 style={{
