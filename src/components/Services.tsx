@@ -9746,10 +9746,10 @@ function UGCPerformanceSystem() {
                     gridTemplateColumns: '2.4rem 1fr',
                     gap: '0 1.4rem',
                     padding: 'clamp(1.3rem, 2.2vw, 1.8rem) clamp(1.6rem, 3vw, 2.8rem)',
-                    borderBottom: i < UGC_PS_ROWS.length - 1 ? '1px solid hsl(0 0% 100% / 0.05)' : 'none',
+                    borderBottom: i < UGC_PS_ROWS.length - 1 ? '1px solid hsl(0 0% 100% / 0.07)' : 'none',
                     background: hoveredRow === i
-                      ? 'linear-gradient(90deg, hsl(38 60% 55% / 0.05) 0%, hsl(195 70% 55% / 0.04) 100%)'
-                      : 'transparent',
+                      ? 'linear-gradient(90deg, hsl(38 60% 55% / 0.10) 0%, hsl(195 70% 55% / 0.08) 100%)'
+                      : 'linear-gradient(90deg, rgba(125,220,255,0.06) 0%, rgba(232,201,122,0.03) 60%, transparent 100%)',
                     transition: 'background 0.35s ease',
                     cursor: 'default',
                   }}
@@ -9760,7 +9760,7 @@ function UGCPerformanceSystem() {
                     style={{
                       fontSize: '0.65rem',
                       letterSpacing: '0.06em',
-                      color: hoveredRow === i ? 'hsl(38 70% 60%)' : 'hsl(0 0% 26%)',
+                      color: hoveredRow === i ? 'hsl(38 70% 60%)' : 'hsl(195 70% 55% / 0.65)',
                       paddingTop: '0.2rem',
                       transition: 'color 0.3s ease',
                       lineHeight: 1,
@@ -9777,7 +9777,7 @@ function UGCPerformanceSystem() {
                         fontSize: 'clamp(0.88rem, 1.4vw, 1rem)',
                         lineHeight: 1.3,
                         letterSpacing: '-0.018em',
-                        color: hoveredRow === i ? 'hsl(0 0% 96%)' : 'hsl(0 0% 80%)',
+                        color: hoveredRow === i ? 'hsl(0 0% 96%)' : 'hsl(0 0% 88%)',
                         marginBottom: '0.5rem',
                         transition: 'color 0.3s ease',
                       }}
@@ -9791,7 +9791,7 @@ function UGCPerformanceSystem() {
                       style={{
                         fontSize: 'clamp(0.78rem, 1.15vw, 0.88rem)',
                         lineHeight: 1.78,
-                        color: 'hsl(0 0% 32%)',
+                        color: 'hsl(0 0% 56%)',
                         margin: 0,
                       }}
                     >
