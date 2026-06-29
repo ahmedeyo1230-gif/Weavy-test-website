@@ -262,7 +262,7 @@ export default function Hero() {
           <div className="relative">
             {/* Water shimmer layer around heading */}
             <div className="hero-water-layer" aria-hidden="true">
-              <div className="water-shimmer-line" style={{ top: '18%',  animationDelay: '0s',    animationDuration: '10s' }} />
+              {/* top shimmer line removed */}
               <div className="water-shimmer-line" style={{ top: '52%',  animationDelay: '3.8s',  animationDuration: '13s' }} />
               <div className="water-shimmer-line" style={{ top: '82%',  animationDelay: '7.2s',  animationDuration: '9.5s' }} />
               <div className="water-drop" style={{ left: '4%',  top: '40%', animationDelay: '0s',   animationDuration: '7s'   }} />
