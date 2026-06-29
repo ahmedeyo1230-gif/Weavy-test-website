@@ -8135,158 +8135,82 @@ function UGCHero() {
 
 // (removed unused breakpoint hook `useIsDesktop` — it was causing a TS6133 "declared but its value is never read" error)
 
-// ─── UGC — Creator Selection Dashboard (premium visual) ─────────────────────
+// ─── UGC — Creator Selection Photo Card ──────────────────────────────────────
 
-function UGCCreatorDashboard({ className = '' }: { className?: string }) {
-  const CYAN = '#7DDCFF', GREEN = '#34D399', VIOLET = '#A78BFA', GOLD = '#F0C56A'
-  const creators = [
-    {
-      initials: 'AC', name: 'Amara Cole', niche: 'Beauty',
-      status: 'Approved', statusColor: GREEN,
-      avatarGrad: 'linear-gradient(135deg,#0d3a4a 0%,#1a6a5e 60%,#0e4a38 100%)',
-      followers: '48.2K', eng: '4.8%', views: '18.4K',
-      fitScore: 96, quality: 'A+', qualityColor: CYAN,
-      thumbs: [
-        'linear-gradient(160deg,#091828 0%,#1a3a5e 100%)',
-        'linear-gradient(160deg,#0e1828 0%,#2a2a5e 100%)',
-        'linear-gradient(160deg,#081828 0%,#0e3a5e 100%)',
-      ],
-    },
-    {
-      initials: 'NB', name: 'Nia Bennett', niche: 'Lifestyle',
-      status: 'Reviewing', statusColor: GOLD,
-      avatarGrad: 'linear-gradient(135deg,#1e0a3e 0%,#4a2a7e 60%,#2e1a5e 100%)',
-      followers: '31.7K', eng: '5.1%', views: '12.6K',
-      fitScore: 89, quality: 'A', qualityColor: VIOLET,
-      thumbs: [
-        'linear-gradient(160deg,#1e0e0a 0%,#4a2a1a 100%)',
-        'linear-gradient(160deg,#0a0e1e 0%,#1a2a4a 100%)',
-        'linear-gradient(160deg,#1a1e0a 0%,#3a3a1a 100%)',
-      ],
-    },
-  ]
-
+function UGCCreatorPhotoCard({ className = '' }: { className?: string }) {
   return (
     <div
       className={className}
-      aria-hidden="true"
       style={{
-        width: '100%',
+        position: 'relative',
         borderRadius: '1.4rem',
         overflow: 'hidden',
-        background: 'linear-gradient(145deg,rgba(6,14,20,0.97) 0%,rgba(2,7,12,0.99) 100%)',
-        border: '1px solid rgba(125,220,255,0.12)',
-        boxShadow: '0 0 0 1px rgba(125,220,255,0.05),0 40px 90px -18px rgba(0,0,0,0.92),0 0 60px -18px rgba(125,220,255,0.12)',
+        boxShadow: '0 0 0 1px rgba(125,220,255,0.10), 0 32px 80px -16px rgba(0,0,0,0.88), 0 0 60px -20px rgba(125,220,255,0.12)',
       }}
     >
-      {/* Chrome bar */}
-      <div style={{ display:'flex', alignItems:'center', gap:10, padding:'13px 18px 11px', borderBottom:'1px solid rgba(125,220,255,0.07)', background:'rgba(125,220,255,0.02)' }}>
-        <div style={{ display:'flex', gap:6 }}>
-          {(['rgba(255,85,85,0.72)','rgba(255,180,36,0.72)','rgba(42,206,92,0.72)'] as string[]).map((c,i) => (
-            <div key={i} style={{ width:9, height:9, borderRadius:'50%', background:c }} />
-          ))}
-        </div>
-        <div style={{ flex:1, textAlign:'center', fontSize:10, color:'rgba(125,220,255,0.35)', letterSpacing:'0.18em', textTransform:'uppercase' }}>
-          Creator Selection · Active Campaign
-        </div>
-        <div style={{ display:'flex', alignItems:'center', gap:4 }}>
-          <div style={{ width:5, height:5, borderRadius:'50%', background:GREEN, boxShadow:`0 0 7px ${GREEN}` }} />
-          <span style={{ fontSize:8.5, color:'rgba(52,211,153,0.62)', letterSpacing:'0.12em', textTransform:'uppercase' }}>Live</span>
-        </div>
+      {/* Photographic image */}
+      <img
+        loading="lazy"
+        decoding="async"
+        src="/brand_assets/ugc_creator_selection.webp"
+        alt="Premium UGC creator filming branded content in a studio"
+        style={{ display: 'block', width: '100%', height: 'auto', objectFit: 'cover' }}
+      />
+
+      {/* Dark charcoal/teal blend overlay */}
+      <div aria-hidden="true" style={{
+        position: 'absolute', inset: 0, pointerEvents: 'none',
+        background: 'rgba(2,18,26,0.22)',
+      }} />
+
+      {/* Bottom gradient fade to site background */}
+      <div aria-hidden="true" style={{
+        position: 'absolute', inset: 0, pointerEvents: 'none',
+        background: 'linear-gradient(to bottom, transparent 42%, rgba(1,7,9,0.68) 100%)',
+      }} />
+
+      {/* Badge: Approved Creator — top left */}
+      <div style={{
+        position: 'absolute', top: '1.1rem', left: '1.1rem',
+        display: 'flex', alignItems: 'center', gap: '0.4rem',
+        background: 'rgba(3,10,14,0.76)',
+        backdropFilter: 'blur(10px)',
+        WebkitBackdropFilter: 'blur(10px)',
+        border: '1px solid rgba(52,211,153,0.38)',
+        borderRadius: '2rem',
+        padding: '0.32rem 0.85rem',
+      }}>
+        <div style={{ width: 5, height: 5, borderRadius: '50%', background: '#34D399', boxShadow: '0 0 7px #34D399', flexShrink: 0 }} />
+        <span style={{ fontSize: 9, fontWeight: 600, color: '#34D399', letterSpacing: '0.13em', textTransform: 'uppercase' }}>Approved Creator</span>
       </div>
 
-      {/* Stats strip */}
-      <div style={{ display:'flex', borderBottom:'1px solid rgba(125,220,255,0.05)' }}>
-        {([{label:'Reviewed',val:'3',color:CYAN},{label:'Approved',val:'2',color:GREEN},{label:'Reviewing',val:'1',color:GOLD}] as {label:string;val:string;color:string}[]).map(({label,val,color},i) => (
-          <div key={i} style={{ flex:1, padding:'9px 10px', textAlign:'center', borderRight:i<2?'1px solid rgba(125,220,255,0.05)':'none' }}>
-            <div style={{ fontSize:15, fontWeight:600, color, fontFamily:'monospace', lineHeight:1.15 }}>{val}</div>
-            <div style={{ fontSize:8, color:'rgba(255,255,255,0.28)', letterSpacing:'0.13em', textTransform:'uppercase', marginTop:2 }}>{label}</div>
-          </div>
-        ))}
-      </div>
-
-      {/* Creator cards */}
-      <div style={{ padding:'14px 14px 10px', display:'flex', flexDirection:'column', gap:10 }}>
-        {creators.map((c, ci) => (
-          <div key={ci} style={{
-            background: ci===0 ? 'linear-gradient(135deg,rgba(125,220,255,0.052) 0%,rgba(52,211,153,0.022) 100%)' : 'rgba(255,255,255,0.022)',
-            border: `1px solid ${ci===0 ? 'rgba(125,220,255,0.15)' : 'rgba(167,139,250,0.13)'}`,
-            borderRadius:12, padding:'12px 14px',
+      {/* Metric badges — bottom */}
+      <div style={{
+        position: 'absolute', bottom: '1.2rem', left: '1.1rem', right: '1.1rem',
+        display: 'flex', gap: '0.45rem', flexWrap: 'wrap',
+      }}>
+        {([
+          { label: 'Brand Fit',  val: '94%',  color: '#7DDCFF' },
+          { label: 'Engagement', val: '6.4%', color: '#A78BFA' },
+          { label: 'Avg Views',  val: '82K',  color: '#F0C56A' },
+        ] as { label: string; val: string; color: string }[]).map(({ label, val, color }) => (
+          <div key={label} style={{
+            display: 'flex', alignItems: 'center', gap: '0.38rem',
+            background: 'rgba(3,10,14,0.78)',
+            backdropFilter: 'blur(10px)',
+            WebkitBackdropFilter: 'blur(10px)',
+            border: `1px solid ${color}2e`,
+            borderRadius: '2rem',
+            padding: '0.3rem 0.78rem',
           }}>
-            {/* Top row */}
-            <div style={{ display:'flex', gap:10, alignItems:'center', marginBottom:10 }}>
-              <div style={{ width:38, height:38, borderRadius:'50%', flexShrink:0, background:c.avatarGrad, border:`1.5px solid ${c.statusColor}38`, display:'flex', alignItems:'center', justifyContent:'center', fontSize:11, fontWeight:700, color:'rgba(255,255,255,0.88)' }}>
-                {c.initials}
-              </div>
-              <div style={{ flex:1, minWidth:0 }}>
-                <div style={{ fontSize:13, fontWeight:600, color:'#EEF2F8', lineHeight:1.2, marginBottom:4 }}>{c.name}</div>
-                <div style={{ display:'flex', gap:4 }}>
-                  {(['UGC Creator', c.niche] as string[]).map((t,ti) => (
-                    <span key={ti} style={{ fontSize:8, letterSpacing:'0.12em', textTransform:'uppercase', color:'rgba(125,220,255,0.56)', background:'rgba(125,220,255,0.07)', border:'1px solid rgba(125,220,255,0.14)', borderRadius:4, padding:'2px 6px' }}>{t}</span>
-                  ))}
-                </div>
-              </div>
-              <div style={{ display:'flex', alignItems:'center', gap:4, flexShrink:0, fontSize:8, fontWeight:600, letterSpacing:'0.10em', textTransform:'uppercase', color:c.statusColor, background:`${c.statusColor}12`, border:`1px solid ${c.statusColor}2a`, borderRadius:20, padding:'3px 8px' }}>
-                <div style={{ width:4, height:4, borderRadius:'50%', background:c.statusColor }} />
-                {c.status}
-              </div>
-            </div>
-
-            {/* Thumbnails */}
-            <div style={{ display:'flex', gap:6, marginBottom:10 }}>
-              {c.thumbs.map((grad,ti) => (
-                <div key={ti} style={{ flex:1, aspectRatio:'9/14', borderRadius:7, overflow:'hidden', background:grad, border:'1px solid rgba(255,255,255,0.06)', display:'flex', alignItems:'center', justifyContent:'center' }}>
-                  <div style={{ width:14, height:14, borderRadius:'50%', background:'rgba(255,255,255,0.18)', display:'flex', alignItems:'center', justifyContent:'center' }}>
-                    <div style={{ width:0, height:0, borderTop:'3.5px solid transparent', borderBottom:'3.5px solid transparent', borderLeft:'5px solid rgba(255,255,255,0.76)', marginLeft:1 }} />
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Metrics */}
-            <div style={{ display:'flex', gap:5, marginBottom:10 }}>
-              {([{label:'Followers',val:c.followers},{label:'Eng Rate',val:c.eng},{label:'Avg Views',val:c.views}] as {label:string;val:string}[]).map(({label,val}) => (
-                <div key={label} style={{ flex:1, padding:'6px 4px', textAlign:'center', background:'rgba(0,0,0,0.32)', borderRadius:7, border:'1px solid rgba(255,255,255,0.055)' }}>
-                  <div style={{ fontSize:11, fontWeight:600, color:'#DDE3ED', lineHeight:1.1, fontFamily:'monospace' }}>{val}</div>
-                  <div style={{ fontSize:7.5, color:'rgba(255,255,255,0.28)', letterSpacing:'0.10em', textTransform:'uppercase', marginTop:2 }}>{label}</div>
-                </div>
-              ))}
-            </div>
-
-            {/* Scores */}
-            <div style={{ display:'flex', gap:10, alignItems:'center' }}>
-              <div style={{ flex:1 }}>
-                <div style={{ display:'flex', justifyContent:'space-between', marginBottom:3 }}>
-                  <span style={{ fontSize:8, color:'rgba(255,255,255,0.34)', letterSpacing:'0.10em', textTransform:'uppercase' }}>Brand-Fit</span>
-                  <span style={{ fontSize:8.5, fontWeight:600, color:c.statusColor, fontFamily:'monospace' }}>{c.fitScore}</span>
-                </div>
-                <div style={{ height:2.5, borderRadius:99, background:'rgba(255,255,255,0.08)' }}>
-                  <div style={{ width:`${c.fitScore}%`, height:'100%', borderRadius:99, background:`linear-gradient(to right,${c.statusColor},${c.statusColor}88)` }} />
-                </div>
-              </div>
-              <div style={{ textAlign:'right', flexShrink:0 }}>
-                <div style={{ fontSize:7.5, color:'rgba(255,255,255,0.30)', letterSpacing:'0.10em', textTransform:'uppercase', marginBottom:1 }}>Audience</div>
-                <div style={{ fontSize:14, fontWeight:700, color:c.qualityColor, lineHeight:1, fontFamily:'monospace' }}>{c.quality}</div>
-              </div>
-            </div>
+            <span style={{ fontSize: 8, color: 'rgba(255,255,255,0.42)', letterSpacing: '0.10em', textTransform: 'uppercase' }}>{label}</span>
+            <span style={{ fontSize: 10.5, fontWeight: 700, color, fontFamily: 'monospace' }}>{val}</span>
           </div>
         ))}
       </div>
 
-      {/* Footer */}
-      <div style={{ borderTop:'1px solid rgba(125,220,255,0.06)', padding:'9px 16px', display:'flex', alignItems:'center', justifyContent:'space-between' }}>
-        <div style={{ display:'flex', gap:12 }}>
-          {(['TikTok','Instagram','YouTube'] as string[]).map(p => (
-            <div key={p} style={{ display:'flex', alignItems:'center', gap:4 }}>
-              <div style={{ width:11, height:11, borderRadius:'50%', background:GREEN, display:'flex', alignItems:'center', justifyContent:'center' }}>
-                <div style={{ width:3.5, height:3.5, borderRadius:'50%', background:'#010709' }} />
-              </div>
-              <span style={{ fontSize:8.5, color:'rgba(255,255,255,0.35)', letterSpacing:'0.08em' }}>{p}</span>
-            </div>
-          ))}
-        </div>
-        <span style={{ fontSize:8.5, color:'rgba(52,211,153,0.62)', letterSpacing:'0.12em', textTransform:'uppercase' }}>Campaign Ready</span>
-      </div>
+      {/* Inset border glow */}
+      <div aria-hidden="true" style={{ position: 'absolute', inset: 0, borderRadius: '1.4rem', pointerEvents: 'none', boxShadow: 'inset 0 0 0 1px rgba(125,220,255,0.09)' }} />
     </div>
   )
 }
@@ -8342,7 +8266,7 @@ function UGCCreatorSelection() {
   )
 
   const imageCard = (extraClass = '') => (
-    <UGCCreatorDashboard className={'ugccs-img' + (extraClass ? ' ' + extraClass : '')} />
+    <UGCCreatorPhotoCard className={'ugccs-img' + (extraClass ? ' ' + extraClass : '')} />
   )
 
   const bodyText = (
@@ -8445,7 +8369,7 @@ function UGCCreatorSelection() {
 
           {/* 5. Dashboard visual — large, prominent, at the bottom */}
           <div className="w-full mt-3" style={{ maxWidth: '640px' }}>
-            <UGCCreatorDashboard className="ugccs-img" />
+            <UGCCreatorPhotoCard className="ugccs-img" />
           </div>
 
         </div>
