@@ -504,7 +504,7 @@ html {
   background: linear-gradient(
     105deg,
     transparent 25%,
-    rgba(255, 255, 210, 0.80) 50%,
+    rgba(185, 170, 255, 0.80) 50%,
     transparent 75%
   );
   animation: gold-line-glint 3.2s linear infinite;
