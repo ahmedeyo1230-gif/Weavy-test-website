@@ -10781,11 +10781,7 @@ export default function Services() {
                 </em>
               </h2>
 
-              <div
-                className="bwd1-divider w-full h-px mb-10"
-                style={{ background: 'linear-gradient(to right, rgba(200,175,100,0.35), rgba(200,175,100,0.08) 60%, transparent)' }}
-                aria-hidden="true"
-              />
+              <div className="bwd1-divider" aria-hidden="true" style={{ display: 'none' }} />
 
               <p
                 className="bwd1-body font-sans font-light mb-12 max-w-xl"
