@@ -239,9 +239,9 @@ export default function About() { // no diagonal lines bg
               }}
               onMouseEnter={e => {
                 const el = e.currentTarget as HTMLDivElement
-                el.style.borderColor = 'rgba(133,110,241,0.45)'
-                el.style.backgroundColor = 'rgba(133,110,241,0.045)'
-                el.style.boxShadow = '0 12px 40px rgba(133,110,241,0.18), 0 0 0 1px rgba(133,110,241,0.14)'
+                el.style.borderColor = 'rgba(169,155,255,0.32)'
+                el.style.backgroundColor = 'rgba(169,155,255,0.032)'
+                el.style.boxShadow = '0 12px 40px rgba(169,155,255,0.12), 0 0 0 1px rgba(169,155,255,0.09)'
                 el.style.transform = 'translateY(-9px)'
               }}
               onMouseLeave={e => {
@@ -261,7 +261,7 @@ export default function About() { // no diagonal lines bg
                   left: '18px',
                   width: '48px',
                   height: '2px',
-                  background: 'linear-gradient(90deg, transparent, #856EF1, #9B8CFF, transparent)',
+                  background: 'linear-gradient(90deg, transparent, rgba(169,155,255,0.35), rgba(183,174,255,0.45), transparent)',
                   opacity: 0.55,
                   borderRadius: '0 0 2px 2px',
                   overflow: 'hidden',
@@ -271,7 +271,7 @@ export default function About() { // no diagonal lines bg
               </div>
               <div
                 className="font-mono select-none mb-5"
-                style={{ fontSize: '0.75rem', color: '#856EF1', opacity: 0.75 }}
+                style={{ fontSize: '0.75rem', color: '#A99BFF', opacity: 0.75 }}
               >
                 {svc.num}
               </div>
@@ -282,7 +282,7 @@ export default function About() { // no diagonal lines bg
                   return (
                     <>
                       {parts[0]}
-                      <span style={{ color: '#856EF1', opacity: 0.88 }}>{svc.highlight}</span>
+                      <span style={{ color: '#A99BFF', opacity: 0.88 }}>{svc.highlight}</span>
                       {parts[1]}
                     </>
                   )
