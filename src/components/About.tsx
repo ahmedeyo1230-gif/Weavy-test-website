@@ -213,13 +213,13 @@ export default function About() { // no diagonal lines bg
                   height: 'auto',
                   objectFit: 'contain',
                   objectPosition: 'center center',
-                  filter: 'brightness(0.90) saturate(0.86) contrast(0.94)',
+                  filter: 'brightness(1.02) saturate(0.92) contrast(0.97)',
                 }}
               />
               {/* Dark overlay to blend with site background */}
               <div aria-hidden="true" style={{
                 position: 'absolute', inset: 0, pointerEvents: 'none',
-                background: 'rgba(2, 10, 14, 0.13)',
+                background: 'rgba(2, 10, 14, 0.08)',
                 borderRadius: 'inherit',
               }} />
             </div>
