@@ -6088,8 +6088,15 @@ function GraphicDesignHero() {
               height: desktopHeight,
               objectFit: 'cover',
               objectPosition: 'center top',
+              filter: 'brightness(0.76) saturate(0.82) contrast(0.92)',
             }}
           />
+          {/* Dark cinematic overlay */}
+          <div aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'rgba(1,7,9,0.30)', pointerEvents: 'none', zIndex: 2 }} />
+          {/* Left fade */}
+          <div aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, #010709 0%, transparent 18%, transparent 82%, #010709 100%)', pointerEvents: 'none', zIndex: 3 }} />
+          {/* Top vignette */}
+          <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '120px', background: 'linear-gradient(to bottom, #010709, transparent)', pointerEvents: 'none', zIndex: 3 }} />
 
           {/* Collapse / Expand control (desktop only) */}
           <button
@@ -6123,16 +6130,17 @@ function GraphicDesignHero() {
             src="/brand_assets/Claude_image.png"
             alt="Graphic design and animation showcase"
             className="w-full h-full object-contain object-center"
-            style={{ display: 'block' }}
+            style={{ display: 'block', filter: 'brightness(0.76) saturate(0.82) contrast(0.92)' }}
           />
+          <div aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'rgba(1,7,9,0.28)', pointerEvents: 'none' }} />
         </div>
       </div>
 
       {/* Bottom fade — blends hero image edge into Editorial */}
       <div aria-hidden="true" style={{
         position: 'absolute', bottom: 0, left: 0, right: 0,
-        height: '140px',
-        background: 'linear-gradient(to bottom, rgba(1,7,9,0), #010709)',
+        height: '200px',
+        background: 'linear-gradient(to bottom, transparent, rgba(1,7,9,0.7) 55%, #010709 100%)',
         pointerEvents: 'none',
         zIndex: 5,
       }}/>
