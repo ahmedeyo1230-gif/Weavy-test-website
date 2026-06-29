@@ -258,9 +258,9 @@ export default function ConnectedSystems() {
     return () => obs.disconnect()
   }, [])
 
-  const leads    = useCountUp(247, 1800, inView, reduced)
-  const reply    = useCountUp(94,  1400, inView, reduced)
-  const bookings = useCountUp(38,  1100, inView, reduced)
+  const leads    = useCountUp(247, 3800, inView, reduced)
+  const reply    = useCountUp(94,  3400, inView, reduced)
+  const bookings = useCountUp(38,  3000, inView, reduced)
 
   return (
     <section
