@@ -114,10 +114,18 @@ function ModuleRow({ svc, index }: { svc: ServiceDef; index: number }) {
       <div
         ref={rowRef}
         className="flex items-start gap-4 px-6 py-5 cursor-default"
-        style={{ transition: 'background 220ms ease' }}
+        style={{ position: 'relative', transition: 'background 220ms ease' }}
         onMouseEnter={enter}
         onMouseLeave={leave}
       >
+        {/* Accent colour strip */}
+        <div
+          aria-hidden="true"
+          style={{
+            position: 'absolute', inset: 0, pointerEvents: 'none',
+            background: `linear-gradient(90deg, rgb(${svc.glowRgb} / 0.13) 0%, rgb(${svc.glowRgb} / 0.06) 45%, transparent 80%)`,
+          }}
+        />
         {/* Node — vertically centred on spine */}
         <div className="flex-shrink-0 w-8 flex items-center justify-center pt-[0.35rem]">
           <div
