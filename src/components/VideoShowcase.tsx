@@ -286,7 +286,7 @@ export default function VideoShowcase() {
                   height: '100%',
                   display: 'block',
                   objectFit: 'cover',
-                  filter: 'brightness(0.88) saturate(0.92) contrast(0.95)',
+                  filter: 'brightness(0.96) saturate(0.95) contrast(0.98)',
                 }}
               >
                 {srcReady && <source src={videoSrc} type="video/mp4" />}
@@ -294,7 +294,7 @@ export default function VideoShowcase() {
               {/* Cinematic dark overlay */}
               <div aria-hidden="true" style={{
                 position: 'absolute', inset: 0, pointerEvents: 'none',
-                background: 'rgba(1, 7, 9, 0.10)',
+                background: 'rgba(1, 7, 9, 0.05)',
               }} />
             </div>
           </div>
