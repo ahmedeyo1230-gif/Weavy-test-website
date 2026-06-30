@@ -6620,6 +6620,8 @@ function GraphicDesignSplitA() {
     >
       {/* Dark sphere grid — 32 px slate lines + centred violet orb */}
       <DarkSphereGridBg />
+      {/* Dark overlay to embed grid into background */}
+      <div aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'rgba(1,7,9,0.40)', pointerEvents: 'none', zIndex: 0 }} />
 
       {/* Grain */}
       <svg aria-hidden="true" className="pointer-events-none absolute inset-0 w-full h-full" style={{ opacity: 0.026, zIndex: 1 }}>

@@ -139,9 +139,9 @@ export const DarkSphereGridBg = ({ className }: GridBackgroundProps) => {
       className={cn("absolute inset-0 z-0 pointer-events-none", className)}
       style={{
         backgroundImage: `
-          linear-gradient(to right,  rgba(125,220,255,0.03) 1px, transparent 1px),
-          linear-gradient(to bottom, rgba(125,220,255,0.03) 1px, transparent 1px),
-          radial-gradient(circle at 50% 50%, rgba(139,92,246,0.05) 0%, transparent 70%)
+          linear-gradient(to right,  rgba(125,220,255,0.014) 1px, transparent 1px),
+          linear-gradient(to bottom, rgba(125,220,255,0.014) 1px, transparent 1px),
+          radial-gradient(circle at 50% 50%, rgba(139,92,246,0.03) 0%, transparent 70%)
         `,
         backgroundSize: "32px 32px, 32px 32px, 100% 100%",
       }}
