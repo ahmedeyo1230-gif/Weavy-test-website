@@ -6085,11 +6085,11 @@ function GraphicDesignHero() {
               height: desktopHeight,
               objectFit: 'cover',
               objectPosition: 'center top',
-              filter: 'brightness(0.76) saturate(0.82) contrast(0.92)',
+              filter: 'brightness(0.88) saturate(0.88) contrast(0.95)',
             }}
           />
           {/* Dark cinematic overlay */}
-          <div aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'rgba(1,7,9,0.30)', pointerEvents: 'none', zIndex: 2 }} />
+          <div aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'rgba(1,7,9,0.20)', pointerEvents: 'none', zIndex: 2 }} />
           {/* Left fade */}
           <div aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, #010709 0%, transparent 18%, transparent 82%, #010709 100%)', pointerEvents: 'none', zIndex: 3 }} />
           {/* Top vignette */}
@@ -6127,9 +6127,9 @@ function GraphicDesignHero() {
             src="/brand_assets/Claude_image.png"
             alt="Graphic design and animation showcase"
             className="w-full h-full object-contain object-center"
-            style={{ display: 'block', filter: 'brightness(0.76) saturate(0.82) contrast(0.92)' }}
+            style={{ display: 'block', filter: 'brightness(0.88) saturate(0.88) contrast(0.95)' }}
           />
-          <div aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'rgba(1,7,9,0.28)', pointerEvents: 'none' }} />
+          <div aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'rgba(1,7,9,0.18)', pointerEvents: 'none' }} />
         </div>
       </div>
 
@@ -6137,7 +6137,7 @@ function GraphicDesignHero() {
       <div aria-hidden="true" style={{
         position: 'absolute', bottom: 0, left: 0, right: 0,
         height: '200px',
-        background: 'linear-gradient(to bottom, transparent, rgba(1,7,9,0.7) 55%, #010709 100%)',
+        background: 'linear-gradient(to bottom, transparent, rgba(1,7,9,0.5) 55%, #010709 100%)',
         pointerEvents: 'none',
         zIndex: 5,
       }}/>
