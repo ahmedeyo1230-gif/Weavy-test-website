@@ -3531,12 +3531,12 @@ function ChatbotTikTokAutomation() {
 // ─── Social Media Marketing — premium 5-section flow ────────────────────────
 
 const STRATEGY_ITEMS = [
-  { label: 'Content Scheduling',            desc: 'Consistent posting cadence across all platforms, planned weeks in advance.' },
-  { label: 'Reels & Short-Form Content',    desc: 'Scroll-stopping vertical video crafted for reach and retention.' },
-  { label: 'Stories & Carousel Posts',      desc: 'Engaging multi-frame formats that drive saves, shares, and swipe-throughs.' },
-  { label: 'Paid Advertising Campaigns',    desc: 'Data-driven ad campaigns targeting the right audience at the right moment.' },
-  { label: 'Audience Growth Strategy',      desc: 'Organic growth tactics built around your niche and brand voice.' },
-  { label: 'Analytics & Performance Tracking', desc: 'Monthly reporting with clear metrics — reach, engagement, conversions.' },
+  { label: 'Content Scheduling',               color: '#E8C97A', desc: 'Consistent posting cadence across all platforms, planned weeks in advance.' },
+  { label: 'Reels & Short-Form Content',        color: '#B7AEFF', desc: 'Scroll-stopping vertical video crafted for reach and retention.' },
+  { label: 'Stories & Carousel Posts',          color: '#F0A6CA', desc: 'Engaging multi-frame formats that drive saves, shares, and swipe-throughs.' },
+  { label: 'Paid Advertising Campaigns',        color: '#7DDCFF', desc: 'Data-driven ad campaigns targeting the right audience at the right moment.' },
+  { label: 'Audience Growth Strategy',          color: '#6EE7B7', desc: 'Organic growth tactics built around your niche and brand voice.' },
+  { label: 'Analytics & Performance Tracking',  color: '#BFEFFF', desc: 'Monthly reporting with clear metrics — reach, engagement, conversions.' },
 ]
 
 
@@ -4172,7 +4172,7 @@ function SocialMediaMarketing() {
 
         {/* Horizontal blocks */}
         <div className="flex flex-col">
-          {STRATEGY_ITEMS.map(({ label, desc }, i) => (
+          {STRATEGY_ITEMS.map(({ label, color, desc }, i) => (
             <div key={i}>
               <div
                 className="sms-line"
@@ -4185,7 +4185,7 @@ function SocialMediaMarketing() {
                 onMouseEnter={e => {
                   const num = e.currentTarget.querySelector('.sms-num') as HTMLElement | null
                   if (!num) return
-                  num.style.filter = 'drop-shadow(0 0 6px hsl(199 89% 60% / 0.8)) drop-shadow(0 0 14px hsl(199 89% 60% / 0.45))'
+                  num.style.filter = `drop-shadow(0 0 6px ${color}cc) drop-shadow(0 0 14px ${color}66)`
                   gsap.killTweensOf(num)
                   gsap.to(num, { scale: 1.12, duration: 0.25, ease: 'power2.out', transformOrigin: 'center center' })
                   gsap.to(num, { scale: 1, duration: 0.7, delay: 0.25, ease: 'elastic.out(1, 0.45)', transformOrigin: 'center center' })
@@ -4193,7 +4193,7 @@ function SocialMediaMarketing() {
                 onMouseLeave={e => {
                   const num = e.currentTarget.querySelector('.sms-num') as HTMLElement | null
                   if (!num) return
-                  num.style.filter = 'drop-shadow(0 0 4px hsl(199 89% 60% / 0.35))'
+                  num.style.filter = `drop-shadow(0 0 4px ${color}55)`
                   gsap.killTweensOf(num)
                   gsap.to(num, { scale: 1, duration: 0.35, ease: 'power2.inOut', transformOrigin: 'center center' })
                 }}
@@ -4206,11 +4206,8 @@ function SocialMediaMarketing() {
                     letterSpacing: '0.18em',
                     minWidth: '2rem',
                     fontVariantNumeric: 'tabular-nums',
-                    background: 'linear-gradient(135deg, hsl(199 89% 78%) 0%, hsl(215 80% 68%) 60%, hsl(199 70% 60%) 100%)',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
-                    backgroundClip: 'text',
-                    filter: 'drop-shadow(0 0 4px hsl(199 89% 60% / 0.35))',
+                    color,
+                    filter: `drop-shadow(0 0 4px ${color}55)`,
                     transition: 'filter 0.3s ease',
                     display: 'inline-block',
                   }}
@@ -4218,11 +4215,11 @@ function SocialMediaMarketing() {
                   {String(i + 1).padStart(2, '0')}
                 </span>
                 {/* Label */}
-                <p className="font-sans font-light text-text shrink-0" style={{ fontSize: 'clamp(0.95rem, 1.5vw, 1.1rem)', letterSpacing: '-0.015em', minWidth: '18rem' }}>
+                <p className="font-sans font-light shrink-0" style={{ fontSize: 'clamp(0.95rem, 1.5vw, 1.1rem)', letterSpacing: '-0.015em', minWidth: '18rem', color, textShadow: `0 0 16px ${color}1f` }}>
                   {label}
                 </p>
                 {/* Desc */}
-                <p className="font-sans font-light" style={{ fontSize: '0.84rem', lineHeight: 1.75, color: '#F2F8FC' }}>
+                <p className="font-sans font-light" style={{ fontSize: '0.84rem', lineHeight: 1.75, color: '#C9D3D8' }}>
                   {desc}
                 </p>
               </div>
