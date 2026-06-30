@@ -238,8 +238,8 @@ export default function About() { // no diagonal lines bg
               transition={{ duration: 0.5, delay: i * 0.07, ease: E }}
               className="group relative rounded-xl overflow-hidden cursor-pointer"
               style={{
-                padding: '1.75rem 1.6rem 2rem',
-                minHeight: '11rem',
+                padding: '2.1rem 1.9rem 2.4rem',
+                minHeight: '13rem',
                 background: 'hsl(0 0% 100% / 0.022)',
                 border: '1px solid hsl(0 0% 100% / 0.07)',
                 transition: 'border-color 280ms, background-color 280ms, box-shadow 280ms, transform 280ms cubic-bezier(0.16,1,0.3,1)',
@@ -259,31 +259,32 @@ export default function About() { // no diagonal lines bg
                 el.style.transform = 'translateY(0)'
               }}
             >
-              {/* Top-left gold accent line */}
+              {/* Top-left violet accent line */}
               <div
                 aria-hidden="true"
                 style={{
                   position: 'absolute',
                   top: 0,
-                  left: '18px',
-                  width: '48px',
+                  left: '14px',
+                  width: '72px',
                   height: '2px',
-                  background: 'linear-gradient(90deg, transparent, rgba(169,155,255,0.35), rgba(183,174,255,0.45), transparent)',
-                  opacity: 0.55,
+                  background: 'linear-gradient(90deg, transparent, rgba(183,174,255,0.65), rgba(169,155,255,0.75), transparent)',
+                  opacity: 0.9,
                   borderRadius: '0 0 2px 2px',
                   overflow: 'hidden',
+                  boxShadow: '0 0 8px 1px rgba(183,174,255,0.35)',
                 }}
               >
                 <div className="gold-line-glint" />
               </div>
               <div
                 className="font-mono select-none mb-5"
-                style={{ fontSize: '0.75rem', color: '#A99BFF', opacity: 0.75 }}
+                style={{ fontSize: '0.8rem', color: '#A99BFF', opacity: 0.85 }}
               >
                 {svc.num}
               </div>
-              <div className="font-semibold mb-2" style={{ fontSize: '1.05rem', color: '#F8FAFC' }}>{svc.label}</div>
-              <div className="font-medium leading-relaxed" style={{ fontSize: '0.88rem', color: '#B0BAC8' }}>
+              <div className="font-semibold mb-2" style={{ fontSize: '1.15rem', color: '#F8FAFC' }}>{svc.label}</div>
+              <div className="font-medium leading-relaxed" style={{ fontSize: '0.94rem', color: '#B0BAC8' }}>
                 {(() => {
                   const parts = svc.desc.split(svc.highlight)
                   return (
