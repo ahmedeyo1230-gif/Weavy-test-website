@@ -110,19 +110,19 @@ export const NoiseCanvasBg = ({ className }: GridBackgroundProps) => {
       className={cn("absolute inset-0 z-0 pointer-events-none overflow-hidden", className)}
     >
       {/* Orange radial spotlight from top */}
-      <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse 90% 70% at 50% -10%, rgba(251,146,60,0.20) 0%, transparent 70%)' }} />
+      <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse 90% 70% at 50% -10%, rgba(251,146,60,0.07) 0%, transparent 70%)' }} />
       {/* Masked dot grid */}
       <div
         className="absolute inset-0"
         style={{
-          backgroundImage: 'radial-gradient(rgba(226,232,240,0.15) 1px, transparent 1px)',
+          backgroundImage: 'radial-gradient(rgba(226,232,240,0.06) 1px, transparent 1px)',
           backgroundSize: '18px 18px',
           maskImage: 'radial-gradient(circle at 50% 50%, #000 60%, transparent 100%)',
           WebkitMaskImage: 'radial-gradient(circle at 50% 50%, #000 60%, transparent 100%)',
         }}
       />
       {/* Animated film grain */}
-      <NoiseCanvas patternAlpha={20} patternRefreshInterval={3} />
+      <NoiseCanvas patternAlpha={7} patternRefreshInterval={3} />
     </div>
   );
 };
