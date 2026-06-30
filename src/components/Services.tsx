@@ -4594,7 +4594,7 @@ function SocialMediaMarketing() {
               className="smbs-img relative rounded-2xl overflow-hidden"
               style={{
                 opacity: 0, transform: 'translateY(36px)',
-                height: 'clamp(300px, 38vw, 520px)',
+                height: 'clamp(400px, 50vw, 680px)',
                 boxShadow: [
                   '0 48px 96px -16px hsl(0 0% 0% / 0.9)',
                   '0 0 0 1px hsl(280 65% 65% / 0.14)',
