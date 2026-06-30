@@ -10815,7 +10815,7 @@ export default function Services() {
         <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to top, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
 
         <div className="relative z-10 max-w-[88rem] mx-auto px-6 sm:px-10">
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.3fr] gap-16 lg:gap-14 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.12fr] gap-16 lg:gap-14 items-center">
 
             {/* ── Left: text (unchanged) ── */}
             <div>
@@ -10929,7 +10929,7 @@ export default function Services() {
                 style={{
                   position: 'relative',
                   width: '100%',
-                  maxWidth: '960px',
+                  maxWidth: '820px',
                   borderRadius: '20px',
                   overflow: 'hidden',
                   boxShadow: [
