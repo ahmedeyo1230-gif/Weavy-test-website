@@ -6660,6 +6660,7 @@ function GraphicDesignSplitA() {
             <div style={{
               borderRadius: '30px',
               overflow: 'hidden',
+              background: '#010709',
               boxShadow: [
                 '0 1px 0 1px hsl(0 0% 100% / 0.05)',
                 '0 24px 60px -10px hsl(0 0% 0% / 0.75)',
@@ -6672,11 +6673,15 @@ function GraphicDesignSplitA() {
                 decoding="async"
                 src="/brand_assets/office-portrait.webp"
                 alt="Designer at work — cinematic neon studio setup"
+                width={1600}
+                height={1971}
                 style={{
                   display: 'block',
                   width: '100%',
-                  height: 'clamp(380px, 82vw, 1020px)',
-                  objectFit: 'cover',
+                  height: 'auto',
+                  maxHeight: 'clamp(380px, 82vw, 1020px)',
+                  aspectRatio: '1600 / 1971',
+                  objectFit: 'contain',
                   objectPosition: 'center center',
                 }}
               />
