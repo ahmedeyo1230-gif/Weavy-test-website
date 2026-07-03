@@ -27,12 +27,33 @@ function labelFromPath() {
   return LABEL_BY_PATH[window.location.pathname] ?? 'Home'
 }
 
+// Mobile/tablet browsers (particularly iOS Safari and in-app webviews) can
+// render a native play-button overlay on a <video> even without `controls`,
+// e.g. when autoplay is throttled by Low Power Mode. Below the desktop
+// breakpoint we skip the video element entirely and use a static poster
+// background instead — guaranteeing there's never a play icon on mobile.
+function useIsDesktop() {
+  const [isDesktop, setIsDesktop] = useState(
+    () => typeof window !== 'undefined' && window.innerWidth >= 1024
+  )
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 1024px)')
+    const onChange = () => setIsDesktop(mq.matches)
+    onChange()
+    mq.addEventListener('change', onChange)
+    return () => mq.removeEventListener('change', onChange)
+  }, [])
+  return isDesktop
+}
+
 // ─── HLS Video Background ─────────────────────────────────────────────────────
 
 function HeroVideo() {
   const videoRef = useRef<HTMLVideoElement>(null)
+  const isDesktop = useIsDesktop()
 
   useEffect(() => {
+    if (!isDesktop) return
     const video = videoRef.current
     if (!video) return
 
@@ -62,10 +83,27 @@ function HeroVideo() {
     })
 
     return () => cleanup?.()
-  }, [])
+  }, [isDesktop])
 
-  // No `controls`, so there is never a native play button — if autoplay is blocked
-  // or playback errors out, the `poster` frame below simply stays on screen.
+  // Mobile/tablet: no <video> at all — a static poster background, never a play icon.
+  if (!isDesktop) {
+    return (
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage: `url(${HERO_POSTER})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          opacity: 0.88,
+          filter: 'brightness(1.06) contrast(1.38) saturate(1.15)',
+        }}
+      />
+    )
+  }
+
+  // Desktop — no `controls`, so there is never a native play button; if autoplay
+  // is blocked or playback errors out, the `poster` frame simply stays on screen.
   return (
     <video
       ref={videoRef}
@@ -73,6 +111,7 @@ function HeroVideo() {
       muted
       loop
       playsInline
+      controls={false}
       preload="auto"
       poster={HERO_POSTER}
       aria-hidden="true"
