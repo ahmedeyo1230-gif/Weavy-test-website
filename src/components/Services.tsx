@@ -6001,26 +6001,28 @@ function ChatbotHero() {
       }}
     >
       <div
-        className="relative mx-auto overflow-hidden"
+        className="relative mx-auto overflow-hidden aspect-video lg:aspect-auto lg:h-[clamp(640px,44vw,820px)]"
         style={{
           maxWidth: '1800px',
-          height: 'clamp(640px, 44vw, 820px)',
           borderRadius: '28px',
           boxShadow: '0 20px 80px rgba(0,0,0,0.45)',
+          background: '#010709',
         }}
       >
+        {/* Mobile/tablet: full scene visible via object-contain, matching the video's
+            own 16:9 ratio (no crop). Desktop: original fixed-height cover treatment, unchanged. */}
         <video
           src="/brand_assets/chatbot-hero.mp4"
           autoPlay
           loop
           muted
           playsInline
+          className="object-contain lg:object-cover"
           style={{
             position: 'absolute',
             inset: 0,
             width: '100%',
             height: '100%',
-            objectFit: 'cover',
             objectPosition: 'center center',
             zIndex: 0,
           }}
