@@ -15,7 +15,7 @@ export const PAGE_SEO: Record<'home' | 'services' | 'work' | 'blog' | 'contact',
   services: {
     title: 'Services — Weavy Automation | Websites, AI Chatbots & Social Systems',
     description: 'Explore Weavy\'s services: bespoke website design, AI chatbot automation, social media marketing, graphic design, and UGC content — built to scale your business.',
-    path: '/#section-9',
+    path: '/services',
   },
   work: {
     title: 'Our Work — Weavy Automation | Client Case Studies',

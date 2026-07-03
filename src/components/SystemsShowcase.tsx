@@ -1,6 +1,7 @@
 import { useRef } from 'react'
 import { motion } from 'framer-motion'
 import { Bot, Workflow, MessageSquare, LineChart, ArrowRight, type LucideIcon } from 'lucide-react'
+import { goToPath } from '../lib/navigation'
 
 const E: [number, number, number, number] = [0.16, 1, 0.3, 1]
 
@@ -337,7 +338,8 @@ export default function SystemsShowcase() {
             </motion.p>
 
             <motion.a
-              href="#section-9"
+              href="/services"
+              onClick={(e) => { e.preventDefault(); goToPath('/services') }}
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}

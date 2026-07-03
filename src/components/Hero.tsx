@@ -1,19 +1,22 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import weavyLogo from '../assets/weavy-logo-new.png'
+import { goToPath } from '../lib/navigation'
 
 const HLS_SRC = 'https://stream.mux.com/Aa02T7oM1wH5Mk5EEVDYhbZ1ChcdhRsS2m1NYyx4Ua1g.m3u8'
 const HERO_POSTER = 'https://image.mux.com/Aa02T7oM1wH5Mk5EEVDYhbZ1ChcdhRsS2m1NYyx4Ua1g/thumbnail.jpg?width=1200&time=1'
 
 const ROLES = ['Creatives', 'Developers', 'Founders', 'Designers']
 
-const NAV_LINKS = [
-  { label: 'Home',     href: '#home'      },
-  { label: 'About',    href: '#about'     },
-  { label: 'Services', href: '#section-9' },
-  { label: 'Work',     href: '#work'      },
-  { label: 'Blog',     href: '#blog'      },
-  { label: 'Contact',  href: '#contact'   },
+// `path` is set for entries backed by a real URL path (/, /services); the rest
+// stay same-page hash anchors (#about, #work, #blog, #contact) exactly as before.
+const NAV_LINKS: { label: string; href: string; path?: string }[] = [
+  { label: 'Home',     href: '/',          path: '/'         },
+  { label: 'About',    href: '#about'                        },
+  { label: 'Services', href: '/services',  path: '/services' },
+  { label: 'Work',     href: '#work'                          },
+  { label: 'Blog',     href: '#blog'                           },
+  { label: 'Contact',  href: '#contact'                        },
 ]
 
 // ─── HLS Video Background ─────────────────────────────────────────────────────
@@ -106,14 +109,17 @@ export function Navbar() {
 
         {/* Desktop links */}
         <ul className="hidden sm:flex items-center gap-0.5" role="list">
-          {NAV_LINKS.map(({ label, href }) => {
+          {NAV_LINKS.map(({ label, href, path }) => {
             const isActive = active === label
             return (
               <li key={label}>
                 <a
                   href={href}
                   aria-current={isActive ? 'page' : undefined}
-                  onClick={() => setActive(label)}
+                  onClick={(e) => {
+                    setActive(label)
+                    if (path) { e.preventDefault(); goToPath(path) }
+                  }}
                   className={`relative block text-xs sm:text-sm px-3 py-1.5 rounded-full transition-colors duration-150 active:scale-[0.97] ${
                     isActive ? 'text-primary bg-white/10' : 'text-muted hover:text-primary hover:bg-white/5'
                   }`}
@@ -168,7 +174,7 @@ export function Navbar() {
             }}
           >
             <ul role="list">
-              {NAV_LINKS.map(({ label, href }, i) => (
+              {NAV_LINKS.map(({ label, href, path }, i) => (
                 <motion.li
                   key={label}
                   initial={{ opacity: 0, x: -8 }}
@@ -177,7 +183,11 @@ export function Navbar() {
                 >
                   <a
                     href={href}
-                    onClick={() => { setActive(label); setMenuOpen(false) }}
+                    onClick={(e) => {
+                      setActive(label)
+                      setMenuOpen(false)
+                      if (path) { e.preventDefault(); goToPath(path) }
+                    }}
                     className="block px-6 py-4 last:border-0 transition-all duration-150"
                     style={{
                       color: 'rgba(248, 250, 252, 0.92)',
@@ -352,7 +362,8 @@ export default function Hero() {
               Book a call →
             </a>
             <a
-              href="#section-9"
+              href="/services"
+              onClick={(e) => { e.preventDefault(); goToPath('/services') }}
               className="inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-medium border border-border text-primary hover:border-white/25 hover:bg-white/[0.04] hover:shadow-[0_0_16px_hsl(199_89%_60%_/_0.08)] active:scale-[0.97]"
               style={{ transition: 'border-color 200ms, background-color 200ms, box-shadow 200ms, transform 100ms' }}
             >

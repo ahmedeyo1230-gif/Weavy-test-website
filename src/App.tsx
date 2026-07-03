@@ -90,8 +90,6 @@ function OutcomeMarquee() {
   )
 }
 
-const MAIN_HASHES = ['#home', '#about', '#showcase', '']
-
 export default function App() {
   const [loaded, setLoaded] = useState(false)
   const [showServices, setShowServices] = useState(false)
@@ -100,43 +98,58 @@ export default function App() {
   const [showContact, setShowContact] = useState(false)
 
   useEffect(() => {
+    // Services is a real path ("/services"); Work/Blog/Contact stay same-page
+    // hash anchors. Anything else — "/", "/#home", "/#about", unknown paths —
+    // always resolves to Home, so "/" can never end up anywhere else.
     const check = () => {
+      const path = window.location.pathname
       const hash = window.location.hash
-      if (hash === '#section-9') {
+
+      if (path === '/services') {
         setShowServices(true)
         setShowWork(false)
         setShowBlog(false)
         setShowContact(false)
         applyPageSeo(PAGE_SEO.services)
-      } else if (hash === '#work') {
+        return
+      }
+      if (hash === '#work') {
         setShowWork(true)
         setShowServices(false)
         setShowBlog(false)
         setShowContact(false)
         applyPageSeo(PAGE_SEO.work)
-      } else if (hash === '#blog') {
+        return
+      }
+      if (hash === '#blog') {
         setShowBlog(true)
         setShowServices(false)
         setShowWork(false)
         setShowContact(false)
         applyPageSeo(PAGE_SEO.blog)
-      } else if (hash === '#contact') {
+        return
+      }
+      if (hash === '#contact') {
         setShowContact(true)
         setShowServices(false)
         setShowWork(false)
         setShowBlog(false)
         applyPageSeo(PAGE_SEO.contact)
-      } else if (MAIN_HASHES.includes(hash)) {
-        setShowServices(false)
-        setShowWork(false)
-        setShowBlog(false)
-        setShowContact(false)
-        applyPageSeo(PAGE_SEO.home)
+        return
       }
+      setShowServices(false)
+      setShowWork(false)
+      setShowBlog(false)
+      setShowContact(false)
+      applyPageSeo(PAGE_SEO.home)
     }
-    check() // resolve whatever hash is already in the URL on first load (deep link / refresh)
+    check() // resolve whatever path/hash is already in the URL on first load (deep link / refresh)
     window.addEventListener('hashchange', check)
-    return () => window.removeEventListener('hashchange', check)
+    window.addEventListener('popstate', check)
+    return () => {
+      window.removeEventListener('hashchange', check)
+      window.removeEventListener('popstate', check)
+    }
   }, [])
 
   // Snap to top whenever the view switches
