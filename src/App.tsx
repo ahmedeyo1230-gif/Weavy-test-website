@@ -90,72 +90,49 @@ function OutcomeMarquee() {
   )
 }
 
+type Route = 'home' | 'about' | 'services' | 'work' | 'blog' | 'contact'
+
+const ROUTE_BY_PATH: Record<string, Route> = {
+  '/about':    'about',
+  '/services': 'services',
+  '/work':     'work',
+  '/blog':     'blog',
+  '/contact':  'contact',
+}
+
+function routeFromPath(): Route {
+  return ROUTE_BY_PATH[window.location.pathname] ?? 'home'
+}
+
 export default function App() {
   const [loaded, setLoaded] = useState(false)
-  const [showServices, setShowServices] = useState(false)
-  const [showWork, setShowWork] = useState(false)
-  const [showBlog, setShowBlog] = useState(false)
-  const [showContact, setShowContact] = useState(false)
+  const [route, setRoute] = useState<Route>('home')
 
   useEffect(() => {
-    // Services is a real path ("/services"); Work/Blog/Contact stay same-page
-    // hash anchors. Anything else — "/", "/#home", "/#about", unknown paths —
-    // always resolves to Home, so "/" can never end up anywhere else.
+    // Every top-level page lives at a real path now. "popstate" fires for
+    // back/forward AND for the pushState navigations dispatched by goToPath(),
+    // so this is the single source of truth for what's on screen.
     const check = () => {
-      const path = window.location.pathname
-      const hash = window.location.hash
-
-      if (path === '/services') {
-        setShowServices(true)
-        setShowWork(false)
-        setShowBlog(false)
-        setShowContact(false)
-        applyPageSeo(PAGE_SEO.services)
-        return
-      }
-      if (hash === '#work') {
-        setShowWork(true)
-        setShowServices(false)
-        setShowBlog(false)
-        setShowContact(false)
-        applyPageSeo(PAGE_SEO.work)
-        return
-      }
-      if (hash === '#blog') {
-        setShowBlog(true)
-        setShowServices(false)
-        setShowWork(false)
-        setShowContact(false)
-        applyPageSeo(PAGE_SEO.blog)
-        return
-      }
-      if (hash === '#contact') {
-        setShowContact(true)
-        setShowServices(false)
-        setShowWork(false)
-        setShowBlog(false)
-        applyPageSeo(PAGE_SEO.contact)
-        return
-      }
-      setShowServices(false)
-      setShowWork(false)
-      setShowBlog(false)
-      setShowContact(false)
-      applyPageSeo(PAGE_SEO.home)
+      const next = routeFromPath()
+      setRoute(next)
+      applyPageSeo(PAGE_SEO[next])
     }
-    check() // resolve whatever path/hash is already in the URL on first load (deep link / refresh)
-    window.addEventListener('hashchange', check)
+    check() // resolve whatever path is already in the URL on first load (deep link / refresh)
     window.addEventListener('popstate', check)
-    return () => {
-      window.removeEventListener('hashchange', check)
-      window.removeEventListener('popstate', check)
-    }
+    return () => window.removeEventListener('popstate', check)
   }, [])
 
-  // Snap to top whenever the view switches
+  // Scroll appropriately whenever the route changes: to the About section for
+  // "/about" (it lives inside the Home page), to the top for everything else.
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'instant' })
-  }, [showServices, showWork, showBlog, showContact])
+    if (route === 'about') {
+      requestAnimationFrame(() => {
+        document.getElementById('about')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      })
+    } else {
+      window.scrollTo({ top: 0, behavior: 'instant' })
+    }
+  }, [route])
 
   return (
     <>
@@ -164,22 +141,22 @@ export default function App() {
       {loaded && <WhatsAppFloatingButton />}
       {loaded && (
         <>
-          {showServices ? (
+          {route === 'services' ? (
             <>
               <Navbar />
               <Suspense fallback={null}><Services /></Suspense>
             </>
-          ) : showWork ? (
+          ) : route === 'work' ? (
             <>
               <Navbar />
               <Suspense fallback={null}><ImageShowcase /></Suspense>
             </>
-          ) : showBlog ? (
+          ) : route === 'blog' ? (
             <>
               <Navbar />
               <Suspense fallback={null}><Blog /></Suspense>
             </>
-          ) : showContact ? (
+          ) : route === 'contact' ? (
             <>
               <Navbar />
               <Suspense fallback={null}><Contact /></Suspense>

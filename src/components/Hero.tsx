@@ -8,16 +8,24 @@ const HERO_POSTER = 'https://image.mux.com/Aa02T7oM1wH5Mk5EEVDYhbZ1ChcdhRsS2m1NY
 
 const ROLES = ['Creatives', 'Developers', 'Founders', 'Designers']
 
-// `path` is set for entries backed by a real URL path (/, /services); the rest
-// stay same-page hash anchors (#about, #work, #blog, #contact) exactly as before.
-const NAV_LINKS: { label: string; href: string; path?: string }[] = [
-  { label: 'Home',     href: '/',          path: '/'         },
-  { label: 'About',    href: '#about'                        },
-  { label: 'Services', href: '/services',  path: '/services' },
-  { label: 'Work',     href: '#work'                          },
-  { label: 'Blog',     href: '#blog'                           },
-  { label: 'Contact',  href: '#contact'                        },
+// Every top-level nav item is a real, always-clickable path — works the same
+// from any page, in both directions.
+const NAV_LINKS: { label: string; href: string }[] = [
+  { label: 'Home',     href: '/'         },
+  { label: 'About',    href: '/about'    },
+  { label: 'Services', href: '/services' },
+  { label: 'Work',     href: '/work'     },
+  { label: 'Blog',     href: '/blog'     },
+  { label: 'Contact',  href: '/contact'  },
 ]
+
+const LABEL_BY_PATH: Record<string, string> = {
+  '/': 'Home', '/about': 'About', '/services': 'Services',
+  '/work': 'Work', '/blog': 'Blog', '/contact': 'Contact',
+}
+function labelFromPath() {
+  return LABEL_BY_PATH[window.location.pathname] ?? 'Home'
+}
 
 // ─── HLS Video Background ─────────────────────────────────────────────────────
 
@@ -81,7 +89,7 @@ function HeroVideo() {
 // ─── Navbar ───────────────────────────────────────────────────────────────────
 
 export function Navbar() {
-  const [active,   setActive]   = useState('Home')
+  const [active,   setActive]   = useState<string>(() => (typeof window !== 'undefined' ? labelFromPath() : 'Home'))
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
 
@@ -89,6 +97,14 @@ export function Navbar() {
     const onScroll = () => setScrolled(window.scrollY > 50)
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  // Keep the active highlight in sync with the real route — covers back/forward
+  // navigation and any navigation that didn't originate from clicking a nav link.
+  useEffect(() => {
+    const onNav = () => setActive(labelFromPath())
+    window.addEventListener('popstate', onNav)
+    return () => window.removeEventListener('popstate', onNav)
   }, [])
 
   return (
@@ -101,15 +117,21 @@ export function Navbar() {
       <nav
         aria-label="Main navigation"
         className="glass-panel rounded-full px-3 py-0 flex items-center justify-between gap-2"
+        style={{ pointerEvents: 'auto' }}
       >
         {/* Logo */}
-        <a href="#home" aria-label="Weavy" className="flex items-center shrink-0 -my-3 ml-4">
+        <a
+          href="/"
+          aria-label="Weavy"
+          className="flex items-center shrink-0 -my-3 ml-4"
+          onClick={(e) => { e.preventDefault(); setActive('Home'); goToPath('/') }}
+        >
           <img src={weavyLogo} alt="Weavy" className="w-[4.75rem] h-[4.75rem] md:w-24 md:h-24 object-contain" decoding="async" draggable={false} />
         </a>
 
         {/* Desktop links */}
         <ul className="hidden sm:flex items-center gap-0.5" role="list">
-          {NAV_LINKS.map(({ label, href, path }) => {
+          {NAV_LINKS.map(({ label, href }) => {
             const isActive = active === label
             return (
               <li key={label}>
@@ -117,8 +139,9 @@ export function Navbar() {
                   href={href}
                   aria-current={isActive ? 'page' : undefined}
                   onClick={(e) => {
+                    e.preventDefault()
                     setActive(label)
-                    if (path) { e.preventDefault(); goToPath(path) }
+                    goToPath(href)
                   }}
                   className={`relative block text-xs sm:text-sm px-3 py-1.5 rounded-full transition-colors duration-150 active:scale-[0.97] ${
                     isActive ? 'text-primary bg-white/10' : 'text-muted hover:text-primary hover:bg-white/5'
@@ -133,7 +156,8 @@ export function Navbar() {
 
         {/* CTA */}
         <a
-          href="#contact"
+          href="/contact"
+          onClick={(e) => { e.preventDefault(); setActive('Contact'); goToPath('/contact') }}
           className="hidden sm:inline-flex items-center gap-1.5 bg-primary text-background text-xs sm:text-sm px-4 py-2 rounded-full font-medium transition-colors duration-150 hover:bg-white hover:shadow-[0_0_20px_rgba(245,245,245,0.25)] active:scale-[0.97] shrink-0"
           style={{ transition: 'color 150ms, background-color 150ms, box-shadow 150ms, transform 100ms' }}
         >
@@ -174,7 +198,7 @@ export function Navbar() {
             }}
           >
             <ul role="list">
-              {NAV_LINKS.map(({ label, href, path }, i) => (
+              {NAV_LINKS.map(({ label, href }, i) => (
                 <motion.li
                   key={label}
                   initial={{ opacity: 0, x: -8 }}
@@ -184,9 +208,10 @@ export function Navbar() {
                   <a
                     href={href}
                     onClick={(e) => {
+                      e.preventDefault()
                       setActive(label)
                       setMenuOpen(false)
-                      if (path) { e.preventDefault(); goToPath(path) }
+                      goToPath(href)
                     }}
                     className="block px-6 py-4 last:border-0 transition-all duration-150"
                     style={{
@@ -355,7 +380,8 @@ export default function Hero() {
             className="flex flex-col sm:flex-row items-center gap-4"
           >
             <a
-              href="#contact"
+              href="/contact"
+              onClick={(e) => { e.preventDefault(); goToPath('/contact') }}
               className="btn-glow-primary inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-medium bg-primary text-background hover:bg-white hover:shadow-[0_0_28px_rgba(245,245,245,0.28)] active:scale-[0.97]"
               style={{ transition: 'background-color 200ms, box-shadow 200ms, transform 100ms' }}
             >

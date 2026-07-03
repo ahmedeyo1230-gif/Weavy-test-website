@@ -6,11 +6,16 @@ export interface PageSeo {
 
 const SITE_URL = 'https://weavyautomation.com'
 
-export const PAGE_SEO: Record<'home' | 'services' | 'work' | 'blog' | 'contact', PageSeo> = {
+export const PAGE_SEO: Record<'home' | 'about' | 'services' | 'work' | 'blog' | 'contact', PageSeo> = {
   home: {
     title: 'Weavy Automation — AI Automation, Web Design & Creative Systems',
     description: 'Weavy helps businesses grow with premium websites, AI automation, chatbots, social media systems, UGC content, graphic design, and video editing.',
     path: '/',
+  },
+  about: {
+    title: 'About — Weavy Automation | AI Automation, Web Design & Creative Systems',
+    description: 'Weavy helps businesses grow with premium websites, AI automation, chatbots, social media systems, UGC content, graphic design, and video editing.',
+    path: '/about',
   },
   services: {
     title: 'Services — Weavy Automation | Websites, AI Chatbots & Social Systems',
@@ -20,17 +25,17 @@ export const PAGE_SEO: Record<'home' | 'services' | 'work' | 'blog' | 'contact',
   work: {
     title: 'Our Work — Weavy Automation | Client Case Studies',
     description: 'See how Weavy has helped brands grow with premium websites, automation systems, and content campaigns — real projects, real results.',
-    path: '/#work',
+    path: '/work',
   },
   blog: {
     title: 'Blog — Weavy Automation | Automation & Growth Insights',
     description: 'Ideas and insights on AI automation, web design, and content systems for brands building smarter, more scalable operations.',
-    path: '/#blog',
+    path: '/blog',
   },
   contact: {
     title: 'Contact — Weavy Automation | Book a Call',
     description: 'Get in touch with Weavy to discuss AI automation, web design, chatbots, or content systems for your business.',
-    path: '/#contact',
+    path: '/contact',
   },
 }
 

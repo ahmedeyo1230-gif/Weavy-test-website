@@ -9,6 +9,7 @@ import { BeamsBackgroundLayer } from './ui/beams-background'
 import { CircularGallery, type GalleryItem } from './ui/circular-gallery'
 import { GradientBlurBg } from './ui/gradient-blur-bg'
 import { BorderRotate } from './ui/animated-gradient-border'
+import { goToPath } from '../lib/navigation'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -7634,7 +7635,7 @@ function GraphicDesignCTA() {
           <button
             onMouseEnter={() => setPrimaryHover(true)}
             onMouseLeave={() => setPrimaryHover(false)}
-            onClick={() => window.location.hash = '#contact'}
+            onClick={() => goToPath('/contact')}
             style={{
               padding: '0.95rem 2.4rem',
               borderRadius: '999px',
@@ -7661,7 +7662,7 @@ function GraphicDesignCTA() {
           <button
             onMouseEnter={() => setSecondaryHover(true)}
             onMouseLeave={() => setSecondaryHover(false)}
-            onClick={() => window.location.hash = '#work'}
+            onClick={() => goToPath('/work')}
             style={{
               padding: '0.95rem 2.4rem',
               borderRadius: '999px',
