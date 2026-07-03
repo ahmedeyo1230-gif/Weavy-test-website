@@ -17,7 +17,7 @@ interface Project {
 const PROJECTS: Project[] = [
   // [0] Cinematic hero — Perfume
   {
-    src:            '/brand_assets/Perfume.png',
+    src:            '/brand_assets/Perfume.webp',
     title:          'Midnight Perfume Brand Launch',
     category:       'Luxury Campaign',
     year:           '2026',
@@ -25,7 +25,7 @@ const PROJECTS: Project[] = [
   },
   // [1] Tall accent — Evy cream
   {
-    src:            '/brand_assets/Evy_cream.png',
+    src:            '/brand_assets/Evy_cream.webp',
     title:          'EVY Skincare Campaign',
     category:       'Beauty Advertising',
     year:           '2026',
@@ -33,7 +33,7 @@ const PROJECTS: Project[] = [
   },
   // [2] Wide cinematic — Taste summer
   {
-    src:            '/brand_assets/Taste_summer.png',
+    src:            '/brand_assets/Taste_summer.webp',
     title:          'Sahra Experiences',
     category:       'Travel Branding',
     year:           '2026',
@@ -41,7 +41,7 @@ const PROJECTS: Project[] = [
   },
   // [3] Square luxury — Baaris
   {
-    src:            '/brand_assets/Baaris.png',
+    src:            '/brand_assets/Baaris.webp',
     title:          'Baaris Brand Identity',
     category:       'Brand Identity',
     year:           '2026',
@@ -49,7 +49,7 @@ const PROJECTS: Project[] = [
   },
   // [4] Left — H
   {
-    src:            '/brand_assets/H.png',
+    src:            '/brand_assets/H.webp',
     title:          'Paradiso Holidays',
     category:       'Resort Branding',
     year:           '2026',
@@ -57,7 +57,7 @@ const PROJECTS: Project[] = [
   },
   // [5] Centre — Fefo
   {
-    src:            '/brand_assets/Fefo.png',
+    src:            '/brand_assets/Fefo.webp',
     title:          'Natural Juice Campaign',
     category:       'Product Advertising',
     year:           '2026',
@@ -65,7 +65,7 @@ const PROJECTS: Project[] = [
   },
   // [6] Right — A6 Flyer
   {
-    src:            '/brand_assets/A6_Flyer_Mockup_2.png',
+    src:            '/brand_assets/A6_Flyer_Mockup_2.webp',
     title:          'Digital Marketing Campaign',
     category:       'Social Media Design',
     year:           '2026',
@@ -1227,7 +1227,7 @@ function WorkGallery() {
             Selected Work
           </p>
 
-          <h2 style={{
+          <h1 style={{
             fontFamily: "'Inter', system-ui, sans-serif",
             fontWeight: 300,
             fontSize: 'clamp(2rem, 4.2vw, 3.6rem)',
@@ -1246,7 +1246,7 @@ function WorkGallery() {
               move fast,
             </em>
             {' '}and refuse to be ordinary.
-          </h2>
+          </h1>
 
           <div aria-hidden="true" style={{ width: '2.5rem', height: '1px', background: 'hsl(195 80% 55% / 0.35)', marginBottom: '1.6rem' }} />
 

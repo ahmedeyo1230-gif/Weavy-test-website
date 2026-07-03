@@ -98,7 +98,7 @@ function FooterVideo() {
   }, [])
 
   return (
-    <div ref={containerRef} style={{ position: 'absolute', inset: 0 }}>
+    <div ref={containerRef} style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}>
       <video
         ref={videoRef}
         muted
@@ -114,6 +114,7 @@ function FooterVideo() {
           transform: 'translate(-50%, -50%) scaleY(-1)',
           opacity: 0.50,
           filter: 'brightness(1.06) contrast(1.38) saturate(1.15)',
+          pointerEvents: 'none',
         }}
       />
     </div>

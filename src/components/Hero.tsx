@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import weavyLogo from '../assets/weavy-logo-new.png'
 
 const HLS_SRC = 'https://stream.mux.com/Aa02T7oM1wH5Mk5EEVDYhbZ1ChcdhRsS2m1NYyx4Ua1g.m3u8'
+const HERO_POSTER = 'https://image.mux.com/Aa02T7oM1wH5Mk5EEVDYhbZ1ChcdhRsS2m1NYyx4Ua1g/thumbnail.jpg?width=1200&time=1'
 
 const ROLES = ['Creatives', 'Developers', 'Founders', 'Designers']
 
@@ -23,7 +24,17 @@ function HeroVideo() {
   useEffect(() => {
     const video = videoRef.current
     if (!video) return
+
+    // Respect reduced-motion users: keep the static poster frame, skip streaming + playback.
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+
+    // Belt-and-braces: some mobile browsers only honour muted autoplay when the
+    // property is forced before any src is attached, not just the JSX attribute.
+    video.muted = true
+    video.defaultMuted = true
+
     let cleanup: (() => void) | undefined
+    const attemptPlay = () => { video.play().catch(() => {}) }
 
     import('hls.js').then(({ default: Hls }) => {
       if (!videoRef.current) return
@@ -31,23 +42,30 @@ function HeroVideo() {
         const hls = new Hls({ startLevel: -1, maxBufferLength: 20, maxMaxBufferLength: 40 })
         hls.loadSource(HLS_SRC)
         hls.attachMedia(video)
-        hls.on(Hls.Events.MANIFEST_PARSED, () => { video.play().catch(() => {}) })
+        hls.on(Hls.Events.MANIFEST_PARSED, attemptPlay)
         cleanup = () => hls.destroy()
       } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
         video.src = HLS_SRC
-        video.play().catch(() => {})
+        attemptPlay()
       }
     })
 
     return () => cleanup?.()
   }, [])
 
+  // No `controls`, so there is never a native play button — if autoplay is blocked
+  // or playback errors out, the `poster` frame below simply stays on screen.
   return (
     <video
       ref={videoRef}
-      autoPlay muted loop playsInline preload="none"
+      autoPlay
+      muted
+      loop
+      playsInline
+      preload="auto"
+      poster={HERO_POSTER}
       aria-hidden="true"
-      className="absolute top-1/2 left-1/2 min-w-full min-h-full object-cover"
+      className="absolute top-1/2 left-1/2 min-w-full min-h-full object-cover pointer-events-none"
       style={{
         transform: 'translate(-50%, -50%)',
         opacity: 0.88,

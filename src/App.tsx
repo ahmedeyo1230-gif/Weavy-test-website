@@ -1,4 +1,5 @@
 import { useState, useEffect, lazy, Suspense } from 'react'
+import { applyPageSeo, PAGE_SEO } from './lib/seo'
 import LoadingScreen from './components/LoadingScreen'
 import Hero, { Navbar } from './components/Hero'
 import VideoShowcase from './components/VideoShowcase'
@@ -105,28 +106,34 @@ export default function App() {
         setShowWork(false)
         setShowBlog(false)
         setShowContact(false)
+        applyPageSeo(PAGE_SEO.services)
       } else if (hash === '#work') {
         setShowWork(true)
         setShowServices(false)
         setShowBlog(false)
         setShowContact(false)
+        applyPageSeo(PAGE_SEO.work)
       } else if (hash === '#blog') {
         setShowBlog(true)
         setShowServices(false)
         setShowWork(false)
         setShowContact(false)
+        applyPageSeo(PAGE_SEO.blog)
       } else if (hash === '#contact') {
         setShowContact(true)
         setShowServices(false)
         setShowWork(false)
         setShowBlog(false)
+        applyPageSeo(PAGE_SEO.contact)
       } else if (MAIN_HASHES.includes(hash)) {
         setShowServices(false)
         setShowWork(false)
         setShowBlog(false)
         setShowContact(false)
+        applyPageSeo(PAGE_SEO.home)
       }
     }
+    check() // resolve whatever hash is already in the URL on first load (deep link / refresh)
     window.addEventListener('hashchange', check)
     return () => window.removeEventListener('hashchange', check)
   }, [])

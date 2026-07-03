@@ -1167,10 +1167,12 @@ function BlogHero() {
         style={{ boxShadow: '0 24px 80px rgba(0,0,0,0.5)' }}
       >
         <img
-          loading="lazy"
           decoding="async"
-          src="/brand_assets/Blog_1.png"
+          fetchPriority="high"
+          src="/brand_assets/Blog_1.webp"
           alt="Blog hero"
+          width={1400}
+          height={747}
           style={{ display: 'block', width: '100%', height: 'auto', objectFit: 'cover', objectPosition: 'center top' }}
         />
       </motion.div>

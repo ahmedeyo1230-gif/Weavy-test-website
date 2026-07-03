@@ -754,8 +754,10 @@ function BespokeCareStories() {
               <img
                 loading="lazy"
                 decoding="async"
-                src="/brand_assets/Website_examples.png"
+                src="/brand_assets/Website_examples.webp"
                 alt="CareWell — bespoke website designed for a care support brand"
+                width={1600}
+                height={878}
                 style={{
                   display: 'block',
                   width: '100%',
@@ -1088,7 +1090,7 @@ function BespokeWebShowcase() {
               {/* Hero — editorial studio hero image */}
               <div style={{ position: 'relative', height: '155px', overflow: 'hidden', background: '#050810' }}>
                 <img
-                  src="/brand_assets/beauty.png"
+                  src="/brand_assets/beauty.webp"
                   alt="Premium editorial studio photography"
                   loading="lazy"
                   style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 20%', filter: 'brightness(0.60) saturate(0.80) contrast(1.08)' }}
@@ -1259,7 +1261,7 @@ function BespokeWebShowcase() {
               {/* Hero — luxury property exterior (real photo) */}
               <div style={{ position: 'relative', height: 'clamp(200px, 26vw, 290px)', overflow: 'hidden' }}>
                 <img
-                  src="/brand_assets/Property.png"
+                  src="/brand_assets/Property.webp"
                   alt="Luxury property exterior at dusk"
                   loading="lazy"
                   style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 40%', filter: 'brightness(0.76) saturate(0.88) contrast(1.02)' }}
@@ -1283,7 +1285,7 @@ function BespokeWebShowcase() {
                 <div style={{ borderRadius:'8px', overflow:'hidden', border:'1px solid rgba(200,168,90,0.10)', background:'rgba(200,168,90,0.03)' }}>
                   <div style={{ height:'80px', position:'relative', overflow:'hidden' }}>
                     <img
-                      src="/brand_assets/Property.png"
+                      src="/brand_assets/Property.webp"
                       alt="Mayfair penthouse exterior"
                       loading="lazy"
                       style={{ position:'absolute', inset:0, width:'100%', height:'100%', objectFit:'cover', objectPosition:'15% 20%', filter:'brightness(0.72) saturate(0.85)' }}
@@ -1300,7 +1302,7 @@ function BespokeWebShowcase() {
                 <div style={{ borderRadius:'8px', overflow:'hidden', border:'1px solid rgba(200,168,90,0.10)', background:'rgba(200,168,90,0.03)' }}>
                   <div style={{ height:'80px', position:'relative', overflow:'hidden' }}>
                     <img
-                      src="/brand_assets/Property.png"
+                      src="/brand_assets/Property.webp"
                       alt="Chelsea mews property entrance"
                       loading="lazy"
                       style={{ position:'absolute', inset:0, width:'100%', height:'100%', objectFit:'cover', objectPosition:'60% 35%', filter:'brightness(0.68) saturate(0.82) sepia(0.06)' }}
@@ -1317,7 +1319,7 @@ function BespokeWebShowcase() {
                 <div style={{ borderRadius:'8px', overflow:'hidden', border:'1px solid rgba(200,168,90,0.10)', background:'rgba(200,168,90,0.03)' }}>
                   <div style={{ height:'80px', position:'relative', overflow:'hidden' }}>
                     <img
-                      src="/brand_assets/Property.png"
+                      src="/brand_assets/Property.webp"
                       alt="Knightsbridge manor estate"
                       loading="lazy"
                       style={{ position:'absolute', inset:0, width:'100%', height:'100%', objectFit:'cover', objectPosition:'82% 55%', filter:'brightness(0.64) saturate(0.80)' }}
@@ -2465,8 +2467,10 @@ function ChatbotWhatsAppBusiness() {
               <img
                 loading="lazy"
                 decoding="async"
-                src="/brand_assets/Whatsapp.png"
+                src="/brand_assets/Whatsapp.webp"
                 alt="WhatsApp Business chatbot interface"
+                width={1024}
+                height={1024}
                 style={{
                   display: 'block',
                   width: '100%',
@@ -2694,8 +2698,10 @@ function ChatbotInstagramDM() {
               <img
                 loading="lazy"
                 decoding="async"
-                src="/brand_assets/Instagram.png"
+                src="/brand_assets/Instagram.webp"
                 alt="Instagram DM automation interface"
+                width={1024}
+                height={1024}
                 style={{ display: 'block', width: '100%', height: 'auto', objectFit: 'contain' }}
               />
               <div aria-hidden="true" style={{
@@ -2812,8 +2818,10 @@ function ChatbotFacebookMessenger() {
               <img
                 loading="lazy"
                 decoding="async"
-                src="/brand_assets/messenger.png"
+                src="/brand_assets/messenger.webp"
                 alt="Facebook Messenger automation interface"
+                width={1200}
+                height={1200}
                 style={{ display: 'block', width: '100%', height: 'auto', objectFit: 'contain' }}
               />
               <div aria-hidden="true" style={{
@@ -3504,8 +3512,10 @@ function ChatbotTikTokAutomation() {
               <img
                 loading="lazy"
                 decoding="async"
-                src="/brand_assets/Tiktok_automatiom.png"
+                src="/brand_assets/Tiktok_automatiom.webp"
                 alt="TikTok automation dashboard"
+                width={1600}
+                height={1600}
                 style={{
                   display: 'block',
                   width: '100%',
@@ -3828,7 +3838,7 @@ function SocialMediaMarketing() {
       {/* Text content */}
       <div className="relative z-10 h-full flex items-center px-6 sm:px-12 lg:px-20">
         <div>
-          <h1
+          <h2
             className="smh-heading font-sans font-light text-text"
             style={{ opacity: 0, transform: 'translateY(28px)', fontSize: 'clamp(2.6rem, 6vw, 5rem)', lineHeight: 1.1, letterSpacing: '-0.04em' }}
           >
@@ -3836,7 +3846,7 @@ function SocialMediaMarketing() {
             <em style={{ display: 'block', fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400, color: 'hsl(280 65% 72%)' }}>
               Marketing
             </em>
-          </h1>
+          </h2>
         </div>
       </div>
     </section>
@@ -4318,8 +4328,10 @@ function SocialMediaMarketing() {
                 <img
                   loading="lazy"
                   decoding="async"
-                  src="/brand_assets/OmarEventOrganiser's Facebook profile page-2.png"
+                  src="/brand_assets/OmarEventOrganiser's Facebook profile page-2.webp"
                   alt="Omar Event Organiser Facebook profile page"
+                  width={900}
+                  height={1352}
                   style={{ display: 'block', width: '100%', height: 'auto' }}
                 />
                 <div aria-hidden="true" style={{
@@ -4363,8 +4375,10 @@ function SocialMediaMarketing() {
                 <img
                   loading="lazy"
                   decoding="async"
-                  src="/brand_assets/aimedia.png"
+                  src="/brand_assets/aimedia.webp"
                   alt="AI Media social media showcase"
+                  width={1600}
+                  height={1600}
                   style={{ display: 'block', width: '100%', height: 'auto' }}
                 />
                 {/* Subtle neon tint */}
@@ -4619,7 +4633,7 @@ function SocialMediaMarketing() {
               <img
                 loading="lazy"
                 decoding="async"
-                src="/brand_assets/beauty.png"
+                src="/brand_assets/beauty.webp"
                 alt="Beauty brand social media campaign showcase"
                 style={{ display: 'block', width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top' }}
               />
@@ -6035,7 +6049,7 @@ function ChatbotHero() {
           </p>
 
           {/* Heading */}
-          <h1
+          <h2
             className="font-sans font-light text-white"
             style={{ fontSize: 'clamp(3rem, 6vw, 5.2rem)', lineHeight: 1.08, letterSpacing: '-0.04em' }}
           >
@@ -6043,7 +6057,7 @@ function ChatbotHero() {
             <em style={{ display: 'block', fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400, color: 'hsl(195 80% 72%)' }}>
               Chatbot
             </em>
-          </h1>
+          </h2>
         </div>
       </div>
     </section>
@@ -6077,7 +6091,7 @@ function GraphicDesignHero() {
           <img
             loading="lazy"
             decoding="async"
-            src="/brand_assets/Claude_image.png"
+            src="/brand_assets/Claude_image.webp"
             alt="Graphic design and animation showcase"
             style={{
               display: 'block',
@@ -6124,7 +6138,7 @@ function GraphicDesignHero() {
           <img
             loading="lazy"
             decoding="async"
-            src="/brand_assets/Claude_image.png"
+            src="/brand_assets/Claude_image.webp"
             alt="Graphic design and animation showcase"
             className="w-full h-full object-contain object-center"
             style={{ display: 'block', filter: 'brightness(0.88) saturate(0.88) contrast(0.95)' }}
@@ -6639,7 +6653,7 @@ function GraphicDesignSplitA() {
       }}/>
 
       <div className="relative z-10 max-w-[92rem] mx-auto px-6 sm:px-12">
-        <div className="grid grid-cols-1 lg:grid-cols-[1.25fr_1fr] gap-12 lg:gap-[clamp(3rem,6vw,6rem)] items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.55fr_1fr] gap-12 lg:gap-[clamp(3rem,6vw,6rem)] items-center">
 
           {/* ── LEFT: Image ── */}
           <div className="gdsa-img" style={{ position: 'relative' }}>
@@ -6656,12 +6670,12 @@ function GraphicDesignSplitA() {
               <img
                 loading="lazy"
                 decoding="async"
-                src="/brand_assets/office-portrait.png"
+                src="/brand_assets/office-portrait.webp"
                 alt="Designer at work — cinematic neon studio setup"
                 style={{
                   display: 'block',
                   width: '100%',
-                  height: 'clamp(280px, 68vw, 800px)',
+                  height: 'clamp(380px, 82vw, 1020px)',
                   objectFit: 'cover',
                   objectPosition: 'center center',
                 }}
@@ -8007,11 +8021,11 @@ function UGCHero() {
           </div>
 
           {/* Headline */}
-          <h1 className="ugch-r font-sans font-light" style={{ color: '#fff', fontSize: 'clamp(2rem, 5.8vw, 5rem)', lineHeight: 1.05, letterSpacing: '-0.04em', marginBottom: '1.6rem' }}>
+          <h2 className="ugch-r font-sans font-light" style={{ color: '#fff', fontSize: 'clamp(2rem, 5.8vw, 5rem)', lineHeight: 1.05, letterSpacing: '-0.04em', marginBottom: '1.6rem' }}>
             Real creators.<br/>
             Real{' '}
             <em style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400, color: 'hsl(0 72% 70%)' }}>results.</em>
-          </h1>
+          </h2>
 
           {/* Rule */}
           <div className="ugch-r" aria-hidden="true" style={{ width: '3.5rem', height: 1, background: 'hsl(0 72% 58% / 0.5)', marginBottom: '1.5rem' }}/>
@@ -8153,6 +8167,8 @@ function UGCCreatorPhotoCard({ className = '' }: { className?: string }) {
         decoding="async"
         src="/brand_assets/UGCCCC.webp"
         alt="UGC creator filming beauty content with product setup"
+        width={3072}
+        height={5504}
         style={{ display: 'block', width: '100%', height: 'auto', objectFit: 'cover', objectPosition: 'center top' }}
       />
 
@@ -8813,7 +8829,7 @@ function UGCMonitoringReporting() {
             >
               <div aria-hidden="true" style={{ position: 'absolute', inset: 0, zIndex: 2, borderRadius: '1.4rem', pointerEvents: 'none', boxShadow: 'inset 0 0 0 1px hsl(0 0% 100% / 0.07)' }}/>
               <div aria-hidden="true" style={{ position: 'absolute', inset: 0, zIndex: 1, pointerEvents: 'none', background: 'radial-gradient(ellipse 90% 90% at 50% 50%, transparent 50%, hsl(0 0% 0% / 0.32) 100%)' }}/>
-              <img loading="lazy" decoding="async" src="/brand_assets/tik_youtube_images.png" alt="Content monitoring and reporting" style={{ display: 'block', width: '100%', height: 'auto', objectFit: 'contain' }}/>
+              <img loading="lazy" decoding="async" src="/brand_assets/tik_youtube_images.webp" alt="Content monitoring and reporting" width={1600} height={1297} style={{ display: 'block', width: '100%', height: 'auto', objectFit: 'contain' }}/>
             </div>
           </div>
 
@@ -10684,7 +10700,7 @@ export default function Services() {
       >
         {/* Full-width background image */}
         <img
-          src="/brand_assets/HI-D.png"
+          src="/brand_assets/HI-D.webp"
           alt=""
           aria-hidden="true"
           style={{
@@ -11181,8 +11197,10 @@ export default function Services() {
                 <img
                   loading="lazy"
                   decoding="async"
-                  src="/brand_assets/Property.png"
+                  src="/brand_assets/Property.webp"
                   alt="Bespoke luxury real estate website showcase"
+                  width={1800}
+                  height={1344}
                   style={{ display: 'block', width: '100%', height: 'auto', filter: 'brightness(0.86) contrast(0.96) saturate(0.92)' }}
                 />
                 {/* Soft inner vignette on image edges + dark blend overlay */}
@@ -11405,8 +11423,10 @@ export default function Services() {
                 <img
                   loading="lazy"
                   decoding="async"
-                  src="/brand_assets/2w.png.png"
+                  src="/brand_assets/2w.png.webp"
                   alt="AI chatbot — always online"
+                  width={1200}
+                  height={673}
                   style={{
                     width: '100%',
                     height: 'auto',
@@ -11601,8 +11621,10 @@ export default function Services() {
             <img
               loading="lazy"
               decoding="async"
-              src="/brand_assets/social_lady.png"
+              src="/brand_assets/social_lady.webp"
               alt="Social media marketing"
+              width={1200}
+              height={820}
               style={{
                 width: '100%',
                 height: 'auto',

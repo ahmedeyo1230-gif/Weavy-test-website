@@ -203,10 +203,12 @@ export default function About() { // no diagonal lines bg
               }}
             >
               <img
-                src="/brand_assets/dashboard1.png"
+                src="/brand_assets/dashboard1.webp"
                 alt="Weavy automation dashboard"
                 loading="lazy"
                 decoding="async"
+                width={1400}
+                height={772}
                 style={{
                   display: 'block',
                   width: '100%',
