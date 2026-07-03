@@ -11,6 +11,7 @@ import ConnectedSystems from './components/ConnectedSystems'
 import TestimonialsSection from './components/Testimonials'
 import Footer from './components/Footer'
 import WhatsAppFloatingButton from './components/WhatsAppFloatingButton'
+import CursorGlow from './components/CursorGlow'
 
 // Heavy pages — loaded only when navigated to
 const Services     = lazy(() => import('./components/Services'))
@@ -146,6 +147,7 @@ export default function App() {
   return (
     <>
       {!loaded && <LoadingScreen onComplete={() => setLoaded(true)} />}
+      {loaded && <CursorGlow />}
       {loaded && <WhatsAppFloatingButton />}
       {loaded && (
         <>
