@@ -6965,18 +6965,41 @@ function GraphicDesignSplitB() {
                 ['03', 'Design, Motion & Production'],
                 ['04', 'Refinement & Final Delivery'],
               ].map(([num, step]) => (
-                <li key={num} style={{
-                  display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-                  padding: '0.9rem 0',
-                  borderBottom: '1px solid hsl(0 0% 100% / 0.05)',
-                }}>
-                  <span className="font-sans font-light" style={{
+                <li
+                  key={num}
+                  style={{
+                    display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+                    padding: '0.9rem 0',
+                    borderBottom: '1px solid rgba(125, 220, 255, 0.12)',
+                    transition: 'border-color 0.25s ease',
+                  }}
+                  onMouseEnter={e => {
+                    const li = e.currentTarget as HTMLLIElement
+                    li.style.borderBottomColor = 'rgba(125, 220, 255, 0.22)'
+                    const title = li.querySelector('[data-gdsb-title]') as HTMLElement | null
+                    if (title) title.style.color = 'rgba(245, 250, 255, 0.94)'
+                    const numEl = li.querySelector('[data-gdsb-num]') as HTMLElement | null
+                    if (numEl) numEl.style.textShadow = '0 0 18px rgba(125, 220, 255, 0.28)'
+                  }}
+                  onMouseLeave={e => {
+                    const li = e.currentTarget as HTMLLIElement
+                    li.style.borderBottomColor = 'rgba(125, 220, 255, 0.12)'
+                    const title = li.querySelector('[data-gdsb-title]') as HTMLElement | null
+                    if (title) title.style.color = 'rgba(235, 245, 255, 0.82)'
+                    const numEl = li.querySelector('[data-gdsb-num]') as HTMLElement | null
+                    if (numEl) numEl.style.textShadow = '0 0 12px rgba(125, 220, 255, 0.14)'
+                  }}
+                >
+                  <span data-gdsb-title className="font-sans font-light" style={{
                     fontSize: 'clamp(0.88rem, 1.1vw, 0.9rem)',
-                    color: '#F2F8FC', letterSpacing: '0.01em',
+                    color: 'rgba(235, 245, 255, 0.82)', letterSpacing: '0.01em',
+                    transition: 'color 0.25s ease',
                   }}>{step}</span>
-                  <span className="font-sans" style={{
+                  <span data-gdsb-num className="font-sans" style={{
                     fontSize: '0.58rem', letterSpacing: '0.22em',
-                    color: 'hsl(0 0% 20%)', textTransform: 'uppercase',
+                    color: '#7DDCFF', textTransform: 'uppercase',
+                    textShadow: '0 0 12px rgba(125, 220, 255, 0.14)',
+                    transition: 'text-shadow 0.25s ease',
                   }}>{num}</span>
                 </li>
               ))}
@@ -7050,16 +7073,18 @@ function GraphicDesignSplitB() {
               ] as const).map(([num, step]) => (
                 <div key={num} style={{
                   background: 'linear-gradient(180deg, hsl(0 0% 6% / 0.96), hsl(0 0% 4% / 0.96))',
+                  border: '1px solid rgba(125, 220, 255, 0.12)',
                   borderRadius: '12px', padding: '14px', display: 'flex', flexDirection: 'column', justifyContent: 'center',
                   minHeight: '78px', boxShadow: '0 6px 18px rgba(0,0,0,0.55)',
                 }}>
                   <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: '12px' }}>
                     <span style={{
-                      fontFamily: 'monospace', fontSize: '0.66rem', color: 'hsl(0 0% 76%)', letterSpacing: '0.18em'
+                      fontFamily: 'monospace', fontSize: '0.66rem', color: '#7DDCFF', letterSpacing: '0.18em',
+                      textShadow: '0 0 12px rgba(125, 220, 255, 0.14)',
                     }}>{num}</span>
                   </div>
                   <div style={{ marginTop: '6px' }}>
-                    <span style={{ fontFamily: 'var(--font-sans, sans-serif)', fontWeight: 300, fontSize: '0.92rem', color: 'hsl(0 0% 78%)', lineHeight: 1.3 }}>
+                    <span style={{ fontFamily: 'var(--font-sans, sans-serif)', fontWeight: 300, fontSize: '0.92rem', color: 'rgba(235, 245, 255, 0.82)', lineHeight: 1.3 }}>
                       {step}
                     </span>
                   </div>
