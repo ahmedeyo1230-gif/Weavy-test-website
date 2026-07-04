@@ -1046,13 +1046,17 @@ function BespokeWebShowcase() {
         {/* ── Floating mockup stage ── */}
         <div className="relative mx-auto" style={{ maxWidth: '980px', height: 'clamp(540px, 70vw, 800px)' }}>
 
-          {/* ── Card 2 — back (VAEL STUDIO · dark creative agency) ── */}
+          {/* ── Card 2 — back (VAEL STUDIO · dark creative agency) ──
+              Below `md` this used to be `hidden`, leaving only Card 1 on phones.
+              It's now shown at every size — scaled down and tucked further
+              behind/below Card 1 on phones/small tablets so both fit without
+              overflow; `md:` and up restores the exact original desktop/tablet
+              position and size untouched. */}
           <div
             ref={card2Ref}
-            className="hidden md:block"
+            className="block w-[58%] -right-[4%] bottom-[6%] md:w-[clamp(438px,66%,670px)] md:right-0 md:bottom-0"
             style={{
-              position: 'absolute', bottom: 0, right: 0,
-              width: 'clamp(438px, 66%, 670px)',
+              position: 'absolute',
               zIndex: 1,
               transition: 'transform 0.9s cubic-bezier(0.16, 1, 0.3, 1)',
               transform: t2,
