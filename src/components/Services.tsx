@@ -3133,6 +3133,14 @@ const INTEGRATION_ROWS = [
   { num: '06', title: 'Human Handover',      desc: 'Escalate important conversations when personal support is needed.' },
 ]
 
+// Shared premium highlight — applied evenly to all six rows so none reads as
+// more "finished" than the rest; hover just nudges it slightly brighter.
+const CBI_ROW_BG = 'linear-gradient(90deg, rgba(125, 220, 255, 0.07), rgba(43, 168, 217, 0.035), rgba(1, 7, 9, 0))'
+const CBI_ROW_BG_HOVER = 'linear-gradient(90deg, rgba(125, 220, 255, 0.11), rgba(43, 168, 217, 0.055), rgba(1, 7, 9, 0))'
+const CBI_ROW_BORDER = 'rgba(125, 220, 255, 0.08)'
+const CBI_ROW_TITLE_COLOR = 'rgba(245, 250, 255, 0.90)'
+const CBI_ROW_DESC_COLOR = 'rgba(210, 224, 232, 0.58)'
+
 function ChatbotIntegrationsSection() {
   const ref = useRef<HTMLElement>(null)
 
@@ -3215,7 +3223,7 @@ function ChatbotIntegrationsSection() {
               style={{
                 fontSize:   'clamp(0.88rem, 1.4vw, 1rem)',
                 lineHeight: 1.88,
-                color:      'hsl(0 0% 44%)',
+                color:      'rgba(235, 245, 255, 0.72)',
                 maxWidth:   '30rem',
               }}
             >
@@ -3280,15 +3288,16 @@ function ChatbotIntegrationsSection() {
                     alignItems: 'flex-start',
                     gap:        '1.2rem',
                     padding:    '1.25rem 1.8rem',
-                    borderBottom: i < INTEGRATION_ROWS.length - 1 ? '1px solid hsl(0 0% 100% / 0.045)' : 'none',
+                    background: CBI_ROW_BG,
+                    borderBottom: i < INTEGRATION_ROWS.length - 1 ? `1px solid ${CBI_ROW_BORDER}` : 'none',
                     transition: 'background 0.25s ease',
                     cursor:     'default',
                   }}
                   onMouseEnter={e => {
-                    (e.currentTarget as HTMLDivElement).style.background = 'hsl(199 89% 60% / 0.03)'
+                    (e.currentTarget as HTMLDivElement).style.background = CBI_ROW_BG_HOVER
                   }}
                   onMouseLeave={e => {
-                    (e.currentTarget as HTMLDivElement).style.background = 'transparent'
+                    (e.currentTarget as HTMLDivElement).style.background = CBI_ROW_BG
                   }}
                 >
                   {/* Number */}
@@ -3310,7 +3319,7 @@ function ChatbotIntegrationsSection() {
                       fontSize:      'clamp(0.85rem, 1.25vw, 0.92rem)',
                       fontWeight:    300,
                       letterSpacing: '-0.01em',
-                      color:         'hsl(0 0% 88%)',
+                      color:         CBI_ROW_TITLE_COLOR,
                       marginBottom:  '0.28rem',
                       lineHeight:    1.3,
                     }}>
@@ -3319,7 +3328,7 @@ function ChatbotIntegrationsSection() {
                     <p className="font-sans font-light" style={{
                       fontSize:   'clamp(0.75rem, 1.1vw, 0.8rem)',
                       lineHeight: 1.7,
-                      color:      'hsl(0 0% 38%)',
+                      color:      CBI_ROW_DESC_COLOR,
                     }}>
                       {row.desc}
                     </p>
