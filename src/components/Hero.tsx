@@ -27,72 +27,30 @@ function labelFromPath() {
   return LABEL_BY_PATH[window.location.pathname] ?? 'Home'
 }
 
-// Mobile/tablet browsers (particularly iOS Safari and in-app webviews) can
-// surface a native play-button overlay on a <video> — or simply refuse to
-// autoplay it at all — regardless of the `muted`/`playsInline`/`controls`
-// attributes, especially under Low Power Mode or data-saver settings. Below
-// the desktop breakpoint we skip the video element entirely and use a CSS/SVG
-// animated wave instead, so there's never a play icon or a stuck frame.
-function useIsDesktop() {
-  const [isDesktop, setIsDesktop] = useState(
-    () => typeof window !== 'undefined' && window.innerWidth >= 1024
-  )
-  useEffect(() => {
-    const mq = window.matchMedia('(min-width: 1024px)')
-    const onChange = () => setIsDesktop(mq.matches)
-    onChange()
-    mq.addEventListener('change', onChange)
-    return () => mq.removeEventListener('change', onChange)
-  }, [])
-  return isDesktop
-}
-
-// ─── Mobile/tablet — CSS/SVG animated wave (no video, no autoplay, no play icon) ──
-
-function HeroMobileWave() {
-  return (
-    <div aria-hidden="true" className="absolute inset-0 overflow-hidden pointer-events-none">
-      {/* Cinematic dark blue/black base */}
-      <div
-        className="absolute inset-0"
-        style={{
-          background:
-            'radial-gradient(ellipse 90% 65% at 50% 40%, hsl(195 70% 22% / 0.30) 0%, transparent 68%),' +
-            '#050b0d',
-        }}
-      />
-      {/* Soft breathing cyan glow at the wave's core */}
-      <div className="hero-wave-glow" />
-      {/* Concentric rings rippling outward, like the HLS wave's motion */}
-      <div className="hero-wave-ring" style={{ animationDelay: '0s' }} />
-      <div className="hero-wave-ring" style={{ animationDelay: '3s' }} />
-      <div className="hero-wave-ring" style={{ animationDelay: '6s' }} />
-    </div>
-  )
-}
-
-// ─── HLS Video Background (desktop only) ──────────────────────────────────────
+// ─── HLS Video Background ─────────────────────────────────────────────────────
 
 function HeroVideo() {
   const videoRef = useRef<HTMLVideoElement>(null)
-  const isDesktop = useIsDesktop()
 
   useEffect(() => {
-    if (!isDesktop) return
     const video = videoRef.current
     if (!video) return
 
     // Respect reduced-motion users: keep the static poster frame, skip streaming + playback.
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
 
-    // Belt-and-braces: some browsers only honour muted autoplay when the
-    // property is forced before any src is attached, not just the JSX attribute —
-    // this (plus `playsInline`) is what keeps iOS from surfacing its native play button.
-    video.muted = true
-    video.defaultMuted = true
+    // Belt-and-braces: some mobile browsers (particularly iOS Safari) only honour
+    // muted autoplay — and skip the native play-button overlay — when `muted` /
+    // `defaultMuted` are forced on the element before any src is attached and
+    // again once media data is available, not just via the JSX attribute.
+    const forceMuted = () => { video.muted = true; video.defaultMuted = true }
+    const attemptPlay = () => { forceMuted(); video.play().catch(() => {}) }
+
+    forceMuted()
+    video.addEventListener('loadedmetadata', attemptPlay)
+    video.addEventListener('canplay', attemptPlay)
 
     let cleanup: (() => void) | undefined
-    const attemptPlay = () => { video.play().catch(() => {}) }
 
     import('hls.js').then(({ default: Hls }) => {
       if (!videoRef.current) return
@@ -108,14 +66,16 @@ function HeroVideo() {
       }
     })
 
-    return () => cleanup?.()
-  }, [isDesktop])
+    return () => {
+      video.removeEventListener('loadedmetadata', attemptPlay)
+      video.removeEventListener('canplay', attemptPlay)
+      cleanup?.()
+    }
+  }, [])
 
-  // Mobile/tablet: no <video> at all — CSS/SVG wave instead, never a play icon.
-  if (!isDesktop) return <HeroMobileWave />
-
-  // Desktop — no `controls`, so there is never a native play button; if autoplay
-  // is blocked or playback errors out, the `poster` frame simply stays on screen.
+  // Same video on every viewport — no `controls`, so there is never a native
+  // play button; if autoplay is blocked or playback errors out, the `poster`
+  // frame simply stays on screen as a fallback.
   return (
     <video
       ref={videoRef}
@@ -123,10 +83,13 @@ function HeroVideo() {
       muted
       loop
       playsInline
+      disablePictureInPicture
       controls={false}
       preload="auto"
       poster={HERO_POSTER}
       aria-hidden="true"
+      // eslint-disable-next-line react/no-unknown-property -- legacy iOS Safari (<10) attribute
+      webkit-playsinline="true"
       className="absolute top-1/2 left-1/2 min-w-full min-h-full object-cover pointer-events-none"
       style={{
         transform: 'translate(-50%, -50%)',
