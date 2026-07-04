@@ -6038,9 +6038,11 @@ function ChatbotHero() {
           }}
         />
 
-        {/* Text overlay — bottom left */}
+        {/* Text overlay — bottom left. Mobile/tablet sits slightly lower with a
+            ~30% smaller heading so the robot visual reads clearly; lg+ (desktop)
+            keeps the original size/position untouched. */}
         <div
-          className="absolute bottom-0 left-0 px-10 pb-10 sm:px-14 sm:pb-12"
+          className="absolute bottom-0 left-0 px-10 pb-6 sm:px-14 lg:pb-12"
           style={{ zIndex: 10 }}
         >
           {/* Eyebrow */}
@@ -6053,8 +6055,8 @@ function ChatbotHero() {
 
           {/* Heading */}
           <h2
-            className="font-sans font-light text-white"
-            style={{ fontSize: 'clamp(3rem, 6vw, 5.2rem)', lineHeight: 1.08, letterSpacing: '-0.04em' }}
+            className="font-sans font-light text-white text-[clamp(2.1rem,4.2vw,3.64rem)] lg:text-[clamp(3rem,6vw,5.2rem)]"
+            style={{ lineHeight: 1.08, letterSpacing: '-0.04em' }}
           >
             <span style={{ display: 'block' }}>Custom</span>
             <em style={{ display: 'block', fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400, color: 'hsl(195 80% 72%)' }}>
