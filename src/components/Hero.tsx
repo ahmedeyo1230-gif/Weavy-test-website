@@ -348,14 +348,13 @@ export default function Hero() {
           animate="visible"
           className="relative z-10 max-w-5xl mx-auto px-6 sm:px-10 text-center flex flex-col items-center"
         >
-          {/* Font-size is set inline (not via a text-[…] class) because the global
-              "p { font-size: 16px }" mobile-readability rule in index.css lives in
-              a higher-priority, un-layered CSS rule that otherwise overrides any
-              Tailwind text-size utility below the 1024px breakpoint. */}
+          {/* Styling lives in the `.hero-eyebrow` rule in index.css (not Tailwind
+              text-[…]/tracking-[…] utilities) because the global "p { font-size:
+              16px }" mobile-readability rule there is un-layered and otherwise
+              overrides any Tailwind utility below the 1024px breakpoint. */}
           <motion.p
             variants={itemVariants}
-            className="tracking-[0.18em] sm:tracking-[0.22em] mb-6 mt-6 font-medium"
-            style={{ color: '#94A3B8', fontSize: '13px' }}
+            className="hero-eyebrow mb-6 mt-6 font-medium"
           >
             TripleX <span className="uppercase">Automation Agency</span>
           </motion.p>
