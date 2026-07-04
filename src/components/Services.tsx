@@ -7019,7 +7019,10 @@ function GraphicDesignSplitB() {
               lineHeight: 1.08, letterSpacing: '-0.02em',
               color: 'hsl(0 0% 94%)', margin: 0, marginBottom: '0.7rem'
             }}>
-              Where Vision Becomes Influence
+              Where ideas become{' '}
+              <em style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400, color: 'hsl(0 0% 32%)' }}>
+                culture.
+              </em>
             </h2>
 
             <div style={{ height: '1px', background: 'hsl(0 0% 100% / 0.06)', margin: '0.9rem 0' }} />
@@ -7029,7 +7032,7 @@ function GraphicDesignSplitB() {
               fontSize: '0.98rem', lineHeight: 1.85,
               color: '#F2F8FC', margin: 0, marginBottom: '1.25rem'
             }}>
-              Every project begins with strategy and ends with impact. We combine brand thinking, design excellence, motion craftsmanship, and digital storytelling to create work that captures attention, builds recognition, and delivers lasting value across every platform.
+              Our studio is built for precision. A focused environment where brand strategy, motion craft, and digital storytelling converge — producing work that earns attention and sustains it across every platform your audience calls home.
             </p>
           </div>
 
