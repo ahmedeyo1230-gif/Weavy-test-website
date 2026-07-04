@@ -50,6 +50,22 @@ function HeroVideo() {
     video.addEventListener('loadedmetadata', attemptPlay)
     video.addEventListener('canplay', attemptPlay)
 
+    // Mobile browsers frequently pause/stall a playing video without resuming it
+    // themselves — backgrounding the tab/app, a brief memory-pressure hiccup, or
+    // scrolling the hero out of view and back — which is what a "frozen wave"
+    // report on a phone usually is (the stream already started once, then stopped).
+    // Re-attempt playback whenever that happens or the page becomes visible again.
+    video.addEventListener('pause', attemptPlay)
+    video.addEventListener('stalled', attemptPlay)
+    video.addEventListener('suspend', attemptPlay)
+    const onVisibilityChange = () => { if (!document.hidden) attemptPlay() }
+    document.addEventListener('visibilitychange', onVisibilityChange)
+
+    const io = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) attemptPlay()
+    }, { threshold: 0.1 })
+    io.observe(video)
+
     let cleanup: (() => void) | undefined
 
     import('hls.js').then(({ default: Hls }) => {
@@ -61,6 +77,12 @@ function HeroVideo() {
         hls.on(Hls.Events.MANIFEST_PARSED, attemptPlay)
         cleanup = () => hls.destroy()
       } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+        // Native HLS (Safari) — last-resort fallback if hls.js somehow reports
+        // unsupported: still assign the source directly rather than leaving
+        // the poster frame up permanently.
+        video.src = HLS_SRC
+        attemptPlay()
+      } else {
         video.src = HLS_SRC
         attemptPlay()
       }
@@ -69,6 +91,11 @@ function HeroVideo() {
     return () => {
       video.removeEventListener('loadedmetadata', attemptPlay)
       video.removeEventListener('canplay', attemptPlay)
+      video.removeEventListener('pause', attemptPlay)
+      video.removeEventListener('stalled', attemptPlay)
+      video.removeEventListener('suspend', attemptPlay)
+      document.removeEventListener('visibilitychange', onVisibilityChange)
+      io.disconnect()
       cleanup?.()
     }
   }, [])
