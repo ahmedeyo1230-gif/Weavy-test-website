@@ -11451,16 +11451,21 @@ export default function Services() {
                 }}/>
               </div>
 
-              {/* ChatbotMockup — scale(0.96): dead space=580*(1-0.96)=23px → marginBottom corrects */}
-              <div style={{
-                position: 'relative', zIndex: 3,
-                marginTop: '-100px',
-                marginBottom: '-35px',
-                paddingLeft: '8px',
-                paddingRight: '8px',
-                transform: 'scale(0.96)',
-                transformOrigin: 'top center',
-              }}>
+              {/* ChatbotMockup — scale(0.96): dead space=580*(1-0.96)=23px → marginBottom corrects.
+                  On phones the "Online 24/7" laptop-screen graphic sits much shorter (image scales
+                  down with viewport width), so the fixed -100px overlap used at sm+ would cover it —
+                  pull up less there so the full "Online 24/7" text stays clear of the card. */}
+              <div
+                className="-mt-[46px] sm:-mt-[100px]"
+                style={{
+                  position: 'relative', zIndex: 3,
+                  marginBottom: '-35px',
+                  paddingLeft: '8px',
+                  paddingRight: '8px',
+                  transform: 'scale(0.96)',
+                  transformOrigin: 'top center',
+                }}
+              >
                 <ChatbotMockup />
               </div>
 
