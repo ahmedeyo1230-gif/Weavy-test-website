@@ -10423,6 +10423,23 @@ export default function Services() {
   const bwd1Ref          = useRef<HTMLElement>(null)
   const [activeService, setActiveService] = useState<'website' | 'chatbot' | 'social' | 'graphic' | 'ugc' | null>('website')
 
+  // Individual services (chatbot, social, graphic, ugc...) are sub-states of this
+  // same /services route, not separate URL paths — so clicking "Services" in the
+  // navbar while already on /services doesn't trigger a route change and would
+  // otherwise leave whichever service detail was open on screen. goToPath()
+  // dispatches "popstate" on every nav click regardless of path change, so use
+  // that here to snap back to the default overview whenever it fires.
+  useEffect(() => {
+    const onNav = () => {
+      if (window.location.pathname === '/services') {
+        setActiveService('website')
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+      }
+    }
+    window.addEventListener('popstate', onNav)
+    return () => window.removeEventListener('popstate', onNav)
+  }, [])
+
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.set('.services-eyebrow, .services-heading, .services-body', { opacity: 0, y: 24 })
