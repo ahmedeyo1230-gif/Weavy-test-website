@@ -54,9 +54,10 @@ html {
    A plain, class-scoped rule (not a Tailwind utility) so its higher
    selector specificity reliably wins over the un-layered "p { }" rule
    above, regardless of Tailwind's cascade-layer ordering. Mobile gets
-   a slightly brighter ice-blue tone, a touch more size/tracking, and a
-   soft glow for readability; desktop/tablet (≥640px) keep the original
-   subtle muted look untouched. */
+   a slightly brighter ice-blue tone and a soft glow for readability,
+   with tighter size/tracking so it doesn't feel stretched across the
+   screen; desktop/tablet (≥640px) keep the original subtle muted look
+   untouched. */
 .hero-eyebrow {
   color: #94A3B8;
   font-size: 13px;
@@ -65,10 +66,10 @@ html {
 }
 @media (max-width: 639px) {
   .hero-eyebrow {
-    color: rgba(228, 242, 250, 0.78);
-    font-size: 14px;
-    letter-spacing: 0.22em;
-    text-shadow: 0 0 14px rgba(125, 220, 255, 0.12);
+    color: rgba(235, 245, 255, 0.78);
+    font-size: 13px;
+    letter-spacing: 0.18em;
+    text-shadow: 0 0 12px rgba(125, 220, 255, 0.10);
   }
 }
 
