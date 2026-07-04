@@ -478,6 +478,18 @@ export default function Hero() {
             background: 'linear-gradient(to top, #010709 0%, #010709 10%, rgba(1,7,9,0.92) 28%, rgba(1,7,9,0.60) 50%, rgba(1,7,9,0.18) 75%, transparent 100%)',
           }}
         />
+
+        {/* Mobile-only extra blend — the wave reads brighter/more exposed at the
+            very bottom on narrow portrait viewports, so darken that strip a bit
+            more on top of the fade above; untouched at md+ (tablet/desktop). */}
+        <div
+          className="pointer-events-none absolute bottom-0 left-0 right-0 md:hidden"
+          aria-hidden="true"
+          style={{
+            height: '220px',
+            background: 'linear-gradient(to bottom, rgba(1,7,9,0) 0%, rgba(1,7,9,0.65) 55%, #010709 100%)',
+          }}
+        />
       </section>
     </>
   )
