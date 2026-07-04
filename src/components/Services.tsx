@@ -1603,6 +1603,13 @@ const REAL_USER_ROWS = [
   },
 ]
 
+// Shared premium highlight — applied evenly to all four rows so none reads as
+// more "active" than the rest; hover just nudges it slightly brighter.
+const BRU_ROW_BG = 'linear-gradient(90deg, rgba(125, 220, 255, 0.08), rgba(8, 18, 24, 0.40), rgba(1, 7, 9, 0.20))'
+const BRU_ROW_BG_HOVER = 'linear-gradient(90deg, rgba(125, 220, 255, 0.13), rgba(8, 18, 24, 0.46), rgba(1, 7, 9, 0.24))'
+const BRU_ROW_BORDER = '1px solid rgba(125, 220, 255, 0.08)'
+const BRU_ROW_SHADOW = 'inset 0 0 30px rgba(125, 220, 255, 0.04)'
+
 // ─── Bespoke Web Design Showcase (Section 8) ─────────────────────────────────
 
 const BWDS_FEATURES = [
@@ -1932,29 +1939,32 @@ function BespokeRealUsers() {
                     <div style={{
                       height: '1px',
                       background: 'hsl(0 0% 100% / 0.06)',
-                      margin: '0',
+                      margin: '0.5rem 0',
                     }}/>
                   )}
                   <div
                     className="bru-row"
                     style={{
-                      padding: 'clamp(1.4rem, 2.2vw, 1.9rem) 0',
+                      padding: 'clamp(1.4rem, 2.2vw, 1.9rem) 1.25rem',
                       display: 'grid',
                       gridTemplateColumns: '2.4rem 1fr',
                       gap: '1rem',
-                      transition: 'background 0.3s ease',
+                      transition: 'background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease',
                       borderRadius: '12px',
                       cursor: 'default',
+                      background: BRU_ROW_BG,
+                      border: BRU_ROW_BORDER,
+                      boxShadow: BRU_ROW_SHADOW,
                     }}
                     onMouseEnter={e => {
                       const el = e.currentTarget as HTMLElement
-                      el.style.background = 'hsl(199 89% 60% / 0.04)'
+                      el.style.background = BRU_ROW_BG_HOVER
                       const numEl = el.querySelector('.bru-num') as HTMLElement | null
                       if (numEl) numEl.style.color = '#7FD8FF'
                     }}
                     onMouseLeave={e => {
                       const el = e.currentTarget as HTMLElement
-                      el.style.background = 'transparent'
+                      el.style.background = BRU_ROW_BG
                       const numEl = el.querySelector('.bru-num') as HTMLElement | null
                       if (numEl) numEl.style.color = '#5ECFFF'
                     }}
