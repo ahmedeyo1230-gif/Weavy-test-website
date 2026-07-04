@@ -205,17 +205,20 @@ export function Navbar() {
           Say hi →
         </a>
 
-        {/* Hamburger – mobile */}
+        {/* Hamburger – mobile/tablet. Brighter ice-white (vs. the dim --color-muted
+            used elsewhere) so the three lines stay clearly visible against the
+            dark navbar glass, not just on hover. */}
         <button
-          className="sm:hidden flex items-center justify-center w-8 h-8 rounded-full text-muted hover:text-primary hover:bg-white/5 transition-colors"
+          className="sm:hidden flex items-center justify-center w-8 h-8 rounded-full hover:text-primary hover:bg-white/5 transition-colors"
+          style={{ color: 'rgba(235, 245, 255, 0.88)' }}
           aria-label={menuOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={menuOpen}
           onClick={() => setMenuOpen(v => !v)}
         >
           <span className="flex flex-col gap-[5px] w-[14px]" aria-hidden="true">
-            <span className={`block h-px bg-current transition-all duration-200 origin-center ${menuOpen ? 'rotate-45 translate-y-[7px]' : ''}`} />
-            <span className={`block h-px bg-current transition-all duration-200 ${menuOpen ? 'opacity-0 scale-x-0' : ''}`} />
-            <span className={`block h-px bg-current transition-all duration-200 origin-center ${menuOpen ? '-rotate-45 -translate-y-[7px]' : ''}`} />
+            <span className={`block h-[1.5px] bg-current transition-all duration-200 origin-center ${menuOpen ? 'rotate-45 translate-y-[7px]' : ''}`} />
+            <span className={`block h-[1.5px] bg-current transition-all duration-200 ${menuOpen ? 'opacity-0 scale-x-0' : ''}`} />
+            <span className={`block h-[1.5px] bg-current transition-all duration-200 origin-center ${menuOpen ? '-rotate-45 -translate-y-[7px]' : ''}`} />
           </span>
         </button>
       </nav>
