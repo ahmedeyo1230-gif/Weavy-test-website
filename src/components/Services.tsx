@@ -11441,26 +11441,52 @@ export default function Services() {
                       const el = e.currentTarget as HTMLElement
                       el.style.borderColor = 'hsl(195 90% 55% / 0.28)'
                       el.style.boxShadow   = '0 0 22px -6px hsl(195 90% 55% / 0.16)'
+                      const iconWrap = el.querySelector('[data-cbf-icon]') as HTMLElement | null
+                      if (iconWrap) {
+                        iconWrap.style.borderColor = 'hsl(195 90% 55% / 0.4)'
+                        iconWrap.style.boxShadow    = '0 0 14px -2px hsl(195 90% 55% / 0.32)'
+                      }
+                      const heading = el.querySelector('[data-cbf-title]') as HTMLElement | null
+                      if (heading) heading.style.textShadow = '0 0 16px rgba(125, 220, 255, 0.22)'
                     }}
                     onMouseLeave={e => {
                       const el = e.currentTarget as HTMLElement
                       el.style.borderColor = 'hsl(0 0% 100% / 0.06)'
                       el.style.boxShadow   = 'none'
+                      const iconWrap = el.querySelector('[data-cbf-icon]') as HTMLElement | null
+                      if (iconWrap) {
+                        iconWrap.style.borderColor = 'hsl(195 90% 55% / 0.22)'
+                        iconWrap.style.boxShadow    = '0 0 10px -2px hsl(195 90% 55% / 0.2)'
+                      }
+                      const heading = el.querySelector('[data-cbf-title]') as HTMLElement | null
+                      if (heading) heading.style.textShadow = '0 0 12px rgba(125, 220, 255, 0.12)'
                     }}
                   >
                     <div
+                      data-cbf-icon
                       className="shrink-0 flex items-center justify-center rounded-lg"
                       style={{
                         width: '32px', height: '32px',
                         background: 'hsl(195 90% 55% / 0.1)',
                         border: '1px solid hsl(195 90% 55% / 0.22)',
                         boxShadow: '0 0 10px -2px hsl(195 90% 55% / 0.2)',
+                        transition: 'border-color 0.25s ease, box-shadow 0.25s ease',
                       }}
                     >
                       <Icon size={14} strokeWidth={1.5} style={{ color: 'hsl(195 88% 60%)' }} aria-hidden="true" />
                     </div>
                     <div>
-                      <div className="font-sans font-light text-text mb-1" style={{ fontSize: '0.84rem', letterSpacing: '-0.01em' }}>
+                      <div
+                        data-cbf-title
+                        className="font-sans font-light mb-1"
+                        style={{
+                          fontSize: '0.84rem',
+                          letterSpacing: '-0.01em',
+                          color: '#BFEFFF',
+                          textShadow: '0 0 12px rgba(125, 220, 255, 0.12)',
+                          transition: 'text-shadow 0.25s ease',
+                        }}
+                      >
                         {title}
                       </div>
                       <div className="font-sans font-light" style={{ fontSize: '0.76rem', color: '#F2F8FC', lineHeight: 1.65 }}>
