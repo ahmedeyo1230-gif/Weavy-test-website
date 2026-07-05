@@ -934,7 +934,7 @@ function PhilosophyRow({
         gridTemplateColumns: '3rem 1fr',
         gap: '0 2rem',
         padding: 'clamp(1.4rem, 2.5vw, 2rem) 0',
-        borderBottom: '1px solid hsl(0 0% 100% / 0.06)',
+        borderBottom: '1px solid rgba(125, 220, 255, 0.10)',
         opacity: visible ? 1 : 0,
         transform: visible ? 'translateY(0)' : 'translateY(24px)',
         transition: `opacity 0.7s ease ${delay}ms, transform 0.7s cubic-bezier(0.16,1,0.3,1) ${delay}ms`,
@@ -948,7 +948,8 @@ function PhilosophyRow({
           fontWeight: 300,
           fontSize: '0.72rem',
           letterSpacing: '0.06em',
-          color: hovered ? 'hsl(195 80% 62%)' : 'hsl(0 0% 28%)',
+          color: hovered ? 'hsl(195 80% 62%)' : 'rgba(125, 220, 255, 0.55)',
+          textShadow: '0 0 10px rgba(125, 220, 255, 0.10)',
           paddingTop: '0.18rem',
           transition: 'color 0.35s ease',
           lineHeight: 1,
@@ -989,7 +990,7 @@ function PhilosophyRow({
             fontWeight: 300,
             fontSize: 'clamp(0.82rem, 1.25vw, 0.92rem)',
             lineHeight: 1.85,
-            color: 'hsl(0 0% 36%)',
+            color: 'rgba(210, 224, 232, 0.68)',
             margin: 0,
           }}
         >
@@ -1124,7 +1125,7 @@ function ProjectPhilosophy() {
               fontWeight: 300,
               fontSize: 'clamp(0.88rem, 1.4vw, 1rem)',
               lineHeight: 1.9,
-              color: 'hsl(0 0% 40%)',
+              color: 'rgba(220, 232, 240, 0.72)',
               marginBottom: 'clamp(2rem, 4vw, 3rem)',
               opacity: right.visible ? 1 : 0,
               transform: right.visible ? 'translateY(0)' : 'translateY(20px)',
@@ -1138,7 +1139,7 @@ function ProjectPhilosophy() {
           </p>
 
           {/* Numbered rows */}
-          <div style={{ borderTop: '1px solid hsl(0 0% 100% / 0.06)' }}>
+          <div style={{ borderTop: '1px solid rgba(125, 220, 255, 0.10)' }}>
             {PHILOSOPHY_POINTS.map((point, i) => (
               <PhilosophyRow
                 key={point.num}
