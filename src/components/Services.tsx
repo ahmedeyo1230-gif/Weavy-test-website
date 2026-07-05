@@ -6801,9 +6801,9 @@ function GraphicDesignSplitA() {
               style={{ paddingTop: 'clamp(1.5rem, 2.5vw, 2rem)', borderTop: '1px solid hsl(0 0% 100% / 0.05)' }}
             >
               {[
-                { value: '100+', label: 'Brands elevated' },
-                { value: '4K',   label: 'Motion deliverables' },
-                { value: '12',   label: 'Creative formats' },
+                { value: 'Custom', label: 'Brand direction' },
+                { value: '4K',      label: 'Video-ready exports' },
+                { value: '12+',     label: 'Creative formats' },
               ].map(({ value, label }) => (
                 <div key={label}>
                   <p className="font-sans" style={{
