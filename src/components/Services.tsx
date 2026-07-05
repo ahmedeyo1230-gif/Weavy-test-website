@@ -3108,7 +3108,7 @@ function ChatbotWorkflowSection() {
                 <p className="font-sans font-light" style={{
                   fontSize:   'clamp(0.8rem, 1.15vw, 0.875rem)',
                   lineHeight: 1.8,
-                  color:      'hsl(0 0% 42%)',
+                  color:      'rgba(220, 232, 240, 0.68)',
                 }}>
                   {step.desc}
                 </p>
