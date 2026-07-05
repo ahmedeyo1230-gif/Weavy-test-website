@@ -2,20 +2,24 @@ import { useEffect, useRef } from 'react'
 import { motion, useInView, animate } from 'framer-motion'
 
 interface StatProps {
-  value: number
+  value?: number
   suffix?: string
   prefix?: string
-  label: string
+  bigText?: string
+  label?: string
   description: string
   delay?: number
 }
 
-function StatCounter({ value, suffix = '', prefix = '', label, description, delay = 0 }: StatProps) {
+// Some cards are a genuine counted stat (value animates 0 -> N); others are a
+// short capability statement with no real number — those pass `bigText`
+// instead and just render it statically in the same big/prominent slot.
+function StatCounter({ value, suffix = '', prefix = '', bigText, label, description, delay = 0 }: StatProps) {
   const nodeRef = useRef<HTMLSpanElement>(null)
   const inView  = useInView(nodeRef, { once: true, margin: '-50px' })
 
   useEffect(() => {
-    if (!inView || !nodeRef.current) return
+    if (value === undefined || !inView || !nodeRef.current) return
     const controls = animate(0, value, {
       duration: 1.8,
       delay,
@@ -38,16 +42,24 @@ function StatCounter({ value, suffix = '', prefix = '', label, description, dela
       {/* Subtle top accent line that appears on hover */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-8 h-[1px] bg-gradient-to-r from-transparent via-accent-cyan/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-      <div className="text-5xl md:text-6xl lg:text-7xl font-light tracking-tighter flex items-start text-primary mb-3">
-        {prefix && (
-          <span className="font-serif italic text-muted text-3xl md:text-4xl mt-2 mr-0.5">{prefix}</span>
-        )}
-        <span ref={nodeRef}>0</span>
-        {suffix && (
-          <span className="font-serif italic text-accent-cyan text-3xl md:text-4xl mt-2">{suffix}</span>
-        )}
-      </div>
-      <p className="text-xs uppercase tracking-widest mb-2 font-medium" style={{ color: '#94A3B8', letterSpacing: '0.15em' }}>{label}</p>
+      {value !== undefined ? (
+        <div className="text-5xl md:text-6xl lg:text-7xl font-light tracking-tighter flex items-start text-primary mb-3">
+          {prefix && (
+            <span className="font-serif italic text-muted text-3xl md:text-4xl mt-2 mr-0.5">{prefix}</span>
+          )}
+          <span ref={nodeRef}>0</span>
+          {suffix && (
+            <span className="font-serif italic text-accent-cyan text-3xl md:text-4xl mt-2">{suffix}</span>
+          )}
+        </div>
+      ) : (
+        <p className="text-3xl md:text-4xl lg:text-5xl font-light tracking-tight text-primary mb-3">
+          {bigText}
+        </p>
+      )}
+      {label && (
+        <p className="text-xs uppercase tracking-widest mb-2 font-medium" style={{ color: '#94A3B8', letterSpacing: '0.15em' }}>{label}</p>
+      )}
       <p className="text-xs font-medium max-w-[120px] leading-relaxed" style={{ color: '#64748B' }}>{description}</p>
     </motion.div>
   )
@@ -98,10 +110,10 @@ export default function Stats() {
           }}
         >
           <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-y md:divide-y-0 divide-white/[0.06]">
-            <StatCounter value={50}  suffix="+"  label="Systems Built"      description="Delivered across industries"  delay={0}   />
-            <StatCounter value={3}               label="Continents"          description="Global reach, London roots"   delay={0.1} />
-            <StatCounter value={2}   prefix="£" suffix="M+" label="Revenue Generated" description="For our clients collectively" delay={0.2} />
-            <StatCounter value={100} suffix="%" label="Client Retention"    description="Because results speak"        delay={0.3} />
+            <StatCounter value={100} suffix="%"  label="Custom"          description="No templates. Every system is built around the business." delay={0}   />
+            <StatCounter value={3}                label="Service Pillars" description="Automation, websites, and creative content."               delay={0.1} />
+            <StatCounter bigText="Fast Response"  label="Focus"           description="Designed to reduce missed enquiries."                       delay={0.2} />
+            <StatCounter bigText="Built to Scale"                         description="Systems made for growth from day one."                      delay={0.3} />
           </div>
         </div>
       </motion.div>
