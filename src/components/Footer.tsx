@@ -98,14 +98,7 @@ function FooterVideo() {
   }, [])
 
   return (
-    <div ref={containerRef} style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}>
-      {/* Mobile/tablet only: bring the video forward without touching desktop */}
-      <style>{`
-        @media (max-width: 1023.98px) {
-          .footer-hlc-video { opacity: 0.62 !important; filter: brightness(0.95) contrast(1.38) saturate(1.15) !important; }
-          .footer-top-blend { background: linear-gradient(to bottom, rgba(6,8,10,0.88) 0%, rgba(6,8,10,0.48) 40%, rgba(6,8,10,0.14) 72%, transparent 100%) !important; }
-        }
-      `}</style>
+    <div ref={containerRef} style={{ position: 'absolute', inset: 0, zIndex: 0, pointerEvents: 'none' }}>
       <video
         ref={videoRef}
         muted
@@ -113,15 +106,14 @@ function FooterVideo() {
         playsInline
         preload="none"
         aria-hidden="true"
-        className="footer-hlc-video"
         style={{
           position: 'absolute',
           top: '50%', left: '50%',
           minWidth: '100%', minHeight: '100%',
           objectFit: 'cover',
           transform: 'translate(-50%, -50%) scaleY(-1)',
-          opacity: 0.55,
-          filter: 'brightness(1.06) contrast(1.38) saturate(1.15)',
+          opacity: 0.75,
+          filter: 'brightness(0.95) saturate(1) contrast(1)',
           pointerEvents: 'none',
         }}
       />
@@ -185,29 +177,36 @@ export default function Footer() {
       className="relative w-full overflow-hidden"
       style={{ background: '#06080A', paddingTop: 'clamp(4rem, 8vw, 5rem)' }}
     >
-      {/* Top blend — continues from Testimonials boundary */}
+      {/* Background video — sits above the plain section background, below the
+          overlay and footer content (see z-index stack: video 0 < blend/overlay 1 < content 2) */}
+      <FooterVideo />
       <div
         aria-hidden="true"
-        className="footer-top-blend"
+        style={{
+          position: 'absolute',
+          inset: 0,
+          zIndex: 1,
+          background: 'rgba(1,7,9,0.28)',
+          pointerEvents: 'none',
+        }}
+      />
+
+      {/* Top blend — continues from Testimonials boundary; subtle, does not fully hide the video */}
+      <div
+        aria-hidden="true"
         style={{
           position: 'absolute',
           top: 0,
           left: 0,
           right: 0,
           height: '220px',
-          background: 'linear-gradient(to bottom, #06080A 0%, rgba(6,8,10,0.65) 40%, rgba(6,8,10,0.2) 72%, transparent 100%)',
+          background: 'linear-gradient(to bottom, rgba(6,8,10,0.35) 0%, rgba(6,8,10,0.24) 40%, rgba(6,8,10,0.10) 72%, transparent 100%)',
           pointerEvents: 'none',
-          zIndex: 10,
+          zIndex: 1,
         }}
       />
 
-      {/* Background video */}
-      <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
-        <FooterVideo />
-        <div className="absolute inset-0 pointer-events-none bg-black/4 lg:bg-black/16" />
-      </div>
-
-      <div style={{ position: 'relative', zIndex: 1 }}>
+      <div style={{ position: 'relative', zIndex: 2 }}>
 
         {/* Marquee */}
         <Marquee />
@@ -230,7 +229,7 @@ export default function Footer() {
             style={{
               position: 'absolute',
               inset: '-2rem -100vw',
-              background: 'radial-gradient(ellipse 80% 90% at 50% 50%, rgba(1,7,9,0.50) 0%, rgba(1,7,9,0.38) 55%, rgba(1,7,9,0.15) 80%, transparent 100%)',
+              background: 'radial-gradient(ellipse 80% 90% at 50% 50%, rgba(1,7,9,0.32) 0%, rgba(1,7,9,0.24) 55%, rgba(1,7,9,0.10) 80%, transparent 100%)',
               pointerEvents: 'none',
               zIndex: 0,
             }}
