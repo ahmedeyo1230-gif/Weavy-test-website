@@ -451,7 +451,7 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5, duration: 1 }}
-          className="pointer-events-none absolute bottom-12 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-3"
+          className="pointer-events-none absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-3"
           aria-hidden="true"
         >
           <span
