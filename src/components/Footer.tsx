@@ -99,6 +99,13 @@ function FooterVideo() {
 
   return (
     <div ref={containerRef} style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}>
+      {/* Mobile/tablet only: bring the video forward without touching desktop */}
+      <style>{`
+        @media (max-width: 1023.98px) {
+          .footer-hlc-video { opacity: 0.62 !important; filter: brightness(0.95) contrast(1.38) saturate(1.15) !important; }
+          .footer-top-blend { background: linear-gradient(to bottom, rgba(6,8,10,0.88) 0%, rgba(6,8,10,0.48) 40%, rgba(6,8,10,0.14) 72%, transparent 100%) !important; }
+        }
+      `}</style>
       <video
         ref={videoRef}
         muted
@@ -106,6 +113,7 @@ function FooterVideo() {
         playsInline
         preload="none"
         aria-hidden="true"
+        className="footer-hlc-video"
         style={{
           position: 'absolute',
           top: '50%', left: '50%',
@@ -180,6 +188,7 @@ export default function Footer() {
       {/* Top blend — continues from Testimonials boundary */}
       <div
         aria-hidden="true"
+        className="footer-top-blend"
         style={{
           position: 'absolute',
           top: 0,
@@ -195,7 +204,7 @@ export default function Footer() {
       {/* Background video */}
       <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
         <FooterVideo />
-        <div className="absolute inset-0 pointer-events-none bg-black/8 lg:bg-black/16" />
+        <div className="absolute inset-0 pointer-events-none bg-black/4 lg:bg-black/16" />
       </div>
 
       <div style={{ position: 'relative', zIndex: 1 }}>
@@ -221,7 +230,7 @@ export default function Footer() {
             style={{
               position: 'absolute',
               inset: '-2rem -100vw',
-              background: 'radial-gradient(ellipse 80% 90% at 50% 50%, rgba(1,7,9,0.78) 0%, rgba(1,7,9,0.62) 55%, rgba(1,7,9,0.25) 80%, transparent 100%)',
+              background: 'radial-gradient(ellipse 80% 90% at 50% 50%, rgba(1,7,9,0.50) 0%, rgba(1,7,9,0.38) 55%, rgba(1,7,9,0.15) 80%, transparent 100%)',
               pointerEvents: 'none',
               zIndex: 0,
             }}
