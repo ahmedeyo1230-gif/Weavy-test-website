@@ -445,21 +445,24 @@ export default function Hero() {
           </motion.div>
         </motion.div>
 
-        {/* Scroll indicator */}
+        {/* Scroll indicator — sits above the bottom fade/blend layers (which
+            paint later in the DOM at the same auto z-level) so it stays visible. */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5, duration: 1 }}
-          className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3"
+          className="pointer-events-none absolute bottom-12 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-3"
           aria-hidden="true"
         >
           <span
             className="text-[10px] uppercase tracking-widest"
-            style={{ color: 'rgba(255,255,255,0.50)', letterSpacing: '0.26em' }}
+            style={{ color: 'rgba(125,220,255,0.55)', letterSpacing: '0.26em' }}
           >Scroll</span>
-          <div
+          <motion.div
             className="relative overflow-hidden rounded-full"
-            style={{ width: '1px', height: '56px', background: 'rgba(255,255,255,0.14)' }}
+            style={{ width: '1px', height: '56px', background: 'rgba(125,220,255,0.22)' }}
+            animate={{ opacity: [0.5, 1, 0.5] }}
+            transition={{ repeat: Infinity, duration: 2.8, ease: 'easeInOut' }}
           >
             <motion.div
               style={{
@@ -469,7 +472,7 @@ export default function Hero() {
               animate={{ y: ['-100%', '200%'] }}
               transition={{ repeat: Infinity, duration: 2.8, ease: 'easeInOut' }}
             />
-          </div>
+          </motion.div>
         </motion.div>
 
         {/* Bottom fade into VideoShowcase */}
