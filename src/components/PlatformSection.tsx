@@ -43,17 +43,17 @@ const MODULES = [
     icon: 'waveform', color: '#7DDCFF',
   },
   {
-    title: 'WhatsApp AI',
+    title: 'WhatsApp Agent',
     desc: 'Replies instantly, captures details, and moves customers to the next step.',
     icon: 'chat', color: '#34D399',
   },
   {
-    title: 'Instagram AI',
+    title: 'Instagram DM',
     desc: 'Automates DMs, lead replies, campaign responses, and customer questions.',
     icon: 'camera', color: '#E879C9',
   },
   {
-    title: 'Facebook AI',
+    title: 'Facebook Messenger',
     desc: 'Handles Messenger enquiries and keeps conversations organised.',
     icon: 'bubble2', color: '#6BA9FF',
   },
@@ -68,7 +68,7 @@ const MODULES = [
     icon: 'calendar', color: '#F0C56A',
   },
   {
-    title: 'AI Analytics Dashboard',
+    title: 'Analytics Dashboard',
     desc: 'Shows enquiries, leads, bookings, performance, and automation activity.',
     icon: 'chart', color: '#7DDCFF',
   },
@@ -107,7 +107,7 @@ function ModuleCard({ mod, index }: { mod: typeof MODULES[number]; index: number
       <h3 className="font-sans font-light" style={{ fontSize: '1rem', color: 'rgba(248,250,252,0.92)', marginBottom: '0.5rem', letterSpacing: '-0.01em' }}>
         {mod.title}
       </h3>
-      <p className="font-sans font-light" style={{ fontSize: '0.82rem', lineHeight: 1.65, color: 'rgba(210,224,232,0.58)' }}>
+      <p className="font-sans font-light" style={{ fontSize: '0.82rem', lineHeight: 1.65, color: 'rgba(210, 224, 232, 0.70)' }}>
         {mod.desc}
       </p>
     </motion.div>
@@ -142,7 +142,7 @@ export default function PlatformSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.55, ease: E }}
-            style={{ fontSize: '0.67rem', letterSpacing: '0.32em', textTransform: 'uppercase', color: 'rgba(125,220,255,0.68)', marginBottom: '1.3rem' }}
+            style={{ fontSize: '0.67rem', letterSpacing: '0.32em', textTransform: 'uppercase', color: 'rgba(191, 239, 255, 0.72)', marginBottom: '1.3rem' }}
           >
             The Weavy Platform
           </motion.p>
@@ -168,7 +168,7 @@ export default function PlatformSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.65, delay: 0.14, ease: E }}
             className="font-sans font-light"
-            style={{ fontSize: 'clamp(0.92rem, 1.5vw, 1.05rem)', lineHeight: 1.8, color: '#94A3B8', marginTop: '1.3rem' }}
+            style={{ fontSize: 'clamp(0.92rem, 1.5vw, 1.05rem)', lineHeight: 1.8, color: 'rgba(220, 232, 240, 0.74)', marginTop: '1.3rem' }}
           >
             Instead of disconnected tools, Weavy connects your customer channels, automations,
             bookings, and lead management into one scalable system built for SMEs.
