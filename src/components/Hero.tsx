@@ -458,21 +458,28 @@ export default function Hero() {
             className="text-[10px] uppercase tracking-widest"
             style={{ color: 'rgba(125,220,255,0.55)', letterSpacing: '0.26em' }}
           >Scroll</span>
-          <motion.div
-            className="relative overflow-hidden rounded-full"
+          <div
+            className="relative"
             style={{ width: '1px', height: '56px', background: 'rgba(125,220,255,0.22)' }}
-            animate={{ opacity: [0.5, 1, 0.5] }}
-            transition={{ repeat: Infinity, duration: 2.8, ease: 'easeInOut' }}
           >
-            <motion.div
+            {/* Small glowing dot travelling down the line — CSS-driven so it keeps
+                animating smoothly regardless of JS timing; static (centred) when
+                reduced motion is preferred (see .hero-scroll-dot in index.css). */}
+            <span
+              className="hero-scroll-dot"
               style={{
-                position: 'absolute', top: 0, left: 0, width: '100%', height: '50%',
-                background: 'linear-gradient(to bottom, transparent 0%, rgba(125,220,255,0.85) 50%, transparent 100%)',
+                position: 'absolute',
+                left: '50%',
+                top: 0,
+                width: '5px',
+                height: '5px',
+                borderRadius: '9999px',
+                background: 'rgba(125,220,255,0.85)',
+                boxShadow: '0 0 12px rgba(125,220,255,0.45)',
+                transform: 'translateX(-50%)',
               }}
-              animate={{ y: ['-100%', '200%'] }}
-              transition={{ repeat: Infinity, duration: 2.8, ease: 'easeInOut' }}
             />
-          </motion.div>
+          </div>
         </motion.div>
 
         {/* Bottom fade into VideoShowcase */}

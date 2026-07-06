@@ -489,6 +489,20 @@ html {
   animation: scroll-down 2.4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
+/* ── Hero scroll indicator — glowing dot travelling down the line ───────── */
+@keyframes hero-scroll-dot {
+  0%   { top: 0px;  opacity: 0; }
+  15%  { opacity: 1; }
+  85%  { opacity: 1; }
+  100% { top: 51px; opacity: 0; }
+}
+.hero-scroll-dot {
+  animation: hero-scroll-dot 2.1s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-scroll-dot { animation: none; top: 25px; opacity: 0.7; }
+}
+
 
 @keyframes text-shimmer {
   0%   { background-position: 200% center; }
