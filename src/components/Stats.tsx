@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import { motion, useInView, animate } from 'framer-motion'
+import { motion, useInView, animate, useReducedMotion } from 'framer-motion'
 
 interface StatProps {
   value?: number
@@ -17,9 +17,14 @@ interface StatProps {
 function StatCounter({ value, suffix = '', prefix = '', bigText, label, description, delay = 0 }: StatProps) {
   const nodeRef = useRef<HTMLSpanElement>(null)
   const inView  = useInView(nodeRef, { once: true, margin: '-50px' })
+  const reduceMotion = useReducedMotion()
 
   useEffect(() => {
     if (value === undefined || !inView || !nodeRef.current) return
+    if (reduceMotion) {
+      nodeRef.current.textContent = Math.round(value).toString()
+      return
+    }
     const controls = animate(0, value, {
       duration: 1.8,
       delay,
@@ -29,14 +34,14 @@ function StatCounter({ value, suffix = '', prefix = '', bigText, label, descript
       },
     })
     return () => controls.stop()
-  }, [inView, value, delay])
+  }, [inView, value, delay, reduceMotion])
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 24 }}
+      initial={{ opacity: 0, y: reduceMotion ? 0 : 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-50px' }}
-      transition={{ duration: 0.65, delay, ease: [0.16, 1, 0.3, 1] }}
+      transition={{ duration: reduceMotion ? 0.4 : 0.75, delay: reduceMotion ? 0 : delay, ease: [0.16, 1, 0.3, 1] }}
       className="flex flex-col items-center text-center px-6 py-8 relative group"
     >
       {/* Subtle top accent line that appears on hover */}
@@ -110,10 +115,10 @@ export default function Stats() {
           }}
         >
           <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-y md:divide-y-0 divide-white/[0.06]">
-            <StatCounter value={100} suffix="%"  label="Custom"          description="No templates. Every system is built around the business." delay={0}   />
-            <StatCounter value={3}                label="Service Pillars" description="Automation, websites, and creative content."               delay={0.1} />
-            <StatCounter bigText="Fast Response"  label="Focus"           description="Designed to reduce missed enquiries."                       delay={0.2} />
-            <StatCounter bigText="Built to Scale"                         description="Systems made for growth from day one."                      delay={0.3} />
+            <StatCounter value={100} suffix="%"  label="Custom"          description="No templates. Every system is built around the business." delay={0}    />
+            <StatCounter value={3}                label="Service Pillars" description="Automation, websites, and creative content."               delay={0.2}  />
+            <StatCounter bigText="Fast Response"  label="Focus"           description="Designed to reduce missed enquiries."                       delay={0.4}  />
+            <StatCounter bigText="Built to Scale"                         description="Systems made for growth from day one."                      delay={0.6}  />
           </div>
         </div>
       </motion.div>
