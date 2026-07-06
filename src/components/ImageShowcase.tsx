@@ -445,7 +445,7 @@ function WorkContactFooter() {
         <div
           className="w-full overflow-hidden mb-16"
           aria-hidden="true"
-          style={{ borderTop: '1px solid hsl(0 0% 100% / 0.07)', borderBottom: '1px solid hsl(0 0% 100% / 0.07)', padding: '1rem 0' }}
+          style={{ borderTop: '1px solid rgba(125, 220, 255, 0.10)', borderBottom: '1px solid rgba(125, 220, 255, 0.10)', padding: '1rem 0' }}
         >
           <div ref={marqueeRef} className="flex whitespace-nowrap will-change-transform">
             {Array.from({ length: 20 }).map((_, i) => (
@@ -476,7 +476,7 @@ function WorkContactFooter() {
         </h2>
 
         {/* Subtext */}
-        <p className="font-sans font-light text-center mb-14 px-6" style={{ fontSize: 'clamp(0.84rem, 1.35vw, 0.96rem)', lineHeight: 1.9, color: 'hsl(0 0% 40%)', maxWidth: '34rem' }}>
+        <p className="font-sans font-light text-center mb-14 px-6" style={{ fontSize: 'clamp(0.84rem, 1.35vw, 0.96rem)', lineHeight: 1.9, color: 'rgba(210, 224, 232, 0.70)', maxWidth: '34rem' }}>
           Have a project in mind? I&apos;d love to hear about it. Let&apos;s discuss how we can work together.
         </p>
 
@@ -522,7 +522,7 @@ function WorkContactFooter() {
           style={{
             maxWidth: '72rem',
             margin: '0 auto',
-            borderTop: '1px solid hsl(0 0% 100% / 0.06)',
+            borderTop: '1px solid rgba(125, 220, 255, 0.10)',
             paddingTop: '1.75rem',
             display: 'grid',
             gridTemplateColumns: '1fr auto 1fr',
@@ -536,13 +536,13 @@ function WorkContactFooter() {
               <span className="absolute inline-flex rounded-full animate-ping" style={{ width: '100%', height: '100%', background: 'hsl(142 71% 45%)', opacity: 0.7 }} />
               <span className="relative inline-flex rounded-full" style={{ width: 8, height: 8, background: 'hsl(142 71% 52%)', boxShadow: '0 0 8px hsl(142 71% 52% / 0.6)' }} />
             </span>
-            <span className="font-sans font-light" style={{ fontSize: '0.75rem', letterSpacing: '0.05em', color: 'hsl(0 0% 48%)' }}>
+            <span className="font-sans font-light" style={{ fontSize: '0.75rem', letterSpacing: '0.05em', color: 'rgba(191, 239, 255, 0.72)' }}>
               Available for projects
             </span>
           </div>
 
           {/* Copyright */}
-          <p className="font-sans font-light text-center" style={{ fontSize: '0.7rem', letterSpacing: '0.05em', color: 'hsl(0 0% 28%)' }}>
+          <p className="font-sans font-light text-center" style={{ fontSize: '0.7rem', letterSpacing: '0.05em', color: 'rgba(191, 239, 255, 0.72)' }}>
             © {new Date().getFullYear()} Weavy. All rights reserved.
           </p>
 
@@ -585,7 +585,7 @@ function WorkCTA() {
       ref={ref}
       style={{
         background: '#010709',
-        borderTop: '1px solid hsl(0 0% 100% / 0.05)',
+        borderTop: '1px solid rgba(125, 220, 255, 0.10)',
         padding: 'clamp(6rem, 12vw, 10rem) clamp(1.2rem, 3.5vw, 3rem)',
       }}
     >
@@ -659,7 +659,7 @@ function WorkCTA() {
             fontWeight: 300,
             fontSize: 'clamp(0.88rem, 1.4vw, 1rem)',
             lineHeight: 1.9,
-            color: 'hsl(0 0% 38%)',
+            color: 'rgba(210, 224, 232, 0.70)',
             maxWidth: '38rem',
             marginBottom: 'clamp(2.5rem, 5vw, 3.8rem)',
           }}
@@ -716,9 +716,9 @@ function WorkCTA() {
               fontWeight: 300,
               fontSize: 'clamp(0.82rem, 1.2vw, 0.9rem)',
               letterSpacing: '0.02em',
-              color: emailHover ? 'hsl(0 0% 78%)' : 'hsl(0 0% 36%)',
+              color: emailHover ? 'hsl(0 0% 78%)' : 'rgba(235, 245, 255, 0.80)',
               textDecoration: 'none',
-              borderBottom: `1px solid ${emailHover ? 'hsl(0 0% 78% / 0.5)' : 'hsl(0 0% 36% / 0.3)'}`,
+              borderBottom: `1px solid ${emailHover ? 'hsl(0 0% 78% / 0.5)' : 'rgba(125, 220, 255, 0.28)'}`,
               paddingBottom: '1px',
               transition: 'color 0.3s ease, border-color 0.3s ease',
             }}
@@ -764,7 +764,7 @@ function WorkCTA() {
             fontWeight: 300,
             fontSize: '0.75rem',
             letterSpacing: '0.06em',
-            color: 'hsl(0 0% 36%)',
+            color: 'rgba(191, 239, 255, 0.72)',
           }}>
             Available for selected projects
           </span>
@@ -795,7 +795,7 @@ function WorkTestimonial() {
       ref={ref}
       style={{
         background: '#010709',
-        borderTop: '1px solid hsl(0 0% 100% / 0.05)',
+        borderTop: '1px solid rgba(125, 220, 255, 0.10)',
         padding: 'clamp(5rem, 10vw, 9rem) clamp(1.2rem, 3.5vw, 3rem)',
       }}
     >
@@ -873,7 +873,7 @@ function WorkTestimonial() {
             fontSize: 'clamp(0.78rem, 1.1vw, 0.88rem)',
             letterSpacing: '0.06em',
             textTransform: 'uppercase',
-            color: 'hsl(0 0% 32%)',
+            color: 'rgba(191, 239, 255, 0.72)',
             margin: 0,
           }}>
             Founder at Vela Studio
@@ -885,7 +885,7 @@ function WorkTestimonial() {
           aria-hidden="true"
           style={{
             height: '1px',
-            background: 'hsl(0 0% 100% / 0.06)',
+            background: 'rgba(125, 220, 255, 0.10)',
             opacity: clientVis ? 1 : 0,
             transition: 'opacity 0.8s ease 0.2s',
           }}
@@ -1021,7 +1021,7 @@ function ProjectPhilosophy() {
     <section
       style={{
         background: '#010709',
-        borderTop: '1px solid hsl(0 0% 100% / 0.05)',
+        borderTop: '1px solid rgba(125, 220, 255, 0.10)',
         padding: 'clamp(5rem, 10vw, 9rem) clamp(1.2rem, 3.5vw, 3rem)',
       }}
     >
@@ -1202,7 +1202,7 @@ function WorkGallery() {
       />
     )}
 
-    <section style={{ background: '#010709', borderTop: '1px solid hsl(0 0% 100% / 0.05)' }}>
+    <section style={{ background: '#010709', borderTop: '1px solid rgba(125, 220, 255, 0.10)' }}>
       <div style={{ maxWidth: '1520px', margin: '0 auto', padding: 'clamp(5rem, 9vw, 8rem) clamp(1.2rem, 3.5vw, 3rem)' }}>
 
         {/* ── Section header ── */}
@@ -1256,7 +1256,7 @@ function WorkGallery() {
             fontWeight: 300,
             fontSize: 'clamp(0.86rem, 1.35vw, 0.98rem)',
             lineHeight: 1.9,
-            color: 'hsl(0 0% 36%)',
+            color: 'rgba(220, 232, 240, 0.74)',
             maxWidth: '40rem',
           }}>
             A curated selection of brand visuals, campaign systems, product launches,
