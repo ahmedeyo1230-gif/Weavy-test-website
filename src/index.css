@@ -859,26 +859,6 @@ body::after {
   }
 }
 
-/* ── Home footer HLC background wave — mobile only. The video's wrapper
-   normally spans the whole (very tall) footer so the wave reads as a
-   permanent backdrop; on small screens that makes it look like an oversized
-   graphic. Bound the wrapper to a compact strip anchored at the bottom of
-   the footer instead, then scale the wave down within it and soften its
-   edges with a mask so it blends in as a subtle texture rather than a hard
-   rectangle. Desktop and tablet are completely untouched. */
-@media (max-width: 640px) {
-  .footer-hlc-wrap {
-    top: auto !important;
-    bottom: 0 !important;
-    height: 560px !important;
-  }
-  .footer-hlc-video {
-    transform: translate(-50%, -50%) scaleY(-1) scale(0.78) !important;
-    -webkit-mask-image: radial-gradient(ellipse 68% 62% at 50% 50%, #000 60%, transparent 100%);
-    mask-image: radial-gradient(ellipse 68% 62% at 50% 50%, #000 60%, transparent 100%);
-  }
-}
-
 /* ── Respect prefers-reduced-motion ─────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   *,
