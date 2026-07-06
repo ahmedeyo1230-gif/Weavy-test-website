@@ -3,6 +3,8 @@ import { applyPageSeo, PAGE_SEO } from './lib/seo'
 import LoadingScreen from './components/LoadingScreen'
 import Hero, { Navbar } from './components/Hero'
 import VideoShowcase from './components/VideoShowcase'
+import PlatformSection from './components/PlatformSection'
+import PricingSection from './components/PricingSection'
 import About from './components/About'
 import Stats from './components/Stats'
 import WhyWeavyWorks from './components/WhyWeavyWorks'
@@ -166,11 +168,13 @@ export default function App() {
               <Hero />
               <VideoShowcase />
               <OutcomeMarquee />
+              <PlatformSection />
               <About />
               <Stats />
               <SystemsShowcase />
               <WhyWeavyWorks />
               <ConnectedSystems />
+              <PricingSection />
               <TestimonialsSection />
               <Footer />
             </>

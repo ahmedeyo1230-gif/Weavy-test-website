@@ -96,7 +96,7 @@ export default function About() { // no diagonal lines bg
                 }}
               >full-stack</em>
               <br className="hidden sm:block" />
-              {' '}automation and creative agency
+              {' '}automation platform
             </motion.h2>
 
             <motion.div

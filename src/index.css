@@ -50,7 +50,7 @@ html {
   }
 }
 
-/* ── Hero eyebrow label ("TripleX Automation Agency") ──────────
+/* ── Hero eyebrow label ("AI Automation Platform") ──────────
    A plain, class-scoped rule (not a Tailwind utility) so its higher
    selector specificity reliably wins over the un-layered "p { }" rule
    above, regardless of Tailwind's cascade-layer ordering. Mobile gets

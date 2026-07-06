@@ -8,8 +8,8 @@ const SITE_URL = 'https://weavyautomation.com'
 
 export const PAGE_SEO: Record<'home' | 'about' | 'services' | 'work' | 'blog' | 'contact', PageSeo> = {
   home: {
-    title: 'Weavy Automation — AI Automation, Web Design & Creative Systems',
-    description: 'Weavy helps businesses grow with premium websites, AI automation, chatbots, social media systems, UGC content, graphic design, and video editing.',
+    title: 'Weavy — AI Automation Platform for Growing Businesses',
+    description: 'Weavy helps SMEs automate customer conversations, leads, bookings, and follow-ups across voice, WhatsApp, Instagram, Facebook, CRM, and analytics.',
     path: '/',
   },
   about: {

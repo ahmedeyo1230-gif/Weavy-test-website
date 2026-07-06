@@ -356,7 +356,7 @@ export default function Hero() {
             variants={itemVariants}
             className="hero-eyebrow mb-6 mt-6 font-medium"
           >
-            TripleX <span className="uppercase">Automation Agency</span>
+            <span className="uppercase">AI Automation Platform</span>
           </motion.p>
 
           <div className="relative">
@@ -380,12 +380,10 @@ export default function Hero() {
               variants={itemVariants}
               className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-light tracking-tighter leading-[1.1] mb-8 max-w-4xl text-primary relative z-10"
             >
-              We build{' '}
-              <em className="font-serif italic">systems</em>
-              {' '}that{' '}
-              <em className="font-serif italic">scale</em>
+              AI Automation{' '}
+              <em className="font-serif italic">Platform</em>
               <br className="hidden sm:block" />
-              {' '}your business
+              {' '}for growing businesses
             </motion.h1>
           </div>
 
@@ -419,7 +417,9 @@ export default function Hero() {
             className="max-w-xl mx-auto mb-12 leading-relaxed text-sm sm:text-base font-medium"
             style={{ color: '#CBD5E1', lineHeight: 1.75 }}
           >
-            Automating growth, content, and communication so your brand runs smarter — not harder.
+            Weavy helps SMEs capture leads, respond instantly, automate bookings, and manage
+            customer conversations across voice, WhatsApp, Instagram, Facebook, and CRM —
+            all from one intelligent platform.
           </motion.p>
 
           <motion.div
@@ -432,7 +432,7 @@ export default function Hero() {
               className="btn-glow-primary inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-medium bg-primary text-background hover:bg-white hover:shadow-[0_0_28px_rgba(245,245,245,0.28)] active:scale-[0.97]"
               style={{ transition: 'background-color 200ms, box-shadow 200ms, transform 100ms' }}
             >
-              Book a call →
+              Book a Platform Demo →
             </a>
             <a
               href="/services"
@@ -440,7 +440,7 @@ export default function Hero() {
               className="inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-medium border border-border text-primary hover:border-white/25 hover:bg-white/[0.04] hover:shadow-[0_0_16px_hsl(199_89%_60%_/_0.08)] active:scale-[0.97]"
               style={{ transition: 'border-color 200ms, background-color 200ms, box-shadow 200ms, transform 100ms' }}
             >
-              View systems
+              Explore the Platform
             </a>
           </motion.div>
         </motion.div>

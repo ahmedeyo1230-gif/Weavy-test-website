@@ -10727,7 +10727,7 @@ export default function Services() {
             className="services-eyebrow font-sans uppercase text-muted mb-5"
             style={{ fontSize: '0.7rem', letterSpacing: '0.32em' }}
           >
-            What We Do
+            Professional Services
           </p>
 
           {/* Heading */}
@@ -10755,8 +10755,8 @@ export default function Services() {
               color: 'hsl(0 0% 56%)',
             }}
           >
-            End-to-end digital solutions crafted to elevate your brand, automate your workflows,
-            and scale your presence.
+            Our professional services help design, launch, and optimise the systems that run
+            on the Weavy Platform.
           </p>
 
           {/* Card grid */}

@@ -273,11 +273,10 @@ export default function Footer() {
               textShadow: '0 2px 24px rgba(0,0,0,0.85)',
             }}
           >
-            Let's build something{' '}
+            Ready to turn your business into an{' '}
             <em style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400 }}>
-              remarkable
-            </em>{' '}
-            together
+              AI-powered operating system?
+            </em>
           </motion.h2>
 
           {/* Subtext */}
@@ -299,9 +298,9 @@ export default function Footer() {
               textShadow: '0 1px 16px rgba(0,0,0,0.75)',
             }}
           >
-            Have a project in mind? We'd love to hear about it.{' '}
+            Start with one channel or build a full AI platform for customer{' '}
             <br />
-            Let's discuss how we can work together.
+            communication, bookings, leads, and growth.
           </motion.p>
 
           <motion.div
@@ -343,7 +342,7 @@ export default function Footer() {
             onMouseDown={e => { (e.currentTarget as HTMLAnchorElement).style.transform = 'scale(0.97)' }}
             onMouseUp={e => { (e.currentTarget as HTMLAnchorElement).style.transform = '' }}
           >
-            hello@weavyautomation.com
+            Book a Platform Demo
           </a>
           </motion.div>
         </div>
