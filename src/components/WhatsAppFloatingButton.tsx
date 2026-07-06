@@ -14,6 +14,7 @@ export default function WhatsAppFloatingButton() {
       aria-label="Chat with Weavy on WhatsApp"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
+      className="wa-floating-btn"
       style={{
         position: 'fixed',
         bottom: 'clamp(16px, 3vw, 24px)',
@@ -54,6 +55,7 @@ export default function WhatsAppFloatingButton() {
 
       {/* Button circle */}
       <div
+        className="wa-floating-circle"
         style={{
           width: 54,
           height: 54,

@@ -418,7 +418,7 @@ function WorkContactFooter() {
   }, [])
 
   return (
-    <section ref={containerRef} className="relative bg-bg pt-16 md:pt-20 pb-8 md:pb-12 overflow-hidden">
+    <section ref={containerRef} className="relative bg-bg pt-16 md:pt-20 pb-8 md:pb-12 overflow-hidden footer-bottom-bar">
 
       {/* ── Video background ── */}
       <div className="absolute inset-0" aria-hidden="true" style={{ zIndex: 0 }}>
@@ -536,13 +536,13 @@ function WorkContactFooter() {
               <span className="absolute inline-flex rounded-full animate-ping" style={{ width: '100%', height: '100%', background: 'hsl(142 71% 45%)', opacity: 0.7 }} />
               <span className="relative inline-flex rounded-full" style={{ width: 8, height: 8, background: 'hsl(142 71% 52%)', boxShadow: '0 0 8px hsl(142 71% 52% / 0.6)' }} />
             </span>
-            <span className="font-sans font-light" style={{ fontSize: '0.75rem', letterSpacing: '0.05em', color: 'rgba(191, 239, 255, 0.72)' }}>
+            <span className="font-sans font-light footer-availability-text" style={{ fontSize: '0.75rem', letterSpacing: '0.05em', color: 'rgba(191, 239, 255, 0.72)' }}>
               Available for projects
             </span>
           </div>
 
           {/* Copyright */}
-          <p className="font-sans font-light text-center" style={{ fontSize: '0.7rem', letterSpacing: '0.05em', color: 'rgba(191, 239, 255, 0.72)' }}>
+          <p className="font-sans font-light text-center footer-copyright-text" style={{ fontSize: '0.7rem', letterSpacing: '0.05em', color: 'rgba(191, 239, 255, 0.72)' }}>
             © {new Date().getFullYear()} Weavy. All rights reserved.
           </p>
 
@@ -551,7 +551,7 @@ function WorkContactFooter() {
             {WCF_SOCIALS.map(({ label, href, Icon }) => (
               <a
                 key={label} href={href} aria-label={label}
-                className="rounded-full flex items-center justify-center"
+                className="rounded-full flex items-center justify-center footer-social-icon"
                 style={{ width: 36, height: 36, color: 'hsl(0 0% 36%)', transition: 'color 0.2s ease, background 0.2s ease' }}
                 onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.color = 'hsl(0 0% 84%)'; el.style.background = 'hsl(0 0% 100% / 0.07)' }}
                 onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.color = 'hsl(0 0% 36%)'; el.style.background = 'transparent' }}

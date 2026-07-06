@@ -822,6 +822,43 @@ body::after {
   animation: ugc-badge-float 4.2s ease-in-out infinite;
 }
 
+/* ── Footer bottom bar (availability / copyright / socials) — mobile & tablet
+   only, so desktop layout stays exactly as-is. Uses !important because each
+   footer implementation sets these colours inline (including via JS hover
+   handlers), and only a stylesheet !important rule outranks an inline style. */
+@media (max-width: 1024px) {
+  .footer-bottom-bar {
+    /* Must clear the fixed WhatsApp button's top edge (bottom:84px + 52px tall
+       = 136px above the viewport bottom), plus a small buffer. */
+    padding-bottom: 152px !important;
+  }
+  .footer-availability-text {
+    color: rgba(210, 224, 232, 0.66) !important;
+  }
+  .footer-copyright-text {
+    color: rgba(210, 224, 232, 0.68) !important;
+  }
+  .footer-social-icon {
+    color: rgba(220, 232, 240, 0.68) !important;
+  }
+  .footer-social-icon:hover,
+  .footer-social-icon:active,
+  .footer-social-icon:focus-visible {
+    color: rgba(245, 250, 255, 0.90) !important;
+  }
+
+  /* Floating WhatsApp button — slightly smaller and raised clear of the
+     footer's social icons row. */
+  .wa-floating-btn {
+    right: 20px !important;
+    bottom: 84px !important;
+  }
+  .wa-floating-circle {
+    width: 52px !important;
+    height: 52px !important;
+  }
+}
+
 /* ── Respect prefers-reduced-motion ─────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   *,

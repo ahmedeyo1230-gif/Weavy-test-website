@@ -350,6 +350,7 @@ export default function Footer() {
 
         {/* Footer bar */}
         <div
+          className="footer-bottom-bar"
           style={{
             display: 'flex',
             flexWrap: 'wrap',
@@ -373,7 +374,7 @@ export default function Footer() {
               }}
             />
             <span
-              className="font-sans font-light"
+              className="font-sans font-light footer-availability-text"
               style={{ fontSize: '0.73rem', letterSpacing: '0.1em', color: '#94A3B8' }}
             >
               Available for projects
@@ -389,6 +390,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={label}
+                className="footer-social-icon"
                 style={{
                   color: '#64748B',
                   display: 'flex',

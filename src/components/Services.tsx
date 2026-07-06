@@ -2134,7 +2134,7 @@ function BespokeContactFooter() {
   return (
     <section
       id="bespoke-contact"
-      className="relative bg-bg pt-16 md:pt-20 pb-8 md:pb-12 overflow-hidden"
+      className="relative bg-bg pt-16 md:pt-20 pb-8 md:pb-12 overflow-hidden footer-bottom-bar"
     >
       {/* ── HLS Video background — flipped vertically ── */}
       <div ref={containerRef} className="absolute inset-0" aria-hidden="true" style={{ zIndex: 0 }}>
@@ -2343,7 +2343,7 @@ function BespokeContactFooter() {
               />
             </span>
             <span
-              className="font-sans font-light"
+              className="font-sans font-light footer-availability-text"
               style={{ fontSize: '0.75rem', letterSpacing: '0.05em', color: 'hsl(0 0% 48%)' }}
             >
               Available for projects
@@ -2352,7 +2352,7 @@ function BespokeContactFooter() {
 
           {/* Centre — copyright */}
           <p
-            className="font-sans font-light text-center"
+            className="font-sans font-light text-center footer-copyright-text"
             style={{ fontSize: '0.7rem', letterSpacing: '0.05em', color: 'hsl(0 0% 28%)' }}
           >
             © {new Date().getFullYear()} Weavy. All rights reserved.
@@ -2365,7 +2365,7 @@ function BespokeContactFooter() {
                 key={label}
                 href={href}
                 aria-label={label}
-                className="rounded-full flex items-center justify-center"
+                className="rounded-full flex items-center justify-center footer-social-icon"
                 style={{
                   width: 36,
                   height: 36,
@@ -5592,7 +5592,7 @@ function S7ContactFooter() {
   const marqueeItems = Array.from({ length: 20 }, (_, i) => MARQUEE_TEXT + (i % 2 === 0 ? '' : ''))
 
   return (
-    <section className="bg-bg pt-16 md:pt-20 pb-8 md:pb-12 overflow-hidden relative">
+    <section className="bg-bg pt-16 md:pt-20 pb-8 md:pb-12 overflow-hidden relative footer-bottom-bar">
 
       {/* Top fade — blends seamlessly with Section 6 */}
       <div aria-hidden="true" className="pointer-events-none absolute left-0 right-0 top-0" style={{
@@ -5717,13 +5717,13 @@ function S7ContactFooter() {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75" style={{ background: 'hsl(142 71% 45%)' }} />
               <span className="relative inline-flex rounded-full h-2 w-2" style={{ background: 'hsl(142 71% 50%)' }} />
             </span>
-            <span className="font-sans font-light" style={{ fontSize: '0.75rem', letterSpacing: '0.04em', color: 'hsl(0 0% 44%)' }}>
+            <span className="font-sans font-light footer-availability-text" style={{ fontSize: '0.75rem', letterSpacing: '0.04em', color: 'hsl(0 0% 44%)' }}>
               Available for projects
             </span>
           </div>
 
           {/* Center: copyright */}
-          <p className="font-sans font-light" style={{ fontSize: '0.7rem', letterSpacing: '0.06em', color: 'hsl(0 0% 28%)' }}>
+          <p className="font-sans font-light footer-copyright-text" style={{ fontSize: '0.7rem', letterSpacing: '0.06em', color: 'hsl(0 0% 28%)' }}>
             © {new Date().getFullYear()} Weavy. All rights reserved.
           </p>
 
@@ -5773,7 +5773,7 @@ function S7ContactFooter() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={label}
-                className="group"
+                className="group footer-social-icon"
                 style={{
                   color: 'hsl(0 0% 30%)',
                   transition: 'color 0.25s ease',
@@ -7777,7 +7777,7 @@ function GraphicDesignContactFooter() {
   return (
     <section
       id="graphic-contact"
-      className="relative bg-bg pt-16 md:pt-20 pb-8 md:pb-12 overflow-hidden"
+      className="relative bg-bg pt-16 md:pt-20 pb-8 md:pb-12 overflow-hidden footer-bottom-bar"
     >
       {/* ── HLS Video background — flipped vertically ── */}
       <div ref={containerRef} className="absolute inset-0" aria-hidden="true" style={{ zIndex: 0 }}>
@@ -7905,14 +7905,14 @@ function GraphicDesignContactFooter() {
               <span className="relative inline-flex rounded-full"
                 style={{ width: 8, height: 8, background: 'hsl(142 71% 52%)', boxShadow: '0 0 8px hsl(142 71% 52% / 0.6)' }}/>
             </span>
-            <span className="font-sans font-light"
+            <span className="font-sans font-light footer-availability-text"
               style={{ fontSize: '0.75rem', letterSpacing: '0.05em', color: 'hsl(0 0% 48%)' }}>
               Available for projects
             </span>
           </div>
 
           {/* Centre — copyright */}
-          <p className="font-sans font-light text-center"
+          <p className="font-sans font-light text-center footer-copyright-text"
             style={{ fontSize: '0.7rem', letterSpacing: '0.05em', color: 'hsl(0 0% 28%)' }}>
             © {new Date().getFullYear()} Weavy. All rights reserved.
           </p>
@@ -7921,7 +7921,7 @@ function GraphicDesignContactFooter() {
           <div className="flex items-center gap-1 justify-end">
             {GCF_SOCIAL_LINKS.map(({ label, href, Icon }) => (
               <a key={label} href={href} aria-label={label}
-                className="rounded-full flex items-center justify-center"
+                className="rounded-full flex items-center justify-center footer-social-icon"
                 style={{ width: 36, height: 36, color: 'hsl(0 0% 36%)', transition: 'color 0.2s ease, background 0.2s ease' }}
                 onMouseEnter={e => { const t = e.currentTarget as HTMLElement; t.style.color = 'hsl(0 0% 84%)'; t.style.background = 'hsl(0 0% 100% / 0.07)' }}
                 onMouseLeave={e => { const t = e.currentTarget as HTMLElement; t.style.color = 'hsl(0 0% 36%)';  t.style.background = 'transparent' }}
@@ -10226,7 +10226,7 @@ function UGCContactFooter() {
     <section
       ref={sectionRef}
       id="ugc-contact"
-      className="relative bg-bg pt-16 md:pt-20 pb-8 md:pb-12 overflow-hidden"
+      className="relative bg-bg pt-16 md:pt-20 pb-8 md:pb-12 overflow-hidden footer-bottom-bar"
     >
       {/* ── HLS Video background — flipped vertically ── */}
       <div ref={containerRef} className="absolute inset-0" aria-hidden="true" style={{ zIndex: 0 }}>
@@ -10412,7 +10412,7 @@ function UGCContactFooter() {
                 />
               </span>
               <span
-                className="font-sans font-light"
+                className="font-sans font-light footer-availability-text"
                 style={{ fontSize: '0.75rem', letterSpacing: '0.05em', color: 'hsl(0 0% 48%)' }}
               >
                 Available for projects
@@ -10421,7 +10421,7 @@ function UGCContactFooter() {
 
             {/* Centre — copyright (centered on mobile) */}
             <p
-              className="font-sans font-light text-center order-3 sm:order-2"
+              className="font-sans font-light text-center order-3 sm:order-2 footer-copyright-text"
               style={{ fontSize: '0.7rem', letterSpacing: '0.05em', color: 'hsl(0 0% 28%)' }}
             >
               © {new Date().getFullYear()} Weavy. All rights reserved.
@@ -10434,7 +10434,7 @@ function UGCContactFooter() {
                   key={label}
                   href={href}
                   aria-label={label}
-                  className="rounded-full flex items-center justify-center"
+                  className="rounded-full flex items-center justify-center footer-social-icon"
                   style={{
                     width: 36,
                     height: 36,
