@@ -93,6 +93,21 @@ function ModuleCard({ mod, index }: { mod: typeof MODULES[number]; index: number
       {/* Top accent line */}
       <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 2, background: `linear-gradient(to right, ${mod.color}, transparent 75%)` }} />
 
+      {/* Top accent shimmer — slow left-to-right sweep, staggered per card */}
+      <div
+        aria-hidden="true"
+        className="platform-card-shimmer"
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: '-45%',
+          width: '40%',
+          height: 2,
+          background: `linear-gradient(to right, transparent, ${mod.color}, transparent)`,
+          boxShadow: `0 0 8px ${mod.color}`,
+          animationDelay: `${index * 0.15}s`,
+        }}
+      />
       <div style={{
         width: 44, height: 44, borderRadius: 12,
         background: `${mod.color}14`,
