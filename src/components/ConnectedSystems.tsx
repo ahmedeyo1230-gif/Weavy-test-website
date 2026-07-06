@@ -13,11 +13,11 @@ const FLOW_STEPS = [
 ]
 
 const FLOAT_CARDS = [
-  { label: 'New Lead',          sub: 'John Smith · just now',  color: '#7DDCFF', dot: '#22D3EE', top: '8%',  left: '-6%'   },
-  { label: 'WhatsApp Reply',    sub: 'Auto-sent · 0s delay',   color: '#34D399', dot: '#34D399', top: '34%', left: '-10%'  },
-  { label: 'CRM Updated',       sub: 'HubSpot · synced',       color: '#A78BFA', dot: '#A78BFA', top: '63%', left: '-7%'   },
-  { label: 'Follow-up Sent',    sub: 'Email #1 · delivered',   color: '#34D399', dot: '#34D399', top: '8%',  right: '-6%'  },
-  { label: 'Booking Confirmed', sub: 'Calendly · confirmed',   color: '#F0C56A', dot: '#F0C56A', top: '40%', right: '-10%' },
+  { label: 'New Lead',          sub: 'John Smith · just now',  color: '#7DDCFF', dot: '#22D3EE', top: '4%',  left: '-6%'   },
+  { label: 'WhatsApp Reply',    sub: 'Auto-sent · 0s delay',   color: '#34D399', dot: '#34D399', top: '30%', left: '-10%'  },
+  { label: 'CRM Updated',       sub: 'HubSpot · synced',       color: '#A78BFA', dot: '#A78BFA', top: '80%', left: '-7%'   },
+  { label: 'Follow-up Sent',    sub: 'Email #1 · delivered',   color: '#34D399', dot: '#34D399', top: '4%',  right: '-6%'  },
+  { label: 'Booking Confirmed', sub: 'Calendly · confirmed',   color: '#F0C56A', dot: '#F0C56A', top: '58%', right: '-10%' },
 ]
 
 /* ── Hooks ── */
@@ -60,8 +60,8 @@ function useCountUp(target: number, duration: number, active: boolean, reduced: 
 
 /* ── Icon ── */
 
-function Icon({ type, color }: { type: string; color: string }) {
-  const s = { width: 20, height: 20, fill: 'none', stroke: color, strokeWidth: 1.55, strokeLinecap: 'round' as const, strokeLinejoin: 'round' as const }
+function Icon({ type, color, size = 20 }: { type: string; color: string; size?: number }) {
+  const s = { width: size, height: size, fill: 'none', stroke: color, strokeWidth: 1.55, strokeLinecap: 'round' as const, strokeLinejoin: 'round' as const }
   if (type === 'globe') return (
     <svg viewBox="0 0 24 24" style={s}>
       <circle cx="12" cy="12" r="9"/><path d="M12 3a14 14 0 010 18M12 3a14 14 0 000 18M3 12h18"/>
@@ -92,7 +92,60 @@ function Icon({ type, color }: { type: string; color: string }) {
       <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22,4 12,14.01 9,11.01"/>
     </svg>
   )
+  if (type === 'phone') return (
+    <svg viewBox="0 0 24 24" style={s}>
+      <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.98.36 1.94.68 2.86a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.22-1.25a2 2 0 012.11-.45c.92.32 1.88.55 2.86.68A2 2 0 0122 16.92z"/>
+    </svg>
+  )
+  if (type === 'camera') return (
+    <svg viewBox="0 0 24 24" style={s}>
+      <rect x="2" y="6" width="20" height="14" rx="3"/><circle cx="12" cy="13" r="3.6"/><path d="M8 6l1.4-2.4A1.6 1.6 0 0110.78 3h2.44a1.6 1.6 0 011.38.8L16 6"/>
+    </svg>
+  )
+  if (type === 'bubble2') return (
+    <svg viewBox="0 0 24 24" style={s}>
+      <path d="M12 3C6.5 3 2 6.9 2 11.7c0 2.7 1.45 5.13 3.73 6.73L5 22l3.98-2.1c.94.25 1.95.39 3.02.39 5.5 0 10-3.9 10-8.6S17.5 3 12 3z"/><path d="M9 12.2l2.1-2.3 2 1.6 2.1-2.3"/>
+    </svg>
+  )
   return null
+}
+
+const CHANNELS = [
+  { label: 'Voice AI',      icon: 'phone',   color: '#F0C56A' },
+  { label: 'WhatsApp AI',   icon: 'chat',    color: '#34D399' },
+  { label: 'Instagram AI',  icon: 'camera',  color: '#E879C9' },
+  { label: 'Facebook AI',   icon: 'bubble2', color: '#6BA9FF' },
+  { label: 'Website Chat',  icon: 'globe',   color: '#7DDCFF' },
+  { label: 'CRM Sync',      icon: 'crm',     color: '#A78BFA' },
+]
+
+function ChannelBadges() {
+  return (
+    <div style={{ padding: '18px 20px 0' }}>
+      <div style={{ fontSize: 11, color: 'rgba(125,220,255,0.4)', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 10 }}>
+        Connected Channels
+      </div>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+        {CHANNELS.map(ch => (
+          <div
+            key={ch.label}
+            style={{
+              display: 'flex', alignItems: 'center', gap: 6,
+              padding: '6px 10px 6px 8px',
+              borderRadius: 999,
+              background: `${ch.color}0F`,
+              border: `1px solid ${ch.color}30`,
+            }}
+          >
+            <span style={{ display: 'inline-flex' }}>
+              <Icon type={ch.icon} color={ch.color} size={14} />
+            </span>
+            <span style={{ fontSize: 11.5, color: 'rgba(255,255,255,0.72)', fontWeight: 500, whiteSpace: 'nowrap' }}>{ch.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
 }
 
 /* ── Central dashboard mock ── */
@@ -125,6 +178,9 @@ function DashboardMock({ leads, reply, bookings }: { leads: number; reply: numbe
           Weavy · Automation Dashboard
         </div>
       </div>
+
+      {/* Connected channels — the platform's intake surfaces */}
+      <ChannelBadges />
 
       {/* Stat row — animated values */}
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 12, padding: '20px 20px 0' }}>
@@ -373,10 +429,12 @@ export default function ConnectedSystems() {
             whileInView={{ opacity: 1, x: 0, scale: 0.97 }}
             viewport={{ once: true }}
             transition={{ duration: 0.9, delay: 0.18, ease: E }}
-            className="relative flex items-center justify-center"
-            style={{ minHeight: 640, transformOrigin: 'center center' }}
+            className="relative flex items-center justify-center cs-stage"
+            style={{ minHeight: 760, transformOrigin: 'center center' }}
           >
-            {/* Floating cards — all five with staggered pulse */}
+            {/* Floating cards — decorative depth effect; hidden on mobile
+                (see .cs-float-pulse media query) where there's no room for
+                them and they would otherwise sit on top of the dashboard. */}
             {FLOAT_CARDS.map((c, i) => (
               <FloatCard
                 key={c.label}

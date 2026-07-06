@@ -813,6 +813,14 @@ body::after {
 .cs-chart-shimmer {
   animation: cs-chart-shimmer 7s linear infinite;
 }
+/* Connected Systems — the floating status bubbles are a decorative depth
+   effect around the dashboard; on mobile there's no room for them without
+   covering the dashboard's own text, so hide them and let the dashboard
+   mock stand alone, cleanly stacked under the copy. */
+@media (max-width: 640px) {
+  .cs-float-pulse { display: none; }
+  .cs-stage { min-height: 0 !important; }
+}
 
 @keyframes ugc-badge-float {
   0%, 100% { transform: translateY(0px); }

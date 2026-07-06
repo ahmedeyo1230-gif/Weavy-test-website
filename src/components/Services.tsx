@@ -3125,13 +3125,36 @@ function ChatbotWorkflowSection() {
 // ─── Chatbot Integrations (Section 8) ────────────────────────────────────────
 
 const INTEGRATION_ROWS = [
-  { num: '01', title: 'Website Chat',        desc: 'Instant support directly on your website.' },
-  { num: '02', title: 'WhatsApp Business',   desc: 'Fast replies, FAQs, bookings, and customer conversations.' },
-  { num: '03', title: 'Instagram DM',        desc: 'Automated responses for enquiries, offers, and lead capture.' },
-  { num: '04', title: 'Facebook Messenger',  desc: 'Smart message flows for customers already engaging with your page.' },
-  { num: '05', title: 'CRM & Email Alerts',  desc: 'Send qualified leads, contact details, and enquiry summaries to your team.' },
-  { num: '06', title: 'Human Handover',      desc: 'Escalate important conversations when personal support is needed.' },
+  { num: '01', title: 'Website Chat',        desc: 'Instant support directly on your website.',                                icon: 'globe',    color: '#7DDCFF' },
+  { num: '02', title: 'WhatsApp Business',   desc: 'Fast replies, FAQs, bookings, and customer conversations.',                 icon: 'chat',     color: '#34D399' },
+  { num: '03', title: 'Instagram DM',        desc: 'Automated responses for enquiries, offers, and lead capture.',              icon: 'camera',   color: '#E879C9' },
+  { num: '04', title: 'Facebook Messenger',  desc: 'Smart message flows for customers already engaging with your page.',        icon: 'bubble2',  color: '#6BA9FF' },
+  { num: '05', title: 'CRM & Email Alerts',  desc: 'Send qualified leads, contact details, and enquiry summaries to your team.', icon: 'crm',      color: '#A78BFA' },
+  { num: '06', title: 'Human Handover',      desc: 'Escalate important conversations when personal support is needed.',        icon: 'handover', color: '#F0C56A' },
 ]
+
+function CBIIcon({ type, color }: { type: string; color: string }) {
+  const s = { width: 16, height: 16, fill: 'none', stroke: color, strokeWidth: 1.6, strokeLinecap: 'round' as const, strokeLinejoin: 'round' as const }
+  if (type === 'globe') return (
+    <svg viewBox="0 0 24 24" style={s}><circle cx="12" cy="12" r="9"/><path d="M12 3a14 14 0 010 18M12 3a14 14 0 000 18M3 12h18"/></svg>
+  )
+  if (type === 'chat') return (
+    <svg viewBox="0 0 24 24" style={s}><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+  )
+  if (type === 'camera') return (
+    <svg viewBox="0 0 24 24" style={s}><rect x="2" y="6" width="20" height="14" rx="3"/><circle cx="12" cy="13" r="3.6"/><path d="M8 6l1.4-2.4A1.6 1.6 0 0110.78 3h2.44a1.6 1.6 0 011.38.8L16 6"/></svg>
+  )
+  if (type === 'bubble2') return (
+    <svg viewBox="0 0 24 24" style={s}><path d="M12 3C6.5 3 2 6.9 2 11.7c0 2.7 1.45 5.13 3.73 6.73L5 22l3.98-2.1c.94.25 1.95.39 3.02.39 5.5 0 10-3.9 10-8.6S17.5 3 12 3z"/><path d="M9 12.2l2.1-2.3 2 1.6 2.1-2.3"/></svg>
+  )
+  if (type === 'crm') return (
+    <svg viewBox="0 0 24 24" style={s}><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+  )
+  if (type === 'handover') return (
+    <svg viewBox="0 0 24 24" style={s}><path d="M8 12a4 4 0 100-8 4 4 0 000 8z"/><path d="M2 21v-1a6 6 0 016-6h1"/><path d="M16 21v-1a4 4 0 00-2.3-3.63"/><path d="M14 3.13a4 4 0 010 7.75"/></svg>
+  )
+  return null
+}
 
 // Shared premium highlight — applied evenly to all six rows so none reads as
 // more "finished" than the rest; hover just nudges it slightly brighter.
@@ -3300,17 +3323,20 @@ function ChatbotIntegrationsSection() {
                     (e.currentTarget as HTMLDivElement).style.background = CBI_ROW_BG
                   }}
                 >
-                  {/* Number */}
-                  <span className="font-sans" style={{
-                    fontSize:      '0.58rem',
-                    letterSpacing: '0.2em',
-                    color:         'hsl(199 89% 60% / 0.45)',
-                    fontWeight:    400,
-                    paddingTop:    '0.18rem',
+                  {/* Channel icon badge */}
+                  <span style={{
+                    display:       'flex',
+                    alignItems:    'center',
+                    justifyContent: 'center',
+                    width:         '2.1rem',
+                    height:        '2.1rem',
+                    borderRadius:  '50%',
+                    background:    `${row.color}14`,
+                    border:        `1px solid ${row.color}38`,
+                    boxShadow:     `0 0 12px ${row.color}18`,
                     flexShrink:    0,
-                    width:         '1.8rem',
                   }}>
-                    {row.num}
+                    <CBIIcon type={row.icon} color={row.color} />
                   </span>
 
                   {/* Text */}
