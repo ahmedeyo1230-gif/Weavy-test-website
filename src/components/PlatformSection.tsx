@@ -170,7 +170,7 @@ export default function PlatformSection() {
             className="font-sans font-light"
             style={{ fontSize: 'clamp(2rem, 4.4vw, 3.2rem)', lineHeight: 1.14, letterSpacing: '-0.032em', color: '#F8FAFC' }}
           >
-            One AI{' '}
+            One{' '}
             <em style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400, color: '#7DDCFF' }}>
               operating system
             </em>{' '}
