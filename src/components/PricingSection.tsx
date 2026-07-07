@@ -97,7 +97,7 @@ function PlanCard({ plan, index }: { plan: typeof PLANS[number]; index: number }
         )}
       </div>
 
-      <p className="font-sans font-light" style={{ fontSize: '0.76rem', color: 'rgba(210,224,232,0.5)', marginBottom: '0.9rem' }}>
+      <p className="font-sans" style={{ fontSize: '0.76rem', fontWeight: 500, color: 'rgba(220, 232, 240, 0.76)', marginBottom: '0.9rem' }}>
         {plan.setup}
       </p>
 
