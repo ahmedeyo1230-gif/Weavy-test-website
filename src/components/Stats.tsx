@@ -123,9 +123,9 @@ export default function Stats() {
         >
           <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-y md:divide-y-0 divide-white/[0.06]">
             <StatCounter value={100} suffix="%"  label="Custom"          description="No templates. Every system is built around the business." delay={0}   pulseDelay={0}    />
-            <StatCounter value={3}                label="Service Pillars" description="Automation, websites, and creative content."               delay={0.2} pulseDelay={0.15} />
-            <StatCounter bigText="Fast Response"  label="Focus"           description="Designed to reduce missed enquiries."                       delay={0.4} pulseDelay={0.3}  />
-            <StatCounter bigText="Built to Scale"                         description="Systems made for growth from day one."                      delay={0.6} pulseDelay={0.45} />
+            <StatCounter value={3}                label="Service Pillars" description="Automation, websites, and creative content."               delay={0.2} pulseDelay={0.12} />
+            <StatCounter bigText="Fast Response"  label="Focus"           description="Designed to reduce missed enquiries."                       delay={0.4} pulseDelay={0.24} />
+            <StatCounter bigText="Built to Scale"                         description="Systems made for growth from day one."                      delay={0.6} pulseDelay={0.36} />
           </div>
         </div>
       </motion.div>

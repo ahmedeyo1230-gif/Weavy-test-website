@@ -883,14 +883,29 @@ body::after {
 
 /* ── Home stats/trust cards — subtle breathing pulse every 2s ────────────── */
 @keyframes stat-pulse {
-  0%, 100% { opacity: 1;    text-shadow: 0 0 0 rgba(125,220,255,0); }
-  50%      { opacity: 0.88; text-shadow: 0 0 16px rgba(125,220,255,0.22); }
+  0%, 100% {
+    opacity: 0.86;
+    filter: brightness(1);
+    text-shadow: none;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 1;
+    filter: brightness(1.08);
+    text-shadow: 0 0 18px rgba(125, 220, 255, 0.16);
+    transform: translateY(-2px);
+  }
 }
 .stat-pulse {
-  animation: stat-pulse 2s ease-in-out infinite;
+  animation: stat-pulse 2s cubic-bezier(0.16, 1, 0.3, 1) infinite;
 }
 @media (prefers-reduced-motion: reduce) {
-  .stat-pulse { animation: none; opacity: 1; text-shadow: none; }
+  .stat-pulse {
+    animation: none !important;
+    transform: none !important;
+    text-shadow: none !important;
+    opacity: 1;
+  }
 }
 
 /* ── Respect prefers-reduced-motion ─────────────────────────────────────── */
