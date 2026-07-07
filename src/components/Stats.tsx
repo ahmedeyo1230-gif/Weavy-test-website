@@ -43,7 +43,7 @@ function StatCounter({ value, suffix = '', prefix = '', bigText, label, descript
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-50px' }}
       transition={{ duration: reduceMotion ? 0.4 : 0.75, delay: reduceMotion ? 0 : delay, ease: [0.16, 1, 0.3, 1] }}
-      className="flex flex-col items-center text-center px-6 py-8 relative group"
+      className="flex flex-col items-center justify-center text-center px-6 py-12 relative group"
     >
       {/* Subtle top accent line that appears on hover */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-8 h-[1px] bg-gradient-to-r from-transparent via-accent-cyan/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
