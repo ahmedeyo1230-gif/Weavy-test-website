@@ -6,11 +6,12 @@ const E: [number, number, number, number] = [0.16, 1, 0.3, 1]
 const PLANS = [
   {
     name: 'Starter',
-    price: 'From £299',
+    price: '£249',
     period: '/month',
+    setup: 'Setup from £495',
     blurb: 'Best for small businesses starting with one AI channel.',
     features: [
-      'Website chatbot or WhatsApp AI',
+      'AI Chatbot (Website or WhatsApp)',
       'Basic lead capture',
       'Simple FAQs',
       'Basic booking or enquiry flow',
@@ -20,13 +21,14 @@ const PLANS = [
   },
   {
     name: 'Growth',
-    price: 'From £799',
+    price: '£599',
     period: '/month',
+    setup: 'Setup from £995',
     blurb: 'Best for businesses that need multiple channels and stronger automation.',
     features: [
-      'AI Voice Receptionist',
-      'WhatsApp AI',
-      'Instagram or Facebook AI',
+      'AI Voice Agent',
+      'WhatsApp Agent',
+      'Instagram & Facebook Messaging',
       'CRM & lead management',
       'Booking automation',
       'Monthly optimisation',
@@ -35,11 +37,12 @@ const PLANS = [
   },
   {
     name: 'Enterprise',
-    price: 'Custom pricing',
+    price: 'Custom quote',
     period: '',
+    setup: 'Setup custom',
     blurb: 'Best for larger businesses, multi-location teams, and advanced workflows.',
     features: [
-      'Full AI operating system',
+      'Full operating system',
       'Multiple channels',
       'Custom CRM workflows',
       'Analytics dashboard',
@@ -94,6 +97,10 @@ function PlanCard({ plan, index }: { plan: typeof PLANS[number]; index: number }
         )}
       </div>
 
+      <p className="font-sans font-light" style={{ fontSize: '0.76rem', color: 'rgba(210,224,232,0.5)', marginBottom: '0.9rem' }}>
+        {plan.setup}
+      </p>
+
       <p className="font-sans font-light" style={{ fontSize: '0.85rem', lineHeight: 1.65, color: 'rgba(210,224,232,0.6)', marginBottom: '1.5rem' }}>
         {plan.blurb}
       </p>
@@ -131,7 +138,7 @@ function PlanCard({ plan, index }: { plan: typeof PLANS[number]; index: number }
         onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(-2px)' }}
         onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(0)' }}
       >
-        Book a Platform Demo
+        Book a Free Demo
       </a>
     </motion.div>
   )
@@ -150,11 +157,32 @@ export default function PricingSection() {
 
       <div className="relative z-10 max-w-6xl mx-auto px-6 sm:px-10">
         <div className="text-center max-w-2xl mx-auto" style={{ marginBottom: 'clamp(3rem, 6vw, 4rem)' }}>
+          <motion.span
+            initial={{ opacity: 0, y: 8 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, ease: E }}
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              fontSize: '0.6rem',
+              letterSpacing: '0.2em',
+              textTransform: 'uppercase',
+              color: 'rgba(191, 239, 255, 0.72)',
+              border: '1px solid rgba(125,220,255,0.28)',
+              borderRadius: 999,
+              padding: '0.35rem 0.85rem',
+              marginBottom: '1rem',
+            }}
+          >
+            Managed AI Platform
+          </motion.span>
+
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.55, ease: E }}
+            transition={{ duration: 0.55, delay: 0.05, ease: E }}
             style={{ fontSize: '0.67rem', letterSpacing: '0.32em', textTransform: 'uppercase', color: 'rgba(125,220,255,0.68)', marginBottom: '1.3rem' }}
           >
             Monthly Platform Plans
@@ -201,7 +229,7 @@ export default function PricingSection() {
           className="font-sans font-light text-center"
           style={{ fontSize: '0.82rem', color: 'rgba(210,224,232,0.5)', marginTop: 'clamp(2rem, 4vw, 2.8rem)' }}
         >
-          Setup starts from £750 depending on the number of channels, integrations, and workflow complexity.
+          One-time setup fee applies. Monthly subscription covers hosting, optimisation, updates and support.
         </motion.p>
       </div>
     </section>
