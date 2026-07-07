@@ -9,12 +9,13 @@ interface StatProps {
   label?: string
   description: string
   delay?: number
+  pulseDelay?: number
 }
 
 // Some cards are a genuine counted stat (value animates 0 -> N); others are a
 // short capability statement with no real number — those pass `bigText`
 // instead and just render it statically in the same big/prominent slot.
-function StatCounter({ value, suffix = '', prefix = '', bigText, label, description, delay = 0 }: StatProps) {
+function StatCounter({ value, suffix = '', prefix = '', bigText, label, description, delay = 0, pulseDelay = 0 }: StatProps) {
   const nodeRef = useRef<HTMLSpanElement>(null)
   const inView  = useInView(nodeRef, { once: true, margin: '-50px' })
   const reduceMotion = useReducedMotion()
@@ -48,7 +49,10 @@ function StatCounter({ value, suffix = '', prefix = '', bigText, label, descript
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-8 h-[1px] bg-gradient-to-r from-transparent via-accent-cyan/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
       {value !== undefined ? (
-        <div className="text-5xl md:text-6xl lg:text-7xl font-light tracking-tighter flex items-start text-primary mb-3">
+        <div
+          className="stat-pulse text-5xl md:text-6xl lg:text-7xl font-light tracking-tighter flex items-start text-primary mb-3"
+          style={{ animationDelay: `${pulseDelay}s` }}
+        >
           {prefix && (
             <span className="font-serif italic text-muted text-3xl md:text-4xl mt-2 mr-0.5">{prefix}</span>
           )}
@@ -58,7 +62,10 @@ function StatCounter({ value, suffix = '', prefix = '', bigText, label, descript
           )}
         </div>
       ) : (
-        <p className="text-3xl md:text-4xl lg:text-5xl font-light tracking-tight text-primary mb-3">
+        <p
+          className="stat-pulse text-3xl md:text-4xl lg:text-5xl font-light tracking-tight text-primary mb-3"
+          style={{ animationDelay: `${pulseDelay}s` }}
+        >
           {bigText}
         </p>
       )}
@@ -102,7 +109,7 @@ export default function Stats() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-        className="max-w-5xl mx-auto relative"
+        className="max-w-6xl mx-auto relative"
       >
         {/* Glass card */}
         <div
@@ -115,10 +122,10 @@ export default function Stats() {
           }}
         >
           <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-y md:divide-y-0 divide-white/[0.06]">
-            <StatCounter value={100} suffix="%"  label="Custom"          description="No templates. Every system is built around the business." delay={0}    />
-            <StatCounter value={3}                label="Service Pillars" description="Automation, websites, and creative content."               delay={0.2}  />
-            <StatCounter bigText="Fast Response"  label="Focus"           description="Designed to reduce missed enquiries."                       delay={0.4}  />
-            <StatCounter bigText="Built to Scale"                         description="Systems made for growth from day one."                      delay={0.6}  />
+            <StatCounter value={100} suffix="%"  label="Custom"          description="No templates. Every system is built around the business." delay={0}   pulseDelay={0}    />
+            <StatCounter value={3}                label="Service Pillars" description="Automation, websites, and creative content."               delay={0.2} pulseDelay={0.15} />
+            <StatCounter bigText="Fast Response"  label="Focus"           description="Designed to reduce missed enquiries."                       delay={0.4} pulseDelay={0.3}  />
+            <StatCounter bigText="Built to Scale"                         description="Systems made for growth from day one."                      delay={0.6} pulseDelay={0.45} />
           </div>
         </div>
       </motion.div>
