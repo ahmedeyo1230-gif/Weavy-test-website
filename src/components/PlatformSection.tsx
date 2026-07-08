@@ -122,7 +122,7 @@ function ModuleCard({ mod, index }: { mod: typeof MODULES[number]; index: number
       <h3 className="font-sans font-light" style={{ fontSize: '1rem', color: 'rgba(248,250,252,0.92)', marginBottom: '0.5rem', letterSpacing: '-0.01em' }}>
         {mod.title}
       </h3>
-      <p className="font-sans font-light" style={{ fontSize: '0.82rem', lineHeight: 1.65, color: 'rgba(210, 224, 232, 0.70)' }}>
+      <p className="font-sans font-light" style={{ fontSize: '0.82rem', lineHeight: 1.65, color: 'rgba(210, 224, 232, 0.72)' }}>
         {mod.desc}
       </p>
     </motion.div>
@@ -183,7 +183,7 @@ export default function PlatformSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.65, delay: 0.14, ease: E }}
             className="font-sans font-light"
-            style={{ fontSize: 'clamp(0.92rem, 1.5vw, 1.05rem)', lineHeight: 1.8, color: 'rgba(220, 232, 240, 0.74)', marginTop: '1.3rem' }}
+            style={{ fontSize: 'clamp(0.92rem, 1.5vw, 1.05rem)', lineHeight: 1.8, color: 'rgba(220, 232, 240, 0.76)', marginTop: '1.3rem' }}
           >
             Instead of disconnected tools, Weavy connects your customer channels, automations,
             bookings, and lead management into one scalable system built for SMEs.
