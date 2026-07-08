@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { motion } from 'framer-motion'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Globe, Bot, BarChart2, Sparkles, Video, Settings2, Plug, Clock, UserCheck, CalendarDays, Zap, Camera, Target, Layers } from 'lucide-react'
@@ -2216,8 +2217,20 @@ function BespokeContactFooter() {
           </div>
         </div>
 
+        {/* Ambient glow behind heading */}
+        <div aria-hidden="true" style={{
+          position: 'absolute', top: '-4rem', left: '50%', transform: 'translateX(-50%)',
+          width: 'min(640px, 90vw)', height: '360px', zIndex: -1,
+          background: 'radial-gradient(ellipse 60% 60% at 50% 50%, rgba(125,220,255,0.14) 0%, rgba(183,174,255,0.07) 45%, transparent 75%)',
+          filter: 'blur(30px)', pointerEvents: 'none',
+        }} />
+
         {/* Main heading */}
-        <h2
+        <motion.h2
+          initial={{ opacity: 0, y: 18 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           className="font-sans font-light text-text text-center mb-5 px-6"
           style={{
             fontSize: 'clamp(2.4rem, 5.8vw, 4.4rem)',
@@ -2225,15 +2238,24 @@ function BespokeContactFooter() {
             letterSpacing: '-0.04em',
           }}
         >
-          Let&apos;s create something{' '}
-          <em style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400, color: 'hsl(0 0% 72%)' }}>
-            amazing
+          Ready to{' '}
+          <em style={{
+            fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400,
+            background: 'linear-gradient(90deg, #FFFFFF 0%, #7DDCFF 55%, #B7AEFF 100%)',
+            WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
+            textShadow: '0 0 24px rgba(125, 220, 255, 0.16)',
+          }}>
+            automate
           </em>{' '}
-          together
-        </h2>
+          your business?
+        </motion.h2>
 
         {/* Subtext */}
-        <p
+        <motion.p
+          initial={{ opacity: 0, y: 14 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           className="font-sans font-light text-center mb-14 px-6"
           style={{
             fontSize: 'clamp(0.84rem, 1.35vw, 0.96rem)',
@@ -2242,18 +2264,33 @@ function BespokeContactFooter() {
             maxWidth: '34rem',
           }}
         >
-          Have a project in mind? I&apos;d love to hear about it. Let&apos;s discuss how we can work together.
-        </p>
+          Book a free demo and see how Weavy can manage your calls, messages, bookings, and
+          leads from one <span style={{ color: 'rgba(191, 239, 255, 0.9)', fontWeight: 500 }}>managed AI platform</span>.
+        </motion.p>
 
         {/* ── CTA Email button — premium gradient hover ring ── */}
+        <motion.div
+          initial={{ opacity: 0, y: 14 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.18, ease: [0.16, 1, 0.3, 1] }}
+          className="relative mb-24"
+          style={{ display: 'inline-block' }}
+        >
+        <div aria-hidden="true" className="cta-pill-glow" style={{
+          position: 'absolute', inset: '-10px', borderRadius: 999,
+          background: 'radial-gradient(ellipse 70% 70% at 50% 50%, rgba(125,220,255,0.28) 0%, transparent 70%)',
+          filter: 'blur(10px)', pointerEvents: 'none', zIndex: 0,
+        }} />
         <a
           href="mailto:hello@weavyautomation.com"
           onMouseEnter={() => setCtaHover(true)}
           onMouseLeave={() => setCtaHover(false)}
-          className="relative mb-24 rounded-full"
+          className="relative rounded-full"
           style={{
             padding: '2px',
             display: 'inline-block',
+            zIndex: 1,
             background: ctaHover
               ? 'linear-gradient(135deg, hsl(199 89% 65%) 0%, hsl(213 90% 55%) 40%, hsl(240 80% 68%) 100%)'
               : 'linear-gradient(135deg, hsl(0 0% 22%) 0%, hsl(0 0% 14%) 100%)',
@@ -2307,6 +2344,7 @@ function BespokeContactFooter() {
             </span>
           </span>
         </a>
+        </motion.div>
 
         {/* ── Footer bar ── */}
         <div
@@ -7852,31 +7890,69 @@ function GraphicDesignContactFooter() {
           </div>
         </div>
 
+        {/* Ambient glow behind heading */}
+        <div aria-hidden="true" style={{
+          position: 'absolute', top: '-4rem', left: '50%', transform: 'translateX(-50%)',
+          width: 'min(640px, 90vw)', height: '360px', zIndex: -1,
+          background: 'radial-gradient(ellipse 60% 60% at 50% 50%, rgba(125,220,255,0.14) 0%, rgba(183,174,255,0.07) 45%, transparent 75%)',
+          filter: 'blur(30px)', pointerEvents: 'none',
+        }} />
+
         {/* Heading */}
-        <h2 className="font-sans font-light text-text text-center mb-5 px-6"
+        <motion.h2
+          initial={{ opacity: 0, y: 18 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="font-sans font-light text-text text-center mb-5 px-6"
           style={{ fontSize: 'clamp(2.4rem, 5.8vw, 4.4rem)', lineHeight: 1.06, letterSpacing: '-0.04em' }}>
-          Let&apos;s create something{' '}
-          <em style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400, color: 'hsl(0 0% 72%)' }}>
-            amazing
+          Ready to{' '}
+          <em style={{
+            fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400,
+            background: 'linear-gradient(90deg, #FFFFFF 0%, #7DDCFF 55%, #B7AEFF 100%)',
+            WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
+            textShadow: '0 0 24px rgba(125, 220, 255, 0.16)',
+          }}>
+            automate
           </em>{' '}
-          together
-        </h2>
+          your business?
+        </motion.h2>
 
         {/* Subtext */}
-        <p className="font-sans font-light text-center mb-14 px-6"
+        <motion.p
+          initial={{ opacity: 0, y: 14 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+          className="font-sans font-light text-center mb-14 px-6"
           style={{ fontSize: 'clamp(0.84rem, 1.35vw, 0.96rem)', lineHeight: 1.9, color: '#F2F8FC', maxWidth: '34rem' }}>
-          Have a project in mind? We&apos;d love to hear about it. Let&apos;s discuss how we can bring your vision to life.
-        </p>
+          Book a free demo and see how Weavy can manage your calls, messages, bookings, and
+          leads from one <span style={{ color: 'rgba(191, 239, 255, 0.9)', fontWeight: 500 }}>managed AI platform</span>.
+        </motion.p>
 
         {/* ── CTA Email button ── */}
+        <motion.div
+          initial={{ opacity: 0, y: 14 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.18, ease: [0.16, 1, 0.3, 1] }}
+          className="relative mb-24"
+          style={{ display: 'inline-block' }}
+        >
+        <div aria-hidden="true" className="cta-pill-glow" style={{
+          position: 'absolute', inset: '-10px', borderRadius: 999,
+          background: 'radial-gradient(ellipse 70% 70% at 50% 50%, rgba(125,220,255,0.28) 0%, transparent 70%)',
+          filter: 'blur(10px)', pointerEvents: 'none', zIndex: 0,
+        }} />
         <a
           href="mailto:hello@weavyautomation.com"
           onMouseEnter={() => setCtaHover(true)}
           onMouseLeave={() => setCtaHover(false)}
-          className="relative mb-24 rounded-full"
+          className="relative rounded-full"
           style={{
             padding: '2px',
             display: 'inline-block',
+            zIndex: 1,
             background: ctaHover
               ? 'linear-gradient(135deg, hsl(38 90% 65%) 0%, hsl(25 95% 58%) 40%, hsl(14 90% 62%) 100%)'
               : 'linear-gradient(135deg, hsl(0 0% 22%) 0%, hsl(0 0% 14%) 100%)',
@@ -7912,6 +7988,7 @@ function GraphicDesignContactFooter() {
             }}>→</span>
           </span>
         </a>
+        </motion.div>
 
         {/* ── Footer bar ── */}
         <div className="w-full px-6 sm:px-10" style={{
@@ -10330,7 +10407,16 @@ function UGCContactFooter() {
           </div>
         </div>
 
-        {/* Main heading */}
+        {/* Ambient glow behind heading */}
+        <div aria-hidden="true" style={{
+          position: 'absolute', top: '-4rem', left: '50%', transform: 'translateX(-50%)',
+          width: 'min(640px, 90vw)', height: '360px', zIndex: -1,
+          background: 'radial-gradient(ellipse 60% 60% at 50% 50%, rgba(125,220,255,0.14) 0%, rgba(183,174,255,0.07) 45%, transparent 75%)',
+          filter: 'blur(30px)', pointerEvents: 'none',
+        }} />
+
+        {/* Main heading — kept as a plain element (no motion wrapper) since
+            .ugccf-heading is driven by this component's own GSAP timeline. */}
         <h2
           className="ugccf-heading font-sans font-light text-text text-center mb-5 px-6"
           style={{
@@ -10339,14 +10425,19 @@ function UGCContactFooter() {
             letterSpacing: '-0.04em',
           }}
         >
-          Let&apos;s create something{' '}
-          <em style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400, color: 'hsl(0 0% 72%)' }}>
-            amazing
+          Ready to{' '}
+          <em style={{
+            fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400,
+            background: 'linear-gradient(90deg, #FFFFFF 0%, #7DDCFF 55%, #B7AEFF 100%)',
+            WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
+            textShadow: '0 0 24px rgba(125, 220, 255, 0.16)',
+          }}>
+            automate
           </em>{' '}
-          together
+          your business?
         </h2>
 
-        {/* Subtext */}
+        {/* Subtext — same GSAP-driven note applies */}
         <p
           className="ugccf-sub font-sans font-light text-center mb-14 px-6"
           style={{
@@ -10356,18 +10447,28 @@ function UGCContactFooter() {
             maxWidth: '34rem',
           }}
         >
-          Have a project in mind? I&apos;d love to hear about it. Let&apos;s discuss how we can work together.
+          Book a free demo and see how Weavy can manage your calls, messages, bookings, and
+          leads from one <span style={{ color: 'rgba(191, 239, 255, 0.9)', fontWeight: 500 }}>managed AI platform</span>.
         </p>
 
-        {/* ── CTA Email button — premium gradient hover ring ── */}
+        {/* ── CTA Email button — premium gradient hover ring, plus a slow
+            ambient glow ring; the anchor itself stays untouched by the new
+            wrapper so the existing .ugccf-cta GSAP animation still targets it. ── */}
+        <div className="relative" style={{ display: 'inline-block', marginBottom: '6rem' }}>
+        <div aria-hidden="true" className="cta-pill-glow" style={{
+          position: 'absolute', inset: '-10px', borderRadius: 999,
+          background: 'radial-gradient(ellipse 70% 70% at 50% 50%, rgba(125,220,255,0.28) 0%, transparent 70%)',
+          filter: 'blur(10px)', pointerEvents: 'none', zIndex: 0,
+        }} />
         <a
           href="mailto:hello@weavyautomation.com"
           onMouseEnter={() => setCtaHover(true)}
           onMouseLeave={() => setCtaHover(false)}
-          className="ugccf-cta relative mb-24 rounded-full"
+          className="ugccf-cta relative rounded-full"
           style={{
             padding: '2px',
             display: 'inline-block',
+            zIndex: 1,
             background: ctaHover
               ? 'linear-gradient(135deg, hsl(199 89% 65%) 0%, hsl(213 90% 55%) 40%, hsl(240 80% 68%) 100%)'
               : 'linear-gradient(135deg, hsl(0 0% 22%) 0%, hsl(0 0% 14%) 100%)',
@@ -10420,6 +10521,7 @@ function UGCContactFooter() {
             </span>
           </span>
         </a>
+        </div>
 
         {/* ── Footer bar (responsive) ── */}
         <div className="w-full px-6 sm:px-10" style={{ maxWidth: '72rem', margin: '0 auto', borderTop: '1px solid hsl(0 0% 100% / 0.06)', paddingTop: '1.75rem' }}>

@@ -908,6 +908,19 @@ body::after {
   }
 }
 
+/* ── Final CTA / footer contact section — soft ambient glow around the email
+   pill, a slow calm pulse (not tied to hover) so the section feels alive. ── */
+@keyframes cta-pill-glow {
+  0%, 100% { opacity: 0.32; transform: scale(1); }
+  50%      { opacity: 0.6;  transform: scale(1.05); }
+}
+.cta-pill-glow {
+  animation: cta-pill-glow 3.2s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .cta-pill-glow { animation: none; opacity: 0.4; transform: none; }
+}
+
 /* ── Respect prefers-reduced-motion ─────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   *,
