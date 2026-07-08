@@ -378,12 +378,26 @@ export default function Hero() {
             <motion.h1
               id="hero-heading"
               variants={itemVariants}
-              className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-light tracking-tighter leading-[1.1] mb-8 max-w-4xl text-primary relative z-10"
+              className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-light tracking-tighter leading-[1.1] mb-8 max-w-4xl relative z-10"
             >
-              AI Automation{' '}
-              <em className="font-serif italic">Platform</em>
+              <span style={{ color: '#F4F8FA' }}>AI Automation</span>{' '}
+              <em
+                className="font-serif italic"
+                style={{
+                  background: 'linear-gradient(90deg, #FFFFFF 0%, #7DDCFF 48%, #B7AEFF 100%)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
+                  color: 'transparent',
+                  textShadow: '0 0 24px rgba(125, 220, 255, 0.16)',
+                }}
+              >
+                Platform
+              </em>
               <br className="hidden sm:block" />
-              {' '}for growing businesses
+              <span style={{ color: 'rgba(235, 245, 255, 0.88)' }}>
+                {' '}for growing businesses
+              </span>
             </motion.h1>
           </div>
 
