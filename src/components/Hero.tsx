@@ -120,8 +120,8 @@ function HeroVideo() {
       className="absolute top-1/2 left-1/2 min-w-full min-h-full object-cover pointer-events-none"
       style={{
         transform: 'translate(-50%, -50%)',
-        opacity: 0.88,
-        filter: 'brightness(1.06) contrast(1.38) saturate(1.15)',
+        opacity: 0.94,
+        filter: 'brightness(1.16) contrast(1.42) saturate(1.18)',
       }}
     />
   )
@@ -338,7 +338,7 @@ export default function Hero() {
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
           <div className="absolute top-1/4 left-1/4 w-[520px] h-[520px] bg-accent-cyan/[0.09] rounded-full blur-[130px]" />
           <div className="absolute top-[60%] left-[30%] w-[400px] h-[400px] rounded-full blur-[110px]" style={{ background: 'hsl(270 50% 20% / 0.06)' }} />
-          <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse at center, transparent 0%, rgba(1,7,9,0.38) 62%, #010709 90%)' }} />
+          <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse at center, transparent 0%, rgba(1,7,9,0.20) 62%, rgba(1,7,9,0.50) 90%)' }} />
         </div>
 
         {/* Content */}
@@ -356,7 +356,7 @@ export default function Hero() {
             variants={itemVariants}
             className="hero-eyebrow mb-6 mt-6 font-medium"
           >
-            <span className="uppercase">AI Automation Platform</span>
+            <span className="uppercase">Managed AI Platform</span>
           </motion.p>
 
           <div className="relative">
