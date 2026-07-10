@@ -247,7 +247,7 @@ export default function Footer() {
               fontSize: '0.68rem',
               letterSpacing: '0.32em',
               textTransform: 'uppercase',
-              color: '#94A3B8',
+              color: 'rgba(191, 239, 255, 0.72)',
               marginBottom: '2rem',
             }}
           >
@@ -260,7 +260,7 @@ export default function Footer() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
-            className="font-sans font-light text-text"
+            className="font-sans font-light"
             style={{
               position: 'relative',
               zIndex: 1,
@@ -270,11 +270,18 @@ export default function Footer() {
               whiteSpace: 'normal',
               maxWidth: '100%',
               marginBottom: '1.25rem',
+              color: '#F4F8FA',
               textShadow: '0 2px 24px rgba(0,0,0,0.85)',
             }}
           >
             Ready to turn your business into an{' '}
-            <em style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400 }}>
+            <em style={{
+              fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400,
+              background: 'linear-gradient(90deg, #FFFFFF 0%, #7DDCFF 45%, #B7AEFF 100%)',
+              WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
+              color: 'transparent',
+              textShadow: '0 0 24px rgba(125, 220, 255, 0.16)',
+            }}>
               AI-powered operating system?
             </em>
           </motion.h2>
@@ -291,7 +298,7 @@ export default function Footer() {
               zIndex: 1,
               fontSize: 'clamp(0.88rem, 1.4vw, 1rem)',
               lineHeight: 1.8,
-              color: '#CBD5E1',
+              color: 'rgba(220, 232, 240, 0.78)',
               fontWeight: 500,
               maxWidth: '34rem',
               marginBottom: '2.5rem',
