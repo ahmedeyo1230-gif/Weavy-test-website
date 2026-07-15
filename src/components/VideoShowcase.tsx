@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 
 const E: [number, number, number, number] = [0.16, 1, 0.3, 1]
-const videoSrc = "https://pub-731d5e7deddb4fce94cef7393920d429.r2.dev/Video2_weavy.mp4"
+const videoSrc = "/brand_assets/homepage-presenter-enhanced.mp4"
 
 const PARTICLES = [
   { top: '12%', left: '6%',  delay: 0    },
@@ -51,6 +51,12 @@ export default function VideoShowcase() {
     observer.observe(video)
     return () => observer.disconnect()
   }, [])
+
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video) return
+    video.volume = 0.45
+  }, [srcReady])
 
   return (
     <section

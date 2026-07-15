@@ -39,4 +39,5 @@ temporary screenshots/
 **/*.webm
 !public/brand_assets/hero_section_chatbot.mp4
 !public/brand_assets/chatbott_web.mp4
+!public/brand_assets/homepage-presenter-enhanced.mp4
 .vercel
