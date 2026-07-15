@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState, useCallback } from 'react'
-import { motion } from 'framer-motion'
-import gsap from 'gsap'
+import Footer from './Footer'
 
 
 // ─── Types ─────────────────────────────────────────────────────────────────────
@@ -324,290 +323,6 @@ function ProjectCard({
         </h3>
       </div>
     </div>
-  )
-}
-
-// ─── Contact / Footer ─────────────────────────────────────────────────────────
-
-const WCF_HLS = 'https://stream.mux.com/Aa02T7oM1wH5Mk5EEVDYhbZ1ChcdhRsS2m1NYyx4Ua1g.m3u8'
-const WCF_MARQUEE = 'BUILDING THE FUTURE \u2022 '
-
-function WcfIconX() {
-  return (
-    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.74l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.91-5.622Zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-    </svg>
-  )
-}
-function WcfIconLinkedIn() {
-  return (
-    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-    </svg>
-  )
-}
-function WcfIconDribbble() {
-  return (
-    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <path d="M12 0C5.374 0 0 5.373 0 12c0 6.628 5.374 12 12 12 6.628 0 12-5.372 12-12 0-6.627-5.372-12-12-12zm7.369 5.633a10.004 10.004 0 012.187 5.946c-.32-.066-3.52-.712-6.742-.308-.075-.187-.148-.376-.228-.565-.208-.499-.434-1-.669-1.495 3.578-1.458 5.21-3.554 5.452-3.578zM12 2.056a9.955 9.955 0 016.546 2.44c-.196.197-1.673 2.148-5.133 3.444-1.603-2.945-3.381-5.368-3.654-5.752A10.028 10.028 0 0112 2.056zm-4.057.862c.263.369 2.01 2.801 3.633 5.686-4.584 1.218-8.632 1.196-9.056 1.187A10.015 10.015 0 017.943 2.918zM2.048 12.037l.014-.344c.408.01 5.146.041 10.063-1.395.28.547.545 1.104.793 1.664l-.35.097c-5.087 1.647-7.783 6.146-7.99 6.494A9.96 9.96 0 012.048 12.037zm9.952 9.914a9.975 9.975 0 01-6.054-2.043c.165-.318 2.039-3.95 7.625-5.912l.053-.019c1.362 3.534 1.921 6.499 2.066 7.352a9.963 9.963 0 01-3.69.622zm5.624-1.508c-.098-.585-.614-3.414-1.879-6.895 3.024-.484 5.669.311 5.993.416a10.02 10.02 0 01-4.114 6.479z"/>
-    </svg>
-  )
-}
-function WcfIconGitHub() {
-  return (
-    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
-    </svg>
-  )
-}
-
-const WCF_SOCIALS = [
-  { label: 'Twitter',  href: '#', Icon: WcfIconX        },
-  { label: 'LinkedIn', href: '#', Icon: WcfIconLinkedIn  },
-  { label: 'Dribbble', href: '#', Icon: WcfIconDribbble  },
-  { label: 'GitHub',   href: '#', Icon: WcfIconGitHub    },
-]
-
-function WorkContactFooter() {
-  const marqueeRef   = useRef<HTMLDivElement>(null)
-  const videoRef     = useRef<HTMLVideoElement>(null)
-  const containerRef = useRef<HTMLElement>(null)
-  const [ctaHover, setCtaHover] = useState(false)
-
-  // ── HLS video — only initialise when the footer scrolls into view ────────────
-  useEffect(() => {
-    const video     = videoRef.current
-    const container = containerRef.current
-    if (!video || !container) return
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-
-    let cleanup: (() => void) | undefined
-    let initialized = false
-
-    const init = () => {
-      if (initialized) return
-      initialized = true
-      import('hls.js').then(({ default: Hls }) => {
-        if (!videoRef.current) return
-        if (Hls.isSupported()) {
-          const hls = new Hls({ startLevel: -1, maxBufferLength: 20, maxMaxBufferLength: 40 })
-          hls.loadSource(WCF_HLS)
-          hls.attachMedia(video)
-          hls.on(Hls.Events.MANIFEST_PARSED, () => { video.play().catch(() => {}) })
-          cleanup = () => hls.destroy()
-        } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-          video.src = WCF_HLS
-          video.play().catch(() => {})
-        }
-      })
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => { if (entries[0].isIntersecting) { init(); observer.disconnect() } },
-      { rootMargin: '200px' }
-    )
-    observer.observe(container)
-    return () => { observer.disconnect(); cleanup?.() }
-  }, [])
-
-  // ── GSAP marquee ─────────────────────────────────────────────────────────────
-  useEffect(() => {
-    const el = marqueeRef.current
-    if (!el) return
-    const tween = gsap.to(el, { xPercent: -50, duration: 40, ease: 'none', repeat: -1 })
-    return () => { tween.kill() }
-  }, [])
-
-  return (
-    <section ref={containerRef} className="relative bg-bg pt-16 md:pt-20 pb-8 md:pb-12 overflow-hidden footer-bottom-bar">
-
-      {/* ── Video background ── */}
-      <div className="absolute inset-0" aria-hidden="true" style={{ zIndex: 0 }}>
-        <video
-          ref={videoRef}
-          autoPlay muted loop playsInline aria-hidden="true"
-          className="scale-y-[-1]"
-          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-        />
-        <div className="absolute inset-0 bg-black/35 lg:bg-black/60" />
-        <div className="absolute top-0 left-0 right-0 pointer-events-none" style={{ height: '160px', background: 'linear-gradient(to bottom, #010709 0%, transparent 100%)', zIndex: 2 }} />
-        <div className="absolute bottom-0 left-0 right-0 pointer-events-none" style={{ height: '200px', background: 'linear-gradient(to top, #010709 0%, transparent 100%)', zIndex: 2 }} />
-      </div>
-
-      {/* ── Content ── */}
-      <div className="relative flex flex-col items-center" style={{ zIndex: 10 }}>
-
-        {/* Eyebrow */}
-        <p className="font-sans font-light uppercase mb-10" style={{ fontSize: '0.68rem', letterSpacing: '0.28em', color: 'hsl(199 89% 68%)' }}>
-          Get in touch
-        </p>
-
-        {/* Marquee */}
-        <div
-          className="w-full overflow-hidden mb-16"
-          aria-hidden="true"
-          style={{ borderTop: '1px solid rgba(125, 220, 255, 0.10)', borderBottom: '1px solid rgba(125, 220, 255, 0.10)', padding: '1rem 0' }}
-        >
-          <div ref={marqueeRef} className="flex whitespace-nowrap will-change-transform">
-            {Array.from({ length: 20 }).map((_, i) => (
-              <span
-                key={i}
-                className="inline-block"
-                style={{
-                  fontFamily: "'Instrument Serif', 'Didot', Georgia, serif",
-                  fontStyle: 'italic',
-                  fontSize: 'clamp(1.15rem, 2.4vw, 1.75rem)',
-                  fontWeight: 400,
-                  letterSpacing: '0.08em',
-                  color: 'hsl(0 0% 100% / 0.15)',
-                  padding: '0 2.5rem',
-                }}
-              >
-                {WCF_MARQUEE}
-              </span>
-            ))}
-          </div>
-        </div>
-
-        {/* Ambient glow behind heading */}
-        <div aria-hidden="true" style={{
-          position: 'absolute', top: '-4rem', left: '50%', transform: 'translateX(-50%)',
-          width: 'min(640px, 90vw)', height: '360px', zIndex: -1,
-          background: 'radial-gradient(ellipse 60% 60% at 50% 50%, rgba(125,220,255,0.14) 0%, rgba(183,174,255,0.07) 45%, transparent 75%)',
-          filter: 'blur(30px)', pointerEvents: 'none',
-        }} />
-
-        {/* Heading */}
-        <motion.h2
-          initial={{ opacity: 0, y: 18 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="font-sans font-light text-text text-center mb-5 px-6"
-          style={{ fontSize: 'clamp(2.4rem, 5.8vw, 4.4rem)', lineHeight: 1.06, letterSpacing: '-0.04em' }}
-        >
-          Ready to{' '}
-          <em style={{
-            fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400,
-            background: 'linear-gradient(90deg, #FFFFFF 0%, #7DDCFF 55%, #B7AEFF 100%)',
-            WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
-            textShadow: '0 0 24px rgba(125, 220, 255, 0.16)',
-          }}>automate</em>{' '}
-          your business?
-        </motion.h2>
-
-        {/* Subtext */}
-        <motion.p
-          initial={{ opacity: 0, y: 14 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="font-sans font-light text-center mb-14 px-6"
-          style={{ fontSize: 'clamp(0.84rem, 1.35vw, 0.96rem)', lineHeight: 1.9, color: 'rgba(210, 224, 232, 0.70)', maxWidth: '34rem' }}
-        >
-          Book a free demo and see how Weavy can manage your calls, messages, bookings, and
-          leads from one <span style={{ color: 'rgba(191, 239, 255, 0.9)', fontWeight: 500 }}>managed AI platform</span>.
-        </motion.p>
-
-        {/* CTA button */}
-        <motion.div
-          initial={{ opacity: 0, y: 14 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, delay: 0.18, ease: [0.16, 1, 0.3, 1] }}
-          className="relative mb-24"
-          style={{ display: 'inline-block' }}
-        >
-        <div aria-hidden="true" className="cta-pill-glow" style={{
-          position: 'absolute', inset: '-10px', borderRadius: 999,
-          background: 'radial-gradient(ellipse 70% 70% at 50% 50%, rgba(125,220,255,0.28) 0%, transparent 70%)',
-          filter: 'blur(10px)', pointerEvents: 'none', zIndex: 0,
-        }} />
-        <a
-          href="mailto:hello@weavyautomation.com"
-          onMouseEnter={() => setCtaHover(true)}
-          onMouseLeave={() => setCtaHover(false)}
-          className="relative rounded-full"
-          style={{
-            padding: '2px',
-            display: 'inline-block',
-            zIndex: 1,
-            background: ctaHover
-              ? 'linear-gradient(135deg, hsl(199 89% 65%) 0%, hsl(213 90% 55%) 40%, hsl(240 80% 68%) 100%)'
-              : 'linear-gradient(135deg, hsl(0 0% 22%) 0%, hsl(0 0% 14%) 100%)',
-            boxShadow: ctaHover
-              ? '0 0 0 4px hsl(199 89% 60% / 0.12), 0 0 40px -6px hsl(199 89% 60% / 0.5), 0 8px 32px -8px hsl(0 0% 0% / 0.7)'
-              : '0 4px 28px -8px hsl(0 0% 0% / 0.65)',
-            transition: 'box-shadow 0.35s ease, background 0.35s ease',
-          }}
-        >
-          <span
-            className="flex items-center gap-3 rounded-full font-sans font-light"
-            style={{
-              padding: '1rem 2.4rem',
-              background: ctaHover ? 'hsl(205 80% 7%)' : 'hsl(0 0% 5%)',
-              fontSize: 'clamp(0.9rem, 1.4vw, 1.05rem)',
-              letterSpacing: '0.01em',
-              color: ctaHover ? 'hsl(199 89% 80%)' : 'hsl(0 0% 80%)',
-              transition: 'color 0.35s ease, background 0.35s ease',
-              whiteSpace: 'nowrap',
-            }}
-          >
-            <span style={{ width: 7, height: 7, borderRadius: '50%', flexShrink: 0, background: ctaHover ? 'hsl(199 89% 65%)' : 'hsl(0 0% 32%)', boxShadow: ctaHover ? '0 0 8px hsl(199 89% 65% / 0.8)' : 'none', transition: 'all 0.35s ease' }} />
-            hello@weavyautomation.com
-            <span aria-hidden="true" style={{ fontSize: '1em', opacity: ctaHover ? 1 : 0.35, transform: ctaHover ? 'translateX(3px)' : 'translateX(0)', transition: 'all 0.35s ease', display: 'inline-block' }}>→</span>
-          </span>
-        </a>
-        </motion.div>
-
-        {/* Footer bar */}
-        <div
-          className="w-full px-6 sm:px-10"
-          style={{
-            maxWidth: '72rem',
-            margin: '0 auto',
-            borderTop: '1px solid rgba(125, 220, 255, 0.10)',
-            paddingTop: '1.75rem',
-            display: 'grid',
-            gridTemplateColumns: '1fr auto 1fr',
-            alignItems: 'center',
-            gap: '1rem',
-          }}
-        >
-          {/* Availability */}
-          <div className="flex items-center gap-2.5">
-            <span className="relative flex" style={{ width: 8, height: 8 }}>
-              <span className="absolute inline-flex rounded-full animate-ping" style={{ width: '100%', height: '100%', background: 'hsl(142 71% 45%)', opacity: 0.7 }} />
-              <span className="relative inline-flex rounded-full" style={{ width: 8, height: 8, background: 'hsl(142 71% 52%)', boxShadow: '0 0 8px hsl(142 71% 52% / 0.6)' }} />
-            </span>
-            <span className="font-sans font-light footer-availability-text" style={{ fontSize: '0.75rem', letterSpacing: '0.05em', color: 'rgba(191, 239, 255, 0.72)' }}>
-              Available for projects
-            </span>
-          </div>
-
-          {/* Copyright */}
-          <p className="font-sans font-light text-center footer-copyright-text" style={{ fontSize: '0.7rem', letterSpacing: '0.05em', color: 'rgba(191, 239, 255, 0.72)' }}>
-            © {new Date().getFullYear()} Weavy. All rights reserved.
-          </p>
-
-          {/* Socials */}
-          <div className="flex items-center gap-1 justify-end">
-            {WCF_SOCIALS.map(({ label, href, Icon }) => (
-              <a
-                key={label} href={href} aria-label={label}
-                className="rounded-full flex items-center justify-center footer-social-icon"
-                style={{ width: 36, height: 36, color: 'hsl(0 0% 36%)', transition: 'color 0.2s ease, background 0.2s ease' }}
-                onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.color = 'hsl(0 0% 84%)'; el.style.background = 'hsl(0 0% 100% / 0.07)' }}
-                onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.color = 'hsl(0 0% 36%)'; el.style.background = 'transparent' }}
-              >
-                <Icon />
-              </a>
-            ))}
-          </div>
-        </div>
-
-      </div>
-    </section>
   )
 }
 
@@ -1517,7 +1232,26 @@ export default function ImageShowcase() {
       <WorkCTA />
 
       {/* ── Contact / Footer ── */}
-      <WorkContactFooter />
+      <Footer
+        heading={<>
+          Ready to{' '}
+          <em style={{
+            fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400,
+            background: 'linear-gradient(90deg, #FFFFFF 0%, #7DDCFF 45%, #B7AEFF 100%)',
+            WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
+            color: 'transparent',
+            textShadow: '0 0 24px rgba(125, 220, 255, 0.16)',
+          }}>
+            automate
+          </em>{' '}
+          your business?
+        </>}
+        subtext={<>
+          Book a free demo and see how Weavy can manage your calls, messages, bookings, and{' '}
+          leads from one <span style={{ color: 'rgba(191, 239, 255, 0.9)', fontWeight: 500 }}>managed AI platform</span>.
+        </>}
+        ctaLabel="hello@weavyautomation.com"
+      />
     </>
   )
 }

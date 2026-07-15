@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, type ReactNode } from 'react'
 import { motion } from 'framer-motion'
 import gsap from 'gsap'
 
@@ -170,10 +170,51 @@ function Marquee() {
   )
 }
 
-export default function Footer() {
+interface FooterProps {
+  /** Anchor id on the <footer> element. Pass undefined on pages that already own #contact elsewhere. */
+  id?: string
+  eyebrow?: string
+  heading?: ReactNode
+  /** Pass null to omit the supporting paragraph entirely (e.g. Social Media Marketing tab). */
+  subtext?: ReactNode | null
+  ctaLabel?: string
+  ctaHref?: string
+}
+
+const DEFAULT_HEADING = (
+  <>
+    Ready to turn your business into an{' '}
+    <em style={{
+      fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400,
+      background: 'linear-gradient(90deg, #FFFFFF 0%, #7DDCFF 45%, #B7AEFF 100%)',
+      WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
+      color: 'transparent',
+      textShadow: '0 0 24px rgba(125, 220, 255, 0.16)',
+    }}>
+      AI-powered operating system?
+    </em>
+  </>
+)
+
+const DEFAULT_SUBTEXT = (
+  <>
+    Start with one channel or build a full AI platform for customer{' '}
+    <br />
+    communication, bookings, leads, and growth.
+  </>
+)
+
+export default function Footer({
+  id = 'contact',
+  eyebrow = 'Get in touch',
+  heading = DEFAULT_HEADING,
+  subtext = DEFAULT_SUBTEXT,
+  ctaLabel = 'Book a Platform Demo',
+  ctaHref = 'mailto:hello@weavyautomation.com',
+}: FooterProps = {}) {
   return (
     <footer
-      id="contact"
+      id={id}
       className="relative w-full overflow-hidden"
       style={{ background: '#06080A', paddingTop: 'clamp(4rem, 8vw, 5rem)' }}
     >
@@ -251,7 +292,7 @@ export default function Footer() {
               marginBottom: '2rem',
             }}
           >
-            Get in touch
+            {eyebrow}
           </motion.p>
 
           {/* Main heading */}
@@ -274,41 +315,32 @@ export default function Footer() {
               textShadow: '0 2px 24px rgba(0,0,0,0.85)',
             }}
           >
-            Ready to turn your business into an{' '}
-            <em style={{
-              fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400,
-              background: 'linear-gradient(90deg, #FFFFFF 0%, #7DDCFF 45%, #B7AEFF 100%)',
-              WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
-              color: 'transparent',
-              textShadow: '0 0 24px rgba(125, 220, 255, 0.16)',
-            }}>
-              AI-powered operating system?
-            </em>
+            {heading}
           </motion.h2>
 
           {/* Subtext */}
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.18, ease: [0.16, 1, 0.3, 1] }}
-            className="font-sans font-light"
-            style={{
-              position: 'relative',
-              zIndex: 1,
-              fontSize: 'clamp(0.88rem, 1.4vw, 1rem)',
-              lineHeight: 1.8,
-              color: 'rgba(220, 232, 240, 0.78)',
-              fontWeight: 500,
-              maxWidth: '34rem',
-              marginBottom: '2.5rem',
-              textShadow: '0 1px 16px rgba(0,0,0,0.75)',
-            }}
-          >
-            Start with one channel or build a full AI platform for customer{' '}
-            <br />
-            communication, bookings, leads, and growth.
-          </motion.p>
+          {subtext !== null && (
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: 0.18, ease: [0.16, 1, 0.3, 1] }}
+              className="font-sans font-light"
+              style={{
+                position: 'relative',
+                zIndex: 1,
+                fontSize: 'clamp(0.88rem, 1.4vw, 1rem)',
+                lineHeight: 1.8,
+                color: 'rgba(220, 232, 240, 0.78)',
+                fontWeight: 500,
+                maxWidth: '34rem',
+                marginBottom: '2.5rem',
+                textShadow: '0 1px 16px rgba(0,0,0,0.75)',
+              }}
+            >
+              {subtext}
+            </motion.p>
+          )}
 
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -318,7 +350,7 @@ export default function Footer() {
             style={{ position: 'relative', zIndex: 1 }}
           >
           <a
-            href="mailto:hello@weavyautomation.com"
+            href={ctaHref}
             className="font-sans font-light footer-email-cta"
             style={{
               fontSize: 'clamp(1rem, 2.2vw, 1.45rem)',
@@ -349,7 +381,7 @@ export default function Footer() {
             onMouseDown={e => { (e.currentTarget as HTMLAnchorElement).style.transform = 'scale(0.97)' }}
             onMouseUp={e => { (e.currentTarget as HTMLAnchorElement).style.transform = '' }}
           >
-            Book a Platform Demo
+            {ctaLabel}
           </a>
           </motion.div>
         </div>
@@ -358,10 +390,9 @@ export default function Footer() {
         <div
           className="footer-bottom-bar"
           style={{
-            display: 'flex',
-            flexWrap: 'wrap',
+            display: 'grid',
+            gridTemplateColumns: '1fr auto 1fr',
             alignItems: 'center',
-            justifyContent: 'space-between',
             gap: '1.25rem',
             padding: '1.2rem clamp(1.5rem, 5vw, 3.5rem) 2rem',
             borderTop: '1px solid hsl(0 0% 100% / 0.06)',
@@ -387,8 +418,16 @@ export default function Footer() {
             </span>
           </div>
 
+          {/* Copyright */}
+          <p
+            className="font-sans font-light text-center footer-copyright-text"
+            style={{ fontSize: '0.7rem', letterSpacing: '0.05em', color: '#94A3B8' }}
+          >
+            © {new Date().getFullYear()} Weavy. All rights reserved.
+          </p>
+
           {/* Social links */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', justifySelf: 'end' }}>
             {SOCIALS.map(({ label, href, icon }) => (
               <a
                 key={label}

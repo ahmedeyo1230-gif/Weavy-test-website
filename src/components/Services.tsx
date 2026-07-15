@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from 'react'
-import { motion } from 'framer-motion'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Globe, Bot, BarChart2, Sparkles, Video, Settings2, Plug, Clock, UserCheck, CalendarDays, Zap, Camera, Target, Layers } from 'lucide-react'
@@ -11,53 +10,9 @@ import { CircularGallery, type GalleryItem } from './ui/circular-gallery'
 import { GradientBlurBg } from './ui/gradient-blur-bg'
 import { BorderRotate } from './ui/animated-gradient-border'
 import { goToPath } from '../lib/navigation'
+import Footer from './Footer'
 
 gsap.registerPlugin(ScrollTrigger)
-
-// ─── Lazy HLS hook — IntersectionObserver gated ───────────────────────────────
-function useHlsVideo(src: string) {
-  const videoRef     = useRef<HTMLVideoElement>(null)
-  const containerRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const video     = videoRef.current
-    const container = containerRef.current
-    if (!video || !container) return
-
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-
-    let cleanup: (() => void) | undefined
-    let initialized = false
-
-    const init = () => {
-      if (initialized) return
-      initialized = true
-      import('hls.js').then(({ default: Hls }) => {
-        if (!videoRef.current) return
-        if (Hls.isSupported()) {
-          const hls = new Hls({ startLevel: -1, maxBufferLength: 20, maxMaxBufferLength: 40 })
-          hls.loadSource(src)
-          hls.attachMedia(video)
-          hls.on(Hls.Events.MANIFEST_PARSED, () => { video.play().catch(() => {}) })
-          cleanup = () => hls.destroy()
-        } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-          video.src = src
-          video.play().catch(() => {})
-        }
-      })
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => { if (entries[0].isIntersecting) { init(); observer.disconnect() } },
-      { rootMargin: '200px' }
-    )
-    observer.observe(container)
-
-    return () => { observer.disconnect(); cleanup?.() }
-  }, [src])
-
-  return { videoRef, containerRef }
-}
 
 // ─── Service data ─────────────────────────────────────────────────────────────
 
@@ -2068,367 +2023,6 @@ function BespokeTestimonials() {
       subtitle="Founders and marketing teams who needed more than a template — and got it."
       testimonials={BESPOKE_TESTIMONIALS}
     />
-  )
-}
-
-// ─── Bespoke Contact / Footer — Section 5 ───────────────────────────────────
-
-// Same HLS source as the hero section
-const HLS_FOOTER = 'https://stream.mux.com/Aa02T7oM1wH5Mk5EEVDYhbZ1ChcdhRsS2m1NYyx4Ua1g.m3u8'
-
-const BCF_MARQUEE_TEXT = 'BUILDING THE FUTURE \u2022 '
-
-function BcfIconX() {
-  return (
-    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.74l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.91-5.622Zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-    </svg>
-  )
-}
-function BcfIconLinkedIn() {
-  return (
-    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-    </svg>
-  )
-}
-function BcfIconDribbble() {
-  return (
-    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <path d="M12 0C5.374 0 0 5.373 0 12c0 6.628 5.374 12 12 12 6.628 0 12-5.372 12-12 0-6.627-5.372-12-12-12zm7.369 5.633a10.004 10.004 0 012.187 5.946c-.32-.066-3.52-.712-6.742-.308-.075-.187-.148-.376-.228-.565-.208-.499-.434-1-.669-1.495 3.578-1.458 5.21-3.554 5.452-3.578zM12 2.056a9.955 9.955 0 016.546 2.44c-.196.197-1.673 2.148-5.133 3.444-1.603-2.945-3.381-5.368-3.654-5.752A10.028 10.028 0 0112 2.056zm-4.057.862c.263.369 2.01 2.801 3.633 5.686-4.584 1.218-8.632 1.196-9.056 1.187A10.015 10.015 0 017.943 2.918zM2.048 12.037l.014-.344c.408.01 5.146.041 10.063-1.395.28.547.545 1.104.793 1.664l-.35.097c-5.087 1.647-7.783 6.146-7.99 6.494A9.96 9.96 0 012.048 12.037zm9.952 9.914a9.975 9.975 0 01-6.054-2.043c.165-.318 2.039-3.95 7.625-5.912l.053-.019c1.362 3.534 1.921 6.499 2.066 7.352a9.963 9.963 0 01-3.69.622zm5.624-1.508c-.098-.585-.614-3.414-1.879-6.895 3.024-.484 5.669.311 5.993.416a10.02 10.02 0 01-4.114 6.479z"/>
-    </svg>
-  )
-}
-function BcfIconGitHub() {
-  return (
-    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
-    </svg>
-  )
-}
-
-const BCF_SOCIAL_LINKS = [
-  { label: 'Twitter',  href: '#', Icon: BcfIconX        },
-  { label: 'LinkedIn', href: '#', Icon: BcfIconLinkedIn  },
-  { label: 'Dribbble', href: '#', Icon: BcfIconDribbble  },
-  { label: 'GitHub',   href: '#', Icon: BcfIconGitHub    },
-]
-
-function BespokeContactFooter() {
-  const marqueeRef = useRef<HTMLDivElement>(null)
-  const { videoRef, containerRef } = useHlsVideo(HLS_FOOTER)
-  const [ctaHover, setCtaHover] = useState(false)
-
-  // ── GSAP infinite marquee ─────────────────────────────────────────────────
-  useEffect(() => {
-    const el = marqueeRef.current
-    if (!el) return
-    const tween = gsap.to(el, {
-      xPercent: -50,
-      duration: 40,
-      ease: 'none',
-      repeat: -1,
-    })
-    return () => { tween.kill() }
-  }, [])
-
-  return (
-    <section
-      id="bespoke-contact"
-      className="relative bg-bg pt-16 md:pt-20 pb-8 md:pb-12 overflow-hidden footer-bottom-bar"
-    >
-      {/* ── HLS Video background — flipped vertically ── */}
-      <div ref={containerRef} className="absolute inset-0" aria-hidden="true" style={{ zIndex: 0 }}>
-        <video
-          ref={videoRef}
-          muted
-          loop
-          playsInline
-          aria-hidden="true"
-          className="scale-y-[-1]"
-          style={{
-            position: 'absolute',
-            inset: 0,
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover',
-            display: 'block',
-            opacity: 0.88,
-            filter: 'brightness(1.06) contrast(1.38) saturate(1.15)',
-          }}
-        />
-        {/* Heavy overlay */}
-        <div className="absolute inset-0 bg-black/28 lg:bg-black/52" />
-        {/* Top fade — blends into section above */}
-        <div
-          className="absolute top-0 left-0 right-0 pointer-events-none"
-          style={{ height: '160px', background: 'linear-gradient(to bottom, #010709 0%, transparent 100%)', zIndex: 2 }}
-        />
-        {/* Bottom fade */}
-        <div
-          className="absolute bottom-0 left-0 right-0 pointer-events-none"
-          style={{ height: '200px', background: 'linear-gradient(to top, #010709 0%, transparent 100%)', zIndex: 2 }}
-        />
-      </div>
-
-      {/* ── All content sits above video ── */}
-      <div className="relative flex flex-col items-center" style={{ zIndex: 10 }}>
-
-        {/* Eyebrow label */}
-        <p
-          className="font-sans font-light uppercase mb-10"
-          style={{ fontSize: '0.68rem', letterSpacing: '0.28em', color: 'hsl(199 89% 68%)' }}
-        >
-          Get in touch
-        </p>
-
-        {/* ── GSAP Marquee — 10 × repeated text, seamless loop via 20 DOM nodes ── */}
-        <div
-          className="w-full overflow-hidden mb-16"
-          style={{
-            borderTop: '1px solid hsl(0 0% 100% / 0.07)',
-            borderBottom: '1px solid hsl(0 0% 100% / 0.07)',
-            padding: '1rem 0',
-          }}
-          aria-hidden="true"
-        >
-          {/*
-            20 DOM nodes (10 + 10) so that when GSAP reaches xPercent:-50
-            the visible content is identical to the start — seamless loop.
-          */}
-          <div ref={marqueeRef} className="flex whitespace-nowrap will-change-transform">
-            {Array.from({ length: 20 }).map((_, i) => (
-              <span
-                key={i}
-                className="inline-block"
-                style={{
-                  fontFamily: "'Instrument Serif', 'Didot', 'GFS Didot', Georgia, serif",
-                  fontStyle: 'italic',
-                  fontSize: 'clamp(1.15rem, 2.4vw, 1.75rem)',
-                  fontWeight: 400,
-                  letterSpacing: '0.08em',
-                  color: 'hsl(0 0% 100% / 0.15)',
-                  padding: '0 2.5rem',
-                }}
-              >
-                {BCF_MARQUEE_TEXT}
-              </span>
-            ))}
-          </div>
-        </div>
-
-        {/* Ambient glow behind heading */}
-        <div aria-hidden="true" style={{
-          position: 'absolute', top: '-4rem', left: '50%', transform: 'translateX(-50%)',
-          width: 'min(640px, 90vw)', height: '360px', zIndex: -1,
-          background: 'radial-gradient(ellipse 60% 60% at 50% 50%, rgba(125,220,255,0.14) 0%, rgba(183,174,255,0.07) 45%, transparent 75%)',
-          filter: 'blur(30px)', pointerEvents: 'none',
-        }} />
-
-        {/* Main heading */}
-        <motion.h2
-          initial={{ opacity: 0, y: 18 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="font-sans font-light text-text text-center mb-5 px-6"
-          style={{
-            fontSize: 'clamp(2.4rem, 5.8vw, 4.4rem)',
-            lineHeight: 1.06,
-            letterSpacing: '-0.04em',
-          }}
-        >
-          Ready to{' '}
-          <em style={{
-            fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400,
-            background: 'linear-gradient(90deg, #FFFFFF 0%, #7DDCFF 55%, #B7AEFF 100%)',
-            WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
-            textShadow: '0 0 24px rgba(125, 220, 255, 0.16)',
-          }}>
-            automate
-          </em>{' '}
-          your business?
-        </motion.h2>
-
-        {/* Subtext */}
-        <motion.p
-          initial={{ opacity: 0, y: 14 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="font-sans font-light text-center mb-14 px-6"
-          style={{
-            fontSize: 'clamp(0.84rem, 1.35vw, 0.96rem)',
-            lineHeight: 1.9,
-            color: '#F2F8FC',
-            maxWidth: '34rem',
-          }}
-        >
-          Book a free demo and see how Weavy can manage your calls, messages, bookings, and
-          leads from one <span style={{ color: 'rgba(191, 239, 255, 0.9)', fontWeight: 500 }}>managed AI platform</span>.
-        </motion.p>
-
-        {/* ── CTA Email button — premium gradient hover ring ── */}
-        <motion.div
-          initial={{ opacity: 0, y: 14 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, delay: 0.18, ease: [0.16, 1, 0.3, 1] }}
-          className="relative mb-24"
-          style={{ display: 'inline-block' }}
-        >
-        <div aria-hidden="true" className="cta-pill-glow" style={{
-          position: 'absolute', inset: '-10px', borderRadius: 999,
-          background: 'radial-gradient(ellipse 70% 70% at 50% 50%, rgba(125,220,255,0.28) 0%, transparent 70%)',
-          filter: 'blur(10px)', pointerEvents: 'none', zIndex: 0,
-        }} />
-        <a
-          href="mailto:hello@weavyautomation.com"
-          onMouseEnter={() => setCtaHover(true)}
-          onMouseLeave={() => setCtaHover(false)}
-          className="relative rounded-full"
-          style={{
-            padding: '2px',
-            display: 'inline-block',
-            zIndex: 1,
-            background: ctaHover
-              ? 'linear-gradient(135deg, hsl(199 89% 65%) 0%, hsl(213 90% 55%) 40%, hsl(240 80% 68%) 100%)'
-              : 'linear-gradient(135deg, hsl(0 0% 22%) 0%, hsl(0 0% 14%) 100%)',
-            boxShadow: ctaHover
-              ? [
-                  '0 0 0 4px hsl(199 89% 60% / 0.12)',
-                  '0 0 40px -6px hsl(199 89% 60% / 0.5)',
-                  '0 0 90px -16px hsl(199 89% 60% / 0.22)',
-                  '0 8px 32px -8px hsl(0 0% 0% / 0.7)',
-                ].join(', ')
-              : '0 4px 28px -8px hsl(0 0% 0% / 0.65)',
-            transition: 'box-shadow 0.35s ease, background 0.35s ease',
-          }}
-        >
-          <span
-            className="flex items-center gap-3 rounded-full font-sans font-light"
-            style={{
-              padding: '1rem 2.4rem',
-              background: ctaHover ? 'hsl(205 80% 7%)' : 'hsl(0 0% 5%)',
-              fontSize: 'clamp(0.9rem, 1.4vw, 1.05rem)',
-              letterSpacing: '0.01em',
-              color: ctaHover ? 'hsl(199 89% 80%)' : 'hsl(0 0% 80%)',
-              transition: 'all 0.35s ease',
-              whiteSpace: 'nowrap',
-            }}
-          >
-            {/* Indicator dot */}
-            <span
-              style={{
-                width: 7,
-                height: 7,
-                borderRadius: '50%',
-                flexShrink: 0,
-                background: ctaHover ? 'hsl(199 89% 65%)' : 'hsl(0 0% 32%)',
-                boxShadow: ctaHover ? '0 0 8px hsl(199 89% 65% / 0.8)' : 'none',
-                transition: 'all 0.35s ease',
-              }}
-            />
-            hello@weavyautomation.com
-            <span
-              aria-hidden="true"
-              style={{
-                fontSize: '1em',
-                opacity: ctaHover ? 1 : 0.35,
-                transform: ctaHover ? 'translateX(3px)' : 'translateX(0)',
-                transition: 'all 0.35s ease',
-                display: 'inline-block',
-              }}
-            >
-              →
-            </span>
-          </span>
-        </a>
-        </motion.div>
-
-        {/* ── Footer bar ── */}
-        <div
-          className="w-full px-6 sm:px-10"
-          style={{
-            maxWidth: '72rem',
-            margin: '0 auto',
-            borderTop: '1px solid hsl(0 0% 100% / 0.06)',
-            paddingTop: '1.75rem',
-            display: 'grid',
-            gridTemplateColumns: '1fr auto 1fr',
-            alignItems: 'center',
-            gap: '1rem',
-          }}
-        >
-          {/* Left — green pulsing dot + availability */}
-          <div className="flex items-center gap-2.5">
-            <span className="relative flex" style={{ width: 8, height: 8 }}>
-              <span
-                className="absolute inline-flex rounded-full animate-ping"
-                style={{
-                  width: '100%', height: '100%',
-                  background: 'hsl(142 71% 45%)',
-                  opacity: 0.7,
-                }}
-              />
-              <span
-                className="relative inline-flex rounded-full"
-                style={{
-                  width: 8, height: 8,
-                  background: 'hsl(142 71% 52%)',
-                  boxShadow: '0 0 8px hsl(142 71% 52% / 0.6)',
-                }}
-              />
-            </span>
-            <span
-              className="font-sans font-light footer-availability-text"
-              style={{ fontSize: '0.75rem', letterSpacing: '0.05em', color: 'hsl(0 0% 48%)' }}
-            >
-              Available for projects
-            </span>
-          </div>
-
-          {/* Centre — copyright */}
-          <p
-            className="font-sans font-light text-center footer-copyright-text"
-            style={{ fontSize: '0.7rem', letterSpacing: '0.05em', color: 'hsl(0 0% 28%)' }}
-          >
-            © {new Date().getFullYear()} Weavy. All rights reserved.
-          </p>
-
-          {/* Right — social links */}
-          <div className="flex items-center gap-1 justify-end">
-            {BCF_SOCIAL_LINKS.map(({ label, href, Icon }) => (
-              <a
-                key={label}
-                href={href}
-                aria-label={label}
-                className="rounded-full flex items-center justify-center footer-social-icon"
-                style={{
-                  width: 36,
-                  height: 36,
-                  color: 'hsl(0 0% 36%)',
-                  transition: 'color 0.2s ease, background 0.2s ease',
-                }}
-                onMouseEnter={e => {
-                  const el = e.currentTarget as HTMLElement
-                  el.style.color = 'hsl(0 0% 84%)'
-                  el.style.background = 'hsl(0 0% 100% / 0.07)'
-                }}
-                onMouseLeave={e => {
-                  const el = e.currentTarget as HTMLElement
-                  el.style.color = 'hsl(0 0% 36%)'
-                  el.style.background = 'transparent'
-                }}
-              >
-                <Icon />
-              </a>
-            ))}
-          </div>
-        </div>
-
-      </div>
-    </section>
   )
 }
 
@@ -5609,254 +5203,26 @@ function SocialMediaMarketing() {
     </section>
 
     {/* ══ SECTION 8 — Contact / Footer ════════════════════════════════════════ */}
-    <S7ContactFooter />
+    <Footer
+      eyebrow="Let's build something"
+      heading={<>
+        Ready to grow your{' '}
+        <em style={{
+          fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400,
+          background: 'linear-gradient(90deg, #FFFFFF 0%, #7DDCFF 45%, #B7AEFF 100%)',
+          WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
+          color: 'transparent',
+          textShadow: '0 0 24px rgba(125, 220, 255, 0.16)',
+        }}>
+          brand?
+        </em>
+      </>}
+      subtext={null}
+      ctaLabel="hello@weavyautomation.com"
+    />
     </>
   )
 }
-
-// ─── Section 7 — Contact / Footer ─────────────────────────────────────────────
-
-const HLS_SRC_CONTACT = 'https://stream.mux.com/Aa02T7oM1wH5Mk5EEVDYhbZ1ChcdhRsS2m1NYyx4Ua1g.m3u8'
-
-function ContactVideo() {
-  const { videoRef, containerRef } = useHlsVideo(HLS_SRC_CONTACT)
-  return (
-    <div ref={containerRef} className="absolute inset-0">
-      <video
-        ref={videoRef}
-        muted loop playsInline
-        aria-hidden="true"
-        className="absolute top-1/2 left-1/2 min-w-full min-h-full object-cover"
-        style={{ transform: 'translate(-50%, -50%) scaleY(-1)', opacity: 0.88, filter: 'brightness(1.06) contrast(1.38) saturate(1.15)' }}
-      />
-    </div>
-  )
-}
-
-function S7ContactFooter() {
-  const marqueeRef  = useRef<HTMLDivElement>(null)
-  const [ctaHov, setCtaHov] = useState(false)
-
-  // GSAP marquee
-  useEffect(() => {
-    const el = marqueeRef.current
-    if (!el) return
-    const ctx = gsap.context(() => {
-      gsap.to(el, {
-        xPercent: -50,
-        duration: 40,
-        ease: 'none',
-        repeat: -1,
-      })
-    })
-    return () => ctx.revert()
-  }, [])
-
-  const MARQUEE_TEXT = 'BUILDING THE FUTURE • '
-  const marqueeItems = Array.from({ length: 20 }, (_, i) => MARQUEE_TEXT + (i % 2 === 0 ? '' : ''))
-
-  return (
-    <section className="bg-bg pt-16 md:pt-20 pb-8 md:pb-12 overflow-hidden relative footer-bottom-bar">
-
-      {/* Top fade — blends seamlessly with Section 6 */}
-      <div aria-hidden="true" className="pointer-events-none absolute left-0 right-0 top-0" style={{
-        height: '120px',
-        background: 'linear-gradient(to bottom, #010709 0%, transparent 100%)',
-        zIndex: 4,
-      }}/>
-
-      {/* ── Background video ── */}
-      <div className="absolute inset-0 overflow-hidden">
-        <ContactVideo />
-        {/* Heavy overlay */}
-        <div className="absolute inset-0 bg-black/28 lg:bg-black/52" />
-        {/* Edge vignette */}
-        <div className="absolute inset-0" style={{
-          background: 'radial-gradient(ellipse 80% 70% at 50% 50%, transparent 30%, hsl(0 0% 0% / 0.55) 100%)',
-        }}/>
-      </div>
-
-      {/* ── GSAP Marquee ── */}
-      <div className="relative z-10 overflow-hidden mb-16 md:mb-24 border-y border-white/[0.06] py-5">
-        <div ref={marqueeRef} className="flex whitespace-nowrap will-change-transform">
-          {marqueeItems.map((text, i) => (
-            <span
-              key={i}
-              className="font-sans font-light shrink-0 px-6"
-              style={{
-                fontSize: 'clamp(0.7rem, 1.4vw, 0.88rem)',
-                letterSpacing: '0.28em',
-                color: i % 3 === 0 ? 'hsl(199 89% 68%)' : 'hsl(0 0% 32%)',
-                textTransform: 'uppercase',
-              }}
-            >
-              {text}
-            </span>
-          ))}
-        </div>
-      </div>
-
-      {/* ── Main CTA area ── */}
-      <div className="relative z-10 max-w-[56rem] mx-auto px-6 sm:px-10 flex flex-col items-center text-center mb-20 md:mb-28">
-
-        {/* Eyebrow */}
-        <p className="font-sans font-light uppercase mb-6" style={{
-          fontSize: '0.65rem', letterSpacing: '0.3em', color: 'hsl(0 0% 36%)',
-        }}>
-          Let's build something
-        </p>
-
-        {/* Headline */}
-        <h2 className="font-sans font-light text-text mb-10" style={{
-          fontSize: 'clamp(2.2rem, 5.5vw, 4.2rem)',
-          lineHeight: 1.06,
-          letterSpacing: '-0.038em',
-          maxWidth: '22ch',
-        }}>
-          Ready to grow your{' '}
-          <em style={{
-            fontFamily: "'Instrument Serif', Georgia, serif",
-            fontStyle: 'italic',
-            fontWeight: 400,
-            background: 'linear-gradient(108deg, hsl(199 89% 74%) 0%, hsl(240 60% 74%) 55%, hsl(280 65% 74%) 100%)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            backgroundClip: 'text',
-          }}>
-            brand?
-          </em>
-        </h2>
-
-        {/* Email CTA button */}
-        <a
-          href="mailto:hello@weavyautomation.com"
-          onMouseEnter={() => setCtaHov(true)}
-          onMouseLeave={() => setCtaHov(false)}
-          style={{
-            display: 'inline-block',
-            padding: '2px',
-            borderRadius: '999px',
-            background: ctaHov
-              ? 'linear-gradient(135deg, hsl(199 89% 60%), hsl(240 70% 68%), hsl(280 65% 65%))'
-              : 'linear-gradient(135deg, hsl(0 0% 18%), hsl(0 0% 12%))',
-            boxShadow: ctaHov
-              ? '0 0 40px -6px hsl(199 89% 60% / 0.4), 0 0 80px -12px hsl(280 65% 65% / 0.2)'
-              : '0 4px 24px -6px hsl(0 0% 0% / 0.6)',
-            transition: 'background 0.4s ease, box-shadow 0.4s ease',
-          }}
-        >
-          <span
-            className="flex items-center gap-3 font-sans font-light"
-            style={{
-              padding: '1rem 2.8rem',
-              borderRadius: '999px',
-              background: ctaHov ? 'hsl(220 40% 6%)' : 'hsl(0 0% 5%)',
-              fontSize: 'clamp(0.88rem, 1.5vw, 1.05rem)',
-              letterSpacing: '0.01em',
-              color: ctaHov ? 'hsl(199 89% 80%)' : 'hsl(0 0% 78%)',
-              transition: 'background 0.4s ease, color 0.4s ease',
-            }}
-          >
-            hello@weavyautomation.com
-            <span aria-hidden="true" style={{
-              fontSize: '0.9em',
-              opacity: ctaHov ? 1 : 0.35,
-              transition: 'opacity 0.3s ease',
-            }}>→</span>
-          </span>
-        </a>
-      </div>
-
-      {/* ── Footer bar ── */}
-      <div className="relative z-10 max-w-[72rem] mx-auto px-6 sm:px-10">
-        {/* Divider */}
-        <div style={{ height: 1, background: 'linear-gradient(to right, transparent, hsl(0 0% 100% / 0.08), transparent)', marginBottom: '1.5rem' }} />
-
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
-
-          {/* Left: availability */}
-          <div className="flex items-center gap-2.5">
-            {/* Pulsing green dot */}
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75" style={{ background: 'hsl(142 71% 45%)' }} />
-              <span className="relative inline-flex rounded-full h-2 w-2" style={{ background: 'hsl(142 71% 50%)' }} />
-            </span>
-            <span className="font-sans font-light footer-availability-text" style={{ fontSize: '0.75rem', letterSpacing: '0.04em', color: 'hsl(0 0% 44%)' }}>
-              Available for projects
-            </span>
-          </div>
-
-          {/* Center: copyright */}
-          <p className="font-sans font-light footer-copyright-text" style={{ fontSize: '0.7rem', letterSpacing: '0.06em', color: 'hsl(0 0% 28%)' }}>
-            © {new Date().getFullYear()} Weavy. All rights reserved.
-          </p>
-
-          {/* Right: social links */}
-          <div className="flex items-center gap-5">
-            {[
-              {
-                label: 'Twitter',
-                href: 'https://twitter.com',
-                icon: (
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.253 5.622 5.911-5.622Zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                  </svg>
-                ),
-              },
-              {
-                label: 'LinkedIn',
-                href: 'https://linkedin.com',
-                icon: (
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                  </svg>
-                ),
-              },
-              {
-                label: 'Dribbble',
-                href: 'https://dribbble.com',
-                icon: (
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 24C5.385 24 0 18.615 0 12S5.385 0 12 0s12 5.385 12 12-5.385 12-12 12zm10.12-10.358c-.35-.11-3.17-.953-6.384-.438 1.34 3.684 1.887 6.684 1.992 7.308 2.3-1.555 3.936-4.02 4.395-6.87zm-6.115 7.808c-.153-.9-.75-4.032-2.19-7.77l-.066.02c-5.79 2.015-7.86 6.025-8.048 6.39a10.09 10.09 0 0 0 6.31 2.166c1.42 0 2.77-.29 4-.806zm-9.98-2.71c.25-.466 3.28-5.42 8.57-7.17.022-.01.043-.016.064-.023-.22-.499-.45-.99-.692-1.475-5.507 1.648-10.84 1.578-11.346 1.57a10.11 10.11 0 0 0 3.404 7.098zm-3.688-8.89c.514.01 5.068.052 10.192-1.318C11.02 6.49 9.69 4.67 8.234 3.106A10.08 10.08 0 0 0 2.337 9.85zm7.646-7.36c1.482 1.566 2.83 3.43 3.857 5.51 3.674-1.376 5.228-3.465 5.412-3.715a10.13 10.13 0 0 0-9.27-1.794zm9.981 2.958c-.225.28-1.938 2.48-5.742 4.026.24.49.47.99.68 1.495.08.197.157.398.232.6 3.408-.43 6.792.258 7.134.33-.028-2.39-.85-4.595-2.304-6.45z"/>
-                  </svg>
-                ),
-              },
-              {
-                label: 'GitHub',
-                href: 'https://github.com',
-                icon: (
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
-                  </svg>
-                ),
-              },
-            ].map(({ label, href, icon }) => (
-              <a
-                key={label}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={label}
-                className="group footer-social-icon"
-                style={{
-                  color: 'hsl(0 0% 30%)',
-                  transition: 'color 0.25s ease',
-                }}
-                onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = 'hsl(0 0% 72%)'}
-                onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = 'hsl(0 0% 30%)'}
-              >
-                {icon}
-              </a>
-            ))}
-          </div>
-
-        </div>
-      </div>
-
-    </section>
-  )
-}
-
 
 // ─── Chatbot section visual ───────────────────────────────────────────────────
 
@@ -7810,232 +7176,6 @@ function GraphicDesignCTA() {
         background: 'linear-gradient(to top, #010709 0%, transparent 100%)',
         zIndex: 3,
       }}/>
-    </section>
-  )
-}
-
-// ─── Graphic Design — Contact / Footer ───────────────────────────────────────
-
-const GCF_MARQUEE_TEXT = 'BUILDING THE FUTURE • '
-
-const GCF_SOCIAL_LINKS = [
-  { label: 'Twitter',  href: '#', Icon: BcfIconX        },
-  { label: 'LinkedIn', href: '#', Icon: BcfIconLinkedIn  },
-  { label: 'Dribbble', href: '#', Icon: BcfIconDribbble  },
-  { label: 'GitHub',   href: '#', Icon: BcfIconGitHub    },
-]
-
-function GraphicDesignContactFooter() {
-  const marqueeRef = useRef<HTMLDivElement>(null)
-  const { videoRef, containerRef } = useHlsVideo(HLS_FOOTER)
-  const [ctaHover, setCtaHover] = useState(false)
-
-  // ── GSAP infinite marquee ─────────────────────────────────────────────────
-  useEffect(() => {
-    const el = marqueeRef.current
-    if (!el) return
-    const tween = gsap.to(el, { xPercent: -50, duration: 40, ease: 'none', repeat: -1 })
-    return () => { tween.kill() }
-  }, [])
-
-  return (
-    <section
-      id="graphic-contact"
-      className="relative bg-bg pt-16 md:pt-20 pb-8 md:pb-12 overflow-hidden footer-bottom-bar"
-    >
-      {/* ── HLS Video background — flipped vertically ── */}
-      <div ref={containerRef} className="absolute inset-0" aria-hidden="true" style={{ zIndex: 0 }}>
-        <video
-          ref={videoRef}
-          muted loop playsInline aria-hidden="true"
-          className="scale-y-[-1]"
-          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', display: 'block', opacity: 0.88, filter: 'brightness(1.06) contrast(1.38) saturate(1.15)' }}
-        />
-        <div className="absolute inset-0 bg-black/28 lg:bg-black/52" />
-        <div className="absolute top-0 left-0 right-0 pointer-events-none"
-          style={{ height: '160px', background: 'linear-gradient(to bottom, #010709 0%, transparent 100%)', zIndex: 2 }} />
-        <div className="absolute bottom-0 left-0 right-0 pointer-events-none"
-          style={{ height: '200px', background: 'linear-gradient(to top, #010709 0%, transparent 100%)', zIndex: 2 }} />
-      </div>
-
-      {/* ── Content ── */}
-      <div className="relative flex flex-col items-center" style={{ zIndex: 10 }}>
-
-        {/* Eyebrow */}
-        <p className="font-sans font-light uppercase mb-10"
-          style={{ fontSize: '0.68rem', letterSpacing: '0.28em', color: 'hsl(38 90% 65%)' }}>
-          Get in touch
-        </p>
-
-        {/* ── Marquee ── */}
-        <div
-          className="w-full overflow-hidden mb-16"
-          style={{ borderTop: '1px solid hsl(0 0% 100% / 0.07)', borderBottom: '1px solid hsl(0 0% 100% / 0.07)', padding: '1rem 0' }}
-          aria-hidden="true"
-        >
-          <div ref={marqueeRef} className="flex whitespace-nowrap will-change-transform">
-            {Array.from({ length: 20 }).map((_, i) => (
-              <span key={i} className="inline-block" style={{
-                fontFamily: "'Instrument Serif', 'Didot', Georgia, serif",
-                fontStyle: 'italic',
-                fontSize: 'clamp(1.15rem, 2.4vw, 1.75rem)',
-                fontWeight: 400,
-                letterSpacing: '0.08em',
-                color: 'hsl(0 0% 100% / 0.15)',
-                padding: '0 2.5rem',
-              }}>
-                {GCF_MARQUEE_TEXT}
-              </span>
-            ))}
-          </div>
-        </div>
-
-        {/* Ambient glow behind heading */}
-        <div aria-hidden="true" style={{
-          position: 'absolute', top: '-4rem', left: '50%', transform: 'translateX(-50%)',
-          width: 'min(640px, 90vw)', height: '360px', zIndex: -1,
-          background: 'radial-gradient(ellipse 60% 60% at 50% 50%, rgba(125,220,255,0.14) 0%, rgba(183,174,255,0.07) 45%, transparent 75%)',
-          filter: 'blur(30px)', pointerEvents: 'none',
-        }} />
-
-        {/* Heading */}
-        <motion.h2
-          initial={{ opacity: 0, y: 18 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="font-sans font-light text-text text-center mb-5 px-6"
-          style={{ fontSize: 'clamp(2.4rem, 5.8vw, 4.4rem)', lineHeight: 1.06, letterSpacing: '-0.04em' }}>
-          Ready to{' '}
-          <em style={{
-            fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400,
-            background: 'linear-gradient(90deg, #FFFFFF 0%, #7DDCFF 55%, #B7AEFF 100%)',
-            WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
-            textShadow: '0 0 24px rgba(125, 220, 255, 0.16)',
-          }}>
-            automate
-          </em>{' '}
-          your business?
-        </motion.h2>
-
-        {/* Subtext */}
-        <motion.p
-          initial={{ opacity: 0, y: 14 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="font-sans font-light text-center mb-14 px-6"
-          style={{ fontSize: 'clamp(0.84rem, 1.35vw, 0.96rem)', lineHeight: 1.9, color: '#F2F8FC', maxWidth: '34rem' }}>
-          Book a free demo and see how Weavy can manage your calls, messages, bookings, and
-          leads from one <span style={{ color: 'rgba(191, 239, 255, 0.9)', fontWeight: 500 }}>managed AI platform</span>.
-        </motion.p>
-
-        {/* ── CTA Email button ── */}
-        <motion.div
-          initial={{ opacity: 0, y: 14 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, delay: 0.18, ease: [0.16, 1, 0.3, 1] }}
-          className="relative mb-24"
-          style={{ display: 'inline-block' }}
-        >
-        <div aria-hidden="true" className="cta-pill-glow" style={{
-          position: 'absolute', inset: '-10px', borderRadius: 999,
-          background: 'radial-gradient(ellipse 70% 70% at 50% 50%, rgba(125,220,255,0.28) 0%, transparent 70%)',
-          filter: 'blur(10px)', pointerEvents: 'none', zIndex: 0,
-        }} />
-        <a
-          href="mailto:hello@weavyautomation.com"
-          onMouseEnter={() => setCtaHover(true)}
-          onMouseLeave={() => setCtaHover(false)}
-          className="relative rounded-full"
-          style={{
-            padding: '2px',
-            display: 'inline-block',
-            zIndex: 1,
-            background: ctaHover
-              ? 'linear-gradient(135deg, hsl(38 90% 65%) 0%, hsl(25 95% 58%) 40%, hsl(14 90% 62%) 100%)'
-              : 'linear-gradient(135deg, hsl(0 0% 22%) 0%, hsl(0 0% 14%) 100%)',
-            boxShadow: ctaHover
-              ? ['0 0 0 4px hsl(38 90% 60% / 0.12)', '0 0 40px -6px hsl(38 90% 58% / 0.5)', '0 0 90px -16px hsl(38 90% 58% / 0.22)', '0 8px 32px -8px hsl(0 0% 0% / 0.7)'].join(', ')
-              : '0 4px 28px -8px hsl(0 0% 0% / 0.65)',
-            transition: 'box-shadow 0.35s ease, background 0.35s ease',
-          }}
-        >
-          <span className="flex items-center gap-3 rounded-full font-sans font-light"
-            style={{
-              padding: '1rem 2.4rem',
-              background: ctaHover ? 'hsl(30 40% 6%)' : 'hsl(0 0% 5%)',
-              fontSize: 'clamp(0.9rem, 1.4vw, 1.05rem)',
-              letterSpacing: '0.01em',
-              color: ctaHover ? 'hsl(38 90% 78%)' : 'hsl(0 0% 80%)',
-              transition: 'all 0.35s ease',
-              whiteSpace: 'nowrap',
-            }}>
-            <span style={{
-              width: 7, height: 7, borderRadius: '50%', flexShrink: 0,
-              background: ctaHover ? 'hsl(38 90% 65%)' : 'hsl(0 0% 32%)',
-              boxShadow: ctaHover ? '0 0 8px hsl(38 90% 65% / 0.8)' : 'none',
-              transition: 'all 0.35s ease',
-            }}/>
-            hello@weavyautomation.com
-            <span aria-hidden="true" style={{
-              fontSize: '1em',
-              opacity: ctaHover ? 1 : 0.35,
-              transform: ctaHover ? 'translateX(3px)' : 'translateX(0)',
-              transition: 'all 0.35s ease',
-              display: 'inline-block',
-            }}>→</span>
-          </span>
-        </a>
-        </motion.div>
-
-        {/* ── Footer bar ── */}
-        <div className="w-full px-6 sm:px-10" style={{
-          maxWidth: '72rem', margin: '0 auto',
-          borderTop: '1px solid hsl(0 0% 100% / 0.06)',
-          paddingTop: '1.75rem',
-          display: 'grid',
-          gridTemplateColumns: '1fr auto 1fr',
-          alignItems: 'center',
-          gap: '1rem',
-        }}>
-          {/* Left — green pulsing dot */}
-          <div className="flex items-center gap-2.5">
-            <span className="relative flex" style={{ width: 8, height: 8 }}>
-              <span className="absolute inline-flex rounded-full animate-ping"
-                style={{ width: '100%', height: '100%', background: 'hsl(142 71% 45%)', opacity: 0.7 }}/>
-              <span className="relative inline-flex rounded-full"
-                style={{ width: 8, height: 8, background: 'hsl(142 71% 52%)', boxShadow: '0 0 8px hsl(142 71% 52% / 0.6)' }}/>
-            </span>
-            <span className="font-sans font-light footer-availability-text"
-              style={{ fontSize: '0.75rem', letterSpacing: '0.05em', color: 'hsl(0 0% 48%)' }}>
-              Available for projects
-            </span>
-          </div>
-
-          {/* Centre — copyright */}
-          <p className="font-sans font-light text-center footer-copyright-text"
-            style={{ fontSize: '0.7rem', letterSpacing: '0.05em', color: 'hsl(0 0% 28%)' }}>
-            © {new Date().getFullYear()} Weavy. All rights reserved.
-          </p>
-
-          {/* Right — social links */}
-          <div className="flex items-center gap-1 justify-end">
-            {GCF_SOCIAL_LINKS.map(({ label, href, Icon }) => (
-              <a key={label} href={href} aria-label={label}
-                className="rounded-full flex items-center justify-center footer-social-icon"
-                style={{ width: 36, height: 36, color: 'hsl(0 0% 36%)', transition: 'color 0.2s ease, background 0.2s ease' }}
-                onMouseEnter={e => { const t = e.currentTarget as HTMLElement; t.style.color = 'hsl(0 0% 84%)'; t.style.background = 'hsl(0 0% 100% / 0.07)' }}
-                onMouseLeave={e => { const t = e.currentTarget as HTMLElement; t.style.color = 'hsl(0 0% 36%)';  t.style.background = 'transparent' }}
-              >
-                <Icon />
-              </a>
-            ))}
-          </div>
-        </div>
-
-      </div>
     </section>
   )
 }
@@ -10277,322 +9417,6 @@ function UGCPracticeEcosystem() {
   )
 }
 
-// ─── UGC — Contact / Footer (Section 6) ──────────────────────────────────────
-
-function UGCContactFooter() {
-  const sectionRef = useRef<HTMLElement>(null)
-  const marqueeRef = useRef<HTMLDivElement>(null)
-  const { videoRef, containerRef } = useHlsVideo(HLS_FOOTER)
-  const [ctaHover, setCtaHover] = useState(false)
-
-  // ── Scroll-triggered entry animations ────────────────────────────────────
-  useEffect(() => {
-    const el = sectionRef.current
-    if (!el) return
-    const eyebrow = el.querySelector<HTMLElement>('.ugccf-eyebrow')
-    const heading  = el.querySelector<HTMLElement>('.ugccf-heading')
-    const sub      = el.querySelector<HTMLElement>('.ugccf-sub')
-    const cta      = el.querySelector<HTMLElement>('.ugccf-cta')
-
-    gsap.set([eyebrow, sub],  { opacity: 0, y: 28 })
-    gsap.set(heading,          { opacity: 0, y: 40, filter: 'blur(10px)' })
-    gsap.set(cta,              { opacity: 0, y: 20, scale: 0.96 })
-
-    const obs = new IntersectionObserver(([entry]) => {
-      if (!entry.isIntersecting) return
-      const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
-      tl.to(eyebrow, { opacity: 1, y: 0, duration: 0.8 }, 0)
-      tl.to(heading, { opacity: 1, y: 0, filter: 'blur(0px)', duration: 1.1 }, 0.18)
-      tl.to(sub,     { opacity: 1, y: 0, duration: 0.9 }, 0.38)
-      tl.to(cta,     { opacity: 1, y: 0, scale: 1, duration: 0.75, ease: 'back.out(1.4)' }, 0.55)
-      obs.disconnect()
-    }, { threshold: 0.12 })
-
-    obs.observe(el)
-    return () => obs.disconnect()
-  }, [])
-
-  // ── GSAP infinite marquee ─────────────────────────────────────────────────
-  useEffect(() => {
-    const el = marqueeRef.current
-    if (!el) return
-    const tween = gsap.to(el, {
-      xPercent: -50,
-      duration: 40,
-      ease: 'none',
-      repeat: -1,
-    })
-    return () => { tween.kill() }
-  }, [])
-
-  return (
-    <section
-      ref={sectionRef}
-      id="ugc-contact"
-      className="relative bg-bg pt-16 md:pt-20 pb-8 md:pb-12 overflow-hidden footer-bottom-bar"
-    >
-      {/* ── HLS Video background — flipped vertically ── */}
-      <div ref={containerRef} className="absolute inset-0" aria-hidden="true" style={{ zIndex: 0 }}>
-        <video
-          ref={videoRef}
-          muted
-          loop
-          playsInline
-          aria-hidden="true"
-          className="scale-y-[-1]"
-          style={{
-            position: 'absolute',
-            inset: 0,
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover',
-            display: 'block',
-            opacity: 0.88,
-            filter: 'brightness(1.06) contrast(1.38) saturate(1.15)',
-          }}
-        />
-        {/* Heavy overlay */}
-        <div className="absolute inset-0 bg-black/28 lg:bg-black/52" />
-        {/* Top fade */}
-        <div
-          className="absolute top-0 left-0 right-0 pointer-events-none"
-          style={{ height: '160px', background: 'linear-gradient(to bottom, #010709 0%, transparent 100%)', zIndex: 2 }}
-        />
-        {/* Bottom fade */}
-        <div
-          className="absolute bottom-0 left-0 right-0 pointer-events-none"
-          style={{ height: '200px', background: 'linear-gradient(to top, #010709 0%, transparent 100%)', zIndex: 2 }}
-        />
-      </div>
-
-      {/* ── All content sits above video ── */}
-      <div className="relative flex flex-col items-center" style={{ zIndex: 10 }}>
-
-        {/* Eyebrow */}
-        <p
-          className="ugccf-eyebrow font-sans font-light uppercase mb-10"
-          style={{ fontSize: '0.68rem', letterSpacing: '0.28em', color: 'hsl(199 89% 68%)' }}
-        >
-          Get in touch
-        </p>
-
-        {/* ── GSAP Marquee — 20 DOM nodes (10+10) for seamless xPercent:-50 loop ── */}
-        <div
-          className="w-full overflow-hidden mb-16"
-          style={{
-            borderTop: '1px solid hsl(0 0% 100% / 0.07)',
-            borderBottom: '1px solid hsl(0 0% 100% / 0.07)',
-            padding: '1rem 0',
-          }}
-          aria-hidden="true"
-        >
-          <div ref={marqueeRef} className="flex whitespace-nowrap will-change-transform">
-            {Array.from({ length: 20 }).map((_, i) => (
-              <span
-                key={i}
-                className="inline-block"
-                style={{
-                  fontFamily: "'Instrument Serif', 'Didot', 'GFS Didot', Georgia, serif",
-                  fontStyle: 'italic',
-                  fontSize: 'clamp(1.15rem, 2.4vw, 1.75rem)',
-                  fontWeight: 400,
-                  letterSpacing: '0.08em',
-                  color: 'hsl(0 0% 100% / 0.15)',
-                  padding: '0 2.5rem',
-                }}
-              >
-                {BCF_MARQUEE_TEXT}
-              </span>
-            ))}
-          </div>
-        </div>
-
-        {/* Ambient glow behind heading */}
-        <div aria-hidden="true" style={{
-          position: 'absolute', top: '-4rem', left: '50%', transform: 'translateX(-50%)',
-          width: 'min(640px, 90vw)', height: '360px', zIndex: -1,
-          background: 'radial-gradient(ellipse 60% 60% at 50% 50%, rgba(125,220,255,0.14) 0%, rgba(183,174,255,0.07) 45%, transparent 75%)',
-          filter: 'blur(30px)', pointerEvents: 'none',
-        }} />
-
-        {/* Main heading — kept as a plain element (no motion wrapper) since
-            .ugccf-heading is driven by this component's own GSAP timeline. */}
-        <h2
-          className="ugccf-heading font-sans font-light text-text text-center mb-5 px-6"
-          style={{
-            fontSize: 'clamp(2.4rem, 5.8vw, 4.4rem)',
-            lineHeight: 1.06,
-            letterSpacing: '-0.04em',
-          }}
-        >
-          Ready to{' '}
-          <em style={{
-            fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400,
-            background: 'linear-gradient(90deg, #FFFFFF 0%, #7DDCFF 55%, #B7AEFF 100%)',
-            WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
-            textShadow: '0 0 24px rgba(125, 220, 255, 0.16)',
-          }}>
-            automate
-          </em>{' '}
-          your business?
-        </h2>
-
-        {/* Subtext — same GSAP-driven note applies */}
-        <p
-          className="ugccf-sub font-sans font-light text-center mb-14 px-6"
-          style={{
-            fontSize: 'clamp(0.84rem, 1.35vw, 0.96rem)',
-            lineHeight: 1.9,
-            color: 'hsl(0 0% 40%)',
-            maxWidth: '34rem',
-          }}
-        >
-          Book a free demo and see how Weavy can manage your calls, messages, bookings, and
-          leads from one <span style={{ color: 'rgba(191, 239, 255, 0.9)', fontWeight: 500 }}>managed AI platform</span>.
-        </p>
-
-        {/* ── CTA Email button — premium gradient hover ring, plus a slow
-            ambient glow ring; the anchor itself stays untouched by the new
-            wrapper so the existing .ugccf-cta GSAP animation still targets it. ── */}
-        <div className="relative" style={{ display: 'inline-block', marginBottom: '6rem' }}>
-        <div aria-hidden="true" className="cta-pill-glow" style={{
-          position: 'absolute', inset: '-10px', borderRadius: 999,
-          background: 'radial-gradient(ellipse 70% 70% at 50% 50%, rgba(125,220,255,0.28) 0%, transparent 70%)',
-          filter: 'blur(10px)', pointerEvents: 'none', zIndex: 0,
-        }} />
-        <a
-          href="mailto:hello@weavyautomation.com"
-          onMouseEnter={() => setCtaHover(true)}
-          onMouseLeave={() => setCtaHover(false)}
-          className="ugccf-cta relative rounded-full"
-          style={{
-            padding: '2px',
-            display: 'inline-block',
-            zIndex: 1,
-            background: ctaHover
-              ? 'linear-gradient(135deg, hsl(199 89% 65%) 0%, hsl(213 90% 55%) 40%, hsl(240 80% 68%) 100%)'
-              : 'linear-gradient(135deg, hsl(0 0% 22%) 0%, hsl(0 0% 14%) 100%)',
-            boxShadow: ctaHover
-              ? [
-                  '0 0 0 4px hsl(199 89% 60% / 0.12)',
-                  '0 0 40px -6px hsl(199 89% 60% / 0.5)',
-                  '0 0 90px -16px hsl(199 89% 60% / 0.22)',
-                  '0 8px 32px -8px hsl(0 0% 0% / 0.7)',
-                ].join(', ')
-              : '0 4px 28px -8px hsl(0 0% 0% / 0.65)',
-            transition: 'box-shadow 0.35s ease, background 0.35s ease',
-          }}
-        >
-          <span
-            className="flex items-center gap-3 rounded-full font-sans font-light"
-            style={{
-              padding: '1rem 2.4rem',
-              background: ctaHover ? 'hsl(205 80% 7%)' : 'hsl(0 0% 5%)',
-              fontSize: 'clamp(0.9rem, 1.4vw, 1.05rem)',
-              letterSpacing: '0.01em',
-              color: ctaHover ? 'hsl(199 89% 80%)' : 'hsl(0 0% 80%)',
-              transition: 'color 0.35s ease, background 0.35s ease',
-              whiteSpace: 'nowrap',
-            }}
-          >
-            <span
-              style={{
-                width: 7,
-                height: 7,
-                borderRadius: '50%',
-                flexShrink: 0,
-                background: ctaHover ? 'hsl(199 89% 65%)' : 'hsl(0 0% 32%)',
-                boxShadow: ctaHover ? '0 0 8px hsl(199 89% 65% / 0.8)' : 'none',
-                transition: 'all 0.35s ease',
-              }}
-            />
-            hello@weavyautomation.com
-            <span
-              aria-hidden="true"
-              style={{
-                fontSize: '1em',
-                opacity: ctaHover ? 1 : 0.35,
-                transform: ctaHover ? 'translateX(3px)' : 'translateX(0)',
-                transition: 'all 0.35s ease',
-                display: 'inline-block',
-              }}
-            >
-              →
-            </span>
-          </span>
-        </a>
-        </div>
-
-        {/* ── Footer bar (responsive) ── */}
-        <div className="w-full px-6 sm:px-10" style={{ maxWidth: '72rem', margin: '0 auto', borderTop: '1px solid hsl(0 0% 100% / 0.06)', paddingTop: '1.75rem' }}>
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-
-            {/* Left — green pulsing dot + availability */}
-            <div className="flex items-center gap-2.5 order-1">
-              <span className="relative flex" style={{ width: 8, height: 8 }}>
-                <span
-                  className="absolute inline-flex rounded-full animate-ping"
-                  style={{ width: '100%', height: '100%', background: 'hsl(142 71% 45%)', opacity: 0.7 }}
-                />
-                <span
-                  className="relative inline-flex rounded-full"
-                  style={{ width: 8, height: 8, background: 'hsl(142 71% 52%)', boxShadow: '0 0 8px hsl(142 71% 52% / 0.6)' }}
-                />
-              </span>
-              <span
-                className="font-sans font-light footer-availability-text"
-                style={{ fontSize: '0.75rem', letterSpacing: '0.05em', color: 'hsl(0 0% 48%)' }}
-              >
-                Available for projects
-              </span>
-            </div>
-
-            {/* Centre — copyright (centered on mobile) */}
-            <p
-              className="font-sans font-light text-center order-3 sm:order-2 footer-copyright-text"
-              style={{ fontSize: '0.7rem', letterSpacing: '0.05em', color: 'hsl(0 0% 28%)' }}
-            >
-              © {new Date().getFullYear()} Weavy. All rights reserved.
-            </p>
-
-            {/* Right — social links */}
-            <div className="flex items-center gap-1 justify-end order-2 sm:order-3">
-              {BCF_SOCIAL_LINKS.map(({ label, href, Icon }) => (
-                <a
-                  key={label}
-                  href={href}
-                  aria-label={label}
-                  className="rounded-full flex items-center justify-center footer-social-icon"
-                  style={{
-                    width: 36,
-                    height: 36,
-                    color: 'hsl(0 0% 36%)',
-                    transition: 'color 0.2s ease, background 0.2s ease',
-                  }}
-                  onMouseEnter={e => {
-                    const el = e.currentTarget as HTMLElement
-                    el.style.color = 'hsl(0 0% 84%)'
-                    el.style.background = 'hsl(0 0% 100% / 0.07)'
-                  }}
-                  onMouseLeave={e => {
-                    const el = e.currentTarget as HTMLElement
-                    el.style.color = 'hsl(0 0% 36%)'
-                    el.style.background = 'transparent'
-                  }}
-                >
-                  <Icon />
-                </a>
-              ))}
-            </div>
-
-          </div>
-        </div>
-
-      </div>
-    </section>
-  )
-}
-
 // ─── Services section ─────────────────────────────────────────────────────────
 
 export default function Services() {
@@ -11495,7 +10319,26 @@ export default function Services() {
       <BespokeTestimonials />
 
       {/* ── Bespoke Contact / Footer ── */}
-      <BespokeContactFooter />
+      <Footer
+        heading={<>
+          Ready to{' '}
+          <em style={{
+            fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400,
+            background: 'linear-gradient(90deg, #FFFFFF 0%, #7DDCFF 45%, #B7AEFF 100%)',
+            WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
+            color: 'transparent',
+            textShadow: '0 0 24px rgba(125, 220, 255, 0.16)',
+          }}>
+            automate
+          </em>{' '}
+          your business?
+        </>}
+        subtext={<>
+          Book a free demo and see how Weavy can manage your calls, messages, bookings, and{' '}
+          leads from one <span style={{ color: 'rgba(191, 239, 255, 0.9)', fontWeight: 500 }}>managed AI platform</span>.
+        </>}
+        ctaLabel="hello@weavyautomation.com"
+      />
 
       </> /* end activeService === 'website' */}
 
@@ -11796,7 +10639,26 @@ export default function Services() {
       <ChatbotIntegrationsSection />
 
       {/* ── Custom Chatbots — Contact / Footer (Section 6) ── */}
-      <BespokeContactFooter />
+      <Footer
+        heading={<>
+          Ready to{' '}
+          <em style={{
+            fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400,
+            background: 'linear-gradient(90deg, #FFFFFF 0%, #7DDCFF 45%, #B7AEFF 100%)',
+            WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
+            color: 'transparent',
+            textShadow: '0 0 24px rgba(125, 220, 255, 0.16)',
+          }}>
+            automate
+          </em>{' '}
+          your business?
+        </>}
+        subtext={<>
+          Book a free demo and see how Weavy can manage your calls, messages, bookings, and{' '}
+          leads from one <span style={{ color: 'rgba(191, 239, 255, 0.9)', fontWeight: 500 }}>managed AI platform</span>.
+        </>}
+        ctaLabel="hello@weavyautomation.com"
+      />
 
       </> /* end activeService === 'chatbot' */}
 
@@ -11920,7 +10782,28 @@ export default function Services() {
       {activeService === 'graphic' && <GraphicDesignSplitB />}
       {activeService === 'graphic' && <GraphicDesignFinalPresentation />}
       {activeService === 'graphic' && <GraphicDesignCTA />}
-      {activeService === 'graphic' && <GraphicDesignContactFooter />}
+      {activeService === 'graphic' && (
+        <Footer
+          heading={<>
+            Ready to{' '}
+            <em style={{
+              fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400,
+              background: 'linear-gradient(90deg, #FFFFFF 0%, #7DDCFF 45%, #B7AEFF 100%)',
+              WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
+              color: 'transparent',
+              textShadow: '0 0 24px rgba(125, 220, 255, 0.16)',
+            }}>
+              automate
+            </em>{' '}
+            your business?
+          </>}
+          subtext={<>
+            Book a free demo and see how Weavy can manage your calls, messages, bookings, and{' '}
+            leads from one <span style={{ color: 'rgba(191, 239, 255, 0.9)', fontWeight: 500 }}>managed AI platform</span>.
+          </>}
+          ctaLabel="hello@weavyautomation.com"
+        />
+      )}
 
       {/* ── UGC ── */}
       {activeService === 'ugc' && <UGCHero />}
@@ -11931,7 +10814,28 @@ export default function Services() {
       {activeService === 'ugc' && <UGCPerfumeCampaign />}
       {activeService === 'ugc' && <UGCPerformanceSystem />}
       {activeService === 'ugc' && <UGCPracticeEcosystem />}
-      {activeService === 'ugc' && <UGCContactFooter />}
+      {activeService === 'ugc' && (
+        <Footer
+          heading={<>
+            Ready to{' '}
+            <em style={{
+              fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400,
+              background: 'linear-gradient(90deg, #FFFFFF 0%, #7DDCFF 45%, #B7AEFF 100%)',
+              WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
+              color: 'transparent',
+              textShadow: '0 0 24px rgba(125, 220, 255, 0.16)',
+            }}>
+              automate
+            </em>{' '}
+            your business?
+          </>}
+          subtext={<>
+            Book a free demo and see how Weavy can manage your calls, messages, bookings, and{' '}
+            leads from one <span style={{ color: 'rgba(191, 239, 255, 0.9)', fontWeight: 500 }}>managed AI platform</span>.
+          </>}
+          ctaLabel="hello@weavyautomation.com"
+        />
+      )}
 
       {/* ── Remaining detail placeholder sections ── */}
       {false && SERVICES.slice(4).map(service => (

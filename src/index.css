@@ -867,6 +867,21 @@ body::after {
   }
 }
 
+/* Narrow phones — the 3-column (availability / copyright / socials) grid
+   doesn't have room to stay on one row each, so stack them centered instead
+   of letting all three wrap to 2-3 lines simultaneously. */
+@media (max-width: 480px) {
+  .footer-bottom-bar {
+    grid-template-columns: 1fr !important;
+    justify-items: center !important;
+    text-align: center !important;
+    gap: 0.85rem !important;
+  }
+  .footer-bottom-bar > div:last-child {
+    justify-self: center !important;
+  }
+}
+
 /* ── Platform section — card top-border shimmer sweep ────────────────────── */
 @keyframes platform-card-sweep {
   0%   { left: -45%;  opacity: 0; }
