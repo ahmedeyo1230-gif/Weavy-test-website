@@ -102,6 +102,7 @@ function FooterVideo() {
         playsInline
         preload="none"
         aria-hidden="true"
+        className="footer-hlc-video"
         style={{
           position: 'absolute',
           top: '50%', left: '50%',
@@ -211,7 +212,7 @@ export default function Footer({
   return (
     <footer
       id={id}
-      className="relative w-full overflow-hidden"
+      className="relative w-full overflow-hidden global-footer-shell"
       style={{ background: '#06080A', paddingTop: 'clamp(4rem, 8vw, 5rem)' }}
     >
       {/* Background video — sits above the plain section background, below the
@@ -250,6 +251,7 @@ export default function Footer({
 
         {/* CTA */}
         <div
+          className="footer-cta-wrap"
           style={{
             position: 'relative',
             display: 'flex',
@@ -277,7 +279,7 @@ export default function Footer({
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="font-sans font-light"
+            className="font-sans font-light footer-cta-eyebrow"
             style={{
               position: 'relative',
               zIndex: 1,
@@ -297,7 +299,7 @@ export default function Footer({
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
-            className="font-sans font-light"
+            className="font-sans font-light footer-cta-heading"
             style={{
               position: 'relative',
               zIndex: 1,
@@ -321,7 +323,7 @@ export default function Footer({
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.18, ease: [0.16, 1, 0.3, 1] }}
-              className="font-sans font-light"
+              className="font-sans font-light footer-cta-subtext"
               style={{
                 position: 'relative',
                 zIndex: 1,

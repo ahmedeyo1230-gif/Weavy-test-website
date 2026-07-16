@@ -888,6 +888,36 @@ body::after {
     justify-self: center !important;
     margin-right: 0 !important;
   }
+
+  /* HLC sea-wave — shrink toward the bottom edge of its own (cover-sized) box
+     so it reads as a smaller accent (like desktop) rather than a wave that
+     dominates the whole mobile footer. Position (top/left) is left exactly
+     as-is since the video is a replaced element and minWidth/minHeight:100%
+     sizing doesn't interact safely with top+bottom-based stretching. */
+  .footer-hlc-video {
+    transform: translate(-50%, -50%) scaleY(-1) scale(0.77) !important;
+    transform-origin: bottom center !important;
+  }
+
+  /* Tighter vertical rhythm for the CTA block — desktop/tablet untouched. */
+  .global-footer-shell {
+    padding-top: 2.25rem !important;
+  }
+  .footer-cta-wrap {
+    padding: 2rem 1.5rem 1.75rem !important;
+  }
+  .footer-cta-eyebrow {
+    margin-bottom: 1.1rem !important;
+  }
+  .footer-cta-heading {
+    margin-bottom: 0.85rem !important;
+  }
+  .footer-cta-subtext {
+    margin-bottom: 1.5rem !important;
+  }
+  .footer-bottom-bar {
+    padding-top: 0.9rem !important;
+  }
 }
 
 /* ── Platform section — card top-border shimmer sweep ────────────────────── */
