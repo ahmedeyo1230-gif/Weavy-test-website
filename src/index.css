@@ -893,7 +893,7 @@ body::after {
      wave reads as bottom-composed on a narrow portrait viewport, matching
      the desktop composition. Visibility, opacity and filter are untouched. */
   .footer-hlc-video {
-    object-position: center bottom;
+    object-position: 50% 76%;
   }
 }
 
