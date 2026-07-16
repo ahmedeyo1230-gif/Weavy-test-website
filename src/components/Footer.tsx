@@ -94,7 +94,11 @@ function FooterVideo() {
   }, [])
 
   return (
-    <div ref={containerRef} style={{ position: 'absolute', inset: 0, zIndex: 0, pointerEvents: 'none' }}>
+    <div
+      ref={containerRef}
+      className="footer-hlc-video-wrap"
+      style={{ position: 'absolute', inset: 0, zIndex: 0, overflow: 'hidden', pointerEvents: 'none' }}
+    >
       <video
         ref={videoRef}
         muted
@@ -102,6 +106,7 @@ function FooterVideo() {
         playsInline
         preload="none"
         aria-hidden="true"
+        className="footer-hlc-video"
         style={{
           position: 'absolute',
           top: '50%', left: '50%',

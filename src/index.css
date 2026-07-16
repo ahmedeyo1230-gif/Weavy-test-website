@@ -888,6 +888,13 @@ body::after {
     justify-self: center !important;
     margin-right: 0 !important;
   }
+
+  /* HLC sea-wave — no scaling/hiding here, only a crop-anchor tweak so the
+     wave reads as bottom-composed on a narrow portrait viewport, matching
+     the desktop composition. Visibility, opacity and filter are untouched. */
+  .footer-hlc-video {
+    object-position: center bottom;
+  }
 }
 
 /* ── Platform section — card top-border shimmer sweep ────────────────────── */
