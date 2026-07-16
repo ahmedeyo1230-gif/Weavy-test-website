@@ -408,7 +408,7 @@ export default function Footer({
             />
             <span
               className="font-sans font-light footer-availability-text"
-              style={{ fontSize: '0.73rem', letterSpacing: '0.1em', color: '#94A3B8' }}
+              style={{ fontSize: '0.73rem', letterSpacing: '0.1em', color: 'rgba(220, 232, 240, 0.76)' }}
             >
               Available for projects
             </span>
@@ -417,20 +417,20 @@ export default function Footer({
           {/* Copyright */}
           <p
             className="font-sans font-light text-center footer-copyright-text"
-            style={{ fontSize: '0.7rem', letterSpacing: '0.05em', color: '#94A3B8' }}
+            style={{ fontSize: '0.7rem', letterSpacing: '0.05em', color: 'rgba(210, 224, 232, 0.72)' }}
           >
             © {new Date().getFullYear()} Weavy. All rights reserved.
           </p>
 
           {/* Social links — kept well clear of the fixed WhatsApp button (see
-              marginRight below: ~118px gap from the WhatsApp circle at desktop). */}
+              marginRight below: ~165px gap from the WhatsApp circle at desktop). */}
           <div
             style={{
               display: 'flex',
               alignItems: 'center',
               gap: '0.5rem',
               justifySelf: 'end',
-              marginRight: 'clamp(24px, 9vw, 140px)',
+              marginRight: 'clamp(24px, 10vw, 190px)',
             }}
           >
             {SOCIALS.map(({ label, href, icon }) => (
@@ -442,23 +442,24 @@ export default function Footer({
                 aria-label={label}
                 className="footer-social-icon"
                 style={{
-                  color: 'rgba(220, 232, 240, 0.72)',
+                  color: 'rgba(225, 236, 242, 0.78)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   width: '40px',
                   height: '40px',
                   borderRadius: '50%',
+                  filter: 'drop-shadow(0 0 8px rgba(125, 220, 255, 0.10))',
                   transition: 'opacity 0.25s ease, transform 0.25s ease, color 0.25s ease',
                 }}
                 onMouseEnter={e => {
                   const el = e.currentTarget as HTMLAnchorElement
-                  el.style.color = 'rgba(245, 250, 255, 0.94)'
+                  el.style.color = 'rgba(250, 253, 255, 0.96)'
                   el.style.transform = 'translateY(-2px)'
                 }}
                 onMouseLeave={e => {
                   const el = e.currentTarget as HTMLAnchorElement
-                  el.style.color = 'rgba(220, 232, 240, 0.72)'
+                  el.style.color = 'rgba(225, 236, 242, 0.78)'
                   el.style.transform = 'translateY(0)'
                 }}
               >
