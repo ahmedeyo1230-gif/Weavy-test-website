@@ -465,15 +465,15 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5, duration: 1 }}
-          className="pointer-events-none absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-3"
+          className="hero-scroll-wrap pointer-events-none absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-3"
           aria-hidden="true"
         >
           <span
-            className="text-[10px] uppercase tracking-widest"
+            className="hero-scroll-label text-[10px] uppercase tracking-widest"
             style={{ color: 'rgba(125,220,255,0.55)', letterSpacing: '0.26em' }}
           >Scroll</span>
           <div
-            className="relative"
+            className="hero-scroll-line relative"
             style={{ width: '1px', height: '56px', background: 'rgba(125,220,255,0.22)' }}
           >
             {/* Small glowing dot travelling down the line — CSS-driven so it keeps

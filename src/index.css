@@ -503,6 +503,44 @@ html {
   .hero-scroll-dot { animation: none; top: 25px; opacity: 0.7; }
 }
 
+/* Mobile only — the indicator sat too close to (sometimes under) the
+   "Explore the Platform" button on narrow screens, and was hard to see.
+   Pull it down off the button, brighten it, and lengthen the line to
+   match the desktop proportions. Desktop/tablet keep the values above. */
+@keyframes hero-scroll-dot-mobile {
+  0%   { top: 0px;  opacity: 0; }
+  15%  { opacity: 1; }
+  85%  { opacity: 1; }
+  100% { top: 71px; opacity: 0; }
+}
+@media (max-width: 640px) {
+  .hero-scroll-wrap {
+    bottom: 0px !important;
+    gap: 2px !important;
+  }
+  .hero-scroll-label {
+    color: rgba(125, 220, 255, 0.80) !important;
+    font-size: 11px !important;
+    line-height: 1 !important;
+    letter-spacing: 0.30em !important;
+    opacity: 0.9;
+  }
+  .hero-scroll-line {
+    height: 76px !important;
+    background: rgba(125, 220, 255, 0.34) !important;
+  }
+  .hero-scroll-dot {
+    width: 5px !important;
+    height: 5px !important;
+    background: rgba(125, 220, 255, 0.92) !important;
+    box-shadow: 0 0 10px rgba(125, 220, 255, 0.42) !important;
+    animation-name: hero-scroll-dot-mobile !important;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-scroll-dot { animation: none !important; top: 35px !important; }
+  }
+}
+
 
 @keyframes text-shimmer {
   0%   { background-position: 200% center; }
