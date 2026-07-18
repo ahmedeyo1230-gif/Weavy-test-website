@@ -170,11 +170,15 @@ html {
 }
 
 /* ── Navbar position ─────────────────────────────────────────────────────── */
-.navbar-pos        { top: 10px; transition: top 500ms cubic-bezier(0.16,1,0.3,1); }
-.navbar-pos.is-scrolled { top: 3px; }
+.navbar-pos        { top: calc(4px + env(safe-area-inset-top, 0px)); transition: top 500ms cubic-bezier(0.16,1,0.3,1); }
+.navbar-pos.is-scrolled { top: calc(1px + env(safe-area-inset-top, 0px)); }
 @media (min-width: 768px) {
-  .navbar-pos       { top: 5px; }
-  .navbar-pos.is-scrolled { top: 2px; }
+  .navbar-pos       { top: calc(2px + env(safe-area-inset-top, 0px)); }
+  .navbar-pos.is-scrolled { top: calc(1px + env(safe-area-inset-top, 0px)); }
+}
+@media (min-width: 1024px) {
+  .navbar-pos       { top: calc(1px + env(safe-area-inset-top, 0px)); }
+  .navbar-pos.is-scrolled { top: env(safe-area-inset-top, 0px); }
 }
 
 /* ── Magic Patterns utilities ────────────────────────────────────────────── */
