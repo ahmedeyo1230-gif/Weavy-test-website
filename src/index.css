@@ -517,6 +517,18 @@ html {
   85%  { opacity: 1; }
   100% { top: 71px; opacity: 0; }
 }
+/* Extra bottom breathing room reserved for the scroll indicator, so it can
+   sit further from the CTA buttons without clipping against the section's
+   own edge (overflow-hidden). Desktop (≥1025px) gets no extra padding,
+   same as before this change — untouched. */
+.hero-section-pb { padding-bottom: 0; }
+@media (max-width: 767px) {
+  .hero-section-pb { padding-bottom: 118px; }
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+  .hero-section-pb { padding-bottom: 88px; }
+}
+
 @media (max-width: 640px) {
   .hero-scroll-wrap {
     bottom: 0px !important;
@@ -542,6 +554,16 @@ html {
   }
   @media (prefers-reduced-motion: reduce) {
     .hero-scroll-dot { animation: none !important; top: 35px !important; }
+  }
+}
+
+/* Tablet — same collision, smaller fix: use up the existing 24px slack
+   between .hero-scroll-wrap's default bottom-6 and the section's own
+   edge (safe: never causes clipping) plus the .hero-section-pb buffer
+   above. Line height, colour, glow and animation stay the desktop values. */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .hero-scroll-wrap {
+    bottom: 0px !important;
   }
 }
 

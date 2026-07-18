@@ -325,7 +325,7 @@ export default function Hero() {
       <section
         id="home"
         aria-labelledby="hero-heading"
-        className="relative min-h-screen flex items-center justify-center overflow-hidden max-sm:pb-20"
+        className="relative min-h-screen flex items-center justify-center overflow-hidden hero-section-pb"
         style={{
           background:
             'radial-gradient(circle at 80% 10%, rgba(80,180,180,0.07), transparent 30%),' +
