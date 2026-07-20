@@ -5557,11 +5557,11 @@ function GraphicDesignHero() {
               height: desktopHeight,
               objectFit: 'cover',
               objectPosition: 'center top',
-              filter: 'brightness(0.88) saturate(0.88) contrast(0.95)',
+              filter: 'brightness(0.95) contrast(1.04) saturate(0.96)',
             }}
           />
           {/* Dark cinematic overlay */}
-          <div aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'rgba(1,7,9,0.20)', pointerEvents: 'none', zIndex: 2 }} />
+          <div aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'rgba(1,7,9,0.18)', pointerEvents: 'none', zIndex: 2 }} />
           {/* Left fade */}
           <div aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, #010709 0%, transparent 18%, transparent 82%, #010709 100%)', pointerEvents: 'none', zIndex: 3 }} />
           {/* Top vignette */}
@@ -5599,7 +5599,7 @@ function GraphicDesignHero() {
             src="/brand_assets/Claude_image.webp"
             alt="Graphic design and animation showcase"
             className="w-full h-full object-contain object-center"
-            style={{ display: 'block', filter: 'brightness(0.88) saturate(0.88) contrast(0.95)' }}
+            style={{ display: 'block', filter: 'brightness(0.95) contrast(1.04) saturate(0.96)' }}
           />
           <div aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'rgba(1,7,9,0.18)', pointerEvents: 'none' }} />
         </div>
