@@ -105,23 +105,48 @@ export default function VideoShowcase() {
     let currentTime = 0
     let targetProgress = 0
     let rafId: number | null = null
+    let lastWriteAt = 0
 
-    const onLoadedMetadata = () => { duration = video.duration || 0 }
+    // Safari's video decoder needs a real play() call at least once before
+    // programmatic currentTime seeks reliably take effect — without this,
+    // scroll-scrub can silently stall/freeze on Safari specifically. A
+    // muted play immediately followed by pause "primes" it with no visible
+    // flash, and is a no-op if the browser already handles seeks fine.
+    let primed = false
+    const primeSafari = () => {
+      if (primed) return
+      primed = true
+      video.muted = true
+      const p = video.play()
+      if (p && typeof p.then === 'function') {
+        p.then(() => video.pause()).catch(() => {})
+      }
+    }
+    const onLoadedMetadata = () => { duration = video.duration || 0; primeSafari() }
     video.addEventListener('loadedmetadata', onLoadedMetadata)
 
     const computeProgress = () => {
       const rect = track.getBoundingClientRect()
       const scrollable = track.offsetHeight - window.innerHeight
       if (scrollable <= 0) return 0
-      return Math.min(1, Math.max(0, -rect.top / scrollable))
+      const rawProgress = Math.min(1, Math.max(0, -rect.top / scrollable))
+      // Only the first ~90% of the scroll track drives the video; the final
+      // 10% holds on the last frame so the eased value fully catches up
+      // before the section releases — otherwise a fast scroll can outrun
+      // the easing and the next section appears before playback finishes.
+      return Math.min(1, rawProgress / 0.9)
     }
 
-    const tick = () => {
+    const tick = (now: number) => {
       if (duration > 0) {
         const targetTime = targetProgress * duration
-        currentTime += (targetTime - currentTime) * 0.15
-        if (Math.abs(video.currentTime - currentTime) > 0.02) {
+        currentTime += (targetTime - currentTime) * 0.12
+        // Throttle actual seeks to ~30/s (well above the source's 24fps) —
+        // writing on every rAF (~60/s) is what causes Safari to stutter or
+        // momentarily freeze under fast/continuous scrolling.
+        if (now - lastWriteAt >= 33 && Math.abs(video.currentTime - currentTime) > 0.03) {
           video.currentTime = currentTime
+          lastWriteAt = now
         }
       }
       rafId = requestAnimationFrame(tick)
@@ -199,7 +224,7 @@ export default function VideoShowcase() {
           {/* ── Desktop / tablet — pinned full-screen scroll-scrub ── */}
           <div
             ref={scrollTrackRef}
-            className="hidden sm:block relative min-h-[250vh] lg:min-h-[280vh]"
+            className="hidden sm:block relative min-h-[300vh] lg:min-h-[340vh]"
           >
             <div style={{ position: 'sticky', top: 0, width: '100vw', height: '100vh', overflow: 'hidden' }}>
               <video
