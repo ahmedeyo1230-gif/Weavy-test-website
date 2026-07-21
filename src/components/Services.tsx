@@ -5557,11 +5557,11 @@ function GraphicDesignHero() {
               height: desktopHeight,
               objectFit: 'cover',
               objectPosition: 'center top',
-              filter: 'brightness(0.95) contrast(1.04) saturate(0.96)',
+              filter: 'brightness(0.88) saturate(0.88) contrast(0.95)',
             }}
           />
           {/* Dark cinematic overlay */}
-          <div aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'rgba(1,7,9,0.18)', pointerEvents: 'none', zIndex: 2 }} />
+          <div aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'rgba(1,7,9,0.20)', pointerEvents: 'none', zIndex: 2 }} />
           {/* Left fade */}
           <div aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, #010709 0%, transparent 18%, transparent 82%, #010709 100%)', pointerEvents: 'none', zIndex: 3 }} />
           {/* Top vignette */}
@@ -5599,7 +5599,7 @@ function GraphicDesignHero() {
             src="/brand_assets/Claude_image.webp"
             alt="Graphic design and animation showcase"
             className="w-full h-full object-contain object-center"
-            style={{ display: 'block', filter: 'brightness(0.95) contrast(1.04) saturate(0.96)' }}
+            style={{ display: 'block', filter: 'brightness(0.88) saturate(0.88) contrast(0.95)' }}
           />
           <div aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'rgba(1,7,9,0.18)', pointerEvents: 'none' }} />
         </div>
@@ -5613,6 +5613,113 @@ function GraphicDesignHero() {
         pointerEvents: 'none',
         zIndex: 5,
       }}/>
+    </section>
+  )
+}
+
+// ─── Graphic Design / Animation — Creative Systems showcase ─────────────────
+// Sits directly under the hero. Minimal by design: the uploaded image already
+// carries the headline ("Creative control. Built for impact."), so this
+// section only adds a small eyebrow label + one supporting line, then frames
+// the image itself as the focus. The media wrapper below is intentionally
+// generic (just an <img>) so it can be swapped for a <video poster={...}>
+// later without touching the surrounding layout.
+
+function GraphicDesignCreativeSystems() {
+  const ref = useRef<HTMLElement>(null)
+
+  useEffect(() => {
+    const el = ref.current
+    const reveal = el?.querySelector<HTMLElement>('.gd-cs-reveal')
+    if (!el || !reveal) return
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      gsap.set(reveal, { opacity: 1, y: 0 })
+      return
+    }
+
+    gsap.set(reveal, { opacity: 0, y: 20 })
+    const obs = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return
+      gsap.to(reveal, { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' })
+      obs.disconnect()
+    }, { threshold: 0.15 })
+    obs.observe(el)
+    return () => obs.disconnect()
+  }, [])
+
+  return (
+    <section
+      ref={ref}
+      className="relative w-full overflow-hidden"
+      style={{ background: '#010709' }}
+    >
+      <div
+        className="gd-cs-reveal relative z-10 mx-auto flex flex-col items-center"
+        style={{
+          maxWidth: '1500px',
+          paddingTop: 'clamp(3rem, 6vw, 5rem)',
+          paddingBottom: 'clamp(3rem, 6vw, 5rem)',
+          paddingLeft: 'clamp(16px, 4vw, 3rem)',
+          paddingRight: 'clamp(16px, 4vw, 3rem)',
+        }}
+      >
+        {/* Section label */}
+        <div className="flex items-center gap-3 mb-5">
+          <div style={{ width: 24, height: 1, background: 'rgba(125,220,255,0.45)' }} />
+          <span style={{
+            fontSize: '0.65rem', letterSpacing: '0.3em', textTransform: 'uppercase',
+            color: 'rgba(125,220,255,0.75)', fontFamily: 'var(--font-sans, sans-serif)', fontWeight: 500,
+          }}>
+            Creative Systems
+          </span>
+          <div style={{ width: 24, height: 1, background: 'rgba(125,220,255,0.45)' }} />
+        </div>
+
+        {/* Supporting sentence */}
+        <p
+          className="font-sans font-medium text-center mb-8 sm:mb-10"
+          style={{
+            fontSize: 'clamp(0.9rem, 1.4vw, 1.05rem)',
+            lineHeight: 1.7,
+            color: '#CBD5E1',
+            maxWidth: '640px',
+          }}
+        >
+          From brand identity to campaign visuals, every detail is designed with control,
+          clarity, and commercial impact.
+        </p>
+
+        {/* Media wrapper — image today, drop-in <video poster="..."> later */}
+        <div
+          className="relative w-full"
+          style={{
+            maxWidth: '1450px',
+            aspectRatio: '16 / 9',
+            borderRadius: '20px',
+            overflow: 'hidden',
+            border: '1px solid rgba(125,220,255,0.20)',
+            boxShadow: '0 24px 80px rgba(0,0,0,0.45), 0 0 32px rgba(125,220,255,0.08)',
+            background: '#010709',
+          }}
+        >
+          <img
+            src="/images/graphic-design/creative-control-showcase.png"
+            alt="Creative control, built for impact — Photoshop and Illustrator tools shown as a premium design control system"
+            loading="lazy"
+            decoding="async"
+            width={3840}
+            height={2160}
+            style={{
+              display: 'block',
+              width: '100%',
+              height: '100%',
+              objectFit: 'contain',
+              objectPosition: 'center',
+            }}
+          />
+        </div>
+      </div>
     </section>
   )
 }
@@ -10776,6 +10883,7 @@ export default function Services() {
 
       {/* ── Graphic Design / Animation — cinematic hero + editorial ── */}
       {activeService === 'graphic' && <GraphicDesignHero />}
+      {activeService === 'graphic' && <GraphicDesignCreativeSystems />}
       {activeService === 'graphic' && <GraphicDesignEditorial />}
       {activeService === 'graphic' && <GraphicDesignServices />}
       {activeService === 'graphic' && <GraphicDesignSplitA />}
