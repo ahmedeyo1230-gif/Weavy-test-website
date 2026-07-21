@@ -84,8 +84,9 @@ function ModuleCard({ mod, index }: { mod: typeof MODULES[number]; index: number
       style={{
         position: 'relative',
         borderRadius: 18,
-        background: 'rgba(255,255,255,0.02)',
-        border: '1px solid rgba(255,255,255,0.07)',
+        background: 'rgba(255,255,255,0.035)',
+        border: '1px solid rgba(255,255,255,0.11)',
+        boxShadow: '0 10px 28px rgba(0,0,0,0.34)',
         padding: '1.5rem 1.4rem',
         overflow: 'hidden',
       }}
@@ -133,7 +134,13 @@ export default function PlatformSection() {
   return (
     <section
       className="relative w-full overflow-hidden"
-      style={{ background: '#010709', padding: 'clamp(5rem, 9vw, 8rem) 0' }}
+      style={{
+        background: [
+          'radial-gradient(circle at 50% 22%, rgba(24, 105, 125, 0.16) 0%, rgba(10, 48, 59, 0.08) 34%, rgba(1, 7, 9, 0) 68%)',
+          'linear-gradient(to bottom, #07141A 0%, #031015 24%, #010709 72%)',
+        ].join(', '),
+        padding: 'clamp(5rem, 9vw, 8rem) 0',
+      }}
       aria-label="The Weavy Platform"
     >
       {/* Ambient glow + dot grid, consistent with other platform-style sections */}
