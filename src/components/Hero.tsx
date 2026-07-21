@@ -8,6 +8,15 @@ const HERO_POSTER = 'https://image.mux.com/Aa02T7oM1wH5Mk5EEVDYhbZ1ChcdhRsS2m1NY
 
 const ROLES = ['Creatives', 'Developers', 'Founders', 'Designers']
 
+// Gradient treatment for the highlighted phrases in the hero subhead.
+const heroSubheadHighlight = {
+  background: 'linear-gradient(90deg, #F4F8FA 0%, #7DDCFF 55%, #B7AEFF 100%)',
+  WebkitBackgroundClip: 'text',
+  backgroundClip: 'text',
+  WebkitTextFillColor: 'transparent',
+  color: 'transparent',
+} as const
+
 // Every top-level nav item is a real, always-clickable path — works the same
 // from any page, in both directions.
 const NAV_LINKS: { label: string; href: string }[] = [
@@ -429,11 +438,13 @@ export default function Hero() {
           <motion.p
             variants={itemVariants}
             className="max-w-xl mx-auto mb-12 leading-relaxed text-sm sm:text-base font-medium"
-            style={{ color: '#CBD5E1', lineHeight: 1.75 }}
+            style={{ color: 'rgba(220, 232, 240, 0.80)', lineHeight: 1.75 }}
           >
-            Weavy helps SMEs capture leads, respond instantly, automate bookings, and manage
+            Weavy helps SMEs <span style={heroSubheadHighlight}>capture leads</span>,{' '}
+            <span style={heroSubheadHighlight}>respond instantly</span>,{' '}
+            <span style={heroSubheadHighlight}>automate bookings</span>, and manage
             customer conversations across voice, WhatsApp, Instagram, Facebook, and CRM —
-            all from one intelligent platform.
+            all from <span style={heroSubheadHighlight}>one intelligent platform</span>.
           </motion.p>
 
           <motion.div
