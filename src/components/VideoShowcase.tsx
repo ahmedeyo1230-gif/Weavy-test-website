@@ -98,7 +98,7 @@ export default function VideoShowcase() {
     const tick = () => {
       if (duration > 0) {
         const targetTime = targetProgress * duration
-        currentTime += (targetTime - currentTime) * 0.12
+        currentTime += (targetTime - currentTime) * 0.15
         if (Math.abs(video.currentTime - currentTime) > 0.02) {
           video.currentTime = currentTime
         }
@@ -177,8 +177,7 @@ export default function VideoShowcase() {
           {/* ── Desktop / tablet — pinned full-screen scroll-scrub ── */}
           <div
             ref={scrollTrackRef}
-            className="hidden sm:block relative"
-            style={{ minHeight: '400vh' }}
+            className="hidden sm:block relative min-h-[250vh] lg:min-h-[280vh]"
           >
             <div style={{ position: 'sticky', top: 0, width: '100vw', height: '100vh', overflow: 'hidden' }}>
               <video
