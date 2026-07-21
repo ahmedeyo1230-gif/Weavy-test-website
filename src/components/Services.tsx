@@ -3397,17 +3397,42 @@ function SocialMediaMarketing() {
 
   // ── Section 6: Short-Form ──
   useEffect(() => observe(s6Ref, el => {
-    const videoEl = el.querySelector('.s6-video') as HTMLElement | null
     const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
     tl.to(el.querySelectorAll('.s6-badge'),   { opacity: 1, y: 0, duration: 0.6 }, 0)
     tl.to(el.querySelectorAll('.s6-heading'), { opacity: 1, y: 0, duration: 0.85 }, 0.1)
     tl.to(el.querySelectorAll('.s6-body'),    { opacity: 1, y: 0, duration: 0.7 }, 0.22)
     tl.to(el.querySelectorAll('.s6-pill'),    { opacity: 1, y: 0, duration: 0.45, stagger: 0.08 }, 0.3)
     tl.to(el.querySelectorAll('.s6-video'),   { opacity: 1, y: 0, duration: 1.2, ease: 'power2.out' }, 0.35)
-    tl.add(() => {
-      if (videoEl) gsap.to(videoEl, { y: -10, duration: 4.5, ease: 'sine.inOut', yoyo: true, repeat: -1 })
-    }, '-=0.1')
   }), [])
+
+  // Campaign artwork — restrained premium "ken burns" drift: slow scale(1 → 1.025)
+  // on the images themselves (frames keep overflow:hidden so it never spills past
+  // the rounded corners). Paused while off-screen, skipped entirely for
+  // prefers-reduced-motion, in which case both artworks stay fully static.
+  useEffect(() => {
+    const el = s6Ref.current
+    if (!el) return
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+
+    const imgs = Array.from(el.querySelectorAll<HTMLElement>('.s6-media-img'))
+    if (!imgs.length) return
+
+    const tweenFor = new Map(imgs.map((img, i) => [
+      img,
+      gsap.to(img, { scale: 1.025, duration: 7 + i * 0.6, ease: 'sine.inOut', yoyo: true, repeat: -1, paused: true }),
+    ]))
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const tween = tweenFor.get(entry.target as HTMLElement)
+        if (!tween) return
+        if (entry.isIntersecting) tween.play(); else tween.pause()
+      })
+    }, { threshold: 0.1 })
+    imgs.forEach(img => io.observe(img))
+
+    return () => { io.disconnect(); tweenFor.forEach(t => t.kill()) }
+  }, [])
 
   // ── Section 7: Why Brands Work With Weavy ──
   useEffect(() => observe(smFeatRef, el => {
@@ -4902,15 +4927,13 @@ function SocialMediaMarketing() {
                   ].join(', '),
                 }}
               >
-                <video
-                  src="/brand_assets/Food.mp4"
-                  controls
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  preload="metadata"
-                  className="h-full w-full object-cover"
+                <img
+                  src="/images/social-media/fragrance-campaign-landscape.webp"
+                  alt="Luxury fragrance campaign adapted for websites and widescreen brand storytelling"
+                  loading="lazy"
+                  decoding="async"
+                  className="s6-media-img h-full w-full object-cover"
+                  style={{ objectPosition: 'center' }}
                 />
               </div>
 
@@ -4959,12 +4982,13 @@ function SocialMediaMarketing() {
                   ].join(', '),
                 }}
               >
-                <video
-                  src="https://pub-731d5e7deddb4fce94cef7393920d429.r2.dev/Damaal.mp4"
-                  controls
-                  playsInline
-                  preload="metadata"
-                  className="h-full w-full object-cover"
+                <img
+                  src="/images/social-media/fragrance-campaign-vertical.webp"
+                  alt="Luxury fragrance social campaign designed for TikTok, Reels and mobile advertising"
+                  loading="lazy"
+                  decoding="async"
+                  className="s6-media-img h-full w-full object-cover"
+                  style={{ objectPosition: 'center' }}
                 />
               </div>
 
