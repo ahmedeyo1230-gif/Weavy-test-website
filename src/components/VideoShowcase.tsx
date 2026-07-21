@@ -35,6 +35,27 @@ function CornerMarkers() {
   )
 }
 
+// Hero's own bottom fade ends flush on an opaque #010709, but the video's
+// actual first-frame content doesn't share that flat color — so the cut
+// from Hero into the video reads as a hard seam even with zero gap/border
+// between them. This re-introduces a short blend (same technique the old
+// framed-card design used) so the video eases in instead of hard-cutting.
+function SeamBlend() {
+  return (
+    <div
+      aria-hidden="true"
+      style={{
+        position: 'absolute',
+        top: 0, left: 0, right: 0,
+        height: '96px',
+        background: 'linear-gradient(to bottom, #010709 0%, rgba(1,7,9,0.55) 45%, transparent 100%)',
+        pointerEvents: 'none',
+        zIndex: 2,
+      }}
+    />
+  )
+}
+
 const videoStyle: CSSProperties = {
   position: 'absolute',
   inset: 0,
@@ -170,6 +191,7 @@ export default function VideoShowcase() {
               display: 'block', objectFit: 'cover', objectPosition: 'center',
             }}
           />
+          <SeamBlend />
           <CornerMarkers />
         </div>
       ) : (
@@ -190,6 +212,7 @@ export default function VideoShowcase() {
               >
                 {srcReady && <source src={videoSrc} type="video/mp4" />}
               </video>
+              <SeamBlend />
               <CornerMarkers />
             </div>
           </div>
@@ -207,6 +230,7 @@ export default function VideoShowcase() {
             >
               {srcReady && <source src={videoSrc} type="video/mp4" />}
             </video>
+            <SeamBlend />
             <CornerMarkers />
           </div>
         </>
