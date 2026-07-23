@@ -400,17 +400,27 @@ p.wv-closing {
 }
 
 .wv-cta { justify-content: flex-end; align-items: center; padding-bottom: 20vh; text-align: center; }
-.wv-cta-block { max-width: 34rem; }
-.wv-cap {
+
+/* Whole closing group (statement + scroll label + arrow) moves as one
+   unit — mobile-first default, larger offset from 701px up. */
+.wv-cta-block { max-width: 34rem; transform: translateY(-65px); }
+@media (min-width: 701px) {
+  .wv-cta-block { transform: translateY(-90px); }
+}
+
+/* div.wv-cap (tag+class) — needs to out-specificity the ".wv-root div"
+   margin reset above, same issue as div.wv-eyebrow/div.wv-group/div.wv-label,
+   otherwise this margin silently collapses to 0. */
+div.wv-cap {
   font-size: clamp(1.15rem, 2.2vw, 1.7rem);
   font-weight: 400;
   line-height: 1.5;
   letter-spacing: -0.005em;
   color: #C2D6D2;
-  margin-bottom: 1.9rem;
+  margin-bottom: 34px;
 }
 
-.wv-cue { display: flex; flex-direction: column; align-items: center; gap: 0.9rem; color: var(--wv-gold); }
+.wv-cue { display: flex; flex-direction: column; align-items: center; gap: 32px; color: var(--wv-gold); }
 .wv-cue-text { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.24em; text-transform: uppercase; }
 .wv-cue-arrow { animation: wv-drift 2.4s ease-in-out infinite; }
 @keyframes wv-drift {
