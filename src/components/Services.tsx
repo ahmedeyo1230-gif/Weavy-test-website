@@ -4933,7 +4933,11 @@ function SocialMediaMarketing() {
                   loading="lazy"
                   decoding="async"
                   className="s6-media-img h-full w-full object-cover"
-                  style={{ objectPosition: 'center' }}
+                  style={{
+                    objectPosition: '48% 54%',
+                    transform: 'scale(1.03)',
+                    filter: 'contrast(1.08) brightness(0.97) saturate(1.04)',
+                  }}
                 />
               </div>
 
@@ -5581,11 +5585,11 @@ function GraphicDesignHero() {
               height: desktopHeight,
               objectFit: 'cover',
               objectPosition: 'center top',
-              filter: 'brightness(0.88) saturate(0.88) contrast(0.95)',
+              filter: 'brightness(0.94) contrast(1.08) saturate(1.06)',
             }}
           />
           {/* Dark cinematic overlay */}
-          <div aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'rgba(1,7,9,0.20)', pointerEvents: 'none', zIndex: 2 }} />
+          <div aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'rgba(1,7,9,0.18)', pointerEvents: 'none', zIndex: 2 }} />
           {/* Left fade */}
           <div aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, #010709 0%, transparent 18%, transparent 82%, #010709 100%)', pointerEvents: 'none', zIndex: 3 }} />
           {/* Top vignette */}
@@ -5623,9 +5627,9 @@ function GraphicDesignHero() {
             src="/brand_assets/Claude_image.webp"
             alt="Graphic design and animation showcase"
             className="w-full h-full object-contain object-center"
-            style={{ display: 'block', filter: 'brightness(0.88) saturate(0.88) contrast(0.95)' }}
+            style={{ display: 'block', filter: 'brightness(0.94) contrast(1.08) saturate(1.06)' }}
           />
-          <div aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'rgba(1,7,9,0.18)', pointerEvents: 'none' }} />
+          <div aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'rgba(1,7,9,0.16)', pointerEvents: 'none' }} />
         </div>
       </div>
 
@@ -5681,7 +5685,6 @@ function GraphicDesignCreativeSystems() {
       <div
         className="gd-cs-reveal relative z-10 mx-auto flex flex-col items-center"
         style={{
-          maxWidth: '1500px',
           paddingTop: 'clamp(3rem, 6vw, 5rem)',
           paddingBottom: 'clamp(3rem, 6vw, 5rem)',
           paddingLeft: 'clamp(16px, 4vw, 3rem)',
@@ -5716,10 +5719,8 @@ function GraphicDesignCreativeSystems() {
 
         {/* Media wrapper — image today, drop-in <video poster="..."> later */}
         <div
-          className="relative w-full"
+          className="relative w-full sm:w-[94vw] lg:w-[min(96vw,1700px)] aspect-[16/9]"
           style={{
-            maxWidth: '1450px',
-            aspectRatio: '16 / 9',
             borderRadius: '20px',
             overflow: 'hidden',
             border: '1px solid rgba(125,220,255,0.20)',
@@ -5740,6 +5741,7 @@ function GraphicDesignCreativeSystems() {
               height: '100%',
               objectFit: 'contain',
               objectPosition: 'center',
+              filter: 'brightness(0.9) contrast(0.98) saturate(0.96)',
             }}
           />
         </div>

@@ -68,6 +68,13 @@ const videoStyle: CSSProperties = {
   filter: 'brightness(0.86) contrast(1.06) saturate(0.94)',
 }
 
+// Desktop/tablet media box — the sticky stage stays full-screen (100vw/100vh)
+// so the pin/scroll-scrub math is untouched, but the visible video is now a
+// smaller, centred, more refined window inside that stage rather than
+// filling it edge-to-edge.
+const mediaBoxClassName =
+  'relative w-[min(92vw,1100px)] lg:w-[min(92vw,1500px)] aspect-video max-h-[68vh] lg:max-h-[76vh]'
+
 export default function VideoShowcase() {
   const sectionRef      = useRef<HTMLElement>(null)
   const scrollTrackRef  = useRef<HTMLDivElement>(null)
@@ -140,7 +147,7 @@ export default function VideoShowcase() {
     const tick = (now: number) => {
       if (duration > 0) {
         const targetTime = targetProgress * duration
-        currentTime += (targetTime - currentTime) * 0.12
+        currentTime += (targetTime - currentTime) * 0.10
         // Throttle actual seeks to ~30/s (well above the source's 24fps) —
         // writing on every rAF (~60/s) is what causes Safari to stutter or
         // momentarily freeze under fast/continuous scrolling.
@@ -224,19 +231,23 @@ export default function VideoShowcase() {
           {/* ── Desktop / tablet — pinned full-screen scroll-scrub ── */}
           <div
             ref={scrollTrackRef}
-            className="hidden sm:block relative min-h-[300vh] lg:min-h-[340vh]"
+            className="hidden sm:block relative min-h-[320vh] lg:min-h-[360vh]"
           >
-            <div style={{ position: 'sticky', top: 0, width: '100vw', height: '100vh', overflow: 'hidden' }}>
-              <video
-                ref={desktopVideoRef}
-                muted
-                playsInline
-                preload={srcReady ? 'auto' : 'none'}
-                poster={posterSrc}
-                style={videoStyle}
-              >
-                {srcReady && <source src={videoSrc} type="video/mp4" />}
-              </video>
+            <div style={{ position: 'sticky', top: 0, width: '100vw', height: '100vh', overflow: 'hidden', background: '#010709' }}>
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className={mediaBoxClassName}>
+                  <video
+                    ref={desktopVideoRef}
+                    muted
+                    playsInline
+                    preload={srcReady ? 'auto' : 'none'}
+                    poster={posterSrc}
+                    style={videoStyle}
+                  >
+                    {srcReady && <source src={videoSrc} type="video/mp4" />}
+                  </video>
+                </div>
+              </div>
               <SeamBlend />
               <CornerMarkers />
             </div>
