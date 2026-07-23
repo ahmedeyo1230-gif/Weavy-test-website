@@ -323,7 +323,11 @@ const CSS = `
   will-change: opacity, transform;
 }
 
-.wv-block { max-width: 38rem; }
+/* Intro content (Platform/Services lists) — centred as a single controlled
+   column rather than left-stretched across the full padded width. */
+.wv-intro { align-items: center; text-align: center; }
+
+.wv-block { max-width: 46rem; }
 
 .wv-eyebrow {
   font-size: clamp(1rem, 1.45vw, 1.32rem);
@@ -353,6 +357,7 @@ const CSS = `
   line-height: 1.9;
   letter-spacing: 0.005em;
   color: rgba(234,241,240,0.77);
+  text-align: center;
 }
 /* each service is an unbreakable unit; the bullet binds to the item before it,
    so a name never splits and no line ever begins with a bullet */
@@ -371,11 +376,13 @@ const CSS = `
   letter-spacing: -0.005em;
   color: #C2D6D2;
   max-width: 20ch;
+  margin: 0 auto;
   padding-top: 1.6rem;
   border-top: 1px solid rgba(57,198,180,0.28);
+  text-align: center;
 }
 
-.wv-cta { justify-content: flex-end; align-items: center; padding-bottom: 13vh; text-align: center; }
+.wv-cta { justify-content: flex-end; align-items: center; padding-bottom: 20vh; text-align: center; }
 .wv-cta-block { max-width: 34rem; }
 .wv-cap {
   font-size: clamp(1.15rem, 2.2vw, 1.7rem);
