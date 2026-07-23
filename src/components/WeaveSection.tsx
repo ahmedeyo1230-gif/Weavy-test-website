@@ -369,7 +369,11 @@ const CSS = `
 }
 .wv-items span:last-child::after { content: ''; }
 
-.wv-closing {
+/* p.wv-closing (tag+class) — needs to out-specificity the ".wv-root p"
+   margin reset above, otherwise that rule's higher specificity wins and
+   silently cancels this margin, leaving the block stuck at the left edge
+   instead of centred. */
+p.wv-closing {
   font-weight: 500;
   font-size: clamp(1.25rem, 2.35vw, 1.85rem);
   line-height: 1.5;
@@ -377,9 +381,16 @@ const CSS = `
   color: #C2D6D2;
   max-width: 20ch;
   margin: 0 auto;
-  padding-top: 1.6rem;
-  border-top: 1px solid rgba(57,198,180,0.28);
+  padding-bottom: 1.6rem;
+  border-bottom: 1px solid rgba(57,198,180,0.28);
   text-align: center;
+}
+
+/* Desktop only — nudge the (now genuinely centred) closing statement and
+   its underline, which moves with it since both live in the same box,
+   slightly left. */
+@media (min-width: 1024px) {
+  p.wv-closing { transform: translateX(-60px); }
 }
 
 .wv-cta { justify-content: flex-end; align-items: center; padding-bottom: 20vh; text-align: center; }
