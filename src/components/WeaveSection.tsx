@@ -327,7 +327,16 @@ const CSS = `
    column rather than left-stretched across the full padded width. */
 .wv-intro { align-items: center; text-align: center; }
 
+/* Shared wrapper for the entire intro content group — eyebrow, Platform
+   list, Services list, divider line and closing statement all live
+   inside this one box and share its centre point, so shifting the
+   whole group (see the desktop-only rule below) moves everything
+   together instead of any piece independently. */
 .wv-block { max-width: 46rem; }
+
+@media (min-width: 1024px) {
+  .wv-block { transform: translateX(-120px); }
+}
 
 .wv-eyebrow {
   font-size: clamp(1rem, 1.45vw, 1.32rem);
@@ -384,13 +393,6 @@ p.wv-closing {
   padding-bottom: 1.6rem;
   border-bottom: 1px solid rgba(57,198,180,0.28);
   text-align: center;
-}
-
-/* Desktop only — nudge the (now genuinely centred) closing statement and
-   its underline, which moves with it since both live in the same box,
-   slightly left. */
-@media (min-width: 1024px) {
-  p.wv-closing { transform: translateX(-60px); }
 }
 
 .wv-cta { justify-content: flex-end; align-items: center; padding-bottom: 20vh; text-align: center; }
