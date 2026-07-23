@@ -300,7 +300,13 @@ const CSS = `
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(120% 90% at 50% 48%, #0c1a1b 0%, #071011 72%);
+  /* Outer stop matches Hero's own bottom-fade end colour (#010709) exactly,
+     and the stop is pulled in from 72% to 45% so the gradient is fully
+     resolved to that flat colour everywhere along the top edge (y=0) —
+     at 72% it was still ~26-46% blended toward the lighter inner colour
+     across the full width there, which is what read as a hard seam
+     against Hero's own fade, which ends on a flat, fully-resolved colour. */
+  background: radial-gradient(120% 90% at 50% 48%, #0c1a1b 0%, #010709 45%);
 }
 .wv-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
 
@@ -309,6 +315,13 @@ const CSS = `
   inset: 0;
   pointer-events: none;
   background: linear-gradient(100deg, rgba(7,16,17,0.92) 0%, rgba(7,16,17,0.75) 34%, rgba(7,16,17,0) 62%);
+  /* This overlay otherwise applies at full strength right up to y=0 — an
+     abrupt "overlay edge" starting exactly at the Hero boundary, with
+     nothing equivalent on Hero's side, which is what read as a seam even
+     after the background gradient above was colour-matched. Fade it in
+     over the first 48px instead of switching on instantly. */
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 48px);
+  mask-image: linear-gradient(to bottom, transparent 0, #000 48px);
 }
 
 .wv-overlay {
