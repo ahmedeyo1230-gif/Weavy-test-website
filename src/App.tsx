@@ -3,7 +3,6 @@ import { applyPageSeo, PAGE_SEO } from './lib/seo'
 import LoadingScreen from './components/LoadingScreen'
 import Hero, { Navbar } from './components/Hero'
 import WeaveSection from './components/WeaveSection'
-import VideoShowcase from './components/VideoShowcase'
 import PlatformSection from './components/PlatformSection'
 import PricingSection from './components/PricingSection'
 import About from './components/About'
@@ -168,7 +167,6 @@ export default function App() {
             <>
               <Hero />
               <WeaveSection />
-              <VideoShowcase />
               <OutcomeMarquee />
               <PlatformSection />
               <About />
