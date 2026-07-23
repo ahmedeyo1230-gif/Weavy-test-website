@@ -338,26 +338,30 @@ const CSS = `
   .wv-block { transform: translateX(-120px); }
 }
 
-.wv-eyebrow {
+/* div.wv-eyebrow / div.wv-group / div.wv-label (tag+class) — need to
+   out-specificity the ".wv-root div" margin reset above (same issue as
+   p.wv-closing), otherwise that rule silently cancels these margins and
+   every vertical gap below collapses to 0. */
+div.wv-eyebrow {
   font-size: clamp(1rem, 1.45vw, 1.32rem);
   letter-spacing: 0.34em;
   text-transform: uppercase;
   font-weight: 600;
   color: var(--wv-teal);
   opacity: 0.9;
-  margin-bottom: 2.2rem;
+  margin-bottom: 14px;
 }
 
-.wv-group { margin-bottom: 2rem; }
-.wv-group:last-of-type { margin-bottom: 2.4rem; }
+div.wv-group { margin-bottom: 18px; }
+div.wv-group:last-of-type { margin-bottom: 2.4rem; }
 
-.wv-label {
+div.wv-label {
   font-size: 0.8rem;
   letter-spacing: 0.26em;
   text-transform: uppercase;
   font-weight: 700;
   color: #A9B963;
-  margin-bottom: 0.7rem;
+  margin-bottom: 12px;
 }
 
 .wv-items {
@@ -416,8 +420,9 @@ p.wv-closing {
 
 @media (max-width: 700px) {
   .wv-items { line-height: 1.7; }
-  .wv-group { margin-bottom: 1.5rem; }
-  .wv-eyebrow { margin-bottom: 1.6rem; }
+  div.wv-group { margin-bottom: 16px; }
+  div.wv-eyebrow { margin-bottom: 12px; }
+  div.wv-label { margin-bottom: 10px; }
   .wv-scrim {
     background: linear-gradient(180deg, rgba(7,16,17,0.9) 0%, rgba(7,16,17,0.78) 60%, rgba(7,16,17,0.5) 100%);
   }
