@@ -394,8 +394,8 @@ p.wv-closing {
   color: #C2D6D2;
   max-width: 20ch;
   margin: 0 auto;
-  padding-bottom: 1.6rem;
-  border-bottom: 1px solid rgba(57,198,180,0.28);
+  padding-top: 1.6rem;
+  border-top: 1px solid rgba(57,198,180,0.28);
   text-align: center;
 }
 
