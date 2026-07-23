@@ -337,8 +337,8 @@ export default function Hero() {
         className="relative min-h-screen flex items-center justify-center overflow-hidden hero-section-pb"
         style={{
           background:
-            'radial-gradient(circle at 80% 10%, rgba(80,180,180,0.07), transparent 30%),' +
-            '#071011',
+            'radial-gradient(circle at 50% 45%, rgba(15,64,74,0.10) 0%, rgba(5,25,30,0.06) 40%, rgba(1,7,9,0) 72%),' +
+            '#020A0D',
         }}
       >
         <HeroVideo />
