@@ -39,14 +39,19 @@ export default function About() { // no diagonal lines bg
         }}
       />
 
-      {/* Dot grid */}
+      {/* Dot grid — masked to fade in gradually from the top instead of
+          starting with a hard edge at the Connected Systems boundary.
+          (Previously missing the -webkit- prefix used everywhere else in
+          this codebase for masks, so the fade never applied in Safari,
+          leaving a hard-edged rectangle right at the section boundary.) */}
       <div
         className="absolute inset-0 pointer-events-none"
         aria-hidden="true"
         style={{
           backgroundImage: 'radial-gradient(hsl(0 0% 100% / 0.07) 1px, transparent 1px)',
           backgroundSize: '28px 28px',
-          maskImage: 'radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%)',
+          WebkitMaskImage: 'linear-gradient(to bottom, transparent 0, rgba(0, 0, 0, 0.35) 70px, #000 180px)',
+          maskImage: 'linear-gradient(to bottom, transparent 0, rgba(0, 0, 0, 0.35) 70px, #000 180px)',
         }}
       />
 
