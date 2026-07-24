@@ -365,7 +365,7 @@ export default function Hero() {
             variants={itemVariants}
             className="hero-eyebrow mb-6 mt-6 font-medium"
           >
-            <span className="uppercase">Managed AI Platform</span>
+            <span className="uppercase">Platform &amp; Managed Services</span>
           </motion.p>
 
           <div className="relative">
