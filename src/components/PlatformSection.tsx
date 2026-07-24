@@ -171,7 +171,7 @@ export default function PlatformSection() {
             transition={{ duration: 0.55, ease: E }}
             style={{ fontSize: 'clamp(12px, calc(11.3px + 0.19vw), 14px)', letterSpacing: '0.32em', textTransform: 'uppercase', color: 'rgba(191, 239, 255, 0.72)', marginBottom: '1.3rem' }}
           >
-            The Weavy Platform
+            One Connected System
           </motion.p>
 
           <motion.h2
@@ -182,11 +182,7 @@ export default function PlatformSection() {
             className="font-sans font-light"
             style={{ fontSize: 'clamp(2rem, 4.4vw, 3.2rem)', lineHeight: 1.14, letterSpacing: '-0.032em', color: '#F8FAFC' }}
           >
-            One{' '}
-            <em style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400, color: '#7DDCFF' }}>
-              operating system
-            </em>{' '}
-            for customer communication, leads, and growth.
+            Everything working together, so your business runs better.
           </motion.h2>
 
           <motion.p
@@ -197,8 +193,8 @@ export default function PlatformSection() {
             className="font-sans font-light"
             style={{ fontSize: 'clamp(0.92rem, 1.5vw, 1.05rem)', lineHeight: 1.8, color: '#AEB8B8', opacity: 1, marginTop: '1.3rem' }}
           >
-            Instead of disconnected tools, Weavy connects your customer channels, automations,
-            bookings, and lead management into one scalable system built for SMEs.
+            We connect your calls, messages, bookings, automations and CRM—helping you manage
+            enquiries, follow up faster and turn more conversations into customers.
           </motion.p>
         </div>
 
