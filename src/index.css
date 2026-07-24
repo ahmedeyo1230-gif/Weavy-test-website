@@ -854,36 +854,17 @@ body::after {
 }
 
 /* ── Connected Systems visual animations ─────────────────────────────────── */
-@keyframes cs-card-pulse {
-  0%, 100% { opacity: 1; }
-  50%       { opacity: 0.70; }
-}
-@keyframes cs-dot-pulse {
-  0%, 100% { transform: scale(1);   opacity: 1;    }
-  50%       { transform: scale(1.7); opacity: 0.55; }
-}
 @keyframes cs-chart-shimmer {
   0%   { transform: translateX(-100%); opacity: 0; }
   4%   { opacity: 1; }
   26%  { transform: translateX(200%);  opacity: 0; }
   100% { transform: translateX(200%);  opacity: 0; }
 }
-.cs-float-pulse {
-  animation: cs-card-pulse 3.8s ease-in-out infinite;
-}
-.cs-dot-pulse {
-  animation: cs-dot-pulse 3.8s ease-in-out infinite;
-}
 .cs-chart-shimmer {
   animation: cs-chart-shimmer 7s linear infinite;
 }
-/* Connected Systems — the floating status bubbles are a decorative depth
-   effect around the dashboard; on mobile there's no room for them without
-   covering the dashboard's own text, so hide them and let the dashboard
-   mock stand alone, cleanly stacked under the copy. */
-@media (max-width: 640px) {
-  .cs-float-pulse { display: none; }
-  .cs-stage { min-height: 0 !important; }
+@media (prefers-reduced-motion: reduce) {
+  .cs-chart-shimmer { animation: none; opacity: 0; }
 }
 
 @keyframes ugc-badge-float {

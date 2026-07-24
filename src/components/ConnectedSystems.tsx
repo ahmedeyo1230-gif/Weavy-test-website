@@ -2,22 +2,20 @@ import { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 
 const E: [number, number, number, number] = [0.16, 1, 0.3, 1]
+const GOLD = '#E8C97A'
 
-const FLOW_STEPS = [
-  { id: 'visit',    label: 'Website Visit',     icon: 'globe',   color: '#7DDCFF', delay: 0    },
-  { id: 'chat',     label: 'Chatbot / WhatsApp', icon: 'chat',    color: '#34D399', delay: 0.08 },
-  { id: 'lead',     label: 'Lead Captured',      icon: 'capture', color: '#7DDCFF', delay: 0.16 },
-  { id: 'crm',      label: 'CRM Updated',        icon: 'crm',     color: '#A78BFA', delay: 0.24 },
-  { id: 'followup', label: 'Follow-up Sent',      icon: 'mail',    color: '#34D399', delay: 0.32 },
-  { id: 'booking',  label: 'Booking Confirmed',   icon: 'check',   color: '#F0C56A', delay: 0.40 },
+const JOURNEY = [
+  { id: 'visit',        label: 'Website Visit',     icon: 'globe',   color: '#7DDCFF' },
+  { id: 'conversation', label: 'Conversation',       icon: 'chat',    color: '#34D399' },
+  { id: 'lead',         label: 'Lead Captured',      icon: 'capture', color: '#7DDCFF' },
+  { id: 'crm',          label: 'CRM Updated',        icon: 'crm',     color: '#A78BFA' },
+  { id: 'booking',      label: 'Booking Confirmed',  icon: 'check',   color: GOLD      },
 ]
 
 const FLOAT_CARDS = [
-  { label: 'New Lead',          sub: 'John Smith · just now',  color: '#7DDCFF', dot: '#22D3EE', top: '4%',  left: '-6%'   },
-  { label: 'WhatsApp Reply',    sub: 'Auto-sent · 0s delay',   color: '#34D399', dot: '#34D399', top: '30%', left: '-10%'  },
-  { label: 'CRM Updated',       sub: 'HubSpot · synced',       color: '#A78BFA', dot: '#A78BFA', top: '80%', left: '-7%'   },
-  { label: 'Follow-up Sent',    sub: 'Email #1 · delivered',   color: '#34D399', dot: '#34D399', top: '4%',  right: '-6%'  },
-  { label: 'Booking Confirmed', sub: 'Calendly · confirmed',   color: '#F0C56A', dot: '#F0C56A', top: '58%', right: '-10%' },
+  { label: 'New Lead',          sub: 'John Smith · just now', color: '#7DDCFF', dot: '#22D3EE', pos: { top: '-22px', left: '-18px' } },
+  { label: 'CRM Updated',       sub: 'HubSpot · synced',      color: '#A78BFA', dot: '#A78BFA', pos: { bottom: '-22px', left: '-18px' } },
+  { label: 'Booking Confirmed', sub: 'Calendly · confirmed',  color: GOLD,      dot: GOLD,       pos: { bottom: '-22px', right: '-18px' }, gold: true },
 ]
 
 /* ── Hooks ── */
@@ -82,11 +80,6 @@ function Icon({ type, color, size = 20 }: { type: string; color: string; size?: 
       <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/>
     </svg>
   )
-  if (type === 'mail') return (
-    <svg viewBox="0 0 24 24" style={s}>
-      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
-    </svg>
-  )
   if (type === 'check') return (
     <svg viewBox="0 0 24 24" style={s}>
       <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22,4 12,14.01 9,11.01"/>
@@ -121,8 +114,8 @@ const CHANNELS = [
 
 function ChannelBadges() {
   return (
-    <div style={{ padding: '18px 20px 0' }}>
-      <div style={{ fontSize: 11, color: 'rgba(125,220,255,0.4)', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 10 }}>
+    <div>
+      <div style={{ fontSize: 11, color: 'rgba(125,220,255,0.46)', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 11 }}>
         Connected Channels
       </div>
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
@@ -140,7 +133,7 @@ function ChannelBadges() {
             <span style={{ display: 'inline-flex' }}>
               <Icon type={ch.icon} color={ch.color} size={14} />
             </span>
-            <span style={{ fontSize: 11.5, color: 'rgba(255,255,255,0.72)', fontWeight: 500, whiteSpace: 'nowrap' }}>{ch.label}</span>
+            <span style={{ fontSize: 11.5, color: 'rgba(255,255,255,0.74)', fontWeight: 500, whiteSpace: 'nowrap' }}>{ch.label}</span>
           </div>
         ))}
       </div>
@@ -148,151 +141,152 @@ function ChannelBadges() {
   )
 }
 
-/* ── Central dashboard mock ── */
+/* ── Central dashboard mock — wide "hero" format ── */
 
 function DashboardMock({ leads, reply, bookings }: { leads: number; reply: number; bookings: number }) {
   const bars = [42, 68, 55, 82, 61, 90, 74]
   return (
     <div
       aria-hidden="true"
+      className="w-full"
       style={{
-        width: '100%',
-        maxWidth: 510,
         borderRadius: 24,
-        background: 'linear-gradient(145deg, rgba(8,20,28,0.96) 0%, rgba(4,10,18,0.98) 100%)',
-        border: '1px solid rgba(125,220,255,0.14)',
-        boxShadow: '0 48px 120px -14px rgba(0,0,0,0.90), 0 0 0 1px rgba(125,220,255,0.07), 0 0 100px -20px rgba(125,220,255,0.26)',
-        padding: '0 0 26px',
+        background: 'linear-gradient(145deg, rgba(9,22,30,0.97) 0%, rgba(4,10,18,0.985) 100%)',
+        border: '1px solid rgba(125,220,255,0.20)',
+        boxShadow: '0 56px 140px -20px rgba(0,0,0,0.90), 0 0 0 1px rgba(125,220,255,0.09), 0 0 120px -24px rgba(125,220,255,0.24)',
         overflow: 'hidden',
         position: 'relative',
       }}
     >
       {/* Top bar */}
-      <div style={{ padding: '20px 26px 17px', borderBottom: '1px solid rgba(125,220,255,0.08)', display: 'flex', alignItems: 'center', gap: 10 }}>
+      <div style={{ padding: '22px 28px 18px', borderBottom: '1px solid rgba(125,220,255,0.10)', display: 'flex', alignItems: 'center', gap: 10 }}>
         <div style={{ display: 'flex', gap: 7 }}>
           {['rgba(255,90,90,0.7)','rgba(255,185,40,0.7)','rgba(50,215,100,0.7)'].map((c,i) => (
             <div key={i} style={{ width: 12, height: 12, borderRadius: '50%', background: c }} />
           ))}
         </div>
-        <div style={{ flex: 1, textAlign: 'center', fontSize: 12.5, color: 'rgba(125,220,255,0.45)', letterSpacing: '0.14em', textTransform: 'uppercase' }}>
+        <div style={{ flex: 1, textAlign: 'center', fontSize: 'clamp(10.5px, 3vw, 12.5px)', lineHeight: 1.5, color: 'rgba(125,220,255,0.52)', letterSpacing: '0.12em', textTransform: 'uppercase' }}>
           Weavy · Automation Dashboard
         </div>
       </div>
 
-      {/* Connected channels — the platform's intake surfaces */}
-      <ChannelBadges />
+      {/* Channels + stats (left) / chart (right) */}
+      <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_1fr] gap-8 lg:gap-10" style={{ padding: '26px 28px 0' }}>
+        <div>
+          <ChannelBadges />
 
-      {/* Stat row — animated values */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 12, padding: '20px 20px 0' }}>
-        {[
-          { v: String(leads),     l: 'Leads',      c: '#7DDCFF' },
-          { v: `${reply}%`,       l: 'Reply Rate',  c: '#34D399' },
-          { v: String(bookings),  l: 'Bookings',    c: '#F0C56A' },
-        ].map(({ v, l, c }) => (
-          <div key={l} style={{ background: 'rgba(125,220,255,0.04)', border: `1px solid ${c}22`, borderRadius: 14, padding: '16px 12px', textAlign: 'center' }}>
-            <div style={{ fontSize: 25, fontWeight: 600, color: c, lineHeight: 1.1, fontFamily: 'monospace' }}>{v}</div>
-            <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.38)', letterSpacing: '0.1em', textTransform: 'uppercase', marginTop: 5 }}>{l}</div>
-          </div>
-        ))}
-      </div>
-
-      {/* Chart — with shimmer sweep */}
-      <div style={{ padding: '20px 20px 0' }}>
-        <div style={{ fontSize: 11, color: 'rgba(125,220,255,0.4)', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 11 }}>Weekly Enquiries</div>
-        <div style={{ position: 'relative', overflow: 'hidden' }}>
-          <div style={{ display: 'flex', alignItems: 'flex-end', gap: 7, height: 82 }}>
-            {bars.map((h, i) => (
-              <div key={i} style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-end', height: '100%' }}>
-                <div style={{
-                  width: '100%',
-                  height: `${h}%`,
-                  borderRadius: '5px 5px 0 0',
-                  background: i === 5
-                    ? 'linear-gradient(to top, rgba(125,220,255,0.72), rgba(125,220,255,0.32))'
-                    : i === 3
-                    ? 'linear-gradient(to top, rgba(52,211,153,0.65), rgba(52,211,153,0.28))'
-                    : 'linear-gradient(to top, rgba(125,220,255,0.22), rgba(125,220,255,0.08))',
-                }} />
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 12, marginTop: 22 }}>
+            {[
+              { v: String(leads),     l: 'Leads',      c: '#7DDCFF' },
+              { v: `${reply}%`,       l: 'Reply Rate',  c: '#34D399' },
+              { v: String(bookings),  l: 'Bookings',    c: GOLD },
+            ].map(({ v, l, c }) => (
+              <div key={l} style={{ background: 'rgba(125,220,255,0.05)', border: `1px solid ${c}28`, borderRadius: 14, padding: '16px 12px', textAlign: 'center' }}>
+                <div style={{ fontSize: 25, fontWeight: 600, color: c, lineHeight: 1.1, fontFamily: 'monospace' }}>{v}</div>
+                <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.46)', letterSpacing: '0.1em', textTransform: 'uppercase', marginTop: 5 }}>{l}</div>
               </div>
             ))}
           </div>
-          {/* Shimmer sweep overlay */}
-          <div aria-hidden="true" style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 2, overflow: 'hidden' }}>
-            <div
-              className="cs-chart-shimmer"
-              style={{
-                position: 'absolute', top: 0, bottom: 0, left: 0, width: '45%',
-                background: 'linear-gradient(90deg, transparent 0%, rgba(125,220,255,0.11) 50%, transparent 100%)',
-              }}
-            />
-          </div>
         </div>
-        <div style={{ height: 1, background: 'rgba(125,220,255,0.08)', marginTop: 6 }} />
+
+        <div>
+          <div style={{ fontSize: 11, color: 'rgba(125,220,255,0.46)', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 11 }}>Weekly Enquiries</div>
+          <div style={{ position: 'relative', overflow: 'hidden' }}>
+            <div style={{ display: 'flex', alignItems: 'flex-end', gap: 7, height: 92 }}>
+              {bars.map((h, i) => (
+                <div key={i} style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-end', height: '100%' }}>
+                  <div style={{
+                    width: '100%',
+                    height: `${h}%`,
+                    borderRadius: '5px 5px 0 0',
+                    background: i === 5
+                      ? 'linear-gradient(to top, rgba(125,220,255,0.72), rgba(125,220,255,0.32))'
+                      : i === 3
+                      ? 'linear-gradient(to top, rgba(52,211,153,0.65), rgba(52,211,153,0.28))'
+                      : 'linear-gradient(to top, rgba(125,220,255,0.24), rgba(125,220,255,0.09))',
+                  }} />
+                </div>
+              ))}
+            </div>
+            <div aria-hidden="true" style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 2, overflow: 'hidden' }}>
+              <div
+                className="cs-chart-shimmer"
+                style={{
+                  position: 'absolute', top: 0, bottom: 0, left: 0, width: '45%',
+                  background: 'linear-gradient(90deg, transparent 0%, rgba(125,220,255,0.11) 50%, transparent 100%)',
+                }}
+              />
+            </div>
+          </div>
+          <div style={{ height: 1, background: 'rgba(125,220,255,0.10)', marginTop: 6 }} />
+        </div>
       </div>
 
-      {/* Activity feed */}
-      <div style={{ padding: '17px 20px 0' }}>
-        <div style={{ fontSize: 11, color: 'rgba(125,220,255,0.4)', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 11 }}>Live Activity</div>
-        {[
-          { label: 'New lead: Emma Wilson',  time: '2s ago',  dot: '#7DDCFF' },
-          { label: 'CRM synced · HubSpot',   time: '14s ago', dot: '#A78BFA' },
-          { label: 'Follow-up email sent',   time: '1m ago',  dot: '#34D399' },
-        ].map((r, i) => (
-          <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '7px 0', borderBottom: i < 2 ? '1px solid rgba(255,255,255,0.04)' : 'none' }}>
-            <div style={{ width: 7, height: 7, borderRadius: '50%', background: r.dot, flexShrink: 0, boxShadow: `0 0 8px ${r.dot}88` }} />
-            <div style={{ flex: 1, fontSize: 13, color: 'rgba(255,255,255,0.62)' }}>{r.label}</div>
-            <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.28)' }}>{r.time}</div>
-          </div>
-        ))}
+      {/* Activity feed — full-width row on wide dashboard */}
+      <div className="pb-7 min-[640px]:pb-16" style={{ paddingTop: 24, paddingLeft: 28, paddingRight: 28 }}>
+        <div style={{ fontSize: 11, color: 'rgba(125,220,255,0.46)', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 12 }}>Live Activity</div>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          {[
+            { label: 'New lead: Emma Wilson',  time: '2s ago',  dot: '#7DDCFF' },
+            { label: 'CRM synced · HubSpot',   time: '14s ago', dot: '#A78BFA' },
+            { label: 'Follow-up email sent',   time: '1m ago',  dot: '#34D399' },
+          ].map((r, i) => (
+            <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '11px 14px', borderRadius: 12, background: 'rgba(125,220,255,0.035)', border: '1px solid rgba(125,220,255,0.09)' }}>
+              <div style={{ width: 7, height: 7, borderRadius: '50%', background: r.dot, flexShrink: 0, boxShadow: `0 0 8px ${r.dot}88` }} />
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div style={{ fontSize: 12.5, color: 'rgba(255,255,255,0.72)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{r.label}</div>
+                <div style={{ fontSize: 10.5, color: 'rgba(255,255,255,0.32)', marginTop: 2 }}>{r.time}</div>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* Ambient glow overlay */}
-      <div aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse 70% 50% at 50% 0%, rgba(125,220,255,0.04) 0%, transparent 60%)', pointerEvents: 'none' }} />
+      <div aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse 70% 50% at 50% 0%, rgba(125,220,255,0.045) 0%, transparent 60%)', pointerEvents: 'none' }} />
     </div>
   )
 }
 
-/* ── Floating automation card — with pulse animation ── */
+/* ── Floating notification badge — one-time settle-in, no continuous motion ── */
 
 function FloatCard({
-  label, sub, color, dot, pulseIndex, style,
+  label, sub, color, dot, gold, style, reduced, delay,
 }: {
-  label: string; sub: string; color: string; dot: string; pulseIndex: number; style: React.CSSProperties
+  label: string; sub: string; color: string; dot: string; gold?: boolean
+  style: React.CSSProperties; reduced: boolean; delay: number
 }) {
-  const delay = `${pulseIndex * 0.45}s`
   return (
-    <div
-      className="cs-float-pulse"
+    <motion.div
+      initial={reduced ? false : { opacity: 0, y: 8, scale: 0.96 }}
+      whileInView={
+        gold
+          ? { opacity: 1, y: 0, scale: 1, boxShadow: '0 0 24px rgba(232, 201, 122, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.03)' }
+          : { opacity: 1, y: 0, scale: 1 }
+      }
+      viewport={{ once: true }}
+      transition={{ duration: 0.55, delay, ease: E }}
+      className="hidden min-[640px]:block"
       style={{
         position: 'absolute',
         ...style,
-        background: 'rgba(6,14,20,0.92)',
-        border: `1px solid ${color}28`,
-        borderRadius: 15,
-        padding: '13px 20px',
+        background: 'rgba(6,14,20,0.94)',
+        border: `1px solid ${color}30`,
+        borderRadius: 14,
+        padding: '12px 18px',
         backdropFilter: 'blur(16px)',
         WebkitBackdropFilter: 'blur(16px)',
-        boxShadow: `0 12px 44px rgba(0,0,0,0.62), 0 0 0 1px ${color}16`,
-        minWidth: 210,
+        boxShadow: `0 12px 40px rgba(0,0,0,0.60), 0 0 0 1px ${color}14`,
+        minWidth: 196,
         zIndex: 10,
-        animationDelay: delay,
-        animationDuration: '3.8s',
       }}
     >
       <div style={{ display: 'flex', alignItems: 'center', gap: 9 }}>
-        <div
-          className="cs-dot-pulse"
-          style={{
-            width: 10, height: 10, borderRadius: '50%',
-            background: dot, boxShadow: `0 0 10px ${dot}`, flexShrink: 0,
-            animationDelay: delay,
-            animationDuration: '3.8s',
-          }}
-        />
-        <span style={{ fontSize: 14, fontWeight: 600, color: '#F1F5F9', letterSpacing: '0.01em' }}>{label}</span>
+        <div style={{ width: 8, height: 8, borderRadius: '50%', background: dot, boxShadow: `0 0 9px ${dot}` }} />
+        <span style={{ fontSize: 13.5, fontWeight: 600, color: '#F1F5F9', letterSpacing: '0.01em' }}>{label}</span>
       </div>
-      <div style={{ fontSize: 11.5, color: 'rgba(255,255,255,0.38)', marginTop: 5, paddingLeft: 19 }}>{sub}</div>
-    </div>
+      <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.38)', marginTop: 4, paddingLeft: 17 }}>{sub}</div>
+    </motion.div>
   )
 }
 
@@ -324,28 +318,44 @@ export default function ConnectedSystems() {
       className="relative w-full overflow-hidden"
       style={{
         background: '#010709',
-        // Weavy Platform now sits directly above — tighten just this shared
-        // edge (see matching comment in PlatformSection.tsx) to a clean
-        // combined gap instead of stacking two full section paddings.
-        paddingTop: 'clamp(26px, 5vw, 50px)',
-        paddingBottom: 'clamp(5rem, 9vw, 8rem)',
+        paddingTop: 'clamp(72px, 15vw, 200px)',
+        paddingBottom: 'clamp(64px, 13vw, 180px)',
       }}
       aria-label="Connected Systems"
     >
-      {/* Background glows */}
+      {/* Thin glowing connection line continuing down from the Weavy Platform
+          section above — fades in from transparent so it reads as a
+          continuation rather than a hard-edged line starting mid-air. */}
+      <motion.div
+        aria-hidden="true"
+        className="pointer-events-none absolute left-1/2 top-0"
+        initial={reduced ? false : { scaleY: 0 }}
+        whileInView={{ scaleY: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.7, ease: E }}
+        style={{
+          width: 1,
+          height: 'clamp(120px, 16vw, 200px)',
+          transform: 'translateX(-50%)',
+          transformOrigin: 'top',
+          background: 'linear-gradient(to bottom, rgba(125, 220, 255, 0), rgba(125, 220, 255, 0.42), rgba(125, 220, 255, 0.10))',
+          boxShadow: '0 0 18px rgba(125, 220, 255, 0.18)',
+          zIndex: 1,
+        }}
+      />
+
+      {/* Ambient glow behind the dashboard — kept below the Platform section's
+          brightness, per the "not brighter than Platform" requirement. */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
-        background: [
-          'radial-gradient(ellipse 55% 60% at 68% 50%, rgba(125,220,255,0.055) 0%, transparent 65%)',
-          'radial-gradient(ellipse 40% 40% at 20% 30%, rgba(52,211,153,0.025) 0%, transparent 60%)',
-        ].join(', '),
+        background: 'radial-gradient(circle at 50% 48%, rgba(24, 105, 125, 0.11) 0%, rgba(5, 26, 32, 0.05) 42%, rgba(1, 7, 9, 0) 72%)',
       }} />
 
-      {/* Dot grid */}
+      {/* Very faint dotted texture */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
-        backgroundImage: 'radial-gradient(rgba(125,220,255,0.06) 1px, transparent 1px)',
+        backgroundImage: 'radial-gradient(rgba(125,220,255,0.045) 1px, transparent 1px)',
         backgroundSize: '28px 28px',
-        maskImage: 'radial-gradient(ellipse 80% 80% at 60% 50%, black 30%, transparent 100%)',
-        WebkitMaskImage: 'radial-gradient(ellipse 80% 80% at 60% 50%, black 30%, transparent 100%)',
+        maskImage: 'radial-gradient(ellipse 80% 70% at 50% 40%, black 25%, transparent 100%)',
+        WebkitMaskImage: 'radial-gradient(ellipse 80% 70% at 50% 40%, black 25%, transparent 100%)',
       }} />
 
       {/* Top / bottom fades */}
@@ -353,147 +363,157 @@ export default function ConnectedSystems() {
       <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 120, background: 'linear-gradient(to top, #010709, transparent)', pointerEvents: 'none' }} />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-10">
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.18fr] gap-14 lg:gap-16 items-center">
 
-          {/* ── Left: text ── */}
+        {/* ── Editorial header ── */}
+        <div
+          className="grid grid-cols-1 min-[900px]:grid-cols-[minmax(0,1.4fr)_minmax(320px,0.6fr)] min-[900px]:items-end"
+          style={{ columnGap: 80 }}
+        >
           <div>
             <motion.p
-              initial={{ opacity: 0, y: 10 }}
+              initial={reduced ? false : { opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.55, ease: E }}
+              transition={{ duration: 0.5, delay: 0.12, ease: E }}
               style={{ fontSize: '0.67rem', letterSpacing: '0.30em', textTransform: 'uppercase', color: 'rgba(125,220,255,0.65)', marginBottom: '1.4rem' }}
             >
               Connected Systems
             </motion.p>
 
             <motion.h2
-              initial={{ opacity: 0, y: 22 }}
+              initial={reduced ? false : { opacity: 0, y: 22 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.72, delay: 0.07, ease: E }}
+              transition={{ duration: 0.65, delay: 0.18, ease: E }}
               className="font-sans font-light"
-              style={{ fontSize: 'clamp(2.5rem, 5.6vw, 4.1rem)', lineHeight: 1.08, letterSpacing: '-0.038em', color: '#F8FAFC', marginBottom: '1.6rem' }}
+              style={{ fontSize: 'clamp(2.6rem, 6vw, 6rem)', lineHeight: 0.98, letterSpacing: '-0.03em', color: '#F8FAFC' }}
             >
               From first click to{' '}
               <em style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400, color: '#7DDCFF' }}>
                 booked client.
               </em>
             </motion.h2>
+          </div>
 
-            <motion.p
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
+          <motion.p
+            initial={reduced ? false : { opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.55, delay: 0.24, ease: E }}
+            className="font-sans font-light"
+            style={{ fontSize: 'clamp(18px, 1.3vw, 20px)', lineHeight: 1.7, color: 'rgba(220, 232, 240, 0.74)', maxWidth: 430, marginTop: '1.6rem' }}
+          >
+            Every enquiry is captured, qualified, followed up and moved
+            towards booking.
+          </motion.p>
+        </div>
+
+        {/* ── Dashboard hero ── */}
+        <motion.div
+          initial={reduced ? false : { opacity: 0, y: 24, scale: 0.98 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.38, ease: E }}
+          className="relative mx-auto"
+          style={{ width: 'min(86vw, 1240px)', marginTop: 'clamp(56px, 9vw, 100px)' }}
+        >
+          {FLOAT_CARDS.map((c, i) => (
+            <FloatCard
+              key={c.label}
+              label={c.label}
+              sub={c.sub}
+              color={c.color}
+              dot={c.dot}
+              gold={c.gold}
+              style={c.pos}
+              reduced={reduced}
+              delay={0.5 + i * 0.08}
+            />
+          ))}
+
+          <DashboardMock leads={leads} reply={reply} bookings={bookings} />
+        </motion.div>
+
+        {/* ── Customer journey ── */}
+        <div className="mx-auto" style={{ width: 'min(86vw, 1240px)', marginTop: 'clamp(56px, 9vw, 96px)' }}>
+
+          {/* Desktop / tablet — horizontal progression */}
+          <div className="hidden min-[640px]:block relative">
+            <div aria-hidden="true" style={{ position: 'absolute', top: 19, left: '10%', right: '10%', height: 1, background: 'rgba(125,220,255,0.14)' }} />
+            <motion.div
+              aria-hidden="true"
+              initial={reduced ? false : { scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.65, delay: 0.15, ease: E }}
-              className="font-sans font-light"
-              style={{ fontSize: 'clamp(1rem, 1.65vw, 1.15rem)', lineHeight: 1.82, color: '#94A3B8', maxWidth: '34rem', marginBottom: '2.8rem' }}
-            >
-              We connect your website, chatbot, CRM, and follow-up systems so every
-              enquiry is captured, organised, and moved closer to conversion.
-            </motion.p>
-
-            {/* Flow steps */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-              {FLOW_STEPS.map((step, i) => (
+              transition={{ duration: 0.8, delay: 0.62, ease: E }}
+              style={{
+                position: 'absolute', top: 19, left: '10%', right: '10%', height: 1,
+                transformOrigin: 'left',
+                background: 'linear-gradient(to right, rgba(125,220,255,0.55), rgba(125,220,255,0.28) 60%, rgba(232,201,122,0.55))',
+              }}
+            />
+            <div className="grid relative" style={{ gridTemplateColumns: 'repeat(5, minmax(0, 1fr))' }}>
+              {JOURNEY.map((step, i) => (
                 <motion.div
                   key={step.id}
-                  initial={{ opacity: 0, x: -16 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+                  initial={reduced ? false : { opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.48, delay: 0.28 + step.delay, ease: E }}
-                  style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}
+                  transition={{ duration: 0.45, delay: 0.68 + i * 0.09, ease: E }}
+                  className="flex flex-col items-center text-center"
+                  style={{ padding: '0 8px' }}
                 >
-                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flexShrink: 0 }}>
-                    <div style={{
-                      width: 38, height: 38, borderRadius: '50%',
-                      background: `${step.color}12`,
-                      border: `1px solid ${step.color}38`,
-                      display: 'flex', alignItems: 'center', justifyContent: 'center',
-                      boxShadow: `0 0 14px ${step.color}20`,
-                    }}>
-                      <Icon type={step.icon} color={step.color} />
-                    </div>
-                    {i < FLOW_STEPS.length - 1 && (
-                      <div style={{ width: 1, height: 16, background: `linear-gradient(to bottom, ${step.color}28, transparent)`, marginTop: 2 }} />
-                    )}
+                  <div style={{
+                    width: 38, height: 38, borderRadius: '50%',
+                    background: `${step.color}14`,
+                    border: `1px solid ${step.color}40`,
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    boxShadow: i === 4 ? '0 0 20px rgba(232,201,122,0.22)' : `0 0 12px ${step.color}1c`,
+                    position: 'relative', zIndex: 2,
+                  }}>
+                    <Icon type={step.icon} color={step.color} size={17} />
                   </div>
-                  <span style={{ fontSize: '0.97rem', color: i === 5 ? '#F0C56A' : 'rgba(248,250,252,0.76)', fontWeight: i === 5 ? 500 : 400 }}>
+                  <span style={{ marginTop: 12, fontSize: '0.85rem', color: i === 4 ? GOLD : 'rgba(248,250,252,0.76)', fontWeight: i === 4 ? 500 : 400 }}>
                     {step.label}
-                    {i < FLOW_STEPS.length - 1 && (
-                      <span style={{ color: 'rgba(125,220,255,0.28)', marginLeft: 10, fontSize: '0.82rem' }}>→</span>
-                    )}
                   </span>
                 </motion.div>
               ))}
             </div>
           </div>
 
-          {/* ── Right: dashboard + floating cards ── */}
-          <div className="lg:ml-[56px] lg:mt-[100px]">
-          <motion.div
-            initial={{ opacity: 0, x: 28, scale: 0.97 }}
-            whileInView={{ opacity: 1, x: 0, scale: 0.97 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.9, delay: 0.18, ease: E }}
-            className="relative flex items-center justify-center cs-stage"
-            style={{ minHeight: 760, transformOrigin: 'center center' }}
-          >
-            {/* Floating cards — decorative depth effect; hidden on mobile
-                (see .cs-float-pulse media query) where there's no room for
-                them and they would otherwise sit on top of the dashboard. */}
-            {FLOAT_CARDS.map((c, i) => (
-              <FloatCard
-                key={c.label}
-                label={c.label}
-                sub={c.sub}
-                color={c.color}
-                dot={c.dot}
-                pulseIndex={i}
-                style={{
-                  top: c.top,
-                  ...('left' in c ? { left: (c as { left: string }).left } : {}),
-                  ...('right' in c ? { right: (c as { right: string }).right } : {}),
-                }}
-              />
+          {/* Mobile — clean vertical stepped sequence */}
+          <div className="min-[640px]:hidden flex flex-col gap-3">
+            {JOURNEY.map((step, i) => (
+              <motion.div
+                key={step.id}
+                initial={reduced ? false : { opacity: 0, x: -16 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.42, delay: 0.5 + i * 0.09, ease: E }}
+                style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}
+              >
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flexShrink: 0 }}>
+                  <div style={{
+                    width: 36, height: 36, borderRadius: '50%',
+                    background: `${step.color}14`,
+                    border: `1px solid ${step.color}40`,
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    boxShadow: i === 4 ? '0 0 18px rgba(232,201,122,0.22)' : `0 0 12px ${step.color}1c`,
+                  }}>
+                    <Icon type={step.icon} color={step.color} size={16} />
+                  </div>
+                  {i < JOURNEY.length - 1 && (
+                    <div style={{ width: 1, height: 16, background: `linear-gradient(to bottom, ${step.color}30, transparent)`, marginTop: 2 }} />
+                  )}
+                </div>
+                <span style={{ fontSize: '0.95rem', color: i === 4 ? GOLD : 'rgba(248,250,252,0.78)', fontWeight: i === 4 ? 500 : 400 }}>
+                  {step.label}
+                </span>
+              </motion.div>
             ))}
-
-            {/* Connecting lines SVG */}
-            <svg aria-hidden="true" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', pointerEvents: 'none', zIndex: 1 }}>
-              <defs>
-                <linearGradient id="cs-line-l" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="rgba(125,220,255,0)" />
-                  <stop offset="100%" stopColor="rgba(125,220,255,0.22)" />
-                </linearGradient>
-                <linearGradient id="cs-line-r" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="rgba(125,220,255,0.22)" />
-                  <stop offset="100%" stopColor="rgba(125,220,255,0)" />
-                </linearGradient>
-              </defs>
-              <line x1="22%" y1="15%" x2="40%" y2="28%" stroke="url(#cs-line-l)" strokeWidth="0.9" strokeDasharray="3 6" />
-              <line x1="18%" y1="40%" x2="40%" y2="48%" stroke="url(#cs-line-l)" strokeWidth="0.9" strokeDasharray="3 6" />
-              <line x1="20%" y1="68%" x2="40%" y2="62%" stroke="url(#cs-line-l)" strokeWidth="0.9" strokeDasharray="3 6" />
-              <line x1="60%" y1="28%" x2="80%" y2="18%" stroke="url(#cs-line-r)" strokeWidth="0.9" strokeDasharray="3 6" />
-              <line x1="60%" y1="48%" x2="82%" y2="46%" stroke="url(#cs-line-r)" strokeWidth="0.9" strokeDasharray="3 6" />
-            </svg>
-
-            {/* Central dashboard */}
-            <div style={{ position: 'relative', zIndex: 5 }}>
-              <DashboardMock leads={leads} reply={reply} bookings={bookings} />
-            </div>
-
-            {/* Ambient glow behind dashboard */}
-            <div aria-hidden="true" style={{
-              position: 'absolute', inset: '-30px',
-              background: 'radial-gradient(ellipse 60% 55% at 50% 50%, rgba(125,220,255,0.08) 0%, transparent 68%)',
-              filter: 'blur(28px)',
-              pointerEvents: 'none',
-              zIndex: 0,
-            }} />
-          </motion.div>
           </div>
-
         </div>
+
       </div>
     </section>
   )
