@@ -20,8 +20,8 @@ export default function About() { // no diagonal lines bg
       className="py-28 lg:py-36 px-6 relative overflow-hidden"
       style={{
         background:
-          'radial-gradient(ellipse 60% 50% at 80% 20%, rgba(80,180,180,0.06), transparent 55%),' +
-          '#0B1114',
+          'radial-gradient(circle at 58% 32%, rgba(20, 83, 96, 0.07) 0%, rgba(5, 28, 34, 0.035) 42%, rgba(1, 7, 9, 0) 70%),' +
+          'linear-gradient(to bottom, #020A0D 0%, #01080B 48%, #010709 100%)',
         // Overlaps the Connected Systems section above by 1px so the two
         // sections' backgrounds always share a full pixel at the seam,
         // instead of each edge being anti-aliased independently against
