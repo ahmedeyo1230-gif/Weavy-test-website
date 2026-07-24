@@ -39,7 +39,7 @@ const MODULES = [
   },
   {
     title: 'AI Voice Agent',
-    desc: 'Speaks with customers, qualifies leads, and routes important conversations.',
+    desc: 'Speaks with customers, qualifies enquiries and routes high-intent leads.',
     icon: 'waveform', color: '#7DDCFF',
   },
   {
@@ -49,7 +49,7 @@ const MODULES = [
   },
   {
     title: 'Instagram DM',
-    desc: 'Automates DMs, lead replies, campaign responses, and customer questions.',
+    desc: 'Replies instantly, captures enquiries and guides prospects towards booking.',
     icon: 'camera', color: '#E879C9',
   },
   {
@@ -59,7 +59,7 @@ const MODULES = [
   },
   {
     title: 'CRM & Lead Management',
-    desc: 'Stores leads, tracks status, and helps teams follow up properly.',
+    desc: 'Keeps every lead organised, tracks progress and prevents missed follow-ups.',
     icon: 'crm', color: '#A78BFA',
   },
   {
@@ -69,7 +69,7 @@ const MODULES = [
   },
   {
     title: 'Analytics Dashboard',
-    desc: 'Shows enquiries, leads, bookings, performance, and automation activity.',
+    desc: 'Shows where leads come from, what converts and where follow-up is needed.',
     icon: 'chart', color: '#7DDCFF',
   },
 ]
