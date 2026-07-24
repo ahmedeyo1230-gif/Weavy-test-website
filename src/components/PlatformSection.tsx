@@ -136,8 +136,8 @@ export default function PlatformSection() {
       className="relative w-full overflow-hidden"
       style={{
         background: [
-          'radial-gradient(circle at 50% 22%, rgba(24, 105, 125, 0.075) 0%, rgba(10, 48, 59, 0.0375) 34%, rgba(1, 7, 9, 0) 68%)',
-          'linear-gradient(to bottom, #07141A 0%, #031015 24%, #010709 72%)',
+          'radial-gradient(circle at 50% 18%, rgba(24, 105, 125, 0.045) 0%, rgba(5, 24, 29, 0.025) 36%, rgba(1, 7, 9, 0) 64%)',
+          'linear-gradient(to bottom, #01080B 0%, #010709 42%, #000506 100%)',
         ].join(', '),
         paddingTop: 'clamp(5rem, 9vw, 8rem)',
         // Connected Systems now sits directly underneath — tighten just this
