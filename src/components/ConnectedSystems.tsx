@@ -317,7 +317,7 @@ export default function ConnectedSystems() {
       ref={sectionRef}
       className="relative w-full overflow-hidden"
       style={{
-        background: '#010709',
+        background: '#000506',
         paddingTop: 'clamp(72px, 15vw, 200px)',
         paddingBottom: 'clamp(64px, 13vw, 180px)',
       }}
@@ -328,7 +328,7 @@ export default function ConnectedSystems() {
           continuation rather than a hard-edged line starting mid-air. */}
       <motion.div
         aria-hidden="true"
-        className="pointer-events-none absolute left-1/2 top-0"
+        className="connected-system-line pointer-events-none absolute left-1/2 top-0"
         initial={reduced ? false : { scaleY: 0 }}
         whileInView={{ scaleY: 1 }}
         viewport={{ once: true }}
@@ -359,7 +359,7 @@ export default function ConnectedSystems() {
       }} />
 
       {/* Top / bottom fades */}
-      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 120, background: 'linear-gradient(to bottom, #010709, transparent)', pointerEvents: 'none' }} />
+      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 120, background: 'linear-gradient(to bottom, #000506, transparent)', pointerEvents: 'none' }} />
       <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 120, background: 'linear-gradient(to top, #010709, transparent)', pointerEvents: 'none' }} />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-10">

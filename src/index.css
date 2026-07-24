@@ -867,6 +867,56 @@ body::after {
   .cs-chart-shimmer { animation: none; opacity: 0; }
 }
 
+/* Vertical connecting line between Weavy Platform and Connected Systems —
+   restrained travelling light pulse. overflow:hidden clips the pulse to
+   the line's own height; positioning of the line itself is unaffected
+   since it's already position:absolute via its own Tailwind class. */
+.connected-system-line {
+  overflow: hidden;
+}
+.connected-system-line::after {
+  content: "";
+  position: absolute;
+  top: -38%;
+  left: -1px;
+  width: 3px;
+  height: 38%;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(103, 211, 255, 0.95),
+    transparent
+  );
+  box-shadow:
+    0 0 8px rgba(103, 211, 255, 0.55),
+    0 0 18px rgba(103, 211, 255, 0.25);
+  animation: connectedLinePulse 4.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  pointer-events: none;
+}
+@keyframes connectedLinePulse {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 0.85;
+  }
+  100% {
+    transform: translateY(390%);
+    opacity: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .connected-system-line::after {
+    animation: none;
+    transform: translateY(175%);
+    opacity: 0.35;
+  }
+}
+
 @keyframes ugc-badge-float {
   0%, 100% { transform: translateY(0px); }
   50%       { transform: translateY(-5px); }
