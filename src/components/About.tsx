@@ -22,6 +22,11 @@ export default function About() { // no diagonal lines bg
         background:
           'radial-gradient(ellipse 60% 50% at 80% 20%, rgba(80,180,180,0.06), transparent 55%),' +
           '#0B1114',
+        // Overlaps the Connected Systems section above by 1px so the two
+        // sections' backgrounds always share a full pixel at the seam,
+        // instead of each edge being anti-aliased independently against
+        // the page's own (differently-toned, neutral grey) body background.
+        marginTop: '-1px',
       }}
     >
       {/* Top fade — blends from the previous section (Connected Systems, #000506) into this section's own background (#0B1114) */}
