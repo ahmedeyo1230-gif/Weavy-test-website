@@ -209,35 +209,34 @@ export default function WeaveSection() {
             <div className="wv-block">
               <div className="wv-eyebrow">Weavy Automation</div>
 
-              <div className="wv-group">
-                <div className="wv-label">Platform:</div>
-                <p className="wv-items">
-                  <span>AI Voice Receptionists</span>
-                  <span>Voice Agents</span>
-                  <span>Chatbots</span>
-                  <span>WhatsApp</span>
-                  <span>Instagram</span>
-                  <span>Facebook</span>
-                  <span>CRM</span>
-                  <span>Bookings</span>
-                  <span>Analytics</span>
-                </p>
-              </div>
+              <div className="wv-columns">
+                <div className="wv-col wv-col--platform">
+                  <div className="wv-col-heading">Platform</div>
+                  <ul className="wv-col-list">
+                    {['Voice Receptionists', 'Voice Agents', 'Chatbots', 'Messaging', 'CRM & Bookings', 'Analytics'].map((item) => (
+                      <li className="wv-col-item" key={item}>
+                        <span className="wv-node" aria-hidden="true" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
 
-              <div className="wv-group">
-                <div className="wv-label">Services:</div>
-                <p className="wv-items">
-                  <span>Bespoke Websites</span>
-                  <span>Social Media Marketing</span>
-                  <span>Paid Ads</span>
-                  <span>Creative Design &amp; Animation</span>
-                  <span>UGC</span>
-                  <span>Video Editing &amp; Reels</span>
-                </p>
+                <div className="wv-col wv-col--services">
+                  <div className="wv-col-heading">Services</div>
+                  <ul className="wv-col-list">
+                    {['Bespoke Websites', 'Social Media', 'Paid Advertising', 'Creative Design', 'UGC & Reels'].map((item) => (
+                      <li className="wv-col-item" key={item}>
+                        <span className="wv-node" aria-hidden="true" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
 
               <p className="wv-closing">
-                Everything your business needs to grow — all in one place.
+                Everything your business needs to grow — managed in one place.
               </p>
             </div>
           </div>
@@ -245,7 +244,7 @@ export default function WeaveSection() {
           <div className="wv-overlay wv-cta" ref={ctaRef}>
             <div className="wv-cta-block">
               <div className="wv-cap">
-                Everything your business needs to grow — all in one place.
+                Everything your business needs to grow — managed in one place.
               </div>
               <div className="wv-cue">
                 <span className="wv-cue-text">Scroll to explore the platform</span>
@@ -366,35 +365,56 @@ div.wv-eyebrow {
   transform: translateY(-12px);
 }
 
-div.wv-group { margin-bottom: 18px; }
-div.wv-group:last-of-type { margin-bottom: 2.4rem; }
+/* Platform / Services — clean two-column list, replacing the old
+   sentence-style bullet rows. Sits centred as a pair within .wv-block,
+   each column left-aligned internally for a scan-friendly stacked list. */
+.wv-columns {
+  display: flex;
+  justify-content: center;
+  gap: 56px;
+  text-align: left;
+  margin-bottom: 2.4rem;
+}
 
-div.wv-label {
+.wv-col { min-width: 200px; }
+
+div.wv-col-heading {
   font-size: 0.8rem;
   letter-spacing: 0.26em;
   text-transform: uppercase;
   font-weight: 700;
-  color: #A9B963;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
+}
+.wv-col--platform div.wv-col-heading { color: var(--wv-teal); }
+.wv-col--services div.wv-col-heading { color: var(--wv-gold); }
+
+ul.wv-col-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-.wv-items {
+li.wv-col-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   font-weight: 400;
-  font-size: clamp(1rem, 1.75vw, 1.32rem);
-  line-height: 1.9;
+  font-size: clamp(0.95rem, 1.3vw, 1.05rem);
   letter-spacing: 0.005em;
-  color: rgba(234,241,240,0.77);
-  text-align: center;
+  color: rgba(234,241,240,0.82);
 }
-/* each service is an unbreakable unit; the bullet binds to the item before it,
-   so a name never splits and no line ever begins with a bullet */
-.wv-items span { white-space: nowrap; }
-.wv-items span::after {
-  content: ' \\2022 ';
-  color: rgba(234,241,240,0.42);
-  white-space: normal;
+
+.wv-node {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
 }
-.wv-items span:last-child::after { content: ''; }
+.wv-col--platform .wv-node { background: var(--wv-teal); box-shadow: 0 0 8px rgba(57,198,180,0.55); }
+.wv-col--services .wv-node { background: var(--wv-gold); box-shadow: 0 0 8px rgba(233,150,63,0.5); }
 
 /* p.wv-closing (tag+class) — needs to out-specificity the ".wv-root p"
    margin reset above, otherwise that rule's higher specificity wins and
@@ -443,10 +463,9 @@ div.wv-cap {
 }
 
 @media (max-width: 700px) {
-  .wv-items { line-height: 1.7; }
-  div.wv-group { margin-bottom: 16px; }
+  .wv-columns { flex-direction: column; align-items: center; gap: 22px; }
+  div.wv-col-heading { margin-bottom: 12px; }
   div.wv-eyebrow { margin-bottom: 12px; }
-  div.wv-label { margin-bottom: 10px; }
   .wv-scrim {
     background: linear-gradient(180deg, rgba(7,16,17,0.9) 0%, rgba(7,16,17,0.78) 60%, rgba(7,16,17,0.5) 100%);
   }
