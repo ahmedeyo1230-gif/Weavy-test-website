@@ -1,458 +1,519 @@
-import { useEffect, useRef } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
+import { useEffect, useRef, useState } from 'react';
 
 /**
- * WeaveSection
- * Scroll-scrubbed "woven system" hero section.
- * Threads (one per service area) start loose and apart, then interlace
- * into a single system as the user scrolls.
+ * WeaveSection — "connected system map"
+ * A premium, structured Platform/Services map with a continuously-animated
+ * canvas line system behind it: two strands enter from the left and right,
+ * draw in to form an abstract "W", then settle into soft organic drift with
+ * a travelling signal pulse looping along the path. Content nodes glow in
+ * sequence once on entrance, and carry a subtle looping highlight afterwards.
  *
  * All styles are scoped under .wv-root — nothing leaks into the rest of the site.
  */
 
-const STRANDS = 7;
+const PLATFORM_ITEMS = [
+  'Voice Receptionists',
+  'Voice Agents',
+  'Chatbots',
+  'Messaging',
+  'CRM & Bookings',
+  'Analytics',
+]
 
-type Strand = {
-  spreadY: number;
-  phase: number;
-  hue: number;
-  drift: number;
-  dph: number;
-};
+const SERVICES_ITEMS = [
+  'Bespoke Websites',
+  'Social Media',
+  'Paid Advertising',
+  'Creative Design',
+  'UGC & Reels',
+]
+
+// Normalised (0–1) key points tracing an abstract "W" — shared by the canvas
+// line system so the DOM content sits visually inside the shape it forms.
+const W_POINTS: [number, number][] = [
+  [0.0, 0.14],
+  [0.25, 0.86],
+  [0.5, 0.30],
+  [0.75, 0.86],
+  [1.0, 0.14],
+]
+
+function pathY(xf: number): number {
+  for (let i = 0; i < W_POINTS.length - 1; i++) {
+    const [x0, y0] = W_POINTS[i]
+    const [x1, y1] = W_POINTS[i + 1]
+    if (xf >= x0 && xf <= x1) {
+      const t = (xf - x0) / (x1 - x0)
+      return y0 + (y1 - y0) * t
+    }
+  }
+  return W_POINTS[W_POINTS.length - 1][1]
+}
+
+function PlatformIcon({ color }: { color: string }) {
+  return (
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <circle cx="6" cy="6" r="2.3" />
+      <circle cx="18" cy="6" r="2.3" />
+      <circle cx="12" cy="18" r="2.3" />
+      <path d="M7.9 7.4L11 15.8M16.1 7.4L13 15.8M8.4 6h7.2" />
+    </svg>
+  )
+}
+
+function ServicesIcon({ color }: { color: string }) {
+  return (
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M12 3v4M12 17v4M3 12h4M17 12h4M6.3 6.3l2.5 2.5M15.2 15.2l2.5 2.5M17.7 6.3l-2.5 2.5M8.8 15.2l-2.5 2.5" />
+    </svg>
+  )
+}
 
 export default function WeaveSection() {
-  const trackRef = useRef<HTMLDivElement>(null);
-  const stageRef = useRef<HTMLDivElement>(null);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const introRef = useRef<HTMLDivElement>(null);
-  const ctaRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLElement>(null)
+  const canvasRef = useRef<HTMLCanvasElement>(null)
+  const [active, setActive] = useState(false)
+  const [reduced, setReduced] = useState(false)
 
   useEffect(() => {
-    const canvas = canvasRef.current;
-    const track = trackRef.current;
-    const stage = stageRef.current;
-    const intro = introRef.current;
-    const cta = ctaRef.current;
-    if (!canvas || !track || !stage || !intro || !cta) return;
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)')
+    setReduced(mq.matches)
+  }, [])
 
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
+  useEffect(() => {
+    const el = sectionRef.current
+    if (!el) return
+    const obs = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setActive(true) } },
+      { threshold: 0.15 }
+    )
+    obs.observe(el)
+    return () => obs.disconnect()
+  }, [])
 
-    const clamp = (v: number, a: number, b: number) => Math.max(a, Math.min(b, v));
-    const phaseFn = (p: number, a: number, b: number) => clamp((p - a) / (b - a), 0, 1);
-    const smooth = (t: number) => t * t * (3 - 2 * t);
-    const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
+  // Canvas line system: draws in from both sides once active, then holds a
+  // soft organic drift with a travelling signal pulse looping along the path.
+  useEffect(() => {
+    const canvas = canvasRef.current
+    const section = sectionRef.current
+    if (!canvas || !section) return
+    const ctx = canvas.getContext('2d')
+    if (!ctx) return
 
-    // fade in, HOLD at full opacity, then fade out
-    const hold = (p: number, inA: number, inB: number, outA: number, outB: number) =>
-      clamp(Math.min(phaseFn(p, inA, inB), 1 - phaseFn(p, outA, outB)), 0, 1);
+    const lerp = (a: number, b: number, t: number) => a + (b - a) * t
+    const clamp = (v: number, a: number, b: number) => Math.max(a, Math.min(b, v))
+    const smooth = (t: number) => t * t * (3 - 2 * t)
 
-    let W = 0;
-    let H = 0;
-    let strands: Strand[] = [];
-    let currentP = 0;
-    let rafId = 0;
-    let visible = true;
-
-    const buildStrands = () => {
-      strands = [];
-      for (let i = 0; i < STRANDS; i++) {
-        const f = i / (STRANDS - 1);
-        strands.push({
-          spreadY: lerp(-0.34, 0.34, f),
-          phase: f * Math.PI * 2,
-          hue: lerp(172, 34, f), // teal -> gold
-          drift: 0.5 + Math.random() * 0.7,
-          dph: Math.random() * Math.PI * 2,
-        });
-      }
-    };
+    let W = 0
+    let H = 0
+    let rafId = 0
+    let visible = false
+    let started = 0
+    let formed = reduced ? 1 : 0
 
     const resize = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      W = canvas.clientWidth;
-      H = canvas.clientHeight;
-      canvas.width = W * dpr;
-      canvas.height = H * dpr;
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      buildStrands();
-    };
+      const dpr = Math.min(window.devicePixelRatio || 1, 2)
+      W = canvas.clientWidth
+      H = canvas.clientHeight
+      canvas.width = W * dpr
+      canvas.height = H * dpr
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
+    }
 
-    const draw = () => {
-      const t = performance.now() / 1000;
-      ctx.clearRect(0, 0, W, H);
-      ctx.globalCompositeOperation = 'lighter';
-      ctx.lineCap = 'round';
+    // Two strands per half (left-entering, right-entering), each a slightly
+    // jittered variant of the shared W path for a woven, organic feel.
+    const STRANDS = W < 640 ? 2 : 3
+    const offsets = Array.from({ length: STRANDS }, (_, i) => (i - (STRANDS - 1) / 2) * 0.045)
 
-      const cy = H * 0.47;
-      const weave = smooth(currentP);
-      const drawFront = smooth(phaseFn(currentP, 0.04, 0.9));
-      const amp = lerp(H * 0.015, H * 0.11, weave);
-      const period = lerp(W * 0.9, W * 0.26, weave);
-      const step = 6;
+    const draw = (now: number) => {
+      const t = now / 1000
+      if (!started) started = now
+      if (!reduced) formed = smooth(clamp((now - started) / 1300, 0, 1))
 
-      strands.forEach((s) => {
-        const y0 = lerp(cy + s.spreadY * H, cy, weave);
-        const driftAmp = (1 - weave) * H * 0.03;
+      ctx.clearRect(0, 0, W, H)
+      ctx.globalCompositeOperation = 'lighter'
+      ctx.lineCap = 'round'
 
-        for (let pass = 0; pass < 2; pass++) {
-          ctx.beginPath();
-          const maxX = W * drawFront;
-          for (let x = 0; x <= maxX; x += step) {
-            const yWeave =
-              Math.sin((x / period) * Math.PI * 2 + s.phase + weave * Math.PI) * amp;
-            const yDrift = Math.sin(t * s.drift + s.dph + x * 0.004) * driftAmp;
-            const y = y0 + yWeave + yDrift;
-            if (x === 0) ctx.moveTo(x, y);
-            else ctx.lineTo(x, y);
-          }
-          const a = lerp(0.1, 0.9, weave);
-          if (pass === 0) {
-            ctx.strokeStyle = `hsla(${s.hue},70%,55%,${a * 0.28})`;
-            ctx.lineWidth = 9;
-          } else {
-            ctx.strokeStyle = `hsla(${s.hue},85%,68%,${a})`;
-            ctx.lineWidth = 2.1;
-          }
-          ctx.stroke();
+      const step = 5
+      offsets.forEach((off, si) => {
+        ctx.beginPath()
+        let first = true
+        for (let x = 0; x <= W; x += step) {
+          const xf = x / W
+          // enters from both sides, converging toward the centre as `formed` grows
+          const edgeDist = Math.min(xf, 1 - xf)
+          if (edgeDist > formed * 0.52) continue
+          const drift = Math.sin(t * 0.35 + si * 1.7 + xf * 3.1) * 0.012
+          const yf = clamp(pathY(xf) + off + drift, 0.04, 0.96)
+          const y = yf * H
+          if (first) { ctx.moveTo(x, y); first = false } else { ctx.lineTo(x, y) }
         }
+        const hue = lerp(172, 38, si / Math.max(1, STRANDS - 1))
+        ctx.strokeStyle = `hsla(${hue},72%,58%,0.16)`
+        ctx.lineWidth = 7
+        ctx.stroke()
+        ctx.strokeStyle = `hsla(${hue},80%,66%,0.34)`
+        ctx.lineWidth = 1.3
+        ctx.stroke()
+      })
 
-        if (drawFront > 0.001 && drawFront < 0.999) {
-          const x = W * drawFront;
-          const yWeave =
-            Math.sin((x / period) * Math.PI * 2 + s.phase + weave * Math.PI) * amp;
-          ctx.beginPath();
-          ctx.fillStyle = `hsla(${s.hue},95%,80%,0.95)`;
-          ctx.arc(x, y0 + yWeave, 3.2, 0, Math.PI * 2);
-          ctx.fill();
-        }
-      });
-
-      const done = phaseFn(currentP, 0.88, 1.0);
-      if (done > 0.01) {
-        const pulse = 0.5 + 0.5 * Math.sin(t * 1.4);
-        ctx.fillStyle = `hsla(168,60%,50%,${0.03 * done * (0.6 + pulse * 0.4)})`;
-        ctx.fillRect(0, 0, W, H);
+      // Travelling signal pulse — loops along the full width once the lines
+      // have finished forming; skipped entirely for reduced motion.
+      if (!reduced && formed > 0.98) {
+        const cycle = 4.6
+        const loopT = ((t % cycle) / cycle)
+        const xf = loopT
+        const yf = clamp(pathY(xf), 0.04, 0.96)
+        const x = xf * W
+        const y = yf * H
+        const fade = Math.sin(loopT * Math.PI) // fades in/out at the ends of each pass
+        ctx.beginPath()
+        ctx.fillStyle = `hsla(${lerp(172, 38, xf)},95%,80%,${0.85 * fade})`
+        ctx.shadowColor = `hsla(${lerp(172, 38, xf)},95%,70%,${0.6 * fade})`
+        ctx.shadowBlur = 10
+        ctx.arc(x, y, 2.6, 0, Math.PI * 2)
+        ctx.fill()
+        ctx.shadowBlur = 0
       }
 
-      ctx.globalCompositeOperation = 'source-over';
-      rafId = requestAnimationFrame(draw);
-    };
+      ctx.globalCompositeOperation = 'source-over'
+      rafId = requestAnimationFrame(draw)
+    }
 
-    const setOverlays = (p: number) => {
-      const introOpacity = hold(p, 0.0, 0.07, 0.52, 0.66);
-      intro.style.opacity = String(introOpacity);
-      intro.style.transform = `translateY(${(1 - introOpacity) * 14}px)`;
-      cta.style.opacity = String(clamp(phaseFn(p, 0.8, 0.94), 0, 1));
-    };
-
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    const trigger = ScrollTrigger.create({
-      trigger: track,
-      start: 'top top',
-      end: 'bottom bottom',
-      pin: stage,
-      scrub: reduce ? true : 1,
-      onUpdate: (self) => {
-        currentP = self.progress;
-        setOverlays(currentP);
-      },
-    });
-
-    // Pause the render loop when the section is off-screen
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && !visible) {
-          visible = true;
-          rafId = requestAnimationFrame(draw);
+          visible = true
+          rafId = requestAnimationFrame(draw)
         } else if (!entry.isIntersecting && visible) {
-          visible = false;
-          cancelAnimationFrame(rafId);
+          visible = false
+          cancelAnimationFrame(rafId)
         }
       },
       { threshold: 0 }
-    );
-    observer.observe(track);
+    )
+    observer.observe(section)
 
-    window.addEventListener('resize', resize);
-    resize();
-    setOverlays(0);
-    rafId = requestAnimationFrame(draw);
-
-    // Recalculate once fonts have settled, or the pin start can be off
-    if (document.fonts?.ready) {
-      document.fonts.ready.then(() => ScrollTrigger.refresh());
-    }
+    window.addEventListener('resize', resize)
+    resize()
 
     return () => {
-      cancelAnimationFrame(rafId);
-      observer.disconnect();
-      window.removeEventListener('resize', resize);
-      trigger.kill();
-    };
-  }, []);
+      cancelAnimationFrame(rafId)
+      observer.disconnect()
+      window.removeEventListener('resize', resize)
+    }
+  }, [reduced])
+
+  const on = active || reduced
 
   return (
-    <div className="wv-root">
+    <section className="wv-root" ref={sectionRef} aria-label="Weavy Automation">
       <style>{CSS}</style>
 
-      <div className="wv-track" ref={trackRef}>
-        <div className="wv-stage" ref={stageRef}>
-          <canvas className="wv-canvas" ref={canvasRef} />
-          <div className="wv-scrim" />
+      {/* Blends into Hero's own fade-out colour above this section */}
+      <div className="wv-topfade" aria-hidden="true" />
 
-          <div className="wv-overlay wv-intro" ref={introRef}>
-            <div className="wv-block">
-              <div className="wv-eyebrow">Weavy Automation</div>
+      {/* Subtle ambient glow behind the centre of the composition */}
+      <div className="wv-ambient" aria-hidden="true" />
 
-              <div className="wv-group">
-                <div className="wv-label">Platform:</div>
-                <p className="wv-items">
-                  <span>AI Voice Receptionists</span>
-                  <span>Voice Agents</span>
-                  <span>Chatbots</span>
-                  <span>WhatsApp</span>
-                  <span>Instagram</span>
-                  <span>Facebook</span>
-                  <span>CRM</span>
-                  <span>Bookings</span>
-                  <span>Analytics</span>
-                </p>
+      {/* Animated line system — enters from both sides, forms an abstract "W",
+          then holds a soft drift with a travelling signal pulse. */}
+      <div className="wv-lines-wrap" aria-hidden="true">
+        <canvas className="wv-canvas" ref={canvasRef} />
+      </div>
+
+      <div className="wv-content">
+        <div className={`wv-eyebrow${on ? ' wv-in' : ''}`}>Weavy Automation</div>
+        <p className={`wv-statement${on ? ' wv-in' : ''}`}>
+          One connected system, built around your business.
+        </p>
+
+        <div className="wv-columns">
+          <div className="wv-col">
+            <div className={`wv-col-heading${on ? ' wv-in' : ''}`}>
+              <PlatformIcon color="#39C6B4" />
+              <span>Platform</span>
+            </div>
+            <div className="wv-list-wrap">
+              <div className="wv-spine" aria-hidden="true">
+                <div className={`wv-spine-fill wv-spine-fill--platform${on ? ' wv-spine-fill--on' : ''}`} />
               </div>
-
-              <div className="wv-group">
-                <div className="wv-label">Services:</div>
-                <p className="wv-items">
-                  <span>Bespoke Websites</span>
-                  <span>Social Media Marketing</span>
-                  <span>Paid Ads</span>
-                  <span>Creative Design &amp; Animation</span>
-                  <span>UGC</span>
-                  <span>Video Editing &amp; Reels</span>
-                </p>
-              </div>
-
-              <p className="wv-closing">
-                Everything your business needs to grow — all in one place.
-              </p>
+              <ul className="wv-list">
+                {PLATFORM_ITEMS.map((item, i) => (
+                  <li
+                    key={item}
+                    className={`wv-item${on ? ' wv-in' : ''}`}
+                    style={{
+                      transitionDelay: on && !reduced ? `${0.32 + i * 0.09}s` : '0s',
+                      animationDelay: reduced ? '0s' : `${1.7 + i * 0.28}s`,
+                    }}
+                  >
+                    <span className="wv-node wv-node--platform" />
+                    <span className="wv-item-text">{item}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
 
-          <div className="wv-overlay wv-cta" ref={ctaRef}>
-            <div className="wv-cta-block">
-              <div className="wv-cap">
-                Everything your business needs to grow — all in one place.
+          <div className="wv-col">
+            <div className={`wv-col-heading${on ? ' wv-in' : ''}`}>
+              <ServicesIcon color="#E8C97A" />
+              <span>Services</span>
+            </div>
+            <div className="wv-list-wrap">
+              <div className="wv-spine" aria-hidden="true">
+                <div className={`wv-spine-fill wv-spine-fill--services${on ? ' wv-spine-fill--on' : ''}`} />
               </div>
-              <div className="wv-cue">
-                <span className="wv-cue-text">Scroll to explore the platform</span>
-                <svg
-                  className="wv-cue-arrow"
-                  width="26"
-                  height="34"
-                  viewBox="0 0 26 34"
-                  fill="none"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="M13 3 V27 M4 19 L13 28 L22 19"
-                    stroke="currentColor"
-                    strokeWidth="1.6"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </div>
+              <ul className="wv-list">
+                {SERVICES_ITEMS.map((item, i) => (
+                  <li
+                    key={item}
+                    className={`wv-item${on ? ' wv-in' : ''}`}
+                    style={{
+                      transitionDelay: on && !reduced ? `${0.32 + i * 0.09}s` : '0s',
+                      animationDelay: reduced ? '0s' : `${2.4 + i * 0.28}s`,
+                    }}
+                  >
+                    <span className="wv-node wv-node--services" />
+                    <span className="wv-item-text">{item}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </div>
+
+        <div className="wv-closing-wrap">
+          <div className={`wv-closing-line${on ? ' wv-in' : ''}`} aria-hidden="true">
+            <span className={`wv-closing-node${on ? ' wv-in' : ''}`} />
+          </div>
+          <p className={`wv-closing${on ? ' wv-in' : ''}`}>
+            Everything your business needs to grow — managed in one place.
+          </p>
+        </div>
       </div>
-    </div>
-  );
+    </section>
+  )
 }
 
 /* Every rule is scoped under .wv-root so nothing affects the rest of the site. */
 const CSS = `
 .wv-root {
   --wv-bg: #071011;
-  --wv-paper: #EAF1F0;
-  --wv-gold: #E9963F;
+  --wv-paper: #F2F6F5;
   --wv-teal: #39C6B4;
+  --wv-gold: #E8C97A;
+  position: relative;
+  overflow: hidden;
+  background: var(--wv-bg);
+  padding: clamp(5.5rem, 10vw, 8.5rem) clamp(1.5rem, 6vw, 4rem) clamp(5rem, 9vw, 8rem);
   font-family: Inter, system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 .wv-root *, .wv-root *::before, .wv-root *::after { box-sizing: border-box; }
-.wv-root p, .wv-root div, .wv-root span { margin: 0; padding: 0; }
+.wv-root p, .wv-root div, .wv-root span, .wv-root li, .wv-root ul { margin: 0; padding: 0; list-style: none; }
 
-.wv-track { height: 560vh; background: var(--wv-bg); }
-
-.wv-stage {
-  position: relative;
-  height: 100vh;
-  width: 100%;
-  overflow: hidden;
-  background: var(--wv-bg);
+.wv-topfade {
+  position: absolute; top: 0; left: 0; right: 0; height: 160px;
+  background: linear-gradient(to bottom, #010709 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 1;
 }
-.wv-stage::before {
-  content: '';
+
+.wv-ambient {
+  position: absolute; inset: 0; pointer-events: none; z-index: 0;
+  background: radial-gradient(ellipse 60% 46% at 50% 40%, rgba(57,198,180,0.055) 0%, rgba(5,20,22,0.02) 46%, transparent 72%);
+}
+
+.wv-lines-wrap {
   position: absolute;
-  inset: 0;
-  /* Outer stop matches Hero's own bottom-fade end colour (#010709) exactly,
-     and the stop is pulled in from 72% to 45% so the gradient is fully
-     resolved to that flat colour everywhere along the top edge (y=0) —
-     at 72% it was still ~26-46% blended toward the lighter inner colour
-     across the full width there, which is what read as a hard seam
-     against Hero's own fade, which ends on a flat, fully-resolved colour. */
-  background: radial-gradient(120% 90% at 50% 48%, #0c1a1b 0%, #010709 45%);
+  top: 6%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(1100px, 94vw);
+  height: 48%;
+  pointer-events: none;
+  z-index: 0;
 }
 .wv-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
 
-.wv-scrim {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: linear-gradient(100deg, rgba(7,16,17,0.92) 0%, rgba(7,16,17,0.75) 34%, rgba(7,16,17,0) 62%);
-  /* This overlay otherwise applies at full strength right up to y=0 — an
-     abrupt "overlay edge" starting exactly at the Hero boundary, with
-     nothing equivalent on Hero's side, which is what read as a seam even
-     after the background gradient above was colour-matched. Fade it in
-     over the first 48px instead of switching on instantly. */
-  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 48px);
-  mask-image: linear-gradient(to bottom, transparent 0, #000 48px);
+div.wv-content {
+  position: relative;
+  z-index: 1;
+  max-width: 1240px;
+  margin: 0 auto;
+  text-align: center;
 }
 
-.wv-overlay {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 0 clamp(2rem, 8vw, 10rem);
-  pointer-events: none;
-  opacity: 0;
-  will-change: opacity, transform;
-}
-
-/* Intro content (Platform/Services lists) — centred as a single controlled
-   column rather than left-stretched across the full padded width. */
-.wv-intro { align-items: center; text-align: center; }
-
-/* Shared wrapper for the entire intro content group — eyebrow, Platform
-   list, Services list, divider line and closing statement all live
-   inside this one box and share its centre point, so shifting the
-   whole group (see the desktop-only rule below) moves everything
-   together instead of any piece independently. */
-.wv-block { max-width: 46rem; }
-
-@media (min-width: 1024px) {
-  .wv-block { transform: translateX(-120px); }
-}
-
-/* div.wv-eyebrow / div.wv-group / div.wv-label (tag+class) — need to
-   out-specificity the ".wv-root div" margin reset above (same issue as
-   p.wv-closing), otherwise that rule silently cancels these margins and
-   every vertical gap below collapses to 0. */
 div.wv-eyebrow {
-  font-size: clamp(1rem, 1.45vw, 1.32rem);
+  font-size: clamp(0.9rem, 1.3vw, 1rem);
   letter-spacing: 0.34em;
   text-transform: uppercase;
   font-weight: 600;
   color: var(--wv-teal);
-  opacity: 0.9;
-  margin-bottom: 14px;
-  transform: translateY(-12px);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.6s cubic-bezier(0.16,1,0.3,1), transform 0.6s cubic-bezier(0.16,1,0.3,1);
+}
+div.wv-eyebrow.wv-in { opacity: 0.9; transform: translateY(0); }
+
+p.wv-statement {
+  font-weight: 300;
+  font-size: clamp(1.55rem, 3.2vw, 2.4rem);
+  line-height: 1.24;
+  letter-spacing: -0.01em;
+  color: var(--wv-paper);
+  max-width: 30ch;
+  margin: 16px auto 0;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.65s cubic-bezier(0.16,1,0.3,1) 0.08s, transform 0.65s cubic-bezier(0.16,1,0.3,1) 0.08s;
+}
+p.wv-statement.wv-in { opacity: 1; transform: translateY(0); }
+
+div.wv-columns {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 44px;
+  max-width: 640px;
+  margin: clamp(3rem, 6vw, 4.5rem) auto 0;
+  text-align: left;
 }
 
-div.wv-group { margin-bottom: 18px; }
-div.wv-group:last-of-type { margin-bottom: 2.4rem; }
-
-div.wv-label {
-  font-size: 0.8rem;
+div.wv-col-heading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.78rem;
   letter-spacing: 0.26em;
   text-transform: uppercase;
   font-weight: 700;
-  color: #A9B963;
-  margin-bottom: 12px;
+  color: rgba(242,246,245,0.86);
+  margin-bottom: 20px;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.55s cubic-bezier(0.16,1,0.3,1) 0.18s, transform 0.55s cubic-bezier(0.16,1,0.3,1) 0.18s;
+}
+div.wv-col-heading.wv-in { opacity: 1; transform: translateY(0); }
+
+.wv-list-wrap { position: relative; }
+
+.wv-spine {
+  position: absolute;
+  top: 3px;
+  bottom: 3px;
+  left: 3px;
+  width: 1px;
+  background: rgba(242,246,245,0.10);
+}
+.wv-spine-fill {
+  position: absolute;
+  top: 0; left: 0; width: 1px; height: 0;
+  transition: height 1.05s cubic-bezier(0.16,1,0.3,1) 0.22s;
+}
+.wv-spine-fill--platform { background: linear-gradient(to bottom, var(--wv-teal), rgba(57,198,180,0.15)); box-shadow: 0 0 10px rgba(57,198,180,0.35); }
+.wv-spine-fill--services { background: linear-gradient(to bottom, var(--wv-gold), rgba(232,201,122,0.15)); box-shadow: 0 0 10px rgba(232,201,122,0.30); }
+.wv-spine-fill--on { height: 100%; }
+
+ul.wv-list { display: flex; flex-direction: column; gap: 13px; padding-left: 26px; }
+
+li.wv-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: opacity 0.5s cubic-bezier(0.16,1,0.3,1), transform 0.5s cubic-bezier(0.16,1,0.3,1);
+}
+li.wv-item.wv-in { opacity: 1; transform: translateX(0); }
+
+.wv-node {
+  position: relative;
+  left: -26px;
+  flex-shrink: 0;
+  width: 7px; height: 7px; border-radius: 50%;
+  background: rgba(242,246,245,0.28);
+  transition: background 0.4s ease, box-shadow 0.4s ease;
+}
+li.wv-item.wv-in .wv-node--platform { background: var(--wv-teal); box-shadow: 0 0 9px rgba(57,198,180,0.65); }
+li.wv-item.wv-in .wv-node--services { background: var(--wv-gold); box-shadow: 0 0 9px rgba(232,201,122,0.55); }
+
+/* Soft, subtle looping illumination — as if the signal pulse passes this
+   node once per lap. Runs only after the entrance reveal has had time to
+   finish (staggered per-item delay set inline), and is skipped for
+   reduced motion. */
+li.wv-item.wv-in .wv-node--platform { animation: wv-node-pulse-teal 4.6s ease-in-out infinite; }
+li.wv-item.wv-in .wv-node--services { animation: wv-node-pulse-gold 4.6s ease-in-out infinite; }
+@keyframes wv-node-pulse-teal {
+  0%, 88%, 100% { box-shadow: 0 0 9px rgba(57,198,180,0.65); }
+  94%           { box-shadow: 0 0 15px rgba(57,198,180,0.95); }
+}
+@keyframes wv-node-pulse-gold {
+  0%, 88%, 100% { box-shadow: 0 0 9px rgba(232,201,122,0.55); }
+  94%           { box-shadow: 0 0 15px rgba(232,201,122,0.85); }
 }
 
-.wv-items {
+span.wv-item-text {
+  margin-left: -20px;
+  font-size: clamp(0.97rem, 1.5vw, 1.08rem);
   font-weight: 400;
-  font-size: clamp(1rem, 1.75vw, 1.32rem);
-  line-height: 1.9;
-  letter-spacing: 0.005em;
-  color: rgba(234,241,240,0.77);
-  text-align: center;
+  color: rgba(242,246,245,0.80);
 }
-/* each service is an unbreakable unit; the bullet binds to the item before it,
-   so a name never splits and no line ever begins with a bullet */
-.wv-items span { white-space: nowrap; }
-.wv-items span::after {
-  content: ' \\2022 ';
-  color: rgba(234,241,240,0.42);
-  white-space: normal;
-}
-.wv-items span:last-child::after { content: ''; }
 
-/* p.wv-closing (tag+class) — needs to out-specificity the ".wv-root p"
-   margin reset above, otherwise that rule's higher specificity wins and
-   silently cancels this margin, leaving the block stuck at the left edge
-   instead of centred. */
+div.wv-closing-wrap {
+  margin-top: clamp(3rem, 6vw, 4rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.wv-closing-line {
+  width: 1px;
+  height: 34px;
+  background: linear-gradient(to bottom, rgba(242,246,245,0.02), rgba(242,246,245,0.30));
+  position: relative;
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.6s cubic-bezier(0.16,1,0.3,1) 0.85s;
+}
+.wv-closing-line.wv-in { transform: scaleY(1); }
+.wv-closing-node {
+  position: absolute; bottom: -3px; left: 50%; transform: translateX(-50%) scale(0);
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--wv-paper);
+  box-shadow: 0 0 10px rgba(242,246,245,0.5);
+  transition: transform 0.4s cubic-bezier(0.16,1,0.3,1) 1.3s;
+}
+.wv-closing-node.wv-in { transform: translateX(-50%) scale(1); }
+
 p.wv-closing {
+  margin-top: 18px;
   font-weight: 500;
-  font-size: clamp(1.25rem, 2.35vw, 1.85rem);
+  font-size: clamp(1.2rem, 2.1vw, 1.55rem);
   line-height: 1.5;
   letter-spacing: -0.005em;
-  color: #C2D6D2;
-  max-width: 20ch;
-  margin: 0 auto;
-  padding-top: 1.6rem;
-  border-top: 1px solid rgba(57,198,180,0.28);
+  color: var(--wv-paper);
+  max-width: 26ch;
   text-align: center;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.6s cubic-bezier(0.16,1,0.3,1) 1.4s, transform 0.6s cubic-bezier(0.16,1,0.3,1) 1.4s;
+}
+p.wv-closing.wv-in { opacity: 1; transform: translateY(0); }
+
+@media (min-width: 700px) {
+  div.wv-columns { grid-template-columns: 1fr 1fr; gap: 72px; max-width: 100%; }
 }
 
-.wv-cta { justify-content: flex-end; align-items: center; padding-bottom: 20vh; text-align: center; }
-
-/* Whole closing group (statement + scroll label + arrow) moves as one
-   unit — mobile-first default, larger offset from 701px up. */
-.wv-cta-block { max-width: 34rem; transform: translateY(-65px); }
-@media (min-width: 701px) {
-  .wv-cta-block { transform: translateY(-90px); }
-}
-
-/* div.wv-cap (tag+class) — needs to out-specificity the ".wv-root div"
-   margin reset above, same issue as div.wv-eyebrow/div.wv-group/div.wv-label,
-   otherwise this margin silently collapses to 0. */
-div.wv-cap {
-  font-size: clamp(1.15rem, 2.2vw, 1.7rem);
-  font-weight: 400;
-  line-height: 1.5;
-  letter-spacing: -0.005em;
-  color: #C2D6D2;
-  margin-bottom: 34px;
-}
-
-.wv-cue { display: flex; flex-direction: column; align-items: center; gap: 32px; color: var(--wv-gold); }
-.wv-cue-text { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.24em; text-transform: uppercase; }
-.wv-cue-arrow { animation: wv-drift 2.4s ease-in-out infinite; }
-@keyframes wv-drift {
-  0%, 100% { transform: translateY(0); opacity: 0.75; }
-  50%      { transform: translateY(6px); opacity: 1; }
-}
-
-@media (max-width: 700px) {
-  .wv-items { line-height: 1.7; }
-  div.wv-group { margin-bottom: 16px; }
-  div.wv-eyebrow { margin-bottom: 12px; }
-  div.wv-label { margin-bottom: 10px; }
-  .wv-scrim {
-    background: linear-gradient(180deg, rgba(7,16,17,0.9) 0%, rgba(7,16,17,0.78) 60%, rgba(7,16,17,0.5) 100%);
-  }
+@media (max-width: 640px) {
+  .wv-lines-wrap { width: 100vw; height: 40%; opacity: 0.7; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .wv-cue-arrow { animation: none; }
+  li.wv-item.wv-in .wv-node--platform, li.wv-item.wv-in .wv-node--services { animation: none; }
+  .wv-eyebrow, p.wv-statement, div.wv-col-heading, li.wv-item, .wv-spine-fill,
+  .wv-closing-line, .wv-closing-node, p.wv-closing {
+    transition: none !important;
+  }
 }
-`;
+`
