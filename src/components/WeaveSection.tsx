@@ -362,21 +362,33 @@ div.wv-eyebrow {
   color: var(--wv-teal);
   opacity: 0.9;
   margin-bottom: 14px;
-  transform: translateY(-12px);
+  transform: translateY(-18px);
 }
 
 /* Platform / Services — clean two-column list, replacing the old
    sentence-style bullet rows. Sits centred as a pair within .wv-block,
    each column left-aligned internally for a scan-friendly stacked list. */
-.wv-columns {
+div.wv-columns {
   display: flex;
   justify-content: center;
   gap: 56px;
   text-align: left;
-  margin-bottom: 2.4rem;
+  margin-bottom: 54px;
 }
 
 .wv-col { min-width: 200px; }
+
+/* Platform drifts slightly left, Services slightly right, so the pair
+   reads as two deliberately-separated columns rather than a tight
+   centred block — tablet gets a smaller nudge, mobile (stacked) none. */
+@media (min-width: 701px) and (max-width: 1023px) {
+  .wv-col--platform { transform: translateX(-24px); }
+  .wv-col--services { transform: translateX(24px); }
+}
+@media (min-width: 1024px) {
+  .wv-col--platform { transform: translateX(-45px); }
+  .wv-col--services { transform: translateX(45px); }
+}
 
 div.wv-col-heading {
   font-size: 0.8rem;
@@ -428,7 +440,7 @@ p.wv-closing {
   color: #C2D6D2;
   max-width: 20ch;
   margin: 0 auto;
-  padding-top: 1.6rem;
+  padding-top: 40px;
   border-top: 1px solid rgba(57,198,180,0.28);
   text-align: center;
 }
@@ -463,7 +475,7 @@ div.wv-cap {
 }
 
 @media (max-width: 700px) {
-  .wv-columns { flex-direction: column; align-items: center; gap: 22px; }
+  div.wv-columns { flex-direction: column; align-items: center; gap: 22px; }
   div.wv-col-heading { margin-bottom: 12px; }
   div.wv-eyebrow { margin-bottom: 12px; }
   .wv-scrim {
