@@ -384,10 +384,12 @@ div.wv-columns {
 @media (min-width: 701px) and (max-width: 1023px) {
   .wv-col--platform { transform: translateX(-24px); }
   .wv-col--services { transform: translateX(16px); }
+  div.wv-eyebrow { transform: translateX(-12px) translateY(-18px); }
 }
 @media (min-width: 1024px) {
   .wv-col--platform { transform: translateX(-45px); }
   .wv-col--services { transform: translateX(32px); }
+  div.wv-eyebrow { transform: translateX(-24px) translateY(-18px); }
 }
 
 div.wv-col-heading {
