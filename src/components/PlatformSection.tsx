@@ -139,7 +139,12 @@ export default function PlatformSection() {
           'radial-gradient(circle at 50% 22%, rgba(24, 105, 125, 0.16) 0%, rgba(10, 48, 59, 0.08) 34%, rgba(1, 7, 9, 0) 68%)',
           'linear-gradient(to bottom, #07141A 0%, #031015 24%, #010709 72%)',
         ].join(', '),
-        padding: 'clamp(5rem, 9vw, 8rem) 0',
+        paddingTop: 'clamp(5rem, 9vw, 8rem)',
+        // Connected Systems now sits directly underneath — tighten just this
+        // shared edge to a clean ~80-120px (desktop) / 56-80px (tablet) /
+        // 40-64px (mobile) combined gap instead of stacking two full
+        // section paddings (which read as an oversized empty gap).
+        paddingBottom: 'clamp(26px, 5vw, 50px)',
       }}
       aria-label="The Weavy Platform"
     >

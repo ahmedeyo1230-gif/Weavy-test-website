@@ -169,11 +169,11 @@ export default function App() {
               <WeaveSection />
               <OutcomeMarquee />
               <PlatformSection />
+              <ConnectedSystems />
               <About />
               <Stats />
               <SystemsShowcase />
               <WhyWeavyWorks />
-              <ConnectedSystems />
               <PricingSection />
               <TestimonialsSection />
               <Footer />

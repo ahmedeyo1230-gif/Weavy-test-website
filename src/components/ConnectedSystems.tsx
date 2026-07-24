@@ -322,7 +322,14 @@ export default function ConnectedSystems() {
     <section
       ref={sectionRef}
       className="relative w-full overflow-hidden"
-      style={{ background: '#010709', padding: 'clamp(5rem, 9vw, 8rem) 0' }}
+      style={{
+        background: '#010709',
+        // Weavy Platform now sits directly above — tighten just this shared
+        // edge (see matching comment in PlatformSection.tsx) to a clean
+        // combined gap instead of stacking two full section paddings.
+        paddingTop: 'clamp(26px, 5vw, 50px)',
+        paddingBottom: 'clamp(5rem, 9vw, 8rem)',
+      }}
       aria-label="Connected Systems"
     >
       {/* Background glows */}
