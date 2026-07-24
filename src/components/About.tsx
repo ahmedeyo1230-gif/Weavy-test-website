@@ -24,7 +24,7 @@ export default function About() { // no diagonal lines bg
           '#0B1114',
       }}
     >
-      {/* Top fade — blends from the previous section (Platform, #010709) into this section's own background (#0B1114) */}
+      {/* Top fade — blends from the previous section (Connected Systems, #000506) into this section's own background (#0B1114) */}
       <div
         aria-hidden="true"
         style={{
@@ -33,7 +33,7 @@ export default function About() { // no diagonal lines bg
           left: 0,
           right: 0,
           height: '220px',
-          background: 'linear-gradient(to bottom, #010709 0%, rgba(11,17,20,0.6) 45%, transparent 100%)',
+          background: 'linear-gradient(to bottom, #000506 0%, rgba(11,17,20,0.6) 45%, transparent 100%)',
           pointerEvents: 'none',
           zIndex: 1,
         }}
