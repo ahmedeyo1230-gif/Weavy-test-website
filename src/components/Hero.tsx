@@ -465,7 +465,7 @@ export default function Hero() {
               className="inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-medium border border-border text-primary hover:border-white/25 hover:bg-white/[0.04] hover:shadow-[0_0_16px_hsl(199_89%_60%_/_0.08)] active:scale-[0.97]"
               style={{ transition: 'border-color 200ms, background-color 200ms, box-shadow 200ms, transform 100ms' }}
             >
-              Explore the Platform
+              Explore the Services
             </a>
           </motion.div>
         </motion.div>
