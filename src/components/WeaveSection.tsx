@@ -363,6 +363,7 @@ div.wv-eyebrow {
   color: var(--wv-teal);
   opacity: 0.9;
   margin-bottom: 14px;
+  transform: translateY(-12px);
 }
 
 div.wv-group { margin-bottom: 18px; }
