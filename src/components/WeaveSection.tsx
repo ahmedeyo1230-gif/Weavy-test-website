@@ -355,14 +355,14 @@ const CSS = `
    p.wv-closing), otherwise that rule silently cancels these margins and
    every vertical gap below collapses to 0. */
 div.wv-eyebrow {
-  font-size: clamp(1rem, 1.45vw, 1.32rem);
+  font-size: clamp(2.3rem, 3vw, 3.4rem);
   letter-spacing: 0.34em;
   text-transform: uppercase;
   font-weight: 600;
   color: var(--wv-teal);
   opacity: 0.9;
   margin-bottom: 14px;
-  transform: translateY(-18px);
+  transform: translateY(-4px);
 }
 
 /* Platform / Services — clean two-column list, replacing the old
@@ -378,20 +378,16 @@ div.wv-columns {
 
 .wv-col { min-width: 200px; }
 
-/* Platform drifts slightly left, Services slightly right, so the pair
-   reads as two deliberately-separated columns rather than a tight
-   centred block — tablet gets a smaller nudge, mobile (stacked) none. */
-@media (min-width: 701px) and (max-width: 1023px) {
-  .wv-col--platform { transform: translateX(-24px); }
-  .wv-col--services { transform: translateX(24px); }
-}
+/* Platform drifts left, Services drifts right, so the pair reads as
+   two deliberately-separated columns rather than a tight centred
+   block — desktop only; tablet and mobile stay at zero offset. */
 @media (min-width: 1024px) {
-  .wv-col--platform { transform: translateX(-45px); }
-  .wv-col--services { transform: translateX(45px); }
+  .wv-col--platform { transform: translateX(-55px); }
+  .wv-col--services { transform: translateX(55px); }
 }
 
 div.wv-col-heading {
-  font-size: 0.8rem;
+  font-size: clamp(1.15rem, 1.5vw, 1.65rem);
   letter-spacing: 0.26em;
   text-transform: uppercase;
   font-weight: 700;
@@ -413,10 +409,10 @@ li.wv-col-item {
   display: flex;
   align-items: center;
   gap: 10px;
-  font-weight: 400;
-  font-size: clamp(0.95rem, 1.3vw, 1.05rem);
+  font-weight: 500;
+  font-size: clamp(1.35rem, 2vw, 2.1rem);
   letter-spacing: 0.005em;
-  color: rgba(234,241,240,0.82);
+  color: #D6DDDD;
 }
 
 .wv-node {
@@ -425,8 +421,8 @@ li.wv-col-item {
   border-radius: 50%;
   flex-shrink: 0;
 }
-.wv-col--platform .wv-node { background: var(--wv-teal); box-shadow: 0 0 8px rgba(57,198,180,0.55); }
-.wv-col--services .wv-node { background: var(--wv-gold); box-shadow: 0 0 8px rgba(233,150,63,0.5); }
+.wv-col--platform .wv-node { background: var(--wv-teal); box-shadow: 0 0 11px rgba(57,198,180,0.62); }
+.wv-col--services .wv-node { background: var(--wv-gold); box-shadow: 0 0 11px rgba(233,150,63,0.58); }
 
 /* p.wv-closing (tag+class) — needs to out-specificity the ".wv-root p"
    margin reset above, otherwise that rule's higher specificity wins and
@@ -477,7 +473,12 @@ div.wv-cap {
 @media (max-width: 700px) {
   div.wv-columns { flex-direction: column; align-items: center; gap: 22px; }
   div.wv-col-heading { margin-bottom: 12px; }
-  div.wv-eyebrow { margin-bottom: 12px; }
+  /* The desktop clamp's 2.3rem floor is wider than the viewport once the
+     existing 0.34em letter-spacing is added across "WEAVY AUTOMATION" —
+     it was clipping at the edge instead of wrapping or overflowing
+     visibly. Scale it down for narrow screens only; desktop/tablet keep
+     the requested clamp(2.3rem, 3vw, 3.4rem) untouched. */
+  div.wv-eyebrow { font-size: clamp(1.05rem, 6vw, 1.3rem); margin-bottom: 12px; }
   .wv-scrim {
     background: linear-gradient(180deg, rgba(7,16,17,0.9) 0%, rgba(7,16,17,0.78) 60%, rgba(7,16,17,0.5) 100%);
   }
