@@ -383,11 +383,11 @@ div.wv-columns {
    centred block — tablet gets a smaller nudge, mobile (stacked) none. */
 @media (min-width: 701px) and (max-width: 1023px) {
   .wv-col--platform { transform: translateX(-24px); }
-  .wv-col--services { transform: translateX(24px); }
+  .wv-col--services { transform: translateX(16px); }
 }
 @media (min-width: 1024px) {
   .wv-col--platform { transform: translateX(-45px); }
-  .wv-col--services { transform: translateX(45px); }
+  .wv-col--services { transform: translateX(32px); }
 }
 
 div.wv-col-heading {
@@ -397,7 +397,7 @@ div.wv-col-heading {
   font-weight: 700;
   margin-bottom: 16px;
 }
-.wv-col--platform div.wv-col-heading { color: var(--wv-teal); }
+.wv-col--platform div.wv-col-heading { color: #6F8CFF; }
 .wv-col--services div.wv-col-heading { color: var(--wv-gold); }
 
 ul.wv-col-list {
@@ -425,7 +425,7 @@ li.wv-col-item {
   border-radius: 50%;
   flex-shrink: 0;
 }
-.wv-col--platform .wv-node { background: var(--wv-teal); box-shadow: 0 0 8px rgba(57,198,180,0.55); }
+.wv-col--platform .wv-node { background-color: #6F8CFF; box-shadow: 0 0 8px rgba(111, 140, 255, 0.55), 0 0 18px rgba(111, 140, 255, 0.20); }
 .wv-col--services .wv-node { background: var(--wv-gold); box-shadow: 0 0 8px rgba(233,150,63,0.5); }
 
 /* p.wv-closing (tag+class) — needs to out-specificity the ".wv-root p"
