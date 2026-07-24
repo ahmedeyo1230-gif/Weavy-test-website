@@ -220,8 +220,7 @@ export default function PlatformSection() {
         >
           <div aria-hidden="true" style={{ width: '2.5rem', height: 1, background: 'rgba(125,220,255,0.35)', margin: '0 auto 1.4rem' }} />
           <p className="font-sans font-light" style={{ fontSize: 'clamp(0.95rem, 1.6vw, 1.15rem)', color: 'rgba(235,245,255,0.82)', letterSpacing: '-0.01em' }}>
-            Every solution runs on the{' '}
-            <span style={{ color: '#7DDCFF' }}>Weavy Platform</span>.
+            We make everything work together, so running your business feels simpler.
           </p>
         </motion.div>
       </div>
