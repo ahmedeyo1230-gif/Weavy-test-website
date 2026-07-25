@@ -211,7 +211,7 @@ export default function WeaveSection() {
 
               <div className="wv-columns">
                 <div className="wv-col wv-col--platform">
-                  <div className="wv-col-heading">Platform</div>
+                  <div className="wv-col-heading">Systems</div>
                   <ul className="wv-col-list">
                     {['Voice Receptionists', 'Voice Agents', 'Chatbots', 'Messaging', 'CRM & Bookings', 'Analytics'].map((item) => (
                       <li className="wv-col-item" key={item}>
