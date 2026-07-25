@@ -393,7 +393,7 @@ div.wv-columns {
 }
 
 div.wv-col-heading {
-  font-size: clamp(15px, calc(13.6px + 0.376vw), 19px);
+  font-size: clamp(13.5px, calc(12.09px + 0.376vw), 17.5px);
   letter-spacing: 0.26em;
   text-transform: uppercase;
   font-weight: 700;
