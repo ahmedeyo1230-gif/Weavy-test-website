@@ -213,7 +213,7 @@ export default function About() { // no diagonal lines bg
               }}
             >
               <img
-                src="/brand_assets/dashboard1.webp"
+                src="/brand_assets/dashboard1-transparent.webp"
                 alt="Weavy automation dashboard"
                 loading="lazy"
                 decoding="async"
@@ -225,7 +225,7 @@ export default function About() { // no diagonal lines bg
                   height: 'auto',
                   objectFit: 'contain',
                   objectPosition: 'center center',
-                  filter: 'brightness(1.02) saturate(0.92) contrast(0.97)',
+                  filter: 'brightness(1.02) saturate(0.92) contrast(0.97) drop-shadow(0 24px 48px rgba(0,0,0,0.30))',
                 }}
               />
               {/* Dark overlay to blend with site background */}
