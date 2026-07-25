@@ -6,8 +6,6 @@ import { goToPath } from '../lib/navigation'
 const HLS_SRC = 'https://stream.mux.com/Aa02T7oM1wH5Mk5EEVDYhbZ1ChcdhRsS2m1NYyx4Ua1g.m3u8'
 const HERO_POSTER = 'https://image.mux.com/Aa02T7oM1wH5Mk5EEVDYhbZ1ChcdhRsS2m1NYyx4Ua1g/thumbnail.jpg?width=1200&time=1'
 
-const ROLES = ['Creatives', 'Developers', 'Founders', 'Designers']
-
 // Gradient treatment for the highlighted phrases in the hero subhead.
 const heroSubheadHighlight = {
   background: 'linear-gradient(90deg, #F4F8FA 0%, #7DDCFF 55%, #B7AEFF 100%)',
@@ -294,13 +292,6 @@ export function Navbar() {
 // ─── Hero ─────────────────────────────────────────────────────────────────────
 
 export default function Hero() {
-  const [roleIndex, setRoleIndex] = useState(0)
-
-  useEffect(() => {
-    const id = setInterval(() => setRoleIndex(i => (i + 1) % ROLES.length), 3000)
-    return () => clearInterval(id)
-  }, [])
-
   // On mobile/tablet remove expensive filter:blur animation — just opacity + y
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 1024
 
@@ -365,7 +356,7 @@ export default function Hero() {
             variants={itemVariants}
             className="hero-eyebrow mb-6 mt-6 font-medium"
           >
-            <span className="uppercase">Platform &amp; Managed Services</span>
+            <span className="uppercase">Automation &amp; Managed Services</span>
           </motion.p>
 
           <div className="relative">
@@ -389,7 +380,7 @@ export default function Hero() {
               variants={itemVariants}
               className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-light tracking-tighter leading-[1.1] mb-8 max-w-4xl relative z-10"
             >
-              <span style={{ color: '#F4F8FA' }}>AI Automation</span>{' '}
+              <span style={{ color: '#F4F8FA' }}>AI</span>{' '}
               <em
                 className="font-serif italic"
                 style={{
@@ -401,7 +392,7 @@ export default function Hero() {
                   textShadow: '0 0 24px rgba(125, 220, 255, 0.16)',
                 }}
               >
-                Platform
+                automation
               </em>
               <br className="hidden sm:block" />
               <span style={{ color: 'rgba(235, 245, 255, 0.88)' }}>
@@ -415,24 +406,7 @@ export default function Hero() {
             className="text-lg sm:text-xl mb-8 flex items-center justify-center gap-[6px] flex-wrap font-light"
             style={{ color: '#94A3B8' }}
           >
-            <span>We</span>
-            {/* inline-grid spacer: invisible widest word sets exact container width, no dead space */}
-            <span className="relative inline-grid">
-              <span className="invisible font-serif italic font-medium text-primary select-none" aria-hidden="true">Developers</span>
-              <AnimatePresence mode="wait">
-                <motion.span
-                  key={ROLES[roleIndex]}
-                  initial={{ opacity: 0, y: 10, filter: 'blur(4px)' }}
-                  animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-                  exit={{ opacity: 0, y: -10, filter: 'blur(4px)' }}
-                  transition={{ duration: 0.4 }}
-                  className="absolute inset-0 flex items-center justify-center text-primary font-medium font-serif italic whitespace-nowrap"
-                >
-                  {ROLES[roleIndex]}
-                </motion.span>
-              </AnimatePresence>
-            </span>
-            <span>live in London.</span>
+            <span>Built in London. Managed by people.</span>
           </motion.div>
 
           <motion.p
@@ -440,11 +414,11 @@ export default function Hero() {
             className="max-w-xl mx-auto mb-12 leading-relaxed text-sm sm:text-base font-medium"
             style={{ color: 'rgba(220, 232, 240, 0.80)', lineHeight: 1.75 }}
           >
-            Weavy helps SMEs <span style={heroSubheadHighlight}>capture leads</span>,{' '}
+            We help SMEs <span style={heroSubheadHighlight}>capture leads</span>,{' '}
             <span style={heroSubheadHighlight}>respond instantly</span>,{' '}
-            <span style={heroSubheadHighlight}>automate bookings</span>, and manage
-            customer conversations across voice, WhatsApp, Instagram, Facebook, and CRM —
-            all from <span style={heroSubheadHighlight}>one intelligent platform</span>.
+            <span style={heroSubheadHighlight}>automate bookings</span> and manage
+            customer conversations across voice, WhatsApp, Instagram, Facebook and CRM—all
+            through <span style={heroSubheadHighlight}>one connected system</span>.
           </motion.p>
 
           <motion.div
@@ -457,7 +431,7 @@ export default function Hero() {
               className="btn-glow-primary inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-medium bg-primary text-background hover:bg-white hover:shadow-[0_0_28px_rgba(245,245,245,0.28)] active:scale-[0.97]"
               style={{ transition: 'background-color 200ms, box-shadow 200ms, transform 100ms' }}
             >
-              Book a Platform Demo →
+              Book a Free Demo →
             </a>
             <a
               href="/services"
