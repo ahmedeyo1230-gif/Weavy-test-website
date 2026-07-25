@@ -6,7 +6,7 @@ import { goToPath } from '../lib/navigation'
 const HLS_SRC = 'https://stream.mux.com/Aa02T7oM1wH5Mk5EEVDYhbZ1ChcdhRsS2m1NYyx4Ua1g.m3u8'
 const HERO_POSTER = 'https://image.mux.com/Aa02T7oM1wH5Mk5EEVDYhbZ1ChcdhRsS2m1NYyx4Ua1g/thumbnail.jpg?width=1200&time=1'
 
-const LOCATIONS = ['London.', 'Manchester.', 'Birmingham.', 'Stockholm.', 'Dubai.']
+const BENEFIT_PHRASES = ['Stand out', 'Earn trust', 'Stay remembered', 'Turn interest into action', 'Grow without the hassle']
 
 // Gradient treatment for the highlighted phrases in the hero subhead.
 const heroSubheadHighlight = {
@@ -297,7 +297,7 @@ export default function Hero() {
   // On mobile/tablet remove expensive filter:blur animation — just opacity + y
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 1024
 
-  const [locationIndex, setLocationIndex] = useState(0)
+  const [benefitIndex, setBenefitIndex] = useState(0)
   const [reducedMotion, setReducedMotion] = useState(false)
 
   useEffect(() => {
@@ -310,7 +310,7 @@ export default function Hero() {
 
   useEffect(() => {
     if (reducedMotion) return
-    const id = setInterval(() => setLocationIndex(i => (i + 1) % LOCATIONS.length), 2700)
+    const id = setInterval(() => setBenefitIndex(i => (i + 1) % BENEFIT_PHRASES.length), 2800)
     return () => clearInterval(id)
   }, [reducedMotion])
 
@@ -426,30 +426,30 @@ export default function Hero() {
             style={{ color: '#94A3B8' }}
           >
             {reducedMotion ? (
-              <span>Helping businesses grow everywhere.</span>
+              <span>Built to help your business grow without the hassle.</span>
             ) : (
               <>
-                <span aria-hidden="true">Helping businesses grow in</span>
-                {/* inline-grid spacer: invisible widest word sets exact container width, no dead space */}
+                <span aria-hidden="true">Built to help your business</span>
+                {/* inline-grid spacer: invisible widest phrase sets exact container width, no dead space */}
                 <span className="relative inline-grid" aria-hidden="true">
-                  <span className="invisible font-serif italic select-none whitespace-nowrap">Birmingham.</span>
+                  <span className="invisible font-serif italic select-none whitespace-nowrap">Turn interest into action</span>
                   <AnimatePresence mode="wait">
                     <motion.span
-                      key={LOCATIONS[locationIndex]}
+                      key={BENEFIT_PHRASES[benefitIndex]}
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -10 }}
-                      transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+                      transition={{ duration: 0.58, ease: [0.16, 1, 0.3, 1] }}
                       className="absolute inset-0 flex items-center justify-center font-serif italic whitespace-nowrap"
                       style={{ color: '#7DDCFF' }}
                     >
-                      {LOCATIONS[locationIndex]}
+                      {BENEFIT_PHRASES[benefitIndex]}
                     </motion.span>
                   </AnimatePresence>
                 </span>
                 {/* Screen readers get one static sentence instead of the
                     animated rotation being announced on every change. */}
-                <span className="sr-only">Helping businesses grow in London.</span>
+                <span className="sr-only">Built to help your business stand out.</span>
               </>
             )}
           </motion.div>
