@@ -389,7 +389,7 @@ div.wv-columns {
 @media (min-width: 1024px) {
   .wv-col--platform { transform: translateX(-45px); }
   .wv-col--services { transform: translateX(32px); }
-  div.wv-eyebrow { transform: translateX(-24px) translateY(-18px); }
+  div.wv-eyebrow { transform: translateX(-54px) translateY(-34px); }
 }
 
 div.wv-col-heading {
