@@ -207,7 +207,7 @@ export default function About() { // no diagonal lines bg
             transition={{ duration: 0.9, delay: 0.2, ease: E }}
           >
             <div
-              className="relative w-full [transform:scale(1.21)] lg:[transform:scale(1.65)_translateX(calc(10%_-_26px))]"
+              className="relative w-full [transform:scale(1.05)] lg:[transform:scale(1.43)_translateX(10%)]"
               style={{
                 maskImage: 'radial-gradient(ellipse 88% 82% at 52% 50%, black 45%, transparent 100%)',
                 WebkitMaskImage: 'radial-gradient(ellipse 88% 82% at 52% 50%, black 45%, transparent 100%)',
