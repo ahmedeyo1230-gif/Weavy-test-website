@@ -247,7 +247,7 @@ export default function WeaveSection() {
                 Everything your business needs to grow — managed in one place.
               </div>
               <div className="wv-cue">
-                <span className="wv-cue-text">Scroll to explore</span>
+                <span className="wv-cue-text">Scroll to explore the systems</span>
                 <svg
                   className="wv-cue-arrow"
                   width="26"
