@@ -243,7 +243,7 @@ function DashboardMock({ leads, reply, bookings }: { leads: number; reply: numbe
         {/* Sample-data disclaimer — the figures above are illustrative, not
             verified client results, since Weavy connects/manages third-party
             systems rather than owning this dashboard software itself. */}
-        <div style={{ marginTop: 14, fontSize: 10.5, color: 'rgba(255,255,255,0.30)', letterSpacing: '0.02em', textAlign: 'center' }}>
+        <div style={{ marginTop: 14, fontSize: 10.5, color: 'rgba(255,255,255,0.38)', letterSpacing: '0.02em', textAlign: 'center' }}>
           Illustrative workflow and sample data
         </div>
       </div>
@@ -324,7 +324,7 @@ export default function ConnectedSystems() {
       className="relative w-full overflow-hidden"
       style={{
         background: '#000506',
-        paddingTop: 'clamp(72px, 15vw, 200px)',
+        paddingTop: 'clamp(96px, 15vw, 200px)',
         paddingBottom: 'clamp(64px, 13vw, 180px)',
       }}
       aria-label="Connected Systems"
@@ -423,6 +423,14 @@ export default function ConnectedSystems() {
           className="relative mx-auto"
           style={{ width: 'min(86vw, 1240px)', marginTop: 'clamp(56px, 9vw, 100px)' }}
         >
+          {/* Soft ambient glow behind the dashboard only — gives it a
+              slightly elevated feel without a hard shape or new panel. */}
+          <div aria-hidden="true" className="pointer-events-none absolute" style={{
+            inset: '-9%',
+            background: 'radial-gradient(ellipse 60% 56% at 50% 50%, rgba(24,105,125,0.16) 0%, rgba(5,26,32,0.07) 45%, rgba(1,7,9,0) 78%)',
+            filter: 'blur(44px)',
+          }} />
+
           {FLOAT_CARDS.map((c, i) => (
             <FloatCard
               key={c.label}
