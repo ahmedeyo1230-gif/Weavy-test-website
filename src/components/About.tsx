@@ -2,14 +2,14 @@ import { motion } from 'framer-motion'
 
 const E: [number, number, number, number] = [0.16, 1, 0.3, 1]
 
-const TAGS = ['Digital Marketing', 'Business Process Automation', 'Lead Generation', 'CRM Automation', 'Graphic Design', 'Paid Social Media Advertising']
+const TAGS = ['Automation Systems', 'Voice & Messaging', 'CRM & Bookings', 'Bespoke Websites', 'Content & Creative', 'Social & Paid Growth']
 
 const SERVICE_MODULES = [
-  { num: '01', label: 'Automation',      desc: 'End-to-end workflow systems',      highlight: 'workflow systems'  },
-  { num: '02', label: 'Web Design',      desc: 'Bespoke, high-performance sites',  highlight: 'high-performance'  },
-  { num: '03', label: 'Custom Chatbots', desc: 'Intelligent 24/7 engagement',      highlight: '24/7 engagement'   },
-  { num: '04', label: 'Content Systems', desc: 'Scalable brand content at scale',  highlight: 'brand content'     },
-  { num: '05', label: 'Video Editing',   desc: 'Storytelling that drives results', highlight: 'drives results'    },
+  { num: '01', label: 'Automation & CRM',     desc: 'Enquiries, follow-ups and bookings connected.',            highlight: 'follow-ups and bookings' },
+  { num: '02', label: 'Bespoke Websites',     desc: 'Distinctive, high-performance websites built to convert.', highlight: 'high-performance'        },
+  { num: '03', label: 'Voice & Chat',         desc: 'Always-on conversations that capture and qualify leads.',  highlight: 'capture and qualify'     },
+  { num: '04', label: 'Content & Creative',   desc: 'UGC, design, animation and video that builds trust.',      highlight: 'builds trust'             },
+  { num: '05', label: 'Social & Paid Growth', desc: 'Campaigns that turn attention into action.',                highlight: 'attention into action'   },
 ]
 
 export default function About() { // no diagonal lines bg
@@ -93,7 +93,9 @@ export default function About() { // no diagonal lines bg
               transition={{ duration: 0.65, delay: 0.07, ease: E }}
               className="text-4xl md:text-5xl lg:text-[3.25rem] font-light tracking-tighter leading-[1.1] text-primary"
             >
-              We are a{' '}
+              We make growing a business feel
+              <br className="hidden sm:block" />
+              {' '}
               <em
                 className="font-serif italic"
                 style={{
@@ -104,9 +106,7 @@ export default function About() { // no diagonal lines bg
                   backgroundClip: 'text',
                   animation: 'gradientShift 4s linear infinite',
                 }}
-              >full-stack</em>
-              <br className="hidden sm:block" />
-              {' '}automation platform
+              >less complicated</em>.
             </motion.h2>
 
             <motion.div
@@ -118,20 +118,18 @@ export default function About() { // no diagonal lines bg
               style={{ fontSize: 'clamp(0.9rem, 1.15vw, 1.02rem)', color: '#CBD5E1', lineHeight: 1.8 }}
             >
               <p>
-                We craft <span className="weavy-shimmer-text">bespoke websites</span>, deploy{' '}
-                <span className="weavy-shimmer-text">smart chatbots</span>, and build
-                intelligent systems for{' '}
-                <span className="weavy-shimmer-text">digital marketing</span>,{' '}
-                <span className="weavy-shimmer-text">social media automation</span>,{' '}
-                <span className="weavy-shimmer-text">UGC content</span>,{' '}
-                <span className="weavy-shimmer-text">graphic design & animation</span>, and{' '}
-                <span className="weavy-shimmer-text">video editing</span>. So your business
-                handles more customers without extra employees.
+                Weavy is a London-based{' '}
+                <span className="weavy-shimmer-text">automation and creative agency</span>. We
+                bring together the systems that manage{' '}
+                <span className="weavy-shimmer-text">enquiries, bookings and follow-ups</span>{' '}
+                with the creative work that helps businesses{' '}
+                <span className="weavy-shimmer-text">get noticed and earn trust</span>.
               </p>
               <p>
-                Operating out of London, we partner with high-growth brands to replace manual
-                chaos with elegant, automated workflows. We also deliver high-quality video
-                editing that enhances storytelling and drives engagement across platforms.
+                Instead of juggling disconnected tools and multiple suppliers, you get{' '}
+                <span className="weavy-shimmer-text">one team</span> helping shape the customer
+                journey—from the{' '}
+                <span className="weavy-shimmer-text">first impression to the booked client</span>.
               </p>
             </motion.div>
 
