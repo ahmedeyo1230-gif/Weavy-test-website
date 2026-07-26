@@ -128,9 +128,11 @@ export default function About() { // no diagonal lines bg
                 <span className="weavy-shimmer-text">saves you time and money</span>.
               </p>
               <p>
-                That means fewer disconnected tools, fewer handovers and less for you to
-                manage—just{' '}
-                <span className="weavy-shimmer-text">one team</span> bringing the entire customer
+                That means{' '}
+                <span className="weavy-shimmer-text">less for you to manage</span> and{' '}
+                <span className="weavy-shimmer-text">more time to focus on your business</span>
+                —while{' '}
+                <span className="weavy-shimmer-text">one team</span> brings the entire customer
                 journey together, from the{' '}
                 <span className="weavy-shimmer-text">first impression to the confirmed booking</span>.
               </p>
@@ -207,7 +209,7 @@ export default function About() { // no diagonal lines bg
             transition={{ duration: 0.9, delay: 0.2, ease: E }}
           >
             <div
-              className="relative w-full [transform:scale(1.05)] lg:[transform:scale(1.43)_translateX(10%)]"
+              className="relative w-full [transform:scale(1.12)] lg:[transform:translateX(calc(10%_+_54px))_scale(1.53)]"
               style={{
                 maskImage: 'radial-gradient(ellipse 88% 82% at 52% 50%, black 45%, transparent 100%)',
                 WebkitMaskImage: 'radial-gradient(ellipse 88% 82% at 52% 50%, black 45%, transparent 100%)',
