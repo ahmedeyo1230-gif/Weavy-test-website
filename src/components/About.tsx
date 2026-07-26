@@ -2,7 +2,7 @@ import { motion } from 'framer-motion'
 
 const E: [number, number, number, number] = [0.16, 1, 0.3, 1]
 
-const TAGS = ['Automation Systems', 'Voice & Messaging', 'CRM & Bookings', 'Bespoke Websites', 'Content & Creative', 'Social & Paid Growth']
+const TAGS = ['Lead Capture', 'Faster Replies', 'Smarter Follow-Ups', 'Smoother Bookings', 'Stronger Content', 'Paid Growth']
 
 const SERVICE_MODULES = [
   { num: '01', label: 'Automation & CRM',     desc: 'Enquiries, follow-ups and bookings connected.',            highlight: 'follow-ups and bookings' },
@@ -119,17 +119,20 @@ export default function About() { // no diagonal lines bg
             >
               <p>
                 Weavy is a London-based{' '}
-                <span className="weavy-shimmer-text">automation and creative agency</span>. We
-                bring together the systems that manage{' '}
-                <span className="weavy-shimmer-text">enquiries, bookings and follow-ups</span>{' '}
-                with the creative work that helps businesses{' '}
-                <span className="weavy-shimmer-text">get noticed and earn trust</span>.
+                <span className="weavy-shimmer-text">automation and creative agency</span> helping
+                businesses work smarter, respond faster and make a stronger impression. We connect
+                the systems behind{' '}
+                <span className="weavy-shimmer-text">enquiries, bookings and follow-ups</span> with
+                the creative work that attracts attention,{' '}
+                <span className="weavy-shimmer-text">builds trust</span> and{' '}
+                <span className="weavy-shimmer-text">saves you time and money</span>.
               </p>
               <p>
-                Instead of juggling disconnected tools and multiple suppliers, you get{' '}
-                <span className="weavy-shimmer-text">one team</span> helping shape the customer
-                journey—from the{' '}
-                <span className="weavy-shimmer-text">first impression to the booked client</span>.
+                That means fewer disconnected tools, fewer handovers and less for you to
+                manage—just{' '}
+                <span className="weavy-shimmer-text">one team</span> bringing the entire customer
+                journey together, from the{' '}
+                <span className="weavy-shimmer-text">first impression to the confirmed booking</span>.
               </p>
             </motion.div>
 
@@ -204,7 +207,7 @@ export default function About() { // no diagonal lines bg
             transition={{ duration: 0.9, delay: 0.2, ease: E }}
           >
             <div
-              className="relative w-full [transform:scale(1.14)] lg:[transform:scale(1.56)_translateX(10%)]"
+              className="relative w-full [transform:scale(1.21)] lg:[transform:scale(1.65)_translateX(calc(10%_-_26px))]"
               style={{
                 maskImage: 'radial-gradient(ellipse 88% 82% at 52% 50%, black 45%, transparent 100%)',
                 WebkitMaskImage: 'radial-gradient(ellipse 88% 82% at 52% 50%, black 45%, transparent 100%)',
@@ -246,10 +249,9 @@ export default function About() { // no diagonal lines bg
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-20px' }}
               transition={{ duration: 0.5, delay: i * 0.07, ease: E }}
-              className="group relative rounded-xl overflow-hidden cursor-pointer"
+              className="group relative rounded-xl overflow-hidden cursor-pointer lg:min-h-[10.25rem]"
               style={{
-                padding: '2.1rem 1.9rem 2.4rem',
-                minHeight: '13rem',
+                padding: '0.625rem 1.9rem 0.625rem',
                 background: 'hsl(0 0% 100% / 0.022)',
                 border: '1px solid hsl(0 0% 100% / 0.07)',
                 transition: 'border-color 280ms, background-color 280ms, box-shadow 280ms, transform 280ms cubic-bezier(0.16,1,0.3,1)',
