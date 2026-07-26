@@ -166,7 +166,7 @@ function DashboardMock({ leads, reply, bookings }: { leads: number; reply: numbe
           ))}
         </div>
         <div style={{ flex: 1, textAlign: 'center', fontSize: 'clamp(10.5px, 3vw, 12.5px)', lineHeight: 1.5, color: 'rgba(125,220,255,0.52)', letterSpacing: '0.12em', textTransform: 'uppercase' }}>
-          Weavy · Automation Dashboard
+          Connected Workflow
         </div>
       </div>
 
@@ -223,7 +223,7 @@ function DashboardMock({ leads, reply, bookings }: { leads: number; reply: numbe
       </div>
 
       {/* Activity feed — full-width row on wide dashboard */}
-      <div className="pb-7 min-[640px]:pb-16" style={{ paddingTop: 24, paddingLeft: 28, paddingRight: 28 }}>
+      <div className="pb-9 min-[640px]:pb-20" style={{ paddingTop: 24, paddingLeft: 28, paddingRight: 28 }}>
         <div style={{ fontSize: 11, color: 'rgba(125,220,255,0.46)', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 12 }}>Live Activity</div>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           {[
@@ -239,6 +239,12 @@ function DashboardMock({ leads, reply, bookings }: { leads: number; reply: numbe
               </div>
             </div>
           ))}
+        </div>
+        {/* Sample-data disclaimer — the figures above are illustrative, not
+            verified client results, since Weavy connects/manages third-party
+            systems rather than owning this dashboard software itself. */}
+        <div style={{ marginTop: 14, fontSize: 10.5, color: 'rgba(255,255,255,0.30)', letterSpacing: '0.02em', textAlign: 'center' }}>
+          Illustrative workflow and sample data
         </div>
       </div>
 
@@ -403,8 +409,8 @@ export default function ConnectedSystems() {
             className="font-sans font-light"
             style={{ fontSize: 'clamp(18px, 1.3vw, 20px)', lineHeight: 1.7, color: 'rgba(220, 232, 240, 0.74)', maxWidth: 430, marginTop: '1.6rem' }}
           >
-            Every enquiry is captured, qualified, followed up and moved
-            towards booking.
+            Designed to capture, qualify and follow up enquiries—moving more
+            conversations towards booking.
           </motion.p>
         </div>
 
