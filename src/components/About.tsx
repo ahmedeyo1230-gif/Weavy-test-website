@@ -2,7 +2,7 @@ import { motion } from 'framer-motion'
 
 const E: [number, number, number, number] = [0.16, 1, 0.3, 1]
 
-const TAGS = ['Lead Capture', 'Faster Replies', 'Smarter Follow-Ups', 'Smoother Bookings', 'Stronger Content', 'Paid Growth']
+const TAGS = ['Lead Capture', 'Faster Replies', 'Smarter Follow-Ups', 'Smoother Bookings', 'Standout Visuals', 'Paid Growth']
 
 const SERVICE_MODULES = [
   { num: '01', label: 'Automation & CRM',     desc: 'Enquiries, follow-ups and bookings connected.',            highlight: 'follow-ups and bookings' },
