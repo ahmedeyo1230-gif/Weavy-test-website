@@ -202,7 +202,7 @@ const CSS = `
   background: #010709;
 }
 
-.ssp-panel--systems { background: #010709; }
+.ssp-panel--systems { background: linear-gradient(to bottom, #020A0D 0%, #010709 50%, #000506 100%); }
 .ssp-panel--services { background: #010508; }
 .ssp-panel--closing { background: #01080a; }
 
