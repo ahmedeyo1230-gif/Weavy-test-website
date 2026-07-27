@@ -5,7 +5,9 @@ import { SmoothScroll } from './ui/smooth-scroll'
 const E: [number, number, number, number] = [0.16, 1, 0.3, 1]
 
 const BLUE = '#6F8CFF'
-const GOLD = '#E9963F'
+const VIOLET_HEADING = '#B7AEFF'
+const VIOLET_DOT = '#9F94FF'
+const VIOLET_LINE = 'rgba(183, 174, 255, 0.24)'
 
 const SYSTEMS_ITEMS = ['Voice Receptionists', 'Voice Agents', 'Chatbots', 'Messaging', 'CRM & Bookings', 'Analytics']
 const SERVICES_ITEMS = ['Bespoke Websites', 'Social Media', 'Paid Advertising', 'Creative Design', 'UGC & Creator Content']
@@ -23,11 +25,13 @@ function useReducedMotion(): boolean {
 }
 
 function ListPanel({
-  heading, items, accent, ambientRgb, reduced, className,
+  heading, items, accent, headingColor = accent, lineColor = accent, ambientRgb, reduced, className,
 }: {
   heading: string
   items: string[]
   accent: string
+  headingColor?: string
+  lineColor?: string
   ambientRgb: string
   reduced: boolean
   className: string
@@ -46,7 +50,7 @@ function ListPanel({
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.6, ease: E }}
           className="ssp-heading"
-          style={{ color: accent }}
+          style={{ color: headingColor }}
         >
           {heading}
         </motion.h2>
@@ -60,7 +64,7 @@ function ListPanel({
               viewport={{ once: true, amount: 0.5 }}
               transition={{ duration: 0.5, delay: 0.12 + i * 0.07, ease: E }}
               className="ssp-item"
-              style={{ ['--accent' as string]: accent }}
+              style={{ ['--accent' as string]: lineColor }}
             >
               <span
                 className={reduced ? 'ssp-dot' : 'ssp-dot ssp-dot--animate'}
@@ -104,8 +108,10 @@ export default function SystemsServicesScroll() {
         <ListPanel
           heading="Services"
           items={SERVICES_ITEMS}
-          accent={GOLD}
-          ambientRgb="rgba(233,150,63,0.09)"
+          accent={VIOLET_DOT}
+          headingColor={VIOLET_HEADING}
+          lineColor={VIOLET_LINE}
+          ambientRgb="rgba(159, 148, 255, 0.08)"
           reduced={reduced}
           className="ssp-panel--services"
         />
