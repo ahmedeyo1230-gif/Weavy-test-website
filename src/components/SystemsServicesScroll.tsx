@@ -60,6 +60,7 @@ function ListPanel({
               viewport={{ once: true, amount: 0.5 }}
               transition={{ duration: 0.5, delay: 0.12 + i * 0.07, ease: E }}
               className="ssp-item"
+              style={{ ['--accent' as string]: accent }}
             >
               <span
                 className={reduced ? 'ssp-dot' : 'ssp-dot ssp-dot--animate'}
@@ -69,7 +70,12 @@ function ListPanel({
                   animationDelay: `${0.3 + i * 0.07}s`,
                 }}
               />
-              {item}
+              <span
+                className={reduced ? 'ssp-item-text' : 'ssp-item-text ssp-item-text--animate'}
+                style={{ animationDelay: `${0.3 + i * 0.07}s` }}
+              >
+                {item}
+              </span>
             </motion.li>
           ))}
         </ul>
@@ -211,15 +217,16 @@ const CSS = `
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.26em;
-  font-size: clamp(2rem, 5.5vw, 4rem);
-  margin: 0 0 clamp(2.5rem, 5vw, 3.5rem);
+  font-size: clamp(1.82rem, 5vw, 3.6rem);
+  margin: 0 0 clamp(2.25rem, 4.5vw, 3.1rem);
 }
 
 .ssp-list {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: clamp(1rem, 2.4vw, 1.6rem);
+  align-items: stretch;
+  width: fit-content;
+  gap: clamp(0.85rem, 1.9vw, 1.25rem);
   margin: 0 auto;
   padding: 0;
   list-style: none;
@@ -232,9 +239,10 @@ const CSS = `
   gap: 18px;
   font-family: 'Poppins', 'Inter', sans-serif;
   font-weight: 400;
-  font-size: clamp(1.3rem, 3.2vw, 2rem);
+  font-size: clamp(1.13rem, 2.8vw, 1.74rem);
   color: rgba(242,246,245,0.86);
   letter-spacing: -0.005em;
+  text-align: left;
 }
 
 .ssp-dot {
@@ -249,10 +257,64 @@ const CSS = `
   animation: ssp-dot-glow-once 900ms ease-out both;
 }
 
+.ssp-item:hover .ssp-dot,
+.ssp-item:focus-within .ssp-dot {
+  animation: ssp-dot-glow-once 420ms ease-out;
+}
+
 @keyframes ssp-dot-glow-once {
   0%   { box-shadow: 0 0 0px transparent; opacity: 0.4; }
   55%  { box-shadow: 0 0 18px var(--dot-glow, transparent); opacity: 1; }
   100% { box-shadow: 0 0 10px var(--dot-glow, transparent); opacity: 1; }
+}
+
+.ssp-item-text {
+  position: relative;
+  display: inline-block;
+  opacity: 0.76;
+  transition: opacity 380ms ease;
+}
+
+.ssp-item-text::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -5px;
+  height: 1px;
+  background: var(--accent, currentColor);
+  opacity: 0;
+  transition: opacity 380ms ease;
+}
+
+.ssp-item-text--animate {
+  animation: ssp-item-text-glow-once 900ms ease-out both;
+}
+
+.ssp-item-text--animate::after {
+  animation: ssp-item-line-glow-once 900ms ease-out both;
+}
+
+@keyframes ssp-item-text-glow-once {
+  0%   { opacity: 0.76; }
+  55%  { opacity: 1; }
+  100% { opacity: 0.76; }
+}
+
+@keyframes ssp-item-line-glow-once {
+  0%   { opacity: 0; }
+  55%  { opacity: 0.5; }
+  100% { opacity: 0; }
+}
+
+.ssp-item:hover .ssp-item-text,
+.ssp-item:focus-within .ssp-item-text {
+  opacity: 1 !important;
+}
+
+.ssp-item:hover .ssp-item-text::after,
+.ssp-item:focus-within .ssp-item-text::after {
+  opacity: 0.5 !important;
 }
 
 .ssp-inner--closing {
@@ -319,5 +381,14 @@ const CSS = `
 @media (prefers-reduced-motion: reduce) {
   .ssp-dot--animate { animation: none; box-shadow: 0 0 10px var(--dot-glow, transparent); }
   .ssp-scroll-cue-arrow--animate { animation: none; }
+  .ssp-item-text, .ssp-item-text--animate {
+    animation: none;
+    opacity: 1;
+    transition: none;
+  }
+  .ssp-item-text::after, .ssp-item-text--animate::after {
+    animation: none;
+    opacity: 0;
+  }
 }
 `
