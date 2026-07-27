@@ -35,42 +35,42 @@ const MODULES = [
   {
     title: 'AI Voice Receptionist',
     desc: 'Handles missed calls, FAQs, bookings, and customer enquiries.',
-    icon: 'phone', color: '#F0C56A',
+    icon: 'phone', color: '#F0C56A', titleColor: '#F7E1B4',
   },
   {
     title: 'AI Voice Agent',
     desc: 'Speaks with customers, qualifies enquiries and routes high-intent leads.',
-    icon: 'waveform', color: '#7DDCFF',
+    icon: 'waveform', color: '#7DDCFF', titleColor: '#BEEBFF',
   },
   {
     title: 'WhatsApp Agent',
     desc: 'Replies instantly, captures details, and moves customers to the next step.',
-    icon: 'chat', color: '#34D399',
+    icon: 'chat', color: '#34D399', titleColor: '#B4F0D2',
   },
   {
     title: 'Instagram DM',
     desc: 'Replies instantly, captures enquiries and guides prospects towards booking.',
-    icon: 'camera', color: '#E879C9',
+    icon: 'camera', color: '#E879C9', titleColor: '#F5B4E1',
   },
   {
     title: 'Facebook Messenger',
     desc: 'Handles Messenger enquiries and keeps conversations organised.',
-    icon: 'bubble2', color: '#6BA9FF',
+    icon: 'bubble2', color: '#6BA9FF', titleColor: '#B4D2FF',
   },
   {
     title: 'CRM & Lead Management',
     desc: 'Keeps every lead organised, tracks progress and prevents missed follow-ups.',
-    icon: 'crm', color: '#A78BFA',
+    icon: 'crm', color: '#A78BFA', titleColor: '#D2C3FC',
   },
   {
     title: 'Appointment Booking',
     desc: 'Automates bookings, reminders, and customer scheduling.',
-    icon: 'calendar', color: '#F0C56A',
+    icon: 'calendar', color: '#F0C56A', titleColor: '#EED08C',
   },
   {
     title: 'Analytics Dashboard',
     desc: 'Shows where leads come from, what converts and where follow-up is needed.',
-    icon: 'chart', color: '#7DDCFF',
+    icon: 'chart', color: '#7DDCFF', titleColor: '#B3E9EF',
   },
 ]
 
@@ -120,10 +120,10 @@ function ModuleCard({ mod, index }: { mod: typeof MODULES[number]; index: number
         <Icon type={mod.icon} color={mod.color} />
       </div>
 
-      <h3 className="font-sans font-light" style={{ fontSize: '1rem', color: 'rgba(248,250,252,0.92)', marginBottom: '0.5rem', letterSpacing: '-0.01em' }}>
+      <h3 className="font-sans font-light" style={{ fontSize: '1rem', color: mod.titleColor, marginBottom: '0.5rem', letterSpacing: '-0.01em' }}>
         {mod.title}
       </h3>
-      <p className="font-sans font-light" style={{ fontSize: '0.82rem', lineHeight: 1.65, color: '#AEB8B8', opacity: 1 }}>
+      <p className="font-sans font-light" style={{ fontSize: '0.9rem', lineHeight: 1.75, color: 'rgba(220,230,235,0.80)', opacity: 1 }}>
         {mod.desc}
       </p>
     </motion.div>
@@ -191,7 +191,7 @@ export default function PlatformSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.65, delay: 0.14, ease: E }}
             className="font-sans font-light"
-            style={{ fontSize: 'clamp(0.92rem, 1.5vw, 1.05rem)', lineHeight: 1.8, color: '#AEB8B8', opacity: 1, marginTop: '1.3rem' }}
+            style={{ fontSize: 'clamp(0.92rem, 1.5vw, 1.05rem)', lineHeight: 1.8, color: 'rgba(220,230,235,0.82)', opacity: 1, marginTop: '1.3rem' }}
           >
             We connect your calls, messages, bookings, automations and CRM—helping you manage
             enquiries, follow up faster and turn more conversations into customers.
