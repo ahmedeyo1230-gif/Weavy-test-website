@@ -2,7 +2,7 @@ import { useState, useEffect, lazy, Suspense } from 'react'
 import { applyPageSeo, PAGE_SEO } from './lib/seo'
 import LoadingScreen from './components/LoadingScreen'
 import Hero, { Navbar } from './components/Hero'
-import WeaveSection from './components/WeaveSection'
+import SystemsServicesScroll from './components/SystemsServicesScroll'
 import { Marquee } from './components/ui/marquee'
 import PlatformSection from './components/PlatformSection'
 import PricingSection from './components/PricingSection'
@@ -166,7 +166,7 @@ export default function App() {
           ) : (
             <>
               <Hero />
-              <WeaveSection />
+              <SystemsServicesScroll />
               <OutcomeMarquee />
               <PlatformSection />
               <ConnectedSystems />
