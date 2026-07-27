@@ -119,6 +119,32 @@ export default function SystemsServicesScroll() {
               Everything your business needs to grow—
               <span className="weavy-shimmer-text">connected and managed by one team</span>.
             </motion.p>
+
+            <motion.div
+              initial={reduced ? false : { opacity: 0, y: 14 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.5 }}
+              transition={{ duration: 0.6, delay: 0.25, ease: E }}
+              className="ssp-scroll-cue"
+            >
+              <span className="ssp-scroll-cue-text">Scroll to explore</span>
+              <svg
+                className={reduced ? 'ssp-scroll-cue-arrow' : 'ssp-scroll-cue-arrow ssp-scroll-cue-arrow--animate'}
+                width="20"
+                height="26"
+                viewBox="0 0 20 26"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M10 2 V19 M3 13 L10 20 L17 13"
+                  stroke="currentColor"
+                  strokeWidth="1.6"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -233,6 +259,7 @@ const CSS = `
   padding-top: clamp(96px, 14vw, 140px);
   padding-bottom: clamp(96px, 14vw, 140px);
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   min-height: 100%;
@@ -247,6 +274,32 @@ const CSS = `
   color: #F2F6F5;
   max-width: 46rem;
   margin: 0 auto;
+}
+
+.ssp-scroll-cue {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  margin-top: clamp(60px, 6vw, 80px);
+  color: rgba(125, 220, 255, 0.68);
+}
+
+.ssp-scroll-cue-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+.ssp-scroll-cue-arrow--animate {
+  animation: ssp-scroll-cue-drift 2.4s ease-in-out infinite;
+}
+
+@keyframes ssp-scroll-cue-drift {
+  0%, 100% { transform: translateY(0); opacity: 0.75; }
+  50%      { transform: translateY(6px); opacity: 1; }
 }
 
 @media (max-width: 700px), (prefers-reduced-motion: reduce) {
@@ -265,5 +318,6 @@ const CSS = `
 
 @media (prefers-reduced-motion: reduce) {
   .ssp-dot--animate { animation: none; box-shadow: 0 0 10px var(--dot-glow, transparent); }
+  .ssp-scroll-cue-arrow--animate { animation: none; }
 }
 `
