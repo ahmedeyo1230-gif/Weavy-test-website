@@ -345,20 +345,22 @@ export default function WhyWeavyWorks() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: '-50px' }}
               transition={{ duration: 0.55, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="feature-card group flex gap-5 p-6 rounded-2xl border border-transparent"
+              className="feature-card group flex gap-5 p-6 rounded-2xl w-full"
               style={{
                 transition: 'background-color 250ms, border-color 250ms, box-shadow 250ms',
-                background: 'transparent',
+                background: 'rgba(8,30,38,0.45)',
+                border: '1px solid rgba(77,196,225,0.28)',
+                boxShadow: '0 0 20px rgba(77,196,225,0.06)',
               }}
               onMouseEnter={e => {
                 (e.currentTarget as HTMLElement).style.background = 'rgba(9,27,36,0.75)'
-                ;(e.currentTarget as HTMLElement).style.borderColor = 'rgba(125,220,255,0.22)'
-                ;(e.currentTarget as HTMLElement).style.boxShadow = '0 0 28px rgba(125,220,255,0.07)'
+                ;(e.currentTarget as HTMLElement).style.borderColor = 'rgba(125,220,255,0.34)'
+                ;(e.currentTarget as HTMLElement).style.boxShadow = '0 0 28px rgba(125,220,255,0.09)'
               }}
               onMouseLeave={e => {
-                (e.currentTarget as HTMLElement).style.background = 'transparent'
-                ;(e.currentTarget as HTMLElement).style.borderColor = 'transparent'
-                ;(e.currentTarget as HTMLElement).style.boxShadow = 'none'
+                (e.currentTarget as HTMLElement).style.background = 'rgba(8,30,38,0.45)'
+                ;(e.currentTarget as HTMLElement).style.borderColor = 'rgba(77,196,225,0.28)'
+                ;(e.currentTarget as HTMLElement).style.boxShadow = '0 0 20px rgba(77,196,225,0.06)'
               }}
             >
               <div
