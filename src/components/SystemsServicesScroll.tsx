@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { SmoothScroll } from './ui/smooth-scroll'
+import { GradientDots } from './ui/gradient-dots'
 
 const E: [number, number, number, number] = [0.16, 1, 0.3, 1]
 
@@ -25,7 +26,7 @@ function useReducedMotion(): boolean {
 }
 
 function ListPanel({
-  heading, items, accent, headingColor = accent, lineColor = accent, ambientRgb, reduced, className,
+  heading, items, accent, headingColor = accent, lineColor = accent, ambientRgb, bgBase, reduced, className,
 }: {
   heading: string
   items: string[]
@@ -33,11 +34,22 @@ function ListPanel({
   headingColor?: string
   lineColor?: string
   ambientRgb: string
+  bgBase: string
   reduced: boolean
   className: string
 }) {
   return (
     <div className={`ssp-panel ${className}`}>
+      <div aria-hidden="true" style={{ position: 'absolute', inset: 0, overflow: 'hidden', pointerEvents: 'none', opacity: 0.16 }}>
+        <GradientDots
+          backgroundColor={bgBase}
+          dotSize={8}
+          spacing={10}
+          duration={42}
+          colorCycleDuration={20}
+          {...(reduced ? { animate: false } : {})}
+        />
+      </div>
       <div aria-hidden="true" className="ssp-ambient" style={{
         background: `radial-gradient(circle at 50% 42%, ${ambientRgb} 0%, transparent 68%)`,
       }} />
@@ -101,6 +113,7 @@ export default function SystemsServicesScroll() {
           items={SYSTEMS_ITEMS}
           accent={BLUE}
           ambientRgb="rgba(111,140,255,0.10)"
+          bgBase="#010709"
           reduced={reduced}
           className="ssp-panel--systems"
         />
@@ -112,6 +125,7 @@ export default function SystemsServicesScroll() {
           headingColor={VIOLET_HEADING}
           lineColor={VIOLET_LINE}
           ambientRgb="rgba(159, 148, 255, 0.08)"
+          bgBase="#010508"
           reduced={reduced}
           className="ssp-panel--services"
         />
