@@ -463,7 +463,11 @@ export default function Hero() {
             <span style={heroSubheadHighlight}>respond instantly</span>,{' '}
             <span style={heroSubheadHighlight}>automate bookings</span> and manage
             customer conversations across voice, WhatsApp, Instagram, Facebook and CRM—all
-            through <span style={heroSubheadHighlight}>one connected system</span>.
+            through <span style={heroSubheadHighlight}>one connected system</span>. Our{' '}
+            <span style={heroSubheadHighlight}>creative growth services</span> help brands{' '}
+            <span style={heroSubheadHighlight}>stand out</span>,{' '}
+            <span style={heroSubheadHighlight}>build trust</span> and{' '}
+            <span style={heroSubheadHighlight}>attract more customers</span>.
           </motion.p>
 
           <motion.div
