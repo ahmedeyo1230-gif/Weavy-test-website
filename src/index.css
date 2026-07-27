@@ -77,20 +77,9 @@ html {
   background: linear-gradient(to right, hsl(210 20% 40%), hsl(210 30% 80%));
 }
 
-/* ── Outcome marquee ─────────────────────────────────────────────────────── */
-@keyframes marquee-scroll {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
-}
-.outcome-marquee-track {
-  display: flex;
-  width: max-content;
-  animation: marquee-scroll 36s linear infinite;
-  will-change: transform;
-  transition: animation-duration 500ms;
-}
+/* ── Outcome marquee (src/components/ui/marquee.tsx) ────────────────────── */
 @media (prefers-reduced-motion: reduce) {
-  .outcome-marquee-track { animation: none; }
+  .marquee-scroller { animation: none !important; }
 }
 
 /* ── Bespoke Section 3 Cinema — grain & flowing light line ──────────────── */

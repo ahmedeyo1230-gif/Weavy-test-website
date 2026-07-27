@@ -3,6 +3,7 @@ import { applyPageSeo, PAGE_SEO } from './lib/seo'
 import LoadingScreen from './components/LoadingScreen'
 import Hero, { Navbar } from './components/Hero'
 import WeaveSection from './components/WeaveSection'
+import { Marquee } from './components/ui/marquee'
 import PlatformSection from './components/PlatformSection'
 import PricingSection from './components/PricingSection'
 import About from './components/About'
@@ -28,7 +29,6 @@ const MARQUEE_ITEMS = [
 ]
 
 function OutcomeMarquee() {
-  const items = [...MARQUEE_ITEMS, ...MARQUEE_ITEMS]
   return (
     <div
       aria-hidden="true"
@@ -63,10 +63,10 @@ function OutcomeMarquee() {
         zIndex: 2, pointerEvents: 'none',
       }} />
 
-      <div className="outcome-marquee-track" style={{ position: 'relative', zIndex: 1 }}>
-        {items.map((text, i) => (
+      <Marquee duration={36} fade={false} style={{ position: 'relative', zIndex: 1 }}>
+        {MARQUEE_ITEMS.map((text) => (
           <span
-            key={i}
+            key={text}
             style={{
               display: 'inline-flex',
               alignItems: 'center',
@@ -87,7 +87,7 @@ function OutcomeMarquee() {
             }}>·</span>
           </span>
         ))}
-      </div>
+      </Marquee>
     </div>
   )
 }
