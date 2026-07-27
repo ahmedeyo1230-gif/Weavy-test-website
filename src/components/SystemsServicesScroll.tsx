@@ -202,9 +202,23 @@ const CSS = `
   background: #010709;
 }
 
-.ssp-panel--systems { background: linear-gradient(to bottom, #020A0D 0%, #010709 50%, #000506 100%); }
+.ssp-panel--systems { background: linear-gradient(to bottom, #01080A 0%, #000607 48%, #000405 100%); }
 .ssp-panel--services { background: #010508; }
 .ssp-panel--closing { background: #01080a; }
+
+/* Cross-fades the hero's own bottom fade colour (#010709) into the top of
+   the Systems panel so its dot-grid/gradient-dots texture reveals gradually
+   instead of starting with a hard-edged seam at the hero/Systems boundary. */
+.ssp-panel--systems::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 110px;
+  background: linear-gradient(to bottom, #010709 0%, transparent 100%);
+  pointer-events: none;
+}
 
 .ssp-ambient {
   position: absolute;
