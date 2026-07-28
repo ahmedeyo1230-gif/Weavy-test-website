@@ -2,6 +2,7 @@ import { useState, useEffect, lazy, Suspense } from 'react'
 import { applyPageSeo, PAGE_SEO } from './lib/seo'
 import LoadingScreen from './components/LoadingScreen'
 import Hero, { Navbar } from './components/Hero'
+import { PerspectiveMarquee } from './components/ui/perspective-marquee'
 import SystemsServicesScroll from './components/SystemsServicesScroll'
 import { Marquee } from './components/ui/marquee'
 import PlatformSection from './components/PlatformSection'
@@ -166,6 +167,7 @@ export default function App() {
           ) : (
             <>
               <Hero />
+              <PerspectiveMarquee />
               <SystemsServicesScroll />
               <OutcomeMarquee />
               <PlatformSection />
