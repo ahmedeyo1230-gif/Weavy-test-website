@@ -204,7 +204,7 @@ const CSS = `
 
 .ssp-panel--systems { background: linear-gradient(to bottom, #000304 0%, #000102 45%, #000101 100%); }
 .ssp-panel--services { background: #010508; }
-.ssp-panel--closing { background: linear-gradient(to bottom, #000304 0%, #000102 48%, #000101 100%); }
+.ssp-panel--closing { background: linear-gradient(to bottom, #030607 0%, #020405 50%, #010303 100%); }
 
 /* Cross-fades the hero's own bottom fade colour (#010709) into the top of
    the Systems panel so its dot-grid/gradient-dots texture reveals gradually
