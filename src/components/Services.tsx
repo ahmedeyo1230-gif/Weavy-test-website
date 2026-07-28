@@ -1158,7 +1158,7 @@ function BespokeWebShowcase() {
       style={{ background: '#060208', padding: 'clamp(6rem, 12vw, 10rem) 0 clamp(7rem, 14vw, 12rem)' }}
     >
       {/* Top / bottom blends */}
-      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to bottom, #060208, transparent)', pointerEvents: 'none', zIndex: 1 }} />
+      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '110px', background: 'linear-gradient(to bottom, #010709 0%, #060208 55%, rgba(6,2,8,0) 100%)', pointerEvents: 'none', zIndex: 1 }} />
       <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to top, #060208, transparent)', pointerEvents: 'none', zIndex: 1 }} />
 
       {/* Restrained magenta-purple glow, upper-left, fading toward centre/right/bottom */}
