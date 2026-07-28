@@ -854,6 +854,112 @@ const BWS_FEATURES = [
   { icon: '→', label: 'Conversion-Focused' },
 ]
 
+// Card 2's hero slot — a functioning bespoke-site preview (image + real HTML
+// interface, not a poster): cursor-tracked spotlight and a very small 3-D
+// tilt on the frame, plus a distinct 700ms hover state (image scale, title
+// lift) on the image/text themselves. All motion is skipped under
+// prefers-reduced-motion, leaving one static, fully legible frame.
+function PrivateResidenceHero() {
+  const frameRef = useRef<HTMLDivElement>(null)
+  const spotRef  = useRef<HTMLDivElement>(null)
+  const [reduced, setReduced] = useState(false)
+  const [hovered, setHovered] = useState(false)
+
+  useEffect(() => {
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)')
+    setReduced(mq.matches)
+    const handler = (e: MediaQueryListEvent) => setReduced(e.matches)
+    mq.addEventListener('change', handler)
+    return () => mq.removeEventListener('change', handler)
+  }, [])
+
+  useEffect(() => {
+    if (reduced) return
+    const el = frameRef.current
+    if (!el) return
+    gsap.set(el, { transformPerspective: 900 })
+
+    const onMove = (e: MouseEvent) => {
+      const r = el.getBoundingClientRect()
+      const x = (e.clientX - r.left) / r.width
+      const y = (e.clientY - r.top) / r.height
+      gsap.to(el, { rotateX: (0.5 - y) * 2.6, rotateY: (x - 0.5) * 3.6, duration: 0.6, ease: 'power2.out' })
+      if (spotRef.current) {
+        gsap.to(spotRef.current, { x: x * r.width, y: y * r.height, opacity: 1, duration: 0.35, ease: 'power2.out' })
+      }
+    }
+    const onLeave = () => {
+      gsap.to(el, { rotateX: 0, rotateY: 0, duration: 0.7, ease: 'power2.out' })
+      if (spotRef.current) gsap.to(spotRef.current, { opacity: 0, duration: 0.4, ease: 'power2.out' })
+    }
+    el.addEventListener('mousemove', onMove)
+    el.addEventListener('mouseleave', onLeave)
+    return () => {
+      el.removeEventListener('mousemove', onMove)
+      el.removeEventListener('mouseleave', onLeave)
+    }
+  }, [reduced])
+
+  return (
+    <div
+      ref={frameRef}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{ position: 'relative', height: '155px', overflow: 'hidden', background: '#050810', transformStyle: 'preserve-3d' }}
+    >
+      <img
+        src="/brand_assets/PrivateResidence.webp"
+        alt="Private residence hero — sculptural modern villa at dusk"
+        loading="lazy"
+        style={{
+          position: 'absolute', inset: 0, width: '100%', height: '100%',
+          objectFit: 'cover', objectPosition: 'center 42%',
+          filter: 'brightness(0.72) saturate(0.88) contrast(1.08)',
+          transform: !reduced && hovered ? 'scale(1.035)' : 'scale(1)',
+          transition: 'transform 700ms cubic-bezier(0.16, 1, 0.3, 1)',
+          willChange: 'transform',
+        }}
+      />
+      {/* Dark bottom gradient for text legibility */}
+      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(4,6,10,0.94) 0%, rgba(4,6,10,0.34) 46%, rgba(4,6,10,0.05) 100%)' }} />
+
+      {/* Cursor-follow spotlight */}
+      {!reduced && (
+        <div
+          ref={spotRef}
+          aria-hidden="true"
+          style={{
+            position: 'absolute', top: 0, left: 0, width: '110px', height: '110px',
+            marginLeft: '-55px', marginTop: '-55px', borderRadius: '50%',
+            background: 'radial-gradient(circle, rgba(235,220,185,0.16) 0%, rgba(200,168,90,0.07) 45%, transparent 72%)',
+            opacity: 0, pointerEvents: 'none',
+          }}
+        />
+      )}
+
+      {/* Text overlay */}
+      <div
+        style={{
+          position: 'absolute', left: 0, right: 0, bottom: 0, padding: '13px 16px',
+          transform: !reduced && hovered ? 'translateY(-6px)' : 'translateY(0)',
+          transition: 'transform 700ms cubic-bezier(0.16, 1, 0.3, 1)',
+        }}
+      >
+        <p style={{ fontSize: '5.5px', letterSpacing: '0.30em', textTransform: 'uppercase', color: 'rgba(200,168,90,0.72)', marginBottom: '5px' }}>
+          Private Residence · London
+        </p>
+        <div aria-hidden="true" style={{ width: '22px', height: '1px', background: 'rgba(200,168,90,0.55)', marginBottom: '6px' }} />
+        <h3 style={{ fontSize: 'clamp(11px, 1.7vw, 14px)', fontWeight: 700, color: '#EDE0C4', lineHeight: 1.12, letterSpacing: '-0.01em', fontFamily: 'Georgia, serif', marginBottom: '6px' }}>
+          FORMED BY LIGHT
+        </h3>
+        <span style={{ fontSize: '7px', color: 'rgba(228,208,168,0.72)', letterSpacing: '0.04em' }}>
+          Explore Project ↗
+        </span>
+      </div>
+    </div>
+  )
+}
+
 function BespokeWebShowcase() {
   const sectionRef = useRef<HTMLElement>(null)
   const card1Ref   = useRef<HTMLDivElement>(null)
@@ -1048,31 +1154,8 @@ function BespokeWebShowcase() {
                   ))}
                 </div>
               </div>
-              {/* Hero — editorial studio hero image */}
-              <div style={{ position: 'relative', height: '155px', overflow: 'hidden', background: '#050810' }}>
-                <img
-                  src="/brand_assets/beauty.webp"
-                  alt="Premium editorial studio photography"
-                  loading="lazy"
-                  style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 20%', filter: 'brightness(0.60) saturate(0.80) contrast(1.08)' }}
-                />
-                {/* Dark left gradient for text legibility */}
-                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, rgba(5,8,16,0.95) 0%, rgba(5,8,16,0.72) 42%, rgba(5,8,16,0.18) 100%)' }} />
-                {/* Bottom vignette */}
-                <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '38%', background: 'linear-gradient(to top, rgba(4,6,12,0.78), transparent)' }} />
-                {/* Vertical divider */}
-                <div style={{ position: 'absolute', top: '12%', bottom: '12%', left: '54%', width: '1px', background: 'linear-gradient(to bottom, transparent, rgba(125,200,255,0.16), transparent)' }} />
-                {/* Left text block */}
-                <div style={{ position: 'absolute', top: 0, bottom: 0, left: 0, width: '54%', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '0 16px', zIndex: 1 }}>
-                  <p style={{ fontSize: '5.5px', letterSpacing: '0.28em', textTransform: 'uppercase', color: 'rgba(200,168,90,0.62)', marginBottom: '5px' }}>Award-Winning · London</p>
-                  <h3 style={{ fontSize: 'clamp(11px, 1.7vw, 14px)', fontWeight: 800, color: '#EEF2F8', lineHeight: 1.12, letterSpacing: '-0.03em', marginBottom: '6px' }}>
-                    We Build Brands<br />That Last.
-                  </h3>
-                  <p style={{ fontSize: '7px', color: 'rgba(165,192,218,0.58)', lineHeight: 1.5 }}>
-                    Strategy, identity & digital presence.
-                  </p>
-                </div>
-              </div>
+              {/* Hero — private residence editorial preview */}
+              <PrivateResidenceHero />
               {/* Case study grid — cinematic image blocks */}
               <div style={{ padding: '10px 14px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
                 {/* KAIROS — luxury watch brand campaign */}
