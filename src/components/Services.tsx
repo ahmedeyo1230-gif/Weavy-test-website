@@ -79,7 +79,7 @@ const SERVICES = [
   {
     id: 'ugc',
     icon: Video,
-    title: 'UGC',
+    title: 'UGC & Content Creation',
     description: 'Authentic content creation to boost trust and audience connection.',
     accent: 'hsl(0 72% 60%)',          // red
     accentMuted: 'hsl(0 72% 60% / 0.12)',
@@ -9973,8 +9973,8 @@ export default function Services() {
               color: 'hsl(0 0% 56%)',
             }}
           >
-            Our professional services help design, launch, and optimise the systems that run
-            on the Weavy Platform.
+            We design and deliver bespoke websites, intelligent automation and creative campaigns
+            that help businesses attract, engage and convert customers.
           </p>
 
           {/* Card grid */}
