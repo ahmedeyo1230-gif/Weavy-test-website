@@ -4,7 +4,6 @@ import LoadingScreen from './components/LoadingScreen'
 import Hero, { Navbar } from './components/Hero'
 import { PerspectiveMarquee } from './components/ui/perspective-marquee'
 import SystemsServicesScroll from './components/SystemsServicesScroll'
-import { Marquee } from './components/ui/marquee'
 import PlatformSection from './components/PlatformSection'
 import PricingSection from './components/PricingSection'
 import About from './components/About'
@@ -22,76 +21,6 @@ const Services     = lazy(() => import('./components/Services'))
 const ImageShowcase = lazy(() => import('./components/ImageShowcase'))
 const Blog         = lazy(() => import('./components/Blog'))
 const Contact      = lazy(() => import('./components/Contact'))
-
-const MARQUEE_ITEMS = [
-  'FASTER RESPONSE', 'MORE ENQUIRIES', 'LESS MANUAL WORK',
-  'PREMIUM BRAND PRESENCE', 'SMARTER CUSTOMER JOURNEYS',
-  'SCALABLE GROWTH', 'BUILT TO PERFORM', 'DESIGNED TO CONVERT',
-]
-
-function OutcomeMarquee() {
-  return (
-    <div
-      aria-hidden="true"
-      style={{
-        position: 'relative',
-        overflow: 'hidden',
-        background: 'rgba(1,7,9,0.72)',
-        borderTop: '1px solid rgba(125,220,255,0.13)',
-        borderBottom: '1px solid rgba(125,220,255,0.13)',
-        padding: 'clamp(18px, 2.2vw, 26px) 0',
-        backdropFilter: 'blur(8px)',
-        WebkitBackdropFilter: 'blur(8px)',
-        boxShadow: '0 0 60px rgba(125,220,255,0.05) inset',
-      }}
-    >
-      {/* Ambient cyan glow centre */}
-      <div aria-hidden="true" style={{
-        position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0,
-        background: 'radial-gradient(ellipse 70% 100% at 50% 50%, rgba(125,220,255,0.04) 0%, transparent 70%)',
-      }} />
-
-      {/* Left fade mask */}
-      <div style={{
-        position: 'absolute', top: 0, left: 0, bottom: 0, width: '140px',
-        background: 'linear-gradient(to right, #010709 30%, transparent)',
-        zIndex: 2, pointerEvents: 'none',
-      }} />
-      {/* Right fade mask */}
-      <div style={{
-        position: 'absolute', top: 0, right: 0, bottom: 0, width: '140px',
-        background: 'linear-gradient(to left, #010709 30%, transparent)',
-        zIndex: 2, pointerEvents: 'none',
-      }} />
-
-      <Marquee duration={36} fade={false} style={{ position: 'relative', zIndex: 1 }}>
-        {MARQUEE_ITEMS.map((text) => (
-          <span
-            key={text}
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              whiteSpace: 'nowrap',
-              fontSize: 'clamp(0.88rem, 1.72vw, 1.14rem)',
-              letterSpacing: '0.20em',
-              fontWeight: 600,
-              fontFamily: "'Poppins', sans-serif",
-              paddingRight: '3.5rem',
-              color: 'rgba(191,239,255,0.78)',
-            }}
-          >
-            {text}
-            <span style={{
-              marginLeft: '3.5rem',
-              color: 'rgba(125,220,255,0.45)',
-              fontSize: '0.65em',
-            }}>·</span>
-          </span>
-        ))}
-      </Marquee>
-    </div>
-  )
-}
 
 type Route = 'home' | 'about' | 'services' | 'work' | 'blog' | 'contact'
 
@@ -169,7 +98,6 @@ export default function App() {
               <Hero />
               <PerspectiveMarquee />
               <SystemsServicesScroll />
-              <OutcomeMarquee />
               <PlatformSection />
               <ConnectedSystems />
               <About />
