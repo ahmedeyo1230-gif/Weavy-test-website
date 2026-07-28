@@ -855,9 +855,9 @@ const BWS_FEATURES = [
 ]
 
 const ZEBRA_SERVICES = [
-  { title: 'Advanced Diagnostics',     caption: 'In-house imaging & bloodwork',   crop: '18% 25%', filter: 'brightness(0.72) saturate(0.85)' },
-  { title: 'Specialist Consultations', caption: 'One-to-one, consultant-led',     crop: '62% 40%', filter: 'brightness(0.68) saturate(0.82)' },
-  { title: 'Preventive Health',        caption: 'Personalised long-term care',    crop: '80% 60%', filter: 'brightness(0.66) saturate(0.80)' },
+  { title: 'Advanced Diagnostics',     caption: 'In-house imaging & bloodwork',   crop: '18% 25%', filter: 'brightness(1.22) contrast(1.08) saturate(1.05)' },
+  { title: 'Specialist Consultations', caption: 'One-to-one, consultant-led',     crop: '62% 40%', filter: 'brightness(1.22) contrast(1.08) saturate(1.05)' },
+  { title: 'Preventive Health',        caption: 'Personalised long-term care',    crop: '80% 60%', filter: 'brightness(1.22) contrast(1.08) saturate(1.05)' },
 ]
 
 // Card 1's hero slot — Zebra Private Health. Gentle GSAP-driven image
@@ -916,14 +916,14 @@ function ZebraHeroVisual() {
         style={{
           position: 'absolute', inset: '-3%', width: '106%', height: '106%',
           objectFit: 'cover', objectPosition: 'center 38%',
-          filter: 'brightness(0.74) saturate(0.90) contrast(1.05)',
+          filter: 'brightness(1.22) contrast(1.08) saturate(1.05)',
           willChange: 'transform',
         }}
       />
       {/* Dark bottom gradient for text legibility */}
-      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(8,10,10,0.95) 0%, rgba(7,9,9,0.32) 52%, rgba(5,7,7,0.08) 100%)' }} />
+      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(6,8,8,0.15) 0%, rgba(6,8,8,0.08) 52%, rgba(6,8,8,0) 100%)' }} />
       {/* Warm edge vignette */}
-      <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse 95% 85% at 42% 50%, transparent 38%, rgba(4,5,5,0.40) 72%, rgba(4,5,5,0.66) 100%)' }} />
+      <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse 95% 85% at 42% 50%, transparent 38%, rgba(4,5,5,0.08) 72%, rgba(4,5,5,0.15) 100%)' }} />
 
       {/* Cursor-follow spotlight */}
       {!reduced && (
@@ -993,7 +993,7 @@ function ZebraServiceCard({ svc }: { svc: typeof ZEBRA_SERVICES[number] }) {
           loading="lazy"
           style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: svc.crop, filter: svc.filter }}
         />
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(6,8,8,0.90) 0%, rgba(6,8,8,0.18) 55%, transparent 100%)' }} />
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(6,8,8,0.15) 0%, rgba(6,8,8,0.06) 55%, transparent 100%)' }} />
       </div>
       <div style={{ padding: '8px 9px' }}>
         <p style={{ fontSize: '8px', fontWeight: 600, color: 'rgba(228,208,168,0.86)', marginBottom: '3px', lineHeight: 1.2 }}>{svc.title}</p>
@@ -1063,14 +1063,14 @@ function PrivateResidenceHero() {
         style={{
           position: 'absolute', inset: 0, width: '100%', height: '100%',
           objectFit: 'cover', objectPosition: 'center 42%',
-          filter: 'brightness(0.72) saturate(0.88) contrast(1.08)',
+          filter: 'brightness(1.22) contrast(1.08) saturate(1.05)',
           transform: !reduced && hovered ? 'scale(1.035)' : 'scale(1)',
           transition: 'transform 700ms cubic-bezier(0.16, 1, 0.3, 1)',
           willChange: 'transform',
         }}
       />
       {/* Dark bottom gradient for text legibility */}
-      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(4,6,10,0.94) 0%, rgba(4,6,10,0.34) 46%, rgba(4,6,10,0.05) 100%)' }} />
+      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(4,6,10,0.15) 0%, rgba(4,6,10,0.07) 46%, rgba(4,6,10,0) 100%)' }} />
 
       {/* Cursor-follow spotlight */}
       {!reduced && (
@@ -1129,7 +1129,7 @@ function BespokeWebShowcase() {
       if (!entry.isIntersecting) return
       const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
       tl.to(headerEls, { opacity: 1, y: 0, filter: 'blur(0px)', duration: 1.0, stagger: 0.12 }, 0)
-      tl.to(wrap1, { opacity: 0.88, y: 0, scale: 1, filter: 'blur(0px)', duration: 1.15 }, 0.25)
+      tl.to(wrap1, { opacity: 1, y: 0, scale: 1, filter: 'blur(0px)', duration: 1.15 }, 0.25)
       tl.to(wrap2, { opacity: 1, y: 0, scale: 1, filter: 'blur(0px)', duration: 1.05 }, 0.4)
       obs.disconnect()
     }, { threshold: 0.1 })
