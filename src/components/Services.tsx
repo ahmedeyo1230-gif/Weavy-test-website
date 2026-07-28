@@ -221,6 +221,49 @@ function ServiceCard({ service, onLearnMore }: ServiceCardProps) {
   )
 }
 
+// ─── Shared background (reused verbatim from the Website Showcase section) ──
+// Near-black aubergine base, restrained magenta-purple corner glow, sparse
+// warped violet wireframe grid. Values copied exactly from BespokeWebShowcase
+// so colour/glow/grid intensity match precisely wherever this is applied.
+
+function ShowcaseBackground() {
+  return (
+    <>
+      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '110px', background: 'linear-gradient(to bottom, #010709 0%, #060208 55%, rgba(6,2,8,0) 100%)', pointerEvents: 'none', zIndex: 1 }} />
+      <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to top, #060208, transparent)', pointerEvents: 'none', zIndex: 1 }} />
+
+      <div aria-hidden="true" style={{
+        position: 'absolute', inset: 0,
+        background: 'radial-gradient(ellipse 40% 36% at 8% 6%, rgba(191,64,209,0.05) 0%, rgba(147,42,189,0.0225) 34%, rgba(98,24,150,0.0075) 58%, transparent 74%)',
+        pointerEvents: 'none', zIndex: 0,
+      }} />
+
+      <svg
+        aria-hidden="true"
+        preserveAspectRatio="none"
+        viewBox="0 0 1440 800"
+        style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', pointerEvents: 'none', zIndex: 0 }}
+      >
+        <g fill="none" stroke="#9B6EFF" strokeWidth="1" opacity="0.04">
+          <path d="M 70,0 C 88,220 50,480 82,800" />
+          <path d="M 250,0 C 230,180 275,520 245,800" />
+          <path d="M 470,0 C 495,260 445,540 480,800" />
+          <path d="M 700,0 C 680,240 720,500 690,800" />
+          <path d="M 960,0 C 985,220 935,560 970,800" />
+          <path d="M 1190,0 C 1170,260 1215,520 1185,800" />
+          <path d="M 1370,0 C 1390,220 1355,540 1378,800" />
+
+          <path d="M 0,55 C 320,42 900,68 1440,48" />
+          <path d="M 0,205 C 300,225 950,188 1440,212" />
+          <path d="M 0,430 C 340,412 980,452 1440,424" />
+          <path d="M 0,610 C 360,628 1000,592 1440,616" />
+          <path d="M 0,750 C 320,736 1020,764 1440,742" />
+        </g>
+      </svg>
+    </>
+  )
+}
+
 // ─── Bespoke Follow-Up Section ───────────────────────────────────────────────
 
 function BespokeFollowUp() {
@@ -294,33 +337,9 @@ function BespokeFollowUp() {
     <section
       ref={ref}
       className="relative w-full overflow-hidden"
-      style={{ background: '#010709', padding: 'clamp(5rem, 8vw, 8rem) 0 clamp(4rem, 7vw, 7rem)' }}
+      style={{ background: '#060208', padding: 'clamp(5rem, 8vw, 8rem) 0 clamp(4rem, 7vw, 7rem)' }}
     >
-      {/* ── Grain ── */}
-      <svg aria-hidden="true" className="pointer-events-none absolute inset-0 w-full h-full" style={{ opacity: 0.026 }}>
-        <filter id="bfu3-gr">
-          <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" result="n"/>
-          <feColorMatrix type="saturate" values="0" in="n"/>
-        </filter>
-        <rect width="100%" height="100%" filter="url(#bfu3-gr)" fill="white"/>
-      </svg>
-
-      {/* ── Ambient — centre-top bloom ── */}
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
-        background: [
-          'radial-gradient(ellipse 70% 55% at 50% 28%, hsl(199 89% 60% / 0.06) 0%, transparent 70%)',
-          'radial-gradient(ellipse 35% 28% at 82% 72%, hsl(215 80% 55% / 0.025) 0%, transparent 60%)',
-        ].join(', '),
-      }}/>
-
-      {/* ── Cinematic vignette ── */}
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
-        background: 'radial-gradient(ellipse 100% 90% at 50% 50%, transparent 44%, hsl(0 0% 0% / 0.3) 100%)',
-      }}/>
-
-      {/* Section boundary fades — mask vignette/grain cutoff at overflow:hidden edges */}
-      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '120px', background: 'linear-gradient(to bottom, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
-      <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '150px', background: 'linear-gradient(to top, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
+      <ShowcaseBackground />
 
       {/* ════════════════════════════════════════════════════════
           UPPER — Full-width editorial header
@@ -635,25 +654,11 @@ function BespokeCareStories() {
       ref={ref}
       className="relative w-full overflow-hidden"
       style={{
-        background: 'radial-gradient(ellipse 90% 70% at 35% 50%, #07141A 0%, #010709 65%)',
+        background: '#060208',
         padding: 'clamp(5rem, 9vw, 8rem) 0',
       }}
     >
-      {/* Champagne gold depth layer */}
-      <div aria-hidden="true" style={{
-        position: 'absolute', inset: 0, pointerEvents: 'none',
-        background: [
-          'radial-gradient(ellipse 55% 50% at 22% 52%, rgba(200,175,100,0.055) 0%, transparent 68%)',
-          'radial-gradient(ellipse 36% 30% at 70% 45%, rgba(7,20,26,0.55) 0%, transparent 60%)',
-        ].join(', '),
-      }}/>
-
-      {/* Flowing light line */}
-      <div aria-hidden="true" className="bwd1-mesh-line pointer-events-none absolute inset-0" style={{ zIndex: 0 }} />
-
-      {/* Section boundary fades */}
-      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to bottom, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
-      <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to top, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
+      <ShowcaseBackground />
 
       <div className="relative z-10 max-w-[80rem] mx-auto px-6 sm:px-10">
         <div className="grid grid-cols-1 lg:grid-cols-[2.2fr_1fr] gap-12 lg:gap-28 items-center">
@@ -1553,20 +1558,9 @@ function BespokeProcessTimeline() {
     <section
       ref={ref}
       className="relative w-full overflow-hidden"
-      style={{ background: '#010709', padding: 'clamp(5rem, 10vw, 8rem) 0' }}
+      style={{ background: '#060208', padding: 'clamp(5rem, 10vw, 8rem) 0' }}
     >
-      {/* Ambient top glow */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0"
-        style={{
-          background: 'radial-gradient(ellipse 55% 35% at 50% 0%, hsl(199 89% 60% / 0.05) 0%, transparent 70%)',
-        }}
-      />
-
-      {/* Section boundary fades */}
-      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to bottom, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
-      <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to top, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
+      <ShowcaseBackground />
 
       <div className="relative z-10 max-w-[72rem] mx-auto px-6 sm:px-10">
 
@@ -1786,25 +1780,9 @@ function BespokeWebDesignShowcase() {
     <section
       ref={ref}
       className="relative w-full overflow-hidden"
-      style={{ background: '#010709', padding: 'clamp(5rem, 10vw, 9rem) 0' }}
+      style={{ background: '#060208', padding: 'clamp(5rem, 10vw, 9rem) 0' }}
     >
-      {/* Grain */}
-      <svg aria-hidden="true" className="pointer-events-none absolute inset-0 w-full h-full" style={{ opacity: 0.018 }}>
-        <filter id="bwds-gr">
-          <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" result="n"/>
-          <feColorMatrix type="saturate" values="0" in="n"/>
-        </filter>
-        <rect width="100%" height="100%" filter="url(#bwds-gr)" fill="white"/>
-      </svg>
-
-      {/* Ambient glow */}
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
-        background: 'radial-gradient(ellipse 55% 60% at 100% 50%, hsl(199 89% 60% / 0.03) 0%, transparent 70%)',
-      }} />
-
-      {/* Section boundary fades */}
-      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to bottom, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
-      <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to top, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
+      <ShowcaseBackground />
 
       <div className="relative z-10 max-w-[76rem] mx-auto px-6 sm:px-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20 items-center">
@@ -1957,23 +1935,11 @@ function BespokeRealUsers() {
       ref={ref}
       className="relative w-full overflow-hidden"
       style={{
-        background: '#010709',
+        background: '#060208',
         padding: 'clamp(5rem, 10vw, 8rem) 0',
       }}
     >
-      {/* Subtle ambient glow */}
-      {/* Grid + radial bloom behind the left text */}
-      <GradientBlurBg
-        accentColor="hsl(199 89% 60% / 0.09)"
-        accentPosition="22% 55%"
-        accentRadius="580px"
-        gridColor="hsl(0 0% 100% / 0.01)"
-        gridSize="80px 56px"
-      />
-
-      {/* Section boundary fades — mask grid pattern abrupt start/end */}
-      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '160px', background: 'linear-gradient(to bottom, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
-      <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to top, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
+      <ShowcaseBackground />
 
       <div className="relative z-10 max-w-[82rem] mx-auto px-6 sm:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.30fr] gap-14 lg:gap-20 items-start">
