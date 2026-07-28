@@ -1155,16 +1155,16 @@ function BespokeWebShowcase() {
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       className="relative w-full overflow-hidden"
-      style={{ background: '#09030d', padding: 'clamp(6rem, 12vw, 10rem) 0 clamp(7rem, 14vw, 12rem)' }}
+      style={{ background: '#060208', padding: 'clamp(6rem, 12vw, 10rem) 0 clamp(7rem, 14vw, 12rem)' }}
     >
       {/* Top / bottom blends */}
-      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to bottom, #09030d, transparent)', pointerEvents: 'none', zIndex: 1 }} />
-      <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to top, #09030d, transparent)', pointerEvents: 'none', zIndex: 1 }} />
+      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to bottom, #060208, transparent)', pointerEvents: 'none', zIndex: 1 }} />
+      <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to top, #060208, transparent)', pointerEvents: 'none', zIndex: 1 }} />
 
       {/* Restrained magenta-purple glow, upper-left, fading toward centre/right/bottom */}
       <div aria-hidden="true" style={{
         position: 'absolute', inset: 0,
-        background: 'radial-gradient(ellipse 40% 36% at 8% 6%, rgba(191,64,209,0.08) 0%, rgba(147,42,189,0.036) 34%, rgba(98,24,150,0.012) 58%, transparent 74%)',
+        background: 'radial-gradient(ellipse 40% 36% at 8% 6%, rgba(191,64,209,0.05) 0%, rgba(147,42,189,0.0225) 34%, rgba(98,24,150,0.0075) 58%, transparent 74%)',
         pointerEvents: 'none', zIndex: 0,
       }} />
 
@@ -1175,7 +1175,7 @@ function BespokeWebShowcase() {
         viewBox="0 0 1440 800"
         style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', pointerEvents: 'none', zIndex: 0 }}
       >
-        <g fill="none" stroke="#9B6EFF" strokeWidth="1" opacity="0.08">
+        <g fill="none" stroke="#9B6EFF" strokeWidth="1" opacity="0.04">
           <path d="M 70,0 C 88,220 50,480 82,800" />
           <path d="M 250,0 C 230,180 275,520 245,800" />
           <path d="M 470,0 C 495,260 445,540 480,800" />
