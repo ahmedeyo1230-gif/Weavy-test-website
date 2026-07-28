@@ -1155,44 +1155,42 @@ function BespokeWebShowcase() {
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       className="relative w-full overflow-hidden"
-      style={{ background: '#010709', padding: 'clamp(6rem, 12vw, 10rem) 0 clamp(7rem, 14vw, 12rem)' }}
+      style={{ background: '#12001d', padding: 'clamp(6rem, 12vw, 10rem) 0 clamp(7rem, 14vw, 12rem)' }}
     >
       {/* Top / bottom blends */}
-      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to bottom, #010709, transparent)', pointerEvents: 'none', zIndex: 1 }} />
-      <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to top, #010709, transparent)', pointerEvents: 'none', zIndex: 1 }} />
+      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to bottom, #12001d, transparent)', pointerEvents: 'none', zIndex: 1 }} />
+      <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to top, #12001d, transparent)', pointerEvents: 'none', zIndex: 1 }} />
 
-      {/* Ambient blue-green glow — centred behind heading */}
+      {/* Restrained magenta-purple glow, upper-left, fading toward centre/right/bottom */}
       <div aria-hidden="true" style={{
-        position: 'absolute', top: '-8%', left: '50%', transform: 'translateX(-50%)',
-        width: '72%', height: '55%',
-        background: 'radial-gradient(ellipse at 50% 25%, rgba(43,168,217,0.10) 0%, rgba(25,120,160,0.04) 45%, transparent 70%)',
-        pointerEvents: 'none', zIndex: 0,
-      }} />
-      {/* Gold/champagne glow — behind right mockup */}
-      <div aria-hidden="true" style={{
-        position: 'absolute', bottom: '8%', right: '6%',
-        width: '52%', height: '50%',
-        background: 'radial-gradient(ellipse at 60% 55%, rgba(200,168,90,0.08) 0%, rgba(150,115,45,0.03) 45%, transparent 68%)',
-        filter: 'blur(22px)',
+        position: 'absolute', inset: 0,
+        background: 'radial-gradient(ellipse 40% 36% at 8% 6%, rgba(191,64,209,0.20) 0%, rgba(147,42,189,0.09) 34%, rgba(98,24,150,0.03) 58%, transparent 74%)',
         pointerEvents: 'none', zIndex: 0,
       }} />
 
-      {/* Decorative concentric arc lines */}
-      {([
-        { size: '420px', opacity: 0.048 },
-        { size: '640px', opacity: 0.028 },
-        { size: '860px', opacity: 0.016 },
-      ] as { size: string; opacity: number }[]).map((arc, i) => (
-        <div key={i} aria-hidden="true" style={{
-          position: 'absolute',
-          width: arc.size, height: arc.size,
-          top: '48%', left: '52%',
-          transform: 'translate(-50%, -50%)',
-          border: `1px solid rgba(125,220,255,${arc.opacity})`,
-          borderRadius: '50%',
-          pointerEvents: 'none', zIndex: 0,
-        }} />
-      ))}
+      {/* Sparse warped wireframe grid — large uneven cells, ultra-thin low-opacity violet lines, no perspective/horizon */}
+      <svg
+        aria-hidden="true"
+        preserveAspectRatio="none"
+        viewBox="0 0 1440 800"
+        style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', pointerEvents: 'none', zIndex: 0 }}
+      >
+        <g fill="none" stroke="#9B6EFF" strokeWidth="1">
+          <path d="M 70,0 C 88,220 50,480 82,800"       opacity="0.14" />
+          <path d="M 250,0 C 230,180 275,520 245,800"    opacity="0.10" />
+          <path d="M 470,0 C 495,260 445,540 480,800"    opacity="0.12" />
+          <path d="M 700,0 C 680,240 720,500 690,800"    opacity="0.08" />
+          <path d="M 960,0 C 985,220 935,560 970,800"    opacity="0.11" />
+          <path d="M 1190,0 C 1170,260 1215,520 1185,800" opacity="0.07" />
+          <path d="M 1370,0 C 1390,220 1355,540 1378,800" opacity="0.09" />
+
+          <path d="M 0,55 C 320,42 900,68 1440,48"        opacity="0.13" />
+          <path d="M 0,205 C 300,225 950,188 1440,212"    opacity="0.09" />
+          <path d="M 0,430 C 340,412 980,452 1440,424"    opacity="0.10" />
+          <path d="M 0,610 C 360,628 1000,592 1440,616"   opacity="0.06" />
+          <path d="M 0,750 C 320,736 1020,764 1440,742"   opacity="0.05" />
+        </g>
+      </svg>
 
       <div className="relative z-10 max-w-[80rem] mx-auto px-6 sm:px-10">
 
