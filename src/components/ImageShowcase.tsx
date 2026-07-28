@@ -39,15 +39,7 @@ const PROJECTS: Project[] = [
     year:           '2026',
     objectPosition: 'center center',
   },
-  // [3] Square luxury — Baaris
-  {
-    src:            '/brand_assets/Baaris.webp',
-    title:          'Baaris Brand Identity',
-    category:       'Brand Identity',
-    year:           '2026',
-    objectPosition: 'center center',
-  },
-  // [4] Left — H
+  // [3] Left — H
   {
     src:            '/brand_assets/H.webp',
     title:          'Paradiso Holidays',
@@ -55,19 +47,11 @@ const PROJECTS: Project[] = [
     year:           '2026',
     objectPosition: 'center top',
   },
-  // [5] Centre — Fefo
+  // [4] Centre — Fefo
   {
     src:            '/brand_assets/Fefo.webp',
     title:          'Natural Juice Campaign',
     category:       'Product Advertising',
-    year:           '2026',
-    objectPosition: 'center center',
-  },
-  // [6] Right — A6 Flyer
-  {
-    src:            '/brand_assets/A6_Flyer_Mockup_2.webp',
-    title:          'Digital Marketing Campaign',
-    category:       'Social Media Design',
     year:           '2026',
     objectPosition: 'center center',
   },
@@ -929,7 +913,7 @@ function WorkGallery() {
 
   const [cv1, setCv1] = useState([false, false])
   const [cv2, setCv2] = useState([false, false])
-  const [cv3, setCv3] = useState([false, false, false])
+  const [cv3, setCv3] = useState([false, false])
 
   useEffect(() => {
     if (!row1.visible) return
@@ -945,9 +929,8 @@ function WorkGallery() {
 
   useEffect(() => {
     if (!row3.visible) return
-    setTimeout(() => setCv3([true, false, false]), 0)
-    setTimeout(() => setCv3([true, true,  false]), 110)
-    setTimeout(() => setCv3([true, true,  true]),  220)
+    setTimeout(() => setCv3([true, false]), 0)
+    setTimeout(() => setCv3([true, true]),  110)
   }, [row3.visible])
 
   return (
@@ -1036,12 +1019,8 @@ function WorkGallery() {
               Taste_summer  col 1–13  (full-width cinematic)
 
             Row 3 — 380px
-              Baaris        col 1–5   (square luxury)
-              this_one      col 5–9   (product portrait)
-              A6 Flyer      col 9–13  (social square)
-
-            H.png spans rows 1–2 on the far right as a
-            floating tall card — editorial magazine feel.
+              Paradiso (H.png)   col 1–7   (reflowed after removing Baaris)
+              Natural Juice      col 7–13  (reflowed after removing A6 Flyer)
         ══════════════════════════════════════════════════ */}
 
         {/* ─── DESKTOP layout ─── */}
@@ -1089,26 +1068,13 @@ function WorkGallery() {
               <ProjectCard project={PROJECTS[2]} delay={0} visible={cv2[0]} style={{ height: '100%' }} onOpen={() => openLightbox(PROJECTS[2])} />
             </div>
 
-            {/* Row 3 — three equal cards */}
-            <div ref={row3.ref} style={{ gridColumn: '1 / 5', gridRow: '3 / 4' }}>
+            {/* Row 3 — two equal cards, reflowed to fill the row after removing Baaris */}
+            <div ref={row3.ref} style={{ gridColumn: '1 / 7', gridRow: '3 / 4' }}>
               <ProjectCard project={PROJECTS[3]} delay={0}   visible={cv3[0]} style={{ height: '100%' }} onOpen={() => openLightbox(PROJECTS[3])} />
             </div>
-            <div style={{ gridColumn: '5 / 9', gridRow: '3 / 4' }}>
+            <div style={{ gridColumn: '7 / 13', gridRow: '3 / 4' }}>
               <ProjectCard project={PROJECTS[4]} delay={110} visible={cv3[1]} style={{ height: '100%' }} onOpen={() => openLightbox(PROJECTS[4])} />
             </div>
-            <div style={{ gridColumn: '9 / 13', gridRow: '3 / 4' }}>
-              <ProjectCard project={PROJECTS[5]} delay={220} visible={cv3[2]} style={{ height: '100%' }} onOpen={() => openLightbox(PROJECTS[5])} />
-            </div>
-
-            {/* A6 Flyer — bonus card appended below as full row */}
-          </div>
-
-          {/* A6 flyer — standalone full-width row under bento (desktop) */}
-          <div
-            className="wg-desktop"
-            style={{ display: 'none', marginTop: '14px', height: '340px' }}
-          >
-            <ProjectCard project={PROJECTS[6]} delay={0} visible={true} style={{ height: '100%' }} onOpen={() => openLightbox(PROJECTS[6])} />
           </div>
 
           {/* ─── Tablet 2-col ─── */}
@@ -1120,7 +1086,7 @@ function WorkGallery() {
             <div style={{ gridColumn: '1 / 3', height: '380px' }}>
               <ProjectCard project={PROJECTS[0]} delay={0} visible={true} style={{ height: '100%' }} onOpen={() => openLightbox(PROJECTS[0])} />
             </div>
-            {[1,2,3,4,5,6].map((idx, i) => (
+            {[1,2,3,4].map((idx, i) => (
               <div key={idx} style={{ height: '280px' }}>
                 <ProjectCard project={PROJECTS[idx]} delay={(i+1)*80} visible={true} style={{ height: '100%' }} onOpen={() => openLightbox(PROJECTS[idx])} />
               </div>
