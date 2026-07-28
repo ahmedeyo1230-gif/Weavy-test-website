@@ -854,6 +854,155 @@ const BWS_FEATURES = [
   { icon: '→', label: 'Conversion-Focused' },
 ]
 
+const ZEBRA_SERVICES = [
+  { title: 'Advanced Diagnostics',     caption: 'In-house imaging & bloodwork',   crop: '18% 25%', filter: 'brightness(0.72) saturate(0.85)' },
+  { title: 'Specialist Consultations', caption: 'One-to-one, consultant-led',     crop: '62% 40%', filter: 'brightness(0.68) saturate(0.82)' },
+  { title: 'Preventive Health',        caption: 'Personalised long-term care',    crop: '80% 60%', filter: 'brightness(0.66) saturate(0.80)' },
+]
+
+// Card 1's hero slot — Zebra Private Health. Gentle GSAP-driven image
+// parallax + a cursor-follow spotlight inside the frame, both gated behind
+// prefers-reduced-motion (matches the pattern already used for Card 2's
+// PrivateResidenceHero — a static, fully legible frame with reduced motion).
+function ZebraHeroVisual() {
+  const frameRef = useRef<HTMLDivElement>(null)
+  const imgRef   = useRef<HTMLImageElement>(null)
+  const spotRef  = useRef<HTMLDivElement>(null)
+  const [reduced, setReduced] = useState(false)
+
+  useEffect(() => {
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)')
+    setReduced(mq.matches)
+    const handler = (e: MediaQueryListEvent) => setReduced(e.matches)
+    mq.addEventListener('change', handler)
+    return () => mq.removeEventListener('change', handler)
+  }, [])
+
+  useEffect(() => {
+    if (reduced) return
+    const el = frameRef.current
+    if (!el) return
+
+    const onMove = (e: MouseEvent) => {
+      const r = el.getBoundingClientRect()
+      const x = (e.clientX - r.left) / r.width
+      const y = (e.clientY - r.top) / r.height
+      if (imgRef.current) {
+        gsap.to(imgRef.current, { x: (x - 0.5) * 14, y: (y - 0.5) * 10, duration: 0.9, ease: 'power2.out' })
+      }
+      if (spotRef.current) {
+        gsap.to(spotRef.current, { x: x * r.width, y: y * r.height, opacity: 1, duration: 0.35, ease: 'power2.out' })
+      }
+    }
+    const onLeave = () => {
+      if (imgRef.current) gsap.to(imgRef.current, { x: 0, y: 0, duration: 0.9, ease: 'power2.out' })
+      if (spotRef.current) gsap.to(spotRef.current, { opacity: 0, duration: 0.4, ease: 'power2.out' })
+    }
+    el.addEventListener('mousemove', onMove)
+    el.addEventListener('mouseleave', onLeave)
+    return () => {
+      el.removeEventListener('mousemove', onMove)
+      el.removeEventListener('mouseleave', onLeave)
+    }
+  }, [reduced])
+
+  return (
+    <div ref={frameRef} style={{ position: 'relative', height: 'clamp(200px, 26vw, 290px)', overflow: 'hidden' }}>
+      <img
+        ref={imgRef}
+        src="/brand_assets/ZebraClinic.webp"
+        alt="Zebra Private Health — consultant-led clinic interior"
+        loading="lazy"
+        style={{
+          position: 'absolute', inset: '-3%', width: '106%', height: '106%',
+          objectFit: 'cover', objectPosition: 'center 38%',
+          filter: 'brightness(0.74) saturate(0.90) contrast(1.05)',
+          willChange: 'transform',
+        }}
+      />
+      {/* Dark bottom gradient for text legibility */}
+      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(8,10,10,0.95) 0%, rgba(7,9,9,0.32) 52%, rgba(5,7,7,0.08) 100%)' }} />
+      {/* Warm edge vignette */}
+      <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse 95% 85% at 42% 50%, transparent 38%, rgba(4,5,5,0.40) 72%, rgba(4,5,5,0.66) 100%)' }} />
+
+      {/* Cursor-follow spotlight */}
+      {!reduced && (
+        <div
+          ref={spotRef}
+          aria-hidden="true"
+          style={{
+            position: 'absolute', top: 0, left: 0, width: '160px', height: '160px',
+            marginLeft: '-80px', marginTop: '-80px', borderRadius: '50%',
+            background: 'radial-gradient(circle, rgba(235,220,185,0.14) 0%, rgba(200,168,90,0.06) 45%, transparent 72%)',
+            opacity: 0, pointerEvents: 'none',
+          }}
+        />
+      )}
+
+      {/* Text overlay */}
+      <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: '16px 22px', zIndex: 1 }}>
+        <p style={{ fontSize: '5.5px', letterSpacing: '0.30em', textTransform: 'uppercase', color: 'rgba(200,168,90,0.72)', marginBottom: '5px' }}>
+          Consultant-Led Private Care
+        </p>
+        <h3 style={{ fontSize: 'clamp(13px, 2vw, 18px)', fontWeight: 700, color: '#EDE0C4', lineHeight: 1.15, letterSpacing: '-0.02em', fontFamily: 'Georgia, serif', marginBottom: '6px', maxWidth: '72%' }}>
+          Exceptional care, centred around you.
+        </h3>
+        <p style={{ fontSize: '6.5px', color: 'rgba(210,222,222,0.62)', lineHeight: 1.5, maxWidth: '58%', marginBottom: '9px' }}>
+          Private consultations, advanced diagnostics and personalised treatment in the heart of London.
+        </p>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+          <span style={{ padding: '5px 12px', borderRadius: '4px', background: 'rgba(200,168,90,0.14)', border: '1px solid rgba(200,168,90,0.42)', fontSize: '6.5px', fontWeight: 600, color: '#F0DDA8', letterSpacing: '0.05em' }}>
+            Book a Consultation
+          </span>
+          <span style={{ fontSize: '6.5px', color: 'rgba(200,220,222,0.55)', letterSpacing: '0.03em', borderBottom: '1px solid rgba(200,220,222,0.28)', paddingBottom: '1px' }}>
+            Meet Our Consultants
+          </span>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function ZebraServiceCard({ svc }: { svc: typeof ZEBRA_SERVICES[number] }) {
+  return (
+    <div
+      style={{
+        borderRadius: '8px', overflow: 'hidden', border: '1px solid rgba(200,168,90,0.10)', background: 'rgba(200,168,90,0.03)',
+        transform: 'translateY(0)',
+        boxShadow: '0 0 0 rgba(200,168,90,0)',
+        transition: 'transform 700ms cubic-bezier(0.16, 1, 0.3, 1), border-color 700ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 700ms cubic-bezier(0.16, 1, 0.3, 1)',
+      }}
+      onMouseEnter={e => {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+        const el = e.currentTarget as HTMLElement
+        el.style.transform = 'translateY(-4px)'
+        el.style.borderColor = 'rgba(228,200,122,0.42)'
+        el.style.boxShadow = '0 10px 24px rgba(0,0,0,0.30), 0 0 18px rgba(200,168,90,0.14)'
+      }}
+      onMouseLeave={e => {
+        const el = e.currentTarget as HTMLElement
+        el.style.transform = 'translateY(0)'
+        el.style.borderColor = 'rgba(200,168,90,0.10)'
+        el.style.boxShadow = '0 0 0 rgba(200,168,90,0)'
+      }}
+    >
+      <div style={{ height: '80px', position: 'relative', overflow: 'hidden' }}>
+        <img
+          src="/brand_assets/ZebraClinic.webp"
+          alt={`${svc.title} at Zebra Private Health`}
+          loading="lazy"
+          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: svc.crop, filter: svc.filter }}
+        />
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(6,8,8,0.90) 0%, rgba(6,8,8,0.18) 55%, transparent 100%)' }} />
+      </div>
+      <div style={{ padding: '8px 9px' }}>
+        <p style={{ fontSize: '8px', fontWeight: 600, color: 'rgba(228,208,168,0.86)', marginBottom: '3px', lineHeight: 1.2 }}>{svc.title}</p>
+        <p style={{ fontSize: '7px', color: 'rgba(180,196,196,0.55)', lineHeight: 1.35 }}>{svc.caption}</p>
+      </div>
+    </div>
+  )
+}
+
 // Card 2's hero slot — a functioning bespoke-site preview (image + real HTML
 // interface, not a poster): cursor-tracked spotlight and a very small 3-D
 // tilt on the frame, plus a distinct 700ms hover state (image scale, title
@@ -1257,7 +1406,7 @@ function BespokeWebShowcase() {
             </div>
           </div>
 
-          {/* ── Card 1 — front (ÉLARA RESIDENCES · dark luxury real estate) ── */}
+          {/* ── Card 1 — front (ZEBRA PRIVATE HEALTH · consultant-led private clinic) ── */}
           <div
             ref={card1Ref}
             style={{
@@ -1283,17 +1432,17 @@ function BespokeWebShowcase() {
                 <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#FFBD2E', opacity: 0.62 }} />
                 <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#28CA41', opacity: 0.62 }} />
                 <div style={{ flex: 1, height: '18px', background: '#1A1510', borderRadius: '5px', marginLeft: '10px', display: 'flex', alignItems: 'center', paddingLeft: '10px' }}>
-                  <span style={{ fontSize: '7.5px', color: 'rgba(200,168,90,0.32)', letterSpacing: '0.02em' }}>elararesidences.com</span>
+                  <span style={{ fontSize: '7.5px', color: 'rgba(200,168,90,0.32)', letterSpacing: '0.02em' }}>zebraprivatehealth.com</span>
                 </div>
               </div>
               {/* Nav */}
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '11px 22px', borderBottom: '1px solid rgba(200,168,90,0.07)' }}>
                 <div>
-                  <span style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.20em', color: '#C8A85A', fontFamily: 'Georgia, serif' }}>ÉLARA</span>
-                  <span style={{ fontSize: '5.5px', letterSpacing: '0.24em', textTransform: 'uppercase', color: 'rgba(180,150,80,0.50)', display: 'block', marginTop: '-1px' }}>RESIDENCES</span>
+                  <span style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.20em', color: '#C8A85A', fontFamily: 'Georgia, serif' }}>ZEBRA</span>
+                  <span style={{ fontSize: '5.5px', letterSpacing: '0.24em', textTransform: 'uppercase', color: 'rgba(180,150,80,0.50)', display: 'block', marginTop: '-1px' }}>PRIVATE HEALTH</span>
                 </div>
                 <div style={{ display: 'flex', gap: '18px' }}>
-                  {['Collection', 'Locations', 'Invest', 'Contact'].map(item => (
+                  {['Expertise', 'Consultants', 'The Clinic', 'Contact'].map(item => (
                     <span key={item} style={{ fontSize: '8.5px', color: 'rgba(200,178,135,0.42)', letterSpacing: '0.03em' }}>{item}</span>
                   ))}
                 </div>
@@ -1302,92 +1451,21 @@ function BespokeWebShowcase() {
                 </div>
               </div>
 
-              {/* Hero — luxury property exterior (real photo) */}
-              <div style={{ position: 'relative', height: 'clamp(200px, 26vw, 290px)', overflow: 'hidden' }}>
-                <img
-                  src="/brand_assets/Property.webp"
-                  alt="Luxury property exterior at dusk"
-                  loading="lazy"
-                  style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 40%', filter: 'brightness(0.76) saturate(0.88) contrast(1.02)' }}
-                />
-                {/* Dark bottom gradient for text legibility */}
-                <div style={{ position:'absolute', inset:0, background:'linear-gradient(to top, rgba(10,7,4,0.95) 0%, rgba(8,6,3,0.30) 52%, rgba(5,4,2,0.08) 100%)' }} />
-                {/* Warm edge vignette */}
-                <div style={{ position:'absolute', inset:0, background:'radial-gradient(ellipse 95% 85% at 42% 50%, transparent 38%, rgba(4,3,2,0.42) 72%, rgba(4,3,2,0.70) 100%)' }} />
-                {/* Text overlay */}
-                <div style={{ position:'absolute', inset:0, display:'flex', flexDirection:'column', justifyContent:'flex-end', padding:'14px 22px' }}>
-                  <p style={{ fontSize:'5.5px', letterSpacing:'0.30em', textTransform:'uppercase', color:'rgba(200,168,90,0.72)', marginBottom:'5px' }}>Prime London · Est. 2001</p>
-                  <h3 style={{ fontSize:'clamp(13px, 2vw, 18px)', fontWeight:700, color:'#EDE0C4', lineHeight:1.1, letterSpacing:'-0.02em', fontFamily:'Georgia, serif' }}>
-                    Extraordinary residences<br />for the distinguished few.
-                  </h3>
-                </div>
-              </div>
+              {/* Hero — Zebra Private Health consultation suite */}
+              <ZebraHeroVisual />
 
-              {/* Property card grid */}
+              {/* Service card grid */}
               <div style={{ padding: '14px 22px', display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '10px' }}>
-                {/* Card A — Mayfair Penthouse */}
-                <div style={{ borderRadius:'8px', overflow:'hidden', border:'1px solid rgba(200,168,90,0.10)', background:'rgba(200,168,90,0.03)' }}>
-                  <div style={{ height:'80px', position:'relative', overflow:'hidden' }}>
-                    <img
-                      src="/brand_assets/Property.webp"
-                      alt="Mayfair penthouse exterior"
-                      loading="lazy"
-                      style={{ position:'absolute', inset:0, width:'100%', height:'100%', objectFit:'cover', objectPosition:'15% 20%', filter:'brightness(0.72) saturate(0.85)' }}
-                    />
-                    <div style={{ position:'absolute', inset:0, background:'linear-gradient(to top, rgba(8,6,3,0.92) 0%, rgba(8,6,3,0.20) 55%, transparent 100%)' }} />
-                  </div>
-                  <div style={{ padding:'7px 9px' }}>
-                    <p style={{ fontSize:'8px', fontWeight:600, color:'rgba(228,208,168,0.82)', marginBottom:'2px', lineHeight:1.2 }}>Mayfair Penthouse</p>
-                    <p style={{ fontSize:'7px', color:'rgba(180,158,118,0.52)', marginBottom:'4px' }}>4 bed</p>
-                    <p style={{ fontSize:'10px', fontWeight:700, color:'#C8A85A', letterSpacing:'-0.01em' }}>£4,200,000</p>
-                  </div>
-                </div>
-                {/* Card B — Chelsea Mews */}
-                <div style={{ borderRadius:'8px', overflow:'hidden', border:'1px solid rgba(200,168,90,0.10)', background:'rgba(200,168,90,0.03)' }}>
-                  <div style={{ height:'80px', position:'relative', overflow:'hidden' }}>
-                    <img
-                      src="/brand_assets/Property.webp"
-                      alt="Chelsea mews property entrance"
-                      loading="lazy"
-                      style={{ position:'absolute', inset:0, width:'100%', height:'100%', objectFit:'cover', objectPosition:'60% 35%', filter:'brightness(0.68) saturate(0.82) sepia(0.06)' }}
-                    />
-                    <div style={{ position:'absolute', inset:0, background:'linear-gradient(to top, rgba(8,6,3,0.92) 0%, rgba(8,6,3,0.20) 55%, transparent 100%)' }} />
-                  </div>
-                  <div style={{ padding:'7px 9px' }}>
-                    <p style={{ fontSize:'8px', fontWeight:600, color:'rgba(228,208,168,0.82)', marginBottom:'2px', lineHeight:1.2 }}>Chelsea Mews</p>
-                    <p style={{ fontSize:'7px', color:'rgba(180,158,118,0.52)', marginBottom:'4px' }}>3 bed</p>
-                    <p style={{ fontSize:'10px', fontWeight:700, color:'#C8A85A', letterSpacing:'-0.01em' }}>£2,850,000</p>
-                  </div>
-                </div>
-                {/* Card C — Knightsbridge Manor */}
-                <div style={{ borderRadius:'8px', overflow:'hidden', border:'1px solid rgba(200,168,90,0.10)', background:'rgba(200,168,90,0.03)' }}>
-                  <div style={{ height:'80px', position:'relative', overflow:'hidden' }}>
-                    <img
-                      src="/brand_assets/Property.webp"
-                      alt="Knightsbridge manor estate"
-                      loading="lazy"
-                      style={{ position:'absolute', inset:0, width:'100%', height:'100%', objectFit:'cover', objectPosition:'82% 55%', filter:'brightness(0.64) saturate(0.80)' }}
-                    />
-                    <div style={{ position:'absolute', inset:0, background:'linear-gradient(to top, rgba(8,6,3,0.92) 0%, rgba(8,6,3,0.20) 55%, transparent 100%)' }} />
-                  </div>
-                  <div style={{ padding:'7px 9px' }}>
-                    <p style={{ fontSize:'8px', fontWeight:600, color:'rgba(228,208,168,0.82)', marginBottom:'2px', lineHeight:1.2 }}>Knightsbridge Manor</p>
-                    <p style={{ fontSize:'7px', color:'rgba(180,158,118,0.52)', marginBottom:'4px' }}>6 bed</p>
-                    <p style={{ fontSize:'10px', fontWeight:700, color:'#C8A85A', letterSpacing:'-0.01em' }}>£8,500,000</p>
-                  </div>
-                </div>
+                {ZEBRA_SERVICES.map(svc => (
+                  <ZebraServiceCard key={svc.title} svc={svc} />
+                ))}
               </div>
 
               {/* Stats bar */}
               <div style={{ display: 'flex', borderTop: '1px solid rgba(200,168,90,0.07)' }}>
-                {[
-                  { val: '340+',  label: 'Elite Properties' },
-                  { val: '99%',   label: 'Client Retention'  },
-                  { val: '£2.1B', label: 'Total Sales'        },
-                ].map((stat, i) => (
-                  <div key={i} style={{ flex: 1, padding: '11px 16px', borderRight: i < 2 ? '1px solid rgba(200,168,90,0.07)' : 'none' }}>
-                    <div style={{ fontSize: 'clamp(11px, 1.6vw, 14px)', fontWeight: 700, color: '#C8A85A', lineHeight: 1, letterSpacing: '-0.01em' }}>{stat.val}</div>
-                    <div style={{ fontSize: '7px', color: 'rgba(180,158,118,0.48)', marginTop: '3px' }}>{stat.label}</div>
+                {['Same-week appointments', 'Consultant-led care'].map((label, i) => (
+                  <div key={label} style={{ flex: 1, padding: '13px 16px', borderRight: i < 1 ? '1px solid rgba(200,168,90,0.07)' : 'none', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <span style={{ fontSize: '8.5px', fontWeight: 600, color: '#C8A85A', letterSpacing: '0.03em', textAlign: 'center' }}>{label}</span>
                   </div>
                 ))}
               </div>
