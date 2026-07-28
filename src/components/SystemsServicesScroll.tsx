@@ -40,7 +40,7 @@ function ListPanel({
 }) {
   return (
     <div className={`ssp-panel ${className}`}>
-      <div aria-hidden="true" style={{ position: 'absolute', inset: 0, overflow: 'hidden', pointerEvents: 'none', opacity: 0.16 }}>
+      <div aria-hidden="true" style={{ position: 'absolute', inset: 0, overflow: 'hidden', pointerEvents: 'none', opacity: 0.13 }}>
         <GradientDots
           backgroundColor={bgBase}
           dotSize={8}
@@ -113,7 +113,7 @@ export default function SystemsServicesScroll() {
           items={SYSTEMS_ITEMS}
           accent={BLUE}
           ambientRgb="rgba(111,140,255,0.10)"
-          bgBase="#010709"
+          bgBase="#020202"
           reduced={reduced}
           className="ssp-panel--systems"
         />
@@ -125,7 +125,7 @@ export default function SystemsServicesScroll() {
           headingColor={VIOLET_HEADING}
           lineColor={VIOLET_LINE}
           ambientRgb="rgba(159, 148, 255, 0.08)"
-          bgBase="#010508"
+          bgBase="#020202"
           reduced={reduced}
           className="ssp-panel--services"
         />
@@ -202,8 +202,8 @@ const CSS = `
   background: #010709;
 }
 
-.ssp-panel--systems { background: linear-gradient(to bottom, #000304 0%, #000102 45%, #000101 100%); }
-.ssp-panel--services { background: #010508; }
+.ssp-panel--systems { background: #020202; }
+.ssp-panel--services { background: #020202; }
 .ssp-panel--closing { background: linear-gradient(to bottom, #030607 0%, #020405 50%, #010303 100%); }
 
 /* Cross-fades the hero's own bottom fade colour (#010709) into the top of
