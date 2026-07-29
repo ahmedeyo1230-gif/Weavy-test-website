@@ -134,7 +134,7 @@ export function PremiumMarquee() {
   return (
     <section
       aria-label="What we do"
-      style={{ position: 'relative', width: '100%', overflow: 'hidden', background: 'transparent' }}
+      style={{ position: 'relative', width: '100%', overflow: 'hidden', background: '#010709' }}
     >
       <style>{`
         .pmq-stage {
@@ -180,12 +180,12 @@ export function PremiumMarquee() {
           will-change: filter, opacity;
         }
 
-        .pmq-word { font-size: clamp(21px, 6vw, 25px); }
+        .pmq-word { font-size: clamp(18px, 5vw, 22px); }
         @media (min-width: 700px) {
-          .pmq-word { font-size: clamp(32px, 4vw, 38px); }
+          .pmq-word { font-size: clamp(27px, 3.4vw, 32px); }
         }
         @media (min-width: 1024px) {
-          .pmq-word { font-size: clamp(32px, 2.5vw, 38px); }
+          .pmq-word { font-size: clamp(27px, 2.1vw, 32px); }
         }
 
         /* Outer ~7% edge fade only — the centre text stays fully sharp/opaque */

@@ -27,6 +27,7 @@ function useReducedMotion(): boolean {
 
 function ListPanel({
   heading, items, accent, headingColor = accent, lineColor = accent, ambientRgb, bgBase, reduced, className,
+  dotLayerOpacity = 0.13, dotsAlpha = 0.045,
 }: {
   heading: string
   items: string[]
@@ -37,10 +38,12 @@ function ListPanel({
   bgBase: string
   reduced: boolean
   className: string
+  dotLayerOpacity?: number
+  dotsAlpha?: number
 }) {
   return (
     <div className={`ssp-panel ${className}`}>
-      <div aria-hidden="true" style={{ position: 'absolute', inset: 0, overflow: 'hidden', pointerEvents: 'none', opacity: 0.13 }}>
+      <div aria-hidden="true" style={{ position: 'absolute', inset: 0, overflow: 'hidden', pointerEvents: 'none', opacity: dotLayerOpacity }}>
         <GradientDots
           backgroundColor={bgBase}
           dotSize={8}
@@ -53,7 +56,7 @@ function ListPanel({
       <div aria-hidden="true" className="ssp-ambient" style={{
         background: `radial-gradient(circle at 50% 42%, ${ambientRgb} 0%, transparent 68%)`,
       }} />
-      <div aria-hidden="true" className="ssp-dots" />
+      <div aria-hidden="true" className="ssp-dots" style={{ ['--ssp-dots-alpha' as string]: dotsAlpha }} />
 
       <div className="ssp-inner">
         <motion.h2
@@ -112,10 +115,12 @@ export default function SystemsServicesScroll() {
           heading="Systems"
           items={SYSTEMS_ITEMS}
           accent={BLUE}
-          ambientRgb="rgba(111,140,255,0.10)"
+          ambientRgb="rgba(111,140,255,0.07)"
           bgBase="#020202"
           reduced={reduced}
           className="ssp-panel--systems"
+          dotLayerOpacity={0.091}
+          dotsAlpha={0.032}
         />
 
         <ListPanel
@@ -124,10 +129,12 @@ export default function SystemsServicesScroll() {
           accent={VIOLET_DOT}
           headingColor={VIOLET_HEADING}
           lineColor={VIOLET_LINE}
-          ambientRgb="rgba(159, 148, 255, 0.08)"
+          ambientRgb="rgba(159, 148, 255, 0.058)"
           bgBase="#020202"
           reduced={reduced}
           className="ssp-panel--services"
+          dotLayerOpacity={0.078}
+          dotsAlpha={0.027}
         />
 
         <div className="ssp-panel ssp-panel--closing">
@@ -204,7 +211,7 @@ const CSS = `
 
 .ssp-panel--systems { background: #020202; }
 .ssp-panel--services { background: #020202; }
-.ssp-panel--closing { background: linear-gradient(to bottom, #030607 0%, #020405 50%, #010303 100%); }
+.ssp-panel--closing { background: linear-gradient(to bottom, #030607 0%, #020405 50%, #010709 100%); }
 
 /* Cross-fades the hero's own bottom fade colour (#010709) into the top of
    the Systems panel so its dot-grid/gradient-dots texture reveals gradually
@@ -230,7 +237,7 @@ const CSS = `
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background-image: radial-gradient(rgba(125,220,255,0.045) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(125,220,255,var(--ssp-dots-alpha, 0.045)) 1px, transparent 1px);
   background-size: 28px 28px;
   mask-image: radial-gradient(ellipse 70% 60% at 50% 45%, black 20%, transparent 100%);
   -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 45%, black 20%, transparent 100%);

@@ -136,8 +136,8 @@ export default function PlatformSection() {
       className="relative w-full overflow-hidden"
       style={{
         background: [
-          'radial-gradient(circle at 50% 18%, rgba(24, 105, 125, 0.045) 0%, rgba(5, 24, 29, 0.025) 36%, rgba(1, 7, 9, 0) 64%)',
-          'linear-gradient(to bottom, #01080B 0%, #010709 42%, #000506 100%)',
+          'radial-gradient(circle at 50% 18%, rgba(24, 105, 125, 0.034) 0%, rgba(5, 24, 29, 0.019) 36%, rgba(1, 7, 9, 0) 64%)',
+          'linear-gradient(to bottom, #010709 0%, #010709 42%, #000506 100%)',
         ].join(', '),
         paddingTop: 'clamp(5rem, 9vw, 8rem)',
         // Connected Systems now sits directly underneath — tighten just this
@@ -151,7 +151,7 @@ export default function PlatformSection() {
       {/* Ambient glow + dot grid, consistent with other platform-style sections */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
         background: [
-          'radial-gradient(ellipse 60% 50% at 50% 0%, rgba(125,220,255,0.05) 0%, transparent 65%)',
+          'radial-gradient(ellipse 60% 50% at 50% 0%, rgba(125,220,255,0.038) 0%, transparent 65%)',
         ].join(', '),
       }} />
       <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
