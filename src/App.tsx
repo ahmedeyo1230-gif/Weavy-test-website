@@ -2,7 +2,7 @@ import { useState, useEffect, lazy, Suspense } from 'react'
 import { applyPageSeo, PAGE_SEO } from './lib/seo'
 import LoadingScreen from './components/LoadingScreen'
 import Hero, { Navbar } from './components/Hero'
-import { EditorialStatementCarousel } from './components/ui/editorial-statement-carousel'
+import { PremiumMarquee } from './components/ui/premium-marquee'
 import SystemsServicesScroll from './components/SystemsServicesScroll'
 import PlatformSection from './components/PlatformSection'
 import PricingSection from './components/PricingSection'
@@ -96,7 +96,7 @@ export default function App() {
           ) : (
             <>
               <Hero />
-              <EditorialStatementCarousel />
+              <PremiumMarquee />
               <SystemsServicesScroll />
               <PlatformSection />
               <ConnectedSystems />
