@@ -180,12 +180,12 @@ export function PremiumMarquee() {
           will-change: filter, opacity;
         }
 
-        .pmq-word { font-size: clamp(24px, 7vw, 28px); }
+        .pmq-word { font-size: clamp(21px, 6vw, 25px); }
         @media (min-width: 700px) {
           .pmq-word { font-size: clamp(32px, 4vw, 38px); }
         }
         @media (min-width: 1024px) {
-          .pmq-word { font-size: clamp(38px, 3vw, 44px); }
+          .pmq-word { font-size: clamp(32px, 2.5vw, 38px); }
         }
 
         /* Outer ~7% edge fade only — the centre text stays fully sharp/opaque */
