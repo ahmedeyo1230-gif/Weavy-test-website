@@ -186,7 +186,7 @@ const DEFAULT_HEADING = (
   <>
     Ready to turn your business into an{' '}
     <em style={{
-      fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400,
+      fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400,
       background: 'linear-gradient(90deg, #FFFFFF 0%, #7DDCFF 45%, #B7AEFF 100%)',
       WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
       color: 'transparent',
@@ -352,7 +352,7 @@ export default function Footer({
           >
           <a
             href={ctaHref}
-            className="font-label font-medium footer-email-cta"
+            className="font-body font-medium footer-email-cta"
             style={{
               fontSize: 'clamp(1rem, 2.2vw, 1.45rem)',
               letterSpacing: '-0.01em',

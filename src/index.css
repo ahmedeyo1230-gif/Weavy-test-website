@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,200;0,300;0,400;0,500;1,200&family=Instrument+Sans:ital,wght@0,400;0,500;1,400;1,500&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,200;0,300;0,400;0,500;1,200&family=Instrument+Sans:ital,wght@0,400;0,500;1,400;1,500&family=Instrument+Serif:ital@0;1&family=Geist+Mono:wght@400;500&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap');
 @import "tailwindcss";
 
 @theme {
@@ -27,24 +27,28 @@
   --color-champagne: #E7C873;
 
   /* ── Typography ──────────────────────────────────────────────────────────
-     Central token block. These four variables are the ONLY place that needs
-     changing when the licensed PP fonts are added:
-       heading → PP Neue Montreal Medium (500)
-       body    → PP Neue Montreal Regular (400)
-       label   → PP Neue Montreal Mono
-       accent  → PP Editorial New Italic
-     Instrument Sans is a temporary stand-in for all four roles until then. */
+     Central token block. These are the ONLY lines that need changing when
+     the licensed PP fonts replace the current stand-ins:
+       heading → PP Neue Montreal Medium (500)  [still Instrument Sans]
+       body    → PP Neue Montreal Regular (400) [still Instrument Sans]
+       label   → PP Neue Montreal Mono          [now Geist Mono]
+       accent  → PP Editorial New Italic        [now Instrument Serif Italic] */
   --font-heading: 'Instrument Sans', sans-serif;
   --font-body: 'Instrument Sans', sans-serif;
-  --font-label: 'Instrument Sans', sans-serif;
-  --font-accent: 'Instrument Sans', sans-serif;
+  --font-mono: 'Geist Mono', monospace;
+  --font-accent: 'Instrument Serif', serif;
+  --font-label: var(--font-mono);
 
   /* Legacy aliases — kept so the many existing font-sans/font-serif/font-display
      utility classes across the codebase resolve through the tokens above
-     without every call site needing to be renamed. */
+     without every call site needing to be renamed.
+     font-serif/font-display stay mapped to --font-body (Instrument Sans) —
+     NOT --font-accent — because the Instrument Serif Italic accent treatment
+     is scoped to the hero's own accent words only (via the `font-accent`
+     utility directly in Hero.tsx), not every italic accent word site-wide. */
   --font-sans: var(--font-body);
-  --font-serif: var(--font-accent);
-  --font-display: var(--font-accent);
+  --font-serif: var(--font-body);
+  --font-display: var(--font-body);
 
   /* ── Text colour tokens ────────────────────────────────────────────────
      Central place for text colour by role. Edit these four lines to

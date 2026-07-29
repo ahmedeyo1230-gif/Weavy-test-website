@@ -193,7 +193,7 @@ export function Navbar() {
                     setActive(label)
                     goToPath(href)
                   }}
-                  className={`font-label font-medium relative block text-xs sm:text-sm px-3 py-1.5 rounded-full transition-colors duration-150 active:scale-[0.97] ${
+                  className={`font-body font-medium relative block text-xs sm:text-sm px-3 py-1.5 rounded-full transition-colors duration-150 active:scale-[0.97] ${
                     isActive ? 'text-primary bg-white/10' : 'text-muted hover:text-primary hover:bg-white/5'
                   }`}
                 >
@@ -208,7 +208,7 @@ export function Navbar() {
         <a
           href="/contact"
           onClick={(e) => { e.preventDefault(); setActive('Contact'); goToPath('/contact') }}
-          className="font-label hidden sm:inline-flex items-center gap-1.5 bg-primary text-background text-xs sm:text-sm px-4 py-2 rounded-full font-medium transition-colors duration-150 hover:bg-white hover:shadow-[0_0_20px_rgba(245,245,245,0.25)] active:scale-[0.97] shrink-0"
+          className="font-body hidden sm:inline-flex items-center gap-1.5 bg-primary text-background text-xs sm:text-sm px-4 py-2 rounded-full font-medium transition-colors duration-150 hover:bg-white hover:shadow-[0_0_20px_rgba(245,245,245,0.25)] active:scale-[0.97] shrink-0"
           style={{ transition: 'color 150ms, background-color 150ms, box-shadow 150ms, transform 100ms' }}
         >
           Say hi →
@@ -266,7 +266,7 @@ export function Navbar() {
                       setMenuOpen(false)
                       goToPath(href)
                     }}
-                    className="font-label block px-6 py-4 last:border-0 transition-all duration-150"
+                    className="font-body block px-6 py-4 last:border-0 transition-all duration-150"
                     style={{
                       color: 'var(--text-primary)',
                       fontSize: '0.92rem',
@@ -401,7 +401,7 @@ export default function Hero() {
             >
               <span style={{ color: '#F4F8FA' }}>AI</span>{' '}
               <em
-                className="font-serif italic"
+                className="font-accent italic"
                 style={{
                   background: 'linear-gradient(90deg, #FFFFFF 0%, #7DDCFF 48%, #B7AEFF 100%)',
                   WebkitBackgroundClip: 'text',
@@ -432,7 +432,7 @@ export default function Hero() {
                 <span aria-hidden="true">Built to help your business</span>
                 {/* inline-grid spacer: invisible widest phrase sets exact container width, no dead space */}
                 <span className="relative inline-grid" aria-hidden="true">
-                  <span className="invisible font-serif italic select-none whitespace-nowrap">Turn interest into action</span>
+                  <span className="invisible font-accent italic select-none whitespace-nowrap">Turn interest into action</span>
                   <AnimatePresence mode="wait">
                     <motion.span
                       key={BENEFIT_PHRASES[benefitIndex]}
@@ -440,7 +440,7 @@ export default function Hero() {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -10 }}
                       transition={{ duration: 0.58, ease: [0.16, 1, 0.3, 1] }}
-                      className="absolute inset-0 flex items-center justify-center font-serif italic whitespace-nowrap"
+                      className="absolute inset-0 flex items-center justify-center font-accent italic whitespace-nowrap"
                       style={{ color: '#7DDCFF' }}
                     >
                       {BENEFIT_PHRASES[benefitIndex]}
@@ -477,7 +477,7 @@ export default function Hero() {
             <a
               href="/contact"
               onClick={(e) => { e.preventDefault(); goToPath('/contact') }}
-              className="font-label btn-glow-primary inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-medium bg-primary text-background hover:bg-white hover:shadow-[0_0_28px_rgba(245,245,245,0.28)] active:scale-[0.97]"
+              className="font-body btn-glow-primary inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-medium bg-primary text-background hover:bg-white hover:shadow-[0_0_28px_rgba(245,245,245,0.28)] active:scale-[0.97]"
               style={{ transition: 'background-color 200ms, box-shadow 200ms, transform 100ms' }}
             >
               Book a Free Demo →
@@ -485,7 +485,7 @@ export default function Hero() {
             <a
               href="/services"
               onClick={(e) => { e.preventDefault(); goToPath('/services') }}
-              className="font-label inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-medium border border-border text-primary hover:border-white/25 hover:bg-white/[0.04] hover:shadow-[0_0_16px_hsl(199_89%_60%_/_0.08)] active:scale-[0.97]"
+              className="font-body inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-medium border border-border text-primary hover:border-white/25 hover:bg-white/[0.04] hover:shadow-[0_0_16px_hsl(199_89%_60%_/_0.08)] active:scale-[0.97]"
               style={{ transition: 'border-color 200ms, background-color 200ms, box-shadow 200ms, transform 100ms' }}
             >
               Explore the Services

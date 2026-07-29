@@ -230,7 +230,7 @@ export const Contact2 = ({
               <em
                 className="not-italic"
                 style={{
-                  fontFamily: 'var(--font-accent)',
+                  fontFamily: 'var(--font-body)',
                   fontStyle: "italic",
                   fontWeight: 400,
                 }}
@@ -398,7 +398,7 @@ export const Contact2 = ({
                     {/* Submit */}
                     <button
                       type="submit"
-                      className="font-label group mt-1 w-full flex items-center justify-center gap-2.5 py-3.5 rounded-xl font-medium text-sm tracking-wide transition-all duration-300 text-[#010709] bg-[#F8FAFC] hover:bg-white"
+                      className="font-body group mt-1 w-full flex items-center justify-center gap-2.5 py-3.5 rounded-xl font-medium text-sm tracking-wide transition-all duration-300 text-[#010709] bg-[#F8FAFC] hover:bg-white"
                       style={{ boxShadow: "0 8px 32px -8px rgba(248,250,252,0.18)" }}
                     >
                       Send Message
@@ -431,7 +431,7 @@ export const Contact2 = ({
               className="font-heading font-medium tracking-[-0.01em] mt-2"
               style={{ fontSize: "clamp(2rem, 4vw, 3.2rem)", lineHeight: 1.15, color: 'var(--text-body)' }}
             >
-              <em style={{ fontFamily: 'var(--font-accent)', fontStyle: "italic", fontWeight: 400 }}>
+              <em style={{ fontFamily: 'var(--font-body)', fontStyle: "italic", fontWeight: 400 }}>
                 Designed to scale.
               </em>
             </p>
@@ -453,7 +453,7 @@ export const Contact2 = ({
         heading={<>
           Let's create something{' '}
           <em style={{
-            fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400,
+            fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400,
             background: 'linear-gradient(90deg, #FFFFFF 0%, #7DDCFF 45%, #B7AEFF 100%)',
             WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
             color: 'transparent',

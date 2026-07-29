@@ -329,7 +329,7 @@ function BlogHeader() {
         Ideas for brands building{' '}
         <em
           style={{
-            fontFamily: 'var(--font-accent)',
+            fontFamily: 'var(--font-body)',
             fontStyle: 'italic',
             fontWeight: 400,
             color: 'hsl(0 0% 68%)',
@@ -475,7 +475,7 @@ function FeaturedArticle({ onRead }: { onRead: () => void }) {
         </div>
       </div>
 
-      <span aria-hidden="true" style={{ fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontSize: 'clamp(6rem, 14vw, 14rem)', lineHeight: 1, letterSpacing: '-0.06em', color: hovered ? 'rgba(125, 220, 255, 0.14)' : 'rgba(125, 220, 255, 0.10)', userSelect: 'none', transition: 'color 0.4s ease', alignSelf: 'center' }}>
+      <span aria-hidden="true" style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontSize: 'clamp(6rem, 14vw, 14rem)', lineHeight: 1, letterSpacing: '-0.06em', color: hovered ? 'rgba(125, 220, 255, 0.14)' : 'rgba(125, 220, 255, 0.10)', userSelect: 'none', transition: 'color 0.4s ease', alignSelf: 'center' }}>
         {FEATURED.num}
       </span>
       </div>{/* close content wrapper */}
@@ -552,7 +552,7 @@ function ArticleCard({
         <span style={{ fontFamily: 'var(--font-label)', fontWeight: 500, fontSize: '0.54rem', letterSpacing: '0.32em', textTransform: 'uppercase', color: 'rgba(125, 220, 255, 0.82)' }}>
           {article.category}
         </span>
-        <span aria-hidden="true" style={{ fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontSize: 'clamp(2.4rem, 4vw, 3.6rem)', lineHeight: 1, letterSpacing: '-0.05em', color: hovered ? 'rgba(125, 220, 255, 0.14)' : 'rgba(125, 220, 255, 0.10)', userSelect: 'none', transition: 'color 0.4s ease' }}>
+        <span aria-hidden="true" style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontSize: 'clamp(2.4rem, 4vw, 3.6rem)', lineHeight: 1, letterSpacing: '-0.05em', color: hovered ? 'rgba(125, 220, 255, 0.14)' : 'rgba(125, 220, 255, 0.10)', userSelect: 'none', transition: 'color 0.4s ease' }}>
           {article.num}
         </span>
       </div>
@@ -670,7 +670,7 @@ function BlogCTA() {
             Keep building{' '}
             <em
               style={{
-                fontFamily: 'var(--font-accent)',
+                fontFamily: 'var(--font-body)',
                 fontStyle: 'italic',
                 fontWeight: 400,
                 color: 'var(--text-muted)',
@@ -852,7 +852,7 @@ function TopicsStrip() {
           Sharp ideas across growth,{' '}
           <em
             style={{
-              fontFamily: 'var(--font-accent)',
+              fontFamily: 'var(--font-body)',
               fontStyle: 'italic',
               fontWeight: 400,
               color: 'var(--text-muted)',
@@ -1019,7 +1019,7 @@ export default function Blog() {
               heading={<>
                 Ready to{' '}
                 <em style={{
-                  fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400,
+                  fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400,
                   background: 'linear-gradient(90deg, #FFFFFF 0%, #7DDCFF 45%, #B7AEFF 100%)',
                   WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
                   color: 'transparent',

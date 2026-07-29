@@ -373,7 +373,7 @@ function BespokeFollowUp() {
               color: 'hsl(0 0% 90%)', display: 'block', marginBottom: '0.04em',
             }}>Designed</p>
             <p style={{
-              fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400,
+              fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400,
               fontSize: 'clamp(3.8rem, 8.5vw, 7.5rem)',
               color: 'hsl(0 0% 44%)', display: 'block',
             }}>to convert.</p>
@@ -771,7 +771,7 @@ function BespokeCareStories() {
                 </span>
               ))}
               <em style={{ display: 'inline-block', overflow: 'hidden', verticalAlign: 'bottom', paddingBottom: '0.04em',
-                fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400 }}>
+                fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400 }}>
                 <span className="bcs-hword" style={{ display: 'inline-block', transform: 'translateY(110%)', opacity: 0,
                   background: 'linear-gradient(115deg, #F8FAFC 10%, #E8C97A 45%, #BFA45A 75%, #E8C97A 100%)',
                   WebkitBackgroundClip: 'text', backgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Human.</span>
@@ -1206,7 +1206,7 @@ function BespokeWebShowcase() {
           </p>
           <h2 className="bws-header font-heading" style={{ fontSize: 'clamp(1.9rem, 4vw, 3.2rem)', lineHeight: 1.1, letterSpacing: '-0.038em', fontWeight: 500, color: 'hsl(0 0% 94%)', marginBottom: '1.5rem' }}>
             Crafted to captivate,{' '}
-            <em style={{ fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(41 62% 66%)' }}>
+            <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(41 62% 66%)' }}>
               built to perform.
             </em>
           </h2>
@@ -1575,7 +1575,7 @@ function BespokeProcessTimeline() {
             }}
           >
             From idea to launch —{' '}
-            <em style={{ fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400 }}>
+            <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400 }}>
               built with precision
             </em>
           </h2>
@@ -1805,7 +1805,7 @@ function BespokeWebDesignShowcase() {
             }}>
               Premium websites built to{' '}
               <em style={{
-                fontFamily: 'var(--font-accent)',
+                fontFamily: 'var(--font-body)',
                 fontStyle: 'italic',
                 fontWeight: 400,
                 color: 'hsl(0 0% 68%)',
@@ -1972,7 +1972,7 @@ function BespokeRealUsers() {
             >
               Built to feel effortless from the{' '}
               <em style={{
-                fontFamily: 'var(--font-accent)',
+                fontFamily: 'var(--font-body)',
                 fontStyle: 'italic',
                 fontWeight: 400,
                 color: 'hsl(199 89% 74%)',
@@ -2273,7 +2273,7 @@ function ChatbotWhatsAppBusiness() {
               style={{ fontSize: 'clamp(2rem, 4.2vw, 3.4rem)', lineHeight: 1.1, letterSpacing: '-0.036em', color: 'hsl(0 0% 93%)', marginBottom: '1.8rem', maxWidth: '30rem' }}
             >
               WhatsApp Business chatbots that{' '}
-              <em style={{ fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(142 60% 64%)' }}>
+              <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(142 60% 64%)' }}>
                 reply instantly.
               </em>
             </h2>
@@ -2399,7 +2399,7 @@ function ChatbotInstagramDM() {
               style={{ fontSize: 'clamp(2rem, 4.2vw, 3.4rem)', lineHeight: 1.1, letterSpacing: '-0.036em', color: 'hsl(0 0% 93%)', marginBottom: '1.8rem', maxWidth: '30rem' }}
             >
               Instagram DM automation that keeps{' '}
-              <em style={{ fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(320 70% 72%)' }}>
+              <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(320 70% 72%)' }}>
                 conversations moving.
               </em>
             </h2>
@@ -2618,7 +2618,7 @@ function ChatbotFacebookMessenger() {
               style={{ fontSize: 'clamp(2rem, 4.2vw, 3.4rem)', lineHeight: 1.1, letterSpacing: '-0.036em', color: 'hsl(0 0% 93%)', marginBottom: '1.8rem', maxWidth: '30rem' }}
             >
               Facebook Messenger automation built for{' '}
-              <em style={{ fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(215 85% 72%)' }}>
+              <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(215 85% 72%)' }}>
                 faster conversations.
               </em>
             </h2>
@@ -2771,7 +2771,7 @@ function ChatbotWorkflowSection() {
             }}
           >
             From first message to qualified lead —{' '}
-            <em style={{ fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(199 89% 68%)' }}>
+            <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(199 89% 68%)' }}>
               automatically.
             </em>
           </h2>
@@ -2993,7 +2993,7 @@ function ChatbotIntegrationsSection() {
               }}
             >
               One automation system connected across every customer{' '}
-              <em style={{ fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(199 89% 68%)' }}>
+              <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(199 89% 68%)' }}>
                 touchpoint.
               </em>
             </h2>
@@ -3228,7 +3228,7 @@ function ChatbotTikTokAutomation() {
             >
               TikTok automation built for faster{' '}
               <em style={{
-                fontFamily: 'var(--font-accent)',
+                fontFamily: 'var(--font-body)',
                 fontStyle: 'italic',
                 fontWeight: 400,
                 color: 'hsl(195 88% 72%)',
@@ -3675,7 +3675,7 @@ function SocialMediaMarketing() {
             style={{ opacity: 0, transform: 'translateY(28px)', fontSize: 'clamp(2.6rem, 6vw, 5rem)', lineHeight: 1.1, letterSpacing: '-0.04em' }}
           >
             <span style={{ display: 'block' }}>Social Media</span>
-            <em style={{ display: 'block', fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(280 65% 72%)' }}>
+            <em style={{ display: 'block', fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(280 65% 72%)' }}>
               Marketing
             </em>
           </h2>
@@ -3782,7 +3782,7 @@ function SocialMediaMarketing() {
                 working together to{' '}
                 <em
                   style={{
-                    fontFamily: 'var(--font-accent)',
+                    fontFamily: 'var(--font-body)',
                     fontStyle: 'italic',
                     fontWeight: 400,
                     background: 'linear-gradient(108deg, hsl(199 89% 74%) 0%, hsl(240 60% 74%) 55%, hsl(280 65% 74%) 100%)',
@@ -4008,7 +4008,7 @@ function SocialMediaMarketing() {
             style={{ opacity: 0, transform: 'translateY(24px)', fontSize: 'clamp(1.8rem, 4vw, 3rem)', lineHeight: 1.08, letterSpacing: '-0.033em', maxWidth: '34rem' }}
           >
             Content backed by{' '}
-            <em style={{ fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400 }}>strategy</em>
+            <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400 }}>strategy</em>
           </h2>
         </div>
 
@@ -4318,7 +4318,7 @@ function SocialMediaMarketing() {
                     </span>
                   </span>
                 ))}
-                <em style={{ fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400, display: 'inline-block', overflow: 'hidden', verticalAlign: 'bottom', paddingBottom: '0.05em' }}>
+                <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400, display: 'inline-block', overflow: 'hidden', verticalAlign: 'bottom', paddingBottom: '0.05em' }}>
                   <span
                     className="smpr-hword"
                     style={{
@@ -4545,7 +4545,7 @@ function SocialMediaMarketing() {
                     </span>
                   </span>
                 ))}
-                <em style={{ fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400, display: 'inline-block', overflow: 'hidden', verticalAlign: 'bottom', paddingBottom: '0.05em' }}>
+                <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400, display: 'inline-block', overflow: 'hidden', verticalAlign: 'bottom', paddingBottom: '0.05em' }}>
                   <span
                     className="smbs-hword"
                     style={{
@@ -4698,7 +4698,7 @@ function SocialMediaMarketing() {
                   </span>
                 </span>
               ))}
-              <em style={{ fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400, display: 'inline-block', overflow: 'hidden', verticalAlign: 'bottom', paddingBottom: '0.05em' }}>
+              <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400, display: 'inline-block', overflow: 'hidden', verticalAlign: 'bottom', paddingBottom: '0.05em' }}>
                 <span
                   className="s5cv-hword"
                   style={{
@@ -4974,7 +4974,7 @@ function SocialMediaMarketing() {
             >
               One campaign.{' '}
               <em style={{
-                fontFamily: 'var(--font-accent)',
+                fontFamily: 'var(--font-body)',
                 fontStyle: 'italic', fontWeight: 400,
                 color: 'hsl(0 0% 58%)',
               }}>
@@ -5175,7 +5175,7 @@ function SocialMediaMarketing() {
           >
             Why Brands{' '}
             <em style={{
-              fontFamily: 'var(--font-accent)',
+              fontFamily: 'var(--font-body)',
               fontStyle: 'italic',
               fontWeight: 400,
               color: 'hsl(0 0% 64%)',
@@ -5361,7 +5361,7 @@ function SocialMediaMarketing() {
       heading={<>
         Ready to grow your{' '}
         <em style={{
-          fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400,
+          fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400,
           background: 'linear-gradient(90deg, #FFFFFF 0%, #7DDCFF 45%, #B7AEFF 100%)',
           WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
           color: 'transparent',
@@ -5665,7 +5665,7 @@ function ChatbotHero() {
             style={{ lineHeight: 1.08, letterSpacing: '-0.04em' }}
           >
             <span style={{ display: 'block' }}>Custom</span>
-            <em style={{ display: 'block', fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(195 80% 72%)' }}>
+            <em style={{ display: 'block', fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(195 80% 72%)' }}>
               Chatbot
             </em>
           </h2>
@@ -6021,7 +6021,7 @@ function GraphicDesignEditorial() {
               color: 'hsl(0 0% 90%)', display: 'block', marginBottom: '0.04em',
             }}>Motion that</p>
             <p style={{
-              fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400,
+              fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400,
               fontSize: 'clamp(3.8rem, 8.5vw, 7.5rem)',
               color: 'hsl(0 0% 44%)', display: 'block',
             }}>commands.</p>
@@ -6238,7 +6238,7 @@ function GraphicDesignServices() {
           }}
         >
           Every format.<br />
-          <em style={{ fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(0 0% 36%)' }}>
+          <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(0 0% 36%)' }}>
             Every screen.
           </em>
         </h2>
@@ -6445,7 +6445,7 @@ function GraphicDesignSplitA() {
                 demand
               </p>
               <p style={{
-                fontFamily: 'var(--font-accent)',
+                fontFamily: 'var(--font-body)',
                 fontStyle: 'italic',
                 fontWeight: 400,
                 fontSize: 'clamp(3.2rem, 6.8vw, 6.4rem)',
@@ -6620,7 +6620,7 @@ function GraphicDesignSplitB() {
                 color: 'hsl(0 0% 92%)', display: 'block',
               }}>become</p>
               <p style={{
-                fontFamily: 'var(--font-accent)',
+                fontFamily: 'var(--font-body)',
                 fontStyle: 'italic', fontWeight: 400,
                 fontSize: 'clamp(3rem, 6.5vw, 6rem)',
                 color: 'hsl(0 0% 32%)', display: 'block',
@@ -6731,7 +6731,7 @@ function GraphicDesignSplitB() {
               color: 'hsl(0 0% 94%)', margin: 0, marginBottom: '0.7rem'
             }}>
               Where ideas become{' '}
-              <em style={{ fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(0 0% 32%)' }}>
+              <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(0 0% 32%)' }}>
                 culture.
               </em>
             </h2>
@@ -6916,7 +6916,7 @@ function GraphicDesignFinalPresentation() {
             >
               Where Vision Becomes{' '}
               <em style={{
-                fontFamily: 'var(--font-accent)',
+                fontFamily: 'var(--font-body)',
                 fontStyle: 'italic', fontWeight: 400,
                 color: 'hsl(0 0% 48%)',
               }}>
@@ -7029,7 +7029,7 @@ function GraphicDesignFinalPresentation() {
                 }}>
                   <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse 65% 80% at 30% 50%, hsl(195 90% 55% / 0.13), transparent 68%)' }}/>
                   <span style={{
-                    fontFamily: 'var(--font-accent)',
+                    fontFamily: 'var(--font-body)',
                     fontStyle: 'italic', fontWeight: 400,
                     fontSize: '1.85rem', letterSpacing: '-0.03em',
                     color: 'hsl(0 0% 82%)', position: 'relative', zIndex: 1,
@@ -7055,7 +7055,7 @@ function GraphicDesignFinalPresentation() {
                 <div style={{ marginBottom: '18px' }}>
                   <span style={{ fontSize: '0.5rem', letterSpacing: '0.24em', color: 'hsl(0 0% 28%)', textTransform: 'uppercase', display: 'block', marginBottom: '7px' }}>Typeface</span>
                   <div style={{ display: 'flex', alignItems: 'baseline', gap: '10px' }}>
-                    <span style={{ fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontSize: '1.5rem', color: 'hsl(0 0% 68%)', lineHeight: 1 }}>Aa</span>
+                    <span style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontSize: '1.5rem', color: 'hsl(0 0% 68%)', lineHeight: 1 }}>Aa</span>
                     <span style={{ fontFamily: 'sans-serif', fontWeight: 300, fontSize: '0.75rem', color: 'hsl(0 0% 32%)' }}>Brand Sans Light</span>
                   </div>
                 </div>
@@ -7105,7 +7105,7 @@ function GraphicDesignFinalPresentation() {
                 position: 'relative', overflow: 'hidden',
               }}>
                 <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse at 40% 50%, hsl(195 80% 55% / 0.15), transparent 65%)' }}/>
-                <span style={{ fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontSize: '0.88rem', color: 'hsl(0 0% 58%)', position: 'relative', zIndex: 1 }}>campaign</span>
+                <span style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontSize: '0.88rem', color: 'hsl(0 0% 58%)', position: 'relative', zIndex: 1 }}>campaign</span>
               </div>
               <div style={{ padding: '7px 11px', display: 'flex', alignItems: 'center', gap: '10px' }}>
                 <span style={{ fontSize: '0.49rem', color: 'hsl(0 0% 40%)' }}>♥ 48.2K</span>
@@ -7184,7 +7184,7 @@ function GraphicDesignFinalPresentation() {
           }}>
             Where Vision Becomes{' '}
             <em style={{
-              fontFamily: 'var(--font-accent)',
+              fontFamily: 'var(--font-body)',
               fontStyle: 'italic', fontWeight: 400,
               color: 'hsl(0 0% 48%)',
             }}>
@@ -7338,7 +7338,7 @@ function GraphicDesignCTA() {
         >
           Let&apos;s create visuals that make your brand{' '}
           <em style={{
-            fontFamily: 'var(--font-accent)',
+            fontFamily: 'var(--font-body)',
             fontStyle: 'italic', fontWeight: 400,
             color: 'hsl(0 0% 52%)',
           }}>
@@ -7586,7 +7586,7 @@ function UGCHero() {
           <h2 className="ugch-r font-heading font-medium" style={{ color: '#fff', fontSize: 'clamp(2rem, 5.8vw, 5rem)', lineHeight: 1.05, letterSpacing: '-0.04em', marginBottom: '1.6rem' }}>
             Real creators.<br/>
             Real{' '}
-            <em style={{ fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(0 72% 70%)' }}>results.</em>
+            <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(0 72% 70%)' }}>results.</em>
           </h2>
 
           {/* Rule */}
@@ -7657,7 +7657,7 @@ function UGCHero() {
             <p className="ugce-r font-sans uppercase mb-5" style={{ fontSize: '0.64rem', letterSpacing: '0.34em', color: 'hsl(0 72% 60%)' }}>Why UGC Works</p>
             <h2 className="ugce-r font-heading font-medium" style={{ color: '#fff', fontSize: 'clamp(2rem, 3.8vw, 3.1rem)', lineHeight: 1.08, letterSpacing: '-0.033em', marginBottom: '1.5rem' }}>
               People trust{' '}
-              <em style={{ fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(0 72% 70%)' }}>people</em>,<br/>not brands.
+              <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(0 72% 70%)' }}>people</em>,<br/>not brands.
             </h2>
             <div className="ugce-r" aria-hidden="true" style={{ width: '2.5rem', height: 1, background: 'hsl(0 72% 58% / 0.4)', marginBottom: '1.5rem' }}/>
             <p className="ugce-r font-sans font-normal" style={{ fontSize: 'clamp(0.88rem, 1.35vw, 1rem)', lineHeight: 1.92, color: '#F2F8FC', maxWidth: '32rem' }}>
@@ -7892,7 +7892,7 @@ function UGCCreatorSelection() {
                 style={{ color: '#fff', fontSize: 'clamp(2rem, 2.8vw, 3rem)', lineHeight: 1.05, letterSpacing: '-0.035em', marginBottom: '1.6rem' }}
               >
                 Creators chosen by{' '}
-                <em style={{ fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(195 80% 72%)' }}>
+                <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(195 80% 72%)' }}>
                   data, not guesswork.
                 </em>
               </h2>
@@ -7920,7 +7920,7 @@ function UGCCreatorSelection() {
             style={{ letterSpacing: '-0.02em', margin: '0 0 0.5rem 0' }}
           >
             Creators chosen by{' '}
-            <em style={{ fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(195 80% 72%)' }}>
+            <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(195 80% 72%)' }}>
               data, not guesswork.
             </em>
           </h2>
@@ -8041,7 +8041,7 @@ function UGCFindCreators() {
               }}
             >
               We find creators{' '}
-              <em style={{ fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(195 80% 72%)' }}>
+              <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(195 80% 72%)' }}>
                 built for your brand.
               </em>
             </h2>
@@ -8353,7 +8353,7 @@ function UGCMonitoringReporting() {
               style={{ color: '#fff', fontSize: 'clamp(2rem, 5vw, 3rem)', lineHeight: 1.05, letterSpacing: '-0.035em', marginBottom: '1.6rem' }}
             >
               Every result,{' '}
-              <em style={{ fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(195 80% 72%)' }}>
+              <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(195 80% 72%)' }}>
                 clearly reported.
               </em>
             </h2>
@@ -8576,7 +8576,7 @@ function UGCTrackingUrls() {
               style={{ color: '#fff', fontSize: 'clamp(1.9rem, 3.6vw, 3rem)', lineHeight: 1.08, letterSpacing: '-0.035em', marginBottom: '1.8rem' }}
             >
               Know exactly which creator,{' '}
-              <em style={{ fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(160 65% 65%)' }}>
+              <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(160 65% 65%)' }}>
                 platform,
               </em>{' '}
               and placement is driving results.
@@ -8933,7 +8933,7 @@ function UGCPerfumeCampaign() {
                         fontSize: '0.82rem',
                         color: 'hsl(38 75% 65%)',
                         fontWeight: 500,
-                        fontFamily: 'var(--font-accent)',
+                        fontFamily: 'var(--font-body)',
                         fontStyle: 'italic',
                         letterSpacing: '-0.02em',
                       }}>A</span>
@@ -9104,7 +9104,7 @@ function UGCPerfumeCampaign() {
               style={{ color: '#fff', fontSize: 'clamp(1.8rem, 3.4vw, 2.8rem)', lineHeight: 1.1, letterSpacing: '-0.033em', marginBottom: '1.6rem' }}
             >
               Product storytelling that feels{' '}
-              <em style={{ fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(38 75% 68%)' }}>
+              <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(38 75% 68%)' }}>
                 real, polished,
               </em>{' '}
               and ready to convert.
@@ -9274,7 +9274,7 @@ function UGCPerformanceSystem() {
             >
               Content that looks real, feels premium,{' '}
               <em style={{
-                fontFamily: 'var(--font-accent)',
+                fontFamily: 'var(--font-body)',
                 fontStyle: 'italic',
                 fontWeight: 400,
                 color: 'hsl(0 0% 60%)',
@@ -9925,7 +9925,7 @@ export default function Services() {
             }}
           >
             Our{' '}
-            <em style={{ fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400 }}>
+            <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400 }}>
               Services
             </em>
           </h2>
@@ -10044,7 +10044,7 @@ export default function Services() {
               <span style={{ display: 'block' }}>Built for your brand.</span>
               <em style={{
                 display: 'block',
-                fontFamily: 'var(--font-accent)',
+                fontFamily: 'var(--font-body)',
                 fontStyle: 'italic',
                 fontWeight: 400,
                 color: 'hsl(205 85% 74%)',
@@ -10139,7 +10139,7 @@ export default function Services() {
               >
                 Bespoke{' '}
                 <em style={{
-                  fontFamily: 'var(--font-accent)',
+                  fontFamily: 'var(--font-body)',
                   fontStyle: 'italic',
                   fontWeight: 400,
                   background: 'linear-gradient(115deg, #F8FAFC 5%, #A7F3D0 30%, #2DD4BF 60%, #0F766E 100%)',
@@ -10393,7 +10393,7 @@ export default function Services() {
                     className="bwdc-hword"
                     style={{
                       display: 'inline-block', transform: 'translateY(110%)', opacity: 0,
-                      fontFamily: 'var(--font-accent)',
+                      fontFamily: 'var(--font-body)',
                       fontStyle: 'italic', fontWeight: 400,
                       color: 'hsl(36 50% 74%)',
                     }}
@@ -10581,7 +10581,7 @@ export default function Services() {
         heading={<>
           Ready to{' '}
           <em style={{
-            fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400,
+            fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400,
             background: 'linear-gradient(90deg, #FFFFFF 0%, #7DDCFF 45%, #B7AEFF 100%)',
             WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
             color: 'transparent',
@@ -10643,7 +10643,7 @@ export default function Services() {
                 style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)', lineHeight: 1.1, letterSpacing: '-0.035em' }}
               >
                 Custom Chatbot{' '}
-                <em style={{ fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400 }}>
+                <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400 }}>
                   for Websites
                 </em>
               </h2>
@@ -10848,7 +10848,7 @@ export default function Services() {
             aria-hidden="true"
             className="mb-8 select-none"
             style={{
-              fontFamily: 'var(--font-accent)',
+              fontFamily: 'var(--font-body)',
               fontSize: 'clamp(3rem, 6vw, 5rem)',
               lineHeight: 1,
               color: 'hsl(199 89% 60% / 0.35)',
@@ -10901,7 +10901,7 @@ export default function Services() {
         heading={<>
           Ready to{' '}
           <em style={{
-            fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400,
+            fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400,
             background: 'linear-gradient(90deg, #FFFFFF 0%, #7DDCFF 45%, #B7AEFF 100%)',
             WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
             color: 'transparent',
@@ -10950,7 +10950,7 @@ export default function Services() {
             style={{ fontSize: 'clamp(2rem, 5vw, 3.4rem)', lineHeight: 1.08, letterSpacing: '-0.035em' }}
           >
             Social Media{' '}
-            <em style={{ fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400 }}>
+            <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400 }}>
               Marketing
             </em>
           </h2>
@@ -11046,7 +11046,7 @@ export default function Services() {
           heading={<>
             Ready to{' '}
             <em style={{
-              fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400,
+              fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400,
               background: 'linear-gradient(90deg, #FFFFFF 0%, #7DDCFF 45%, #B7AEFF 100%)',
               WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
               color: 'transparent',
@@ -11078,7 +11078,7 @@ export default function Services() {
           heading={<>
             Ready to{' '}
             <em style={{
-              fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400,
+              fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400,
               background: 'linear-gradient(90deg, #FFFFFF 0%, #7DDCFF 45%, #B7AEFF 100%)',
               WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
               color: 'transparent',

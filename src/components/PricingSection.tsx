@@ -121,7 +121,7 @@ function PlanCard({ plan, index }: { plan: typeof PLANS[number]; index: number }
         href="/contact"
         onClick={(e) => { e.preventDefault(); goToPath('/contact') }}
         style={{
-          fontFamily: 'var(--font-label)',
+          fontFamily: 'var(--font-body)',
           marginTop: '1.8rem',
           display: 'inline-flex',
           alignItems: 'center',
@@ -201,7 +201,7 @@ export default function PricingSection() {
             style={{ fontSize: 'clamp(2rem, 4.2vw, 3rem)', lineHeight: 1.14, letterSpacing: '-0.032em', color: 'var(--text-primary)' }}
           >
             Simple monthly plans for businesses{' '}
-            <em style={{ fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400, color: '#7DDCFF' }}>
+            <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400, color: '#7DDCFF' }}>
               ready to automate.
             </em>
           </motion.h2>

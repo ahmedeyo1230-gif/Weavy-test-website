@@ -373,7 +373,7 @@ function WorkCTA() {
         >
           Let&apos;s build work{' '}
           <em style={{
-            fontFamily: 'var(--font-accent)',
+            fontFamily: 'var(--font-body)',
             fontStyle: 'italic',
             fontWeight: 400,
             color: 'hsl(0 0% 62%)',
@@ -573,7 +573,7 @@ function WorkTestimonial() {
         {/* Quote */}
         <blockquote
           style={{
-            fontFamily: 'var(--font-accent)',
+            fontFamily: 'var(--font-body)',
             fontStyle: 'italic',
             fontWeight: 400,
             fontSize: 'clamp(1.7rem, 4vw, 3.4rem)',
@@ -826,7 +826,7 @@ function ProjectPhilosophy() {
             We don&apos;t just make things look{' '}
             <em
               style={{
-                fontFamily: 'var(--font-accent)',
+                fontFamily: 'var(--font-body)',
                 fontStyle: 'italic',
                 fontWeight: 400,
                 color: 'hsl(0 0% 58%)',
@@ -838,7 +838,7 @@ function ProjectPhilosophy() {
             we build visual systems with{' '}
             <em
               style={{
-                fontFamily: 'var(--font-accent)',
+                fontFamily: 'var(--font-body)',
                 fontStyle: 'italic',
                 fontWeight: 400,
                 color: 'hsl(0 0% 58%)',
@@ -981,7 +981,7 @@ function WorkGallery() {
           }}>
             Campaigns crafted to look premium,{' '}
             <em style={{
-              fontFamily: 'var(--font-accent)',
+              fontFamily: 'var(--font-body)',
               fontStyle: 'italic',
               fontWeight: 400,
               color: 'hsl(0 0% 58%)',
@@ -1202,7 +1202,7 @@ export default function ImageShowcase() {
         heading={<>
           Ready to{' '}
           <em style={{
-            fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400,
+            fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400,
             background: 'linear-gradient(90deg, #FFFFFF 0%, #7DDCFF 45%, #B7AEFF 100%)',
             WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
             color: 'transparent',
