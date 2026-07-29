@@ -100,7 +100,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
         >
           <span
             style={{
-              fontFamily: "'Inter', system-ui, sans-serif",
+              fontFamily: 'var(--font-label)',
               fontWeight: 300,
               fontSize: 'clamp(2.6rem, 5vw, 3.8rem)',
               lineHeight: 1,
@@ -114,7 +114,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
           </span>
           <span
             style={{
-              fontFamily: "'Inter', system-ui, sans-serif",
+              fontFamily: 'var(--font-label)',
               fontWeight: 300,
               fontSize: 'clamp(0.9rem, 1.8vw, 1.2rem)',
               lineHeight: 1,

@@ -76,6 +76,7 @@ function PlanCard({ plan, index }: { plan: typeof PLANS[number]; index: number }
       {plan.featured && (
         <span style={{
           position: 'absolute', top: -12, left: '50%', transform: 'translateX(-50%)',
+          fontFamily: 'var(--font-label)',
           fontSize: '0.62rem', letterSpacing: '0.18em', textTransform: 'uppercase',
           color: '#010709', background: '#7DDCFF', padding: '0.32rem 0.9rem', borderRadius: 999,
           fontWeight: 600, whiteSpace: 'nowrap',
@@ -84,24 +85,24 @@ function PlanCard({ plan, index }: { plan: typeof PLANS[number]; index: number }
         </span>
       )}
 
-      <h3 className="font-sans font-light" style={{ fontSize: '1.15rem', color: '#F8FAFC', marginBottom: '0.6rem' }}>
+      <h3 className="font-heading font-medium" style={{ fontSize: '1.15rem', color: '#F8FAFC', marginBottom: '0.6rem' }}>
         {plan.name}
       </h3>
 
       <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.35rem', marginBottom: '0.7rem' }}>
-        <span className="font-sans" style={{ fontSize: 'clamp(1.6rem, 2.6vw, 2rem)', fontWeight: 500, color: plan.featured ? '#7DDCFF' : '#F8FAFC', letterSpacing: '-0.02em' }}>
+        <span className="font-label" style={{ fontSize: 'clamp(1.6rem, 2.6vw, 2rem)', fontWeight: 500, color: plan.featured ? '#7DDCFF' : '#F8FAFC', letterSpacing: '-0.02em' }}>
           {plan.price}
         </span>
         {plan.period && (
-          <span style={{ fontSize: '0.85rem', color: 'rgba(210,224,232,0.5)' }}>{plan.period}</span>
+          <span className="font-label" style={{ fontSize: '0.85rem', color: 'rgba(210,224,232,0.5)' }}>{plan.period}</span>
         )}
       </div>
 
-      <p className="font-sans" style={{ fontSize: '0.76rem', fontWeight: 500, color: 'rgba(220, 232, 240, 0.76)', marginBottom: '0.9rem' }}>
+      <p className="font-label" style={{ fontSize: '0.76rem', fontWeight: 500, color: 'rgba(220, 232, 240, 0.76)', marginBottom: '0.9rem' }}>
         {plan.setup}
       </p>
 
-      <p className="font-sans font-light" style={{ fontSize: '0.85rem', lineHeight: 1.65, color: 'rgba(210,224,232,0.6)', marginBottom: '1.5rem' }}>
+      <p className="font-body font-normal" style={{ fontSize: '15px', lineHeight: 1.65, color: 'rgba(210,224,232,0.6)', marginBottom: '1.5rem' }}>
         {plan.blurb}
       </p>
 
@@ -109,7 +110,7 @@ function PlanCard({ plan, index }: { plan: typeof PLANS[number]; index: number }
 
       <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: '0.7rem', flex: 1 }}>
         {plan.features.map(f => (
-          <li key={f} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.6rem', fontSize: '0.84rem', color: 'rgba(235,245,255,0.78)' }}>
+          <li key={f} style={{ fontFamily: 'var(--font-body)', display: 'flex', alignItems: 'flex-start', gap: '0.6rem', fontSize: '15px', color: 'rgba(235,245,255,0.78)' }}>
             <span aria-hidden="true" style={{ flexShrink: 0, width: 5, height: 5, borderRadius: '50%', marginTop: '0.5rem', background: plan.featured ? '#7DDCFF' : 'rgba(125,220,255,0.45)' }} />
             {f}
           </li>
@@ -120,6 +121,7 @@ function PlanCard({ plan, index }: { plan: typeof PLANS[number]; index: number }
         href="/contact"
         onClick={(e) => { e.preventDefault(); goToPath('/contact') }}
         style={{
+          fontFamily: 'var(--font-body)',
           marginTop: '1.8rem',
           display: 'inline-flex',
           alignItems: 'center',
@@ -162,6 +164,7 @@ export default function PricingSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, ease: E }}
+            className="font-label"
             style={{
               display: 'inline-flex',
               alignItems: 'center',
@@ -183,6 +186,7 @@ export default function PricingSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.55, delay: 0.05, ease: E }}
+            className="font-label"
             style={{ fontSize: '0.67rem', letterSpacing: '0.32em', textTransform: 'uppercase', color: 'rgba(125,220,255,0.68)', marginBottom: '1.3rem' }}
           >
             Monthly Platform Plans
@@ -193,11 +197,11 @@ export default function PricingSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.72, delay: 0.06, ease: E }}
-            className="font-sans font-light"
+            className="font-heading font-medium"
             style={{ fontSize: 'clamp(2rem, 4.2vw, 3rem)', lineHeight: 1.14, letterSpacing: '-0.032em', color: '#F8FAFC' }}
           >
             Simple monthly plans for businesses{' '}
-            <em style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400, color: '#7DDCFF' }}>
+            <em style={{ fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400, color: '#7DDCFF' }}>
               ready to automate.
             </em>
           </motion.h2>
@@ -207,7 +211,7 @@ export default function PricingSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.65, delay: 0.14, ease: E }}
-            className="font-sans font-light"
+            className="font-body font-normal"
             style={{ fontSize: 'clamp(0.9rem, 1.4vw, 1rem)', lineHeight: 1.8, color: '#94A3B8', marginTop: '1.2rem' }}
           >
             Start with one channel, then expand into a full AI operating system as your business
@@ -226,7 +230,7 @@ export default function PricingSection() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3, ease: E }}
-          className="font-sans font-light text-center"
+          className="font-label text-center"
           style={{ fontSize: '0.82rem', color: 'rgba(210,224,232,0.5)', marginTop: 'clamp(2rem, 4vw, 2.8rem)' }}
         >
           One-time setup fee applies. Monthly subscription covers hosting, optimisation, updates and support.

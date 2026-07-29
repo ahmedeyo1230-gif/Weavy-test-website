@@ -397,7 +397,7 @@ export default function Hero() {
             <motion.h1
               id="hero-heading"
               variants={itemVariants}
-              className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-light tracking-tighter leading-[1.1] mb-8 max-w-4xl relative z-10"
+              className="font-heading text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-medium tracking-tighter leading-[1.1] mb-8 max-w-4xl relative z-10"
             >
               <span style={{ color: '#F4F8FA' }}>AI</span>{' '}
               <em
@@ -422,7 +422,7 @@ export default function Hero() {
 
           <motion.div
             variants={itemVariants}
-            className="text-lg sm:text-xl mb-8 flex items-center justify-center gap-[6px] flex-wrap font-light"
+            className="font-body text-lg sm:text-xl mb-8 flex items-center justify-center gap-[6px] flex-wrap font-light"
             style={{ color: '#94A3B8' }}
           >
             {reducedMotion ? (
@@ -456,7 +456,7 @@ export default function Hero() {
 
           <motion.p
             variants={itemVariants}
-            className="max-w-xl mx-auto mb-12 leading-relaxed text-sm sm:text-base font-medium"
+            className="font-body max-w-xl mx-auto mb-12 leading-relaxed text-base lg:text-lg font-normal"
             style={{ color: 'rgba(220, 232, 240, 0.80)', lineHeight: 1.75 }}
           >
             We help SMEs <span style={heroSubheadHighlight}>capture leads</span>,{' '}

@@ -168,13 +168,13 @@ function ModuleRow({ svc, index }: { svc: ServiceDef; index: number }) {
             </span>
             <h3
               ref={titleRef}
-              className="text-sm font-semibold tracking-tight"
-              style={{ color: 'hsl(0 0% 90%)', transition: 'color 220ms' }}
+              className="font-heading font-medium tracking-tight"
+              style={{ fontSize: '16px', color: 'hsl(0 0% 90%)', transition: 'color 220ms' }}
             >
               {svc.title}
             </h3>
           </div>
-          <p className="text-xs leading-[1.72]" style={{ color: 'hsl(0 0% 60%)' }}>
+          <p className="font-body font-normal leading-[1.72]" style={{ fontSize: '15px', color: 'hsl(0 0% 60%)' }}>
             {svc.description}
           </p>
         </div>
@@ -230,7 +230,7 @@ function ArchitecturePanel() {
             }}
           />
           <span
-            className="text-[10px] uppercase tracking-[0.2em]"
+            className="font-label text-[10px] uppercase tracking-[0.2em]"
             style={{ color: 'hsl(0 0% 36%)' }}
           >
             Weavy · System Architecture
@@ -310,7 +310,7 @@ export default function SystemsShowcase() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, ease: E }}
-              className="text-xs uppercase tracking-widest text-accent-cyan/70 mb-5"
+              className="font-label text-xs uppercase tracking-widest text-accent-cyan/70 mb-5"
             >
               Systems in Motion
             </motion.p>
@@ -320,7 +320,7 @@ export default function SystemsShowcase() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.08, ease: E }}
-              className="text-4xl md:text-5xl font-light tracking-tighter mb-6 text-primary"
+              className="font-heading text-4xl md:text-5xl font-medium tracking-tighter mb-6 text-primary"
             >
               Four core{' '}
               <span className="font-serif italic text-accent-cyan">architectures</span>
@@ -331,7 +331,7 @@ export default function SystemsShowcase() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.16, ease: E }}
-              className="text-muted text-lg font-light leading-relaxed mb-10"
+              className="font-body text-muted text-lg font-normal leading-relaxed mb-10"
             >
               We don't sell hours. We sell outcomes. Here are the core architectures
               we deploy to scale your operations.
@@ -344,7 +344,7 @@ export default function SystemsShowcase() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.26, ease: E }}
-              className="inline-flex items-center gap-2 text-sm w-fit cursor-pointer"
+              className="font-body inline-flex items-center gap-2 text-sm w-fit cursor-pointer"
               style={{ color: 'hsl(0 0% 40%)', transition: 'color 200ms' }}
               onMouseEnter={e => {
                 const el = e.currentTarget as HTMLElement

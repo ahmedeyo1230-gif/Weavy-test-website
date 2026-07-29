@@ -163,10 +163,10 @@ function Lightbox({ src, title, category, onClose }: { src: string; title: strin
           padding: '1.2rem 1.6rem',
           background: 'linear-gradient(to top, hsl(0 0% 0% / 0.75) 0%, transparent 100%)',
         }}>
-          <p style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 300, fontSize: '0.58rem', letterSpacing: '0.26em', textTransform: 'uppercase', color: 'hsl(195 60% 65%)', margin: '0 0 0.3rem' }}>
+          <p style={{ fontFamily: 'var(--font-label)', fontWeight: 300, fontSize: '0.58rem', letterSpacing: '0.26em', textTransform: 'uppercase', color: 'hsl(195 60% 65%)', margin: '0 0 0.3rem' }}>
             {category}
           </p>
-          <p style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 300, fontSize: 'clamp(0.9rem, 1.5vw, 1.05rem)', letterSpacing: '-0.02em', color: '#fff', margin: 0 }}>
+          <p style={{ fontFamily: 'var(--font-label)', fontWeight: 300, fontSize: 'clamp(0.9rem, 1.5vw, 1.05rem)', letterSpacing: '-0.02em', color: '#fff', margin: 0 }}>
             {title}
           </p>
         </div>
@@ -283,7 +283,7 @@ function ProjectCard({
         }}
       >
         <p style={{
-          fontFamily: "'Inter', system-ui, sans-serif",
+          fontFamily: 'var(--font-label)',
           fontWeight: 300,
           fontSize: '0.58rem',
           letterSpacing: '0.28em',
@@ -294,7 +294,7 @@ function ProjectCard({
           {project.category} — {project.year}
         </p>
         <h3 style={{
-          fontFamily: "'Inter', system-ui, sans-serif",
+          fontFamily: 'var(--font-heading)',
           fontWeight: 300,
           fontSize: 'clamp(0.9rem, 1.5vw, 1.1rem)',
           lineHeight: 1.25,
@@ -346,7 +346,7 @@ function WorkCTA() {
         <p
           style={{
             ...item(0),
-            fontFamily: "'Inter', system-ui, sans-serif",
+            fontFamily: 'var(--font-label)',
             fontWeight: 300,
             fontSize: '0.58rem',
             letterSpacing: '0.34em',
@@ -362,7 +362,7 @@ function WorkCTA() {
         <h2
           style={{
             ...item(140),
-            fontFamily: "'Inter', system-ui, sans-serif",
+            fontFamily: 'var(--font-heading)',
             fontWeight: 300,
             fontSize: 'clamp(2.2rem, 5.5vw, 4.4rem)',
             lineHeight: 1.07,
@@ -373,7 +373,7 @@ function WorkCTA() {
         >
           Let&apos;s build work{' '}
           <em style={{
-            fontFamily: "'Instrument Serif', Georgia, serif",
+            fontFamily: 'var(--font-accent)',
             fontStyle: 'italic',
             fontWeight: 400,
             color: 'hsl(0 0% 62%)',
@@ -398,7 +398,7 @@ function WorkCTA() {
         <p
           style={{
             ...item(280),
-            fontFamily: "'Inter', system-ui, sans-serif",
+            fontFamily: 'var(--font-body)',
             fontWeight: 300,
             fontSize: 'clamp(0.88rem, 1.4vw, 1rem)',
             lineHeight: 1.9,
@@ -433,7 +433,7 @@ function WorkCTA() {
               borderRadius: '999px',
               background: btnHover ? 'hsl(0 0% 92%)' : '#fff',
               color: '#050e10',
-              fontFamily: "'Inter', system-ui, sans-serif",
+              fontFamily: 'var(--font-body)',
               fontWeight: 400,
               fontSize: 'clamp(0.85rem, 1.3vw, 0.96rem)',
               letterSpacing: '0.01em',
@@ -455,7 +455,7 @@ function WorkCTA() {
             onMouseEnter={() => setEmailHover(true)}
             onMouseLeave={() => setEmailHover(false)}
             style={{
-              fontFamily: "'Inter', system-ui, sans-serif",
+              fontFamily: 'var(--font-label)',
               fontWeight: 300,
               fontSize: 'clamp(0.82rem, 1.2vw, 0.9rem)',
               letterSpacing: '0.02em',
@@ -503,7 +503,7 @@ function WorkCTA() {
             }} />
           </span>
           <span style={{
-            fontFamily: "'Inter', system-ui, sans-serif",
+            fontFamily: 'var(--font-label)',
             fontWeight: 300,
             fontSize: '0.75rem',
             letterSpacing: '0.06em',
@@ -573,7 +573,7 @@ function WorkTestimonial() {
         {/* Quote */}
         <blockquote
           style={{
-            fontFamily: "'Instrument Serif', Georgia, serif",
+            fontFamily: 'var(--font-accent)',
             fontStyle: 'italic',
             fontWeight: 400,
             fontSize: 'clamp(1.7rem, 4vw, 3.4rem)',
@@ -601,7 +601,7 @@ function WorkTestimonial() {
           }}
         >
           <p style={{
-            fontFamily: "'Inter', system-ui, sans-serif",
+            fontFamily: 'var(--font-body)',
             fontWeight: 300,
             fontSize: 'clamp(0.9rem, 1.4vw, 1.05rem)',
             letterSpacing: '0.01em',
@@ -611,7 +611,7 @@ function WorkTestimonial() {
             Amira Hassan
           </p>
           <p style={{
-            fontFamily: "'Inter', system-ui, sans-serif",
+            fontFamily: 'var(--font-label)',
             fontWeight: 300,
             fontSize: 'clamp(0.78rem, 1.1vw, 0.88rem)',
             letterSpacing: '0.06em',
@@ -687,7 +687,7 @@ function PhilosophyRow({
       {/* Number */}
       <span
         style={{
-          fontFamily: "'Inter', system-ui, sans-serif",
+          fontFamily: 'var(--font-label)',
           fontWeight: 300,
           fontSize: '0.72rem',
           letterSpacing: '0.06em',
@@ -715,7 +715,7 @@ function PhilosophyRow({
         />
         <h3
           style={{
-            fontFamily: "'Inter', system-ui, sans-serif",
+            fontFamily: 'var(--font-heading)',
             fontWeight: 300,
             fontSize: 'clamp(0.95rem, 1.6vw, 1.12rem)',
             lineHeight: 1.3,
@@ -729,7 +729,7 @@ function PhilosophyRow({
         </h3>
         <p
           style={{
-            fontFamily: "'Inter', system-ui, sans-serif",
+            fontFamily: 'var(--font-body)',
             fontWeight: 300,
             fontSize: 'clamp(0.82rem, 1.25vw, 0.92rem)',
             lineHeight: 1.85,
@@ -799,7 +799,7 @@ function ProjectPhilosophy() {
           {/* Label */}
           <p
             style={{
-              fontFamily: "'Inter', system-ui, sans-serif",
+              fontFamily: 'var(--font-label)',
               fontWeight: 300,
               fontSize: '0.58rem',
               letterSpacing: '0.34em',
@@ -814,7 +814,7 @@ function ProjectPhilosophy() {
           {/* Headline */}
           <h2
             style={{
-              fontFamily: "'Inter', system-ui, sans-serif",
+              fontFamily: 'var(--font-heading)',
               fontWeight: 300,
               fontSize: 'clamp(1.8rem, 3.6vw, 3.1rem)',
               lineHeight: 1.1,
@@ -826,7 +826,7 @@ function ProjectPhilosophy() {
             We don&apos;t just make things look{' '}
             <em
               style={{
-                fontFamily: "'Instrument Serif', Georgia, serif",
+                fontFamily: 'var(--font-accent)',
                 fontStyle: 'italic',
                 fontWeight: 400,
                 color: 'hsl(0 0% 58%)',
@@ -838,7 +838,7 @@ function ProjectPhilosophy() {
             we build visual systems with{' '}
             <em
               style={{
-                fontFamily: "'Instrument Serif', Georgia, serif",
+                fontFamily: 'var(--font-accent)',
                 fontStyle: 'italic',
                 fontWeight: 400,
                 color: 'hsl(0 0% 58%)',
@@ -864,7 +864,7 @@ function ProjectPhilosophy() {
           {/* Paragraph */}
           <p
             style={{
-              fontFamily: "'Inter', system-ui, sans-serif",
+              fontFamily: 'var(--font-body)',
               fontWeight: 300,
               fontSize: 'clamp(0.88rem, 1.4vw, 1rem)',
               lineHeight: 1.9,
@@ -959,7 +959,7 @@ function WorkGallery() {
           }}
         >
           <p style={{
-            fontFamily: "'Inter', system-ui, sans-serif",
+            fontFamily: 'var(--font-label)',
             fontWeight: 300,
             fontSize: '0.58rem',
             letterSpacing: '0.36em',
@@ -971,7 +971,7 @@ function WorkGallery() {
           </p>
 
           <h1 style={{
-            fontFamily: "'Inter', system-ui, sans-serif",
+            fontFamily: 'var(--font-heading)',
             fontWeight: 300,
             fontSize: 'clamp(2rem, 4.2vw, 3.6rem)',
             lineHeight: 1.08,
@@ -981,7 +981,7 @@ function WorkGallery() {
           }}>
             Campaigns crafted to look premium,{' '}
             <em style={{
-              fontFamily: "'Instrument Serif', Georgia, serif",
+              fontFamily: 'var(--font-accent)',
               fontStyle: 'italic',
               fontWeight: 400,
               color: 'hsl(0 0% 58%)',
@@ -994,7 +994,7 @@ function WorkGallery() {
           <div aria-hidden="true" style={{ width: '2.5rem', height: '1px', background: 'hsl(195 80% 55% / 0.35)', marginBottom: '1.6rem' }} />
 
           <p style={{
-            fontFamily: "'Inter', system-ui, sans-serif",
+            fontFamily: 'var(--font-body)',
             fontWeight: 300,
             fontSize: 'clamp(0.86rem, 1.35vw, 0.98rem)',
             lineHeight: 1.9,
@@ -1202,7 +1202,7 @@ export default function ImageShowcase() {
         heading={<>
           Ready to{' '}
           <em style={{
-            fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400,
+            fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400,
             background: 'linear-gradient(90deg, #FFFFFF 0%, #7DDCFF 45%, #B7AEFF 100%)',
             WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
             color: 'transparent',

@@ -80,7 +80,7 @@ export default function About() { // no diagonal lines bg
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, ease: E }}
-              className="text-xs uppercase tracking-widest text-accent-cyan/70"
+              className="font-label text-xs uppercase tracking-widest text-accent-cyan/70"
             >
               About Weavy
             </motion.p>
@@ -91,7 +91,7 @@ export default function About() { // no diagonal lines bg
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.65, delay: 0.07, ease: E }}
-              className="text-4xl md:text-5xl lg:text-[3.25rem] font-light tracking-tighter leading-[1.1] text-primary"
+              className="font-heading text-4xl md:text-5xl lg:text-[3.25rem] font-medium tracking-tighter leading-[1.1] text-primary"
             >
               We make growing a business feel
               <br className="hidden sm:block" />
@@ -114,8 +114,8 @@ export default function About() { // no diagonal lines bg
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.65, delay: 0.13, ease: E }}
-              className="space-y-4 font-medium leading-relaxed"
-              style={{ fontSize: 'clamp(0.9rem, 1.15vw, 1.02rem)', color: '#CBD5E1', lineHeight: 1.8 }}
+              className="font-body space-y-4 font-normal leading-relaxed"
+              style={{ fontSize: 'clamp(16px, 1vw, 17px)', color: '#CBD5E1', lineHeight: 1.8 }}
             >
               <p>
                 Weavy is a London-based{' '}
@@ -297,8 +297,8 @@ export default function About() { // no diagonal lines bg
               >
                 {svc.num}
               </div>
-              <div className="font-semibold mb-2" style={{ fontSize: '1.15rem', color: '#F8FAFC' }}>{svc.label}</div>
-              <div className="font-medium leading-relaxed" style={{ fontSize: '0.94rem', color: '#B0BAC8' }}>
+              <div className="font-heading font-medium mb-2" style={{ fontSize: '1.15rem', color: '#F8FAFC' }}>{svc.label}</div>
+              <div className="font-body font-normal leading-relaxed" style={{ fontSize: '0.94rem', color: '#B0BAC8' }}>
                 {(() => {
                   const parts = svc.desc.split(svc.highlight)
                   return (

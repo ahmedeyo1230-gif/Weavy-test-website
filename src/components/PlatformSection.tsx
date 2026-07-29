@@ -120,10 +120,10 @@ function ModuleCard({ mod, index }: { mod: typeof MODULES[number]; index: number
         <Icon type={mod.icon} color={mod.color} />
       </div>
 
-      <h3 className="font-sans font-light" style={{ fontSize: '1rem', color: mod.titleColor, marginBottom: '0.5rem', letterSpacing: '-0.01em' }}>
+      <h3 className="font-heading font-medium" style={{ fontSize: '17px', color: mod.titleColor, marginBottom: '0.5rem', letterSpacing: '-0.01em' }}>
         {mod.title}
       </h3>
-      <p className="font-sans font-light" style={{ fontSize: '0.9rem', lineHeight: 1.75, color: 'rgba(220,230,235,0.80)', opacity: 1 }}>
+      <p className="font-body font-normal" style={{ fontSize: '15px', lineHeight: 1.75, color: 'rgba(220,230,235,0.80)', opacity: 1 }}>
         {mod.desc}
       </p>
     </motion.div>
@@ -169,6 +169,7 @@ export default function PlatformSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.55, ease: E }}
+            className="font-label"
             style={{ fontSize: 'clamp(12px, calc(11.3px + 0.19vw), 14px)', letterSpacing: '0.32em', textTransform: 'uppercase', color: 'rgba(191, 239, 255, 0.72)', marginBottom: '1.3rem' }}
           >
             One Connected System
@@ -179,7 +180,7 @@ export default function PlatformSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.72, delay: 0.06, ease: E }}
-            className="font-sans font-light"
+            className="font-heading font-medium"
             style={{ fontSize: 'clamp(2rem, 4.4vw, 3.2rem)', lineHeight: 1.14, letterSpacing: '-0.032em', color: '#F8FAFC' }}
           >
             Everything working together, so your business runs better.
@@ -190,7 +191,7 @@ export default function PlatformSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.65, delay: 0.14, ease: E }}
-            className="font-sans font-light"
+            className="font-body font-normal"
             style={{ fontSize: 'clamp(0.92rem, 1.5vw, 1.05rem)', lineHeight: 1.8, color: 'rgba(220,230,235,0.82)', opacity: 1, marginTop: '1.3rem' }}
           >
             We connect your calls, messages, bookings, automations and CRM—helping you manage
@@ -215,7 +216,7 @@ export default function PlatformSection() {
           style={{ marginTop: 'clamp(2.5rem, 5vw, 3.5rem)' }}
         >
           <div aria-hidden="true" style={{ width: '2.5rem', height: 1, background: 'rgba(125,220,255,0.35)', margin: '0 auto 1.4rem' }} />
-          <p className="font-sans font-light" style={{ fontSize: 'clamp(0.95rem, 1.6vw, 1.15rem)', color: 'rgba(235,245,255,0.82)', letterSpacing: '-0.01em' }}>
+          <p className="font-body font-normal" style={{ fontSize: 'clamp(0.95rem, 1.6vw, 1.15rem)', color: 'rgba(235,245,255,0.82)', letterSpacing: '-0.01em' }}>
             We make everything work together, so running your business feels simpler.
           </p>
         </motion.div>

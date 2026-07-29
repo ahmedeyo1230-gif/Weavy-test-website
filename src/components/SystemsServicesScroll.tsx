@@ -247,7 +247,7 @@ const CSS = `
 }
 
 .ssp-heading {
-  font-family: 'Poppins', 'Inter', sans-serif;
+  font-family: var(--font-heading);
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.26em;
@@ -271,7 +271,7 @@ const CSS = `
   display: flex;
   align-items: center;
   gap: 18px;
-  font-family: 'Poppins', 'Inter', sans-serif;
+  font-family: var(--font-body);
   font-weight: 400;
   font-size: clamp(1.13rem, 2.8vw, 1.74rem);
   color: rgba(242,246,245,0.86);
@@ -362,7 +362,7 @@ const CSS = `
 }
 
 .ssp-closing {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-heading);
   font-weight: 300;
   font-size: clamp(1.9rem, 4.6vw, 3.4rem);
   line-height: 1.35;
@@ -382,7 +382,7 @@ const CSS = `
 }
 
 .ssp-scroll-cue-text {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-label);
   font-size: 0.8rem;
   font-weight: 600;
   letter-spacing: 0.24em;

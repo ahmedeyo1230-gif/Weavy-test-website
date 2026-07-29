@@ -230,7 +230,7 @@ export const Contact2 = ({
               <em
                 className="not-italic"
                 style={{
-                  fontFamily: "'Instrument Serif', Georgia, serif",
+                  fontFamily: 'var(--font-accent)',
                   fontStyle: "italic",
                   fontWeight: 400,
                 }}
@@ -431,7 +431,7 @@ export const Contact2 = ({
               className="font-light tracking-[-0.01em] text-white/35 mt-2"
               style={{ fontSize: "clamp(2rem, 4vw, 3.2rem)", lineHeight: 1.15 }}
             >
-              <em style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: "italic", fontWeight: 400 }}>
+              <em style={{ fontFamily: 'var(--font-accent)', fontStyle: "italic", fontWeight: 400 }}>
                 Designed to scale.
               </em>
             </p>
@@ -453,7 +453,7 @@ export const Contact2 = ({
         heading={<>
           Let's create something{' '}
           <em style={{
-            fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400,
+            fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400,
             background: 'linear-gradient(90deg, #FFFFFF 0%, #7DDCFF 45%, #B7AEFF 100%)',
             WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
             color: 'transparent',

@@ -373,7 +373,7 @@ function BespokeFollowUp() {
               color: 'hsl(0 0% 90%)', display: 'block', marginBottom: '0.04em',
             }}>Designed</p>
             <p style={{
-              fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400,
+              fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400,
               fontSize: 'clamp(3.8rem, 8.5vw, 7.5rem)',
               color: 'hsl(0 0% 44%)', display: 'block',
             }}>to convert.</p>
@@ -771,7 +771,7 @@ function BespokeCareStories() {
                 </span>
               ))}
               <em style={{ display: 'inline-block', overflow: 'hidden', verticalAlign: 'bottom', paddingBottom: '0.04em',
-                fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400 }}>
+                fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400 }}>
                 <span className="bcs-hword" style={{ display: 'inline-block', transform: 'translateY(110%)', opacity: 0,
                   background: 'linear-gradient(115deg, #F8FAFC 10%, #E8C97A 45%, #BFA45A 75%, #E8C97A 100%)',
                   WebkitBackgroundClip: 'text', backgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Human.</span>
@@ -832,7 +832,7 @@ function BespokeCareStories() {
                     opacity: 0.75, flexShrink: 0,
                   }}/>
                   <span style={{
-                    fontFamily: 'Inter, sans-serif', fontWeight: 300,
+                    fontFamily: 'var(--font-label)', fontWeight: 300,
                     fontSize: 'clamp(0.8rem, 1.2vw, 0.88rem)',
                     letterSpacing: '0.02em', color: '#D7DCE2',
                   }}>
@@ -949,7 +949,7 @@ function ZebraHeroVisual() {
         <p style={{ fontSize: '5.5px', letterSpacing: '0.30em', textTransform: 'uppercase', color: 'rgba(200,168,90,0.72)', marginBottom: '5px' }}>
           Consultant-Led Private Care
         </p>
-        <h3 style={{ fontSize: 'clamp(13px, 2vw, 18px)', fontWeight: 700, color: '#EDE0C4', lineHeight: 1.15, letterSpacing: '-0.02em', fontFamily: 'Georgia, serif', marginBottom: '6px', maxWidth: '72%' }}>
+        <h3 style={{ fontSize: 'clamp(13px, 2vw, 18px)', fontWeight: 700, color: '#EDE0C4', lineHeight: 1.15, letterSpacing: '-0.02em', fontFamily: 'var(--font-label)', marginBottom: '6px', maxWidth: '72%' }}>
           Exceptional care, centred around you.
         </h3>
         <p style={{ fontSize: '6.5px', color: 'rgba(210,222,222,0.62)', lineHeight: 1.5, maxWidth: '58%', marginBottom: '9px' }}>
@@ -1103,7 +1103,7 @@ function PrivateResidenceHero() {
           Private Residence · London
         </p>
         <div aria-hidden="true" style={{ width: '22px', height: '1px', background: 'rgba(200,168,90,0.55)', marginBottom: '6px' }} />
-        <h3 style={{ fontSize: 'clamp(11px, 1.7vw, 14px)', fontWeight: 700, color: '#EDE0C4', lineHeight: 1.12, letterSpacing: '-0.01em', fontFamily: 'Georgia, serif', marginBottom: '6px' }}>
+        <h3 style={{ fontSize: 'clamp(11px, 1.7vw, 14px)', fontWeight: 700, color: '#EDE0C4', lineHeight: 1.12, letterSpacing: '-0.01em', fontFamily: 'var(--font-label)', marginBottom: '6px' }}>
           FORMED BY LIGHT
         </h3>
         <span style={{ fontSize: '7px', color: 'rgba(228,208,168,0.72)', letterSpacing: '0.04em' }}>
@@ -1206,7 +1206,7 @@ function BespokeWebShowcase() {
           </p>
           <h2 className="bws-header font-sans" style={{ fontSize: 'clamp(1.9rem, 4vw, 3.2rem)', lineHeight: 1.1, letterSpacing: '-0.038em', fontWeight: 300, color: 'hsl(0 0% 94%)', marginBottom: '1.5rem' }}>
             Crafted to captivate,{' '}
-            <em style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400, color: 'hsl(41 62% 66%)' }}>
+            <em style={{ fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(41 62% 66%)' }}>
               built to perform.
             </em>
           </h2>
@@ -1335,7 +1335,7 @@ function BespokeWebShowcase() {
                     {/* Gold brand mark right side */}
                     <div style={{ position: 'absolute', top: '18%', right: '8%', width: '32%' }}>
                       <div style={{ height: '0.8px', background: 'rgba(205,172,95,0.72)', marginBottom: '5px', width: '80%' }} />
-                      <div style={{ fontSize: '5.5px', fontWeight: 700, letterSpacing: '0.22em', color: 'rgba(215,185,115,0.85)', fontFamily: 'Georgia, serif', marginBottom: '4px' }}>KAIROS</div>
+                      <div style={{ fontSize: '5.5px', fontWeight: 700, letterSpacing: '0.22em', color: 'rgba(215,185,115,0.85)', fontFamily: 'var(--font-label)', marginBottom: '4px' }}>KAIROS</div>
                       <div style={{ height: '0.5px', background: 'rgba(200,168,90,0.34)', width: '58%', marginBottom: '3px' }} />
                       <div style={{ height: '0.5px', background: 'rgba(200,168,90,0.18)', width: '44%' }} />
                     </div>
@@ -1441,7 +1441,7 @@ function BespokeWebShowcase() {
               {/* Nav */}
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '11px 22px', borderBottom: '1px solid rgba(200,168,90,0.07)' }}>
                 <div>
-                  <span style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.20em', color: '#C8A85A', fontFamily: 'Georgia, serif' }}>ZEBRA</span>
+                  <span style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.20em', color: '#C8A85A', fontFamily: 'var(--font-label)' }}>ZEBRA</span>
                   <span style={{ fontSize: '5.5px', letterSpacing: '0.24em', textTransform: 'uppercase', color: 'rgba(180,150,80,0.50)', display: 'block', marginTop: '-1px' }}>PRIVATE HEALTH</span>
                 </div>
                 <div style={{ display: 'flex', gap: '18px' }}>
@@ -1575,7 +1575,7 @@ function BespokeProcessTimeline() {
             }}
           >
             From idea to launch —{' '}
-            <em style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400 }}>
+            <em style={{ fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400 }}>
               built with precision
             </em>
           </h2>
@@ -1805,7 +1805,7 @@ function BespokeWebDesignShowcase() {
             }}>
               Premium websites built to{' '}
               <em style={{
-                fontFamily: "'Instrument Serif', Georgia, serif",
+                fontFamily: 'var(--font-accent)',
                 fontStyle: 'italic',
                 fontWeight: 400,
                 color: 'hsl(0 0% 68%)',
@@ -1972,7 +1972,7 @@ function BespokeRealUsers() {
             >
               Built to feel effortless from the{' '}
               <em style={{
-                fontFamily: "'Instrument Serif', Georgia, serif",
+                fontFamily: 'var(--font-accent)',
                 fontStyle: 'italic',
                 fontWeight: 400,
                 color: 'hsl(199 89% 74%)',
@@ -2273,7 +2273,7 @@ function ChatbotWhatsAppBusiness() {
               style={{ fontSize: 'clamp(2rem, 4.2vw, 3.4rem)', lineHeight: 1.1, letterSpacing: '-0.036em', color: 'hsl(0 0% 93%)', marginBottom: '1.8rem', maxWidth: '30rem' }}
             >
               WhatsApp Business chatbots that{' '}
-              <em style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400, color: 'hsl(142 60% 64%)' }}>
+              <em style={{ fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(142 60% 64%)' }}>
                 reply instantly.
               </em>
             </h2>
@@ -2399,7 +2399,7 @@ function ChatbotInstagramDM() {
               style={{ fontSize: 'clamp(2rem, 4.2vw, 3.4rem)', lineHeight: 1.1, letterSpacing: '-0.036em', color: 'hsl(0 0% 93%)', marginBottom: '1.8rem', maxWidth: '30rem' }}
             >
               Instagram DM automation that keeps{' '}
-              <em style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400, color: 'hsl(320 70% 72%)' }}>
+              <em style={{ fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(320 70% 72%)' }}>
                 conversations moving.
               </em>
             </h2>
@@ -2618,7 +2618,7 @@ function ChatbotFacebookMessenger() {
               style={{ fontSize: 'clamp(2rem, 4.2vw, 3.4rem)', lineHeight: 1.1, letterSpacing: '-0.036em', color: 'hsl(0 0% 93%)', marginBottom: '1.8rem', maxWidth: '30rem' }}
             >
               Facebook Messenger automation built for{' '}
-              <em style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400, color: 'hsl(215 85% 72%)' }}>
+              <em style={{ fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(215 85% 72%)' }}>
                 faster conversations.
               </em>
             </h2>
@@ -2771,7 +2771,7 @@ function ChatbotWorkflowSection() {
             }}
           >
             From first message to qualified lead —{' '}
-            <em style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400, color: 'hsl(199 89% 68%)' }}>
+            <em style={{ fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(199 89% 68%)' }}>
               automatically.
             </em>
           </h2>
@@ -2993,7 +2993,7 @@ function ChatbotIntegrationsSection() {
               }}
             >
               One automation system connected across every customer{' '}
-              <em style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400, color: 'hsl(199 89% 68%)' }}>
+              <em style={{ fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(199 89% 68%)' }}>
                 touchpoint.
               </em>
             </h2>
@@ -3228,7 +3228,7 @@ function ChatbotTikTokAutomation() {
             >
               TikTok automation built for faster{' '}
               <em style={{
-                fontFamily: "'Instrument Serif', Georgia, serif",
+                fontFamily: 'var(--font-accent)',
                 fontStyle: 'italic',
                 fontWeight: 400,
                 color: 'hsl(195 88% 72%)',
@@ -3675,7 +3675,7 @@ function SocialMediaMarketing() {
             style={{ opacity: 0, transform: 'translateY(28px)', fontSize: 'clamp(2.6rem, 6vw, 5rem)', lineHeight: 1.1, letterSpacing: '-0.04em' }}
           >
             <span style={{ display: 'block' }}>Social Media</span>
-            <em style={{ display: 'block', fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400, color: 'hsl(280 65% 72%)' }}>
+            <em style={{ display: 'block', fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(280 65% 72%)' }}>
               Marketing
             </em>
           </h2>
@@ -3782,7 +3782,7 @@ function SocialMediaMarketing() {
                 working together to{' '}
                 <em
                   style={{
-                    fontFamily: "'Instrument Serif', Georgia, serif",
+                    fontFamily: 'var(--font-accent)',
                     fontStyle: 'italic',
                     fontWeight: 400,
                     background: 'linear-gradient(108deg, hsl(199 89% 74%) 0%, hsl(240 60% 74%) 55%, hsl(280 65% 74%) 100%)',
@@ -4008,7 +4008,7 @@ function SocialMediaMarketing() {
             style={{ opacity: 0, transform: 'translateY(24px)', fontSize: 'clamp(1.8rem, 4vw, 3rem)', lineHeight: 1.08, letterSpacing: '-0.033em', maxWidth: '34rem' }}
           >
             Content backed by{' '}
-            <em style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400 }}>strategy</em>
+            <em style={{ fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400 }}>strategy</em>
           </h2>
         </div>
 
@@ -4318,7 +4318,7 @@ function SocialMediaMarketing() {
                     </span>
                   </span>
                 ))}
-                <em style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400, display: 'inline-block', overflow: 'hidden', verticalAlign: 'bottom', paddingBottom: '0.05em' }}>
+                <em style={{ fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400, display: 'inline-block', overflow: 'hidden', verticalAlign: 'bottom', paddingBottom: '0.05em' }}>
                   <span
                     className="smpr-hword"
                     style={{
@@ -4494,11 +4494,11 @@ function SocialMediaMarketing() {
                 boxShadow: '0 8px 28px -8px hsl(0 0% 0% / 0.6), 0 0 24px -8px hsl(199 89% 60% / 0.22)',
               }}
             >
-              <p className="font-sans" style={{ fontSize: '0.56rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: 'hsl(199 89% 65%)', marginBottom: '0.26rem', fontFamily: "'Poppins', sans-serif" }}>Conversion Lift</p>
-              <p className="font-sans font-light text-text" style={{ fontSize: '1.55rem', letterSpacing: '-0.036em', lineHeight: 1, fontFamily: "'Poppins', sans-serif" }}>
+              <p className="font-sans" style={{ fontSize: '0.56rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: 'hsl(199 89% 65%)', marginBottom: '0.26rem', fontFamily: 'var(--font-label)' }}>Conversion Lift</p>
+              <p className="font-sans font-light text-text" style={{ fontSize: '1.55rem', letterSpacing: '-0.036em', lineHeight: 1, fontFamily: 'var(--font-label)' }}>
                 <span className="smbs-num-val">3.8</span><span style={{ fontSize: '0.9rem', color: 'hsl(199 89% 60%)' }}>×</span>
               </p>
-              <p className="font-sans font-light" style={{ fontSize: '0.6rem', color: 'hsl(0 0% 36%)', marginTop: '0.2rem', fontFamily: "'Poppins', sans-serif" }}>avg. campaign lift</p>
+              <p className="font-sans font-light" style={{ fontSize: '0.6rem', color: 'hsl(0 0% 36%)', marginTop: '0.2rem', fontFamily: 'var(--font-label)' }}>avg. campaign lift</p>
             </div>
           </div>
 
@@ -4527,7 +4527,7 @@ function SocialMediaMarketing() {
                   opacity: 0, transform: 'translateY(16px)',
                   fontSize: '0.6rem', letterSpacing: '0.32em',
                   color: 'hsl(0 0% 32%)', fontWeight: 300,
-                  fontFamily: "'Poppins', sans-serif",
+                  fontFamily: 'var(--font-label)',
                 }}
               >
                 SECTION 05
@@ -4545,7 +4545,7 @@ function SocialMediaMarketing() {
                     </span>
                   </span>
                 ))}
-                <em style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400, display: 'inline-block', overflow: 'hidden', verticalAlign: 'bottom', paddingBottom: '0.05em' }}>
+                <em style={{ fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400, display: 'inline-block', overflow: 'hidden', verticalAlign: 'bottom', paddingBottom: '0.05em' }}>
                   <span
                     className="smbs-hword"
                     style={{
@@ -4573,7 +4573,7 @@ function SocialMediaMarketing() {
                   opacity: 0, transform: 'translateY(18px)',
                   fontSize: 'clamp(0.87rem, 1.35vw, 0.97rem)',
                   lineHeight: 1.9, color: '#F2F8FC', maxWidth: '34rem',
-                  fontFamily: "'Poppins', sans-serif",
+                  fontFamily: 'var(--font-label)',
                 }}
               >
                 We produce beauty and lifestyle visuals engineered for social performance — content
@@ -4588,7 +4588,7 @@ function SocialMediaMarketing() {
                   opacity: 0, transform: 'translateY(18px)',
                   fontSize: 'clamp(0.87rem, 1.35vw, 0.97rem)',
                   lineHeight: 1.9, color: '#F2F8FC', maxWidth: '34rem',
-                  fontFamily: "'Poppins', sans-serif",
+                  fontFamily: 'var(--font-label)',
                 }}
               >
                 From luxury skincare to high-end fragrance and cosmetics, every creative is
@@ -4615,7 +4615,7 @@ function SocialMediaMarketing() {
                       padding: '0.82rem 0',
                       cursor: 'default',
                       transition: 'color 0.25s ease',
-                      fontFamily: "'Poppins', sans-serif",
+                      fontFamily: 'var(--font-label)',
                     }}
                     onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = 'hsl(0 0% 86%)' }}
                     onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = '#F2F8FC' }}
@@ -4698,7 +4698,7 @@ function SocialMediaMarketing() {
                   </span>
                 </span>
               ))}
-              <em style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400, display: 'inline-block', overflow: 'hidden', verticalAlign: 'bottom', paddingBottom: '0.05em' }}>
+              <em style={{ fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400, display: 'inline-block', overflow: 'hidden', verticalAlign: 'bottom', paddingBottom: '0.05em' }}>
                 <span
                   className="s5cv-hword"
                   style={{
@@ -4726,7 +4726,7 @@ function SocialMediaMarketing() {
                 opacity: 0, transform: 'translateY(18px)',
                 fontSize: 'clamp(0.87rem, 1.35vw, 0.97rem)',
                 lineHeight: 1.9, color: '#F2F8FC', maxWidth: '34rem',
-                fontFamily: "'Poppins', sans-serif",
+                fontFamily: 'var(--font-label)',
               }}
             >
               We design campaign visuals that feel native to Instagram, TikTok, Facebook, and paid social
@@ -4741,7 +4741,7 @@ function SocialMediaMarketing() {
                 opacity: 0, transform: 'translateY(18px)',
                 fontSize: 'clamp(0.87rem, 1.35vw, 0.97rem)',
                 lineHeight: 1.9, color: '#F2F8FC', maxWidth: '34rem',
-                fontFamily: "'Poppins', sans-serif",
+                fontFamily: 'var(--font-label)',
               }}
             >
               From luxury product posts to scroll-stopping short-form visuals, we create assets that
@@ -4769,7 +4769,7 @@ function SocialMediaMarketing() {
                     padding: '0.82rem 0',
                     cursor: 'default',
                     transition: 'color 0.25s ease',
-                    fontFamily: "'Poppins', sans-serif",
+                    fontFamily: 'var(--font-label)',
                   }}
                   onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = 'hsl(0 0% 86%)' }}
                   onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = '#F2F8FC' }}
@@ -4838,7 +4838,7 @@ function SocialMediaMarketing() {
                   zIndex: 2,
                 }}>
                   <span style={{ width: 4, height: 4, borderRadius: '50%', background: 'hsl(199 89% 60%)', flexShrink: 0 }}/>
-                  <span style={{ fontSize: '0.55rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'hsl(199 89% 68%)', fontFamily: "'Poppins', sans-serif", fontWeight: 300 }}>
+                  <span style={{ fontSize: '0.55rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'hsl(199 89% 68%)', fontFamily: 'var(--font-label)', fontWeight: 300 }}>
                     Instagram
                   </span>
                 </div>
@@ -4895,7 +4895,7 @@ function SocialMediaMarketing() {
                   zIndex: 2,
                 }}>
                   <span style={{ width: 4, height: 4, borderRadius: '50%', background: 'hsl(280 65% 65%)', flexShrink: 0 }}/>
-                  <span style={{ fontSize: '0.55rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'hsl(280 65% 72%)', fontFamily: "'Poppins', sans-serif", fontWeight: 300 }}>
+                  <span style={{ fontSize: '0.55rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'hsl(280 65% 72%)', fontFamily: 'var(--font-label)', fontWeight: 300 }}>
                     TikTok
                   </span>
                 </div>
@@ -4974,7 +4974,7 @@ function SocialMediaMarketing() {
             >
               One campaign.{' '}
               <em style={{
-                fontFamily: "'Instrument Serif', Georgia, serif",
+                fontFamily: 'var(--font-accent)',
                 fontStyle: 'italic', fontWeight: 400,
                 color: 'hsl(0 0% 58%)',
               }}>
@@ -5175,7 +5175,7 @@ function SocialMediaMarketing() {
           >
             Why Brands{' '}
             <em style={{
-              fontFamily: "'Instrument Serif', Georgia, serif",
+              fontFamily: 'var(--font-accent)',
               fontStyle: 'italic',
               fontWeight: 400,
               color: 'hsl(0 0% 64%)',
@@ -5361,7 +5361,7 @@ function SocialMediaMarketing() {
       heading={<>
         Ready to grow your{' '}
         <em style={{
-          fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400,
+          fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400,
           background: 'linear-gradient(90deg, #FFFFFF 0%, #7DDCFF 45%, #B7AEFF 100%)',
           WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
           color: 'transparent',
@@ -5472,8 +5472,8 @@ function ChatbotMockup() {
                   </svg>
                 </div>
                 <div style={{ flex: 1 }}>
-                  <div style={{ fontSize: '0.84rem', color: 'hsl(0 0% 92%)', fontFamily: 'Inter,sans-serif', fontWeight: 300, letterSpacing: '-0.01em' }}>AI Assistant</div>
-                  <div style={{ fontSize: '0.67rem', fontFamily: 'Inter,sans-serif', display: 'flex', alignItems: 'center', gap: '5px', color: 'hsl(150 65% 52%)' }}>
+                  <div style={{ fontSize: '0.84rem', color: 'hsl(0 0% 92%)', fontFamily: 'var(--font-label)', fontWeight: 300, letterSpacing: '-0.01em' }}>AI Assistant</div>
+                  <div style={{ fontSize: '0.67rem', fontFamily: 'var(--font-label)', display: 'flex', alignItems: 'center', gap: '5px', color: 'hsl(150 65% 52%)' }}>
                     {/* Online dot — subtle pulse to simulate live connection */}
                     <span aria-hidden="true" style={{
                       width: '5px', height: '5px', borderRadius: '50%',
@@ -5496,7 +5496,7 @@ function ChatbotMockup() {
                 <div style={{ display: 'flex', gap: '9px', alignItems: 'flex-end' }}>
                   <div aria-hidden="true" style={{ width: '25px', height: '25px', borderRadius: '50%', background: 'linear-gradient(135deg, hsl(195 90% 55%), hsl(215 80% 46%))', flexShrink: 0 }}/>
                   <div style={{ background: 'hsl(215 22% 13%)', border: '1px solid hsl(0 0% 100% / 0.06)', borderRadius: '5px 14px 14px 14px', padding: '9px 13px', maxWidth: '80%' }}>
-                    <p style={{ fontSize: '0.77rem', color: 'hsl(0 0% 80%)', fontFamily: 'Inter,sans-serif', lineHeight: 1.65, margin: 0 }}>
+                    <p style={{ fontSize: '0.77rem', color: 'hsl(0 0% 80%)', fontFamily: 'var(--font-label)', lineHeight: 1.65, margin: 0 }}>
                       Hi! I'm your AI assistant, trained specifically for your business. How can I help?
                     </p>
                   </div>
@@ -5505,7 +5505,7 @@ function ChatbotMockup() {
                 {/* User message — fades in at phase 1 */}
                 <div style={{ display: 'flex', justifyContent: 'flex-end', ...msgAnim(showUser) }}>
                   <div style={{ background: 'linear-gradient(135deg, hsl(205 78% 40%), hsl(215 72% 33%))', borderRadius: '14px 5px 14px 14px', padding: '9px 13px', maxWidth: '80%' }}>
-                    <p style={{ fontSize: '0.77rem', color: 'hsl(0 0% 94%)', fontFamily: 'Inter,sans-serif', lineHeight: 1.65, margin: 0 }}>
+                    <p style={{ fontSize: '0.77rem', color: 'hsl(0 0% 94%)', fontFamily: 'var(--font-label)', lineHeight: 1.65, margin: 0 }}>
                       Can I book a consultation for Thursday?
                     </p>
                   </div>
@@ -5515,7 +5515,7 @@ function ChatbotMockup() {
                 <div style={{ display: 'flex', gap: '9px', alignItems: 'flex-end', ...msgAnim(showReply) }}>
                   <div aria-hidden="true" style={{ width: '25px', height: '25px', borderRadius: '50%', background: 'linear-gradient(135deg, hsl(195 90% 55%), hsl(215 80% 46%))', flexShrink: 0 }}/>
                   <div style={{ background: 'hsl(215 22% 13%)', border: '1px solid hsl(0 0% 100% / 0.06)', borderRadius: '5px 14px 14px 14px', padding: '9px 13px', maxWidth: '80%' }}>
-                    <p style={{ fontSize: '0.77rem', color: 'hsl(0 0% 80%)', fontFamily: 'Inter,sans-serif', lineHeight: 1.65, margin: 0 }}>
+                    <p style={{ fontSize: '0.77rem', color: 'hsl(0 0% 80%)', fontFamily: 'var(--font-label)', lineHeight: 1.65, margin: 0 }}>
                       Thursday works! I have 2 pm and 4 pm available — which suits you?
                     </p>
                   </div>
@@ -5546,7 +5546,7 @@ function ChatbotMockup() {
                 <div style={{
                   flex: 1, padding: '8px 13px', borderRadius: '18px',
                   background: 'hsl(215 18% 12%)', border: '1px solid hsl(0 0% 100% / 0.07)',
-                  fontSize: '0.75rem', color: 'hsl(0 0% 30%)', fontFamily: 'Inter,sans-serif',
+                  fontSize: '0.75rem', color: 'hsl(0 0% 30%)', fontFamily: 'var(--font-label)',
                   display: 'flex', alignItems: 'center',
                 }}>
                   Ask me anything…
@@ -5575,8 +5575,8 @@ function ChatbotMockup() {
         border: '1px solid hsl(150 60% 50% / 0.28)', borderRadius: '12px', padding: '10px 15px',
         animation: 'chatbot-float 5.5s ease-in-out 0.8s infinite, chatbot-card-glow-green 7s ease-in-out 1.5s infinite',
       }}>
-        <div style={{ fontSize: '0.58rem', color: 'hsl(0 0% 40%)', fontFamily: 'Inter,sans-serif', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '4px' }}>Response</div>
-        <div style={{ fontSize: '1.05rem', color: 'hsl(150 68% 54%)', fontFamily: 'Inter,sans-serif', fontWeight: 300, letterSpacing: '-0.02em' }}>{'< 0.8s'}</div>
+        <div style={{ fontSize: '0.58rem', color: 'hsl(0 0% 40%)', fontFamily: 'var(--font-label)', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '4px' }}>Response</div>
+        <div style={{ fontSize: '1.05rem', color: 'hsl(150 68% 54%)', fontFamily: 'var(--font-label)', fontWeight: 300, letterSpacing: '-0.02em' }}>{'< 0.8s'}</div>
       </div>
 
       <div aria-hidden="true" style={{
@@ -5585,8 +5585,8 @@ function ChatbotMockup() {
         border: '1px solid hsl(205 85% 62% / 0.28)', borderRadius: '12px', padding: '10px 15px',
         animation: 'chatbot-float 6s ease-in-out 0.3s infinite, chatbot-card-glow-blue 7s ease-in-out 4s infinite',
       }}>
-        <div style={{ fontSize: '0.58rem', color: 'hsl(0 0% 40%)', fontFamily: 'Inter,sans-serif', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '4px' }}>Satisfaction</div>
-        <div style={{ fontSize: '1.05rem', color: 'hsl(205 85% 62%)', fontFamily: 'Inter,sans-serif', fontWeight: 300, letterSpacing: '-0.02em' }}>97.4%</div>
+        <div style={{ fontSize: '0.58rem', color: 'hsl(0 0% 40%)', fontFamily: 'var(--font-label)', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '4px' }}>Satisfaction</div>
+        <div style={{ fontSize: '1.05rem', color: 'hsl(205 85% 62%)', fontFamily: 'var(--font-label)', fontWeight: 300, letterSpacing: '-0.02em' }}>97.4%</div>
       </div>
 
     </div>
@@ -5665,7 +5665,7 @@ function ChatbotHero() {
             style={{ lineHeight: 1.08, letterSpacing: '-0.04em' }}
           >
             <span style={{ display: 'block' }}>Custom</span>
-            <em style={{ display: 'block', fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400, color: 'hsl(195 80% 72%)' }}>
+            <em style={{ display: 'block', fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(195 80% 72%)' }}>
               Chatbot
             </em>
           </h2>
@@ -6021,7 +6021,7 @@ function GraphicDesignEditorial() {
               color: 'hsl(0 0% 90%)', display: 'block', marginBottom: '0.04em',
             }}>Motion that</p>
             <p style={{
-              fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400,
+              fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400,
               fontSize: 'clamp(3.8rem, 8.5vw, 7.5rem)',
               color: 'hsl(0 0% 44%)', display: 'block',
             }}>commands.</p>
@@ -6238,7 +6238,7 @@ function GraphicDesignServices() {
           }}
         >
           Every format.<br />
-          <em style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400, color: 'hsl(0 0% 36%)' }}>
+          <em style={{ fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(0 0% 36%)' }}>
             Every screen.
           </em>
         </h2>
@@ -6445,7 +6445,7 @@ function GraphicDesignSplitA() {
                 demand
               </p>
               <p style={{
-                fontFamily: "'Instrument Serif', Georgia, serif",
+                fontFamily: 'var(--font-accent)',
                 fontStyle: 'italic',
                 fontWeight: 400,
                 fontSize: 'clamp(3.2rem, 6.8vw, 6.4rem)',
@@ -6620,7 +6620,7 @@ function GraphicDesignSplitB() {
                 color: 'hsl(0 0% 92%)', display: 'block',
               }}>become</p>
               <p style={{
-                fontFamily: "'Instrument Serif', Georgia, serif",
+                fontFamily: 'var(--font-accent)',
                 fontStyle: 'italic', fontWeight: 400,
                 fontSize: 'clamp(3rem, 6.5vw, 6rem)',
                 color: 'hsl(0 0% 32%)', display: 'block',
@@ -6731,7 +6731,7 @@ function GraphicDesignSplitB() {
               color: 'hsl(0 0% 94%)', margin: 0, marginBottom: '0.7rem'
             }}>
               Where ideas become{' '}
-              <em style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400, color: 'hsl(0 0% 32%)' }}>
+              <em style={{ fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(0 0% 32%)' }}>
                 culture.
               </em>
             </h2>
@@ -6916,7 +6916,7 @@ function GraphicDesignFinalPresentation() {
             >
               Where Vision Becomes{' '}
               <em style={{
-                fontFamily: "'Instrument Serif', Georgia, serif",
+                fontFamily: 'var(--font-accent)',
                 fontStyle: 'italic', fontWeight: 400,
                 color: 'hsl(0 0% 48%)',
               }}>
@@ -7029,7 +7029,7 @@ function GraphicDesignFinalPresentation() {
                 }}>
                   <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse 65% 80% at 30% 50%, hsl(195 90% 55% / 0.13), transparent 68%)' }}/>
                   <span style={{
-                    fontFamily: "'Instrument Serif', Georgia, serif",
+                    fontFamily: 'var(--font-accent)',
                     fontStyle: 'italic', fontWeight: 400,
                     fontSize: '1.85rem', letterSpacing: '-0.03em',
                     color: 'hsl(0 0% 82%)', position: 'relative', zIndex: 1,
@@ -7055,7 +7055,7 @@ function GraphicDesignFinalPresentation() {
                 <div style={{ marginBottom: '18px' }}>
                   <span style={{ fontSize: '0.5rem', letterSpacing: '0.24em', color: 'hsl(0 0% 28%)', textTransform: 'uppercase', display: 'block', marginBottom: '7px' }}>Typeface</span>
                   <div style={{ display: 'flex', alignItems: 'baseline', gap: '10px' }}>
-                    <span style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontSize: '1.5rem', color: 'hsl(0 0% 68%)', lineHeight: 1 }}>Aa</span>
+                    <span style={{ fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontSize: '1.5rem', color: 'hsl(0 0% 68%)', lineHeight: 1 }}>Aa</span>
                     <span style={{ fontFamily: 'sans-serif', fontWeight: 300, fontSize: '0.75rem', color: 'hsl(0 0% 32%)' }}>Brand Sans Light</span>
                   </div>
                 </div>
@@ -7105,7 +7105,7 @@ function GraphicDesignFinalPresentation() {
                 position: 'relative', overflow: 'hidden',
               }}>
                 <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse at 40% 50%, hsl(195 80% 55% / 0.15), transparent 65%)' }}/>
-                <span style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontSize: '0.88rem', color: 'hsl(0 0% 58%)', position: 'relative', zIndex: 1 }}>campaign</span>
+                <span style={{ fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontSize: '0.88rem', color: 'hsl(0 0% 58%)', position: 'relative', zIndex: 1 }}>campaign</span>
               </div>
               <div style={{ padding: '7px 11px', display: 'flex', alignItems: 'center', gap: '10px' }}>
                 <span style={{ fontSize: '0.49rem', color: 'hsl(0 0% 40%)' }}>♥ 48.2K</span>
@@ -7184,7 +7184,7 @@ function GraphicDesignFinalPresentation() {
           }}>
             Where Vision Becomes{' '}
             <em style={{
-              fontFamily: "'Instrument Serif', Georgia, serif",
+              fontFamily: 'var(--font-accent)',
               fontStyle: 'italic', fontWeight: 400,
               color: 'hsl(0 0% 48%)',
             }}>
@@ -7338,7 +7338,7 @@ function GraphicDesignCTA() {
         >
           Let&apos;s create visuals that make your brand{' '}
           <em style={{
-            fontFamily: "'Instrument Serif', Georgia, serif",
+            fontFamily: 'var(--font-accent)',
             fontStyle: 'italic', fontWeight: 400,
             color: 'hsl(0 0% 52%)',
           }}>
@@ -7586,7 +7586,7 @@ function UGCHero() {
           <h2 className="ugch-r font-sans font-light" style={{ color: '#fff', fontSize: 'clamp(2rem, 5.8vw, 5rem)', lineHeight: 1.05, letterSpacing: '-0.04em', marginBottom: '1.6rem' }}>
             Real creators.<br/>
             Real{' '}
-            <em style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400, color: 'hsl(0 72% 70%)' }}>results.</em>
+            <em style={{ fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(0 72% 70%)' }}>results.</em>
           </h2>
 
           {/* Rule */}
@@ -7657,7 +7657,7 @@ function UGCHero() {
             <p className="ugce-r font-sans uppercase mb-5" style={{ fontSize: '0.64rem', letterSpacing: '0.34em', color: 'hsl(0 72% 60%)' }}>Why UGC Works</p>
             <h2 className="ugce-r font-sans font-light" style={{ color: '#fff', fontSize: 'clamp(2rem, 3.8vw, 3.1rem)', lineHeight: 1.08, letterSpacing: '-0.033em', marginBottom: '1.5rem' }}>
               People trust{' '}
-              <em style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400, color: 'hsl(0 72% 70%)' }}>people</em>,<br/>not brands.
+              <em style={{ fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(0 72% 70%)' }}>people</em>,<br/>not brands.
             </h2>
             <div className="ugce-r" aria-hidden="true" style={{ width: '2.5rem', height: 1, background: 'hsl(0 72% 58% / 0.4)', marginBottom: '1.5rem' }}/>
             <p className="ugce-r font-sans font-light" style={{ fontSize: 'clamp(0.88rem, 1.35vw, 1rem)', lineHeight: 1.92, color: '#F2F8FC', maxWidth: '32rem' }}>
@@ -7892,7 +7892,7 @@ function UGCCreatorSelection() {
                 style={{ color: '#fff', fontSize: 'clamp(2rem, 2.8vw, 3rem)', lineHeight: 1.05, letterSpacing: '-0.035em', marginBottom: '1.6rem' }}
               >
                 Creators chosen by{' '}
-                <em style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400, color: 'hsl(195 80% 72%)' }}>
+                <em style={{ fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(195 80% 72%)' }}>
                   data, not guesswork.
                 </em>
               </h2>
@@ -7920,7 +7920,7 @@ function UGCCreatorSelection() {
             style={{ letterSpacing: '-0.02em', margin: '0 0 0.5rem 0' }}
           >
             Creators chosen by{' '}
-            <em style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400, color: 'hsl(195 80% 72%)' }}>
+            <em style={{ fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(195 80% 72%)' }}>
               data, not guesswork.
             </em>
           </h2>
@@ -8041,7 +8041,7 @@ function UGCFindCreators() {
               }}
             >
               We find creators{' '}
-              <em style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400, color: 'hsl(195 80% 72%)' }}>
+              <em style={{ fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(195 80% 72%)' }}>
                 built for your brand.
               </em>
             </h2>
@@ -8353,7 +8353,7 @@ function UGCMonitoringReporting() {
               style={{ color: '#fff', fontSize: 'clamp(2rem, 5vw, 3rem)', lineHeight: 1.05, letterSpacing: '-0.035em', marginBottom: '1.6rem' }}
             >
               Every result,{' '}
-              <em style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400, color: 'hsl(195 80% 72%)' }}>
+              <em style={{ fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(195 80% 72%)' }}>
                 clearly reported.
               </em>
             </h2>
@@ -8576,7 +8576,7 @@ function UGCTrackingUrls() {
               style={{ color: '#fff', fontSize: 'clamp(1.9rem, 3.6vw, 3rem)', lineHeight: 1.08, letterSpacing: '-0.035em', marginBottom: '1.8rem' }}
             >
               Know exactly which creator,{' '}
-              <em style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400, color: 'hsl(160 65% 65%)' }}>
+              <em style={{ fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(160 65% 65%)' }}>
                 platform,
               </em>{' '}
               and placement is driving results.
@@ -8630,9 +8630,9 @@ function UGCTrackingUrls() {
                     className="ugctu-dot"
                     style={{ width: 6, height: 6, borderRadius: '50%', background: 'hsl(160 65% 52%)', boxShadow: '0 0 6px hsl(160 65% 52% / 0.7)', transformOrigin: 'center' }}
                   />
-                  <span style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 500, fontSize: '0.7rem', color: 'hsl(0 0% 78%)', letterSpacing: '-0.01em' }}>Campaign Analytics</span>
+                  <span style={{ fontFamily: 'var(--font-label)', fontWeight: 500, fontSize: '0.7rem', color: 'hsl(0 0% 78%)', letterSpacing: '-0.01em' }}>Campaign Analytics</span>
                 </div>
-                <span style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 300, fontSize: '0.6rem', color: 'hsl(0 0% 32%)', letterSpacing: '0.02em' }}>Last 30 days</span>
+                <span style={{ fontFamily: 'var(--font-label)', fontWeight: 300, fontSize: '0.6rem', color: 'hsl(0 0% 32%)', letterSpacing: '0.02em' }}>Last 30 days</span>
               </div>
 
               {/* Metric cards — numbers count up via ref */}
@@ -8643,12 +8643,12 @@ function UGCTrackingUrls() {
                     className="ugctu-card"
                     style={{ background: 'hsl(210 18% 9%)', border: '1px solid hsl(0 0% 100% / 0.07)', borderRadius: '0.6rem', padding: '10px 10px 8px' }}
                   >
-                    <p style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 300, fontSize: '0.52rem', color: 'hsl(0 0% 35%)', letterSpacing: '0.04em', textTransform: 'uppercase', marginBottom: '5px' }}>{label}</p>
+                    <p style={{ fontFamily: 'var(--font-label)', fontWeight: 300, fontSize: '0.52rem', color: 'hsl(0 0% 35%)', letterSpacing: '0.04em', textTransform: 'uppercase', marginBottom: '5px' }}>{label}</p>
                     <p
                       ref={el => { numRefs.current[i] = el }}
-                      style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 500, fontSize: '0.85rem', color: 'hsl(0 0% 90%)', letterSpacing: '-0.02em', lineHeight: 1, marginBottom: '5px' }}
+                      style={{ fontFamily: 'var(--font-label)', fontWeight: 500, fontSize: '0.85rem', color: 'hsl(0 0% 90%)', letterSpacing: '-0.02em', lineHeight: 1, marginBottom: '5px' }}
                     >—</p>
-                    <p style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 400, fontSize: '0.52rem', color: 'hsl(160 60% 52%)' }}>{delta}</p>
+                    <p style={{ fontFamily: 'var(--font-label)', fontWeight: 400, fontSize: '0.52rem', color: 'hsl(160 60% 52%)' }}>{delta}</p>
                   </div>
                 ))}
               </div>
@@ -8656,10 +8656,10 @@ function UGCTrackingUrls() {
               {/* Line chart — path draws in via stroke-dashoffset */}
               <div style={{ padding: '14px 18px 0' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-                  <span style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 400, fontSize: '0.6rem', color: 'hsl(0 0% 38%)', letterSpacing: '0.02em' }}>Click performance</span>
+                  <span style={{ fontFamily: 'var(--font-label)', fontWeight: 400, fontSize: '0.6rem', color: 'hsl(0 0% 38%)', letterSpacing: '0.02em' }}>Click performance</span>
                   <div style={{ display: 'flex', gap: '10px' }}>
                     {['Wk 1', 'Wk 2', 'Wk 3', 'Wk 4'].map(w => (
-                      <span key={w} style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 300, fontSize: '0.52rem', color: 'hsl(0 0% 28%)' }}>{w}</span>
+                      <span key={w} style={{ fontFamily: 'var(--font-label)', fontWeight: 300, fontSize: '0.52rem', color: 'hsl(0 0% 28%)' }}>{w}</span>
                     ))}
                   </div>
                 </div>
@@ -8695,18 +8695,18 @@ function UGCTrackingUrls() {
 
               {/* Bar chart — fills grow from left */}
               <div style={{ padding: '12px 18px 0' }}>
-                <span style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 400, fontSize: '0.6rem', color: 'hsl(0 0% 38%)', letterSpacing: '0.02em', display: 'block', marginBottom: '10px' }}>Creator performance</span>
+                <span style={{ fontFamily: 'var(--font-label)', fontWeight: 400, fontSize: '0.6rem', color: 'hsl(0 0% 38%)', letterSpacing: '0.02em', display: 'block', marginBottom: '10px' }}>Creator performance</span>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                   {UGCTU_BARS.map(({ name, val }, i) => (
                     <div key={name} style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                      <span className="ugctu-bar-name" style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 300, fontSize: '0.58rem', color: 'hsl(0 0% 40%)', width: '70px', flexShrink: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{name}</span>
+                      <span className="ugctu-bar-name" style={{ fontFamily: 'var(--font-label)', fontWeight: 300, fontSize: '0.58rem', color: 'hsl(0 0% 40%)', width: '70px', flexShrink: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{name}</span>
                       <div style={{ flex: 1, height: '4px', background: 'hsl(0 0% 100% / 0.06)', borderRadius: '2px', overflow: 'hidden' }}>
                         <div
                           ref={el => { barRefs.current[i] = el }}
                           style={{ height: '100%', width: '0%', background: 'linear-gradient(to right, hsl(160 65% 38%), hsl(160 65% 56%))', borderRadius: '2px' }}
                         />
                       </div>
-                      <span className="ugctu-bar-val" style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 300, fontSize: '0.54rem', color: 'hsl(0 0% 34%)', width: '56px', textAlign: 'right', flexShrink: 0 }}>{val}</span>
+                      <span className="ugctu-bar-val" style={{ fontFamily: 'var(--font-label)', fontWeight: 300, fontSize: '0.54rem', color: 'hsl(0 0% 34%)', width: '56px', textAlign: 'right', flexShrink: 0 }}>{val}</span>
                     </div>
                   ))}
                 </div>
@@ -8714,7 +8714,7 @@ function UGCTrackingUrls() {
 
               {/* Tracked placements — rows slide in */}
               <div style={{ padding: '14px 14px 16px' }}>
-                <span style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 400, fontSize: '0.6rem', color: 'hsl(0 0% 38%)', letterSpacing: '0.02em', display: 'block', marginBottom: '8px', paddingLeft: '4px' }}>Tracked placements</span>
+                <span style={{ fontFamily: 'var(--font-label)', fontWeight: 400, fontSize: '0.6rem', color: 'hsl(0 0% 38%)', letterSpacing: '0.02em', display: 'block', marginBottom: '8px', paddingLeft: '4px' }}>Tracked placements</span>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
                   {UGCTU_ROWS.map(({ platform, creator, status, color }, i) => (
                     <div
@@ -8729,10 +8729,10 @@ function UGCTrackingUrls() {
                       }}
                     >
                       <div>
-                        <p style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 400, fontSize: '0.64rem', color: 'hsl(0 0% 72%)', letterSpacing: '-0.01em', marginBottom: '2px' }}>{platform}</p>
-                        <p style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 300, fontSize: '0.56rem', color: 'hsl(0 0% 34%)' }}>{creator}</p>
+                        <p style={{ fontFamily: 'var(--font-label)', fontWeight: 400, fontSize: '0.64rem', color: 'hsl(0 0% 72%)', letterSpacing: '-0.01em', marginBottom: '2px' }}>{platform}</p>
+                        <p style={{ fontFamily: 'var(--font-label)', fontWeight: 300, fontSize: '0.56rem', color: 'hsl(0 0% 34%)' }}>{creator}</p>
                       </div>
-                      <span style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 400, fontSize: '0.54rem', color, letterSpacing: '0.05em', textTransform: 'uppercase' }}>{status}</span>
+                      <span style={{ fontFamily: 'var(--font-label)', fontWeight: 400, fontSize: '0.54rem', color, letterSpacing: '0.05em', textTransform: 'uppercase' }}>{status}</span>
                     </div>
                   ))}
                 </div>
@@ -8933,7 +8933,7 @@ function UGCPerfumeCampaign() {
                         fontSize: '0.82rem',
                         color: 'hsl(38 75% 65%)',
                         fontWeight: 500,
-                        fontFamily: "'Instrument Serif', Georgia, serif",
+                        fontFamily: 'var(--font-accent)',
                         fontStyle: 'italic',
                         letterSpacing: '-0.02em',
                       }}>A</span>
@@ -8941,14 +8941,14 @@ function UGCPerfumeCampaign() {
                   </div>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
                     {/* Display name — bold brand name */}
-                    <span style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 600, fontSize: '0.78rem', color: 'hsl(0 0% 94%)', letterSpacing: '-0.015em' }}>
+                    <span style={{ fontFamily: 'var(--font-label)', fontWeight: 600, fontSize: '0.78rem', color: 'hsl(0 0% 94%)', letterSpacing: '-0.015em' }}>
                       A'llure
                     </span>
                     {/* Username + sponsored */}
                     <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
-                      <span style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 300, fontSize: '0.6rem', color: 'hsl(0 0% 45%)', letterSpacing: '0.01em' }}>@allure.ugc</span>
+                      <span style={{ fontFamily: 'var(--font-label)', fontWeight: 300, fontSize: '0.6rem', color: 'hsl(0 0% 45%)', letterSpacing: '0.01em' }}>@allure.ugc</span>
                       <span style={{ width: '2px', height: '2px', borderRadius: '50%', background: 'hsl(0 0% 30%)', display: 'inline-block' }} />
-                      <span style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 300, fontSize: '0.6rem', color: 'hsl(0 0% 38%)', letterSpacing: '0.02em' }}>Sponsored</span>
+                      <span style={{ fontFamily: 'var(--font-label)', fontWeight: 300, fontSize: '0.6rem', color: 'hsl(0 0% 38%)', letterSpacing: '0.02em' }}>Sponsored</span>
                     </div>
                   </div>
                 </div>
@@ -8956,7 +8956,7 @@ function UGCPerfumeCampaign() {
                 <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                   <span
                     style={{
-                      fontFamily: "'Inter', system-ui, sans-serif",
+                      fontFamily: 'var(--font-label)',
                       fontWeight: 500, fontSize: '0.68rem',
                       color: 'hsl(207 85% 60%)',
                       letterSpacing: '-0.01em',
@@ -9038,17 +9038,17 @@ function UGCPerfumeCampaign() {
                   {/* Heart */}
                   <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '3px' }}>
                     <div style={{ color: 'hsl(0 0% 80%)', lineHeight: 0 }}><IgHeart /></div>
-                    <span style={{ fontFamily: "'Inter', sans-serif", fontSize: '0.5rem', color: '#F2F8FC', letterSpacing: '0.02em' }}>12.8K</span>
+                    <span style={{ fontFamily: 'var(--font-label)', fontSize: '0.5rem', color: '#F2F8FC', letterSpacing: '0.02em' }}>12.8K</span>
                   </div>
                   {/* Comment */}
                   <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '3px' }}>
                     <div style={{ color: 'hsl(0 0% 80%)', lineHeight: 0 }}><IgComment /></div>
-                    <span style={{ fontFamily: "'Inter', sans-serif", fontSize: '0.5rem', color: '#F2F8FC', letterSpacing: '0.02em' }}>348</span>
+                    <span style={{ fontFamily: 'var(--font-label)', fontSize: '0.5rem', color: '#F2F8FC', letterSpacing: '0.02em' }}>348</span>
                   </div>
                   {/* Share */}
                   <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '3px' }}>
                     <div style={{ color: 'hsl(0 0% 80%)', lineHeight: 0 }}><IgShare /></div>
-                    <span style={{ fontFamily: "'Inter', sans-serif", fontSize: '0.5rem', color: '#F2F8FC', letterSpacing: '0.02em' }}>Share</span>
+                    <span style={{ fontFamily: 'var(--font-label)', fontSize: '0.5rem', color: '#F2F8FC', letterSpacing: '0.02em' }}>Share</span>
                   </div>
                   {/* Save */}
                   <div style={{ color: 'hsl(0 0% 80%)', lineHeight: 0 }}><IgSave /></div>
@@ -9063,10 +9063,10 @@ function UGCPerfumeCampaign() {
                   borderTop: '1px solid hsl(0 0% 100% / 0.06)',
                 }}
               >
-                <p style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 500, fontSize: '0.66rem', color: 'hsl(0 0% 82%)', marginBottom: '3px', letterSpacing: '-0.01em' }}>
+                <p style={{ fontFamily: 'var(--font-label)', fontWeight: 500, fontSize: '0.66rem', color: 'hsl(0 0% 82%)', marginBottom: '3px', letterSpacing: '-0.01em' }}>
                   12.8K likes
                 </p>
-                <p style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 300, fontSize: '0.64rem', color: '#F2F8FC', lineHeight: 1.55, margin: 0 }}>
+                <p style={{ fontFamily: 'var(--font-label)', fontWeight: 300, fontSize: '0.64rem', color: '#F2F8FC', lineHeight: 1.55, margin: 0 }}>
                   <span style={{ fontWeight: 500, color: 'hsl(0 0% 82%)' }}>allure.ugc</span>
                   {' '}Unboxing a fragrance made for everyday elegance. Soft, polished, and impossible to ignore.
                 </p>
@@ -9104,7 +9104,7 @@ function UGCPerfumeCampaign() {
               style={{ color: '#fff', fontSize: 'clamp(1.8rem, 3.4vw, 2.8rem)', lineHeight: 1.1, letterSpacing: '-0.033em', marginBottom: '1.6rem' }}
             >
               Product storytelling that feels{' '}
-              <em style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400, color: 'hsl(38 75% 68%)' }}>
+              <em style={{ fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(38 75% 68%)' }}>
                 real, polished,
               </em>{' '}
               and ready to convert.
@@ -9274,7 +9274,7 @@ function UGCPerformanceSystem() {
             >
               Content that looks real, feels premium,{' '}
               <em style={{
-                fontFamily: "'Instrument Serif', Georgia, serif",
+                fontFamily: 'var(--font-accent)',
                 fontStyle: 'italic',
                 fontWeight: 400,
                 color: 'hsl(0 0% 60%)',
@@ -9925,7 +9925,7 @@ export default function Services() {
             }}
           >
             Our{' '}
-            <em style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400 }}>
+            <em style={{ fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400 }}>
               Services
             </em>
           </h2>
@@ -10044,7 +10044,7 @@ export default function Services() {
               <span style={{ display: 'block' }}>Built for your brand.</span>
               <em style={{
                 display: 'block',
-                fontFamily: "'Instrument Serif', Georgia, serif",
+                fontFamily: 'var(--font-accent)',
                 fontStyle: 'italic',
                 fontWeight: 400,
                 color: 'hsl(205 85% 74%)',
@@ -10139,7 +10139,7 @@ export default function Services() {
               >
                 Bespoke{' '}
                 <em style={{
-                  fontFamily: "'Instrument Serif', Georgia, serif",
+                  fontFamily: 'var(--font-accent)',
                   fontStyle: 'italic',
                   fontWeight: 400,
                   background: 'linear-gradient(115deg, #F8FAFC 5%, #A7F3D0 30%, #2DD4BF 60%, #0F766E 100%)',
@@ -10393,7 +10393,7 @@ export default function Services() {
                     className="bwdc-hword"
                     style={{
                       display: 'inline-block', transform: 'translateY(110%)', opacity: 0,
-                      fontFamily: "'Instrument Serif', Georgia, serif",
+                      fontFamily: 'var(--font-accent)',
                       fontStyle: 'italic', fontWeight: 400,
                       color: 'hsl(36 50% 74%)',
                     }}
@@ -10581,7 +10581,7 @@ export default function Services() {
         heading={<>
           Ready to{' '}
           <em style={{
-            fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400,
+            fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400,
             background: 'linear-gradient(90deg, #FFFFFF 0%, #7DDCFF 45%, #B7AEFF 100%)',
             WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
             color: 'transparent',
@@ -10643,7 +10643,7 @@ export default function Services() {
                 style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)', lineHeight: 1.1, letterSpacing: '-0.035em' }}
               >
                 Custom Chatbot{' '}
-                <em style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400 }}>
+                <em style={{ fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400 }}>
                   for Websites
                 </em>
               </h2>
@@ -10848,7 +10848,7 @@ export default function Services() {
             aria-hidden="true"
             className="mb-8 select-none"
             style={{
-              fontFamily: "'Instrument Serif', Georgia, serif",
+              fontFamily: 'var(--font-accent)',
               fontSize: 'clamp(3rem, 6vw, 5rem)',
               lineHeight: 1,
               color: 'hsl(199 89% 60% / 0.35)',
@@ -10901,7 +10901,7 @@ export default function Services() {
         heading={<>
           Ready to{' '}
           <em style={{
-            fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400,
+            fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400,
             background: 'linear-gradient(90deg, #FFFFFF 0%, #7DDCFF 45%, #B7AEFF 100%)',
             WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
             color: 'transparent',
@@ -10950,7 +10950,7 @@ export default function Services() {
             style={{ fontSize: 'clamp(2rem, 5vw, 3.4rem)', lineHeight: 1.08, letterSpacing: '-0.035em' }}
           >
             Social Media{' '}
-            <em style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400 }}>
+            <em style={{ fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400 }}>
               Marketing
             </em>
           </h2>
@@ -11046,7 +11046,7 @@ export default function Services() {
           heading={<>
             Ready to{' '}
             <em style={{
-              fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400,
+              fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400,
               background: 'linear-gradient(90deg, #FFFFFF 0%, #7DDCFF 45%, #B7AEFF 100%)',
               WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
               color: 'transparent',
@@ -11078,7 +11078,7 @@ export default function Services() {
           heading={<>
             Ready to{' '}
             <em style={{
-              fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400,
+              fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400,
               background: 'linear-gradient(90deg, #FFFFFF 0%, #7DDCFF 45%, #B7AEFF 100%)',
               WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
               color: 'transparent',

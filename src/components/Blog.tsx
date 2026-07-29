@@ -125,7 +125,7 @@ function ArticleDetail({
           cursor: 'pointer',
           padding: 0,
           marginBottom: 'clamp(2.5rem, 5vw, 4rem)',
-          fontFamily: "'Inter', system-ui, sans-serif",
+          fontFamily: 'var(--font-label)',
           fontWeight: 300,
           fontSize: '0.78rem',
           letterSpacing: '0.04em',
@@ -156,7 +156,7 @@ function ArticleDetail({
       >
         <span
           style={{
-            fontFamily: "'Inter', system-ui, sans-serif",
+            fontFamily: 'var(--font-label)',
             fontWeight: 300,
             fontSize: '0.56rem',
             letterSpacing: '0.34em',
@@ -176,7 +176,7 @@ function ArticleDetail({
         />
         <span
           style={{
-            fontFamily: "'Inter', system-ui, sans-serif",
+            fontFamily: 'var(--font-label)',
             fontWeight: 300,
             fontSize: '0.66rem',
             color: 'hsl(0 0% 54%)',
@@ -190,7 +190,7 @@ function ArticleDetail({
       {/* Title */}
       <h1
         style={{
-          fontFamily: "'Inter', system-ui, sans-serif",
+          fontFamily: 'var(--font-heading)',
           fontWeight: 300,
           fontSize: 'clamp(1.9rem, 4.5vw, 3.6rem)',
           lineHeight: 1.08,
@@ -231,7 +231,7 @@ function ArticleDetail({
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.15 + i * 0.1, ease: E }}
             style={{
-              fontFamily: "'Inter', system-ui, sans-serif",
+              fontFamily: 'var(--font-body)',
               fontWeight: 300,
               fontSize: 'clamp(0.95rem, 1.6vw, 1.08rem)',
               lineHeight: 1.95,
@@ -265,7 +265,7 @@ function ArticleDetail({
           cursor: 'pointer',
           padding: 0,
           marginTop: '2rem',
-          fontFamily: "'Inter', system-ui, sans-serif",
+          fontFamily: 'var(--font-label)',
           fontWeight: 300,
           fontSize: '0.78rem',
           letterSpacing: '0.04em',
@@ -298,7 +298,7 @@ function BlogHeader() {
         viewport={{ once: true, margin: '-60px' }}
         transition={{ duration: 0.6, ease: E }}
         style={{
-          fontFamily: "'Inter', system-ui, sans-serif",
+          fontFamily: 'var(--font-label)',
           fontWeight: 300,
           fontSize: '0.65rem',
           letterSpacing: '0.32em',
@@ -316,7 +316,7 @@ function BlogHeader() {
         viewport={{ once: true, margin: '-60px' }}
         transition={{ duration: 0.9, delay: 0.07, ease: E }}
         style={{
-          fontFamily: "'Inter', system-ui, sans-serif",
+          fontFamily: 'var(--font-heading)',
           fontWeight: 300,
           fontSize: 'clamp(2.2rem, 5.2vw, 4.4rem)',
           lineHeight: 1.08,
@@ -329,7 +329,7 @@ function BlogHeader() {
         Ideas for brands building{' '}
         <em
           style={{
-            fontFamily: "'Instrument Serif', Georgia, serif",
+            fontFamily: 'var(--font-accent)',
             fontStyle: 'italic',
             fontWeight: 400,
             color: 'hsl(0 0% 68%)',
@@ -345,7 +345,7 @@ function BlogHeader() {
         viewport={{ once: true, margin: '-60px' }}
         transition={{ duration: 0.8, delay: 0.17, ease: E }}
         style={{
-          fontFamily: "'Inter', system-ui, sans-serif",
+          fontFamily: 'var(--font-body)',
           fontWeight: 300,
           fontSize: 'clamp(0.88rem, 1.4vw, 1rem)',
           lineHeight: 1.9,
@@ -446,27 +446,27 @@ function FeaturedArticle({ onRead }: { onRead: () => void }) {
       <div style={{ padding: 'clamp(2rem, 4.5vw, 3.5rem)', display: 'grid', gridTemplateColumns: '1fr auto', gap: '2rem', alignItems: 'end' }}>
       <div style={{ display: 'flex', flexDirection: 'column', gap: '1.6rem' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-          <span style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 300, fontSize: '0.56rem', letterSpacing: '0.32em', textTransform: 'uppercase', color: 'rgba(125, 220, 255, 0.82)' }}>
+          <span style={{ fontFamily: 'var(--font-label)', fontWeight: 300, fontSize: '0.56rem', letterSpacing: '0.32em', textTransform: 'uppercase', color: 'rgba(125, 220, 255, 0.82)' }}>
             {FEATURED.category}
           </span>
           <span style={{ display: 'inline-block', width: 1, height: 10, background: 'hsl(0 0% 100% / 0.12)' }} />
-          <span style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 300, fontSize: '0.66rem', color: 'rgba(200, 215, 225, 0.55)', letterSpacing: '0.05em' }}>
+          <span style={{ fontFamily: 'var(--font-label)', fontWeight: 300, fontSize: '0.66rem', color: 'rgba(200, 215, 225, 0.55)', letterSpacing: '0.05em' }}>
             {FEATURED.readTime}
           </span>
         </div>
 
-        <h2 style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 300, fontSize: 'clamp(1.8rem, 4.2vw, 3.6rem)', lineHeight: 1.08, letterSpacing: '-0.04em', color: '#fff', maxWidth: '44rem', margin: 0 }}>
+        <h2 style={{ fontFamily: 'var(--font-heading)', fontWeight: 300, fontSize: 'clamp(1.8rem, 4.2vw, 3.6rem)', lineHeight: 1.08, letterSpacing: '-0.04em', color: '#fff', maxWidth: '44rem', margin: 0 }}>
           {FEATURED.title}
         </h2>
 
         <div style={{ width: hovered ? '3.5rem' : '2.2rem', height: '1px', background: 'hsl(195 70% 55% / 0.45)', transition: 'width 0.45s ease' }} />
 
-        <p style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 300, fontSize: 'clamp(0.88rem, 1.45vw, 1.02rem)', lineHeight: 1.88, color: 'rgba(220, 232, 240, 0.72)', maxWidth: '42rem', margin: 0 }}>
+        <p style={{ fontFamily: 'var(--font-body)', fontWeight: 300, fontSize: 'clamp(0.88rem, 1.45vw, 1.02rem)', lineHeight: 1.88, color: 'rgba(220, 232, 240, 0.72)', maxWidth: '42rem', margin: 0 }}>
           {FEATURED.excerpt}
         </p>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.55rem' }}>
-          <span style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 300, fontSize: '0.76rem', letterSpacing: '0.05em', color: hovered ? 'hsl(195 80% 68%)' : 'rgba(235, 245, 255, 0.76)', borderBottom: `1px solid ${hovered ? 'hsl(195 70% 55% / 0.5)' : 'hsl(0 0% 100% / 0.1)'}`, paddingBottom: '2px', textShadow: '0 0 10px rgba(125, 220, 255, 0.10)', transition: 'color 0.32s ease, border-color 0.32s ease' }}>
+          <span style={{ fontFamily: 'var(--font-label)', fontWeight: 300, fontSize: '0.76rem', letterSpacing: '0.05em', color: hovered ? 'hsl(195 80% 68%)' : 'rgba(235, 245, 255, 0.76)', borderBottom: `1px solid ${hovered ? 'hsl(195 70% 55% / 0.5)' : 'hsl(0 0% 100% / 0.1)'}`, paddingBottom: '2px', textShadow: '0 0 10px rgba(125, 220, 255, 0.10)', transition: 'color 0.32s ease, border-color 0.32s ease' }}>
             Read article
           </span>
           <span style={{ fontSize: '0.82rem', color: hovered ? 'hsl(195 80% 68%)' : 'hsl(0 0% 30%)', display: 'inline-block', transition: 'color 0.32s ease, transform 0.32s ease', transform: hovered ? 'translateX(5px)' : 'translateX(0)' }}>
@@ -475,7 +475,7 @@ function FeaturedArticle({ onRead }: { onRead: () => void }) {
         </div>
       </div>
 
-      <span aria-hidden="true" style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontSize: 'clamp(6rem, 14vw, 14rem)', lineHeight: 1, letterSpacing: '-0.06em', color: hovered ? 'rgba(125, 220, 255, 0.14)' : 'rgba(125, 220, 255, 0.10)', userSelect: 'none', transition: 'color 0.4s ease', alignSelf: 'center' }}>
+      <span aria-hidden="true" style={{ fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontSize: 'clamp(6rem, 14vw, 14rem)', lineHeight: 1, letterSpacing: '-0.06em', color: hovered ? 'rgba(125, 220, 255, 0.14)' : 'rgba(125, 220, 255, 0.10)', userSelect: 'none', transition: 'color 0.4s ease', alignSelf: 'center' }}>
         {FEATURED.num}
       </span>
       </div>{/* close content wrapper */}
@@ -549,32 +549,32 @@ function ArticleCard({
       {/* Text content */}
       <div style={{ padding: 'clamp(1.4rem, 2.5vw, 2rem)', display: 'flex', flexDirection: 'column', gap: '1.1rem', flex: 1 }}>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <span style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 300, fontSize: '0.54rem', letterSpacing: '0.32em', textTransform: 'uppercase', color: 'rgba(125, 220, 255, 0.82)' }}>
+        <span style={{ fontFamily: 'var(--font-label)', fontWeight: 300, fontSize: '0.54rem', letterSpacing: '0.32em', textTransform: 'uppercase', color: 'rgba(125, 220, 255, 0.82)' }}>
           {article.category}
         </span>
-        <span aria-hidden="true" style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontSize: 'clamp(2.4rem, 4vw, 3.6rem)', lineHeight: 1, letterSpacing: '-0.05em', color: hovered ? 'rgba(125, 220, 255, 0.14)' : 'rgba(125, 220, 255, 0.10)', userSelect: 'none', transition: 'color 0.4s ease' }}>
+        <span aria-hidden="true" style={{ fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontSize: 'clamp(2.4rem, 4vw, 3.6rem)', lineHeight: 1, letterSpacing: '-0.05em', color: hovered ? 'rgba(125, 220, 255, 0.14)' : 'rgba(125, 220, 255, 0.10)', userSelect: 'none', transition: 'color 0.4s ease' }}>
           {article.num}
         </span>
       </div>
 
       <div style={{ height: '1px', background: 'hsl(0 0% 100% / 0.06)' }} />
 
-      <h3 style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 300, fontSize: 'clamp(1.05rem, 1.85vw, 1.25rem)', lineHeight: 1.24, letterSpacing: '-0.028em', color: hovered ? '#fff' : 'hsl(0 0% 88%)', transition: 'color 0.32s ease', margin: 0 }}>
+      <h3 style={{ fontFamily: 'var(--font-heading)', fontWeight: 300, fontSize: 'clamp(1.05rem, 1.85vw, 1.25rem)', lineHeight: 1.24, letterSpacing: '-0.028em', color: hovered ? '#fff' : 'hsl(0 0% 88%)', transition: 'color 0.32s ease', margin: 0 }}>
         {article.title}
       </h3>
 
       <div style={{ width: hovered ? '2.4rem' : '1.2rem', height: '1px', background: hovered ? 'hsl(195 70% 55% / 0.72)' : 'hsl(195 70% 55% / 0.2)', transition: 'width 0.42s ease, background 0.35s ease' }} />
 
-      <p style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 300, fontSize: 'clamp(0.8rem, 1.2vw, 0.88rem)', lineHeight: 1.82, color: 'rgba(210, 224, 232, 0.70)', margin: 0, flex: 1 }}>
+      <p style={{ fontFamily: 'var(--font-body)', fontWeight: 300, fontSize: 'clamp(0.8rem, 1.2vw, 0.88rem)', lineHeight: 1.82, color: 'rgba(210, 224, 232, 0.70)', margin: 0, flex: 1 }}>
         {article.excerpt}
       </p>
 
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '0.3rem', paddingTop: '1rem', borderTop: '1px solid hsl(0 0% 100% / 0.05)' }}>
-        <span style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 300, fontSize: '0.63rem', color: 'rgba(200, 215, 225, 0.55)', letterSpacing: '0.04em' }}>
+        <span style={{ fontFamily: 'var(--font-label)', fontWeight: 300, fontSize: '0.63rem', color: 'rgba(200, 215, 225, 0.55)', letterSpacing: '0.04em' }}>
           {article.readTime}
         </span>
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
-          <span style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 300, fontSize: '0.72rem', letterSpacing: '0.04em', color: hovered ? 'hsl(195 80% 66%)' : 'rgba(235, 245, 255, 0.76)', borderBottom: `1px solid ${hovered ? 'hsl(195 70% 55% / 0.45)' : 'hsl(0 0% 100% / 0.09)'}`, paddingBottom: '1px', textShadow: '0 0 10px rgba(125, 220, 255, 0.10)', transition: 'color 0.32s ease, border-color 0.32s ease' }}>
+          <span style={{ fontFamily: 'var(--font-label)', fontWeight: 300, fontSize: '0.72rem', letterSpacing: '0.04em', color: hovered ? 'hsl(195 80% 66%)' : 'rgba(235, 245, 255, 0.76)', borderBottom: `1px solid ${hovered ? 'hsl(195 70% 55% / 0.45)' : 'hsl(0 0% 100% / 0.09)'}`, paddingBottom: '1px', textShadow: '0 0 10px rgba(125, 220, 255, 0.10)', transition: 'color 0.32s ease, border-color 0.32s ease' }}>
             Read article
           </span>
           <span style={{ fontSize: '0.78rem', color: hovered ? 'hsl(195 80% 66%)' : 'hsl(0 0% 28%)', display: 'inline-block', transition: 'color 0.32s ease, transform 0.32s ease', transform: hovered ? 'translateX(4px)' : 'translateX(0)' }}>
@@ -638,7 +638,7 @@ function BlogCTA() {
             viewport={{ once: true, margin: '-60px' }}
             transition={{ duration: 0.6, ease: E }}
             style={{
-              fontFamily: "'Inter', system-ui, sans-serif",
+              fontFamily: 'var(--font-label)',
               fontWeight: 300,
               fontSize: '0.57rem',
               letterSpacing: '0.4em',
@@ -657,7 +657,7 @@ function BlogCTA() {
             viewport={{ once: true, margin: '-60px' }}
             transition={{ duration: 0.9, delay: 0.08, ease: E }}
             style={{
-              fontFamily: "'Inter', system-ui, sans-serif",
+              fontFamily: 'var(--font-heading)',
               fontWeight: 300,
               fontSize: 'clamp(1.9rem, 4.5vw, 3.8rem)',
               lineHeight: 1.08,
@@ -670,7 +670,7 @@ function BlogCTA() {
             Keep building{' '}
             <em
               style={{
-                fontFamily: "'Instrument Serif', Georgia, serif",
+                fontFamily: 'var(--font-accent)',
                 fontStyle: 'italic',
                 fontWeight: 400,
                 color: 'hsl(0 0% 52%)',
@@ -702,7 +702,7 @@ function BlogCTA() {
             viewport={{ once: true, margin: '-60px' }}
             transition={{ duration: 0.8, delay: 0.22, ease: E }}
             style={{
-              fontFamily: "'Inter', system-ui, sans-serif",
+              fontFamily: 'var(--font-body)',
               fontWeight: 300,
               fontSize: 'clamp(0.88rem, 1.4vw, 1rem)',
               lineHeight: 1.9,
@@ -739,7 +739,7 @@ function BlogCTA() {
                 borderRadius: '999px',
                 background: btnHover ? 'hsl(0 0% 92%)' : '#fff',
                 color: '#050e10',
-                fontFamily: "'Inter', system-ui, sans-serif",
+                fontFamily: 'var(--font-body)',
                 fontWeight: 400,
                 fontSize: 'clamp(0.85rem, 1.3vw, 0.96rem)',
                 letterSpacing: '0.01em',
@@ -763,7 +763,7 @@ function BlogCTA() {
               onMouseEnter={() => setEmailHover(true)}
               onMouseLeave={() => setEmailHover(false)}
               style={{
-                fontFamily: "'Inter', system-ui, sans-serif",
+                fontFamily: 'var(--font-label)',
                 fontWeight: 300,
                 fontSize: 'clamp(0.8rem, 1.2vw, 0.88rem)',
                 letterSpacing: '0.02em',
@@ -820,7 +820,7 @@ function TopicsStrip() {
           viewport={{ once: true, margin: '-40px' }}
           transition={{ duration: 0.6, ease: E }}
           style={{
-            fontFamily: "'Inter', system-ui, sans-serif",
+            fontFamily: 'var(--font-label)',
             fontWeight: 300,
             fontSize: '0.57rem',
             letterSpacing: '0.4em',
@@ -839,7 +839,7 @@ function TopicsStrip() {
           viewport={{ once: true, margin: '-40px' }}
           transition={{ duration: 0.85, delay: 0.07, ease: E }}
           style={{
-            fontFamily: "'Inter', system-ui, sans-serif",
+            fontFamily: 'var(--font-heading)',
             fontWeight: 300,
             fontSize: 'clamp(1.3rem, 3vw, 2.4rem)',
             lineHeight: 1.12,
@@ -852,7 +852,7 @@ function TopicsStrip() {
           Sharp ideas across growth,{' '}
           <em
             style={{
-              fontFamily: "'Instrument Serif', Georgia, serif",
+              fontFamily: 'var(--font-accent)',
               fontStyle: 'italic',
               fontWeight: 400,
               color: 'hsl(0 0% 48%)',
@@ -918,7 +918,7 @@ function TopicPill({ label, index }: { label: string; index: number }) {
         border: current.border,
         background: current.background,
         boxShadow: current.boxShadow,
-        fontFamily: "'Inter', system-ui, sans-serif",
+        fontFamily: 'var(--font-label)',
         fontWeight: 300,
         fontSize: 'clamp(0.72rem, 1.1vw, 0.82rem)',
         letterSpacing: '0.04em',
@@ -1019,7 +1019,7 @@ export default function Blog() {
               heading={<>
                 Ready to{' '}
                 <em style={{
-                  fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400,
+                  fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400,
                   background: 'linear-gradient(90deg, #FFFFFF 0%, #7DDCFF 45%, #B7AEFF 100%)',
                   WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
                   color: 'transparent',

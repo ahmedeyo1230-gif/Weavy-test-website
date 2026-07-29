@@ -50,7 +50,7 @@ function StatCounter({ value, suffix = '', prefix = '', bigText, label, descript
 
       {value !== undefined ? (
         <div
-          className="stat-pulse text-5xl md:text-6xl lg:text-7xl font-light tracking-tighter flex items-start text-primary mb-3"
+          className="font-label stat-pulse text-5xl md:text-6xl lg:text-7xl font-light tracking-tighter flex items-start text-primary mb-3"
           style={{ animationDelay: `${pulseDelay}s` }}
         >
           {prefix && (
@@ -63,16 +63,16 @@ function StatCounter({ value, suffix = '', prefix = '', bigText, label, descript
         </div>
       ) : (
         <p
-          className="stat-pulse text-3xl md:text-4xl lg:text-5xl font-light tracking-tight text-primary mb-3"
+          className="font-label stat-pulse text-3xl md:text-4xl lg:text-5xl font-light tracking-tight text-primary mb-3"
           style={{ animationDelay: `${pulseDelay}s` }}
         >
           {bigText}
         </p>
       )}
       {label && (
-        <p className="text-xs uppercase tracking-widest mb-2 font-medium" style={{ color: '#94A3B8', letterSpacing: '0.15em' }}>{label}</p>
+        <p className="font-label text-xs uppercase tracking-widest mb-2 font-medium" style={{ color: '#94A3B8', letterSpacing: '0.15em' }}>{label}</p>
       )}
-      <p className="text-xs font-medium max-w-[120px] leading-relaxed" style={{ color: '#64748B' }}>{description}</p>
+      <p className="font-label text-xs font-medium max-w-[120px] leading-relaxed" style={{ color: '#64748B' }}>{description}</p>
     </motion.div>
   )
 }

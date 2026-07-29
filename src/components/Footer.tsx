@@ -186,7 +186,7 @@ const DEFAULT_HEADING = (
   <>
     Ready to turn your business into an{' '}
     <em style={{
-      fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400,
+      fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400,
       background: 'linear-gradient(90deg, #FFFFFF 0%, #7DDCFF 45%, #B7AEFF 100%)',
       WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
       color: 'transparent',
@@ -282,7 +282,7 @@ export default function Footer({
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="font-sans font-light"
+            className="font-label"
             style={{
               position: 'relative',
               zIndex: 1,
@@ -302,7 +302,7 @@ export default function Footer({
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
-            className="font-sans font-light"
+            className="font-heading font-medium"
             style={{
               position: 'relative',
               zIndex: 1,
@@ -326,14 +326,14 @@ export default function Footer({
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.18, ease: [0.16, 1, 0.3, 1] }}
-              className="font-sans font-light"
+              className="font-body"
               style={{
                 position: 'relative',
                 zIndex: 1,
-                fontSize: 'clamp(0.88rem, 1.4vw, 1rem)',
+                fontSize: 'clamp(16px, 1.4vw, 18px)',
                 lineHeight: 1.8,
                 color: 'rgba(220, 232, 240, 0.78)',
-                fontWeight: 500,
+                fontWeight: 400,
                 maxWidth: '34rem',
                 marginBottom: '2.5rem',
                 textShadow: '0 1px 16px rgba(0,0,0,0.75)',
@@ -352,7 +352,7 @@ export default function Footer({
           >
           <a
             href={ctaHref}
-            className="font-sans font-light footer-email-cta"
+            className="font-body font-light footer-email-cta"
             style={{
               fontSize: 'clamp(1rem, 2.2vw, 1.45rem)',
               letterSpacing: '-0.01em',
@@ -412,7 +412,7 @@ export default function Footer({
               }}
             />
             <span
-              className="font-sans font-light footer-availability-text"
+              className="font-label footer-availability-text"
               style={{ fontSize: '0.73rem', letterSpacing: '0.1em', color: 'rgba(220, 232, 240, 0.76)' }}
             >
               Available for projects
@@ -421,7 +421,7 @@ export default function Footer({
 
           {/* Copyright */}
           <p
-            className="font-sans font-light text-center footer-copyright-text"
+            className="font-label text-center footer-copyright-text"
             style={{ fontSize: '0.7rem', letterSpacing: '0.05em', color: 'rgba(225, 236, 242, 0.82)', fontWeight: 500 }}
           >
             © {new Date().getFullYear()} Weavy. All rights reserved.

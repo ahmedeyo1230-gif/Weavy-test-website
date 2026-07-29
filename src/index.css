@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,200;0,300;0,400;0,500;1,200&family=Instrument+Serif:ital@0;1&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,200;0,300;0,400;0,500;1,200&family=Instrument+Sans:ital,wght@0,400;0,500;1,400;1,500&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap');
 @import "tailwindcss";
 
 @theme {
@@ -26,10 +26,25 @@
   --color-gold: #FFD86B;
   --color-champagne: #E7C873;
 
-  /* ── Typography ──────────────────────────────────────────── */
-  --font-sans: 'Poppins', 'Inter', system-ui, sans-serif;
-  --font-display: 'Instrument Serif', Georgia, serif;
-  --font-serif: 'Instrument Serif', Georgia, serif;
+  /* ── Typography ──────────────────────────────────────────────────────────
+     Central token block. These four variables are the ONLY place that needs
+     changing when the licensed PP fonts are added:
+       heading → PP Neue Montreal Medium (500)
+       body    → PP Neue Montreal Regular (400)
+       label   → PP Neue Montreal Mono
+       accent  → PP Editorial New Italic
+     Instrument Sans is a temporary stand-in for all four roles until then. */
+  --font-heading: 'Instrument Sans', sans-serif;
+  --font-body: 'Instrument Sans', sans-serif;
+  --font-label: 'Instrument Sans', sans-serif;
+  --font-accent: 'Instrument Sans', sans-serif;
+
+  /* Legacy aliases — kept so the many existing font-sans/font-serif/font-display
+     utility classes across the codebase resolve through the tokens above
+     without every call site needing to be renamed. */
+  --font-sans: var(--font-body);
+  --font-serif: var(--font-accent);
+  --font-display: var(--font-accent);
 }
 
 html {
@@ -60,6 +75,7 @@ html {
    untouched. */
 .hero-eyebrow {
   color: #94A3B8;
+  font-family: var(--font-label);
   font-size: 13px;
   letter-spacing: 0.22em;
   text-shadow: none;
@@ -667,7 +683,7 @@ html, body, #root {
   height: 100%;
   background: hsl(0 0% 4%);
   color: hsl(0 0% 96%);
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: var(--font-body), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

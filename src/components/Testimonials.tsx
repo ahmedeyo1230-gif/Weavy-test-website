@@ -57,7 +57,7 @@ const testimonials = [
 function Avatar({ initials, hue }: { initials: string; hue: number }) {
   return (
     <div
-      className="w-9 h-9 rounded-full flex items-center justify-center text-xs font-medium tracking-wide shrink-0 select-none"
+      className="font-label w-9 h-9 rounded-full flex items-center justify-center text-xs font-medium tracking-wide shrink-0 select-none"
       style={{
         background: `hsl(${hue} 55% 18%)`,
         border: `1px solid hsl(${hue} 55% 30% / 0.5)`,
@@ -101,13 +101,13 @@ export default function TestimonialsSection() {
           transition={{ duration: 0.7, ease: E }}
           className="text-center mb-20"
         >
-          <p className="text-xs uppercase tracking-widest text-accent-cyan/70 mb-4">Testimonials</p>
-          <h2 className="text-3xl md:text-5xl font-light tracking-tighter mb-4 text-primary">
+          <p className="font-label text-xs uppercase tracking-widest text-accent-cyan/70 mb-4">Testimonials</p>
+          <h2 className="font-heading text-3xl md:text-5xl font-medium tracking-tighter mb-4 text-primary">
             Don't just take our{' '}
             <span className="font-serif italic text-gold-shimmer">word</span>{' '}
             for it
           </h2>
-          <p className="max-w-lg mx-auto text-sm font-medium leading-relaxed" style={{ color: '#CBD5E1', lineHeight: 1.75 }}>
+          <p className="font-body max-w-lg mx-auto text-sm font-normal leading-relaxed" style={{ color: '#CBD5E1', lineHeight: 1.75 }}>
             Real results from businesses we've helped grow — faster, smarter, and at scale.
           </p>
         </motion.div>
@@ -146,7 +146,7 @@ export default function TestimonialsSection() {
               </div>
 
               {/* Quote */}
-              <p className="font-medium leading-relaxed text-sm flex-1" style={{ color: '#CBD5E1', lineHeight: 1.75 }}>
+              <p className="font-body font-normal leading-relaxed flex-1" style={{ fontSize: '16px', color: '#CBD5E1', lineHeight: 1.75 }}>
                 "{t.quote}"
               </p>
 
@@ -154,8 +154,8 @@ export default function TestimonialsSection() {
               <div className="flex items-center gap-3 pt-4" style={{ borderTop: '1px solid rgba(255,255,255,0.07)' }}>
                 <Avatar initials={t.initials} hue={t.hue} />
                 <div>
-                  <p className="font-semibold text-sm text-primary">{t.name}</p>
-                  <p className="text-xs mt-0.5 font-medium" style={{ color: '#94A3B8' }}>{t.role}</p>
+                  <p className="font-body font-medium text-primary" style={{ fontSize: '15px' }}>{t.name}</p>
+                  <p className="font-label mt-0.5 font-medium" style={{ fontSize: '13px', color: '#94A3B8' }}>{t.role}</p>
                 </div>
               </div>
             </motion.div>
