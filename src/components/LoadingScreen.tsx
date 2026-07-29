@@ -53,7 +53,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
       {/* ── Center: rotating word ── */}
       <div className="absolute inset-0 flex flex-col items-center justify-center gap-2">
         <span
-          className="font-sans font-light select-none"
+          className="font-label font-medium select-none"
           style={{
             fontSize: '0.6rem',
             letterSpacing: '0.36em',
@@ -101,7 +101,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
           <span
             style={{
               fontFamily: 'var(--font-label)',
-              fontWeight: 300,
+              fontWeight: 500,
               fontSize: 'clamp(2.6rem, 5vw, 3.8rem)',
               lineHeight: 1,
               letterSpacing: '-0.05em',
@@ -115,7 +115,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
           <span
             style={{
               fontFamily: 'var(--font-label)',
-              fontWeight: 300,
+              fontWeight: 500,
               fontSize: 'clamp(0.9rem, 1.8vw, 1.2rem)',
               lineHeight: 1,
               letterSpacing: '-0.02em',

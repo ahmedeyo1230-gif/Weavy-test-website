@@ -108,7 +108,7 @@ function Lightbox({ src, title, category, onClose }: { src: string; title: strin
           borderRadius: '50%',
           border: '1px solid hsl(0 0% 100% / 0.15)',
           background: 'hsl(0 0% 100% / 0.07)',
-          color: '#fff',
+          color: 'var(--text-primary)',
           fontSize: '1.1rem',
           display: 'flex',
           alignItems: 'center',
@@ -163,10 +163,10 @@ function Lightbox({ src, title, category, onClose }: { src: string; title: strin
           padding: '1.2rem 1.6rem',
           background: 'linear-gradient(to top, hsl(0 0% 0% / 0.75) 0%, transparent 100%)',
         }}>
-          <p style={{ fontFamily: 'var(--font-label)', fontWeight: 300, fontSize: '0.58rem', letterSpacing: '0.26em', textTransform: 'uppercase', color: 'hsl(195 60% 65%)', margin: '0 0 0.3rem' }}>
+          <p style={{ fontFamily: 'var(--font-label)', fontWeight: 500, fontSize: '0.58rem', letterSpacing: '0.26em', textTransform: 'uppercase', color: 'hsl(195 60% 65%)', margin: '0 0 0.3rem' }}>
             {category}
           </p>
-          <p style={{ fontFamily: 'var(--font-label)', fontWeight: 300, fontSize: 'clamp(0.9rem, 1.5vw, 1.05rem)', letterSpacing: '-0.02em', color: '#fff', margin: 0 }}>
+          <p style={{ fontFamily: 'var(--font-label)', fontWeight: 500, fontSize: 'clamp(0.9rem, 1.5vw, 1.05rem)', letterSpacing: '-0.02em', color: 'var(--text-primary)', margin: 0 }}>
             {title}
           </p>
         </div>
@@ -284,7 +284,7 @@ function ProjectCard({
       >
         <p style={{
           fontFamily: 'var(--font-label)',
-          fontWeight: 300,
+          fontWeight: 500,
           fontSize: '0.58rem',
           letterSpacing: '0.28em',
           textTransform: 'uppercase',
@@ -295,11 +295,11 @@ function ProjectCard({
         </p>
         <h3 style={{
           fontFamily: 'var(--font-heading)',
-          fontWeight: 300,
+          fontWeight: 500,
           fontSize: 'clamp(0.9rem, 1.5vw, 1.1rem)',
           lineHeight: 1.25,
           letterSpacing: '-0.02em',
-          color: '#fff',
+          color: 'var(--text-primary)',
           margin: 0,
           opacity: 0.95,
         }}>
@@ -347,7 +347,7 @@ function WorkCTA() {
           style={{
             ...item(0),
             fontFamily: 'var(--font-label)',
-            fontWeight: 300,
+            fontWeight: 500,
             fontSize: '0.58rem',
             letterSpacing: '0.34em',
             textTransform: 'uppercase',
@@ -363,11 +363,11 @@ function WorkCTA() {
           style={{
             ...item(140),
             fontFamily: 'var(--font-heading)',
-            fontWeight: 300,
+            fontWeight: 500,
             fontSize: 'clamp(2.2rem, 5.5vw, 4.4rem)',
             lineHeight: 1.07,
             letterSpacing: '-0.04em',
-            color: '#fff',
+            color: 'var(--text-primary)',
             marginBottom: '1.8rem',
           }}
         >
@@ -399,10 +399,10 @@ function WorkCTA() {
           style={{
             ...item(280),
             fontFamily: 'var(--font-body)',
-            fontWeight: 300,
+            fontWeight: 400,
             fontSize: 'clamp(0.88rem, 1.4vw, 1rem)',
             lineHeight: 1.9,
-            color: 'rgba(210, 224, 232, 0.70)',
+            color: 'var(--text-body)',
             maxWidth: '38rem',
             marginBottom: 'clamp(2.5rem, 5vw, 3.8rem)',
           }}
@@ -456,7 +456,7 @@ function WorkCTA() {
             onMouseLeave={() => setEmailHover(false)}
             style={{
               fontFamily: 'var(--font-label)',
-              fontWeight: 300,
+              fontWeight: 500,
               fontSize: 'clamp(0.82rem, 1.2vw, 0.9rem)',
               letterSpacing: '0.02em',
               color: emailHover ? 'hsl(0 0% 78%)' : 'rgba(235, 245, 255, 0.80)',
@@ -504,7 +504,7 @@ function WorkCTA() {
           </span>
           <span style={{
             fontFamily: 'var(--font-label)',
-            fontWeight: 300,
+            fontWeight: 500,
             fontSize: '0.75rem',
             letterSpacing: '0.06em',
             color: 'rgba(191, 239, 255, 0.72)',
@@ -579,7 +579,7 @@ function WorkTestimonial() {
             fontSize: 'clamp(1.7rem, 4vw, 3.4rem)',
             lineHeight: 1.18,
             letterSpacing: '-0.03em',
-            color: '#fff',
+            color: 'var(--text-primary)',
             maxWidth: '56rem',
             margin: '0 0 clamp(2rem, 4vw, 3rem)',
             opacity: quoteVis ? 1 : 0,
@@ -602,17 +602,17 @@ function WorkTestimonial() {
         >
           <p style={{
             fontFamily: 'var(--font-body)',
-            fontWeight: 300,
+            fontWeight: 400,
             fontSize: 'clamp(0.9rem, 1.4vw, 1.05rem)',
             letterSpacing: '0.01em',
-            color: '#fff',
+            color: 'var(--text-primary)',
             margin: '0 0 0.3rem',
           }}>
             Amira Hassan
           </p>
           <p style={{
             fontFamily: 'var(--font-label)',
-            fontWeight: 300,
+            fontWeight: 500,
             fontSize: 'clamp(0.78rem, 1.1vw, 0.88rem)',
             letterSpacing: '0.06em',
             textTransform: 'uppercase',
@@ -688,7 +688,7 @@ function PhilosophyRow({
       <span
         style={{
           fontFamily: 'var(--font-label)',
-          fontWeight: 300,
+          fontWeight: 500,
           fontSize: '0.72rem',
           letterSpacing: '0.06em',
           color: hovered ? 'hsl(195 80% 62%)' : 'rgba(125, 220, 255, 0.55)',
@@ -716,7 +716,7 @@ function PhilosophyRow({
         <h3
           style={{
             fontFamily: 'var(--font-heading)',
-            fontWeight: 300,
+            fontWeight: 500,
             fontSize: 'clamp(0.95rem, 1.6vw, 1.12rem)',
             lineHeight: 1.3,
             letterSpacing: '-0.02em',
@@ -730,10 +730,10 @@ function PhilosophyRow({
         <p
           style={{
             fontFamily: 'var(--font-body)',
-            fontWeight: 300,
+            fontWeight: 400,
             fontSize: 'clamp(0.82rem, 1.25vw, 0.92rem)',
             lineHeight: 1.85,
-            color: 'rgba(210, 224, 232, 0.68)',
+            color: 'var(--text-description)',
             margin: 0,
           }}
         >
@@ -800,7 +800,7 @@ function ProjectPhilosophy() {
           <p
             style={{
               fontFamily: 'var(--font-label)',
-              fontWeight: 300,
+              fontWeight: 500,
               fontSize: '0.58rem',
               letterSpacing: '0.34em',
               textTransform: 'uppercase',
@@ -815,11 +815,11 @@ function ProjectPhilosophy() {
           <h2
             style={{
               fontFamily: 'var(--font-heading)',
-              fontWeight: 300,
+              fontWeight: 500,
               fontSize: 'clamp(1.8rem, 3.6vw, 3.1rem)',
               lineHeight: 1.1,
               letterSpacing: '-0.04em',
-              color: '#fff',
+              color: 'var(--text-primary)',
               marginBottom: '2.2rem',
             }}
           >
@@ -865,10 +865,10 @@ function ProjectPhilosophy() {
           <p
             style={{
               fontFamily: 'var(--font-body)',
-              fontWeight: 300,
+              fontWeight: 400,
               fontSize: 'clamp(0.88rem, 1.4vw, 1rem)',
               lineHeight: 1.9,
-              color: 'rgba(220, 232, 240, 0.72)',
+              color: 'var(--text-body)',
               marginBottom: 'clamp(2rem, 4vw, 3rem)',
               opacity: right.visible ? 1 : 0,
               transform: right.visible ? 'translateY(0)' : 'translateY(20px)',
@@ -960,7 +960,7 @@ function WorkGallery() {
         >
           <p style={{
             fontFamily: 'var(--font-label)',
-            fontWeight: 300,
+            fontWeight: 500,
             fontSize: '0.58rem',
             letterSpacing: '0.36em',
             textTransform: 'uppercase',
@@ -972,11 +972,11 @@ function WorkGallery() {
 
           <h1 style={{
             fontFamily: 'var(--font-heading)',
-            fontWeight: 300,
+            fontWeight: 500,
             fontSize: 'clamp(2rem, 4.2vw, 3.6rem)',
             lineHeight: 1.08,
             letterSpacing: '-0.04em',
-            color: '#f8fafc',
+            color: 'var(--text-primary)',
             marginBottom: '1.6rem',
           }}>
             Campaigns crafted to look premium,{' '}
@@ -995,10 +995,10 @@ function WorkGallery() {
 
           <p style={{
             fontFamily: 'var(--font-body)',
-            fontWeight: 300,
+            fontWeight: 400,
             fontSize: 'clamp(0.86rem, 1.35vw, 0.98rem)',
             lineHeight: 1.9,
-            color: 'rgba(220, 232, 240, 0.74)',
+            color: 'var(--text-body)',
             maxWidth: '40rem',
           }}>
             A curated selection of brand visuals, campaign systems, product launches,

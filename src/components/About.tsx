@@ -80,7 +80,7 @@ export default function About() { // no diagonal lines bg
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, ease: E }}
-              className="font-label text-xs uppercase tracking-widest text-accent-cyan/70"
+              className="font-label font-medium text-xs uppercase tracking-widest text-accent-cyan/70"
             >
               About Weavy
             </motion.p>
@@ -115,7 +115,7 @@ export default function About() { // no diagonal lines bg
               viewport={{ once: true }}
               transition={{ duration: 0.65, delay: 0.13, ease: E }}
               className="font-body space-y-4 font-normal leading-relaxed"
-              style={{ fontSize: 'clamp(16px, 1vw, 17px)', color: '#CBD5E1', lineHeight: 1.8 }}
+              style={{ fontSize: 'clamp(16px, 1vw, 17px)', color: 'var(--text-body)', lineHeight: 1.8 }}
             >
               <p>
                 Weavy is a London-based{' '}
@@ -297,8 +297,8 @@ export default function About() { // no diagonal lines bg
               >
                 {svc.num}
               </div>
-              <div className="font-heading font-medium mb-2" style={{ fontSize: '1.15rem', color: '#F8FAFC' }}>{svc.label}</div>
-              <div className="font-body font-normal leading-relaxed" style={{ fontSize: '0.94rem', color: '#B0BAC8' }}>
+              <div className="font-heading font-medium mb-2" style={{ fontSize: '1.15rem', color: 'var(--text-primary)' }}>{svc.label}</div>
+              <div className="font-body font-normal leading-relaxed" style={{ fontSize: '0.94rem', color: 'var(--text-description)' }}>
                 {(() => {
                   const parts = svc.desc.split(svc.highlight)
                   return (

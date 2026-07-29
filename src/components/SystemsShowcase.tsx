@@ -174,7 +174,7 @@ function ModuleRow({ svc, index }: { svc: ServiceDef; index: number }) {
               {svc.title}
             </h3>
           </div>
-          <p className="font-body font-normal leading-[1.72]" style={{ fontSize: '15px', color: 'hsl(0 0% 60%)' }}>
+          <p className="font-body font-normal leading-[1.72]" style={{ fontSize: '15px', color: 'var(--text-description)' }}>
             {svc.description}
           </p>
         </div>
@@ -230,8 +230,8 @@ function ArchitecturePanel() {
             }}
           />
           <span
-            className="font-label text-[10px] uppercase tracking-[0.2em]"
-            style={{ color: 'hsl(0 0% 36%)' }}
+            className="font-label font-medium text-[10px] uppercase tracking-[0.2em]"
+            style={{ color: 'var(--text-muted)' }}
           >
             Weavy · System Architecture
           </span>
@@ -310,7 +310,7 @@ export default function SystemsShowcase() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, ease: E }}
-              className="font-label text-xs uppercase tracking-widest text-accent-cyan/70 mb-5"
+              className="font-label font-medium text-xs uppercase tracking-widest text-accent-cyan/70 mb-5"
             >
               Systems in Motion
             </motion.p>
@@ -345,7 +345,7 @@ export default function SystemsShowcase() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.26, ease: E }}
               className="font-body inline-flex items-center gap-2 text-sm w-fit cursor-pointer"
-              style={{ color: 'hsl(0 0% 40%)', transition: 'color 200ms' }}
+              style={{ color: 'var(--text-muted)', transition: 'color 200ms' }}
               onMouseEnter={e => {
                 const el = e.currentTarget as HTMLElement
                 el.style.color = 'hsl(0 0% 90%)'

@@ -45,6 +45,14 @@
   --font-sans: var(--font-body);
   --font-serif: var(--font-accent);
   --font-display: var(--font-accent);
+
+  /* ── Text colour tokens ────────────────────────────────────────────────
+     Central place for text colour by role. Edit these four lines to
+     retune contrast/readability sitewide. */
+  --text-primary: #F4F6F5;
+  --text-body: #D7DDDB;
+  --text-description: #C4CCCA;
+  --text-muted: #98A5A3;
 }
 
 html {

@@ -85,7 +85,7 @@ function PlanCard({ plan, index }: { plan: typeof PLANS[number]; index: number }
         </span>
       )}
 
-      <h3 className="font-heading font-medium" style={{ fontSize: '1.15rem', color: '#F8FAFC', marginBottom: '0.6rem' }}>
+      <h3 className="font-heading font-medium" style={{ fontSize: '1.15rem', color: 'var(--text-primary)', marginBottom: '0.6rem' }}>
         {plan.name}
       </h3>
 
@@ -94,15 +94,15 @@ function PlanCard({ plan, index }: { plan: typeof PLANS[number]; index: number }
           {plan.price}
         </span>
         {plan.period && (
-          <span className="font-label" style={{ fontSize: '0.85rem', color: 'rgba(210,224,232,0.5)' }}>{plan.period}</span>
+          <span className="font-label font-medium" style={{ fontSize: '0.85rem', color: 'var(--text-description)' }}>{plan.period}</span>
         )}
       </div>
 
-      <p className="font-label" style={{ fontSize: '0.76rem', fontWeight: 500, color: 'rgba(220, 232, 240, 0.76)', marginBottom: '0.9rem' }}>
+      <p className="font-label" style={{ fontSize: '0.76rem', fontWeight: 500, color: 'var(--text-body)', marginBottom: '0.9rem' }}>
         {plan.setup}
       </p>
 
-      <p className="font-body font-normal" style={{ fontSize: '15px', lineHeight: 1.65, color: 'rgba(210,224,232,0.6)', marginBottom: '1.5rem' }}>
+      <p className="font-body font-normal" style={{ fontSize: '15px', lineHeight: 1.65, color: 'var(--text-description)', marginBottom: '1.5rem' }}>
         {plan.blurb}
       </p>
 
@@ -121,7 +121,7 @@ function PlanCard({ plan, index }: { plan: typeof PLANS[number]; index: number }
         href="/contact"
         onClick={(e) => { e.preventDefault(); goToPath('/contact') }}
         style={{
-          fontFamily: 'var(--font-body)',
+          fontFamily: 'var(--font-label)',
           marginTop: '1.8rem',
           display: 'inline-flex',
           alignItems: 'center',
@@ -134,7 +134,7 @@ function PlanCard({ plan, index }: { plan: typeof PLANS[number]; index: number }
           textDecoration: 'none',
           transition: 'transform 150ms ease, box-shadow 200ms ease',
           background: plan.featured ? '#7DDCFF' : 'rgba(255,255,255,0.04)',
-          color: plan.featured ? '#010709' : '#F8FAFC',
+          color: plan.featured ? '#010709' : 'var(--text-primary)',
           border: plan.featured ? 'none' : '1px solid rgba(255,255,255,0.14)',
         }}
         onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(-2px)' }}
@@ -164,7 +164,7 @@ export default function PricingSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, ease: E }}
-            className="font-label"
+            className="font-label font-medium"
             style={{
               display: 'inline-flex',
               alignItems: 'center',
@@ -186,7 +186,7 @@ export default function PricingSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.55, delay: 0.05, ease: E }}
-            className="font-label"
+            className="font-label font-medium"
             style={{ fontSize: '0.67rem', letterSpacing: '0.32em', textTransform: 'uppercase', color: 'rgba(125,220,255,0.68)', marginBottom: '1.3rem' }}
           >
             Monthly Platform Plans
@@ -198,7 +198,7 @@ export default function PricingSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.72, delay: 0.06, ease: E }}
             className="font-heading font-medium"
-            style={{ fontSize: 'clamp(2rem, 4.2vw, 3rem)', lineHeight: 1.14, letterSpacing: '-0.032em', color: '#F8FAFC' }}
+            style={{ fontSize: 'clamp(2rem, 4.2vw, 3rem)', lineHeight: 1.14, letterSpacing: '-0.032em', color: 'var(--text-primary)' }}
           >
             Simple monthly plans for businesses{' '}
             <em style={{ fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400, color: '#7DDCFF' }}>
@@ -212,7 +212,7 @@ export default function PricingSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.65, delay: 0.14, ease: E }}
             className="font-body font-normal"
-            style={{ fontSize: 'clamp(0.9rem, 1.4vw, 1rem)', lineHeight: 1.8, color: '#94A3B8', marginTop: '1.2rem' }}
+            style={{ fontSize: 'clamp(0.9rem, 1.4vw, 1rem)', lineHeight: 1.8, color: 'var(--text-muted)', marginTop: '1.2rem' }}
           >
             Start with one channel, then expand into a full AI operating system as your business
             grows. Setup fees may apply depending on automation complexity.
@@ -230,8 +230,8 @@ export default function PricingSection() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3, ease: E }}
-          className="font-label text-center"
-          style={{ fontSize: '0.82rem', color: 'rgba(210,224,232,0.5)', marginTop: 'clamp(2rem, 4vw, 2.8rem)' }}
+          className="font-label font-medium text-center"
+          style={{ fontSize: '0.82rem', color: 'var(--text-description)', marginTop: 'clamp(2rem, 4vw, 2.8rem)' }}
         >
           One-time setup fee applies. Monthly subscription covers hosting, optimisation, updates and support.
         </motion.p>

@@ -193,7 +193,7 @@ export function Navbar() {
                     setActive(label)
                     goToPath(href)
                   }}
-                  className={`relative block text-xs sm:text-sm px-3 py-1.5 rounded-full transition-colors duration-150 active:scale-[0.97] ${
+                  className={`font-label font-medium relative block text-xs sm:text-sm px-3 py-1.5 rounded-full transition-colors duration-150 active:scale-[0.97] ${
                     isActive ? 'text-primary bg-white/10' : 'text-muted hover:text-primary hover:bg-white/5'
                   }`}
                 >
@@ -208,7 +208,7 @@ export function Navbar() {
         <a
           href="/contact"
           onClick={(e) => { e.preventDefault(); setActive('Contact'); goToPath('/contact') }}
-          className="hidden sm:inline-flex items-center gap-1.5 bg-primary text-background text-xs sm:text-sm px-4 py-2 rounded-full font-medium transition-colors duration-150 hover:bg-white hover:shadow-[0_0_20px_rgba(245,245,245,0.25)] active:scale-[0.97] shrink-0"
+          className="font-label hidden sm:inline-flex items-center gap-1.5 bg-primary text-background text-xs sm:text-sm px-4 py-2 rounded-full font-medium transition-colors duration-150 hover:bg-white hover:shadow-[0_0_20px_rgba(245,245,245,0.25)] active:scale-[0.97] shrink-0"
           style={{ transition: 'color 150ms, background-color 150ms, box-shadow 150ms, transform 100ms' }}
         >
           Say hi →
@@ -266,12 +266,12 @@ export function Navbar() {
                       setMenuOpen(false)
                       goToPath(href)
                     }}
-                    className="block px-6 py-4 last:border-0 transition-all duration-150"
+                    className="font-label block px-6 py-4 last:border-0 transition-all duration-150"
                     style={{
-                      color: 'rgba(248, 250, 252, 0.92)',
+                      color: 'var(--text-primary)',
                       fontSize: '0.92rem',
                       letterSpacing: '0.015em',
-                      fontWeight: 400,
+                      fontWeight: 500,
                       borderBottom: '1px solid rgba(255,255,255,0.07)',
                     }}
                     onTouchStart={e => { (e.currentTarget as HTMLAnchorElement).style.backgroundColor = 'rgba(255,255,255,0.06)' }}
@@ -423,7 +423,7 @@ export default function Hero() {
           <motion.div
             variants={itemVariants}
             className="font-body text-lg sm:text-xl mb-8 flex items-center justify-center gap-[6px] flex-wrap font-light"
-            style={{ color: '#94A3B8' }}
+            style={{ color: 'var(--text-muted)' }}
           >
             {reducedMotion ? (
               <span>Built to help your business grow without the hassle.</span>
@@ -477,7 +477,7 @@ export default function Hero() {
             <a
               href="/contact"
               onClick={(e) => { e.preventDefault(); goToPath('/contact') }}
-              className="btn-glow-primary inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-medium bg-primary text-background hover:bg-white hover:shadow-[0_0_28px_rgba(245,245,245,0.28)] active:scale-[0.97]"
+              className="font-label btn-glow-primary inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-medium bg-primary text-background hover:bg-white hover:shadow-[0_0_28px_rgba(245,245,245,0.28)] active:scale-[0.97]"
               style={{ transition: 'background-color 200ms, box-shadow 200ms, transform 100ms' }}
             >
               Book a Free Demo →
@@ -485,7 +485,7 @@ export default function Hero() {
             <a
               href="/services"
               onClick={(e) => { e.preventDefault(); goToPath('/services') }}
-              className="inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-medium border border-border text-primary hover:border-white/25 hover:bg-white/[0.04] hover:shadow-[0_0_16px_hsl(199_89%_60%_/_0.08)] active:scale-[0.97]"
+              className="font-label inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-medium border border-border text-primary hover:border-white/25 hover:bg-white/[0.04] hover:shadow-[0_0_16px_hsl(199_89%_60%_/_0.08)] active:scale-[0.97]"
               style={{ transition: 'border-color 200ms, background-color 200ms, box-shadow 200ms, transform 100ms' }}
             >
               Explore the Services

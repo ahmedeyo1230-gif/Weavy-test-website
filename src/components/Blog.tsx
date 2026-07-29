@@ -126,7 +126,7 @@ function ArticleDetail({
           padding: 0,
           marginBottom: 'clamp(2.5rem, 5vw, 4rem)',
           fontFamily: 'var(--font-label)',
-          fontWeight: 300,
+          fontWeight: 500,
           fontSize: '0.78rem',
           letterSpacing: '0.04em',
           color: backHover ? '#fff' : 'hsl(0 0% 60%)',
@@ -157,7 +157,7 @@ function ArticleDetail({
         <span
           style={{
             fontFamily: 'var(--font-label)',
-            fontWeight: 300,
+            fontWeight: 500,
             fontSize: '0.56rem',
             letterSpacing: '0.34em',
             textTransform: 'uppercase',
@@ -177,9 +177,9 @@ function ArticleDetail({
         <span
           style={{
             fontFamily: 'var(--font-label)',
-            fontWeight: 300,
+            fontWeight: 500,
             fontSize: '0.66rem',
-            color: 'hsl(0 0% 54%)',
+            color: 'var(--text-muted)',
             letterSpacing: '0.05em',
           }}
         >
@@ -191,11 +191,11 @@ function ArticleDetail({
       <h1
         style={{
           fontFamily: 'var(--font-heading)',
-          fontWeight: 300,
+          fontWeight: 500,
           fontSize: 'clamp(1.9rem, 4.5vw, 3.6rem)',
           lineHeight: 1.08,
           letterSpacing: '-0.04em',
-          color: '#fff',
+          color: 'var(--text-primary)',
           marginBottom: '2rem',
         }}
       >
@@ -232,10 +232,10 @@ function ArticleDetail({
             transition={{ duration: 0.6, delay: 0.15 + i * 0.1, ease: E }}
             style={{
               fontFamily: 'var(--font-body)',
-              fontWeight: 300,
+              fontWeight: 400,
               fontSize: 'clamp(0.95rem, 1.6vw, 1.08rem)',
               lineHeight: 1.95,
-              color: 'hsl(0 0% 72%)',
+              color: 'var(--text-body)',
               margin: 0,
             }}
           >
@@ -266,10 +266,10 @@ function ArticleDetail({
           padding: 0,
           marginTop: '2rem',
           fontFamily: 'var(--font-label)',
-          fontWeight: 300,
+          fontWeight: 500,
           fontSize: '0.78rem',
           letterSpacing: '0.04em',
-          color: 'hsl(0 0% 58%)',
+          color: 'var(--text-muted)',
         }}
         onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.color = '#fff' }}
         onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.color = 'hsl(0 0% 58%)' }}
@@ -299,7 +299,7 @@ function BlogHeader() {
         transition={{ duration: 0.6, ease: E }}
         style={{
           fontFamily: 'var(--font-label)',
-          fontWeight: 300,
+          fontWeight: 500,
           fontSize: '0.65rem',
           letterSpacing: '0.32em',
           textTransform: 'uppercase',
@@ -317,11 +317,11 @@ function BlogHeader() {
         transition={{ duration: 0.9, delay: 0.07, ease: E }}
         style={{
           fontFamily: 'var(--font-heading)',
-          fontWeight: 300,
+          fontWeight: 500,
           fontSize: 'clamp(2.2rem, 5.2vw, 4.4rem)',
           lineHeight: 1.08,
           letterSpacing: '-0.04em',
-          color: '#fff',
+          color: 'var(--text-primary)',
           maxWidth: '52rem',
           marginBottom: '1.8rem',
         }}
@@ -346,7 +346,7 @@ function BlogHeader() {
         transition={{ duration: 0.8, delay: 0.17, ease: E }}
         style={{
           fontFamily: 'var(--font-body)',
-          fontWeight: 300,
+          fontWeight: 400,
           fontSize: 'clamp(0.88rem, 1.4vw, 1rem)',
           lineHeight: 1.9,
           color: 'hsl(0 0% 64%)',
@@ -446,27 +446,27 @@ function FeaturedArticle({ onRead }: { onRead: () => void }) {
       <div style={{ padding: 'clamp(2rem, 4.5vw, 3.5rem)', display: 'grid', gridTemplateColumns: '1fr auto', gap: '2rem', alignItems: 'end' }}>
       <div style={{ display: 'flex', flexDirection: 'column', gap: '1.6rem' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-          <span style={{ fontFamily: 'var(--font-label)', fontWeight: 300, fontSize: '0.56rem', letterSpacing: '0.32em', textTransform: 'uppercase', color: 'rgba(125, 220, 255, 0.82)' }}>
+          <span style={{ fontFamily: 'var(--font-label)', fontWeight: 500, fontSize: '0.56rem', letterSpacing: '0.32em', textTransform: 'uppercase', color: 'rgba(125, 220, 255, 0.82)' }}>
             {FEATURED.category}
           </span>
           <span style={{ display: 'inline-block', width: 1, height: 10, background: 'hsl(0 0% 100% / 0.12)' }} />
-          <span style={{ fontFamily: 'var(--font-label)', fontWeight: 300, fontSize: '0.66rem', color: 'rgba(200, 215, 225, 0.55)', letterSpacing: '0.05em' }}>
+          <span style={{ fontFamily: 'var(--font-label)', fontWeight: 500, fontSize: '0.66rem', color: 'var(--text-muted)', letterSpacing: '0.05em' }}>
             {FEATURED.readTime}
           </span>
         </div>
 
-        <h2 style={{ fontFamily: 'var(--font-heading)', fontWeight: 300, fontSize: 'clamp(1.8rem, 4.2vw, 3.6rem)', lineHeight: 1.08, letterSpacing: '-0.04em', color: '#fff', maxWidth: '44rem', margin: 0 }}>
+        <h2 style={{ fontFamily: 'var(--font-heading)', fontWeight: 500, fontSize: 'clamp(1.8rem, 4.2vw, 3.6rem)', lineHeight: 1.08, letterSpacing: '-0.04em', color: '#fff', maxWidth: '44rem', margin: 0 }}>
           {FEATURED.title}
         </h2>
 
         <div style={{ width: hovered ? '3.5rem' : '2.2rem', height: '1px', background: 'hsl(195 70% 55% / 0.45)', transition: 'width 0.45s ease' }} />
 
-        <p style={{ fontFamily: 'var(--font-body)', fontWeight: 300, fontSize: 'clamp(0.88rem, 1.45vw, 1.02rem)', lineHeight: 1.88, color: 'rgba(220, 232, 240, 0.72)', maxWidth: '42rem', margin: 0 }}>
+        <p style={{ fontFamily: 'var(--font-body)', fontWeight: 400, fontSize: 'clamp(0.88rem, 1.45vw, 1.02rem)', lineHeight: 1.88, color: 'var(--text-body)', maxWidth: '42rem', margin: 0 }}>
           {FEATURED.excerpt}
         </p>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.55rem' }}>
-          <span style={{ fontFamily: 'var(--font-label)', fontWeight: 300, fontSize: '0.76rem', letterSpacing: '0.05em', color: hovered ? 'hsl(195 80% 68%)' : 'rgba(235, 245, 255, 0.76)', borderBottom: `1px solid ${hovered ? 'hsl(195 70% 55% / 0.5)' : 'hsl(0 0% 100% / 0.1)'}`, paddingBottom: '2px', textShadow: '0 0 10px rgba(125, 220, 255, 0.10)', transition: 'color 0.32s ease, border-color 0.32s ease' }}>
+          <span style={{ fontFamily: 'var(--font-label)', fontWeight: 500, fontSize: '0.76rem', letterSpacing: '0.05em', color: hovered ? 'hsl(195 80% 68%)' : 'rgba(235, 245, 255, 0.76)', borderBottom: `1px solid ${hovered ? 'hsl(195 70% 55% / 0.5)' : 'hsl(0 0% 100% / 0.1)'}`, paddingBottom: '2px', textShadow: '0 0 10px rgba(125, 220, 255, 0.10)', transition: 'color 0.32s ease, border-color 0.32s ease' }}>
             Read article
           </span>
           <span style={{ fontSize: '0.82rem', color: hovered ? 'hsl(195 80% 68%)' : 'hsl(0 0% 30%)', display: 'inline-block', transition: 'color 0.32s ease, transform 0.32s ease', transform: hovered ? 'translateX(5px)' : 'translateX(0)' }}>
@@ -549,7 +549,7 @@ function ArticleCard({
       {/* Text content */}
       <div style={{ padding: 'clamp(1.4rem, 2.5vw, 2rem)', display: 'flex', flexDirection: 'column', gap: '1.1rem', flex: 1 }}>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <span style={{ fontFamily: 'var(--font-label)', fontWeight: 300, fontSize: '0.54rem', letterSpacing: '0.32em', textTransform: 'uppercase', color: 'rgba(125, 220, 255, 0.82)' }}>
+        <span style={{ fontFamily: 'var(--font-label)', fontWeight: 500, fontSize: '0.54rem', letterSpacing: '0.32em', textTransform: 'uppercase', color: 'rgba(125, 220, 255, 0.82)' }}>
           {article.category}
         </span>
         <span aria-hidden="true" style={{ fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontSize: 'clamp(2.4rem, 4vw, 3.6rem)', lineHeight: 1, letterSpacing: '-0.05em', color: hovered ? 'rgba(125, 220, 255, 0.14)' : 'rgba(125, 220, 255, 0.10)', userSelect: 'none', transition: 'color 0.4s ease' }}>
@@ -559,22 +559,22 @@ function ArticleCard({
 
       <div style={{ height: '1px', background: 'hsl(0 0% 100% / 0.06)' }} />
 
-      <h3 style={{ fontFamily: 'var(--font-heading)', fontWeight: 300, fontSize: 'clamp(1.05rem, 1.85vw, 1.25rem)', lineHeight: 1.24, letterSpacing: '-0.028em', color: hovered ? '#fff' : 'hsl(0 0% 88%)', transition: 'color 0.32s ease', margin: 0 }}>
+      <h3 style={{ fontFamily: 'var(--font-heading)', fontWeight: 500, fontSize: 'clamp(1.05rem, 1.85vw, 1.25rem)', lineHeight: 1.24, letterSpacing: '-0.028em', color: hovered ? '#fff' : 'hsl(0 0% 88%)', transition: 'color 0.32s ease', margin: 0 }}>
         {article.title}
       </h3>
 
       <div style={{ width: hovered ? '2.4rem' : '1.2rem', height: '1px', background: hovered ? 'hsl(195 70% 55% / 0.72)' : 'hsl(195 70% 55% / 0.2)', transition: 'width 0.42s ease, background 0.35s ease' }} />
 
-      <p style={{ fontFamily: 'var(--font-body)', fontWeight: 300, fontSize: 'clamp(0.8rem, 1.2vw, 0.88rem)', lineHeight: 1.82, color: 'rgba(210, 224, 232, 0.70)', margin: 0, flex: 1 }}>
+      <p style={{ fontFamily: 'var(--font-body)', fontWeight: 400, fontSize: 'clamp(0.8rem, 1.2vw, 0.88rem)', lineHeight: 1.82, color: 'var(--text-description)', margin: 0, flex: 1 }}>
         {article.excerpt}
       </p>
 
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '0.3rem', paddingTop: '1rem', borderTop: '1px solid hsl(0 0% 100% / 0.05)' }}>
-        <span style={{ fontFamily: 'var(--font-label)', fontWeight: 300, fontSize: '0.63rem', color: 'rgba(200, 215, 225, 0.55)', letterSpacing: '0.04em' }}>
+        <span style={{ fontFamily: 'var(--font-label)', fontWeight: 500, fontSize: '0.63rem', color: 'var(--text-muted)', letterSpacing: '0.04em' }}>
           {article.readTime}
         </span>
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
-          <span style={{ fontFamily: 'var(--font-label)', fontWeight: 300, fontSize: '0.72rem', letterSpacing: '0.04em', color: hovered ? 'hsl(195 80% 66%)' : 'rgba(235, 245, 255, 0.76)', borderBottom: `1px solid ${hovered ? 'hsl(195 70% 55% / 0.45)' : 'hsl(0 0% 100% / 0.09)'}`, paddingBottom: '1px', textShadow: '0 0 10px rgba(125, 220, 255, 0.10)', transition: 'color 0.32s ease, border-color 0.32s ease' }}>
+          <span style={{ fontFamily: 'var(--font-label)', fontWeight: 500, fontSize: '0.72rem', letterSpacing: '0.04em', color: hovered ? 'hsl(195 80% 66%)' : 'rgba(235, 245, 255, 0.76)', borderBottom: `1px solid ${hovered ? 'hsl(195 70% 55% / 0.45)' : 'hsl(0 0% 100% / 0.09)'}`, paddingBottom: '1px', textShadow: '0 0 10px rgba(125, 220, 255, 0.10)', transition: 'color 0.32s ease, border-color 0.32s ease' }}>
             Read article
           </span>
           <span style={{ fontSize: '0.78rem', color: hovered ? 'hsl(195 80% 66%)' : 'hsl(0 0% 28%)', display: 'inline-block', transition: 'color 0.32s ease, transform 0.32s ease', transform: hovered ? 'translateX(4px)' : 'translateX(0)' }}>
@@ -639,7 +639,7 @@ function BlogCTA() {
             transition={{ duration: 0.6, ease: E }}
             style={{
               fontFamily: 'var(--font-label)',
-              fontWeight: 300,
+              fontWeight: 500,
               fontSize: '0.57rem',
               letterSpacing: '0.4em',
               textTransform: 'uppercase',
@@ -658,11 +658,11 @@ function BlogCTA() {
             transition={{ duration: 0.9, delay: 0.08, ease: E }}
             style={{
               fontFamily: 'var(--font-heading)',
-              fontWeight: 300,
+              fontWeight: 500,
               fontSize: 'clamp(1.9rem, 4.5vw, 3.8rem)',
               lineHeight: 1.08,
               letterSpacing: '-0.04em',
-              color: '#fff',
+              color: 'var(--text-primary)',
               maxWidth: '38rem',
               marginBottom: 'clamp(1.4rem, 3vw, 2rem)',
             }}
@@ -673,7 +673,7 @@ function BlogCTA() {
                 fontFamily: 'var(--font-accent)',
                 fontStyle: 'italic',
                 fontWeight: 400,
-                color: 'hsl(0 0% 52%)',
+                color: 'var(--text-muted)',
               }}
             >
               smarter digital systems.
@@ -703,10 +703,10 @@ function BlogCTA() {
             transition={{ duration: 0.8, delay: 0.22, ease: E }}
             style={{
               fontFamily: 'var(--font-body)',
-              fontWeight: 300,
+              fontWeight: 400,
               fontSize: 'clamp(0.88rem, 1.4vw, 1rem)',
               lineHeight: 1.9,
-              color: 'hsl(0 0% 36%)',
+              color: 'var(--text-muted)',
               maxWidth: '36rem',
               marginBottom: 'clamp(2.5rem, 5vw, 3.8rem)',
             }}
@@ -764,7 +764,7 @@ function BlogCTA() {
               onMouseLeave={() => setEmailHover(false)}
               style={{
                 fontFamily: 'var(--font-label)',
-                fontWeight: 300,
+                fontWeight: 500,
                 fontSize: 'clamp(0.8rem, 1.2vw, 0.88rem)',
                 letterSpacing: '0.02em',
                 color: emailHover ? 'hsl(0 0% 72%)' : 'hsl(0 0% 34%)',
@@ -821,7 +821,7 @@ function TopicsStrip() {
           transition={{ duration: 0.6, ease: E }}
           style={{
             fontFamily: 'var(--font-label)',
-            fontWeight: 300,
+            fontWeight: 500,
             fontSize: '0.57rem',
             letterSpacing: '0.4em',
             textTransform: 'uppercase',
@@ -840,11 +840,11 @@ function TopicsStrip() {
           transition={{ duration: 0.85, delay: 0.07, ease: E }}
           style={{
             fontFamily: 'var(--font-heading)',
-            fontWeight: 300,
+            fontWeight: 500,
             fontSize: 'clamp(1.3rem, 3vw, 2.4rem)',
             lineHeight: 1.12,
             letterSpacing: '-0.035em',
-            color: '#fff',
+            color: 'var(--text-primary)',
             maxWidth: '36rem',
             marginBottom: 'clamp(2rem, 4vw, 3.2rem)',
           }}
@@ -855,7 +855,7 @@ function TopicsStrip() {
               fontFamily: 'var(--font-accent)',
               fontStyle: 'italic',
               fontWeight: 400,
-              color: 'hsl(0 0% 48%)',
+              color: 'var(--text-muted)',
             }}
           >
             systems, and creative execution.
@@ -919,7 +919,7 @@ function TopicPill({ label, index }: { label: string; index: number }) {
         background: current.background,
         boxShadow: current.boxShadow,
         fontFamily: 'var(--font-label)',
-        fontWeight: 300,
+        fontWeight: 500,
         fontSize: 'clamp(0.72rem, 1.1vw, 0.82rem)',
         letterSpacing: '0.04em',
         color: current.color,

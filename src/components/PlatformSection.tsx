@@ -169,7 +169,7 @@ export default function PlatformSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.55, ease: E }}
-            className="font-label"
+            className="font-label font-medium"
             style={{ fontSize: 'clamp(12px, calc(11.3px + 0.19vw), 14px)', letterSpacing: '0.32em', textTransform: 'uppercase', color: 'rgba(191, 239, 255, 0.72)', marginBottom: '1.3rem' }}
           >
             One Connected System
@@ -181,7 +181,7 @@ export default function PlatformSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.72, delay: 0.06, ease: E }}
             className="font-heading font-medium"
-            style={{ fontSize: 'clamp(2rem, 4.4vw, 3.2rem)', lineHeight: 1.14, letterSpacing: '-0.032em', color: '#F8FAFC' }}
+            style={{ fontSize: 'clamp(2rem, 4.4vw, 3.2rem)', lineHeight: 1.14, letterSpacing: '-0.032em', color: 'var(--text-primary)' }}
           >
             Everything working together, so your business runs better.
           </motion.h2>

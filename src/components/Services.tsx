@@ -164,7 +164,7 @@ function ServiceCard({ service, onLearnMore }: ServiceCardProps) {
 
           {/* Title */}
           <h3
-            className="font-sans font-light text-text mb-3 relative z-10"
+            className="font-heading font-medium text-text mb-3 relative z-10"
             style={{
               fontSize: 'clamp(0.95rem, 1.3vw, 1.05rem)',
               letterSpacing: '-0.02em',
@@ -176,7 +176,7 @@ function ServiceCard({ service, onLearnMore }: ServiceCardProps) {
 
           {/* Description */}
           <p
-            className="font-sans font-light relative z-10 mb-6 flex-1"
+            className="font-sans font-normal relative z-10 mb-6 flex-1"
             style={{
               fontSize: '0.82rem',
               color: 'hsl(0 0% 48%)',
@@ -189,7 +189,7 @@ function ServiceCard({ service, onLearnMore }: ServiceCardProps) {
           {/* Learn More button */}
           <div className="relative z-10">
             <span
-              className="inline-flex items-center gap-1.5 font-sans text-xs font-light tracking-wide uppercase transition-colors duration-200"
+              className="inline-flex items-center gap-1.5 font-sans text-xs font-medium tracking-wide uppercase transition-colors duration-200"
               style={{
                 color: service.accent,
                 letterSpacing: '0.1em',
@@ -381,7 +381,7 @@ function BespokeFollowUp() {
 
           {/* Body copy + editorial stat numbers */}
           <div className="bfu3-r" style={{ maxWidth: '26rem', paddingBottom: '0.5rem' }}>
-            <p className="font-sans font-light mb-10" style={{
+            <p className="font-sans font-normal mb-10" style={{
               fontSize: 'clamp(0.84rem, 1.3vw, 0.98rem)', lineHeight: 1.9, color: '#F2F8FC',
             }}>
               Your website should do more than look good. We build clear, fast, and persuasive
@@ -756,7 +756,7 @@ function BespokeCareStories() {
 
             {/* Headline — word-by-word reveal */}
             <h2
-              className="font-sans font-light"
+              className="font-heading font-medium"
               style={{
                 fontSize: 'clamp(2rem, 4vw, 3.2rem)',
                 lineHeight: 1.15,
@@ -780,7 +780,7 @@ function BespokeCareStories() {
 
             {/* Body paragraphs */}
             <p
-              className="bcs-body font-sans font-light"
+              className="bcs-body font-sans font-normal"
               style={{
                 fontSize: 'clamp(0.86rem, 1.35vw, 0.98rem)',
                 lineHeight: 1.85,
@@ -793,7 +793,7 @@ function BespokeCareStories() {
             </p>
 
             <p
-              className="bcs-body font-sans font-light"
+              className="bcs-body font-sans font-normal"
               style={{
                 fontSize: 'clamp(0.86rem, 1.35vw, 0.98rem)',
                 lineHeight: 1.85,
@@ -949,7 +949,7 @@ function ZebraHeroVisual() {
         <p style={{ fontSize: '5.5px', letterSpacing: '0.30em', textTransform: 'uppercase', color: 'rgba(200,168,90,0.72)', marginBottom: '5px' }}>
           Consultant-Led Private Care
         </p>
-        <h3 style={{ fontSize: 'clamp(13px, 2vw, 18px)', fontWeight: 700, color: '#EDE0C4', lineHeight: 1.15, letterSpacing: '-0.02em', fontFamily: 'var(--font-label)', marginBottom: '6px', maxWidth: '72%' }}>
+        <h3 style={{ fontSize: 'clamp(13px, 2vw, 18px)', fontWeight: 500, color: '#EDE0C4', lineHeight: 1.15, letterSpacing: '-0.02em', fontFamily: 'var(--font-label)', marginBottom: '6px', maxWidth: '72%' }}>
           Exceptional care, centred around you.
         </h3>
         <p style={{ fontSize: '6.5px', color: 'rgba(210,222,222,0.62)', lineHeight: 1.5, maxWidth: '58%', marginBottom: '9px' }}>
@@ -1103,7 +1103,7 @@ function PrivateResidenceHero() {
           Private Residence · London
         </p>
         <div aria-hidden="true" style={{ width: '22px', height: '1px', background: 'rgba(200,168,90,0.55)', marginBottom: '6px' }} />
-        <h3 style={{ fontSize: 'clamp(11px, 1.7vw, 14px)', fontWeight: 700, color: '#EDE0C4', lineHeight: 1.12, letterSpacing: '-0.01em', fontFamily: 'var(--font-label)', marginBottom: '6px' }}>
+        <h3 style={{ fontSize: 'clamp(11px, 1.7vw, 14px)', fontWeight: 500, color: '#EDE0C4', lineHeight: 1.12, letterSpacing: '-0.01em', fontFamily: 'var(--font-label)', marginBottom: '6px' }}>
           FORMED BY LIGHT
         </h3>
         <span style={{ fontSize: '7px', color: 'rgba(228,208,168,0.72)', letterSpacing: '0.04em' }}>
@@ -1204,16 +1204,16 @@ function BespokeWebShowcase() {
           <p className="bws-header font-sans uppercase" style={{ fontSize: '0.58rem', letterSpacing: '0.34em', color: 'rgba(125,220,255,0.55)', marginBottom: '1.2rem' }}>
             Website Showcase
           </p>
-          <h2 className="bws-header font-sans" style={{ fontSize: 'clamp(1.9rem, 4vw, 3.2rem)', lineHeight: 1.1, letterSpacing: '-0.038em', fontWeight: 300, color: 'hsl(0 0% 94%)', marginBottom: '1.5rem' }}>
+          <h2 className="bws-header font-heading" style={{ fontSize: 'clamp(1.9rem, 4vw, 3.2rem)', lineHeight: 1.1, letterSpacing: '-0.038em', fontWeight: 500, color: 'hsl(0 0% 94%)', marginBottom: '1.5rem' }}>
             Crafted to captivate,{' '}
             <em style={{ fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(41 62% 66%)' }}>
               built to perform.
             </em>
           </h2>
-          <p className="bws-header font-sans font-light" style={{ fontSize: 'clamp(0.84rem, 1.3vw, 0.97rem)', lineHeight: 1.9, color: '#D3DCE2', marginBottom: '1rem' }}>
+          <p className="bws-header font-sans font-normal" style={{ fontSize: 'clamp(0.84rem, 1.3vw, 0.97rem)', lineHeight: 1.9, color: '#D3DCE2', marginBottom: '1rem' }}>
             Every site we build is a precision-crafted system — visual, functional, and designed to earn trust from the first scroll. We don't use templates. Every layout, interaction, and detail is shaped around your brand and your audience.
           </p>
-          <p className="bws-header font-sans font-light" style={{ fontSize: 'clamp(0.84rem, 1.3vw, 0.97rem)', lineHeight: 1.9, color: '#D3DCE2' }}>
+          <p className="bws-header font-sans font-normal" style={{ fontSize: 'clamp(0.84rem, 1.3vw, 0.97rem)', lineHeight: 1.9, color: '#D3DCE2' }}>
             From real estate platforms and service businesses to e-commerce brands and creative studios — we build websites that feel premium, load fast, and convert visitors into clients.
           </p>
 
@@ -1567,7 +1567,7 @@ function BespokeProcessTimeline() {
         {/* Heading + para — centered */}
         <div className="text-center max-w-[42rem] mx-auto mb-16 sm:mb-20">
           <h2
-            className="bpt-heading font-sans font-light text-text mb-6"
+            className="bpt-heading font-heading font-medium text-text mb-6"
             style={{
               fontSize: 'clamp(1.8rem, 4vw, 3rem)',
               lineHeight: 1.1,
@@ -1580,7 +1580,7 @@ function BespokeProcessTimeline() {
             </em>
           </h2>
           <p
-            className="bpt-para font-sans font-light"
+            className="bpt-para font-sans font-normal"
             style={{
               fontSize: 'clamp(0.88rem, 1.5vw, 1.02rem)',
               lineHeight: 1.85,
@@ -1660,7 +1660,7 @@ function BespokeProcessTimeline() {
 
                 {/* Title */}
                 <p
-                  className="font-sans font-light text-text mb-2"
+                  className="font-sans font-normal text-text mb-2"
                   style={{
                     fontSize: 'clamp(0.95rem, 1.4vw, 1.05rem)',
                     letterSpacing: '-0.015em',
@@ -1671,7 +1671,7 @@ function BespokeProcessTimeline() {
 
                 {/* Description */}
                 <p
-                  className="font-sans font-light"
+                  className="font-sans font-normal"
                   style={{
                     fontSize: '0.84rem',
                     lineHeight: 1.75,
@@ -1790,14 +1790,14 @@ function BespokeWebDesignShowcase() {
           {/* ── Left: copy ── */}
           <div>
             {/* Label */}
-            <p className="bwds-label font-sans font-light uppercase mb-5" style={{
+            <p className="bwds-label font-sans font-normal uppercase mb-5" style={{
               fontSize: '0.6rem', letterSpacing: '0.34em', color: 'hsl(199 89% 60% / 0.65)',
             }}>
               Website Design
             </p>
 
             {/* Headline */}
-            <h2 className="bwds-heading font-sans font-light mb-7" style={{
+            <h2 className="bwds-heading font-heading font-medium mb-7" style={{
               fontSize: 'clamp(1.9rem, 3.8vw, 3rem)',
               lineHeight: 1.1,
               letterSpacing: '-0.035em',
@@ -1823,7 +1823,7 @@ function BespokeWebDesignShowcase() {
             }} />
 
             {/* Para 1 */}
-            <p className="bwds-para1 font-sans font-light mb-5" style={{
+            <p className="bwds-para1 font-sans font-normal mb-5" style={{
               fontSize: 'clamp(0.88rem, 1.4vw, 1rem)',
               lineHeight: 1.9,
               color: '#F2F8FC',
@@ -1833,7 +1833,7 @@ function BespokeWebDesignShowcase() {
             </p>
 
             {/* Para 2 */}
-            <p className="bwds-para2 font-sans font-light mb-10" style={{
+            <p className="bwds-para2 font-sans font-normal mb-10" style={{
               fontSize: 'clamp(0.88rem, 1.4vw, 1rem)',
               lineHeight: 1.9,
               color: '#F2F8FC',
@@ -1851,7 +1851,7 @@ function BespokeWebDesignShowcase() {
                     <circle cx="7" cy="7" r="6.5" stroke="hsl(199 89% 60% / 0.3)"/>
                     <polyline points="4,7 6,9.2 10,4.8" stroke="hsl(199 89% 60%)" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
-                  <span className="font-sans font-light" style={{
+                  <span className="font-sans font-normal" style={{
                     fontSize: 'clamp(0.82rem, 1.2vw, 0.9rem)',
                     color: '#F2F8FC',
                     letterSpacing: '0.01em',
@@ -1960,7 +1960,7 @@ function BespokeRealUsers() {
             </p>
 
             <h2
-              className="bru-heading font-sans font-light"
+              className="bru-heading font-heading font-medium"
               style={{
                 fontSize: 'clamp(2rem, 4.2vw, 3.4rem)',
                 lineHeight: 1.12,
@@ -1982,7 +1982,7 @@ function BespokeRealUsers() {
             </h2>
 
             <p
-              className="bru-body font-sans font-light"
+              className="bru-body font-sans font-normal"
               style={{
                 fontSize: 'clamp(0.88rem, 1.4vw, 1rem)',
                 lineHeight: 1.88,
@@ -2085,7 +2085,7 @@ function BespokeRealUsers() {
                         {title}
                       </p>
                       <p
-                        className="font-sans font-light"
+                        className="font-sans font-normal"
                         style={{
                           fontSize: '0.83rem',
                           lineHeight: 1.78,
@@ -2269,7 +2269,7 @@ function ChatbotWhatsAppBusiness() {
             </p>
 
             <h2
-              className="cbwb-heading font-sans font-light"
+              className="cbwb-heading font-heading font-medium"
               style={{ fontSize: 'clamp(2rem, 4.2vw, 3.4rem)', lineHeight: 1.1, letterSpacing: '-0.036em', color: 'hsl(0 0% 93%)', marginBottom: '1.8rem', maxWidth: '30rem' }}
             >
               WhatsApp Business chatbots that{' '}
@@ -2279,7 +2279,7 @@ function ChatbotWhatsAppBusiness() {
             </h2>
 
             <p
-              className="cbwb-body font-sans font-light"
+              className="cbwb-body font-sans font-normal"
               style={{ fontSize: 'clamp(0.88rem, 1.4vw, 1rem)', lineHeight: 1.88, color: '#F2F8FC', maxWidth: '32rem', marginBottom: '1.3rem' }}
             >
               Turn WhatsApp into a faster customer support and sales channel. We build intelligent
@@ -2288,7 +2288,7 @@ function ChatbotWhatsAppBusiness() {
             </p>
 
             <p
-              className="cbwb-body font-sans font-light"
+              className="cbwb-body font-sans font-normal"
               style={{ fontSize: 'clamp(0.88rem, 1.4vw, 1rem)', lineHeight: 1.88, color: '#F2F8FC', maxWidth: '32rem', marginBottom: '2.6rem' }}
             >
               From menus, bookings, FAQs, locations, pricing, product details, and lead capture,
@@ -2309,7 +2309,7 @@ function ChatbotWhatsAppBusiness() {
                     background: 'hsl(142 60% 52%)',
                     flexShrink: 0,
                   }}/>
-                  <span className="font-sans font-light" style={{ fontSize: 'clamp(0.82rem, 1.2vw, 0.9rem)', letterSpacing: '0.02em', color: '#F2F8FC' }}>
+                  <span className="font-sans font-normal" style={{ fontSize: 'clamp(0.82rem, 1.2vw, 0.9rem)', letterSpacing: '0.02em', color: '#F2F8FC' }}>
                     {item}
                   </span>
                 </li>
@@ -2395,7 +2395,7 @@ function ChatbotInstagramDM() {
             </p>
 
             <h2
-              className="cbid-heading font-sans font-light"
+              className="cbid-heading font-heading font-medium"
               style={{ fontSize: 'clamp(2rem, 4.2vw, 3.4rem)', lineHeight: 1.1, letterSpacing: '-0.036em', color: 'hsl(0 0% 93%)', marginBottom: '1.8rem', maxWidth: '30rem' }}
             >
               Instagram DM automation that keeps{' '}
@@ -2405,7 +2405,7 @@ function ChatbotInstagramDM() {
             </h2>
 
             <p
-              className="cbid-body font-sans font-light"
+              className="cbid-body font-sans font-normal"
               style={{ fontSize: 'clamp(0.88rem, 1.4vw, 1rem)', lineHeight: 1.88, color: '#F2F8FC', maxWidth: '32rem', marginBottom: '1.3rem' }}
             >
               Turn Instagram messages into a faster customer journey. We build DM automation
@@ -2414,7 +2414,7 @@ function ChatbotInstagramDM() {
             </p>
 
             <p
-              className="cbid-body font-sans font-light"
+              className="cbid-body font-sans font-normal"
               style={{ fontSize: 'clamp(0.88rem, 1.4vw, 1rem)', lineHeight: 1.88, color: '#F2F8FC', maxWidth: '32rem', marginBottom: '2.6rem' }}
             >
               From FAQs and service details to lead qualification and follow-up messages, your
@@ -2435,7 +2435,7 @@ function ChatbotInstagramDM() {
                     background: 'hsl(320 70% 65%)',
                     flexShrink: 0,
                   }}/>
-                  <span className="font-sans font-light" style={{ fontSize: 'clamp(0.82rem, 1.2vw, 0.9rem)', letterSpacing: '0.02em', color: '#F2F8FC' }}>
+                  <span className="font-sans font-normal" style={{ fontSize: 'clamp(0.82rem, 1.2vw, 0.9rem)', letterSpacing: '0.02em', color: '#F2F8FC' }}>
                     {item}
                   </span>
                 </li>
@@ -2614,7 +2614,7 @@ function ChatbotFacebookMessenger() {
             </p>
 
             <h2
-              className="cbfm-heading font-sans font-light"
+              className="cbfm-heading font-heading font-medium"
               style={{ fontSize: 'clamp(2rem, 4.2vw, 3.4rem)', lineHeight: 1.1, letterSpacing: '-0.036em', color: 'hsl(0 0% 93%)', marginBottom: '1.8rem', maxWidth: '30rem' }}
             >
               Facebook Messenger automation built for{' '}
@@ -2624,7 +2624,7 @@ function ChatbotFacebookMessenger() {
             </h2>
 
             <p
-              className="cbfm-body font-sans font-light"
+              className="cbfm-body font-sans font-normal"
               style={{ fontSize: 'clamp(0.88rem, 1.4vw, 1rem)', lineHeight: 1.88, color: '#F2F8FC', maxWidth: '32rem', marginBottom: '1.3rem' }}
             >
               Keep your brand responsive with Messenger automation that answers questions
@@ -2633,7 +2633,7 @@ function ChatbotFacebookMessenger() {
             </p>
 
             <p
-              className="cbfm-body font-sans font-light"
+              className="cbfm-body font-sans font-normal"
               style={{ fontSize: 'clamp(0.88rem, 1.4vw, 1rem)', lineHeight: 1.88, color: '#F2F8FC', maxWidth: '32rem', marginBottom: '2.6rem' }}
             >
               From product questions and booking support to lead capture and follow-ups, we
@@ -2654,7 +2654,7 @@ function ChatbotFacebookMessenger() {
                     background: 'hsl(215 85% 65%)',
                     flexShrink: 0,
                   }}/>
-                  <span className="font-sans font-light" style={{ fontSize: 'clamp(0.82rem, 1.2vw, 0.9rem)', letterSpacing: '0.02em', color: '#F2F8FC' }}>
+                  <span className="font-sans font-normal" style={{ fontSize: 'clamp(0.82rem, 1.2vw, 0.9rem)', letterSpacing: '0.02em', color: '#F2F8FC' }}>
                     {item}
                   </span>
                 </li>
@@ -2662,7 +2662,7 @@ function ChatbotFacebookMessenger() {
             </ul>
 
             <p
-              className="cbfm-closing font-sans font-light"
+              className="cbfm-closing font-sans font-normal"
               style={{ fontSize: 'clamp(0.8rem, 1.2vw, 0.88rem)', lineHeight: 1.8, color: '#F2F8FC', maxWidth: '30rem', fontStyle: 'italic' }}
             >
               Designed to help businesses stay available, professional, and efficient without
@@ -2760,7 +2760,7 @@ function ChatbotWorkflowSection() {
             Automation Workflow
           </p>
           <h2
-            className="cwf-heading font-sans font-light"
+            className="cwf-heading font-heading font-medium"
             style={{
               fontSize: 'clamp(2rem, 4vw, 3.2rem)',
               lineHeight: 1.1,
@@ -2776,7 +2776,7 @@ function ChatbotWorkflowSection() {
             </em>
           </h2>
           <p
-            className="cwf-body font-sans font-light"
+            className="cwf-body font-sans font-normal"
             style={{
               fontSize: 'clamp(0.88rem, 1.4vw, 1rem)',
               lineHeight: 1.88,
@@ -2862,7 +2862,7 @@ function ChatbotWorkflowSection() {
                 </p>
 
                 {/* Description */}
-                <p className="font-sans font-light" style={{
+                <p className="font-sans font-normal" style={{
                   fontSize:   'clamp(0.8rem, 1.15vw, 0.875rem)',
                   lineHeight: 1.8,
                   color:      'rgba(220, 232, 240, 0.68)',
@@ -2982,7 +2982,7 @@ function ChatbotIntegrationsSection() {
             </p>
 
             <h2
-              className="cbi-heading font-sans font-light"
+              className="cbi-heading font-heading font-medium"
               style={{
                 fontSize:      'clamp(2rem, 4vw, 3.2rem)',
                 lineHeight:    1.1,
@@ -2999,7 +2999,7 @@ function ChatbotIntegrationsSection() {
             </h2>
 
             <p
-              className="cbi-body font-sans font-light"
+              className="cbi-body font-sans font-normal"
               style={{
                 fontSize:   'clamp(0.88rem, 1.4vw, 1rem)',
                 lineHeight: 1.88,
@@ -3108,7 +3108,7 @@ function ChatbotIntegrationsSection() {
                     }}>
                       {row.title}
                     </p>
-                    <p className="font-sans font-light" style={{
+                    <p className="font-sans font-normal" style={{
                       fontSize:   'clamp(0.75rem, 1.1vw, 0.8rem)',
                       lineHeight: 1.7,
                       color:      CBI_ROW_DESC_COLOR,
@@ -3216,7 +3216,7 @@ function ChatbotTikTokAutomation() {
             </p>
 
             <h2
-              className="ctta-heading font-sans font-light"
+              className="ctta-heading font-heading font-medium"
               style={{
                 fontSize: 'clamp(2rem, 4.2vw, 3.4rem)',
                 lineHeight: 1.1,
@@ -3238,7 +3238,7 @@ function ChatbotTikTokAutomation() {
             </h2>
 
             <p
-              className="ctta-body font-sans font-light"
+              className="ctta-body font-sans font-normal"
               style={{
                 fontSize: 'clamp(0.88rem, 1.4vw, 1rem)',
                 lineHeight: 1.88,
@@ -3251,7 +3251,7 @@ function ChatbotTikTokAutomation() {
             </p>
 
             <p
-              className="ctta-body font-sans font-light"
+              className="ctta-body font-sans font-normal"
               style={{
                 fontSize: 'clamp(0.88rem, 1.4vw, 1rem)',
                 lineHeight: 1.88,
@@ -3277,7 +3277,7 @@ function ChatbotTikTokAutomation() {
                     flexShrink: 0,
                   }}/>
                   <span
-                    className="font-sans font-light"
+                    className="font-sans font-normal"
                     style={{
                       fontSize: 'clamp(0.82rem, 1.2vw, 0.9rem)',
                       letterSpacing: '0.02em',
@@ -3671,7 +3671,7 @@ function SocialMediaMarketing() {
       <div className="relative z-10 h-full flex items-center px-6 sm:px-12 lg:px-20">
         <div>
           <h2
-            className="smh-heading font-sans font-light text-text"
+            className="smh-heading font-heading font-medium text-text"
             style={{ opacity: 0, transform: 'translateY(28px)', fontSize: 'clamp(2.6rem, 6vw, 5rem)', lineHeight: 1.1, letterSpacing: '-0.04em' }}
           >
             <span style={{ display: 'block' }}>Social Media</span>
@@ -3753,7 +3753,7 @@ function SocialMediaMarketing() {
 
               {/* Badge */}
               <span
-                className="smp-label inline-flex items-center gap-2 mb-8 font-sans font-light uppercase self-start"
+                className="smp-label inline-flex items-center gap-2 mb-8 font-sans font-medium uppercase self-start"
                 style={{
                   opacity: 0, transform: 'translateY(16px)',
                   fontSize: '0.63rem', letterSpacing: '0.3em',
@@ -3770,7 +3770,7 @@ function SocialMediaMarketing() {
 
               {/* Heading */}
               <h2
-                className="smp-heading font-sans font-light text-text mb-5"
+                className="smp-heading font-heading font-medium text-text mb-5"
                 style={{
                   opacity: 0, transform: 'translateY(28px)',
                   fontSize: 'clamp(2rem, 3.8vw, 3.2rem)',
@@ -3805,7 +3805,7 @@ function SocialMediaMarketing() {
 
               {/* Body */}
               <p
-                className="smp-body font-sans font-light mb-10"
+                className="smp-body font-sans font-normal mb-10"
                 style={{
                   opacity: 0, transform: 'translateY(18px)',
                   fontSize: 'clamp(0.88rem, 1.4vw, 1rem)',
@@ -3828,7 +3828,7 @@ function SocialMediaMarketing() {
                 ].map(text => (
                   <li
                     key={text}
-                    className="smp-feat flex items-center justify-between font-sans font-light"
+                    className="smp-feat flex items-center justify-between font-sans font-normal"
                     style={{
                       opacity: 0, transform: 'translateY(10px)',
                       fontSize: 'clamp(0.84rem, 1.2vw, 0.92rem)',
@@ -3942,10 +3942,10 @@ function SocialMediaMarketing() {
               }}
             >
               <p className="font-sans" style={{ fontSize: '0.58rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: 'hsl(199 89% 65%)', marginBottom: '0.32rem' }}>Reach Growth</p>
-              <p className="font-sans font-light text-text" style={{ fontSize: '1.75rem', letterSpacing: '-0.036em', lineHeight: 1 }}>
+              <p className="font-sans font-normal text-text" style={{ fontSize: '1.75rem', letterSpacing: '-0.036em', lineHeight: 1 }}>
                 <span className="smp-reach-val">+280</span><span style={{ fontSize: '0.88rem', color: 'hsl(199 89% 60%)', marginLeft: '1px' }}>%</span>
               </p>
-              <p className="font-sans font-light" style={{ fontSize: '0.63rem', color: 'hsl(0 0% 36%)', marginTop: '0.22rem', letterSpacing: '0.04em' }}>avg. across clients</p>
+              <p className="font-sans font-normal" style={{ fontSize: '0.63rem', color: 'hsl(0 0% 36%)', marginTop: '0.22rem', letterSpacing: '0.04em' }}>avg. across clients</p>
             </div>
 
             {/* Floating stat chip — bottom right */}
@@ -3963,10 +3963,10 @@ function SocialMediaMarketing() {
               }}
             >
               <p className="font-sans" style={{ fontSize: '0.58rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: 'hsl(280 65% 72%)', marginBottom: '0.32rem' }}>Engagement Rate</p>
-              <p className="font-sans font-light text-text" style={{ fontSize: '1.75rem', letterSpacing: '-0.036em', lineHeight: 1 }}>
+              <p className="font-sans font-normal text-text" style={{ fontSize: '1.75rem', letterSpacing: '-0.036em', lineHeight: 1 }}>
                 <span className="smp-engage-val">8.4</span><span style={{ fontSize: '0.88rem', color: 'hsl(280 65% 65%)', marginLeft: '1px' }}>%</span>
               </p>
-              <p className="font-sans font-light" style={{ fontSize: '0.63rem', color: 'hsl(0 0% 36%)', marginTop: '0.22rem', letterSpacing: '0.04em' }}>12-week average</p>
+              <p className="font-sans font-normal" style={{ fontSize: '0.63rem', color: 'hsl(0 0% 36%)', marginTop: '0.22rem', letterSpacing: '0.04em' }}>12-week average</p>
             </div>
 
           </div>
@@ -4004,7 +4004,7 @@ function SocialMediaMarketing() {
             What we deliver
           </p>
           <h2
-            className="sms-heading font-sans font-light text-text"
+            className="sms-heading font-heading font-medium text-text"
             style={{ opacity: 0, transform: 'translateY(24px)', fontSize: 'clamp(1.8rem, 4vw, 3rem)', lineHeight: 1.08, letterSpacing: '-0.033em', maxWidth: '34rem' }}
           >
             Content backed by{' '}
@@ -4057,11 +4057,11 @@ function SocialMediaMarketing() {
                   {String(i + 1).padStart(2, '0')}
                 </span>
                 {/* Label */}
-                <p className="font-sans font-light shrink-0" style={{ fontSize: 'clamp(0.95rem, 1.5vw, 1.1rem)', letterSpacing: '-0.015em', minWidth: '18rem', color: '#BFEFFF', textShadow: '0 0 16px rgba(125,220,255,0.12)' }}>
+                <p className="font-sans font-normal shrink-0" style={{ fontSize: 'clamp(0.95rem, 1.5vw, 1.1rem)', letterSpacing: '-0.015em', minWidth: '18rem', color: '#BFEFFF', textShadow: '0 0 16px rgba(125,220,255,0.12)' }}>
                   {label}
                 </p>
                 {/* Desc */}
-                <p className="font-sans font-light" style={{ fontSize: '0.84rem', lineHeight: 1.75, color: '#C9D3D8' }}>
+                <p className="font-sans font-normal" style={{ fontSize: '0.84rem', lineHeight: 1.75, color: '#C9D3D8' }}>
                   {desc}
                 </p>
               </div>
@@ -4243,10 +4243,10 @@ function SocialMediaMarketing() {
                 }}
               >
                 <p className="font-sans" style={{ fontSize: '0.58rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: 'hsl(199 89% 65%)', marginBottom: '0.28rem' }}>Audience Reach</p>
-                <p className="font-sans font-light text-text" style={{ fontSize: '1.6rem', letterSpacing: '-0.036em', lineHeight: 1 }}>
+                <p className="font-sans font-normal text-text" style={{ fontSize: '1.6rem', letterSpacing: '-0.036em', lineHeight: 1 }}>
                   450<span style={{ fontSize: '0.95rem', color: 'hsl(199 89% 60%)' }}>K+</span>
                 </p>
-                <p className="font-sans font-light" style={{ fontSize: '0.62rem', color: 'hsl(0 0% 36%)', marginTop: '0.2rem' }}>avg. combined reach</p>
+                <p className="font-sans font-normal" style={{ fontSize: '0.62rem', color: 'hsl(0 0% 36%)', marginTop: '0.2rem' }}>avg. combined reach</p>
               </div>
 
               <div
@@ -4262,10 +4262,10 @@ function SocialMediaMarketing() {
                 }}
               >
                 <p className="font-sans" style={{ fontSize: '0.58rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: 'hsl(280 65% 72%)', marginBottom: '0.28rem' }}>Engagement</p>
-                <p className="font-sans font-light text-text" style={{ fontSize: '1.6rem', letterSpacing: '-0.036em', lineHeight: 1 }}>
+                <p className="font-sans font-normal text-text" style={{ fontSize: '1.6rem', letterSpacing: '-0.036em', lineHeight: 1 }}>
                   9.2<span style={{ fontSize: '0.9rem', color: 'hsl(280 65% 65%)' }}>%</span>
                 </p>
-                <p className="font-sans font-light" style={{ fontSize: '0.62rem', color: 'hsl(0 0% 36%)', marginTop: '0.2rem' }}>12-week avg rate</p>
+                <p className="font-sans font-normal" style={{ fontSize: '0.62rem', color: 'hsl(0 0% 36%)', marginTop: '0.2rem' }}>12-week avg rate</p>
               </div>
             </div>
 
@@ -4291,7 +4291,7 @@ function SocialMediaMarketing() {
 
               {/* Badge */}
               <span
-                className="smpr-label inline-flex items-center gap-2 mb-8 font-sans font-light uppercase self-start"
+                className="smpr-label inline-flex items-center gap-2 mb-8 font-sans font-medium uppercase self-start"
                 style={{
                   opacity: 0, transform: 'translateY(16px)',
                   fontSize: '0.63rem', letterSpacing: '0.3em',
@@ -4308,7 +4308,7 @@ function SocialMediaMarketing() {
 
               {/* Heading */}
               <h2
-                className="smpr-heading font-sans font-light text-text mb-5"
+                className="smpr-heading font-heading font-medium text-text mb-5"
                 style={{ fontSize: 'clamp(1.9rem, 3.6vw, 3rem)', lineHeight: 1.22, letterSpacing: '-0.035em' }}
               >
                 {['Profiles', 'built', 'to', 'attract'].map((word, i) => (
@@ -4341,7 +4341,7 @@ function SocialMediaMarketing() {
 
               {/* Body */}
               <p
-                className="smpr-body font-sans font-light mb-10"
+                className="smpr-body font-sans font-normal mb-10"
                 style={{
                   opacity: 0, transform: 'translateY(18px)',
                   fontSize: 'clamp(0.88rem, 1.4vw, 1rem)',
@@ -4362,7 +4362,7 @@ function SocialMediaMarketing() {
                 ].map(({ stat, label }) => (
                   <li
                     key={label}
-                    className="smpr-metric flex items-center justify-between font-sans font-light"
+                    className="smpr-metric flex items-center justify-between font-sans font-normal"
                     style={{
                       opacity: 0, transform: 'translateY(10px)',
                       fontSize: 'clamp(0.84rem, 1.2vw, 0.92rem)',
@@ -4495,10 +4495,10 @@ function SocialMediaMarketing() {
               }}
             >
               <p className="font-sans" style={{ fontSize: '0.56rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: 'hsl(199 89% 65%)', marginBottom: '0.26rem', fontFamily: 'var(--font-label)' }}>Conversion Lift</p>
-              <p className="font-sans font-light text-text" style={{ fontSize: '1.55rem', letterSpacing: '-0.036em', lineHeight: 1, fontFamily: 'var(--font-label)' }}>
+              <p className="font-sans font-normal text-text" style={{ fontSize: '1.55rem', letterSpacing: '-0.036em', lineHeight: 1, fontFamily: 'var(--font-label)' }}>
                 <span className="smbs-num-val">3.8</span><span style={{ fontSize: '0.9rem', color: 'hsl(199 89% 60%)' }}>×</span>
               </p>
-              <p className="font-sans font-light" style={{ fontSize: '0.6rem', color: 'hsl(0 0% 36%)', marginTop: '0.2rem', fontFamily: 'var(--font-label)' }}>avg. campaign lift</p>
+              <p className="font-sans font-normal" style={{ fontSize: '0.6rem', color: 'hsl(0 0% 36%)', marginTop: '0.2rem', fontFamily: 'var(--font-label)' }}>avg. campaign lift</p>
             </div>
           </div>
 
@@ -4535,7 +4535,7 @@ function SocialMediaMarketing() {
 
               {/* Heading */}
               <h2
-                className="smbs-heading font-sans font-light text-text mb-5"
+                className="smbs-heading font-heading font-medium text-text mb-5"
                 style={{ fontSize: 'clamp(1.9rem, 3.6vw, 3rem)', lineHeight: 1.22, letterSpacing: '-0.035em' }}
               >
                 {['Visuals', 'that', 'stop', 'the'].map((word, i) => (
@@ -4568,7 +4568,7 @@ function SocialMediaMarketing() {
 
               {/* Body 1 */}
               <p
-                className="smbs-body font-sans font-light mb-5"
+                className="smbs-body font-sans font-normal mb-5"
                 style={{
                   opacity: 0, transform: 'translateY(18px)',
                   fontSize: 'clamp(0.87rem, 1.35vw, 0.97rem)',
@@ -4583,7 +4583,7 @@ function SocialMediaMarketing() {
 
               {/* Body 2 */}
               <p
-                className="smbs-body font-sans font-light mb-10"
+                className="smbs-body font-sans font-normal mb-10"
                 style={{
                   opacity: 0, transform: 'translateY(18px)',
                   fontSize: 'clamp(0.87rem, 1.35vw, 0.97rem)',
@@ -4606,7 +4606,7 @@ function SocialMediaMarketing() {
                 ].map(item => (
                   <li
                     key={item}
-                    className="smbs-item flex items-center gap-3 font-sans font-light"
+                    className="smbs-item flex items-center gap-3 font-sans font-normal"
                     style={{
                       opacity: 0, transform: 'translateY(10px)',
                       fontSize: 'clamp(0.84rem, 1.2vw, 0.9rem)',
@@ -4688,7 +4688,7 @@ function SocialMediaMarketing() {
 
             {/* Headline */}
             <h2
-              className="s5cv-heading font-sans font-light text-text mb-5"
+              className="s5cv-heading font-heading font-medium text-text mb-5"
               style={{ fontSize: 'clamp(1.9rem, 3.6vw, 3.1rem)', lineHeight: 1.22, letterSpacing: '-0.035em' }}
             >
               {['Social', 'campaigns', 'built', 'for', 'the', 'platforms'].map((word, i) => (
@@ -4721,7 +4721,7 @@ function SocialMediaMarketing() {
 
             {/* Body 1 */}
             <p
-              className="s5cv-body font-sans font-light mb-5"
+              className="s5cv-body font-sans font-normal mb-5"
               style={{
                 opacity: 0, transform: 'translateY(18px)',
                 fontSize: 'clamp(0.87rem, 1.35vw, 0.97rem)',
@@ -4736,7 +4736,7 @@ function SocialMediaMarketing() {
 
             {/* Body 2 */}
             <p
-              className="s5cv-body font-sans font-light mb-10"
+              className="s5cv-body font-sans font-normal mb-10"
               style={{
                 opacity: 0, transform: 'translateY(18px)',
                 fontSize: 'clamp(0.87rem, 1.35vw, 0.97rem)',
@@ -4760,7 +4760,7 @@ function SocialMediaMarketing() {
               ].map(item => (
                 <li
                   key={item}
-                  className="s5cv-item flex items-center gap-3 font-sans font-light"
+                  className="s5cv-item flex items-center gap-3 font-sans font-normal"
                   style={{
                     opacity: 0, transform: 'translateY(10px)',
                     fontSize: 'clamp(0.84rem, 1.2vw, 0.9rem)',
@@ -4951,7 +4951,7 @@ function SocialMediaMarketing() {
           <div className="mb-10 lg:mb-14">
 
             <p
-              className="s6-badge font-sans font-light uppercase mb-4"
+              className="s6-badge font-sans font-normal uppercase mb-4"
               style={{
                 opacity: 0, transform: 'translateY(16px)',
                 fontSize: '0.56rem', letterSpacing: '0.38em',
@@ -4962,7 +4962,7 @@ function SocialMediaMarketing() {
             </p>
 
             <h2
-              className="s6-heading font-sans font-light"
+              className="s6-heading font-heading font-medium"
               style={{
                 opacity: 0, transform: 'translateY(24px)',
                 fontSize: 'clamp(1.9rem, 3.8vw, 3.2rem)',
@@ -4993,7 +4993,7 @@ function SocialMediaMarketing() {
             />
 
             <p
-              className="s6-body font-sans font-light"
+              className="s6-body font-sans font-normal"
               style={{
                 opacity: 0, transform: 'translateY(18px)',
                 fontSize: 'clamp(0.85rem, 1.3vw, 0.97rem)',
@@ -5021,7 +5021,7 @@ function SocialMediaMarketing() {
                 style={{ opacity: 0, transform: 'translateY(18px)' }}
               >
                 <p
-                  className="font-sans font-light uppercase mb-1"
+                  className="font-sans font-normal uppercase mb-1"
                   style={{
                     fontSize: '0.54rem', letterSpacing: '0.32em',
                     color: 'hsl(32 90% 62%)',
@@ -5030,7 +5030,7 @@ function SocialMediaMarketing() {
                   Landscape Campaign
                 </p>
                 <p
-                  className="font-sans font-light"
+                  className="font-sans font-normal"
                   style={{
                     fontSize: 'clamp(0.76rem, 1.1vw, 0.84rem)',
                     lineHeight: 1.7, color: '#F2F8FC',
@@ -5080,7 +5080,7 @@ function SocialMediaMarketing() {
                 style={{ opacity: 0, transform: 'translateY(18px)' }}
               >
                 <p
-                  className="font-sans font-light uppercase mb-1"
+                  className="font-sans font-normal uppercase mb-1"
                   style={{
                     fontSize: '0.54rem', letterSpacing: '0.32em',
                     color: 'hsl(199 89% 62%)',
@@ -5089,7 +5089,7 @@ function SocialMediaMarketing() {
                   Vertical Social Cut
                 </p>
                 <p
-                  className="font-sans font-light"
+                  className="font-sans font-normal"
                   style={{
                     fontSize: 'clamp(0.76rem, 1.1vw, 0.84rem)',
                     lineHeight: 1.7, color: '#F2F8FC',
@@ -5157,13 +5157,13 @@ function SocialMediaMarketing() {
         {/* ── Centered header ── */}
         <div className="text-center mb-20 lg:mb-24">
           <p
-            className="smf-eyebrow font-sans font-light uppercase mb-5"
+            className="smf-eyebrow font-sans font-normal uppercase mb-5"
             style={{ opacity: 0, fontSize: '0.6rem', letterSpacing: '0.38em', color: 'hsl(280 65% 72% / 0.65)' }}
           >
             The Weavy Difference
           </p>
           <h2
-            className="smf-heading font-sans font-light mx-auto"
+            className="smf-heading font-heading font-medium mx-auto"
             style={{
               opacity: 0,
               fontSize: 'clamp(2.2rem, 4.5vw, 3.6rem)',
@@ -5212,7 +5212,7 @@ function SocialMediaMarketing() {
             </div>
             {/* Heading */}
             <h3
-              className="smf-block-heading font-sans font-semibold mb-4"
+              className="smf-block-heading font-heading font-semibold mb-4"
               style={{
                 fontSize: 'clamp(1rem, 1.6vw, 1.12rem)',
                 letterSpacing: '-0.022em',
@@ -5224,7 +5224,7 @@ function SocialMediaMarketing() {
             </h3>
             {/* Body */}
             <p
-              className="smf-block-body font-sans font-light"
+              className="smf-block-body font-sans font-normal"
               style={{
                 fontSize: 'clamp(0.85rem, 1.2vw, 0.94rem)',
                 lineHeight: 1.9,
@@ -5249,7 +5249,7 @@ function SocialMediaMarketing() {
             </div>
             {/* Heading */}
             <h3
-              className="smf-block-heading font-sans font-semibold mb-4"
+              className="smf-block-heading font-heading font-semibold mb-4"
               style={{
                 fontSize: 'clamp(1rem, 1.6vw, 1.12rem)',
                 letterSpacing: '-0.022em',
@@ -5261,7 +5261,7 @@ function SocialMediaMarketing() {
             </h3>
             {/* Body */}
             <p
-              className="smf-block-body font-sans font-light"
+              className="smf-block-body font-sans font-normal"
               style={{
                 fontSize: 'clamp(0.85rem, 1.2vw, 0.94rem)',
                 lineHeight: 1.9,
@@ -5284,7 +5284,7 @@ function SocialMediaMarketing() {
             </div>
             {/* Heading */}
             <h3
-              className="smf-block-heading font-sans font-semibold mb-4"
+              className="smf-block-heading font-heading font-semibold mb-4"
               style={{
                 fontSize: 'clamp(1rem, 1.6vw, 1.12rem)',
                 letterSpacing: '-0.022em',
@@ -5296,7 +5296,7 @@ function SocialMediaMarketing() {
             </h3>
             {/* Body */}
             <p
-              className="smf-block-body font-sans font-light"
+              className="smf-block-body font-sans font-normal"
               style={{
                 fontSize: 'clamp(0.85rem, 1.2vw, 0.94rem)',
                 lineHeight: 1.9,
@@ -5320,7 +5320,7 @@ function SocialMediaMarketing() {
             </div>
             {/* Heading */}
             <h3
-              className="smf-block-heading font-sans font-semibold mb-4"
+              className="smf-block-heading font-heading font-semibold mb-4"
               style={{
                 fontSize: 'clamp(1rem, 1.6vw, 1.12rem)',
                 letterSpacing: '-0.022em',
@@ -5332,7 +5332,7 @@ function SocialMediaMarketing() {
             </h3>
             {/* Body */}
             <p
-              className="smf-block-body font-sans font-light"
+              className="smf-block-body font-sans font-normal"
               style={{
                 fontSize: 'clamp(0.85rem, 1.2vw, 0.94rem)',
                 lineHeight: 1.9,
@@ -5653,7 +5653,7 @@ function ChatbotHero() {
         >
           {/* Eyebrow */}
           <p
-            className="font-sans font-light uppercase mb-3"
+            className="font-sans font-normal uppercase mb-3"
             style={{ fontSize: '0.63rem', letterSpacing: '0.32em', color: 'hsl(195 80% 68%)' }}
           >
             AI-Powered
@@ -5661,7 +5661,7 @@ function ChatbotHero() {
 
           {/* Heading */}
           <h2
-            className="font-sans font-light text-white text-[clamp(2.1rem,4.2vw,3.64rem)] lg:text-[clamp(3rem,6vw,5.2rem)]"
+            className="font-heading font-medium text-white text-[clamp(2.1rem,4.2vw,3.64rem)] lg:text-[clamp(3rem,6vw,5.2rem)]"
             style={{ lineHeight: 1.08, letterSpacing: '-0.04em' }}
           >
             <span style={{ display: 'block' }}>Custom</span>
@@ -6028,14 +6028,14 @@ function GraphicDesignEditorial() {
           </div>
 
           <div className="gde-r" style={{ maxWidth: '26rem', paddingBottom: '0.5rem' }}>
-            <p className="font-sans font-light mb-7" style={{
+            <p className="font-sans font-normal mb-7" style={{
               fontSize: 'clamp(0.84rem, 1.3vw, 0.98rem)', lineHeight: 1.9, color: '#F2F8FC',
             }}>
               Every brand deserves a visual language that is impossible to ignore. We design and
               animate premium assets — from complete identity systems to campaign-ready motion
               graphics — built to perform across every screen and platform.
             </p>
-            <p className="font-sans font-light" style={{
+            <p className="font-sans font-normal" style={{
               fontSize: 'clamp(0.84rem, 1.3vw, 0.98rem)', lineHeight: 1.9, color: '#F2F8FC',
             }}>
               From concept to delivery, our creative process is shaped around clarity and impact.
@@ -6227,8 +6227,8 @@ function GraphicDesignServices() {
         <h2
           className="gdsvs-h"
           style={{
-            fontFamily: 'var(--font-sans, sans-serif)',
-            fontWeight: 700,
+            fontFamily: 'var(--font-heading, sans-serif)',
+            fontWeight: 500,
             fontSize: 'clamp(2.5rem, 5.8vw, 4.8rem)',
             lineHeight: 1.0,
             letterSpacing: '-0.042em',
@@ -6245,7 +6245,7 @@ function GraphicDesignServices() {
 
         {/* Subtext */}
         <p
-          className="gdsvs-h font-sans font-light"
+          className="gdsvs-h font-sans font-normal"
           style={{
             fontSize: 'clamp(0.86rem, 1.3vw, 1rem)',
             lineHeight: 1.88,
@@ -6468,7 +6468,7 @@ function GraphicDesignSplitA() {
 
             {/* Body copy */}
             <p
-              className="gdsa-t font-sans font-light"
+              className="gdsa-t font-sans font-normal"
               style={{
                 fontSize: 'clamp(0.86rem, 1.3vw, 1rem)',
                 lineHeight: 1.92,
@@ -6634,7 +6634,7 @@ function GraphicDesignSplitB() {
             }}/>
 
             {/* Body */}
-            <p className="gdsb-t font-sans font-light" style={{
+            <p className="gdsb-t font-sans font-normal" style={{
               fontSize: 'clamp(0.86rem, 1.3vw, 1rem)',
               lineHeight: 1.92, color: '#F2F8FC',
               maxWidth: '28rem',
@@ -6678,7 +6678,7 @@ function GraphicDesignSplitB() {
                     if (numEl) numEl.style.textShadow = '0 0 12px rgba(125, 220, 255, 0.14)'
                   }}
                 >
-                  <span data-gdsb-title className="font-sans font-light" style={{
+                  <span data-gdsb-title className="font-sans font-medium" style={{
                     fontSize: 'clamp(0.88rem, 1.1vw, 0.9rem)',
                     color: 'rgba(235, 245, 255, 0.82)', letterSpacing: '0.01em',
                     transition: 'color 0.25s ease',
@@ -6725,7 +6725,7 @@ function GraphicDesignSplitB() {
           {/* Text stack: heading -> paragraph */}
           <div style={{ maxWidth: '100%', margin: '0 auto', paddingBottom: '1rem' }}>
             <h2 style={{
-              fontFamily: 'var(--font-sans, sans-serif)', fontWeight: 500,
+              fontFamily: 'var(--font-heading, sans-serif)', fontWeight: 500,
               fontSize: 'clamp(1.8rem, 6.6vw, 2.6rem)',
               lineHeight: 1.08, letterSpacing: '-0.02em',
               color: 'hsl(0 0% 94%)', margin: 0, marginBottom: '0.7rem'
@@ -6904,7 +6904,7 @@ function GraphicDesignFinalPresentation() {
 
             {/* Headline */}
             <h2
-              className="gdfp-heading font-sans font-light"
+              className="gdfp-heading font-heading font-medium"
               style={{
                 fontSize: 'clamp(2.2rem, 4.5vw, 4rem)',
                 lineHeight: 1.08,
@@ -6931,7 +6931,7 @@ function GraphicDesignFinalPresentation() {
             />
 
             {/* Para */}
-            <p className="gdfp-body font-sans font-light" style={{
+            <p className="gdfp-body font-sans font-normal" style={{
               fontSize: 'clamp(0.86rem, 1.3vw, 0.98rem)', lineHeight: 1.92,
               color: '#F2F8FC', marginBottom: 'clamp(2rem, 3.5vw, 3rem)', maxWidth: '30rem',
             }}>
@@ -6958,7 +6958,7 @@ function GraphicDesignFinalPresentation() {
                       <path d="M1.5 4L3 5.5L6.5 2" stroke="hsl(195 90% 62%)" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
                   </div>
-                  <span className="font-sans font-light" style={{ fontSize: 'clamp(0.82rem, 1.2vw, 0.92rem)', color: '#F2F8FC', letterSpacing: '0.01em' }}>
+                  <span className="font-sans font-normal" style={{ fontSize: 'clamp(0.82rem, 1.2vw, 0.92rem)', color: '#F2F8FC', letterSpacing: '0.01em' }}>
                     {item}
                   </span>
                 </li>
@@ -6966,7 +6966,7 @@ function GraphicDesignFinalPresentation() {
             </ul>
 
             {/* Closing line */}
-            <p className="gdfp-close font-sans font-light" style={{
+            <p className="gdfp-close font-sans font-normal" style={{
               fontSize: 'clamp(0.78rem, 1.1vw, 0.88rem)', lineHeight: 1.85,
               color: '#F2F8FC', maxWidth: '28rem',
               borderLeft: '2px solid hsl(195 90% 55% / 0.18)',
@@ -7176,7 +7176,7 @@ function GraphicDesignFinalPresentation() {
 
           {/* Heading */}
           <h2 style={{
-            fontFamily: 'var(--font-sans, sans-serif)', fontWeight: 300,
+            fontFamily: 'var(--font-heading, sans-serif)', fontWeight: 500,
             fontSize: 'clamp(2rem, 7vw, 2.8rem)',
             lineHeight: 1.1, letterSpacing: '-0.038em',
             color: 'hsl(0 0% 94%)',
@@ -7318,7 +7318,7 @@ function GraphicDesignCTA() {
 
         {/* Label */}
         <p
-          className="gdcta-el font-sans font-light uppercase mb-7"
+          className="gdcta-el font-sans font-normal uppercase mb-7"
           style={{ fontSize: '0.58rem', letterSpacing: '0.38em', color: 'hsl(195 90% 62% / 0.7)' }}
         >
           Ready to build your visual system?
@@ -7326,7 +7326,7 @@ function GraphicDesignCTA() {
 
         {/* Headline */}
         <h2
-          className="gdcta-el font-sans font-light"
+          className="gdcta-el font-heading font-medium"
           style={{
             fontSize: 'clamp(2.4rem, 5.5vw, 4.4rem)',
             lineHeight: 1.06,
@@ -7359,7 +7359,7 @@ function GraphicDesignCTA() {
 
         {/* Paragraph */}
         <p
-          className="gdcta-el font-sans font-light"
+          className="gdcta-el font-sans font-normal"
           style={{
             fontSize: 'clamp(0.88rem, 1.4vw, 1rem)',
             lineHeight: 1.9,
@@ -7583,7 +7583,7 @@ function UGCHero() {
           </div>
 
           {/* Headline */}
-          <h2 className="ugch-r font-sans font-light" style={{ color: '#fff', fontSize: 'clamp(2rem, 5.8vw, 5rem)', lineHeight: 1.05, letterSpacing: '-0.04em', marginBottom: '1.6rem' }}>
+          <h2 className="ugch-r font-heading font-medium" style={{ color: '#fff', fontSize: 'clamp(2rem, 5.8vw, 5rem)', lineHeight: 1.05, letterSpacing: '-0.04em', marginBottom: '1.6rem' }}>
             Real creators.<br/>
             Real{' '}
             <em style={{ fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(0 72% 70%)' }}>results.</em>
@@ -7593,7 +7593,7 @@ function UGCHero() {
           <div className="ugch-r" aria-hidden="true" style={{ width: '3.5rem', height: 1, background: 'hsl(0 72% 58% / 0.5)', marginBottom: '1.5rem' }}/>
 
           {/* Body */}
-          <p className="ugch-r font-sans font-light" style={{ fontSize: 'clamp(0.9rem, 1.45vw, 1.06rem)', lineHeight: 1.82, color: '#F2F8FC', maxWidth: '30rem', marginBottom: '2.2rem' }}>
+          <p className="ugch-r font-sans font-normal" style={{ fontSize: 'clamp(0.9rem, 1.45vw, 1.06rem)', lineHeight: 1.82, color: '#F2F8FC', maxWidth: '30rem', marginBottom: '2.2rem' }}>
             We match your brand with creators who genuinely connect with your audience —
             producing content that feels native, converts at scale, and makes people stop scrolling.
           </p>
@@ -7614,7 +7614,7 @@ function UGCHero() {
             { value: '48h',  label: 'Turnaround',       sub: 'brief to delivered'   },
           ].map(({ value, label, sub }) => (
             <div key={label} className="ugch-r" style={{ background: 'hsl(0 0% 100% / 0.038)', backdropFilter: 'blur(22px)', border: '1px solid hsl(0 0% 100% / 0.09)', borderRadius: '1rem', padding: '1.15rem 1.45rem', boxShadow: '0 8px 36px hsl(0 0% 0% / 0.32)' }}>
-              <p className="font-sans font-light" style={{ color: '#fff', fontSize: '2.1rem', letterSpacing: '-0.045em', lineHeight: 1, marginBottom: '0.35rem' }}>{value}</p>
+              <p className="font-sans font-normal" style={{ color: '#fff', fontSize: '2.1rem', letterSpacing: '-0.045em', lineHeight: 1, marginBottom: '0.35rem' }}>{value}</p>
               <p className="font-sans" style={{ fontSize: '0.7rem', letterSpacing: '0.06em', color: 'hsl(0 0% 78%)', marginBottom: '0.15rem' }}>{label}</p>
               <p className="font-sans" style={{ fontSize: '0.6rem', color: 'hsl(0 0% 38%)' }}>{sub}</p>
             </div>
@@ -7655,12 +7655,12 @@ function UGCHero() {
           {/* Manifesto */}
           <div>
             <p className="ugce-r font-sans uppercase mb-5" style={{ fontSize: '0.64rem', letterSpacing: '0.34em', color: 'hsl(0 72% 60%)' }}>Why UGC Works</p>
-            <h2 className="ugce-r font-sans font-light" style={{ color: '#fff', fontSize: 'clamp(2rem, 3.8vw, 3.1rem)', lineHeight: 1.08, letterSpacing: '-0.033em', marginBottom: '1.5rem' }}>
+            <h2 className="ugce-r font-heading font-medium" style={{ color: '#fff', fontSize: 'clamp(2rem, 3.8vw, 3.1rem)', lineHeight: 1.08, letterSpacing: '-0.033em', marginBottom: '1.5rem' }}>
               People trust{' '}
               <em style={{ fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(0 72% 70%)' }}>people</em>,<br/>not brands.
             </h2>
             <div className="ugce-r" aria-hidden="true" style={{ width: '2.5rem', height: 1, background: 'hsl(0 72% 58% / 0.4)', marginBottom: '1.5rem' }}/>
-            <p className="ugce-r font-sans font-light" style={{ fontSize: 'clamp(0.88rem, 1.35vw, 1rem)', lineHeight: 1.92, color: '#F2F8FC', maxWidth: '32rem' }}>
+            <p className="ugce-r font-sans font-normal" style={{ fontSize: 'clamp(0.88rem, 1.35vw, 1rem)', lineHeight: 1.92, color: '#F2F8FC', maxWidth: '32rem' }}>
               92% of consumers trust peer recommendations over brand advertising. At Weavy, we close that gap —
               pairing your brand with authentic creators whose content converts because it{' '}
               <span style={{ color: '#F2F8FC' }}>feels real</span>.
@@ -7676,13 +7676,13 @@ function UGCHero() {
             ].map(({ val, suffix, decimals, desc }, i, arr) => (
               <div key={val} className="ugce-stat-row" style={{ padding: '1.65rem 1.9rem', background: 'hsl(0 0% 100% / 0.022)', borderBottom: i < arr.length - 1 ? '1px solid hsl(0 0% 100% / 0.06)' : undefined, display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
                 <span
-                  className="font-sans font-light ugc-stat-num"
+                  className="font-sans font-medium ugc-stat-num"
                   data-val={val}
                   data-suffix={suffix}
                   data-decimals={decimals}
                   style={{ fontSize: 'clamp(2rem, 3.2vw, 2.7rem)', letterSpacing: '-0.05em', color: 'hsl(0 72% 66%)', lineHeight: 1, minWidth: '4.2rem' }}
                 >0{suffix}</span>
-                <span className="font-sans font-light" style={{ fontSize: '0.84rem', lineHeight: 1.55, color: '#F2F8FC' }}>{desc}</span>
+                <span className="font-sans font-normal" style={{ fontSize: '0.84rem', lineHeight: 1.55, color: '#F2F8FC' }}>{desc}</span>
               </div>
             ))}
           </div>
@@ -7694,10 +7694,10 @@ function UGCHero() {
           {UGC_CARDS.map(({ num, title, desc }) => (
             <div key={num} className="ugce-r" style={{ position: 'relative', overflow: 'hidden', background: 'hsl(0 0% 100% / 0.022)', border: '1px solid hsl(0 0% 100% / 0.07)', borderRadius: '1.25rem', padding: '2rem' }}>
               {/* Ghost number */}
-              <span aria-hidden="true" className="font-sans font-light" style={{ position: 'absolute', top: '1.1rem', right: '1.3rem', fontSize: '3.8rem', lineHeight: 1, letterSpacing: '-0.06em', color: 'hsl(0 72% 52% / 0.07)', userSelect: 'none' }}>{num}</span>
+              <span aria-hidden="true" className="font-sans font-normal" style={{ position: 'absolute', top: '1.1rem', right: '1.3rem', fontSize: '3.8rem', lineHeight: 1, letterSpacing: '-0.06em', color: 'hsl(0 72% 52% / 0.07)', userSelect: 'none' }}>{num}</span>
               <div aria-hidden="true" style={{ width: '1.8rem', height: 2, background: 'hsl(0 72% 58% / 0.55)', borderRadius: 2, marginBottom: '1.25rem' }}/>
-              <h3 className="font-sans font-light" style={{ color: '#fff', fontSize: 'clamp(0.95rem, 1.4vw, 1.08rem)', letterSpacing: '-0.01em', lineHeight: 1.28, marginBottom: '0.88rem' }}>{title}</h3>
-              <p className="font-sans font-light" style={{ fontSize: '0.81rem', lineHeight: 1.78, color: '#F2F8FC' }}>{desc}</p>
+              <h3 className="font-heading font-medium" style={{ color: '#fff', fontSize: 'clamp(0.95rem, 1.4vw, 1.08rem)', letterSpacing: '-0.01em', lineHeight: 1.28, marginBottom: '0.88rem' }}>{title}</h3>
+              <p className="font-sans font-normal" style={{ fontSize: '0.81rem', lineHeight: 1.78, color: '#F2F8FC' }}>{desc}</p>
             </div>
           ))}
         </div>
@@ -7854,12 +7854,12 @@ function UGCCreatorSelection() {
   const bodyText = (
     <>
       <div className="ugccs-text" aria-hidden="true" style={{ width: '2.5rem', height: 1, background: 'hsl(195 80% 55% / 0.38)', marginBottom: '1.6rem' }}/>
-      <p className="ugccs-text font-sans font-light w-full max-w-none text-left text-base leading-8 sm:text-lg" style={{ color: '#F2F8FC', marginBottom: '1.2rem' }}>
+      <p className="ugccs-text font-sans font-normal w-full max-w-none text-left text-base leading-8 sm:text-lg" style={{ color: '#F2F8FC', marginBottom: '1.2rem' }}>
         Every creator we recommend is validated by their numbers. We look beyond follower count
         and dig into engagement rate, average views, and audience quality — so your budget
         goes to creators who actually perform.
       </p>
-      <p className="ugccs-text font-sans font-light w-full max-w-none text-left text-base leading-8 sm:text-lg" style={{ color: '#F2F8FC', marginBottom: '2rem' }}>
+      <p className="ugccs-text font-sans font-normal w-full max-w-none text-left text-base leading-8 sm:text-lg" style={{ color: '#F2F8FC', marginBottom: '2rem' }}>
         No guessing, no wasted spend. We present the metrics that matter so you can
         select with confidence and brief creators who are built to deliver.
       </p>
@@ -7867,7 +7867,7 @@ function UGCCreatorSelection() {
         {UGC_INSIGHTS.map((item) => (
           <li key={item} style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
             <span aria-hidden="true" style={{ width: '5px', height: '5px', borderRadius: '50%', background: 'hsl(195 80% 58%)', boxShadow: '0 0 6px hsl(195 80% 58% / 0.6)', flexShrink: 0 }}/>
-            <span className="font-sans font-light" style={{ fontSize: '0.88rem', color: '#F2F8FC', letterSpacing: '0.01em' }}>{item}</span>
+            <span className="font-sans font-normal" style={{ fontSize: '0.88rem', color: '#F2F8FC', letterSpacing: '0.01em' }}>{item}</span>
           </li>
         ))}
       </ul>
@@ -7888,7 +7888,7 @@ function UGCCreatorSelection() {
             <div style={{ flex: '1 1 0', minWidth: 0 }}>
               {stepLabel}
               <h2
-                className="ugccs-text font-sans font-light"
+                className="ugccs-text font-heading font-medium"
                 style={{ color: '#fff', fontSize: 'clamp(2rem, 2.8vw, 3rem)', lineHeight: 1.05, letterSpacing: '-0.035em', marginBottom: '1.6rem' }}
               >
                 Creators chosen by{' '}
@@ -7916,7 +7916,7 @@ function UGCCreatorSelection() {
 
           {/* 2. Heading */}
           <h2
-            className="ugccs-text font-sans font-light w-full text-left text-3xl leading-[1.06] text-white sm:text-4xl md:text-5xl"
+            className="ugccs-text font-heading font-medium w-full text-left text-3xl leading-[1.06] text-white sm:text-4xl md:text-5xl"
             style={{ letterSpacing: '-0.02em', margin: '0 0 0.5rem 0' }}
           >
             Creators chosen by{' '}
@@ -7943,7 +7943,7 @@ function UGCCreatorSelection() {
               {UGC_INSIGHTS.map((item) => (
                 <li key={item} style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
                   <span aria-hidden="true" style={{ width: '5px', height: '5px', borderRadius: '50%', background: 'hsl(195 80% 58%)', boxShadow: '0 0 6px hsl(195 80% 58% / 0.6)', flexShrink: 0 }}/>
-                  <span className="font-sans font-light" style={{ fontSize: '0.88rem', color: '#F2F8FC', letterSpacing: '0.01em' }}>{item}</span>
+                  <span className="font-sans font-normal" style={{ fontSize: '0.88rem', color: '#F2F8FC', letterSpacing: '0.01em' }}>{item}</span>
                 </li>
               ))}
             </ul>
@@ -8031,7 +8031,7 @@ function UGCFindCreators() {
 
             {/* Headline */}
             <h2
-              className="ugcfc-text font-sans font-light"
+              className="ugcfc-text font-heading font-medium"
               style={{
                 color: '#ffffff',
                 fontSize: 'clamp(1.9rem, 3.6vw, 3rem)',
@@ -8055,7 +8055,7 @@ function UGCFindCreators() {
 
             {/* Paragraph 1 */}
             <p
-              className="ugcfc-text font-sans font-light"
+              className="ugcfc-text font-sans font-normal"
               style={{ fontSize: 'clamp(0.88rem, 1.4vw, 1.02rem)', lineHeight: 1.9, color: '#F2F8FC', marginBottom: '1.4rem' }}
             >
               We identify creators who match your brand style, audience, and campaign goals.
@@ -8065,7 +8065,7 @@ function UGCFindCreators() {
 
             {/* Paragraph 2 */}
             <p
-              className="ugcfc-text font-sans font-light"
+              className="ugcfc-text font-sans font-normal"
               style={{ fontSize: 'clamp(0.88rem, 1.4vw, 1.02rem)', lineHeight: 1.9, color: '#F2F8FC' }}
             >
               From lifestyle fit to on-camera confidence, every creator is selected with intention —
@@ -8349,7 +8349,7 @@ function UGCMonitoringReporting() {
               <span className="font-sans" style={{ fontSize: '0.6rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: 'hsl(195 80% 62%)' }}>Content Monitoring & Reporting</span>
             </div>
             <h2
-              className="ugcmr-text font-sans font-light"
+              className="ugcmr-text font-heading font-medium"
               style={{ color: '#fff', fontSize: 'clamp(2rem, 5vw, 3rem)', lineHeight: 1.05, letterSpacing: '-0.035em', marginBottom: '1.6rem' }}
             >
               Every result,{' '}
@@ -8358,11 +8358,11 @@ function UGCMonitoringReporting() {
               </em>
             </h2>
             <div className="ugcmr-text" aria-hidden="true" style={{ width: '2.5rem', height: 1, background: 'hsl(195 80% 55% / 0.38)', marginBottom: '1.6rem' }}/>
-            <p className="ugcmr-text font-sans font-light" style={{ fontSize: '1rem', lineHeight: 2, color: '#F2F8FC', marginBottom: '1.2rem' }}>
+            <p className="ugcmr-text font-sans font-normal" style={{ fontSize: '1rem', lineHeight: 2, color: '#F2F8FC', marginBottom: '1.2rem' }}>
               During the campaign, we track and collect every piece of published UGC across Instagram,
               including Stories, TikTok, and YouTube, so your content stays organised and easy to review.
             </p>
-            <p className="ugcmr-text font-sans font-light" style={{ fontSize: '1rem', lineHeight: 2, color: '#F2F8FC', marginBottom: '2rem' }}>
+            <p className="ugcmr-text font-sans font-normal" style={{ fontSize: '1rem', lineHeight: 2, color: '#F2F8FC', marginBottom: '2rem' }}>
               At the end of each month, we provide clear reporting with downloadable media assets,
               campaign performance insights, and key results such as impressions, clicks, leads, and sales.
             </p>
@@ -8370,7 +8370,7 @@ function UGCMonitoringReporting() {
               {UGC_REPORT_POINTS.map(item => (
                 <li key={item} style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
                   <span aria-hidden="true" style={{ width: '5px', height: '5px', borderRadius: '50%', background: 'hsl(195 80% 58%)', boxShadow: '0 0 6px hsl(195 80% 58% / 0.6)', flexShrink: 0 }}/>
-                  <span className="font-sans font-light" style={{ fontSize: '0.88rem', color: '#F2F8FC', letterSpacing: '0.01em' }}>{item}</span>
+                  <span className="font-sans font-normal" style={{ fontSize: '0.88rem', color: '#F2F8FC', letterSpacing: '0.01em' }}>{item}</span>
                 </li>
               ))}
             </ul>
@@ -8572,7 +8572,7 @@ function UGCTrackingUrls() {
             </p>
 
             <h2
-              className="ugctu-text font-sans font-light"
+              className="ugctu-text font-heading font-medium"
               style={{ color: '#fff', fontSize: 'clamp(1.9rem, 3.6vw, 3rem)', lineHeight: 1.08, letterSpacing: '-0.035em', marginBottom: '1.8rem' }}
             >
               Know exactly which creator,{' '}
@@ -8584,13 +8584,13 @@ function UGCTrackingUrls() {
 
             <div className="ugctu-text" aria-hidden="true" style={{ width: '2.5rem', height: 1, background: 'hsl(160 65% 50% / 0.38)', marginBottom: '1.8rem' }}/>
 
-            <p className="ugctu-text font-sans font-light" style={{ fontSize: 'clamp(0.88rem, 1.4vw, 1.02rem)', lineHeight: 1.9, color: '#F2F8FC', marginBottom: '1.2rem' }}>
+            <p className="ugctu-text font-sans font-normal" style={{ fontSize: 'clamp(0.88rem, 1.4vw, 1.02rem)', lineHeight: 1.9, color: '#F2F8FC', marginBottom: '1.2rem' }}>
               Every campaign can be measured with clear tracking links and structured reporting,
               so you are not relying on guesswork. Each creator, post, story, reel, or video can
               be monitored to understand where the strongest results are coming from.
             </p>
 
-            <p className="ugctu-text font-sans font-light" style={{ fontSize: 'clamp(0.88rem, 1.4vw, 1.02rem)', lineHeight: 1.9, color: '#F2F8FC', marginBottom: '2.4rem' }}>
+            <p className="ugctu-text font-sans font-normal" style={{ fontSize: 'clamp(0.88rem, 1.4vw, 1.02rem)', lineHeight: 1.9, color: '#F2F8FC', marginBottom: '2.4rem' }}>
               From impressions and clicks to leads, enquiries, and sales, the reporting view
               helps you see what is working, what needs improving, and where to focus the next campaign.
             </p>
@@ -8599,7 +8599,7 @@ function UGCTrackingUrls() {
               {UGC_TRACKING_FEATURES.map(item => (
                 <li key={item} className="ugctu-feat" style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
                   <span aria-hidden="true" style={{ width: '5px', height: '5px', borderRadius: '50%', flexShrink: 0, background: 'hsl(160 65% 52%)', boxShadow: '0 0 6px hsl(160 65% 50% / 0.55)' }}/>
-                  <span className="font-sans font-light" style={{ fontSize: '0.88rem', color: '#F2F8FC', letterSpacing: '0.01em' }}>{item}</span>
+                  <span className="font-sans font-normal" style={{ fontSize: '0.88rem', color: '#F2F8FC', letterSpacing: '0.01em' }}>{item}</span>
                 </li>
               ))}
             </ul>
@@ -9100,7 +9100,7 @@ function UGCPerfumeCampaign() {
 
             {/* Headline */}
             <h2
-              className="ugcpc-text font-sans font-light"
+              className="ugcpc-text font-heading font-medium"
               style={{ color: '#fff', fontSize: 'clamp(1.8rem, 3.4vw, 2.8rem)', lineHeight: 1.1, letterSpacing: '-0.033em', marginBottom: '1.6rem' }}
             >
               Product storytelling that feels{' '}
@@ -9114,14 +9114,14 @@ function UGCPerfumeCampaign() {
             <div className="ugcpc-text" aria-hidden="true" style={{ width: '2.5rem', height: 1, background: 'hsl(38 70% 55% / 0.4)', marginBottom: '1.8rem' }} />
 
             {/* Paragraph 1 */}
-            <p className="ugcpc-text font-sans font-light" style={{ fontSize: 'clamp(0.88rem, 1.4vw, 1.02rem)', lineHeight: 1.9, color: '#F2F8FC', marginBottom: '1.2rem' }}>
+            <p className="ugcpc-text font-sans font-normal" style={{ fontSize: 'clamp(0.88rem, 1.4vw, 1.02rem)', lineHeight: 1.9, color: '#F2F8FC', marginBottom: '1.2rem' }}>
               This style of creator-led content brings the product into a real lifestyle moment.
               The unboxing, reaction, and close product reveal help the fragrance feel more personal,
               more desirable, and easier for viewers to trust.
             </p>
 
             {/* Paragraph 2 */}
-            <p className="ugcpc-text font-sans font-light" style={{ fontSize: 'clamp(0.88rem, 1.4vw, 1.02rem)', lineHeight: 1.9, color: '#F2F8FC', marginBottom: '2.4rem' }}>
+            <p className="ugcpc-text font-sans font-normal" style={{ fontSize: 'clamp(0.88rem, 1.4vw, 1.02rem)', lineHeight: 1.9, color: '#F2F8FC', marginBottom: '2.4rem' }}>
               From the first package reveal to the final product recommendation, the video is designed
               to feel natural while still keeping the brand premium, clear, and visually engaging.
             </p>
@@ -9131,14 +9131,14 @@ function UGCPerfumeCampaign() {
               {UGC_PERFUME_FEATURES.map(item => (
                 <li key={item} className="ugcpc-feat" style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
                   <span aria-hidden="true" style={{ width: '5px', height: '5px', borderRadius: '50%', flexShrink: 0, background: 'hsl(38 75% 58%)', boxShadow: '0 0 6px hsl(38 75% 55% / 0.55)' }} />
-                  <span className="font-sans font-light" style={{ fontSize: '0.88rem', color: '#F2F8FC', letterSpacing: '0.01em' }}>{item}</span>
+                  <span className="font-sans font-normal" style={{ fontSize: '0.88rem', color: '#F2F8FC', letterSpacing: '0.01em' }}>{item}</span>
                 </li>
               ))}
             </ul>
 
             {/* Closing line */}
             <p
-              className="ugcpc-text font-sans font-light"
+              className="ugcpc-text font-sans font-normal"
               style={{ fontSize: '0.82rem', lineHeight: 1.8, color: '#F2F8FC', borderLeft: '1px solid hsl(38 60% 50% / 0.25)', paddingLeft: '1rem', fontStyle: 'italic' }}
             >
               Perfect for brands that want content that feels authentic without losing a luxury finish.
@@ -9250,7 +9250,7 @@ function UGCPerformanceSystem() {
 
             {/* Label */}
             <p
-              className="ugcps-label font-sans font-light uppercase"
+              className="ugcps-label font-sans font-normal uppercase"
               style={{
                 fontSize: '0.58rem',
                 letterSpacing: '0.36em',
@@ -9263,7 +9263,7 @@ function UGCPerformanceSystem() {
 
             {/* Headline */}
             <h2
-              className="ugcps-heading font-sans font-light"
+              className="ugcps-heading font-heading font-medium"
               style={{
                 fontSize: 'clamp(2rem, 4vw, 3.2rem)',
                 lineHeight: 1.1,
@@ -9297,7 +9297,7 @@ function UGCPerformanceSystem() {
 
             {/* Paragraph 1 */}
             <p
-              className="ugcps-body font-sans font-light"
+              className="ugcps-body font-sans font-normal"
               style={{
                 fontSize: 'clamp(0.85rem, 1.35vw, 0.98rem)',
                 lineHeight: 1.9,
@@ -9311,7 +9311,7 @@ function UGCPerformanceSystem() {
 
             {/* Paragraph 2 */}
             <p
-              className="ugcps-body font-sans font-light"
+              className="ugcps-body font-sans font-normal"
               style={{
                 fontSize: 'clamp(0.85rem, 1.35vw, 0.98rem)',
                 lineHeight: 1.9,
@@ -9345,7 +9345,7 @@ function UGCPerformanceSystem() {
               }}
             >
               <p
-                className="font-sans font-light uppercase"
+                className="font-sans font-normal uppercase"
                 style={{
                   fontSize: '0.55rem',
                   letterSpacing: '0.3em',
@@ -9356,7 +9356,7 @@ function UGCPerformanceSystem() {
                 Process Overview
               </p>
               <p
-                className="font-sans font-light"
+                className="font-sans font-normal"
                 style={{
                   fontSize: 'clamp(0.82rem, 1.3vw, 0.95rem)',
                   lineHeight: 1.5,
@@ -9391,7 +9391,7 @@ function UGCPerformanceSystem() {
                 >
                   {/* Row number */}
                   <span
-                    className="font-sans font-light"
+                    className="font-sans font-normal"
                     style={{
                       fontSize: '0.65rem',
                       letterSpacing: '0.06em',
@@ -9407,7 +9407,7 @@ function UGCPerformanceSystem() {
                   <div>
                     {/* Row title */}
                     <h4
-                      className="font-sans font-light"
+                      className="font-heading font-medium"
                       style={{
                         fontSize: 'clamp(0.88rem, 1.4vw, 1rem)',
                         lineHeight: 1.3,
@@ -9422,7 +9422,7 @@ function UGCPerformanceSystem() {
 
                     {/* Row body */}
                     <p
-                      className="font-sans font-light"
+                      className="font-sans font-normal"
                       style={{
                         fontSize: 'clamp(0.78rem, 1.15vw, 0.88rem)',
                         lineHeight: 1.78,
@@ -9605,7 +9605,7 @@ function UGCPracticeEcosystem() {
             The High-Performing
           </p>
           <h2
-            className="font-sans font-bold uppercase"
+            className="font-heading font-bold uppercase"
             style={{
               fontSize: 'clamp(1.9rem, 4.5vw, 3rem)',
               letterSpacing: '0.03em',
@@ -9646,7 +9646,7 @@ function UGCPracticeEcosystem() {
               </div>
 
               <h3
-                className="upe-title font-sans font-semibold mb-3"
+                className="upe-title font-heading font-semibold mb-3"
                 style={{
                   fontSize: '1.02rem',
                   letterSpacing: '-0.01em',
@@ -9657,7 +9657,7 @@ function UGCPracticeEcosystem() {
               </h3>
 
               <p
-                className="upe-body font-sans font-light"
+                className="upe-body font-sans font-normal"
                 style={{
                   fontSize: 'clamp(0.8rem, 1.1vw, 0.88rem)',
                   lineHeight: 1.82,
@@ -9917,7 +9917,7 @@ export default function Services() {
           {/* Heading */}
           <h2
             id="services-heading"
-            className="services-heading font-sans font-light text-text mb-6"
+            className="services-heading font-heading font-medium text-text mb-6"
             style={{
               fontSize: 'clamp(2rem, 5vw, 3.5rem)',
               lineHeight: 1.1,
@@ -9932,7 +9932,7 @@ export default function Services() {
 
           {/* Subheading */}
           <p
-            className="services-body font-sans font-light mb-14 max-w-xl"
+            className="services-body font-sans font-normal mb-14 max-w-xl"
             style={{
               fontSize: 'clamp(0.9rem, 1.5vw, 1.05rem)',
               lineHeight: 1.8,
@@ -10022,7 +10022,7 @@ export default function Services() {
 
             {/* Eyebrow */}
             <p
-              className="font-sans font-light uppercase mb-5"
+              className="font-sans font-normal uppercase mb-5"
               style={{
                 fontSize: '0.63rem',
                 letterSpacing: '0.32em',
@@ -10034,7 +10034,7 @@ export default function Services() {
 
             {/* Main heading */}
             <h1
-              className="font-sans font-light text-white mb-6"
+              className="font-heading font-medium text-white mb-6"
               style={{
                 fontSize: 'clamp(2.6rem, 6vw, 5rem)',
                 lineHeight: 1.08,
@@ -10063,7 +10063,7 @@ export default function Services() {
 
             {/* Subtext */}
             <p
-              className="font-sans font-light"
+              className="font-sans font-normal"
               style={{
                 fontSize: 'clamp(0.88rem, 1.5vw, 1.05rem)',
                 lineHeight: 1.8,
@@ -10130,7 +10130,7 @@ export default function Services() {
               </p>
 
               <h2
-                className="bwd1-heading font-sans font-light text-text mb-8"
+                className="bwd1-heading font-heading font-medium text-text mb-8"
                 style={{
                   fontSize: 'clamp(2rem, 5vw, 3.5rem)',
                   lineHeight: 1.1,
@@ -10154,7 +10154,7 @@ export default function Services() {
               <div className="bwd1-divider" aria-hidden="true" style={{ display: 'none' }} />
 
               <p
-                className="bwd1-body font-sans font-light mb-12 max-w-xl"
+                className="bwd1-body font-sans font-normal mb-12 max-w-xl"
                 style={{
                   fontSize: 'clamp(0.9rem, 1.5vw, 1.05rem)',
                   lineHeight: 1.8,
@@ -10166,7 +10166,7 @@ export default function Services() {
               </p>
 
               <p
-                className="bwd1-body font-sans font-light text-text mb-5"
+                className="bwd1-body font-sans font-normal text-text mb-5"
                 style={{ fontSize: '0.78rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: '#7DDCFF', textShadow: '0 0 18px rgba(125,220,255,0.18)' }}
               >
                 What you get
@@ -10187,7 +10187,7 @@ export default function Services() {
                       aria-hidden="true"
                     />
                     <span
-                      className="font-sans font-light"
+                      className="font-sans font-normal"
                       style={{ fontSize: 'clamp(0.88rem, 1.4vw, 1rem)', lineHeight: 1.75, color: 'hsl(0 0% 72%)' }}
                     >
                       {item}
@@ -10197,14 +10197,14 @@ export default function Services() {
               </ul>
 
               <p
-                className="bwd1-body font-sans font-light text-text mb-5"
+                className="bwd1-body font-sans font-normal text-text mb-5"
                 style={{ fontSize: '0.78rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: '#7DDCFF', textShadow: '0 0 18px rgba(125,220,255,0.18)' }}
               >
                 Why it matters
               </p>
 
               <p
-                className="bwd1-body font-sans font-light max-w-xl"
+                className="bwd1-body font-sans font-normal max-w-xl"
                 style={{
                   fontSize: 'clamp(0.9rem, 1.5vw, 1.05rem)',
                   lineHeight: 1.8,
@@ -10358,7 +10358,7 @@ export default function Services() {
 
             {/* Headline — word-by-word reveal */}
             <h2
-              className="font-sans font-light"
+              className="font-heading font-medium"
               style={{
                 fontSize: 'clamp(2.4rem, 5.5vw, 5rem)',
                 lineHeight: 1.08, letterSpacing: '-0.04em',
@@ -10406,7 +10406,7 @@ export default function Services() {
 
             {/* Sub-labels */}
             <p
-              className="bwdc-sub font-sans font-light"
+              className="bwdc-sub font-sans font-normal"
               style={{
                 fontSize: 'clamp(0.75rem, 1.2vw, 0.88rem)', letterSpacing: '0.04em',
                 color: 'hsl(0 0% 48%)', lineHeight: 1.7,
@@ -10512,7 +10512,7 @@ export default function Services() {
             margin: '0 auto',
           }}>
             <p
-              className="bwdc-body font-sans font-light"
+              className="bwdc-body font-sans font-normal"
               style={{
                 fontSize: 'clamp(0.88rem, 1.4vw, 1rem)', lineHeight: 1.82,
                 color: '#D3DCE2', marginBottom: '1.4rem',
@@ -10522,7 +10522,7 @@ export default function Services() {
               Every interface is carefully crafted with the same precision as luxury interiors and modern architecture — balancing clarity, emotion, performance, and visual sophistication.
             </p>
             <p
-              className="bwdc-body font-sans font-light"
+              className="bwdc-body font-sans font-normal"
               style={{
                 fontSize: 'clamp(0.88rem, 1.4vw, 1rem)', lineHeight: 1.82,
                 color: '#C9D3D8', marginBottom: '1.4rem',
@@ -10532,7 +10532,7 @@ export default function Services() {
               No templates. No shortcuts. Each project begins with an in-depth understanding of your brand, your audience, and the impression you want to leave — then we build from the ground up.
             </p>
             <p
-              className="bwdc-body font-sans font-light"
+              className="bwdc-body font-sans font-normal"
               style={{
                 fontSize: 'clamp(0.88rem, 1.4vw, 1rem)', lineHeight: 1.82,
                 color: '#C9D3D8',
@@ -10639,7 +10639,7 @@ export default function Services() {
               </p>
 
               <h2
-                className="cb-heading font-sans font-light text-text mb-8"
+                className="cb-heading font-heading font-medium text-text mb-8"
                 style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)', lineHeight: 1.1, letterSpacing: '-0.035em' }}
               >
                 Custom Chatbot{' '}
@@ -10650,7 +10650,7 @@ export default function Services() {
 
               <div className="cb-divider w-full h-px mb-10" style={{ background: 'linear-gradient(to right, hsl(195 90% 55% / 0.45), transparent)' }} aria-hidden="true" />
 
-              <p className="cb-intro font-sans font-light mb-10" style={{ fontSize: 'clamp(0.9rem, 1.5vw, 1.05rem)', lineHeight: 1.8, color: '#F2F8FC' }}>
+              <p className="cb-intro font-sans font-normal mb-10" style={{ fontSize: 'clamp(0.9rem, 1.5vw, 1.05rem)', lineHeight: 1.8, color: '#F2F8FC' }}>
                 AI-powered chatbots built to automate, engage, and scale your operations —
                 designed around real workflows, not generic scripts.
               </p>
@@ -10707,7 +10707,7 @@ export default function Services() {
                     <div>
                       <div
                         data-cbf-title
-                        className="font-sans font-light mb-1"
+                        className="font-heading font-medium mb-1"
                         style={{
                           fontSize: '0.84rem',
                           letterSpacing: '-0.01em',
@@ -10718,7 +10718,7 @@ export default function Services() {
                       >
                         {title}
                       </div>
-                      <div className="font-sans font-light" style={{ fontSize: '0.76rem', color: '#F2F8FC', lineHeight: 1.65 }}>
+                      <div className="font-body font-normal" style={{ fontSize: '0.76rem', color: '#F2F8FC', lineHeight: 1.65 }}>
                         {desc}
                       </div>
                     </div>
@@ -10732,7 +10732,7 @@ export default function Services() {
                   <p className="font-sans mb-2" style={{ fontSize: '0.68rem', letterSpacing: '0.26em', textTransform: 'uppercase', color: 'hsl(195 80% 55%)' }}>
                     Who it's for
                   </p>
-                  <p className="font-sans font-light" style={{ fontSize: 'clamp(0.85rem, 1.3vw, 0.95rem)', lineHeight: 1.8, color: '#F2F8FC' }}>
+                  <p className="font-sans font-normal" style={{ fontSize: 'clamp(0.85rem, 1.3vw, 0.95rem)', lineHeight: 1.8, color: '#F2F8FC' }}>
                     Real estate, dentists, law firms, accounting firms, fashion brands, and more.
                   </p>
                 </div>
@@ -10740,7 +10740,7 @@ export default function Services() {
                   <p className="font-sans mb-2" style={{ fontSize: '0.68rem', letterSpacing: '0.26em', textTransform: 'uppercase', color: 'hsl(195 80% 55%)' }}>
                     Why it matters
                   </p>
-                  <p className="font-sans font-light" style={{ fontSize: 'clamp(0.85rem, 1.3vw, 0.95rem)', lineHeight: 1.8, color: '#F2F8FC' }}>
+                  <p className="font-sans font-normal" style={{ fontSize: 'clamp(0.85rem, 1.3vw, 0.95rem)', lineHeight: 1.8, color: '#F2F8FC' }}>
                     Manual support limits scale. Custom chatbots handle volume instantly,
                     improve response time, and convert more interactions into results.
                   </p>
@@ -10860,7 +10860,7 @@ export default function Services() {
 
           {/* Quote body */}
           <p
-            className="font-sans font-light"
+            className="font-sans font-normal"
             style={{
               fontSize: 'clamp(1.1rem, 2.4vw, 1.75rem)',
               lineHeight: 1.65,
@@ -10946,7 +10946,7 @@ export default function Services() {
 
           {/* Heading */}
           <h2
-            className="font-sans font-light text-text mb-6"
+            className="font-heading font-medium text-text mb-6"
             style={{ fontSize: 'clamp(2rem, 5vw, 3.4rem)', lineHeight: 1.08, letterSpacing: '-0.035em' }}
           >
             Social Media{' '}
@@ -10959,17 +10959,17 @@ export default function Services() {
           <div className="mb-10" style={{ width: '3rem', height: '1px', background: 'hsl(280 65% 65% / 0.45)' }} aria-hidden="true"/>
 
           {/* Lead */}
-          <p className="font-sans font-light mb-6" style={{ fontSize: 'clamp(1rem, 2vw, 1.15rem)', lineHeight: 1.75, color: 'hsl(0 0% 78%)', maxWidth: '38rem' }}>
+          <p className="font-sans font-normal mb-6" style={{ fontSize: 'clamp(1rem, 2vw, 1.15rem)', lineHeight: 1.75, color: 'hsl(0 0% 78%)', maxWidth: '38rem' }}>
             At Weavy, we turn your social media into a consistent growth engine.
           </p>
 
           {/* Problem */}
-          <p className="font-sans font-light mb-6" style={{ fontSize: 'clamp(0.88rem, 1.5vw, 1rem)', lineHeight: 1.8, color: 'hsl(0 0% 52%)', maxWidth: '36rem' }}>
+          <p className="font-sans font-normal mb-6" style={{ fontSize: 'clamp(0.88rem, 1.5vw, 1rem)', lineHeight: 1.8, color: 'hsl(0 0% 52%)', maxWidth: '36rem' }}>
             Most brands post without strategy — leading to low engagement and missed opportunities.
           </p>
 
           {/* Extended problem */}
-          <p className="font-sans font-light mb-10" style={{ fontSize: 'clamp(0.88rem, 1.5vw, 1rem)', lineHeight: 1.8, color: 'hsl(0 0% 52%)', maxWidth: '36rem' }}>
+          <p className="font-sans font-normal mb-10" style={{ fontSize: 'clamp(0.88rem, 1.5vw, 1rem)', lineHeight: 1.8, color: 'hsl(0 0% 52%)', maxWidth: '36rem' }}>
             Without a clear direction, content fails to connect, reach the right audience, or drive meaningful results.
           </p>
 
@@ -10997,7 +10997,7 @@ export default function Services() {
             <p className="font-sans uppercase mb-3" style={{ fontSize: '0.65rem', letterSpacing: '0.28em', color: 'hsl(280 65% 65%)' }}>
               Our Solution
             </p>
-            <p className="font-sans font-light" style={{ fontSize: 'clamp(0.88rem, 1.5vw, 1rem)', lineHeight: 1.8, color: 'hsl(0 0% 68%)' }}>
+            <p className="font-sans font-normal" style={{ fontSize: 'clamp(0.88rem, 1.5vw, 1rem)', lineHeight: 1.8, color: 'hsl(0 0% 68%)' }}>
               We create a structured system built around your brand and audience.
             </p>
           </div>
@@ -11015,7 +11015,7 @@ export default function Services() {
                 'Email marketing',
                 'High-performing paid ads',
               ].map(item => (
-                <li key={item} className="font-sans font-light flex items-center justify-center gap-3" style={{ fontSize: 'clamp(0.88rem, 1.5vw, 1rem)', color: 'hsl(0 0% 72%)' }}>
+                <li key={item} className="font-sans font-normal flex items-center justify-center gap-3" style={{ fontSize: 'clamp(0.88rem, 1.5vw, 1rem)', color: 'hsl(0 0% 72%)' }}>
                   <span style={{ width: '4px', height: '4px', borderRadius: '50%', background: 'hsl(280 65% 65% / 0.6)', flexShrink: 0, display: 'inline-block' }}/>
                   {item}
                 </li>
@@ -11024,7 +11024,7 @@ export default function Services() {
           </div>
 
           {/* Closing line */}
-          <p className="font-sans font-light mb-16" style={{ fontSize: 'clamp(0.88rem, 1.5vw, 1rem)', lineHeight: 1.8, color: 'hsl(0 0% 52%)', maxWidth: '36rem' }}>
+          <p className="font-sans font-normal mb-16" style={{ fontSize: 'clamp(0.88rem, 1.5vw, 1rem)', lineHeight: 1.8, color: 'hsl(0 0% 52%)', maxWidth: '36rem' }}>
             We focus on the right audience, strong content, and measurable results — while you focus on your business.
           </p>
 
@@ -11112,7 +11112,7 @@ export default function Services() {
               Service
             </p>
             <h2
-              className="font-sans font-light text-text"
+              className="font-heading font-medium text-text"
               style={{
                 fontSize: 'clamp(1.75rem, 4vw, 3rem)',
                 lineHeight: 1.1,

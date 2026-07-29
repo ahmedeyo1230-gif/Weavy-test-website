@@ -282,7 +282,7 @@ export default function Footer({
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="font-label"
+            className="font-label font-medium"
             style={{
               position: 'relative',
               zIndex: 1,
@@ -332,7 +332,7 @@ export default function Footer({
                 zIndex: 1,
                 fontSize: 'clamp(16px, 1.4vw, 18px)',
                 lineHeight: 1.8,
-                color: 'rgba(220, 232, 240, 0.78)',
+                color: 'var(--text-body)',
                 fontWeight: 400,
                 maxWidth: '34rem',
                 marginBottom: '2.5rem',
@@ -352,11 +352,11 @@ export default function Footer({
           >
           <a
             href={ctaHref}
-            className="font-body font-light footer-email-cta"
+            className="font-label font-medium footer-email-cta"
             style={{
               fontSize: 'clamp(1rem, 2.2vw, 1.45rem)',
               letterSpacing: '-0.01em',
-              color: 'hsl(0 0% 88%)',
+              color: 'var(--text-primary)',
               textDecoration: 'none',
               padding: '0.8rem 2.2rem',
               borderRadius: '999px',
@@ -412,8 +412,8 @@ export default function Footer({
               }}
             />
             <span
-              className="font-label footer-availability-text"
-              style={{ fontSize: '0.73rem', letterSpacing: '0.1em', color: 'rgba(220, 232, 240, 0.76)' }}
+              className="font-label font-medium footer-availability-text"
+              style={{ fontSize: '0.73rem', letterSpacing: '0.1em', color: 'var(--text-body)' }}
             >
               Available for projects
             </span>

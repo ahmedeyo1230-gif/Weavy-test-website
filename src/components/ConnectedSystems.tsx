@@ -115,7 +115,7 @@ const CHANNELS = [
 function ChannelBadges() {
   return (
     <div>
-      <div style={{ fontFamily: 'var(--font-label)', fontSize: 11, color: 'rgba(125,220,255,0.46)', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 11 }}>
+      <div style={{ fontFamily: 'var(--font-label)', fontWeight: 500, fontSize: 11, color: 'rgba(125,220,255,0.46)', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 11 }}>
         Connected Channels
       </div>
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
@@ -133,7 +133,7 @@ function ChannelBadges() {
             <span style={{ display: 'inline-flex' }}>
               <Icon type={ch.icon} color={ch.color} size={14} />
             </span>
-            <span style={{ fontFamily: 'var(--font-label)', fontSize: 11.5, color: 'rgba(255,255,255,0.74)', fontWeight: 500, whiteSpace: 'nowrap' }}>{ch.label}</span>
+            <span style={{ fontFamily: 'var(--font-label)', fontWeight: 500, fontSize: 11.5, color: 'rgba(255,255,255,0.74)', whiteSpace: 'nowrap' }}>{ch.label}</span>
           </div>
         ))}
       </div>
@@ -165,7 +165,7 @@ function DashboardMock({ leads, reply, bookings }: { leads: number; reply: numbe
             <div key={i} style={{ width: 12, height: 12, borderRadius: '50%', background: c }} />
           ))}
         </div>
-        <div style={{ fontFamily: 'var(--font-label)', flex: 1, textAlign: 'center', fontSize: 'clamp(10.5px, 3vw, 12.5px)', lineHeight: 1.5, color: 'rgba(125,220,255,0.52)', letterSpacing: '0.12em', textTransform: 'uppercase' }}>
+        <div style={{ fontFamily: 'var(--font-label)', fontWeight: 500, flex: 1, textAlign: 'center', fontSize: 'clamp(10.5px, 3vw, 12.5px)', lineHeight: 1.5, color: 'rgba(125,220,255,0.52)', letterSpacing: '0.12em', textTransform: 'uppercase' }}>
           Connected Workflow
         </div>
       </div>
@@ -183,14 +183,14 @@ function DashboardMock({ leads, reply, bookings }: { leads: number; reply: numbe
             ].map(({ v, l, c }) => (
               <div key={l} style={{ background: 'rgba(125,220,255,0.05)', border: `1px solid ${c}28`, borderRadius: 14, padding: '16px 12px', textAlign: 'center' }}>
                 <div style={{ fontSize: 25, fontWeight: 600, color: c, lineHeight: 1.1, fontFamily: 'monospace' }}>{v}</div>
-                <div style={{ fontFamily: 'var(--font-label)', fontSize: 11, color: 'rgba(255,255,255,0.46)', letterSpacing: '0.1em', textTransform: 'uppercase', marginTop: 5 }}>{l}</div>
+                <div style={{ fontFamily: 'var(--font-label)', fontWeight: 500, fontSize: 11, color: 'rgba(255,255,255,0.46)', letterSpacing: '0.1em', textTransform: 'uppercase', marginTop: 5 }}>{l}</div>
               </div>
             ))}
           </div>
         </div>
 
         <div>
-          <div style={{ fontFamily: 'var(--font-label)', fontSize: 11, color: 'rgba(125,220,255,0.46)', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 11 }}>Weekly Enquiries</div>
+          <div style={{ fontFamily: 'var(--font-label)', fontWeight: 500, fontSize: 11, color: 'rgba(125,220,255,0.46)', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 11 }}>Weekly Enquiries</div>
           <div style={{ position: 'relative', overflow: 'hidden' }}>
             <div style={{ display: 'flex', alignItems: 'flex-end', gap: 7, height: 92 }}>
               {bars.map((h, i) => (
@@ -224,7 +224,7 @@ function DashboardMock({ leads, reply, bookings }: { leads: number; reply: numbe
 
       {/* Activity feed — full-width row on wide dashboard */}
       <div className="pb-9 min-[640px]:pb-20" style={{ paddingTop: 24, paddingLeft: 28, paddingRight: 28 }}>
-        <div style={{ fontFamily: 'var(--font-label)', fontSize: 11, color: 'rgba(125,220,255,0.46)', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 12 }}>Live Activity</div>
+        <div style={{ fontFamily: 'var(--font-label)', fontWeight: 500, fontSize: 11, color: 'rgba(125,220,255,0.46)', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 12 }}>Live Activity</div>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           {[
             { label: 'New lead: Emma Wilson',  time: '2s ago',  dot: '#7DDCFF' },
@@ -234,8 +234,8 @@ function DashboardMock({ leads, reply, bookings }: { leads: number; reply: numbe
             <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '11px 14px', borderRadius: 12, background: 'rgba(125,220,255,0.035)', border: '1px solid rgba(125,220,255,0.09)' }}>
               <div style={{ width: 7, height: 7, borderRadius: '50%', background: r.dot, flexShrink: 0, boxShadow: `0 0 8px ${r.dot}88` }} />
               <div style={{ flex: 1, minWidth: 0 }}>
-                <div style={{ fontFamily: 'var(--font-label)', fontSize: 12.5, color: 'rgba(255,255,255,0.72)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{r.label}</div>
-                <div style={{ fontFamily: 'var(--font-label)', fontSize: 10.5, color: 'rgba(255,255,255,0.32)', marginTop: 2 }}>{r.time}</div>
+                <div style={{ fontFamily: 'var(--font-label)', fontWeight: 500, fontSize: 12.5, color: 'rgba(255,255,255,0.72)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{r.label}</div>
+                <div style={{ fontFamily: 'var(--font-label)', fontWeight: 500, fontSize: 10.5, color: 'rgba(255,255,255,0.32)', marginTop: 2 }}>{r.time}</div>
               </div>
             </div>
           ))}
@@ -243,7 +243,7 @@ function DashboardMock({ leads, reply, bookings }: { leads: number; reply: numbe
         {/* Sample-data disclaimer — the figures above are illustrative, not
             verified client results, since Weavy connects/manages third-party
             systems rather than owning this dashboard software itself. */}
-        <div style={{ fontFamily: 'var(--font-label)', marginTop: 14, fontSize: 10.5, color: 'rgba(255,255,255,0.38)', letterSpacing: '0.02em', textAlign: 'center' }}>
+        <div style={{ fontFamily: 'var(--font-label)', fontWeight: 500, marginTop: 14, fontSize: 10.5, color: 'rgba(255,255,255,0.38)', letterSpacing: '0.02em', textAlign: 'center' }}>
           Illustrative workflow and sample data
         </div>
       </div>
@@ -289,9 +289,9 @@ function FloatCard({
     >
       <div style={{ display: 'flex', alignItems: 'center', gap: 9 }}>
         <div style={{ width: 8, height: 8, borderRadius: '50%', background: dot, boxShadow: `0 0 9px ${dot}` }} />
-        <span style={{ fontFamily: 'var(--font-label)', fontSize: 13.5, fontWeight: 600, color: '#F1F5F9', letterSpacing: '0.01em' }}>{label}</span>
+        <span style={{ fontFamily: 'var(--font-label)', fontWeight: 500, fontSize: 13.5, color: '#F1F5F9', letterSpacing: '0.01em' }}>{label}</span>
       </div>
-      <div style={{ fontFamily: 'var(--font-label)', fontSize: 11, color: 'rgba(255,255,255,0.38)', marginTop: 4, paddingLeft: 17 }}>{sub}</div>
+      <div style={{ fontFamily: 'var(--font-label)', fontWeight: 500, fontSize: 11, color: 'rgba(255,255,255,0.38)', marginTop: 4, paddingLeft: 17 }}>{sub}</div>
     </motion.div>
   )
 }
@@ -393,7 +393,7 @@ export default function ConnectedSystems() {
               viewport={{ once: true }}
               transition={{ duration: 0.65, delay: 0.18, ease: E }}
               className="font-heading font-medium"
-              style={{ fontSize: 'clamp(2.6rem, 6vw, 6rem)', lineHeight: 0.98, letterSpacing: '-0.03em', color: '#F8FAFC' }}
+              style={{ fontSize: 'clamp(2.6rem, 6vw, 6rem)', lineHeight: 0.98, letterSpacing: '-0.03em', color: 'var(--text-primary)' }}
             >
               From first click to{' '}
               <em style={{ fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontWeight: 400, color: '#7DDCFF' }}>
@@ -408,7 +408,7 @@ export default function ConnectedSystems() {
             viewport={{ once: true }}
             transition={{ duration: 0.55, delay: 0.24, ease: E }}
             className="font-body font-normal"
-            style={{ fontSize: 'clamp(17px, 1.2vw, 18px)', lineHeight: 1.7, color: 'rgba(220, 232, 240, 0.74)', maxWidth: 430, marginTop: '1.6rem' }}
+            style={{ fontSize: 'clamp(17px, 1.2vw, 18px)', lineHeight: 1.7, color: 'var(--text-body)', maxWidth: 430, marginTop: '1.6rem' }}
           >
             Designed to capture, qualify and follow up enquiries—moving more
             conversations towards booking.

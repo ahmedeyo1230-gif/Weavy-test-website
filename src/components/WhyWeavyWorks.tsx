@@ -297,7 +297,7 @@ export default function WhyWeavyWorks() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="font-label text-xs uppercase tracking-widest text-accent-cyan/70 mb-5"
+            className="font-label font-medium text-xs uppercase tracking-widest text-accent-cyan/70 mb-5"
           >
             Why Weavy Works
           </motion.p>
@@ -318,7 +318,7 @@ export default function WhyWeavyWorks() {
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.16, ease: [0.16, 1, 0.3, 1] }}
             className="font-body mt-6 text-lg font-normal max-w-md"
-            style={{ color: '#CBD5E1', lineHeight: 1.75 }}
+            style={{ color: 'var(--text-body)', lineHeight: 1.75 }}
           >
             We operate differently than traditional agencies. We are an extension
             of your team, focused purely on leverage.
@@ -370,7 +370,7 @@ export default function WhyWeavyWorks() {
                 {feature.icon}
               </div>
               <div>
-                <h3 className="font-heading text-xl font-medium tracking-tight mb-2" style={{ color: '#F8FAFC' }}>
+                <h3 className="font-heading text-xl font-medium tracking-tight mb-2" style={{ color: 'var(--text-primary)' }}>
                   {feature.title}
                 </h3>
                 <p className="font-body font-normal leading-relaxed" style={{ color: 'rgba(255,255,255,0.72)', lineHeight: 1.75 }}>

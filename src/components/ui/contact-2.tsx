@@ -219,12 +219,12 @@ export const Contact2 = ({
             transition={{ duration: 0.9, ease: E }}
             className="text-center mb-16"
           >
-            <p className="text-[0.65rem] font-light tracking-[0.3em] uppercase text-white/35 mb-4">
+            <p className="font-label text-[0.65rem] font-medium tracking-[0.3em] uppercase mb-4" style={{ color: 'var(--text-muted)' }}>
               Let's work together
             </p>
             <h1
-              className="font-light text-[#F8FAFC] leading-[1.05] tracking-[-0.03em]"
-              style={{ fontSize: "clamp(2.4rem, 5vw, 4rem)" }}
+              className="font-heading font-medium leading-[1.05] tracking-[-0.03em]"
+              style={{ fontSize: "clamp(2.4rem, 5vw, 4rem)", color: 'var(--text-primary)' }}
             >
               {title.split(" ").slice(0, -1).join(" ")}{" "}
               <em
@@ -239,8 +239,8 @@ export const Contact2 = ({
               </em>
             </h1>
             <p
-              className="mt-5 font-light text-white/50 max-w-[520px] mx-auto leading-relaxed"
-              style={{ fontSize: "clamp(0.88rem, 1.4vw, 1rem)" }}
+              className="font-body mt-5 font-normal max-w-[520px] mx-auto leading-relaxed"
+              style={{ fontSize: "clamp(0.88rem, 1.4vw, 1rem)", color: 'var(--text-body)' }}
             >
               {description}
             </p>
@@ -272,10 +272,10 @@ export const Contact2 = ({
                     <Icon size={16} />
                   </span>
                   <div>
-                    <p className="text-[0.62rem] tracking-[0.22em] uppercase text-white/30 font-light mb-0.5">
+                    <p className="font-label text-[0.62rem] tracking-[0.22em] uppercase font-medium mb-0.5" style={{ color: 'var(--text-muted)' }}>
                       {label}
                     </p>
-                    <p className="text-[0.9rem] text-white/75 font-light group-hover:text-white/90 transition-colors duration-300">
+                    <p className="font-body text-[0.9rem] font-normal group-hover:text-white/90 transition-colors duration-300" style={{ color: 'var(--text-body)' }}>
                       {value}
                     </p>
                   </div>
@@ -288,7 +288,7 @@ export const Contact2 = ({
                   className="w-2 h-2 rounded-full bg-[#22C55E] flex-shrink-0"
                   style={{ boxShadow: "0 0 8px rgba(34,197,94,0.7)", animation: "contact-pulse 2.2s ease-in-out infinite" }}
                 />
-                <p className="text-[0.78rem] font-light text-white/40 tracking-wide">
+                <p className="font-label text-[0.78rem] font-medium tracking-wide" style={{ color: 'var(--text-muted)' }}>
                   Available for new projects
                 </p>
               </div>
@@ -316,8 +316,8 @@ export const Contact2 = ({
                     <span className="w-14 h-14 rounded-full border border-[#22C55E]/30 bg-[#22C55E]/10 flex items-center justify-center text-[#22C55E]">
                       <Send size={22} />
                     </span>
-                    <h3 className="text-xl font-light text-[#F8FAFC] tracking-tight">Message sent</h3>
-                    <p className="text-sm text-white/40 max-w-xs leading-relaxed">
+                    <h3 className="font-heading text-xl font-medium tracking-tight" style={{ color: 'var(--text-primary)' }}>Message sent</h3>
+                    <p className="font-body text-sm font-normal max-w-xs leading-relaxed" style={{ color: 'var(--text-body)' }}>
                       Thank you for reaching out. We'll be in touch within one business day.
                     </p>
                   </motion.div>
@@ -330,7 +330,7 @@ export const Contact2 = ({
                         <div key={id} className="flex flex-col gap-2">
                           <Label
                             htmlFor={id}
-                            className="text-[0.7rem] tracking-[0.18em] uppercase text-white/35 font-light"
+                            className="font-label text-[0.7rem] tracking-[0.18em] uppercase font-medium" style={{ color: 'var(--text-muted)' }}
                           >
                             {id === "firstname" ? "First Name" : "Last Name"}
                           </Label>
@@ -349,7 +349,7 @@ export const Contact2 = ({
 
                     {/* Email */}
                     <div className="flex flex-col gap-2">
-                      <Label htmlFor="email" className="text-[0.7rem] tracking-[0.18em] uppercase text-white/35 font-light">
+                      <Label htmlFor="email" className="font-label text-[0.7rem] tracking-[0.18em] uppercase font-medium" style={{ color: 'var(--text-muted)' }}>
                         Email
                       </Label>
                       <input
@@ -365,7 +365,7 @@ export const Contact2 = ({
 
                     {/* Subject */}
                     <div className="flex flex-col gap-2">
-                      <Label htmlFor="subject" className="text-[0.7rem] tracking-[0.18em] uppercase text-white/35 font-light">
+                      <Label htmlFor="subject" className="font-label text-[0.7rem] tracking-[0.18em] uppercase font-medium" style={{ color: 'var(--text-muted)' }}>
                         Subject
                       </Label>
                       <input
@@ -381,7 +381,7 @@ export const Contact2 = ({
 
                     {/* Message */}
                     <div className="flex flex-col gap-2">
-                      <Label htmlFor="message" className="text-[0.7rem] tracking-[0.18em] uppercase text-white/35 font-light">
+                      <Label htmlFor="message" className="font-label text-[0.7rem] tracking-[0.18em] uppercase font-medium" style={{ color: 'var(--text-muted)' }}>
                         Message
                       </Label>
                       <textarea
@@ -398,7 +398,7 @@ export const Contact2 = ({
                     {/* Submit */}
                     <button
                       type="submit"
-                      className="group mt-1 w-full flex items-center justify-center gap-2.5 py-3.5 rounded-xl font-light text-sm tracking-wide transition-all duration-300 text-[#010709] bg-[#F8FAFC] hover:bg-white"
+                      className="font-label group mt-1 w-full flex items-center justify-center gap-2.5 py-3.5 rounded-xl font-medium text-sm tracking-wide transition-all duration-300 text-[#010709] bg-[#F8FAFC] hover:bg-white"
                       style={{ boxShadow: "0 8px 32px -8px rgba(248,250,252,0.18)" }}
                     >
                       Send Message
@@ -422,14 +422,14 @@ export const Contact2 = ({
             className="text-center mt-20"
           >
             <p
-              className="font-light tracking-[-0.01em] text-white/50"
-              style={{ fontSize: "clamp(2rem, 4vw, 3.2rem)", lineHeight: 1.15 }}
+              className="font-heading font-medium tracking-[-0.01em]"
+              style={{ fontSize: "clamp(2rem, 4vw, 3.2rem)", lineHeight: 1.15, color: 'var(--text-primary)' }}
             >
               Built with intention.
             </p>
             <p
-              className="font-light tracking-[-0.01em] text-white/35 mt-2"
-              style={{ fontSize: "clamp(2rem, 4vw, 3.2rem)", lineHeight: 1.15 }}
+              className="font-heading font-medium tracking-[-0.01em] mt-2"
+              style={{ fontSize: "clamp(2rem, 4vw, 3.2rem)", lineHeight: 1.15, color: 'var(--text-body)' }}
             >
               <em style={{ fontFamily: 'var(--font-accent)', fontStyle: "italic", fontWeight: 400 }}>
                 Designed to scale.
