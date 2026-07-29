@@ -12,7 +12,7 @@ import WhyWeavyWorks from './components/WhyWeavyWorks'
 import SystemsShowcase from './components/SystemsShowcase'
 import ConnectedSystems from './components/ConnectedSystems'
 import TestimonialsSection from './components/Testimonials'
-import Footer from './components/Footer'
+import Footer, { Marquee as BuildingTheFutureMarquee } from './components/Footer'
 import WhatsAppFloatingButton from './components/WhatsAppFloatingButton'
 import CursorGlow from './components/CursorGlow'
 
@@ -106,6 +106,7 @@ export default function App() {
               <WhyWeavyWorks />
               <PricingSection />
               <TestimonialsSection />
+              <BuildingTheFutureMarquee />
               <Footer />
             </>
           )}

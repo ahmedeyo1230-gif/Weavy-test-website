@@ -44,6 +44,23 @@ export default function About() { // no diagonal lines bg
         }}
       />
 
+      {/* Top darkening — a dedicated black-tint layer, separate from the dot
+          grid and the seam-blend fade above, so the dots stay completely
+          untouched while only this wash is adjusted. */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          height: '400px',
+          background: 'linear-gradient(to bottom, rgba(0,0,0,0.20) 0%, rgba(0,0,0,0.065) 50%, transparent 100%)',
+          pointerEvents: 'none',
+          zIndex: 1,
+        }}
+      />
+
       {/* Dot grid — masked to fade in gradually from the top instead of
           starting with a hard edge at the Connected Systems boundary.
           (Previously missing the -webkit- prefix used everywhere else in

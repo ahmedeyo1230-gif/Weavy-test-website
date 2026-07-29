@@ -122,7 +122,11 @@ function FooterVideo() {
   )
 }
 
-function Marquee() {
+// Standalone transition marquee — rendered on the homepage between
+// Testimonials and Footer (see App.tsx), not inside the <footer> element
+// itself, so its own height/background can be controlled independently of
+// the footer's video/overlay stack.
+export function Marquee() {
   const trackRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -140,34 +144,67 @@ function Marquee() {
   const repeated = MARQUEE_TEXT.repeat(10)
 
   return (
-    <div
-      style={{
-        width: '100%',
-        overflow: 'hidden',
-        borderTop: '1px solid hsl(0 0% 100% / 0.06)',
-        borderBottom: '1px solid hsl(0 0% 100% / 0.06)',
-        padding: '1.3rem 0',
-      }}
+    <section
+      aria-label="Building the future"
+      style={{ position: 'relative', width: '100%', overflow: 'hidden', background: '#06080A' }}
     >
-      <div ref={trackRef} style={{ display: 'flex', whiteSpace: 'nowrap', width: 'max-content' }}>
-        {[0, 1].map(i => (
-          <span
-            key={i}
-            style={{
-              fontFamily: "'Didot', 'GFS Didot', 'Didot LT STD', 'Bodoni MT', Georgia, serif",
-              fontWeight: 400,
-              fontSize: 'clamp(1.55rem, 3.2vw, 2.6rem)',
-              letterSpacing: '0.04em',
-              textTransform: 'uppercase',
-              color: 'hsl(0 0% 100% / 0.28)',
-              paddingRight: '2rem',
-            }}
-          >
-            {repeated}
-          </span>
-        ))}
+      <style>{`
+        .btf-stage {
+          position: relative;
+          width: 100%;
+          height: 100px;
+          display: flex;
+          align-items: center;
+          overflow: hidden;
+        }
+        @media (min-width: 700px) {
+          .btf-stage { height: 130px; }
+        }
+        @media (min-width: 1024px) {
+          .btf-stage { height: 165px; }
+        }
+        .btf-word {
+          background-image: linear-gradient(90deg, rgba(244,246,245,0.60) 0%, rgba(178,224,232,0.62) 50%, rgba(244,246,245,0.60) 100%);
+          -webkit-background-clip: text;
+          background-clip: text;
+          color: transparent;
+        }
+        .btf-sr-only {
+          position: absolute;
+          width: 1px;
+          height: 1px;
+          padding: 0;
+          margin: -1px;
+          overflow: hidden;
+          clip: rect(0, 0, 0, 0);
+          white-space: nowrap;
+          border: 0;
+        }
+      `}</style>
+
+      <span className="btf-sr-only">Building the future</span>
+
+      <div className="btf-stage" aria-hidden="true">
+        <div ref={trackRef} style={{ display: 'flex', whiteSpace: 'nowrap', width: 'max-content' }}>
+          {[0, 1].map(i => (
+            <span
+              key={i}
+              className="btf-word"
+              style={{
+                fontFamily: "'Didot', 'GFS Didot', 'Didot LT STD', 'Bodoni MT', Georgia, serif",
+                fontWeight: 400,
+                fontSize: 'clamp(1.55rem, 3.2vw, 2.6rem)',
+                letterSpacing: '0.04em',
+                textTransform: 'uppercase',
+                paddingRight: '2rem',
+              }}
+            >
+              {repeated}
+            </span>
+          ))}
+        </div>
       </div>
-    </div>
+    </section>
   )
 }
 
@@ -249,9 +286,6 @@ export default function Footer({
       />
 
       <div style={{ position: 'relative', zIndex: 2 }}>
-
-        {/* Marquee */}
-        <Marquee />
 
         {/* CTA */}
         <div

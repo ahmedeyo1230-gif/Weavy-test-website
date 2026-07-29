@@ -160,6 +160,12 @@ export default function PlatformSection() {
         maskImage: 'radial-gradient(ellipse 70% 60% at 50% 30%, black 20%, transparent 100%)',
         WebkitMaskImage: 'radial-gradient(ellipse 70% 60% at 50% 30%, black 20%, transparent 100%)',
       }} />
+      {/* Subtle top-down darkening — fades out well before the card grid,
+          leaving the dotted texture and blue-green undertone visible. */}
+      <div aria-hidden="true" className="pointer-events-none absolute top-0 left-0 right-0" style={{
+        height: '400px',
+        background: 'linear-gradient(to bottom, rgba(0,0,0,0.225) 0%, transparent 100%)',
+      }} />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-10">
         {/* Header */}

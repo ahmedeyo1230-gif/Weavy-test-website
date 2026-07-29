@@ -138,9 +138,23 @@ export default function SystemsServicesScroll() {
         />
 
         <div className="ssp-panel ssp-panel--closing">
+          {/* Reuses the exact Systems-panel dotted background (same GradientDots
+              component + ssp-dots texture, same size/spacing/colour palette),
+              shown at ~65% of the Systems panel's own (already-reduced) intensity. */}
+          <div aria-hidden="true" style={{ position: 'absolute', inset: 0, overflow: 'hidden', pointerEvents: 'none', opacity: 0.059 }}>
+            <GradientDots
+              backgroundColor="#020202"
+              dotSize={8}
+              spacing={10}
+              duration={42}
+              colorCycleDuration={20}
+              {...(reduced ? { animate: false } : {})}
+            />
+          </div>
           <div aria-hidden="true" className="ssp-ambient" style={{
             background: 'radial-gradient(circle at 50% 45%, rgba(24,105,125,0.14) 0%, rgba(5,26,32,0.06) 42%, transparent 74%)',
           }} />
+          <div aria-hidden="true" className="ssp-dots" style={{ ['--ssp-dots-alpha' as string]: 0.021 }} />
           <div className="ssp-inner ssp-inner--closing">
             <motion.p
               initial={reduced ? false : { opacity: 0, y: 18 }}
@@ -209,9 +223,9 @@ const CSS = `
   background: #010709;
 }
 
-.ssp-panel--systems { background: #020202; }
-.ssp-panel--services { background: #020202; }
-.ssp-panel--closing { background: linear-gradient(to bottom, #030607 0%, #020405 50%, #010709 100%); }
+.ssp-panel--systems { background: #010709; }
+.ssp-panel--services { background: #010709; }
+.ssp-panel--closing { background: linear-gradient(to bottom, #010709 0%, #020405 50%, #010709 100%); }
 
 /* Cross-fades the hero's own bottom fade colour (#010709) into the top of
    the Systems panel so its dot-grid/gradient-dots texture reveals gradually
