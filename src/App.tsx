@@ -2,7 +2,6 @@ import { useState, useEffect, lazy, Suspense } from 'react'
 import { applyPageSeo, PAGE_SEO } from './lib/seo'
 import LoadingScreen from './components/LoadingScreen'
 import Hero, { Navbar } from './components/Hero'
-import { PerspectiveMarquee } from './components/ui/perspective-marquee'
 import SystemsServicesScroll from './components/SystemsServicesScroll'
 import PlatformSection from './components/PlatformSection'
 import PricingSection from './components/PricingSection'
@@ -21,6 +20,11 @@ const Services     = lazy(() => import('./components/Services'))
 const ImageShowcase = lazy(() => import('./components/ImageShowcase'))
 const Blog         = lazy(() => import('./components/Blog'))
 const Contact      = lazy(() => import('./components/Contact'))
+
+// Remotion + @remotion/player are heavy — keep them out of the main bundle
+const PerspectiveMarquee = lazy(() =>
+  import('./components/ui/remotion-perspective-marquee').then(m => ({ default: m.PerspectiveMarquee }))
+)
 
 type Route = 'home' | 'about' | 'services' | 'work' | 'blog' | 'contact'
 
@@ -96,7 +100,9 @@ export default function App() {
           ) : (
             <>
               <Hero />
-              <PerspectiveMarquee />
+              <Suspense fallback={<div className="rpm-fallback" style={{ background: '#050505' }} />}>
+                <PerspectiveMarquee />
+              </Suspense>
               <SystemsServicesScroll />
               <PlatformSection />
               <ConnectedSystems />
