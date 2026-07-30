@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 import gsap from 'gsap'
 
 const HLS_SRC = 'https://stream.mux.com/Aa02T7oM1wH5Mk5EEVDYhbZ1ChcdhRsS2m1NYyx4Ua1g.m3u8'
-const MARQUEE_TEXT = 'BUILDING THE FUTURE • '
+const MARQUEE_WORD = 'BUILDING WHAT’S NEXT'
 
 // Placeholder profile links — swap for the real Weavy handles once available.
 const INSTAGRAM_URL = 'https://instagram.com'
@@ -141,11 +141,11 @@ export function Marquee() {
     return () => { tween.kill() }
   }, [])
 
-  const repeated = MARQUEE_TEXT.repeat(10)
+  const repeats = Array.from({ length: 10 })
 
   return (
     <section
-      aria-label="Building the future"
+      aria-label="Building what's next"
       style={{ position: 'relative', width: '100%', overflow: 'hidden', background: '#06080A' }}
     >
       <style>{`
@@ -163,11 +163,19 @@ export function Marquee() {
         @media (min-width: 1024px) {
           .btf-stage { height: 165px; }
         }
+        .btf-word, .btf-sep {
+          font-family: var(--font-accent);
+          font-style: italic;
+          font-weight: 400;
+          font-size: clamp(28px, 3.3vw, 48px);
+          letter-spacing: 0.04em;
+          text-transform: uppercase;
+        }
         .btf-word {
-          background-image: linear-gradient(90deg, rgba(244,246,245,0.60) 0%, rgba(178,224,232,0.62) 50%, rgba(244,246,245,0.60) 100%);
-          -webkit-background-clip: text;
-          background-clip: text;
-          color: transparent;
+          color: rgba(216, 227, 229, 0.8);
+        }
+        .btf-sep {
+          color: rgba(125, 220, 255, 0.55);
         }
         .btf-sr-only {
           position: absolute;
@@ -182,24 +190,18 @@ export function Marquee() {
         }
       `}</style>
 
-      <span className="btf-sr-only">Building the future</span>
+      <span className="btf-sr-only">Building what's next</span>
 
       <div className="btf-stage" aria-hidden="true">
         <div ref={trackRef} style={{ display: 'flex', whiteSpace: 'nowrap', width: 'max-content' }}>
-          {[0, 1].map(i => (
-            <span
-              key={i}
-              className="btf-word"
-              style={{
-                fontFamily: "'Didot', 'GFS Didot', 'Didot LT STD', 'Bodoni MT', Georgia, serif",
-                fontWeight: 400,
-                fontSize: 'clamp(1.55rem, 3.2vw, 2.6rem)',
-                letterSpacing: '0.04em',
-                textTransform: 'uppercase',
-                paddingRight: '2rem',
-              }}
-            >
-              {repeated}
+          {[0, 1].map(half => (
+            <span key={half} style={{ display: 'inline-flex', alignItems: 'baseline', paddingRight: '2rem' }}>
+              {repeats.map((_, i) => (
+                <span key={i} style={{ display: 'inline-flex', alignItems: 'baseline' }}>
+                  <span className="btf-word">{MARQUEE_WORD}</span>
+                  <span className="btf-sep">&nbsp;•&nbsp;</span>
+                </span>
+              ))}
             </span>
           ))}
         </div>

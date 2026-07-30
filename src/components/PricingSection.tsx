@@ -9,7 +9,7 @@ const PLANS = [
     price: '£249',
     period: '/month',
     setup: 'Setup from £495',
-    blurb: 'Best for small businesses starting with one AI channel.',
+    blurb: 'Best for small businesses starting with one automation service.',
     features: [
       'AI Chatbot (Website or WhatsApp)',
       'Basic lead capture',
@@ -24,7 +24,7 @@ const PLANS = [
     price: '£599',
     period: '/month',
     setup: 'Setup from £995',
-    blurb: 'Best for businesses that need multiple channels and stronger automation.',
+    blurb: 'Best for businesses connecting multiple channels and workflows.',
     features: [
       'AI Voice Agent',
       'WhatsApp Agent',
@@ -40,9 +40,9 @@ const PLANS = [
     price: 'Custom quote',
     period: '',
     setup: 'Setup custom',
-    blurb: 'Best for larger businesses, multi-location teams, and advanced workflows.',
+    blurb: 'Best for larger businesses requiring a tailored, fully managed automation solution.',
     features: [
-      'Full operating system',
+      'Connected automation solution',
       'Multiple channels',
       'Custom CRM workflows',
       'Analytics dashboard',
@@ -151,7 +151,7 @@ export default function PricingSection() {
     <section
       className="relative w-full overflow-hidden"
       style={{ background: '#010709', padding: 'clamp(5rem, 9vw, 8rem) 0' }}
-      aria-label="Monthly Platform Plans"
+      aria-label="Monthly Service Plans"
     >
       <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
         background: 'radial-gradient(ellipse 55% 45% at 50% 0%, rgba(125,220,255,0.045) 0%, transparent 65%)',
@@ -178,7 +178,7 @@ export default function PricingSection() {
               marginBottom: '1rem',
             }}
           >
-            Managed AI Platform
+            Managed Automation
           </motion.span>
 
           <motion.p
@@ -189,7 +189,7 @@ export default function PricingSection() {
             className="font-label font-medium"
             style={{ fontSize: '0.67rem', letterSpacing: '0.32em', textTransform: 'uppercase', color: 'rgba(125,220,255,0.68)', marginBottom: '1.3rem' }}
           >
-            Monthly Platform Plans
+            Monthly Service Plans
           </motion.p>
 
           <motion.h2
@@ -200,7 +200,7 @@ export default function PricingSection() {
             className="font-heading font-medium"
             style={{ fontSize: 'clamp(2rem, 4.2vw, 3rem)', lineHeight: 1.14, letterSpacing: '-0.032em', color: 'var(--text-primary)' }}
           >
-            Simple monthly plans for businesses{' '}
+            Flexible monthly plans for businesses{' '}
             <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400, color: '#7DDCFF' }}>
               ready to automate.
             </em>
@@ -214,8 +214,8 @@ export default function PricingSection() {
             className="font-body font-normal"
             style={{ fontSize: 'clamp(0.9rem, 1.4vw, 1rem)', lineHeight: 1.8, color: 'var(--text-muted)', marginTop: '1.2rem' }}
           >
-            Start with one channel, then expand into a full AI operating system as your business
-            grows. Setup fees may apply depending on automation complexity.
+            Start with one service, then add more as your business grows. Setup fees vary
+            depending on scope and complexity.
           </motion.p>
         </div>
 

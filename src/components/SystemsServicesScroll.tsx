@@ -27,7 +27,7 @@ function useReducedMotion(): boolean {
 
 function ListPanel({
   heading, items, accent, headingColor = accent, lineColor = accent, ambientRgb, bgBase, reduced, className,
-  dotLayerOpacity = 0.13, dotsAlpha = 0.045,
+  dotLayerOpacity = 0.13, dotsAlpha = 0.045, cornerLabel,
 }: {
   heading: string
   items: string[]
@@ -40,6 +40,7 @@ function ListPanel({
   className: string
   dotLayerOpacity?: number
   dotsAlpha?: number
+  cornerLabel?: string
 }) {
   return (
     <div className={`ssp-panel ${className}`}>
@@ -57,6 +58,10 @@ function ListPanel({
         background: `radial-gradient(circle at 50% 42%, ${ambientRgb} 0%, transparent 68%)`,
       }} />
       <div aria-hidden="true" className="ssp-dots" style={{ ['--ssp-dots-alpha' as string]: dotsAlpha }} />
+
+      {cornerLabel && (
+        <span className="ssp-corner-label" aria-hidden="true">{cornerLabel}</span>
+      )}
 
       <div className="ssp-inner">
         <motion.h2
@@ -121,6 +126,7 @@ export default function SystemsServicesScroll() {
           className="ssp-panel--systems"
           dotLayerOpacity={0.091}
           dotsAlpha={0.032}
+          cornerLabel="01 — SYSTEMS THAT WORK FOR YOU"
         />
 
         <ListPanel
@@ -135,13 +141,13 @@ export default function SystemsServicesScroll() {
           className="ssp-panel--services"
           dotLayerOpacity={0.078}
           dotsAlpha={0.027}
+          cornerLabel="02 — HOW WE HELP YOU GROW"
         />
 
         <div className="ssp-panel ssp-panel--closing">
           {/* Reuses the exact Systems-panel dotted background (same GradientDots
-              component + ssp-dots texture, same size/spacing/colour palette),
-              shown at ~65% of the Systems panel's own (already-reduced) intensity. */}
-          <div aria-hidden="true" style={{ position: 'absolute', inset: 0, overflow: 'hidden', pointerEvents: 'none', opacity: 0.059 }}>
+              component + ssp-dots texture, same size/spacing/colour palette). */}
+          <div aria-hidden="true" style={{ position: 'absolute', inset: 0, overflow: 'hidden', pointerEvents: 'none', opacity: 0.12 }}>
             <GradientDots
               backgroundColor="#020202"
               dotSize={8}
@@ -245,6 +251,28 @@ const CSS = `
   position: absolute;
   inset: 0;
   pointer-events: none;
+}
+
+.ssp-corner-label {
+  position: absolute;
+  top: clamp(64px, 6vw, 80px);
+  left: 6vw;
+  z-index: 2;
+  font-family: var(--font-label);
+  font-weight: 500;
+  font-size: clamp(13px, 1vw, 14px);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(191, 225, 245, 0.55);
+  pointer-events: none;
+}
+
+@media (max-width: 700px) {
+  .ssp-corner-label {
+    top: 32px;
+    left: 24px;
+    font-size: 11px;
+  }
 }
 
 .ssp-dots {
@@ -421,7 +449,7 @@ const CSS = `
 
 @media (max-width: 700px), (prefers-reduced-motion: reduce) {
   .ssp-panel {
-    position: static;
+    position: relative;
     height: auto;
     min-height: 100svh;
     min-height: 100vh;

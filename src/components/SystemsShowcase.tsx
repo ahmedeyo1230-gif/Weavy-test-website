@@ -344,24 +344,24 @@ export default function SystemsShowcase() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.26, ease: E }}
-              className="font-body inline-flex items-center gap-2 text-sm w-fit cursor-pointer"
-              style={{ color: 'var(--text-muted)', transition: 'color 200ms' }}
+              className="font-body inline-flex items-center gap-2 text-sm md:text-base w-fit cursor-pointer"
+              style={{ color: 'rgba(244,248,250,0.75)', transition: 'color 200ms' }}
               onMouseEnter={e => {
                 const el = e.currentTarget as HTMLElement
-                el.style.color = 'hsl(0 0% 90%)'
+                el.style.color = 'rgba(244,248,250,1)'
                 const arrow = el.querySelector('svg') as SVGElement | null
                 if (arrow) arrow.style.transform = 'translateX(4px)'
               }}
               onMouseLeave={e => {
                 const el = e.currentTarget as HTMLElement
-                el.style.color = 'hsl(0 0% 40%)'
+                el.style.color = 'rgba(244,248,250,0.75)'
                 const arrow = el.querySelector('svg') as SVGElement | null
                 if (arrow) arrow.style.transform = 'translateX(0)'
               }}
             >
               All services
               <ArrowRight
-                className="w-4 h-4"
+                className="w-3.5 h-3.5 md:w-4 md:h-4"
                 style={{ transition: 'transform 220ms cubic-bezier(0.16, 1, 0.3, 1)' }}
               />
             </motion.a>

@@ -491,43 +491,44 @@ export default function Hero() {
               Explore the Services
             </a>
           </motion.div>
-        </motion.div>
 
-        {/* Scroll indicator — sits above the bottom fade/blend layers (which
-            paint later in the DOM at the same auto z-level) so it stays visible. */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5, duration: 1 }}
-          className="hero-scroll-wrap pointer-events-none absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-3"
-          aria-hidden="true"
-        >
-          <span
-            className="hero-scroll-label text-[10px] uppercase tracking-widest"
-            style={{ color: 'rgba(125,220,255,0.55)', letterSpacing: '0.26em' }}
-          >Scroll</span>
-          <div
-            className="hero-scroll-line relative"
-            style={{ width: '1px', height: '56px', background: 'rgba(125,220,255,0.22)' }}
+          {/* Scroll indicator — sits in normal flow beneath the buttons now,
+              so its spacing tracks the content instead of being pinned to the
+              section's bottom edge. */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.5, duration: 1 }}
+            className="hero-scroll-wrap pointer-events-none flex flex-col items-center gap-3 mt-8 sm:mt-12"
+            aria-hidden="true"
           >
-            {/* Small glowing dot travelling down the line — CSS-driven so it keeps
-                animating smoothly regardless of JS timing; static (centred) when
-                reduced motion is preferred (see .hero-scroll-dot in index.css). */}
             <span
-              className="hero-scroll-dot"
-              style={{
-                position: 'absolute',
-                left: '50%',
-                top: 0,
-                width: '5px',
-                height: '5px',
-                borderRadius: '9999px',
-                background: 'rgba(125,220,255,0.85)',
-                boxShadow: '0 0 12px rgba(125,220,255,0.45)',
-                transform: 'translateX(-50%)',
-              }}
-            />
-          </div>
+              className="hero-scroll-label text-[10px] uppercase tracking-widest"
+              style={{ color: 'rgba(125,220,255,0.55)', letterSpacing: '0.26em' }}
+            >Scroll</span>
+            <div
+              className="hero-scroll-line relative"
+              style={{ width: '1px', height: '56px', background: 'rgba(125,220,255,0.22)' }}
+            >
+              {/* Small glowing dot travelling down the line — CSS-driven so it keeps
+                  animating smoothly regardless of JS timing; static (centred) when
+                  reduced motion is preferred (see .hero-scroll-dot in index.css). */}
+              <span
+                className="hero-scroll-dot"
+                style={{
+                  position: 'absolute',
+                  left: '50%',
+                  top: 0,
+                  width: '5px',
+                  height: '5px',
+                  borderRadius: '9999px',
+                  background: 'rgba(125,220,255,0.85)',
+                  boxShadow: '0 0 12px rgba(125,220,255,0.45)',
+                  transform: 'translateX(-50%)',
+                }}
+              />
+            </div>
+          </motion.div>
         </motion.div>
 
         {/* Bottom fade into VideoShowcase */}
