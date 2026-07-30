@@ -255,23 +255,29 @@ const CSS = `
 
 .ssp-corner-label {
   position: absolute;
-  top: clamp(64px, 6vw, 80px);
-  left: 6vw;
+  top: 68px;
+  left: 44px;
   z-index: 2;
   font-family: var(--font-label);
   font-weight: 500;
-  font-size: clamp(13px, 1vw, 14px);
-  letter-spacing: 0.08em;
+  font-size: 16px;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: rgba(191, 225, 245, 0.55);
+  color: rgba(191, 225, 245, 0.78);
   pointer-events: none;
+}
+
+@media (min-width: 700px) and (max-width: 1023px) {
+  .ssp-corner-label {
+    font-size: 15px;
+  }
 }
 
 @media (max-width: 700px) {
   .ssp-corner-label {
-    top: 32px;
+    top: 36px;
     left: 24px;
-    font-size: 11px;
+    font-size: 13px;
   }
 }
 

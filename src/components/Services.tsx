@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { Globe, Bot, BarChart2, Sparkles, Video, Settings2, Plug, Clock, UserCheck, CalendarDays, Zap, Camera, Target, Layers } from 'lucide-react'
+import { Globe, Bot, BarChart2, Sparkles, Video, Settings2, Plug, Clock, UserCheck, CalendarDays, Zap, Camera, Target, Layers, MessageSquare, Filter } from 'lucide-react'
 import { MessengerGlowBackground } from './ui/background-components'
 import { TestimonialsSection } from './ui/testimonials-1'
 import { GridBackground, NoiseCanvasBg, DarkSphereGridBg, BespokeCinemaArchBg } from './ui/grid-background'
@@ -360,9 +360,12 @@ function BespokeFollowUp() {
               02 — Conversion-Focused Design
             </span>
           </div>
-          <span style={{ fontSize: '0.6rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'hsl(0 0% 28%)', fontFamily: 'var(--font-sans, sans-serif)' }}>
-            Bespoke Website Design
-          </span>
+          <div className="flex items-center gap-4">
+            <span style={{ fontSize: '14px', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(191, 225, 245, 0.72)', fontFamily: 'var(--font-sans, sans-serif)' }}>
+              Bespoke Website Design
+            </span>
+            <div style={{ width: 24, height: 1, background: 'hsl(199 89% 60% / 0.55)' }}/>
+          </div>
         </div>
 
         {/* Heading left / body+stats right */}
@@ -405,9 +408,9 @@ function BespokeFollowUp() {
                     color: col, letterSpacing: '-0.04em', lineHeight: 1, marginBottom: '0.4rem',
                   }}>{val}</p>
                   <p style={{
-                    fontFamily: 'var(--font-sans, sans-serif)', fontSize: '0.6rem',
+                    fontFamily: 'var(--font-sans, sans-serif)', fontSize: '0.9rem',
                     letterSpacing: '0.16em', textTransform: 'uppercase',
-                    color: 'hsl(0 0% 32%)', fontWeight: 400,
+                    color: 'rgba(244, 248, 250, 0.7)', fontWeight: 500,
                   }}>{label}</p>
                 </div>
               ))}
@@ -1870,13 +1873,24 @@ function BespokeWebDesignShowcase() {
 
           {/* ── Right: image ── */}
           <div className="bwds-right" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            {/* Static size/position only. Desktop: ~7% larger, shifted 36px
+                left. Tablet: ~7% larger, shifted 16px left. Mobile: unchanged,
+                centred. No hover scaling. */}
+            <style>{`
+              .bwds-img-wrap { max-width: 620px; margin-left: 0; }
+              @media (min-width: 700px) and (max-width: 1023px) {
+                .bwds-img-wrap { margin-left: -16px; }
+              }
+              @media (min-width: 1024px) {
+                .bwds-img-wrap { margin-left: -36px; }
+              }
+            `}</style>
             <div className="bwds-img-wrap" style={{
               borderRadius: '32px',
               overflow: 'hidden',
               border: '1px solid hsl(0 0% 100% / 0.1)',
               boxShadow: '0 40px 100px hsl(0 0% 0% / 0.45), 0 8px 32px hsl(0 0% 0% / 0.25)',
               width: '100%',
-              maxWidth: '580px',
             }}>
               <img
                 loading="lazy"
@@ -2688,23 +2702,31 @@ const WORKFLOW_STEPS = [
     num: '01',
     title: 'Instant response',
     desc: 'The system replies immediately across your chosen channels, so customers are never left waiting.',
+    Icon: MessageSquare,
   },
   {
     num: '02',
     title: 'Smart qualification',
     desc: 'It asks the right questions, collects key details, and understands what the customer needs.',
+    Icon: Filter,
   },
   {
     num: '03',
     title: 'Guided next step',
     desc: 'Customers are directed toward bookings, services, product information, FAQs, or enquiry forms.',
+    Icon: CalendarDays,
   },
   {
     num: '04',
     title: 'Human handover',
     desc: 'When a conversation needs personal attention, the chatbot passes it smoothly to your team.',
+    Icon: UserCheck,
   },
 ]
+
+// Percentage position of each stage's node along the connecting line,
+// matching the 4-column grid's own column centres.
+const WORKFLOW_NODE_POS = ['12.5%', '37.5%', '62.5%', '87.5%']
 
 function ChatbotWorkflowSection() {
   const ref = useRef<HTMLElement>(null)
@@ -2712,11 +2734,17 @@ function ChatbotWorkflowSection() {
   useEffect(() => {
     const el = ref.current
     if (!el) return
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
     gsap.set(el.querySelectorAll('.cwf-label'),   { opacity: 0, y: 14 })
     gsap.set(el.querySelectorAll('.cwf-heading'),  { opacity: 0, y: 28 })
     gsap.set(el.querySelectorAll('.cwf-body'),     { opacity: 0, y: 20 })
     gsap.set(el.querySelectorAll('.cwf-line'),     { opacity: 0, scaleX: 0, transformOrigin: 'left center' })
     gsap.set(el.querySelectorAll('.cwf-step'),     { opacity: 0, y: 32 })
+    gsap.set(el.querySelectorAll('.cwf-node'),     { opacity: 0, scale: 0.4 })
+    const pulse = el.querySelector<HTMLElement>('.cwf-pulse')
+    if (pulse) gsap.set(pulse, { opacity: 0, left: WORKFLOW_NODE_POS[0] })
+
     const obs = new IntersectionObserver(([entry]) => {
       if (!entry.isIntersecting) return
       const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
@@ -2725,6 +2753,15 @@ function ChatbotWorkflowSection() {
       tl.to(el.querySelectorAll('.cwf-body'),     { opacity: 1, y: 0, duration: 0.7  }, 0.25)
       tl.to(el.querySelectorAll('.cwf-line'),     { opacity: 1, scaleX: 1, duration: 1.4, ease: 'power2.inOut' }, 0.55)
       tl.to(el.querySelectorAll('.cwf-step'),     { opacity: 1, y: 0, duration: 0.65, stagger: 0.14 }, 0.48)
+      tl.to(el.querySelectorAll('.cwf-node'),     { opacity: 1, scale: 1, duration: 0.5, stagger: 0.14, ease: 'back.out(2)' }, 0.6)
+
+      // One soft cyan pulse travelling stage 01 → 04, once, no repeat.
+      if (pulse && !reducedMotion) {
+        tl.to(pulse, { opacity: 1, duration: 0.3 }, 0.7)
+        tl.to(pulse, { left: WORKFLOW_NODE_POS[3], duration: 1.3, ease: 'power1.inOut' }, 0.7)
+        tl.to(pulse, { opacity: 0, duration: 0.35 }, 1.85)
+      }
+
       obs.disconnect()
     }, { threshold: 0.1 })
     obs.observe(el)
@@ -2799,6 +2836,12 @@ function ChatbotWorkflowSection() {
         {/* ── Workflow steps ── */}
         <div className="relative">
 
+          {/* Subtle blue-green ambient glow, contained behind the cards */}
+          <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
+            background: 'radial-gradient(ellipse 60% 70% at 50% 45%, hsl(185 55% 30% / 0.09) 0%, transparent 70%)',
+            zIndex: -1,
+          }}/>
+
           {/* Connecting line — desktop only */}
           <div
             aria-hidden="true"
@@ -2813,6 +2856,36 @@ function ChatbotWorkflowSection() {
             }}
           />
 
+          {/* Stage nodes + travelling pulse — desktop only, aligned to the line.
+              Rendered above the cards (z-index above the z-10 grid) so they
+              stay visible instead of sitting behind each card's opaque surface. */}
+          <div aria-hidden="true" className="hidden lg:block absolute" style={{ top: 0, left: 0, right: 0, height: 0, zIndex: 20 }}>
+            {WORKFLOW_NODE_POS.map((pos, i) => (
+              <span
+                key={i}
+                className="cwf-node"
+                style={{
+                  position: 'absolute', left: pos, top: 0,
+                  width: 6, height: 6, borderRadius: '50%',
+                  background: 'hsl(199 89% 65%)',
+                  boxShadow: '0 0 8px hsl(199 89% 60% / 0.7)',
+                  transform: 'translate(-50%, -50%)',
+                }}
+              />
+            ))}
+            <span
+              className="cwf-pulse"
+              aria-hidden="true"
+              style={{
+                position: 'absolute', top: 0,
+                width: 10, height: 10, borderRadius: '50%',
+                background: 'hsl(199 100% 78%)',
+                boxShadow: '0 0 16px 3px hsl(199 89% 65% / 0.85)',
+                transform: 'translate(-50%, -50%)',
+              }}
+            />
+          </div>
+
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6 relative z-10">
             {WORKFLOW_STEPS.map((step) => (
               <BorderRotate
@@ -2820,13 +2893,13 @@ function ChatbotWorkflowSection() {
                 className="cwf-step"
                 animationMode="auto-rotate"
                 animationSpeed={4}
-                borderWidth={1}
+                borderWidth={1.5}
                 borderRadius={28}
-                backgroundColor="#05080b"
+                backgroundColor="#051417"
                 gradientColors={{
                   primary:   '#020609',
-                  secondary: '#093747',
-                  accent:    '#1ab8d4',
+                  secondary: '#0C4A5E',
+                  accent:    '#3DD4EF',
                 }}
                 style={{
                   display:       'flex',
@@ -2834,6 +2907,17 @@ function ChatbotWorkflowSection() {
                   gap:           '1.1rem',
                   padding:       'clamp(1.6rem, 3vw, 2.2rem)',
                   boxShadow:     '0 24px 48px -12px hsl(0 0% 0% / 0.55)',
+                  transition:    'transform 200ms ease',
+                }}
+                onMouseEnter={e => {
+                  const el = e.currentTarget as HTMLElement
+                  el.style.transform = 'translateY(-2px)'
+                  el.style.setProperty('--gradient-accent', '#7FEBFF')
+                }}
+                onMouseLeave={e => {
+                  const el = e.currentTarget as HTMLElement
+                  el.style.transform = 'translateY(0)'
+                  el.style.setProperty('--gradient-accent', '#3DD4EF')
                 }}
               >
                 {/* Top accent line */}
@@ -2844,16 +2928,26 @@ function ChatbotWorkflowSection() {
                   marginBottom: '0.2rem',
                 }}/>
 
-                {/* Number badge */}
-                <span className="font-sans" style={{
-                  display:       'inline-block',
-                  fontSize:      '0.62rem',
-                  letterSpacing: '0.22em',
-                  color:         'hsl(199 89% 60% / 0.7)',
-                  fontWeight:    400,
-                }}>
-                  {step.num}
-                </span>
+                {/* Icon + number badge */}
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+                  <div style={{
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    width: 28, height: 28, borderRadius: 8, flexShrink: 0,
+                    border: '1px solid hsl(199 89% 60% / 0.35)',
+                    background: 'hsl(199 89% 60% / 0.08)',
+                  }}>
+                    <step.Icon size={14} strokeWidth={1.6} color="hsl(199 89% 65%)" aria-hidden="true" />
+                  </div>
+                  <span className="font-sans" style={{
+                    display:       'inline-block',
+                    fontSize:      '0.62rem',
+                    letterSpacing: '0.22em',
+                    color:         'hsl(199 89% 60% / 0.7)',
+                    fontWeight:    400,
+                  }}>
+                    {step.num}
+                  </span>
+                </div>
 
                 {/* Title */}
                 <p className="font-sans" style={{
@@ -2868,9 +2962,9 @@ function ChatbotWorkflowSection() {
 
                 {/* Description */}
                 <p className="font-sans font-normal" style={{
-                  fontSize:   'clamp(0.8rem, 1.15vw, 0.875rem)',
-                  lineHeight: 1.8,
-                  color:      'rgba(220, 232, 240, 0.68)',
+                  fontSize:   '1rem',
+                  lineHeight: 1.6,
+                  color:      'rgba(244, 248, 250, 0.75)',
                 }}>
                   {step.desc}
                 </p>
@@ -6055,7 +6149,7 @@ function GraphicDesignEditorial() {
       {/* ════ GALLERY — directly below "a lasting impression." ════ */}
       <div
         className="relative w-full overflow-hidden flex items-center justify-center"
-        style={{ height: '90vh', zIndex: 10 }}
+        style={{ height: '81vh', zIndex: 10 }}
       >
         <CircularGallery
           items={GD_GALLERY_ITEMS}
@@ -6503,17 +6597,17 @@ function GraphicDesignSplitA() {
                     fontSize: 'clamp(1.4rem, 2.8vw, 2.2rem)',
                     fontWeight: 300,
                     letterSpacing: '-0.04em',
-                    color: 'hsl(0 0% 78%)',
+                    color: 'rgba(244, 248, 250, 0.9)',
                     lineHeight: 1,
                     marginBottom: '5px',
                   }}>
                     {value}
                   </p>
                   <p className="font-sans" style={{
-                    fontSize: '0.62rem',
+                    fontSize: '0.92rem',
                     letterSpacing: '0.2em',
                     textTransform: 'uppercase',
-                    color: 'hsl(0 0% 26%)',
+                    color: 'rgba(244, 248, 250, 0.68)',
                   }}>
                     {label}
                   </p>
@@ -6601,9 +6695,9 @@ function GraphicDesignSplitB() {
 
             {/* Section marker */}
             <div className="gdsb-t flex items-center gap-4 mb-10">
-              <div style={{ width: 22, height: 1, background: 'hsl(0 0% 30%)' }}/>
+              <div style={{ width: 22, height: 1, background: 'hsl(0 0% 50%)' }}/>
               <span className="font-sans uppercase" style={{
-                fontSize: '0.57rem', letterSpacing: '0.32em', color: 'hsl(0 0% 32%)',
+                fontSize: '15px', letterSpacing: '0.32em', color: 'rgba(191, 225, 245, 0.75)',
               }}>
                 The Studio
               </span>
@@ -10224,7 +10318,7 @@ export default function Services() {
             <div className="relative flex items-center justify-center lg:justify-end">
 
               {/* Static size/position only — no hover zoom. Desktop: ~8% larger,
-                  shifted 48px left. Tablet: ~4% larger, shifted 20px left.
+                  shifted 36px left. Tablet: ~4% larger, shifted 20px left.
                   Mobile: unchanged, centred. */}
               <style>{`
                 .bwd1-img { max-width: 820px; margin-left: 0; }
@@ -10232,7 +10326,7 @@ export default function Services() {
                   .bwd1-img { max-width: 852.8px; margin-left: -20px; }
                 }
                 @media (min-width: 1024px) {
-                  .bwd1-img { max-width: 885.6px; margin-left: -48px; }
+                  .bwd1-img { max-width: 885.6px; margin-left: -36px; }
                 }
               `}</style>
 

@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 import gsap from 'gsap'
 
 const HLS_SRC = 'https://stream.mux.com/Aa02T7oM1wH5Mk5EEVDYhbZ1ChcdhRsS2m1NYyx4Ua1g.m3u8'
-const MARQUEE_WORD = 'BUILDING WHAT’S NEXT'
+const MARQUEE_WORD = 'BUILDING THE FUTURE'
 
 // Placeholder profile links — swap for the real Weavy handles once available.
 const INSTAGRAM_URL = 'https://instagram.com'
@@ -145,7 +145,7 @@ export function Marquee() {
 
   return (
     <section
-      aria-label="Building what's next"
+      aria-label="Building the future"
       style={{ position: 'relative', width: '100%', overflow: 'hidden', background: '#06080A' }}
     >
       <style>{`
@@ -167,7 +167,7 @@ export function Marquee() {
           font-family: var(--font-accent);
           font-style: italic;
           font-weight: 400;
-          font-size: clamp(28px, 3.3vw, 48px);
+          font-size: clamp(28px, 2.8vw, 42px);
           letter-spacing: 0.04em;
           text-transform: uppercase;
         }
@@ -190,7 +190,7 @@ export function Marquee() {
         }
       `}</style>
 
-      <span className="btf-sr-only">Building what's next</span>
+      <span className="btf-sr-only">Building the future</span>
 
       <div className="btf-stage" aria-hidden="true">
         <div ref={trackRef} style={{ display: 'flex', whiteSpace: 'nowrap', width: 'max-content' }}>
