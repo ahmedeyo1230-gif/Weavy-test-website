@@ -97,7 +97,7 @@ export default function About() { // no diagonal lines bg
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, ease: E }}
-              className="font-label font-medium text-xs uppercase tracking-widest text-accent-cyan/70"
+              className="about-eyebrow font-label font-medium uppercase tracking-widest text-accent-cyan/70"
             >
               About Weavy
             </motion.p>

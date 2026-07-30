@@ -255,7 +255,7 @@ const CSS = `
 
 .ssp-corner-label {
   position: absolute;
-  top: 68px;
+  top: 108px;
   left: 44px;
   z-index: 2;
   font-family: var(--font-label);
@@ -269,13 +269,14 @@ const CSS = `
 
 @media (min-width: 700px) and (max-width: 1023px) {
   .ssp-corner-label {
+    top: 76px;
     font-size: 15px;
   }
 }
 
 @media (max-width: 700px) {
   .ssp-corner-label {
-    top: 36px;
+    top: 48px;
     left: 24px;
     font-size: 13px;
   }

@@ -134,7 +134,7 @@ export function Marquee() {
     if (!el) return
     const tween = gsap.to(el, {
       xPercent: -50,
-      duration: 500,
+      duration: 500 / 1.2, // ~20% faster, same distance
       ease: 'none',
       repeat: -1,
     })
@@ -167,7 +167,7 @@ export function Marquee() {
           font-family: var(--font-accent);
           font-style: italic;
           font-weight: 400;
-          font-size: clamp(28px, 2.8vw, 42px);
+          font-size: clamp(24px, 2.3vw, 36px);
           letter-spacing: 0.04em;
           text-transform: uppercase;
         }

@@ -5943,7 +5943,7 @@ function GraphicDesignCreativeSystems() {
 
         {/* Media wrapper — image today, drop-in <video poster="..."> later */}
         <div
-          className="relative w-full sm:w-[94vw] lg:w-[min(96vw,1700px)] aspect-[16/9]"
+          className="relative w-full sm:w-[86vw] lg:w-[min(85vw,1520px)] aspect-[16/9]"
           style={{
             borderRadius: '20px',
             overflow: 'hidden',
@@ -6995,8 +6995,8 @@ function GraphicDesignFinalPresentation() {
 
             {/* Label */}
             <div className="gdfp-label flex items-center gap-3 mb-8">
-              <div style={{ width: 20, height: 1, background: 'hsl(195 90% 55% / 0.55)' }}/>
-              <span className="font-sans uppercase" style={{ fontSize: '0.57rem', letterSpacing: '0.34em', color: 'hsl(195 90% 62%)' }}>
+              <div style={{ width: 20, height: 1, background: 'hsl(195 90% 55% / 0.72)' }}/>
+              <span className="font-sans uppercase" style={{ fontSize: '18px', fontWeight: 500, letterSpacing: '0.34em', color: 'hsl(195 90% 62% / 0.82)' }}>
                 Final Brand Presentation
               </span>
             </div>
@@ -7263,11 +7263,11 @@ function GraphicDesignFinalPresentation() {
 
           {/* Section marker */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '2rem' }}>
-            <div style={{ width: 20, height: 1, background: 'hsl(195 90% 55% / 0.55)' }}/>
+            <div style={{ width: 20, height: 1, background: 'hsl(195 90% 55% / 0.72)' }}/>
             <span style={{
               fontFamily: 'var(--font-sans, sans-serif)',
-              fontSize: '0.57rem', letterSpacing: '0.34em',
-              color: 'hsl(195 90% 62%)', textTransform: 'uppercase',
+              fontSize: '14px', fontWeight: 500, letterSpacing: '0.34em',
+              color: 'hsl(195 90% 62% / 0.82)', textTransform: 'uppercase',
             }}>
               Final Brand Presentation
             </span>
@@ -7415,10 +7415,16 @@ function GraphicDesignCTA() {
 
       <div className="relative z-10 max-w-[58rem] mx-auto px-6 sm:px-10 flex flex-col items-center text-center">
 
-        {/* Label */}
+        {/* Label — same responsive size/weight/colour as Final Brand Presentation's label */}
+        <style>{`
+          .gdcta-ready-label { font-size: 14px; }
+          @media (min-width: 1024px) {
+            .gdcta-ready-label { font-size: 18px; }
+          }
+        `}</style>
         <p
-          className="gdcta-el font-sans font-normal uppercase mb-7"
-          style={{ fontSize: '0.58rem', letterSpacing: '0.38em', color: 'hsl(195 90% 62% / 0.7)' }}
+          className="gdcta-el gdcta-ready-label font-sans uppercase mb-7"
+          style={{ fontWeight: 500, letterSpacing: '0.38em', color: 'hsl(195 90% 62% / 0.82)' }}
         >
           Ready to build your visual system?
         </p>

@@ -105,6 +105,20 @@ html {
   background: linear-gradient(to right, hsl(210 20% 40%), hsl(210 30% 80%));
 }
 
+/* ── About Weavy eyebrow label ────────────────────────────────
+   Plain, class-scoped rule (not a Tailwind utility) for the same reason
+   as .hero-eyebrow above: the un-layered "p { }" mobile-readability rule
+   otherwise overrides any Tailwind text-[…] utility below 1024px. */
+.about-eyebrow {
+  font-size: 18px;
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+  .about-eyebrow { font-size: 16px; }
+}
+@media (max-width: 767px) {
+  .about-eyebrow { font-size: 15px; }
+}
+
 /* ── Outcome marquee (src/components/ui/marquee.tsx) ────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   .marquee-scroller { animation: none !important; }
