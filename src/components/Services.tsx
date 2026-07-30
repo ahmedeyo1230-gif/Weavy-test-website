@@ -226,10 +226,10 @@ function ServiceCard({ service, onLearnMore }: ServiceCardProps) {
 // warped violet wireframe grid. Values copied exactly from BespokeWebShowcase
 // so colour/glow/grid intensity match precisely wherever this is applied.
 
-function ShowcaseBackground() {
+function ShowcaseBackground({ topFadeFrom = '#060208' }: { topFadeFrom?: string }) {
   return (
     <>
-      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '110px', background: 'linear-gradient(to bottom, #010709 0%, #060208 55%, rgba(6,2,8,0) 100%)', pointerEvents: 'none', zIndex: 1 }} />
+      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '110px', background: `linear-gradient(to bottom, ${topFadeFrom} 0%, #060208 55%, rgba(6,2,8,0) 100%)`, pointerEvents: 'none', zIndex: 1 }} />
       <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to top, #060208, transparent)', pointerEvents: 'none', zIndex: 1 }} />
 
       <div aria-hidden="true" style={{
@@ -339,7 +339,10 @@ function BespokeFollowUp() {
       className="relative w-full overflow-hidden"
       style={{ background: '#060208', padding: 'clamp(5rem, 8vw, 8rem) 0 clamp(4rem, 7vw, 7rem)' }}
     >
-      <ShowcaseBackground />
+      {/* Its own predecessor (Cinema Showcase) ends in #010709, not the
+          #060208 shared by every other Bespoke section, so this is the one
+          call site that needs the top fade to start from that colour. */}
+      <ShowcaseBackground topFadeFrom="#010709" />
 
       {/* ════════════════════════════════════════════════════════
           UPPER — Full-width editorial header
@@ -1162,8 +1165,10 @@ function BespokeWebShowcase() {
       className="relative w-full overflow-hidden"
       style={{ background: '#060208', padding: 'clamp(6rem, 12vw, 10rem) 0 clamp(7rem, 14vw, 12rem)' }}
     >
-      {/* Top / bottom blends */}
-      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '110px', background: 'linear-gradient(to bottom, #010709 0%, #060208 55%, rgba(6,2,8,0) 100%)', pointerEvents: 'none', zIndex: 1 }} />
+      {/* Top / bottom blends — its predecessor (Process Timeline) is also
+          #060208, so this fade should start from that colour rather than
+          the #010709 used for the very first section in this chain. */}
+      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '110px', background: 'linear-gradient(to bottom, #060208 0%, #060208 55%, rgba(6,2,8,0) 100%)', pointerEvents: 'none', zIndex: 1 }} />
       <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to top, #060208, transparent)', pointerEvents: 'none', zIndex: 1 }} />
 
       {/* Restrained magenta-purple glow, upper-left, fading toward centre/right/bottom */}
@@ -9829,7 +9834,7 @@ export default function Services() {
       tl.to(el.querySelectorAll('.bwd1-divider'), { opacity: 1, scaleX: 1, duration: 0.9, ease: 'power2.inOut' }, 0.25)
       tl.to(el.querySelectorAll('.bwd1-body'),    { opacity: 1, y: 0, duration: 0.7, stagger: 0.12 }, 0.3)
       tl.to(el.querySelectorAll('.bwd1-list'),    { opacity: 1, y: 0, duration: 0.5, stagger: 0.08 }, 0.45)
-      tl.to(el.querySelectorAll('.bwd1-img'),     { opacity: 1, x: 0, scale: 1.15, duration: 1.1, ease: 'power2.out' }, 0.15)
+      tl.to(el.querySelectorAll('.bwd1-img'),     { opacity: 1, x: 0, scale: 1, duration: 1.1, ease: 'power2.out' }, 0.15)
       obs.disconnect()
     }, { threshold: 0.1 })
 
@@ -10218,6 +10223,19 @@ export default function Services() {
             {/* ── Right: website 3.png ── */}
             <div className="relative flex items-center justify-center lg:justify-end">
 
+              {/* Static size/position only — no hover zoom. Desktop: ~8% larger,
+                  shifted 48px left. Tablet: ~4% larger, shifted 20px left.
+                  Mobile: unchanged, centred. */}
+              <style>{`
+                .bwd1-img { max-width: 820px; margin-left: 0; }
+                @media (min-width: 700px) and (max-width: 1023px) {
+                  .bwd1-img { max-width: 852.8px; margin-left: -20px; }
+                }
+                @media (min-width: 1024px) {
+                  .bwd1-img { max-width: 885.6px; margin-left: -48px; }
+                }
+              `}</style>
+
               {/* Champagne gold ambient glow behind image */}
               <div aria-hidden="true" style={{
                 position: 'absolute', inset: '-20px',
@@ -10226,13 +10244,12 @@ export default function Services() {
                 pointerEvents: 'none',
               }}/>
 
-              {/* Image frame */}
+              {/* Image frame — static, no hover enlargement */}
               <div
                 className="bwd1-img"
                 style={{
                   position: 'relative',
                   width: '100%',
-                  maxWidth: '820px',
                   borderRadius: '20px',
                   overflow: 'hidden',
                   boxShadow: [
@@ -10241,23 +10258,6 @@ export default function Services() {
                     '0 0 64px -18px hsl(205 85% 55% / 0.22)',
                   ].join(', '),
                   background: '#080a0e',
-                  transition: 'transform 0.65s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.65s ease',
-                }}
-                onMouseEnter={e => {
-                  (e.currentTarget as HTMLElement).style.transform = 'translateY(-6px) scale(1.02)'
-                  ;(e.currentTarget as HTMLElement).style.boxShadow = [
-                    '0 64px 120px -14px hsl(0 0% 0% / 0.92)',
-                    '0 0 0 1px hsl(0 0% 100% / 0.1)',
-                    '0 0 80px -14px hsl(205 85% 55% / 0.32)',
-                  ].join(', ')
-                }}
-                onMouseLeave={e => {
-                  (e.currentTarget as HTMLElement).style.transform = 'none'
-                  ;(e.currentTarget as HTMLElement).style.boxShadow = [
-                    '0 48px 96px -16px hsl(0 0% 0% / 0.88)',
-                    '0 0 0 1px hsl(0 0% 100% / 0.07)',
-                    '0 0 64px -18px hsl(205 85% 55% / 0.22)',
-                  ].join(', ')
                 }}
               >
                 <video
