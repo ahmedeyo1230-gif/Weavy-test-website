@@ -10,7 +10,7 @@ import { CircularGallery, type GalleryItem } from './ui/circular-gallery'
 import { GradientBlurBg } from './ui/gradient-blur-bg'
 import { BorderRotate } from './ui/animated-gradient-border'
 import { goToPath } from '../lib/navigation'
-import Footer from './Footer'
+import Footer, { Marquee as BuildingTheFutureMarquee } from './Footer'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -5455,6 +5455,7 @@ function SocialMediaMarketing() {
     </section>
 
     {/* ══ SECTION 8 — Contact / Footer ════════════════════════════════════════ */}
+    <BuildingTheFutureMarquee />
     <Footer
       eyebrow="Let's build something"
       heading={<>
@@ -10677,6 +10678,7 @@ export default function Services() {
       <BespokeTestimonials />
 
       {/* ── Bespoke Contact / Footer ── */}
+      <BuildingTheFutureMarquee />
       <Footer
         heading={<>
           Ready to{' '}
@@ -10997,6 +10999,7 @@ export default function Services() {
       <ChatbotIntegrationsSection />
 
       {/* ── Custom Chatbots — Contact / Footer (Section 6) ── */}
+      <BuildingTheFutureMarquee />
       <Footer
         heading={<>
           Ready to{' '}
@@ -11141,6 +11144,7 @@ export default function Services() {
       {activeService === 'graphic' && <GraphicDesignSplitB />}
       {activeService === 'graphic' && <GraphicDesignFinalPresentation />}
       {activeService === 'graphic' && <GraphicDesignCTA />}
+      {activeService === 'graphic' && <BuildingTheFutureMarquee />}
       {activeService === 'graphic' && (
         <Footer
           heading={<>
@@ -11173,6 +11177,7 @@ export default function Services() {
       {activeService === 'ugc' && <UGCPerfumeCampaign />}
       {activeService === 'ugc' && <UGCPerformanceSystem />}
       {activeService === 'ugc' && <UGCPracticeEcosystem />}
+      {activeService === 'ugc' && <BuildingTheFutureMarquee />}
       {activeService === 'ugc' && (
         <Footer
           heading={<>

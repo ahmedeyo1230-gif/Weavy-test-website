@@ -134,7 +134,7 @@ export function Marquee() {
     if (!el) return
     const tween = gsap.to(el, {
       xPercent: -50,
-      duration: 500 / 1.2, // ~20% faster, same distance
+      duration: (500 / 1.2) * 0.7, // ~20% faster (prior pass), now another 30% faster, same distance
       ease: 'none',
       repeat: -1,
     })
@@ -167,7 +167,7 @@ export function Marquee() {
           font-family: var(--font-accent);
           font-style: italic;
           font-weight: 400;
-          font-size: clamp(24px, 2.3vw, 36px);
+          font-size: clamp(35px, 3.3vw, 52px);
           letter-spacing: 0.04em;
           text-transform: uppercase;
         }
@@ -223,7 +223,7 @@ interface FooterProps {
 
 const DEFAULT_HEADING = (
   <>
-    Ready to turn your business into an{' '}
+    Ready to{' '}
     <em style={{
       fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400,
       background: 'linear-gradient(90deg, #FFFFFF 0%, #7DDCFF 45%, #B7AEFF 100%)',
@@ -231,16 +231,16 @@ const DEFAULT_HEADING = (
       color: 'transparent',
       textShadow: '0 0 24px rgba(125, 220, 255, 0.16)',
     }}>
-      AI-powered operating system?
-    </em>
+      automate
+    </em>{' '}
+    the way your business runs?
   </>
 )
 
 const DEFAULT_SUBTEXT = (
   <>
-    Start with one channel or build a full AI platform for customer{' '}
-    <br />
-    communication, bookings, leads, and growth.
+    We'll build and manage your entire automation system — from voice agents
+    to bookings to CRM. Start with one channel or scale across all of them.
   </>
 )
 
@@ -249,7 +249,7 @@ export default function Footer({
   eyebrow = 'Get in touch',
   heading = DEFAULT_HEADING,
   subtext = DEFAULT_SUBTEXT,
-  ctaLabel = 'Book a Platform Demo',
+  ctaLabel = 'Book a Free Demo',
   ctaHref = 'mailto:hello@weavyautomation.com',
 }: FooterProps = {}) {
   return (

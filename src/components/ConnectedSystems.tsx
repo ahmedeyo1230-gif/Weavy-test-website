@@ -104,12 +104,12 @@ function Icon({ type, color, size = 20 }: { type: string; color: string; size?: 
 }
 
 const CHANNELS = [
-  { label: 'Voice AI',      icon: 'phone',   color: '#F0C56A' },
-  { label: 'WhatsApp AI',   icon: 'chat',    color: '#34D399' },
-  { label: 'Instagram AI',  icon: 'camera',  color: '#E879C9' },
-  { label: 'Facebook AI',   icon: 'bubble2', color: '#6BA9FF' },
-  { label: 'Website Chat',  icon: 'globe',   color: '#7DDCFF' },
-  { label: 'CRM Sync',      icon: 'crm',     color: '#A78BFA' },
+  { label: 'Voice Agent',          icon: 'phone',   color: '#F0C56A' },
+  { label: 'WhatsApp',             icon: 'chat',    color: '#34D399' },
+  { label: 'Instagram DM',         icon: 'camera',  color: '#E879C9' },
+  { label: 'Facebook Messenger',   icon: 'bubble2', color: '#6BA9FF' },
+  { label: 'Website Chat',         icon: 'globe',   color: '#7DDCFF' },
+  { label: 'CRM Sync',             icon: 'crm',     color: '#A78BFA' },
 ]
 
 function ChannelBadges() {
@@ -382,7 +382,7 @@ export default function ConnectedSystems() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.12, ease: E }}
               className="font-label"
-              style={{ fontSize: '0.67rem', letterSpacing: '0.30em', textTransform: 'uppercase', color: 'rgba(125,220,255,0.65)', marginBottom: '1.4rem' }}
+              style={{ fontSize: '0.85rem', letterSpacing: '0.30em', textTransform: 'uppercase', color: 'rgba(174,235,255,0.94)', marginBottom: '1.4rem' }}
             >
               Connected Systems
             </motion.p>

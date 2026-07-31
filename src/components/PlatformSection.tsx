@@ -34,12 +34,12 @@ function Icon({ type, color }: { type: string; color: string }) {
 
 const MODULES = [
   {
-    title: 'AI Voice Receptionist',
+    title: 'Voice Receptionist',
     desc: 'Handles missed calls, FAQs, bookings, and customer enquiries.',
     icon: 'phone', color: '#F0C56A', titleColor: '#F7E1B4',
   },
   {
-    title: 'AI Voice Agent',
+    title: 'Voice Agent',
     desc: 'Speaks with customers, qualifies enquiries and routes high-intent leads.',
     icon: 'waveform', color: '#7DDCFF', titleColor: '#BEEBFF',
   },

@@ -8,7 +8,6 @@ const E: [number, number, number, number] = [0.16, 1, 0.3, 1]
 const BLUE = '#6F8CFF'
 const VIOLET_HEADING = '#B7AEFF'
 const VIOLET_DOT = '#9F94FF'
-const VIOLET_LINE = 'rgba(183, 174, 255, 0.24)'
 
 const SYSTEMS_ITEMS = ['Voice Receptionists', 'Voice Agents', 'Chatbots', 'Messaging', 'CRM & Bookings', 'Analytics']
 const SERVICES_ITEMS = ['Bespoke Websites', 'Social Media', 'Paid Advertising', 'Creative Design', 'UGC & Creator Content']
@@ -27,7 +26,7 @@ function useReducedMotion(): boolean {
 
 function ListPanel({
   heading, items, accent, headingColor = accent, lineColor = accent, ambientRgb, bgBase, reduced, className,
-  dotLayerOpacity = 0.13, dotsAlpha = 0.045, cornerLabel,
+  dotLayerOpacity = 0.13, dotsAlpha = 0.045, cornerLabel, cornerNumberColor = accent,
 }: {
   heading: string
   items: string[]
@@ -40,7 +39,8 @@ function ListPanel({
   className: string
   dotLayerOpacity?: number
   dotsAlpha?: number
-  cornerLabel?: string
+  cornerLabel?: { number: string; text: string }
+  cornerNumberColor?: string
 }) {
   return (
     <div className={`ssp-panel ${className}`}>
@@ -60,7 +60,10 @@ function ListPanel({
       <div aria-hidden="true" className="ssp-dots" style={{ ['--ssp-dots-alpha' as string]: dotsAlpha }} />
 
       {cornerLabel && (
-        <span className="ssp-corner-label" aria-hidden="true">{cornerLabel}</span>
+        <span className="ssp-corner-label" aria-hidden="true">
+          <span style={{ color: cornerNumberColor }}>{cornerLabel.number}</span>
+          {' '}{cornerLabel.text}
+        </span>
       )}
 
       <div className="ssp-inner">
@@ -126,7 +129,7 @@ export default function SystemsServicesScroll() {
           className="ssp-panel--systems"
           dotLayerOpacity={0.091}
           dotsAlpha={0.032}
-          cornerLabel="01 — SYSTEMS THAT WORK FOR YOU"
+          cornerLabel={{ number: '01', text: '— SYSTEMS THAT WORK FOR YOU' }}
         />
 
         <ListPanel
@@ -134,14 +137,14 @@ export default function SystemsServicesScroll() {
           items={SERVICES_ITEMS}
           accent={VIOLET_DOT}
           headingColor={VIOLET_HEADING}
-          lineColor={VIOLET_LINE}
           ambientRgb="rgba(159, 148, 255, 0.058)"
           bgBase="#020202"
           reduced={reduced}
           className="ssp-panel--services"
           dotLayerOpacity={0.078}
           dotsAlpha={0.027}
-          cornerLabel="02 — HOW WE HELP YOU GROW"
+          cornerLabel={{ number: '02', text: '— HOW WE HELP YOU GROW' }}
+          cornerNumberColor={VIOLET_HEADING}
         />
 
         <div className="ssp-panel ssp-panel--closing">
@@ -255,7 +258,7 @@ const CSS = `
 
 .ssp-corner-label {
   position: absolute;
-  top: 108px;
+  top: 148px;
   left: 44px;
   z-index: 2;
   font-family: var(--font-label);
@@ -269,14 +272,14 @@ const CSS = `
 
 @media (min-width: 700px) and (max-width: 1023px) {
   .ssp-corner-label {
-    top: 76px;
+    top: 104px;
     font-size: 15px;
   }
 }
 
 @media (max-width: 700px) {
   .ssp-corner-label {
-    top: 48px;
+    top: 68px;
     left: 24px;
     font-size: 13px;
   }
