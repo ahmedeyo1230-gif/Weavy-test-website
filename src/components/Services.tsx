@@ -3272,7 +3272,6 @@ function SocialMediaMarketing() {
   // ── Section 2: Digital Ecosystem ──
   useEffect(() => observe(platRef, el => {
     const mockupEl = el.querySelector('.smp-mockup') as HTMLElement | null
-    const chipEls  = el.querySelectorAll('.smp-chip')
 
     const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
     tl.to(el.querySelectorAll('.smp-label'),   { opacity: 1, y: 0, duration: 0.6 }, 0)
@@ -3280,44 +3279,11 @@ function SocialMediaMarketing() {
     tl.to(el.querySelectorAll('.smp-body'),    { opacity: 1, y: 0, duration: 0.75 }, 0.22)
     tl.to(el.querySelectorAll('.smp-feat'),    { opacity: 1, y: 0, duration: 0.5, stagger: 0.09 }, 0.32)
     tl.to(el.querySelectorAll('.smp-mockup'),  { opacity: 1, y: 0, duration: 1.3, ease: 'power2.out' }, 0.12)
-    tl.to(el.querySelectorAll('.smp-chip'),    { opacity: 1, y: 0, duration: 0.75, stagger: 0.22, ease: 'power2.out' }, 0.55)
 
     // Continuous float after reveal
     tl.add(() => {
       if (mockupEl) {
         gsap.to(mockupEl, { y: -12, duration: 4.2, ease: 'sine.inOut', yoyo: true, repeat: -1 })
-      }
-      chipEls.forEach((chip, i) => {
-        gsap.to(chip, {
-          y: i % 2 === 0 ? -7 : -9,
-          duration: 3.4 + i * 0.6,
-          ease: 'sine.inOut',
-          yoyo: true,
-          repeat: -1,
-          delay: i * 0.5,
-        })
-      })
-
-      // Count-up loops — cycle every 4 s (1.4 s count + 2.6 s pause)
-      const reachEl   = el.querySelector('.smp-reach-val')  as HTMLElement | null
-      const engageEl  = el.querySelector('.smp-engage-val') as HTMLElement | null
-
-      if (reachEl) {
-        const r = { val: 280 }
-        gsap.fromTo(r, { val: 0 }, {
-          val: 280, duration: 1.4, ease: 'power2.out',
-          repeat: -1, repeatDelay: 4.6, delay: 1.2,
-          onUpdate: () => { reachEl.textContent = '+' + Math.round(r.val) },
-        })
-      }
-
-      if (engageEl) {
-        const e = { val: 8.4 }
-        gsap.fromTo(e, { val: 0 }, {
-          val: 8.4, duration: 1.4, ease: 'power2.out',
-          repeat: -1, repeatDelay: 4.6, delay: 1.5,
-          onUpdate: () => { engageEl.textContent = e.val.toFixed(1) },
-        })
       }
     }, '-=0.1')
   }), [])
@@ -3342,22 +3308,17 @@ function SocialMediaMarketing() {
     tl.to(el.querySelectorAll('.smpr-metric'),  { opacity: 1, y: 0, duration: 0.5, stagger: 0.1 }, 0.3)
     tl.to(el.querySelectorAll('.smpr-bg'),      { opacity: 1, y: 0, duration: 1.1, ease: 'power2.out' }, 0.1)
     tl.to(el.querySelectorAll('.smpr-main'),    { opacity: 1, y: 0, duration: 1.2, ease: 'power2.out' }, 0.25)
-    tl.to(el.querySelectorAll('.smpr-badge'),   { opacity: 1, y: 0, duration: 0.7, stagger: 0.2, ease: 'power2.out' }, 0.5)
 
     // Continuous float after reveal
     tl.add(() => {
       if (mainImg) gsap.to(mainImg, { y: -10, duration: 4.5, ease: 'sine.inOut', yoyo: true, repeat: -1 })
       if (bgImg)   gsap.to(bgImg,  { y: -6,  duration: 5.5, ease: 'sine.inOut', yoyo: true, repeat: -1, delay: 0.6 })
-      el.querySelectorAll('.smpr-badge').forEach((b, i) => {
-        gsap.to(b, { y: i % 2 === 0 ? -7 : -9, duration: 3.6 + i * 0.5, ease: 'sine.inOut', yoyo: true, repeat: -1, delay: i * 0.4 })
-      })
     }, '-=0.1')
   }), [])
 
   // ── Section 5: Beauty Campaign Showcase ──
   useEffect(() => observe(beautyRef, el => {
     const imgEl  = el.querySelector('.smbs-img') as HTMLElement | null
-    const numEl  = el.querySelector('.smbs-num-val') as HTMLElement | null
     const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
     tl.to(el.querySelectorAll('.smbs-label'),  { opacity: 1, y: 0, duration: 0.6 }, 0)
     tl.to(el.querySelectorAll('.smbs-hword'),  { opacity: 1, y: 0, duration: 0.72, stagger: 0.09, ease: 'power3.out' }, 0.1)
@@ -3366,18 +3327,6 @@ function SocialMediaMarketing() {
     tl.to(el.querySelectorAll('.smbs-img'),    { opacity: 1, y: 0, duration: 1.2,  ease: 'power2.out' }, 0.15)
     tl.add(() => {
       if (imgEl) gsap.to(imgEl, { y: -10, duration: 4.8, ease: 'sine.inOut', yoyo: true, repeat: -1 })
-      // Looping counter: 0 → 3.8 over 1.5s, then pause 1.5s, repeat (total 3s cycle)
-      if (numEl) {
-        const counter = { val: 0 }
-        gsap.to(counter, {
-          val: 3.8,
-          duration: 1.5,
-          ease: 'power2.out',
-          repeat: -1,
-          repeatDelay: 1.5,
-          onUpdate: () => { numEl.innerText = counter.val.toFixed(1) },
-        })
-      }
     }, '-=0.1')
   }), [])
 
@@ -3809,48 +3758,6 @@ function SocialMediaMarketing() {
               </div>
             </div>
 
-            {/* Floating stat chip — top left */}
-            <div
-              className="smp-chip"
-              style={{
-                opacity: 0, transform: 'translateY(18px)',
-                position: 'absolute', top: '6%', left: '0', zIndex: 20,
-                background: 'hsl(0 0% 5% / 0.9)',
-                backdropFilter: 'blur(22px)',
-                border: '1px solid hsl(0 0% 100% / 0.07)',
-                borderRadius: '0.875rem',
-                padding: '0.9rem 1.3rem',
-                boxShadow: '0 12px 40px -8px hsl(0 0% 0% / 0.65), 0 0 0 1px hsl(0 0% 100% / 0.04)',
-              }}
-            >
-              <p className="font-sans" style={{ fontSize: '0.58rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: 'hsl(199 89% 65%)', marginBottom: '0.32rem' }}>Reach Growth</p>
-              <p className="font-sans font-normal text-text" style={{ fontSize: '1.75rem', letterSpacing: '-0.036em', lineHeight: 1 }}>
-                <span className="smp-reach-val">+280</span><span style={{ fontSize: '0.88rem', color: 'hsl(199 89% 60%)', marginLeft: '1px' }}>%</span>
-              </p>
-              <p className="font-sans font-normal" style={{ fontSize: '0.63rem', color: 'hsl(0 0% 36%)', marginTop: '0.22rem', letterSpacing: '0.04em' }}>avg. across clients</p>
-            </div>
-
-            {/* Floating stat chip — bottom right */}
-            <div
-              className="smp-chip"
-              style={{
-                opacity: 0, transform: 'translateY(18px)',
-                position: 'absolute', bottom: '5%', right: '0', zIndex: 20,
-                background: 'hsl(0 0% 5% / 0.9)',
-                backdropFilter: 'blur(22px)',
-                border: '1px solid hsl(0 0% 100% / 0.07)',
-                borderRadius: '0.875rem',
-                padding: '0.9rem 1.3rem',
-                boxShadow: '0 12px 40px -8px hsl(0 0% 0% / 0.65), 0 0 0 1px hsl(0 0% 100% / 0.04)',
-              }}
-            >
-              <p className="font-sans" style={{ fontSize: '0.58rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: 'hsl(280 65% 72%)', marginBottom: '0.32rem' }}>Engagement Rate</p>
-              <p className="font-sans font-normal text-text" style={{ fontSize: '1.75rem', letterSpacing: '-0.036em', lineHeight: 1 }}>
-                <span className="smp-engage-val">8.4</span><span style={{ fontSize: '0.88rem', color: 'hsl(280 65% 65%)', marginLeft: '1px' }}>%</span>
-              </p>
-              <p className="font-sans font-normal" style={{ fontSize: '0.63rem', color: 'hsl(0 0% 36%)', marginTop: '0.22rem', letterSpacing: '0.04em' }}>12-week average</p>
-            </div>
-
           </div>
         </div>
       </div>
@@ -4110,47 +4017,6 @@ function SocialMediaMarketing() {
 
             </div>
 
-            {/* Stat chips row — below images */}
-            <div className="flex gap-4">
-              <div
-                className="smpr-badge flex-1"
-                style={{
-                  opacity: 0, transform: 'translateY(16px)',
-                  background: 'hsl(0 0% 5% / 0.92)',
-                  backdropFilter: 'blur(20px)',
-                  border: '1px solid hsl(199 89% 60% / 0.22)',
-                  borderRadius: '0.875rem',
-                  padding: '0.85rem 1.2rem',
-                  boxShadow: '0 8px 28px -8px hsl(0 0% 0% / 0.6), 0 0 24px -8px hsl(199 89% 60% / 0.22)',
-                }}
-              >
-                <p className="font-sans" style={{ fontSize: '0.58rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: 'hsl(199 89% 65%)', marginBottom: '0.28rem' }}>Audience Reach</p>
-                <p className="font-sans font-normal text-text" style={{ fontSize: '1.6rem', letterSpacing: '-0.036em', lineHeight: 1 }}>
-                  450<span style={{ fontSize: '0.95rem', color: 'hsl(199 89% 60%)' }}>K+</span>
-                </p>
-                <p className="font-sans font-normal" style={{ fontSize: '0.62rem', color: 'hsl(0 0% 36%)', marginTop: '0.2rem' }}>avg. combined reach</p>
-              </div>
-
-              <div
-                className="smpr-badge flex-1"
-                style={{
-                  opacity: 0, transform: 'translateY(16px)',
-                  background: 'hsl(0 0% 5% / 0.92)',
-                  backdropFilter: 'blur(20px)',
-                  border: '1px solid hsl(280 65% 65% / 0.22)',
-                  borderRadius: '0.875rem',
-                  padding: '0.85rem 1.2rem',
-                  boxShadow: '0 8px 28px -8px hsl(0 0% 0% / 0.6), 0 0 24px -8px hsl(280 65% 65% / 0.2)',
-                }}
-              >
-                <p className="font-sans" style={{ fontSize: '0.58rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: 'hsl(280 65% 72%)', marginBottom: '0.28rem' }}>Engagement</p>
-                <p className="font-sans font-normal text-text" style={{ fontSize: '1.6rem', letterSpacing: '-0.036em', lineHeight: 1 }}>
-                  9.2<span style={{ fontSize: '0.9rem', color: 'hsl(280 65% 65%)' }}>%</span>
-                </p>
-                <p className="font-sans font-normal" style={{ fontSize: '0.62rem', color: 'hsl(0 0% 36%)', marginTop: '0.2rem' }}>12-week avg rate</p>
-              </div>
-            </div>
-
           </div>
 
           {/* ── RIGHT: copy ── */}
@@ -4237,7 +4103,6 @@ function SocialMediaMarketing() {
               {/* Metrics list — horizontal rule style */}
               <ul className="flex flex-col" style={{ borderTop: '1px solid hsl(0 0% 100% / 0.07)' }}>
                 {[
-                  { stat: '450K+', label: 'Audience Reach' },
                   { stat: '∞',     label: 'Multi-Platform Visibility' },
                   { stat: '↑',     label: 'High-Engagement Content Systems' },
                   { stat: '◆',     label: 'Optimised Brand Positioning' },
@@ -4361,26 +4226,6 @@ function SocialMediaMarketing() {
                 background: 'linear-gradient(to bottom, transparent 60%, hsl(270 20% 3% / 0.55) 100%)',
                 pointerEvents: 'none',
               }}/>
-            </div>
-
-            {/* Floating stat badge */}
-            <div
-              className="smbs-img absolute -bottom-4 right-0 sm:bottom-5 sm:right-5"
-              style={{
-                opacity: 0, transform: 'translateY(16px)',
-                background: 'hsl(0 0% 4% / 0.92)',
-                backdropFilter: 'blur(20px)',
-                border: '1px solid hsl(199 89% 60% / 0.22)',
-                borderRadius: '0.875rem',
-                padding: '0.85rem 1.25rem',
-                boxShadow: '0 8px 28px -8px hsl(0 0% 0% / 0.6), 0 0 24px -8px hsl(199 89% 60% / 0.22)',
-              }}
-            >
-              <p className="font-sans" style={{ fontSize: '0.56rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: 'hsl(199 89% 65%)', marginBottom: '0.26rem', fontFamily: 'var(--font-label)' }}>Conversion Lift</p>
-              <p className="font-sans font-normal text-text" style={{ fontSize: '1.55rem', letterSpacing: '-0.036em', lineHeight: 1, fontFamily: 'var(--font-label)' }}>
-                <span className="smbs-num-val">3.8</span><span style={{ fontSize: '0.9rem', color: 'hsl(199 89% 60%)' }}>×</span>
-              </p>
-              <p className="font-sans font-normal" style={{ fontSize: '0.6rem', color: 'hsl(0 0% 36%)', marginTop: '0.2rem', fontFamily: 'var(--font-label)' }}>avg. campaign lift</p>
             </div>
           </div>
 
@@ -4999,13 +4844,29 @@ function SocialMediaMarketing() {
                   loading="lazy"
                   decoding="async"
                   className="s6-media-img h-full w-full object-cover"
-                  style={{ objectPosition: 'center' }}
+                  style={{ objectPosition: 'center', filter: 'saturate(0.82) contrast(1.05) brightness(0.98)' }}
                 />
               </div>
 
             </div>
 
           </div>
+
+          {/* Closing line */}
+          <p
+            className="s6-body text-center"
+            style={{
+              opacity: 0, transform: 'translateY(18px)',
+              marginTop: 'clamp(2.5rem, 5vw, 3.5rem)',
+              fontFamily: 'var(--font-body)',
+              fontStyle: 'italic',
+              fontWeight: 400,
+              fontSize: 'clamp(1.1rem, 2.2vw, 1.35rem)',
+              color: 'hsl(0 0% 100% / 0.76)',
+            }}
+          >
+            One shoot. Every format. Ready to perform.
+          </p>
 
         </div>
       </div>
@@ -5253,7 +5114,9 @@ function SocialMediaMarketing() {
         </em>
       </>}
       subtext={null}
-      ctaLabel="hello@weavyautomation.com"
+      ctaLabel="Book a Free Consultation"
+      ctaHref="/contact"
+      ctaVariant="primary"
     />
     </>
   )
@@ -10730,10 +10593,10 @@ export default function Services() {
               color: '#F2F8FC',
             }}
           >
-            Automate conversations. Capture more leads. Support customers instantly across your website, WhatsApp, Instagram DM, and Facebook Messenger —
+            Your brand doesn't get a second chance to make a first impression online.
             {' '}
             <span style={{ color: '#F2F8FC' }}>
-              all from one intelligent AI-powered system built to scale your business 24/7.
+              We make sure the first one counts.
             </span>
           </p>
 
@@ -10773,11 +10636,10 @@ export default function Services() {
           </em>{' '}
           your business?
         </>}
-        subtext={<>
-          Book a free demo and see how Weavy can manage your calls, messages, bookings, and{' '}
-          leads from one <span style={{ color: 'rgba(191, 239, 255, 0.9)', fontWeight: 500 }}>managed AI platform</span>.
-        </>}
-        ctaLabel="hello@weavyautomation.com"
+        subtext="Book a free demo and see how Weavy can handle your customer conversations, bookings, and follow-ups — automatically."
+        ctaLabel="Book a Free Demo"
+        ctaHref="/contact"
+        ctaVariant="primary"
       />
 
       </> /* end activeService === 'chatbot' */}
