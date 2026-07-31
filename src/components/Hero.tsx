@@ -6,6 +6,15 @@ import { goToPath } from '../lib/navigation'
 const HLS_SRC = 'https://stream.mux.com/Aa02T7oM1wH5Mk5EEVDYhbZ1ChcdhRsS2m1NYyx4Ua1g.m3u8'
 const HERO_POSTER = 'https://image.mux.com/Aa02T7oM1wH5Mk5EEVDYhbZ1ChcdhRsS2m1NYyx4Ua1g/thumbnail.jpg?width=1200&time=1'
 
+// Rotating second half of the hero subhead, after the static "— " dash.
+const ROTATING_SUBHEAD_PHRASES = [
+  'handled automatically.',
+  'while you focus on growth.',
+  'without hiring more staff.',
+  'running 24/7, no breaks.',
+  'from day one.',
+]
+
 // Gradient treatment for the two highlighted phrases in the hero paragraph —
 // brighter/more saturated than the old muted cyan so it doesn't read dim on black.
 const heroSubheadHighlight = {
@@ -296,6 +305,17 @@ export default function Hero() {
   // On mobile/tablet remove expensive filter:blur animation — just opacity + y
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 1024
 
+  const [subheadIndex, setSubheadIndex] = useState(0)
+
+  useEffect(() => {
+    // 2.5s hold + 0.5s blur-out + 0.5s blur-in = 3.5s per phrase, looping forever.
+    const id = setInterval(
+      () => setSubheadIndex(i => (i + 1) % ROTATING_SUBHEAD_PHRASES.length),
+      3500,
+    )
+    return () => clearInterval(id)
+  }, [])
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -405,9 +425,32 @@ export default function Hero() {
           <motion.p
             variants={itemVariants}
             className="font-body text-lg sm:text-xl mb-8 font-light text-center"
-            style={{ color: 'var(--text-muted)' }}
           >
-            More leads, faster replies, less manual work — handled automatically.
+            <span aria-hidden="true">
+              <span style={{ color: 'rgba(255,255,255,0.75)' }}>
+                More leads, faster replies, less manual work —{' '}
+              </span>
+              {/* inline-grid spacer: invisible widest phrase sets exact container width, no dead space */}
+              <span className="relative inline-grid">
+                <span className="invisible select-none whitespace-nowrap">while you focus on growth.</span>
+                <AnimatePresence mode="wait">
+                  <motion.span
+                    key={ROTATING_SUBHEAD_PHRASES[subheadIndex]}
+                    initial={{ opacity: 0, filter: 'blur(8px)' }}
+                    animate={{ opacity: 1, filter: 'blur(0px)' }}
+                    exit={{ opacity: 0, filter: 'blur(8px)' }}
+                    transition={{ duration: 0.5, ease: 'easeInOut' }}
+                    className="absolute inset-0 whitespace-nowrap"
+                    style={{ color: '#7DD3FC' }}
+                  >
+                    {ROTATING_SUBHEAD_PHRASES[subheadIndex]}
+                  </motion.span>
+                </AnimatePresence>
+              </span>
+            </span>
+            {/* Screen readers get one static sentence instead of the
+                animated rotation being announced on every change. */}
+            <span className="sr-only">More leads, faster replies, less manual work — handled automatically.</span>
           </motion.p>
 
           <motion.p
