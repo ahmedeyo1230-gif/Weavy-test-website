@@ -108,10 +108,10 @@ function ServiceCard({ service, onLearnMore }: ServiceCardProps) {
       onClick={e => {
         e.preventDefault()
         if (onLearnMore) {
+          // onLearnMore fully owns the scroll destination for this card — don't
+          // also fire the generic `${id}-detail` scroll below, which would race
+          // it and can win when that anchor happens to exist in the DOM.
           onLearnMore()
-          setTimeout(() => {
-            document.getElementById(`${service.id}-detail`)?.scrollIntoView({ behavior: 'smooth' })
-          }, 50)
         } else {
           document.getElementById(`${service.id}-detail`)?.scrollIntoView({ behavior: 'smooth' })
         }
@@ -870,6 +870,159 @@ const ZEBRA_SERVICES = [
   { title: 'Specialist Consultations', caption: 'One-to-one, consultant-led',     crop: '62% 40%', filter: 'brightness(1.22) contrast(1.08) saturate(1.05)' },
   { title: 'Preventive Health',        caption: 'Personalised long-term care',    crop: '80% 60%', filter: 'brightness(1.22) contrast(1.08) saturate(1.05)' },
 ]
+
+// ── Synergy mockup — animated SaaS-growth concept browser mockup ──
+// Fully illustrated (no image asset): a light SaaS landing page with a
+// growth chart, a rocket, and two flat-style figures, inside the same
+// macOS browser chrome used for the Villa Luna mockup above. The rocket
+// and chart trend-dot get a gentle idle float/pulse, gated behind
+// prefers-reduced-motion.
+function SynergyGrowthIllustration({ rocketRef, dotRef }: { rocketRef: React.RefObject<SVGGElement | null>; dotRef: React.RefObject<SVGCircleElement | null> }) {
+  return (
+    <svg viewBox="0 0 400 230" style={{ width: '100%', height: 'auto', display: 'block' }} aria-hidden="true">
+      {/* Ambient background blobs */}
+      <circle cx="345" cy="30" r="70" fill="#EDE4FF" opacity="0.7" />
+      <circle cx="18" cy="205" r="55" fill="#DCEBFF" opacity="0.7" />
+
+      {/* Chart card */}
+      <rect x="30" y="55" width="205" height="140" rx="12" fill="#FFFFFF" stroke="#EDEAF6" />
+      <rect x="52" y="152" width="20" height="30" rx="3" fill="#C7B8FF" />
+      <rect x="82" y="132" width="20" height="50" rx="3" fill="#A78BFA" />
+      <rect x="112" y="102" width="20" height="80" rx="3" fill="#8B6EF0" />
+      <rect x="142" y="72" width="20" height="110" rx="3" fill="#6D4FD6" />
+      <polyline points="57,157 92,122 127,92 157,62 202,42" fill="none" stroke="#34D399" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+      <circle ref={dotRef} cx="202" cy="42" r="5" fill="#34D399" />
+
+      {/* Rocket */}
+      <g ref={rocketRef} transform="translate(258,18)">
+        <path d="M20 0 C31 11 31 32 20 48 C9 32 9 11 20 0 Z" fill="#F472B6" />
+        <circle cx="20" cy="19" r="5.5" fill="#FFFFFF" />
+        <path d="M9 37 L2 54 L15 45 Z" fill="#FDBA74" />
+        <path d="M31 37 L38 54 L25 45 Z" fill="#FDBA74" />
+      </g>
+
+      {/* Figure — pointing at the chart */}
+      <g transform="translate(258,140)">
+        <circle cx="20" cy="12" r="12" fill="#FCD9B8" />
+        <path d="M8 12 a12 10 0 0 1 24 0" fill="#3B2A20" />
+        <rect x="6" y="26" width="28" height="42" rx="14" fill="#60A5FA" />
+        <rect x="27" y="30" width="24" height="8" rx="4" fill="#FCD9B8" transform="rotate(-20 27 30)" />
+      </g>
+
+      {/* Figure — celebrating */}
+      <g transform="translate(312,140)">
+        <circle cx="20" cy="12" r="12" fill="#F4C6A8" />
+        <path d="M8 10 a12 9 0 0 1 24 0" fill="#241812" />
+        <rect x="6" y="26" width="28" height="42" rx="14" fill="#F472B6" />
+        <rect x="-4" y="20" width="8" height="24" rx="4" fill="#F4C6A8" transform="rotate(28 0 20)" />
+        <rect x="36" y="20" width="8" height="24" rx="4" fill="#F4C6A8" transform="rotate(-28 40 20)" />
+      </g>
+    </svg>
+  )
+}
+
+function SynergyMockup() {
+  const rocketRef = useRef<SVGGElement>(null)
+  const dotRef = useRef<SVGCircleElement>(null)
+
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    if (rocketRef.current) {
+      gsap.to(rocketRef.current, { y: -8, duration: 1.9, ease: 'sine.inOut', yoyo: true, repeat: -1 })
+    }
+    if (dotRef.current) {
+      gsap.to(dotRef.current, { scale: 1.6, transformOrigin: 'center', opacity: 0.55, duration: 1.1, ease: 'sine.inOut', yoyo: true, repeat: -1 })
+    }
+  }, [])
+
+  return (
+    <div
+      style={{
+        position: 'relative',
+        width: '100%',
+        maxWidth: '920px',
+        borderRadius: '12px',
+        overflow: 'hidden',
+        boxShadow: [
+          '0 48px 96px -16px hsl(0 0% 0% / 0.88)',
+          '0 0 0 1px hsl(0 0% 100% / 0.07)',
+          '0 0 64px -18px hsl(260 70% 65% / 0.22)',
+        ].join(', '),
+      }}
+    >
+      {/* macOS chrome bar — same treatment as the Villa Luna mockup */}
+      <div style={{
+        background: 'hsl(255 20% 92%)',
+        padding: '9px 14px',
+        display: 'flex', alignItems: 'center', gap: '8px',
+        borderBottom: '1px solid hsl(250 14% 80%)',
+      }}>
+        <div style={{ display: 'flex', gap: '5px', flexShrink: 0 }}>
+          {['hsl(4 78% 58%)', 'hsl(38 80% 54%)', 'hsl(133 52% 46%)'].map((c, i) => (
+            <div key={i} style={{ width: 11, height: 11, borderRadius: '50%', background: c }} />
+          ))}
+        </div>
+        <div style={{ display: 'flex', gap: '7px', marginLeft: '5px', flexShrink: 0 }}>
+          {[0, 1].map(i => (
+            <div key={i} style={{ width: 16, height: 10, borderRadius: '2px', background: 'hsl(250 10% 76%)', opacity: 0.65 }} />
+          ))}
+        </div>
+        <div style={{
+          flex: 1, background: 'hsl(255 25% 98%)',
+          border: '1px solid hsl(250 14% 82%)', borderRadius: '5px',
+          padding: '3px 12px', fontSize: '0.65rem',
+          fontFamily: "'SF Mono','Fira Code',monospace",
+          color: 'hsl(255 10% 40%)', letterSpacing: '0.01em',
+          textAlign: 'center' as const,
+        }}>
+          synergy.io
+        </div>
+        <div style={{ display: 'flex', gap: '7px', flexShrink: 0 }}>
+          {[0, 1, 2].map(i => (
+            <div key={i} style={{ width: 16, height: 10, borderRadius: '2px', background: 'hsl(250 10% 76%)', opacity: 0.65 }} />
+          ))}
+        </div>
+      </div>
+
+      {/* Site content */}
+      <div style={{
+        background: 'linear-gradient(180deg, #FAFAFF 0%, #F3F0FF 100%)',
+        padding: 'clamp(20px, 3vw, 32px) clamp(20px, 3.4vw, 36px) clamp(28px, 4vw, 40px)',
+      }}>
+        {/* Nav */}
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 'clamp(20px, 3vw, 30px)' }}>
+          <div style={{ fontWeight: 700, fontSize: '0.95rem', color: '#1F1B2E', letterSpacing: '-0.01em' }}>SYNERGY</div>
+          <div className="hidden sm:flex" style={{ gap: '18px', fontSize: '0.62rem', color: '#6B7280', fontWeight: 500 }}>
+            <span>Product</span><span>Solutions</span><span>Pricing</span>
+          </div>
+          <div style={{ background: '#1F1B2E', color: '#fff', fontSize: '0.62rem', fontWeight: 600, padding: '6px 14px', borderRadius: '999px' }}>
+            Get Started
+          </div>
+        </div>
+
+        {/* Headline */}
+        <div style={{ maxWidth: '360px', marginBottom: 'clamp(18px, 2.6vw, 26px)' }}>
+          <div style={{ fontSize: 'clamp(1.3rem, 2.6vw, 1.7rem)', fontWeight: 800, lineHeight: 1.08, letterSpacing: '-0.02em', color: '#1F1B2E' }}>
+            Accelerate Your SaaS Growth
+          </div>
+          <div style={{ fontSize: '0.72rem', color: '#6B7280', marginTop: '10px', lineHeight: 1.65 }}>
+            Everything your team needs to plan, launch, and scale — in one connected workspace.
+          </div>
+          <div style={{ display: 'flex', gap: '10px', marginTop: '16px' }}>
+            <div style={{ background: '#6D4FD6', color: '#fff', fontSize: '0.66rem', fontWeight: 600, padding: '8px 16px', borderRadius: '999px' }}>
+              Start Free Trial
+            </div>
+            <div style={{ border: '1px solid #D8D3EA', color: '#1F1B2E', fontSize: '0.66rem', fontWeight: 600, padding: '8px 16px', borderRadius: '999px' }}>
+              Watch Demo
+            </div>
+          </div>
+        </div>
+
+        <SynergyGrowthIllustration rocketRef={rocketRef} dotRef={dotRef} />
+      </div>
+    </div>
+  )
+}
 
 // Card 1's hero slot — Zebra Private Health. Gentle GSAP-driven image
 // parallax + a cursor-follow spotlight inside the frame, both gated behind
@@ -1728,6 +1881,75 @@ function BespokeTestimonials() {
       subtitle="Founders and marketing teams who needed more than a template — and got it."
       testimonials={BESPOKE_TESTIMONIALS}
     />
+  )
+}
+
+// ─── Bespoke Results Strip ───────────────────────────────────────────────────
+
+const RESULTS_STATS = [
+  { value: '12+', label: 'Websites Launched' },
+  { value: '100%', label: 'On-Time Delivery' },
+  { value: '6 Weeks', label: 'Average Build Time' },
+]
+
+function BespokeResultsStrip() {
+  const ref = useRef<HTMLElement>(null)
+
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const stats = el.querySelectorAll('.brs-stat')
+    gsap.set(stats, { opacity: 0, y: 18 })
+    const obs = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return
+      gsap.to(stats, { opacity: 1, y: 0, duration: 0.65, stagger: 0.12, ease: 'power3.out' })
+      obs.disconnect()
+    }, { threshold: 0.4 })
+    obs.observe(el)
+    return () => obs.disconnect()
+  }, [])
+
+  return (
+    <section
+      ref={ref}
+      className="relative w-full overflow-hidden"
+      style={{ background: '#010709', padding: 'clamp(3.5rem, 7vw, 5.5rem) 0' }}
+    >
+      <div className="relative z-10 max-w-[52rem] mx-auto px-6 sm:px-10">
+        <div className="flex flex-col sm:flex-row items-center justify-center" style={{ gap: 'clamp(2rem, 5vw, 4rem)' }}>
+          {RESULTS_STATS.flatMap((stat, i) => {
+            const nodes = []
+            if (i > 0) {
+              nodes.push(
+                <div
+                  key={`divider-${stat.label}`}
+                  aria-hidden="true"
+                  className="hidden sm:block"
+                  style={{ width: 1, height: '2.75rem', background: 'hsl(0 0% 100% / 0.08)' }}
+                />
+              )
+            }
+            nodes.push(
+              <div key={stat.label} className="brs-stat text-center">
+                <div
+                  className="font-heading font-semibold text-white"
+                  style={{ fontSize: 'clamp(2.2rem, 4.5vw, 3.2rem)', letterSpacing: '-0.02em', lineHeight: 1 }}
+                >
+                  {stat.value}
+                </div>
+                <div
+                  className="font-sans font-normal uppercase"
+                  style={{ fontSize: '0.72rem', letterSpacing: '0.14em', color: 'hsl(0 0% 50%)', marginTop: '0.65rem' }}
+                >
+                  {stat.label}
+                </div>
+              </div>
+            )
+            return nodes
+          })}
+        </div>
+      </div>
+    </section>
   )
 }
 
@@ -9614,7 +9836,7 @@ export default function Services() {
             {SERVICES.map((service, i) => {
               const learnMoreHandler =
                 service.id === 'bespoke-website-design'
-                  ? () => { setActiveService('website');  setTimeout(() => document.getElementById('bespoke-hero')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 60) }
+                  ? () => { setActiveService('website');  setTimeout(() => document.getElementById('services-hero')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 60) }
                   : service.id === 'custom-chatbots'
                   ? () => { setActiveService('chatbot');  setTimeout(() => document.getElementById('chatbot-hero')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 60) }
                   : service.id === 'social-media-marketing'
@@ -9644,6 +9866,7 @@ export default function Services() {
       {/* ── Bespoke Website Design — Cinema Showcase (Section 2) ── */}
       <section
         ref={bwdCinemaRef}
+        id="services-hero"
         className="relative w-full overflow-hidden"
         style={{
           background: '#010709',
@@ -10059,13 +10282,13 @@ export default function Services() {
         <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to top, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
 
         <div className="relative z-10 max-w-[88rem] mx-auto px-6 sm:px-10">
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.12fr] gap-16 lg:gap-14 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_2.35fr] gap-16 lg:gap-14 items-center">
 
             {/* ── Left: text (unchanged) ── */}
             <div>
               <p
                 className="bwd1-eyebrow font-sans uppercase text-muted mb-5"
-                style={{ fontSize: '0.7rem', letterSpacing: '0.32em' }}
+                style={{ fontSize: '0.9rem', letterSpacing: '0.32em' }}
               >
                 Service
               </p>
@@ -10156,60 +10379,38 @@ export default function Services() {
               </p>
             </div>
 
-            {/* ── Right: Zebra Private Health mockup ── */}
-            <div className="relative flex items-center justify-center lg:justify-end">
+            {/* ── Right: Synergy interactive concept mockup — same width/proportions as the Villa Luna mockup above ── */}
+            <div className="relative flex flex-col items-center lg:items-end">
 
-              {/* Static size/position only — no hover zoom. Desktop: ~8% larger,
-                  shifted 36px left. Tablet: ~4% larger, shifted 20px left.
-                  Mobile: unchanged, centred. */}
-              <style>{`
-                .bwd1-img { max-width: 820px; margin-left: 0; }
-                @media (min-width: 700px) and (max-width: 1023px) {
-                  .bwd1-img { max-width: 852.8px; margin-left: -20px; }
-                }
-                @media (min-width: 1024px) {
-                  .bwd1-img { max-width: 885.6px; margin-left: -36px; }
-                }
-              `}</style>
+              <div className="relative flex items-center justify-center lg:justify-end" style={{ width: '100%' }}>
+                {/* Violet ambient glow behind mockup */}
+                <div aria-hidden="true" style={{
+                  position: 'absolute', inset: '-20px',
+                  background: 'radial-gradient(ellipse 70% 60% at 55% 50%, hsl(260 70% 65% / 0.10) 0%, transparent 70%)',
+                  filter: 'blur(48px)',
+                  pointerEvents: 'none',
+                }}/>
 
-              {/* Champagne gold ambient glow behind image */}
-              <div aria-hidden="true" style={{
-                position: 'absolute', inset: '-20px',
-                background: 'radial-gradient(ellipse 70% 60% at 55% 50%, rgba(200,175,90,0.08) 0%, transparent 70%)',
-                filter: 'blur(48px)',
-                pointerEvents: 'none',
-              }}/>
+                <div className="bwd1-img" style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+                  <SynergyMockup />
+                </div>
+              </div>
 
-              {/* Image frame — static, no hover enlargement */}
-              <div
-                className="bwd1-img"
+              {/* Small caption label — matches the other small section labels
+                  (e.g. "SERVICE", "WHAT YOU GET") but muted, since this is a
+                  supporting caption rather than a content heading. */}
+              <p
+                className="font-sans uppercase"
                 style={{
-                  position: 'relative',
-                  width: '100%',
-                  borderRadius: '20px',
-                  overflow: 'hidden',
-                  boxShadow: [
-                    '0 48px 96px -16px hsl(0 0% 0% / 0.88)',
-                    '0 0 0 1px hsl(0 0% 100% / 0.07)',
-                    '0 0 64px -18px hsl(205 85% 55% / 0.22)',
-                  ].join(', '),
-                  background: '#080a0e',
+                  fontSize: '0.72rem',
+                  letterSpacing: '0.22em',
+                  color: 'hsl(0 0% 100% / 0.56)',
+                  marginTop: '1.1rem',
+                  textAlign: 'center',
                 }}
               >
-                <img
-                  src="/brand_assets/ZebraClinic.webp"
-                  alt="Zebra Private Health — bespoke website design showcase"
-                  loading="lazy"
-                  style={{
-                    display: 'block',
-                    width: '100%',
-                    height: 'clamp(320px, 34vw, 480px)',
-                    objectFit: 'cover',
-                    objectPosition: 'center 38%',
-                    filter: 'brightness(1.1) contrast(1.06) saturate(1.04)',
-                  }}
-                />
-              </div>
+                Interactive hero concept — built by Weavy
+              </p>
 
             </div>
 
@@ -10234,6 +10435,9 @@ export default function Services() {
 
       {/* ── Bespoke Website Design — client testimonials ── */}
       <BespokeTestimonials />
+
+      {/* ── Bespoke Website Design — results strip ── */}
+      <BespokeResultsStrip />
 
       {/* ── Bespoke Contact / Footer ── */}
       <Footer
