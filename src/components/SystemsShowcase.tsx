@@ -65,7 +65,11 @@ function ModuleRow({ svc, index }: { svc: ServiceDef; index: number }) {
   const titleRef = useRef<HTMLHeadingElement>(null)
 
   const enter = () => {
-    if (rowRef.current)  rowRef.current.style.background  = `rgb(${svc.glowRgb} / 0.045)`
+    if (rowRef.current) {
+      rowRef.current.style.background  = `rgb(${svc.glowRgb} / 0.065)`
+      rowRef.current.style.transform   = 'translateY(-2px)'
+      rowRef.current.style.boxShadow   = `inset 0 1px 0 rgb(${svc.glowRgb} / 0.14), 0 10px 24px -16px ${svc.accent}66`
+    }
     if (nodeRef.current) {
       nodeRef.current.style.background = svc.accent
       nodeRef.current.style.boxShadow  = `0 0 10px ${svc.accent}cc, 0 0 20px ${svc.accent}44`
@@ -80,7 +84,11 @@ function ModuleRow({ svc, index }: { svc: ServiceDef; index: number }) {
   }
 
   const leave = () => {
-    if (rowRef.current)  rowRef.current.style.background  = 'transparent'
+    if (rowRef.current) {
+      rowRef.current.style.background  = 'transparent'
+      rowRef.current.style.transform   = 'translateY(0)'
+      rowRef.current.style.boxShadow   = 'none'
+    }
     if (nodeRef.current) {
       nodeRef.current.style.background = `rgb(${svc.glowRgb} / 0.45)`
       nodeRef.current.style.boxShadow  = `0 0 6px ${svc.accent}55`
@@ -115,7 +123,10 @@ function ModuleRow({ svc, index }: { svc: ServiceDef; index: number }) {
       <div
         ref={rowRef}
         className="flex items-start gap-4 px-6 py-5 cursor-default"
-        style={{ position: 'relative', transition: 'background 220ms ease' }}
+        style={{
+          position: 'relative',
+          transition: 'background 220ms ease, transform 220ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 220ms ease',
+        }}
         onMouseEnter={enter}
         onMouseLeave={leave}
       >
@@ -368,7 +379,7 @@ export default function SystemsShowcase() {
           </div>
 
           {/* ── Right: architecture panel ── */}
-          <div className="relative" style={{ transform: 'scale(1.10)', transformOrigin: 'center top' }}>
+          <div className="relative" style={{ transform: 'scale(1.10)', transformOrigin: 'center' }}>
             {/* Ambient glow behind panel */}
             <div
               className="absolute pointer-events-none"

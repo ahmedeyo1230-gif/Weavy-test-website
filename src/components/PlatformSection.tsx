@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { goToPath } from '../lib/navigation'
 
 const E: [number, number, number, number] = [0.16, 1, 0.3, 1]
 
@@ -44,12 +45,12 @@ const MODULES = [
   },
   {
     title: 'WhatsApp Agent',
-    desc: 'Replies instantly, captures details, and moves customers to the next step.',
+    desc: 'Handles WhatsApp chats end-to-end, from first message to booked appointment.',
     icon: 'chat', color: '#34D399', titleColor: '#B4F0D2',
   },
   {
     title: 'Instagram DM',
-    desc: 'Replies instantly, captures enquiries and guides prospects towards booking.',
+    desc: 'Turns Instagram comments and DMs into qualified leads, day or night.',
     icon: 'camera', color: '#E879C9', titleColor: '#F5B4E1',
   },
   {
@@ -211,6 +212,25 @@ export default function PlatformSection() {
             <ModuleCard key={mod.title} mod={mod} index={i} />
           ))}
         </div>
+
+        {/* CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.1, ease: E }}
+          className="flex justify-center"
+          style={{ marginTop: 'clamp(2.5rem, 5vw, 3.5rem)' }}
+        >
+          <a
+            href="/contact"
+            onClick={(e) => { e.preventDefault(); goToPath('/contact') }}
+            className="font-body btn-glow-primary inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-medium bg-primary text-background hover:bg-white hover:shadow-[0_0_28px_rgba(245,245,245,0.28)] active:scale-[0.97]"
+            style={{ transition: 'background-color 200ms, box-shadow 200ms, transform 100ms' }}
+          >
+            See how it all connects →
+          </a>
+        </motion.div>
 
         {/* Tagline */}
         <motion.div

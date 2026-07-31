@@ -6,11 +6,10 @@ import { goToPath } from '../lib/navigation'
 const HLS_SRC = 'https://stream.mux.com/Aa02T7oM1wH5Mk5EEVDYhbZ1ChcdhRsS2m1NYyx4Ua1g.m3u8'
 const HERO_POSTER = 'https://image.mux.com/Aa02T7oM1wH5Mk5EEVDYhbZ1ChcdhRsS2m1NYyx4Ua1g/thumbnail.jpg?width=1200&time=1'
 
-const BENEFIT_PHRASES = ['Stand out', 'Earn trust', 'Stay remembered', 'Turn interest into action', 'Grow without the hassle']
-
-// Gradient treatment for the highlighted phrases in the hero subhead.
+// Gradient treatment for the two highlighted phrases in the hero paragraph —
+// brighter/more saturated than the old muted cyan so it doesn't read dim on black.
 const heroSubheadHighlight = {
-  background: 'linear-gradient(90deg, #F4F8FA 0%, #7DDCFF 55%, #B7AEFF 100%)',
+  background: 'linear-gradient(90deg, #EAFBFF 0%, #38CFFF 55%, #C3B8FF 100%)',
   WebkitBackgroundClip: 'text',
   backgroundClip: 'text',
   WebkitTextFillColor: 'transparent',
@@ -297,23 +296,6 @@ export default function Hero() {
   // On mobile/tablet remove expensive filter:blur animation — just opacity + y
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 1024
 
-  const [benefitIndex, setBenefitIndex] = useState(0)
-  const [reducedMotion, setReducedMotion] = useState(false)
-
-  useEffect(() => {
-    const mq = window.matchMedia('(prefers-reduced-motion: reduce)')
-    setReducedMotion(mq.matches)
-    const handler = (e: MediaQueryListEvent) => setReducedMotion(e.matches)
-    mq.addEventListener('change', handler)
-    return () => mq.removeEventListener('change', handler)
-  }, [])
-
-  useEffect(() => {
-    if (reducedMotion) return
-    const id = setInterval(() => setBenefitIndex(i => (i + 1) % BENEFIT_PHRASES.length), 2800)
-    return () => clearInterval(id)
-  }, [reducedMotion])
-
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -420,54 +402,24 @@ export default function Hero() {
             </motion.h1>
           </div>
 
-          <motion.div
+          <motion.p
             variants={itemVariants}
-            className="font-body text-lg sm:text-xl mb-8 flex items-center justify-center gap-[6px] flex-wrap font-light"
+            className="font-body text-lg sm:text-xl mb-8 font-light text-center"
             style={{ color: 'var(--text-muted)' }}
           >
-            {reducedMotion ? (
-              <span>Built to help your business grow without the hassle.</span>
-            ) : (
-              <>
-                <span aria-hidden="true">Built to help your business</span>
-                {/* inline-grid spacer: invisible widest phrase sets exact container width, no dead space */}
-                <span className="relative inline-grid" aria-hidden="true">
-                  <span className="invisible font-accent italic select-none whitespace-nowrap">Turn interest into action</span>
-                  <AnimatePresence mode="wait">
-                    <motion.span
-                      key={BENEFIT_PHRASES[benefitIndex]}
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -10 }}
-                      transition={{ duration: 0.58, ease: [0.16, 1, 0.3, 1] }}
-                      className="absolute inset-0 flex items-center justify-center font-accent italic whitespace-nowrap"
-                      style={{ color: '#7DDCFF' }}
-                    >
-                      {BENEFIT_PHRASES[benefitIndex]}
-                    </motion.span>
-                  </AnimatePresence>
-                </span>
-                {/* Screen readers get one static sentence instead of the
-                    animated rotation being announced on every change. */}
-                <span className="sr-only">Built to help your business stand out.</span>
-              </>
-            )}
-          </motion.div>
+            More leads, faster replies, less manual work — handled automatically.
+          </motion.p>
 
           <motion.p
             variants={itemVariants}
             className="font-body max-w-xl mx-auto mb-12 leading-relaxed text-base lg:text-lg font-normal"
-            style={{ color: 'rgba(220, 232, 240, 0.80)', lineHeight: 1.75 }}
+            style={{ color: 'rgba(228, 238, 245, 0.88)', lineHeight: 1.75 }}
           >
-            We help SMEs <span style={heroSubheadHighlight}>capture leads</span>,{' '}
-            <span style={heroSubheadHighlight}>respond instantly</span>,{' '}
-            <span style={heroSubheadHighlight}>automate bookings</span> and manage
-            customer conversations across voice, WhatsApp, Instagram, Facebook and CRM—all
-            through <span style={heroSubheadHighlight}>one connected system</span>. Our{' '}
-            <span style={heroSubheadHighlight}>creative growth services</span> help brands{' '}
-            <span style={heroSubheadHighlight}>stand out</span>,{' '}
-            <span style={heroSubheadHighlight}>build trust</span> and{' '}
-            <span style={heroSubheadHighlight}>attract more customers</span>.
+            We help SMEs <span style={heroSubheadHighlight}>capture leads</span>, respond
+            instantly, automate bookings and manage customer conversations across voice,
+            WhatsApp, Instagram, Facebook and CRM—all through{' '}
+            <span style={heroSubheadHighlight}>one connected system</span>. Our creative
+            growth services help brands stand out, build trust and attract more customers.
           </motion.p>
 
           <motion.div
