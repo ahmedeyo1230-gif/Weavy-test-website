@@ -10,7 +10,7 @@ import { CircularGallery, type GalleryItem } from './ui/circular-gallery'
 import { GradientBlurBg } from './ui/gradient-blur-bg'
 import { BorderRotate } from './ui/animated-gradient-border'
 import { goToPath } from '../lib/navigation'
-import Footer, { Marquee as BuildingTheFutureMarquee } from './Footer'
+import Footer from './Footer'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -1699,463 +1699,24 @@ function BespokeProcessTimeline() {
   )
 }
 
-// ─── Bespoke Real Users (Section 5) ─────────────────────────────────────────
-
-const REAL_USER_ROWS = [
-  {
-    num: '01',
-    title: 'Fast loading structure',
-    desc: 'Optimised layouts, lightweight sections, and clean visual hierarchy keep the experience smooth.',
-  },
-  {
-    num: '02',
-    title: 'Clear user journeys',
-    desc: 'Every section is placed with intention so visitors know where they are and what to do next.',
-  },
-  {
-    num: '03',
-    title: 'Responsive across devices',
-    desc: 'Your site is built to feel polished on desktop, tablet, and mobile.',
-  },
-  {
-    num: '04',
-    title: 'Conversion-focused actions',
-    desc: 'Buttons, contact points, and key messages are positioned to support enquiries and sales.',
-  },
-]
-
-// Shared premium highlight — applied evenly to all four rows so none reads as
-// more "active" than the rest; hover just nudges it slightly brighter.
-const BRU_ROW_BG = 'linear-gradient(90deg, rgba(125, 220, 255, 0.08), rgba(8, 18, 24, 0.40), rgba(1, 7, 9, 0.20))'
-const BRU_ROW_BG_HOVER = 'linear-gradient(90deg, rgba(125, 220, 255, 0.13), rgba(8, 18, 24, 0.46), rgba(1, 7, 9, 0.24))'
-const BRU_ROW_BORDER = '1px solid rgba(125, 220, 255, 0.08)'
-const BRU_ROW_SHADOW = 'inset 0 0 30px rgba(125, 220, 255, 0.04)'
-
-// ─── Bespoke Web Design Showcase (Section 8) ─────────────────────────────────
-
-const BWDS_FEATURES = [
-  'Bespoke landing page design',
-  'Premium visual presentation',
-  'Clear user journeys',
-  'Responsive layouts across devices',
-  'Conversion-focused structure',
-]
-
-function BespokeWebDesignShowcase() {
-  const ref = useRef<HTMLElement>(null)
-
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-
-    const label    = el.querySelector('.bwds-label')
-    const heading  = el.querySelector('.bwds-heading')
-    const rule     = el.querySelector('.bwds-rule')
-    const para1    = el.querySelector('.bwds-para1')
-    const para2    = el.querySelector('.bwds-para2')
-    const features = el.querySelectorAll('.bwds-feature')
-    const rightEl  = el.querySelector('.bwds-right')
-    const imgWrap  = el.querySelector('.bwds-img-wrap')
-
-    gsap.set(label,    { opacity: 0, y: 20 })
-    gsap.set(heading,  { opacity: 0, y: 36, filter: 'blur(10px)' })
-    gsap.set(rule,     { opacity: 0, scaleX: 0, transformOrigin: 'left center' })
-    gsap.set(para1,    { opacity: 0, y: 22 })
-    gsap.set(para2,    { opacity: 0, y: 22 })
-    gsap.set(features, { opacity: 0, x: -16 })
-    gsap.set(rightEl,  { opacity: 0, y: 30 })
-    gsap.set(imgWrap,  { scale: 0.96 })
-
-    const obs = new IntersectionObserver(([entry]) => {
-      if (!entry.isIntersecting) return
-      const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
-      tl.to(label,    { opacity: 1, y: 0, duration: 0.7 }, 0)
-      tl.to(heading,  { opacity: 1, y: 0, filter: 'blur(0px)', duration: 1.05 }, 0.1)
-      tl.to(rule,     { opacity: 1, scaleX: 1, duration: 0.8, ease: 'power2.inOut' }, 0.3)
-      tl.to(para1,    { opacity: 1, y: 0, duration: 0.8 }, 0.38)
-      tl.to(para2,    { opacity: 1, y: 0, duration: 0.8 }, 0.5)
-      tl.to(features, { opacity: 1, x: 0, duration: 0.6, stagger: 0.09 }, 0.58)
-      tl.to(rightEl,  { opacity: 1, y: 0, duration: 1.1 }, 0.2)
-      tl.to(imgWrap,  { scale: 1, duration: 1.3, ease: 'power2.out' }, 0.2)
-      obs.disconnect()
-    }, { threshold: 0.08 })
-
-    obs.observe(el)
-    return () => obs.disconnect()
-  }, [])
-
-  return (
-    <section
-      ref={ref}
-      className="relative w-full overflow-hidden"
-      style={{ background: '#060208', padding: 'clamp(5rem, 10vw, 9rem) 0' }}
-    >
-      <ShowcaseBackground />
-
-      <div className="relative z-10 max-w-[76rem] mx-auto px-6 sm:px-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20 items-center">
-
-          {/* ── Left: copy ── */}
-          <div>
-            {/* Label */}
-            <p className="bwds-label font-sans font-normal uppercase mb-5" style={{
-              fontSize: '0.6rem', letterSpacing: '0.34em', color: 'hsl(199 89% 60% / 0.65)',
-            }}>
-              Website Design
-            </p>
-
-            {/* Headline */}
-            <h2 className="bwds-heading font-heading font-medium mb-7" style={{
-              fontSize: 'clamp(1.9rem, 3.8vw, 3rem)',
-              lineHeight: 1.1,
-              letterSpacing: '-0.035em',
-              color: 'hsl(0 0% 96%)',
-            }}>
-              Premium websites built to{' '}
-              <em style={{
-                fontFamily: 'var(--font-body)',
-                fontStyle: 'italic',
-                fontWeight: 400,
-                color: 'hsl(0 0% 68%)',
-              }}>
-                look sharp
-              </em>{' '}
-              and work harder.
-            </h2>
-
-            {/* Accent rule */}
-            <div className="bwds-rule" aria-hidden="true" style={{
-              width: '2rem', height: '1px',
-              background: 'hsl(199 89% 60% / 0.35)',
-              marginBottom: '1.8rem',
-            }} />
-
-            {/* Para 1 */}
-            <p className="bwds-para1 font-sans font-normal mb-5" style={{
-              fontSize: 'clamp(0.88rem, 1.4vw, 1rem)',
-              lineHeight: 1.9,
-              color: '#F2F8FC',
-            }}>
-              We design websites that feel polished from the first glance, with clear structure,
-              refined visuals, and user journeys that help visitors understand your value quickly.
-            </p>
-
-            {/* Para 2 */}
-            <p className="bwds-para2 font-sans font-normal mb-10" style={{
-              fontSize: 'clamp(0.88rem, 1.4vw, 1rem)',
-              lineHeight: 1.9,
-              color: '#F2F8FC',
-            }}>
-              Every page is shaped around clarity, trust, and conversion — from the first
-              hero section to the final call to action.
-            </p>
-
-            {/* Feature list */}
-            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-              {BWDS_FEATURES.map((feat) => (
-                <li key={feat} className="bwds-feature" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                  {/* Cyan tick */}
-                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true" style={{ flexShrink: 0 }}>
-                    <circle cx="7" cy="7" r="6.5" stroke="hsl(199 89% 60% / 0.3)"/>
-                    <polyline points="4,7 6,9.2 10,4.8" stroke="hsl(199 89% 60%)" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                  <span className="font-sans font-normal" style={{
-                    fontSize: 'clamp(0.82rem, 1.2vw, 0.9rem)',
-                    color: '#F2F8FC',
-                    letterSpacing: '0.01em',
-                  }}>
-                    {feat}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* ── Right: image ── */}
-          <div className="bwds-right" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-            {/* Static size/position only. Desktop: ~7% larger, shifted 36px
-                left. Tablet: ~7% larger, shifted 16px left. Mobile: unchanged,
-                centred. No hover scaling. */}
-            <style>{`
-              .bwds-img-wrap { max-width: 620px; margin-left: 0; }
-              @media (min-width: 700px) and (max-width: 1023px) {
-                .bwds-img-wrap { margin-left: -16px; }
-              }
-              @media (min-width: 1024px) {
-                .bwds-img-wrap { margin-left: -36px; }
-              }
-            `}</style>
-            <div className="bwds-img-wrap" style={{
-              borderRadius: '32px',
-              overflow: 'hidden',
-              border: '1px solid hsl(0 0% 100% / 0.1)',
-              boxShadow: '0 40px 100px hsl(0 0% 0% / 0.45), 0 8px 32px hsl(0 0% 0% / 0.25)',
-              width: '100%',
-            }}>
-              <img
-                loading="lazy"
-                decoding="async"
-                src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?auto=format&fit=crop&w=900&q=80"
-                alt="Premium website design by Weavy"
-                style={{
-                  width: '100%',
-                  height: 'clamp(380px, 55vw, 580px)',
-                  display: 'block',
-                  objectFit: 'cover',
-                  objectPosition: 'center',
-                }}
-              />
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      {/* Bottom fade */}
-      <div aria-hidden="true" style={{
-        position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px',
-        background: 'linear-gradient(to bottom, transparent, #010709)',
-        pointerEvents: 'none',
-      }} />
-    </section>
-  )
-}
-
-function BespokeRealUsers() {
-  const ref = useRef<HTMLElement>(null)
-
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-
-    gsap.set(el.querySelectorAll('.bru-eyebrow'), { opacity: 0, y: 16 })
-    gsap.set(el.querySelectorAll('.bru-heading'), { opacity: 0, y: 36, filter: 'blur(10px)' })
-    gsap.set(el.querySelectorAll('.bru-body'),    { opacity: 0, y: 24 })
-    gsap.set(el.querySelectorAll('.bru-panel'),   { opacity: 0, y: 40, scale: 0.97 })
-    gsap.set(el.querySelectorAll('.bru-row'),     { opacity: 0, x: 22 })
-
-    const obs = new IntersectionObserver(([entry]) => {
-      if (!entry.isIntersecting) return
-      const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
-      tl.to(el.querySelectorAll('.bru-eyebrow'), { opacity: 1, y: 0, duration: 0.7 }, 0)
-      tl.to(el.querySelectorAll('.bru-heading'), { opacity: 1, y: 0, filter: 'blur(0px)', duration: 1.05 }, 0.1)
-      tl.to(el.querySelectorAll('.bru-body'),    { opacity: 1, y: 0, duration: 0.85 }, 0.25)
-      tl.to(el.querySelectorAll('.bru-panel'),   { opacity: 1, y: 0, scale: 1, duration: 1.1, ease: 'power2.out' }, 0.15)
-      tl.to(el.querySelectorAll('.bru-row'),     { opacity: 1, x: 0, duration: 0.6, stagger: 0.12 }, 0.42)
-      obs.disconnect()
-    }, { threshold: 0.1 })
-
-    obs.observe(el)
-    return () => obs.disconnect()
-  }, [])
-
-  return (
-    <section
-      ref={ref}
-      className="relative w-full overflow-hidden"
-      style={{
-        background: '#060208',
-        padding: 'clamp(5rem, 10vw, 8rem) 0',
-      }}
-    >
-      <ShowcaseBackground />
-
-      <div className="relative z-10 max-w-[82rem] mx-auto px-6 sm:px-12">
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.30fr] gap-14 lg:gap-20 items-start">
-
-          {/* ── LEFT: Editorial text ── */}
-          <div style={{ paddingTop: 'clamp(0rem, 2vw, 2rem)' }}>
-
-            <p
-              className="bru-eyebrow font-sans uppercase"
-              style={{
-                fontSize: '0.62rem',
-                letterSpacing: '0.36em',
-                color: 'hsl(199 89% 62%)',
-                marginBottom: '1.6rem',
-              }}
-            >
-              Real User Experience
-            </p>
-
-            <h2
-              className="bru-heading font-heading font-medium"
-              style={{
-                fontSize: 'clamp(2rem, 4.2vw, 3.4rem)',
-                lineHeight: 1.12,
-                letterSpacing: '-0.036em',
-                color: 'hsl(0 0% 93%)',
-                marginBottom: '1.8rem',
-                maxWidth: '22rem',
-              }}
-            >
-              Built to feel effortless from the{' '}
-              <em style={{
-                fontFamily: 'var(--font-body)',
-                fontStyle: 'italic',
-                fontWeight: 400,
-                color: 'hsl(199 89% 74%)',
-              }}>
-                first click.
-              </em>
-            </h2>
-
-            <p
-              className="bru-body font-sans font-normal"
-              style={{
-                fontSize: 'clamp(0.88rem, 1.4vw, 1rem)',
-                lineHeight: 1.88,
-                color: '#F2F8FC',
-                maxWidth: '30rem',
-              }}
-            >
-              A high-performing website should feel simple, fast, and natural to use. We design every page around real user behaviour, making it easier for visitors to understand your offer, explore your services, and take action with confidence.
-            </p>
-
-          </div>
-
-          {/* ── RIGHT: Glass panel ── */}
-          <div
-            className="bru-panel"
-            style={{
-              borderRadius: '28px',
-              border: '1px solid hsl(0 0% 100% / 0.08)',
-              background: 'hsl(214 24% 6% / 0.72)',
-              backdropFilter: 'blur(18px)',
-              WebkitBackdropFilter: 'blur(18px)',
-              boxShadow: [
-                '0 32px 80px -20px hsl(0 0% 0% / 0.72)',
-                '0 0 0 1px hsl(0 0% 100% / 0.03) inset',
-              ].join(', '),
-              overflow: 'hidden',
-            }}
-          >
-            {/* Cyan top accent line */}
-            <div style={{
-              height: '2px',
-              background: 'linear-gradient(to right, hsl(199 89% 60% / 0.7), hsl(205 80% 55% / 0.2), transparent)',
-            }}/>
-
-            <div style={{ padding: 'clamp(1.9rem, 3.4vw, 2.8rem)' }}>
-              {REAL_USER_ROWS.map(({ num, title, desc }, i) => (
-                <div key={num}>
-                  {i > 0 && (
-                    <div style={{
-                      height: '1px',
-                      background: 'hsl(0 0% 100% / 0.06)',
-                      margin: '0.5rem 0',
-                    }}/>
-                  )}
-                  <div
-                    className="bru-row"
-                    style={{
-                      padding: 'clamp(1.4rem, 2.2vw, 1.9rem) 1.25rem',
-                      display: 'grid',
-                      gridTemplateColumns: '2.4rem 1fr',
-                      gap: '1rem',
-                      transition: 'background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease',
-                      borderRadius: '12px',
-                      cursor: 'default',
-                      background: BRU_ROW_BG,
-                      border: BRU_ROW_BORDER,
-                      boxShadow: BRU_ROW_SHADOW,
-                    }}
-                    onMouseEnter={e => {
-                      const el = e.currentTarget as HTMLElement
-                      el.style.background = BRU_ROW_BG_HOVER
-                      const numEl = el.querySelector('.bru-num') as HTMLElement | null
-                      if (numEl) numEl.style.color = '#7FD8FF'
-                    }}
-                    onMouseLeave={e => {
-                      const el = e.currentTarget as HTMLElement
-                      el.style.background = BRU_ROW_BG
-                      const numEl = el.querySelector('.bru-num') as HTMLElement | null
-                      if (numEl) numEl.style.color = '#5ECFFF'
-                    }}
-                  >
-                    {/* Number */}
-                    <span
-                      className="bru-num font-sans"
-                      style={{
-                        fontSize: '0.62rem',
-                        letterSpacing: '0.14em',
-                        color: '#5ECFFF',
-                        paddingTop: '0.2rem',
-                        transition: 'color 0.3s ease',
-                        fontVariantNumeric: 'tabular-nums',
-                      }}
-                    >
-                      {num}
-                    </span>
-
-                    {/* Content */}
-                    <div>
-                      <p
-                        className="font-sans"
-                        style={{
-                          fontSize: 'clamp(0.9rem, 1.4vw, 1.02rem)',
-                          letterSpacing: '-0.018em',
-                          fontWeight: 500,
-                          color: '#EAF7FF',
-                          marginBottom: '0.45rem',
-                          lineHeight: 1.3,
-                        }}
-                      >
-                        {title}
-                      </p>
-                      <p
-                        className="font-sans font-normal"
-                        style={{
-                          fontSize: '0.83rem',
-                          lineHeight: 1.78,
-                          color: '#AEBBC4',
-                        }}
-                      >
-                        {desc}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-  )
-}
-
 // ─── Bespoke Testimonials ─────────────────────────────────────────────────────
 
 const BESPOKE_TESTIMONIALS = [
   {
-    name: 'Lena Hoffmann',
-    role: 'Founder, Atelier Lune',
+    name: 'Zakaria Dahir',
+    role: 'Co-Founder, Champion Office for Scaling Up Nutrition',
     rating: 5,
-    text: 'The website they built for us completely elevated our brand. Leads converted at nearly double our old rate within the first month. Worth every penny.',
-    avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=80&q=80',
+    text: 'Weavy understood our mission from the first conversation. They built us a site that communicates trust and credibility — exactly what we needed to connect with partners and stakeholders. The process was smooth, the delivery was fast, and the result speaks for itself.',
+    avatar: '/brand_assets/Dr.Zak.png',
+    avatarFocalPoint: { top: '-35%', left: '-25%' },
   },
   {
-    name: 'Marcus Reid',
-    role: 'CEO, Northfield Capital',
-    rating: 5,
-    text: 'Our online presence went from embarrassing to industry-leading. The attention to detail and speed of delivery was unlike anything we had seen from an agency before.',
-    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=80&q=80',
-  },
-  {
-    name: 'Sofia Andrade',
+    name: 'Sofia Hayes',
     role: 'Marketing Director, Veva Studio',
     rating: 5,
-    text: 'Seamless process from start to finish. They understood our vision immediately and the final product genuinely exceeded what we had imagined. Our clients constantly compliment the site.',
-    avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=80&q=80',
-  },
-  {
-    name: 'James Okafor',
-    role: 'Co-Founder, Lumin Labs',
-    rating: 5,
-    text: 'We had tried two other agencies before. Weavy was the only team that actually delivered a fast, beautiful site on time — with zero hand-holding required on our end.',
-    avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=80&q=80',
+    text: 'We came to Weavy after outgrowing our old site. They delivered something that truly represents who we are — clean, modern, and built to convert. Our enquiries increased noticeably within the first few weeks of launching.',
+    avatarInitials: 'SH',
+    avatarGradient: 'linear-gradient(135deg, hsl(280 55% 26%), hsl(230 60% 14%))',
   },
 ]
 
@@ -5455,7 +5016,6 @@ function SocialMediaMarketing() {
     </section>
 
     {/* ══ SECTION 8 — Contact / Footer ════════════════════════════════════════ */}
-    <BuildingTheFutureMarquee />
     <Footer
       eyebrow="Let's build something"
       heading={<>
@@ -10081,312 +9641,6 @@ export default function Services() {
       {/* ── Sections 2–6: Bespoke Website Design ── */}
       {activeService === 'website' && <>
 
-      {/* ── Bespoke Website Design — Hero ── */}
-      <section
-        id="bespoke-hero"
-        className="relative w-screen overflow-hidden"
-          style={{
-            height: 'clamp(420px, 52vw, 720px)',
-            marginLeft: 'calc(-50vw + 50%)',
-            marginRight: 'calc(-50vw + 50%)',
-            background: '#010709',
-          }}
-      >
-        {/* Full-width background image */}
-        <img
-          src="/brand_assets/HI-D.webp"
-          alt=""
-          aria-hidden="true"
-          style={{
-            position: 'absolute',
-            inset: 0,
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover',
-            objectPosition: 'center top',
-          }}
-        />
-
-        {/* Dark gradient overlay — fully opaque left-third to mask video behind text */}
-        <div aria-hidden="true" style={{
-          position: 'absolute', inset: 0,
-          background: [
-            'linear-gradient(to right, hsl(0 0% 0% / 1.0) 0%, hsl(0 0% 0% / 0.88) 38%, hsl(0 0% 0% / 0.32) 65%, hsl(0 0% 0% / 0.08) 100%)',
-            'linear-gradient(to top, hsl(0 0% 0% / 0.55) 0%, transparent 60%)',
-          ].join(', '),
-        }}/>
-
-        {/* Dot grid texture */}
-        <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
-          backgroundImage: 'radial-gradient(hsl(210 40% 60% / 0.022) 1px, transparent 1px)',
-          backgroundSize: '28px 28px',
-        }}/>
-
-        {/* Text content */}
-        <div className="relative z-10 h-full flex items-center px-6 sm:px-12 lg:px-20">
-          <div style={{ maxWidth: '44rem' }}>
-
-            {/* Eyebrow */}
-            <p
-              className="font-sans font-normal uppercase mb-5"
-              style={{
-                fontSize: '0.63rem',
-                letterSpacing: '0.32em',
-                color: 'hsl(205 85% 68%)',
-              }}
-            >
-              Bespoke Website Design
-            </p>
-
-            {/* Main heading */}
-            <h1
-              className="font-heading font-medium text-white mb-6"
-              style={{
-                fontSize: 'clamp(2.6rem, 6vw, 5rem)',
-                lineHeight: 1.08,
-                letterSpacing: '-0.04em',
-              }}
-            >
-              <span style={{ display: 'block' }}>Built for your brand.</span>
-              <em style={{
-                display: 'block',
-                fontFamily: 'var(--font-body)',
-                fontStyle: 'italic',
-                fontWeight: 400,
-                color: 'hsl(205 85% 74%)',
-              }}>
-                Designed to perform.
-              </em>
-            </h1>
-
-            {/* Accent rule */}
-            <div style={{
-              height: 1,
-              width: '10rem',
-              background: 'linear-gradient(to right, hsl(205 85% 62% / 0.55), transparent)',
-              marginBottom: '1.6rem',
-            }}/>
-
-            {/* Subtext */}
-            <p
-              className="font-sans font-normal"
-              style={{
-                fontSize: 'clamp(0.88rem, 1.5vw, 1.05rem)',
-                lineHeight: 1.8,
-                color: 'hsl(0 0% 62%)',
-                maxWidth: '34rem',
-              }}
-            >
-              No templates. No shortcuts. Every pixel is crafted around your
-              goals, your audience, and the impression you want to leave.
-            </p>
-
-          </div>
-        </div>
-
-        {/* Bottom fade into next section */}
-        <div aria-hidden="true" className="pointer-events-none absolute left-0 right-0 bottom-0" style={{
-          height: '100px',
-          background: 'linear-gradient(to top, #010709 0%, transparent 100%)',
-        }}/>
-      </section>
-
-      {/* ── Bespoke Website Design — full detail ── */}
-      <section
-        ref={bwd1Ref}
-        id="bespoke-website-design-detail"
-        className="relative w-full overflow-hidden"
-        style={{
-          background: 'radial-gradient(ellipse 90% 70% at 60% 50%, #07141A 0%, #010709 65%)',
-          padding: 'clamp(5rem, 10vw, 8rem) 0',
-        }}
-      >
-        {/* Subtle depth gradient */}
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0"
-          style={{
-            background: [
-              'radial-gradient(ellipse 55% 50% at 68% 50%, rgba(200,175,100,0.055) 0%, transparent 70%)',
-              'radial-gradient(ellipse 38% 32% at 30% 45%, rgba(7,20,26,0.6) 0%, transparent 65%)',
-            ].join(', '),
-          }}
-        />
-
-        {/* Faint flowing light line — premium motion */}
-        <div
-          aria-hidden="true"
-          className="bwd1-mesh-line pointer-events-none absolute inset-0"
-          style={{ zIndex: 0 }}
-        />
-
-        {/* Section boundary fades */}
-        <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to top, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
-
-        <div className="relative z-10 max-w-[88rem] mx-auto px-6 sm:px-10">
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.12fr] gap-16 lg:gap-14 items-center">
-
-            {/* ── Left: text (unchanged) ── */}
-            <div>
-              <p
-                className="bwd1-eyebrow font-sans uppercase text-muted mb-5"
-                style={{ fontSize: '0.7rem', letterSpacing: '0.32em' }}
-              >
-                Service
-              </p>
-
-              <h2
-                className="bwd1-heading font-heading font-medium text-text mb-8"
-                style={{
-                  fontSize: 'clamp(2rem, 5vw, 3.5rem)',
-                  lineHeight: 1.1,
-                  letterSpacing: '-0.035em',
-                }}
-              >
-                Bespoke{' '}
-                <em style={{
-                  fontFamily: 'var(--font-body)',
-                  fontStyle: 'italic',
-                  fontWeight: 400,
-                  background: 'linear-gradient(115deg, #F8FAFC 5%, #A7F3D0 30%, #2DD4BF 60%, #0F766E 100%)',
-                  WebkitBackgroundClip: 'text',
-                  backgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                }}>
-                  Website Design
-                </em>
-              </h2>
-
-              <div className="bwd1-divider" aria-hidden="true" style={{ display: 'none' }} />
-
-              <p
-                className="bwd1-body font-sans font-normal mb-12 max-w-xl"
-                style={{
-                  fontSize: 'clamp(0.9rem, 1.5vw, 1.05rem)',
-                  lineHeight: 1.8,
-                  color: '#D7DCE2',
-                }}
-              >
-                Custom-built websites designed for clarity, performance, and impact. No templates.
-                Every detail is intentional.
-              </p>
-
-              <p
-                className="bwd1-body font-sans font-normal text-text mb-5"
-                style={{ fontSize: '0.78rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: '#7DDCFF', textShadow: '0 0 18px rgba(125,220,255,0.18)' }}
-              >
-                What you get
-              </p>
-
-              <ul className="mb-12 flex flex-col gap-3">
-                {[
-                  'Tailored design aligned to your brand',
-                  'Responsive across all devices',
-                  'Fast, optimized performance',
-                  'Clean UX focused on conversion',
-                  'SEO-ready foundation',
-                ].map(item => (
-                  <li key={item} className="bwd1-list flex items-start gap-3">
-                    <span
-                      className="mt-[0.45em] shrink-0 w-1 h-1 rounded-full"
-                      style={{ background: 'hsl(205 85% 62%)', boxShadow: '0 0 6px 1px hsl(205 85% 62% / 0.4)' }}
-                      aria-hidden="true"
-                    />
-                    <span
-                      className="font-sans font-normal"
-                      style={{ fontSize: 'clamp(0.88rem, 1.4vw, 1rem)', lineHeight: 1.75, color: 'hsl(0 0% 72%)' }}
-                    >
-                      {item}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-
-              <p
-                className="bwd1-body font-sans font-normal text-text mb-5"
-                style={{ fontSize: '0.78rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: '#7DDCFF', textShadow: '0 0 18px rgba(125,220,255,0.18)' }}
-              >
-                Why it matters
-              </p>
-
-              <p
-                className="bwd1-body font-sans font-normal max-w-xl"
-                style={{
-                  fontSize: 'clamp(0.9rem, 1.5vw, 1.05rem)',
-                  lineHeight: 1.8,
-                  color: '#D7DCE2',
-                }}
-              >
-                A generic site blends in. A bespoke build positions you to stand out and perform.
-              </p>
-            </div>
-
-            {/* ── Right: website 3.png ── */}
-            <div className="relative flex items-center justify-center lg:justify-end">
-
-              {/* Static size/position only — no hover zoom. Desktop: ~8% larger,
-                  shifted 36px left. Tablet: ~4% larger, shifted 20px left.
-                  Mobile: unchanged, centred. */}
-              <style>{`
-                .bwd1-img { max-width: 820px; margin-left: 0; }
-                @media (min-width: 700px) and (max-width: 1023px) {
-                  .bwd1-img { max-width: 852.8px; margin-left: -20px; }
-                }
-                @media (min-width: 1024px) {
-                  .bwd1-img { max-width: 885.6px; margin-left: -36px; }
-                }
-              `}</style>
-
-              {/* Champagne gold ambient glow behind image */}
-              <div aria-hidden="true" style={{
-                position: 'absolute', inset: '-20px',
-                background: 'radial-gradient(ellipse 70% 60% at 55% 50%, rgba(200,175,90,0.08) 0%, transparent 70%)',
-                filter: 'blur(48px)',
-                pointerEvents: 'none',
-              }}/>
-
-              {/* Image frame — static, no hover enlargement */}
-              <div
-                className="bwd1-img"
-                style={{
-                  position: 'relative',
-                  width: '100%',
-                  borderRadius: '20px',
-                  overflow: 'hidden',
-                  boxShadow: [
-                    '0 48px 96px -16px hsl(0 0% 0% / 0.88)',
-                    '0 0 0 1px hsl(0 0% 100% / 0.07)',
-                    '0 0 64px -18px hsl(205 85% 55% / 0.22)',
-                  ].join(', '),
-                  background: '#080a0e',
-                }}
-              >
-                <video
-                  src="/brand_assets/chatbott_web.mp4"
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  aria-label="Bespoke website design showcase"
-                  style={{ display: 'block', width: '100%', height: 'auto', objectFit: 'cover' }}
-                />
-              </div>
-
-            </div>
-
-          </div>
-        </div>
-
-        {/* Bottom fade — softens boundary into Cinema Showcase */}
-        <div aria-hidden="true" style={{
-          position: 'absolute', bottom: 0, left: 0, right: 0,
-          height: '120px',
-          background: 'linear-gradient(to bottom, rgba(1,7,9,0), rgba(1,7,9,0.32))',
-          pointerEvents: 'none',
-          zIndex: 5,
-        }}/>
-      </section>
-
       {/* ── Bespoke Website Design — Cinema Showcase (Section 2) ── */}
       <section
         ref={bwdCinemaRef}
@@ -10659,26 +9913,329 @@ export default function Services() {
       {/* ── Bespoke Website Design — cinematic follow-up ── */}
       <BespokeFollowUp />
 
+      {/* ── Bespoke Website Design — floating web showcase (Section 6) ── */}
+      <BespokeWebShowcase />
+
+      {/* ── Bespoke Website Design — Hero ── */}
+      <section
+        id="bespoke-hero"
+        className="relative w-screen overflow-hidden"
+          style={{
+            height: 'clamp(420px, 52vw, 720px)',
+            marginLeft: 'calc(-50vw + 50%)',
+            marginRight: 'calc(-50vw + 50%)',
+            background: '#010709',
+          }}
+      >
+        {/* Full-width background image */}
+        <img
+          src="/brand_assets/HI-D.webp"
+          alt=""
+          aria-hidden="true"
+          style={{
+            position: 'absolute',
+            inset: 0,
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            objectPosition: 'center top',
+          }}
+        />
+
+        {/* Dark gradient overlay — fully opaque left-third to mask video behind text */}
+        <div aria-hidden="true" style={{
+          position: 'absolute', inset: 0,
+          background: [
+            'linear-gradient(to right, hsl(0 0% 0% / 1.0) 0%, hsl(0 0% 0% / 0.88) 38%, hsl(0 0% 0% / 0.32) 65%, hsl(0 0% 0% / 0.08) 100%)',
+            'linear-gradient(to top, hsl(0 0% 0% / 0.55) 0%, transparent 60%)',
+          ].join(', '),
+        }}/>
+
+        {/* Dot grid texture */}
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
+          backgroundImage: 'radial-gradient(hsl(210 40% 60% / 0.022) 1px, transparent 1px)',
+          backgroundSize: '28px 28px',
+        }}/>
+
+        {/* Text content */}
+        <div className="relative z-10 h-full flex items-center px-6 sm:px-12 lg:px-20">
+          <div style={{ maxWidth: '44rem' }}>
+
+            {/* Eyebrow */}
+            <p
+              className="font-sans font-normal uppercase mb-5"
+              style={{
+                fontSize: '0.63rem',
+                letterSpacing: '0.32em',
+                color: 'hsl(205 85% 68%)',
+              }}
+            >
+              Bespoke Website Design
+            </p>
+
+            {/* Main heading */}
+            <h1
+              className="font-heading font-medium text-white mb-6"
+              style={{
+                fontSize: 'clamp(2.6rem, 6vw, 5rem)',
+                lineHeight: 1.08,
+                letterSpacing: '-0.04em',
+              }}
+            >
+              <span style={{ display: 'block' }}>Built for your brand.</span>
+              <em style={{
+                display: 'block',
+                fontFamily: 'var(--font-body)',
+                fontStyle: 'italic',
+                fontWeight: 400,
+                color: 'hsl(205 85% 74%)',
+              }}>
+                Designed to perform.
+              </em>
+            </h1>
+
+            {/* Accent rule */}
+            <div style={{
+              height: 1,
+              width: '10rem',
+              background: 'linear-gradient(to right, hsl(205 85% 62% / 0.55), transparent)',
+              marginBottom: '1.6rem',
+            }}/>
+
+            {/* Subtext */}
+            <p
+              className="font-sans font-normal"
+              style={{
+                fontSize: 'clamp(0.88rem, 1.5vw, 1.05rem)',
+                lineHeight: 1.8,
+                color: 'hsl(0 0% 62%)',
+                maxWidth: '34rem',
+              }}
+            >
+              No templates. No shortcuts. Every pixel is crafted around your
+              goals, your audience, and the impression you want to leave.
+            </p>
+
+          </div>
+        </div>
+
+        {/* Bottom fade into next section */}
+        <div aria-hidden="true" className="pointer-events-none absolute left-0 right-0 bottom-0" style={{
+          height: '100px',
+          background: 'linear-gradient(to top, #010709 0%, transparent 100%)',
+        }}/>
+      </section>
+
+      {/* ── Bespoke Website Design — full detail ── */}
+      <section
+        ref={bwd1Ref}
+        id="bespoke-website-design-detail"
+        className="relative w-full overflow-hidden"
+        style={{
+          background: 'radial-gradient(ellipse 90% 70% at 60% 50%, #07141A 0%, #010709 65%)',
+          padding: 'clamp(5rem, 10vw, 8rem) 0',
+        }}
+      >
+        {/* Subtle depth gradient */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background: [
+              'radial-gradient(ellipse 55% 50% at 68% 50%, rgba(200,175,100,0.055) 0%, transparent 70%)',
+              'radial-gradient(ellipse 38% 32% at 30% 45%, rgba(7,20,26,0.6) 0%, transparent 65%)',
+            ].join(', '),
+          }}
+        />
+
+        {/* Faint flowing light line — premium motion */}
+        <div
+          aria-hidden="true"
+          className="bwd1-mesh-line pointer-events-none absolute inset-0"
+          style={{ zIndex: 0 }}
+        />
+
+        {/* Section boundary fades */}
+        <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to top, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
+
+        <div className="relative z-10 max-w-[88rem] mx-auto px-6 sm:px-10">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.12fr] gap-16 lg:gap-14 items-center">
+
+            {/* ── Left: text (unchanged) ── */}
+            <div>
+              <p
+                className="bwd1-eyebrow font-sans uppercase text-muted mb-5"
+                style={{ fontSize: '0.7rem', letterSpacing: '0.32em' }}
+              >
+                Service
+              </p>
+
+              <h2
+                className="bwd1-heading font-heading font-medium text-text mb-8"
+                style={{
+                  fontSize: 'clamp(2rem, 5vw, 3.5rem)',
+                  lineHeight: 1.1,
+                  letterSpacing: '-0.035em',
+                }}
+              >
+                Bespoke{' '}
+                <em style={{
+                  fontFamily: 'var(--font-body)',
+                  fontStyle: 'italic',
+                  fontWeight: 400,
+                  background: 'linear-gradient(115deg, #F8FAFC 5%, #A7F3D0 30%, #2DD4BF 60%, #0F766E 100%)',
+                  WebkitBackgroundClip: 'text',
+                  backgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                }}>
+                  Website Design
+                </em>
+              </h2>
+
+              <div className="bwd1-divider" aria-hidden="true" style={{ display: 'none' }} />
+
+              <p
+                className="bwd1-body font-sans font-normal mb-12 max-w-xl"
+                style={{
+                  fontSize: 'clamp(0.9rem, 1.5vw, 1.05rem)',
+                  lineHeight: 1.8,
+                  color: '#D7DCE2',
+                }}
+              >
+                Custom-built websites designed for clarity, performance, and impact. No templates.
+                Every detail is intentional.
+              </p>
+
+              <p
+                className="bwd1-body font-sans font-normal text-text mb-5"
+                style={{ fontSize: '0.78rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: '#7DDCFF', textShadow: '0 0 18px rgba(125,220,255,0.18)' }}
+              >
+                What you get
+              </p>
+
+              <ul className="mb-12 flex flex-col gap-3">
+                {[
+                  'Tailored design aligned to your brand',
+                  'Responsive across all devices',
+                  'Fast, optimized performance',
+                  'Clean UX focused on conversion',
+                  'SEO-ready foundation',
+                ].map(item => (
+                  <li key={item} className="bwd1-list flex items-start gap-3">
+                    <span
+                      className="mt-[0.45em] shrink-0 w-1 h-1 rounded-full"
+                      style={{ background: 'hsl(205 85% 62%)', boxShadow: '0 0 6px 1px hsl(205 85% 62% / 0.4)' }}
+                      aria-hidden="true"
+                    />
+                    <span
+                      className="font-sans font-normal"
+                      style={{ fontSize: 'clamp(0.88rem, 1.4vw, 1rem)', lineHeight: 1.75, color: 'hsl(0 0% 72%)' }}
+                    >
+                      {item}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+
+              <p
+                className="bwd1-body font-sans font-normal text-text mb-5"
+                style={{ fontSize: '0.78rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: '#7DDCFF', textShadow: '0 0 18px rgba(125,220,255,0.18)' }}
+              >
+                Why it matters
+              </p>
+
+              <p
+                className="bwd1-body font-sans font-normal max-w-xl"
+                style={{
+                  fontSize: 'clamp(0.9rem, 1.5vw, 1.05rem)',
+                  lineHeight: 1.8,
+                  color: '#D7DCE2',
+                }}
+              >
+                A generic site blends in. A bespoke build positions you to stand out and perform.
+              </p>
+            </div>
+
+            {/* ── Right: Zebra Private Health mockup ── */}
+            <div className="relative flex items-center justify-center lg:justify-end">
+
+              {/* Static size/position only — no hover zoom. Desktop: ~8% larger,
+                  shifted 36px left. Tablet: ~4% larger, shifted 20px left.
+                  Mobile: unchanged, centred. */}
+              <style>{`
+                .bwd1-img { max-width: 820px; margin-left: 0; }
+                @media (min-width: 700px) and (max-width: 1023px) {
+                  .bwd1-img { max-width: 852.8px; margin-left: -20px; }
+                }
+                @media (min-width: 1024px) {
+                  .bwd1-img { max-width: 885.6px; margin-left: -36px; }
+                }
+              `}</style>
+
+              {/* Champagne gold ambient glow behind image */}
+              <div aria-hidden="true" style={{
+                position: 'absolute', inset: '-20px',
+                background: 'radial-gradient(ellipse 70% 60% at 55% 50%, rgba(200,175,90,0.08) 0%, transparent 70%)',
+                filter: 'blur(48px)',
+                pointerEvents: 'none',
+              }}/>
+
+              {/* Image frame — static, no hover enlargement */}
+              <div
+                className="bwd1-img"
+                style={{
+                  position: 'relative',
+                  width: '100%',
+                  borderRadius: '20px',
+                  overflow: 'hidden',
+                  boxShadow: [
+                    '0 48px 96px -16px hsl(0 0% 0% / 0.88)',
+                    '0 0 0 1px hsl(0 0% 100% / 0.07)',
+                    '0 0 64px -18px hsl(205 85% 55% / 0.22)',
+                  ].join(', '),
+                  background: '#080a0e',
+                }}
+              >
+                <img
+                  src="/brand_assets/ZebraClinic.webp"
+                  alt="Zebra Private Health — bespoke website design showcase"
+                  loading="lazy"
+                  style={{
+                    display: 'block',
+                    width: '100%',
+                    height: 'clamp(320px, 34vw, 480px)',
+                    objectFit: 'cover',
+                    objectPosition: 'center 38%',
+                    filter: 'brightness(1.1) contrast(1.06) saturate(1.04)',
+                  }}
+                />
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+        {/* Bottom fade — softens boundary into Cinema Showcase */}
+        <div aria-hidden="true" style={{
+          position: 'absolute', bottom: 0, left: 0, right: 0,
+          height: '120px',
+          background: 'linear-gradient(to bottom, rgba(1,7,9,0), rgba(1,7,9,0.32))',
+          pointerEvents: 'none',
+          zIndex: 5,
+        }}/>
+      </section>
+
       {/* ── Bespoke Website Design — Care Stories (Section 4) ── */}
       <BespokeCareStories />
 
       {/* ── Bespoke Website Design — process timeline ── */}
       <BespokeProcessTimeline />
 
-      {/* ── Bespoke Website Design — floating web showcase (Section 6) ── */}
-      <BespokeWebShowcase />
-
-      {/* ── Bespoke Website Design — real users performance (Section 7) ── */}
-      <BespokeRealUsers />
-
-      {/* ── Bespoke Website Design — design showcase (Section 8) ── */}
-      <BespokeWebDesignShowcase />
-
       {/* ── Bespoke Website Design — client testimonials ── */}
       <BespokeTestimonials />
 
       {/* ── Bespoke Contact / Footer ── */}
-      <BuildingTheFutureMarquee />
       <Footer
         heading={<>
           Ready to{' '}
@@ -10689,15 +10246,14 @@ export default function Services() {
             color: 'transparent',
             textShadow: '0 0 24px rgba(125, 220, 255, 0.16)',
           }}>
-            automate
+            stand out
           </em>{' '}
-          your business?
+          online?
         </>}
-        subtext={<>
-          Book a free demo and see how Weavy can manage your calls, messages, bookings, and{' '}
-          leads from one <span style={{ color: 'rgba(191, 239, 255, 0.9)', fontWeight: 500 }}>managed AI platform</span>.
-        </>}
-        ctaLabel="hello@weavyautomation.com"
+        subtext="Tell us about your project and we'll show you what a bespoke Weavy build looks like."
+        ctaLabel="Start a Project"
+        ctaHref="/contact"
+        ctaVariant="primary"
       />
 
       </> /* end activeService === 'website' */}
@@ -10999,7 +10555,6 @@ export default function Services() {
       <ChatbotIntegrationsSection />
 
       {/* ── Custom Chatbots — Contact / Footer (Section 6) ── */}
-      <BuildingTheFutureMarquee />
       <Footer
         heading={<>
           Ready to{' '}
@@ -11144,7 +10699,6 @@ export default function Services() {
       {activeService === 'graphic' && <GraphicDesignSplitB />}
       {activeService === 'graphic' && <GraphicDesignFinalPresentation />}
       {activeService === 'graphic' && <GraphicDesignCTA />}
-      {activeService === 'graphic' && <BuildingTheFutureMarquee />}
       {activeService === 'graphic' && (
         <Footer
           heading={<>
@@ -11177,7 +10731,6 @@ export default function Services() {
       {activeService === 'ugc' && <UGCPerfumeCampaign />}
       {activeService === 'ugc' && <UGCPerformanceSystem />}
       {activeService === 'ugc' && <UGCPracticeEcosystem />}
-      {activeService === 'ugc' && <BuildingTheFutureMarquee />}
       {activeService === 'ugc' && (
         <Footer
           heading={<>

@@ -7,7 +7,14 @@ export interface Testimonial {
   name: string
   role: string
   text: string
-  avatar: string
+  /** Photo URL. Omit and use `avatarInitials` instead for a styled initials avatar. */
+  avatar?: string
+  /** Renders a gradient circle with these initials instead of a photo avatar. */
+  avatarInitials?: string
+  /** Gradient background for the initials avatar (any valid CSS `background` value). */
+  avatarGradient?: string
+  /** Fine-tune crop position for tightly-framed source photos. Defaults to centered. */
+  avatarFocalPoint?: { top: string; left: string }
   rating?: number
 }
 
@@ -186,12 +193,46 @@ export function TestimonialsSection({
                     aria-hidden="true"
                   />
                   <div className="flex items-center gap-3">
-                    <img
-                      src={t.avatar}
-                      alt={t.name}
-                      className="rounded-full object-cover shrink-0"
-                      style={{ width: 36, height: 36, border: '1px solid hsl(0 0% 100% / 0.1)' }}
-                    />
+                    {t.avatarInitials ? (
+                      <div
+                        className="font-label rounded-full shrink-0 flex items-center justify-center font-medium select-none"
+                        style={{
+                          width: 36,
+                          height: 36,
+                          fontSize: '0.72rem',
+                          letterSpacing: '0.02em',
+                          background: t.avatarGradient ?? 'linear-gradient(135deg, hsl(199 70% 22%), hsl(230 60% 14%))',
+                          border: '1px solid hsl(0 0% 100% / 0.12)',
+                          color: 'hsl(199 85% 84%)',
+                        }}
+                      >
+                        {t.avatarInitials}
+                      </div>
+                    ) : (
+                      <div
+                        className="rounded-full shrink-0 relative overflow-hidden"
+                        style={{ width: 36, height: 36, border: '1px solid hsl(0 0% 100% / 0.1)' }}
+                      >
+                        <img
+                          src={t.avatar}
+                          alt={t.name}
+                          style={{
+                            position: 'absolute',
+                            width: '150%',
+                            height: '150%',
+                            top: t.avatarFocalPoint?.top ?? '0',
+                            left: t.avatarFocalPoint?.left ?? '-25%',
+                            objectFit: 'cover',
+                          }}
+                        />
+                        {/* Soft inner vignette — blends any residual edge tone from the
+                            source photo into the dark card instead of a hard crop line. */}
+                        <div
+                          aria-hidden="true"
+                          style={{ position: 'absolute', inset: 0, boxShadow: 'inset 0 0 6px 1px hsl(0 0% 0% / 0.45)' }}
+                        />
+                      </div>
+                    )}
                     <div>
                       <p
                         className="font-sans"

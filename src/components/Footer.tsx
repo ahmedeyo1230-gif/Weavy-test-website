@@ -1,6 +1,7 @@
 import { useEffect, useRef, type ReactNode } from 'react'
 import { motion } from 'framer-motion'
 import gsap from 'gsap'
+import { goToPath } from '../lib/navigation'
 
 const HLS_SRC = 'https://stream.mux.com/Aa02T7oM1wH5Mk5EEVDYhbZ1ChcdhRsS2m1NYyx4Ua1g.m3u8'
 const MARQUEE_WORD = 'BUILDING THE FUTURE'
@@ -219,6 +220,11 @@ interface FooterProps {
   subtext?: ReactNode | null
   ctaLabel?: string
   ctaHref?: string
+  /** 'glass' (default) is the existing subtle outline/email-link treatment.
+   *  'primary' matches the solid filled pill used for primary CTAs elsewhere
+   *  on the site (e.g. Hero's "Book a Free Demo") — use for a real button,
+   *  not an email address. */
+  ctaVariant?: 'glass' | 'primary'
 }
 
 const DEFAULT_HEADING = (
@@ -251,7 +257,9 @@ export default function Footer({
   subtext = DEFAULT_SUBTEXT,
   ctaLabel = 'Book a Free Demo',
   ctaHref = 'mailto:hello@weavyautomation.com',
+  ctaVariant = 'glass',
 }: FooterProps = {}) {
+  const isInternalCta = ctaHref.startsWith('/')
   return (
     <footer
       id={id}
@@ -386,40 +394,52 @@ export default function Footer({
             transition={{ duration: 0.7, delay: 0.28, ease: [0.16, 1, 0.3, 1] }}
             style={{ position: 'relative', zIndex: 1 }}
           >
-          <a
-            href={ctaHref}
-            className="font-body font-medium footer-email-cta"
-            style={{
-              fontSize: 'clamp(1rem, 2.2vw, 1.45rem)',
-              letterSpacing: '-0.01em',
-              color: 'var(--text-primary)',
-              textDecoration: 'none',
-              padding: '0.8rem 2.2rem',
-              borderRadius: '999px',
-              border: '1px solid hsl(0 0% 100% / 0.13)',
-              background: 'hsl(0 0% 100% / 0.03)',
-              backdropFilter: 'blur(12px)',
-              display: 'inline-block',
-              transition: 'border-color 280ms, box-shadow 280ms, background 280ms, transform 100ms',
-            }}
-            onMouseEnter={e => {
-              const el = e.currentTarget as HTMLAnchorElement
-              el.style.borderColor = 'hsl(199 89% 60% / 0.5)'
-              el.style.boxShadow   = '0 0 32px -6px hsl(199 89% 60% / 0.22), inset 0 0 16px -8px hsl(199 89% 60% / 0.07)'
-              el.style.background  = 'hsl(0 0% 100% / 0.05)'
-            }}
-            onMouseLeave={e => {
-              const el = e.currentTarget as HTMLAnchorElement
-              el.style.borderColor = 'hsl(0 0% 100% / 0.13)'
-              el.style.boxShadow   = 'none'
-              el.style.background  = 'hsl(0 0% 100% / 0.03)'
-              el.style.transform   = ''
-            }}
-            onMouseDown={e => { (e.currentTarget as HTMLAnchorElement).style.transform = 'scale(0.97)' }}
-            onMouseUp={e => { (e.currentTarget as HTMLAnchorElement).style.transform = '' }}
-          >
-            {ctaLabel}
-          </a>
+          {ctaVariant === 'primary' ? (
+            <a
+              href={ctaHref}
+              onClick={isInternalCta ? (e) => { e.preventDefault(); goToPath(ctaHref) } : undefined}
+              className="font-body btn-glow-primary inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-medium bg-primary text-background hover:bg-white hover:shadow-[0_0_28px_rgba(245,245,245,0.28)] active:scale-[0.97]"
+              style={{ transition: 'background-color 200ms, box-shadow 200ms, transform 100ms' }}
+            >
+              {ctaLabel}
+            </a>
+          ) : (
+            <a
+              href={ctaHref}
+              onClick={isInternalCta ? (e) => { e.preventDefault(); goToPath(ctaHref) } : undefined}
+              className="font-body font-medium footer-email-cta"
+              style={{
+                fontSize: 'clamp(1rem, 2.2vw, 1.45rem)',
+                letterSpacing: '-0.01em',
+                color: 'var(--text-primary)',
+                textDecoration: 'none',
+                padding: '0.8rem 2.2rem',
+                borderRadius: '999px',
+                border: '1px solid hsl(0 0% 100% / 0.13)',
+                background: 'hsl(0 0% 100% / 0.03)',
+                backdropFilter: 'blur(12px)',
+                display: 'inline-block',
+                transition: 'border-color 280ms, box-shadow 280ms, background 280ms, transform 100ms',
+              }}
+              onMouseEnter={e => {
+                const el = e.currentTarget as HTMLAnchorElement
+                el.style.borderColor = 'hsl(199 89% 60% / 0.5)'
+                el.style.boxShadow   = '0 0 32px -6px hsl(199 89% 60% / 0.22), inset 0 0 16px -8px hsl(199 89% 60% / 0.07)'
+                el.style.background  = 'hsl(0 0% 100% / 0.05)'
+              }}
+              onMouseLeave={e => {
+                const el = e.currentTarget as HTMLAnchorElement
+                el.style.borderColor = 'hsl(0 0% 100% / 0.13)'
+                el.style.boxShadow   = 'none'
+                el.style.background  = 'hsl(0 0% 100% / 0.03)'
+                el.style.transform   = ''
+              }}
+              onMouseDown={e => { (e.currentTarget as HTMLAnchorElement).style.transform = 'scale(0.97)' }}
+              onMouseUp={e => { (e.currentTarget as HTMLAnchorElement).style.transform = '' }}
+            >
+              {ctaLabel}
+            </a>
+          )}
           </motion.div>
         </div>
 
