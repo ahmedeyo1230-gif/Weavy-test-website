@@ -871,155 +871,69 @@ const ZEBRA_SERVICES = [
   { title: 'Preventive Health',        caption: 'Personalised long-term care',    crop: '80% 60%', filter: 'brightness(1.22) contrast(1.08) saturate(1.05)' },
 ]
 
-// ── Synergy mockup — animated SaaS-growth concept browser mockup ──
-// Fully illustrated (no image asset): a light SaaS landing page with a
-// growth chart, a rocket, and two flat-style figures, inside the same
-// macOS browser chrome used for the Villa Luna mockup above. The rocket
-// and chart trend-dot get a gentle idle float/pulse, gated behind
-// prefers-reduced-motion.
-function SynergyGrowthIllustration({ rocketRef, dotRef }: { rocketRef: React.RefObject<SVGGElement | null>; dotRef: React.RefObject<SVGCircleElement | null> }) {
-  return (
-    <svg viewBox="0 0 400 230" style={{ width: '100%', height: 'auto', display: 'block' }} aria-hidden="true">
-      {/* Ambient background blobs */}
-      <circle cx="345" cy="30" r="70" fill="#EDE4FF" opacity="0.7" />
-      <circle cx="18" cy="205" r="55" fill="#DCEBFF" opacity="0.7" />
-
-      {/* Chart card */}
-      <rect x="30" y="55" width="205" height="140" rx="12" fill="#FFFFFF" stroke="#EDEAF6" />
-      <rect x="52" y="152" width="20" height="30" rx="3" fill="#C7B8FF" />
-      <rect x="82" y="132" width="20" height="50" rx="3" fill="#A78BFA" />
-      <rect x="112" y="102" width="20" height="80" rx="3" fill="#8B6EF0" />
-      <rect x="142" y="72" width="20" height="110" rx="3" fill="#6D4FD6" />
-      <polyline points="57,157 92,122 127,92 157,62 202,42" fill="none" stroke="#34D399" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-      <circle ref={dotRef} cx="202" cy="42" r="5" fill="#34D399" />
-
-      {/* Rocket */}
-      <g ref={rocketRef} transform="translate(258,18)">
-        <path d="M20 0 C31 11 31 32 20 48 C9 32 9 11 20 0 Z" fill="#F472B6" />
-        <circle cx="20" cy="19" r="5.5" fill="#FFFFFF" />
-        <path d="M9 37 L2 54 L15 45 Z" fill="#FDBA74" />
-        <path d="M31 37 L38 54 L25 45 Z" fill="#FDBA74" />
-      </g>
-
-      {/* Figure — pointing at the chart */}
-      <g transform="translate(258,140)">
-        <circle cx="20" cy="12" r="12" fill="#FCD9B8" />
-        <path d="M8 12 a12 10 0 0 1 24 0" fill="#3B2A20" />
-        <rect x="6" y="26" width="28" height="42" rx="14" fill="#60A5FA" />
-        <rect x="27" y="30" width="24" height="8" rx="4" fill="#FCD9B8" transform="rotate(-20 27 30)" />
-      </g>
-
-      {/* Figure — celebrating */}
-      <g transform="translate(312,140)">
-        <circle cx="20" cy="12" r="12" fill="#F4C6A8" />
-        <path d="M8 10 a12 9 0 0 1 24 0" fill="#241812" />
-        <rect x="6" y="26" width="28" height="42" rx="14" fill="#F472B6" />
-        <rect x="-4" y="20" width="8" height="24" rx="4" fill="#F4C6A8" transform="rotate(28 0 20)" />
-        <rect x="36" y="20" width="8" height="24" rx="4" fill="#F4C6A8" transform="rotate(-28 40 20)" />
-      </g>
-    </svg>
-  )
-}
-
-function SynergyMockup() {
-  const rocketRef = useRef<SVGGElement>(null)
-  const dotRef = useRef<SVGCircleElement>(null)
-
-  useEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-    if (rocketRef.current) {
-      gsap.to(rocketRef.current, { y: -8, duration: 1.9, ease: 'sine.inOut', yoyo: true, repeat: -1 })
-    }
-    if (dotRef.current) {
-      gsap.to(dotRef.current, { scale: 1.6, transformOrigin: 'center', opacity: 0.55, duration: 1.1, ease: 'sine.inOut', yoyo: true, repeat: -1 })
-    }
-  }, [])
-
+// Bespoke Website Design's hero-slot mockup — Web1.mp4 inside the same
+// macOS browser chrome used for the Villa Luna mockup above, matched on
+// width/proportions/radius/shadow for visual consistency.
+function BespokeWeb1Mockup() {
   return (
     <div
       style={{
         position: 'relative',
         width: '100%',
         maxWidth: '920px',
-        borderRadius: '12px',
+        borderRadius: '12px 12px 0 0',
         overflow: 'hidden',
         boxShadow: [
-          '0 48px 96px -16px hsl(0 0% 0% / 0.88)',
-          '0 0 0 1px hsl(0 0% 100% / 0.07)',
-          '0 0 64px -18px hsl(260 70% 65% / 0.22)',
+          '0 60px 140px -24px hsl(0 0% 0% / 0.9)',
+          '0 20px 60px -12px hsl(0 0% 0% / 0.55)',
+          '0 0 0 1px hsl(205 85% 55% / 0.12)',
+          'inset 0 1px 0 hsl(205 50% 90% / 0.06)',
         ].join(', '),
       }}
     >
-      {/* macOS chrome bar — same treatment as the Villa Luna mockup */}
+      {/* macOS chrome bar */}
       <div style={{
-        background: 'hsl(255 20% 92%)',
+        background: 'hsl(210 14% 90%)',
         padding: '9px 14px',
         display: 'flex', alignItems: 'center', gap: '8px',
-        borderBottom: '1px solid hsl(250 14% 80%)',
+        borderBottom: '1px solid hsl(210 10% 76%)',
       }}>
         <div style={{ display: 'flex', gap: '5px', flexShrink: 0 }}>
           {['hsl(4 78% 58%)', 'hsl(38 80% 54%)', 'hsl(133 52% 46%)'].map((c, i) => (
-            <div key={i} style={{ width: 11, height: 11, borderRadius: '50%', background: c }} />
+            <div key={i} style={{ width: 11, height: 11, borderRadius: '50%', background: c }}/>
           ))}
         </div>
         <div style={{ display: 'flex', gap: '7px', marginLeft: '5px', flexShrink: 0 }}>
           {[0, 1].map(i => (
-            <div key={i} style={{ width: 16, height: 10, borderRadius: '2px', background: 'hsl(250 10% 76%)', opacity: 0.65 }} />
+            <div key={i} style={{ width: 16, height: 10, borderRadius: '2px', background: 'hsl(210 8% 74%)', opacity: 0.65 }}/>
           ))}
         </div>
         <div style={{
-          flex: 1, background: 'hsl(255 25% 98%)',
-          border: '1px solid hsl(250 14% 82%)', borderRadius: '5px',
+          flex: 1, background: 'hsl(210 20% 97%)',
+          border: '1px solid hsl(210 10% 78%)', borderRadius: '5px',
           padding: '3px 12px', fontSize: '0.65rem',
           fontFamily: "'SF Mono','Fira Code',monospace",
-          color: 'hsl(255 10% 40%)', letterSpacing: '0.01em',
+          color: 'hsl(210 10% 38%)', letterSpacing: '0.01em',
           textAlign: 'center' as const,
         }}>
-          synergy.io
+          weavy.studio
         </div>
         <div style={{ display: 'flex', gap: '7px', flexShrink: 0 }}>
           {[0, 1, 2].map(i => (
-            <div key={i} style={{ width: 16, height: 10, borderRadius: '2px', background: 'hsl(250 10% 76%)', opacity: 0.65 }} />
+            <div key={i} style={{ width: 16, height: 10, borderRadius: '2px', background: 'hsl(210 8% 74%)', opacity: 0.65 }}/>
           ))}
         </div>
       </div>
 
-      {/* Site content */}
-      <div style={{
-        background: 'linear-gradient(180deg, #FAFAFF 0%, #F3F0FF 100%)',
-        padding: 'clamp(20px, 3vw, 32px) clamp(20px, 3.4vw, 36px) clamp(28px, 4vw, 40px)',
-      }}>
-        {/* Nav */}
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 'clamp(20px, 3vw, 30px)' }}>
-          <div style={{ fontWeight: 700, fontSize: '0.95rem', color: '#1F1B2E', letterSpacing: '-0.01em' }}>SYNERGY</div>
-          <div className="hidden sm:flex" style={{ gap: '18px', fontSize: '0.62rem', color: '#6B7280', fontWeight: 500 }}>
-            <span>Product</span><span>Solutions</span><span>Pricing</span>
-          </div>
-          <div style={{ background: '#1F1B2E', color: '#fff', fontSize: '0.62rem', fontWeight: 600, padding: '6px 14px', borderRadius: '999px' }}>
-            Get Started
-          </div>
-        </div>
-
-        {/* Headline */}
-        <div style={{ maxWidth: '360px', marginBottom: 'clamp(18px, 2.6vw, 26px)' }}>
-          <div style={{ fontSize: 'clamp(1.3rem, 2.6vw, 1.7rem)', fontWeight: 800, lineHeight: 1.08, letterSpacing: '-0.02em', color: '#1F1B2E' }}>
-            Accelerate Your SaaS Growth
-          </div>
-          <div style={{ fontSize: '0.72rem', color: '#6B7280', marginTop: '10px', lineHeight: 1.65 }}>
-            Everything your team needs to plan, launch, and scale — in one connected workspace.
-          </div>
-          <div style={{ display: 'flex', gap: '10px', marginTop: '16px' }}>
-            <div style={{ background: '#6D4FD6', color: '#fff', fontSize: '0.66rem', fontWeight: 600, padding: '8px 16px', borderRadius: '999px' }}>
-              Start Free Trial
-            </div>
-            <div style={{ border: '1px solid #D8D3EA', color: '#1F1B2E', fontSize: '0.66rem', fontWeight: 600, padding: '8px 16px', borderRadius: '999px' }}>
-              Watch Demo
-            </div>
-          </div>
-        </div>
-
-        <SynergyGrowthIllustration rocketRef={rocketRef} dotRef={dotRef} />
-      </div>
+      <video
+        src="/brand_assets/Web1.mp4"
+        autoPlay
+        muted
+        loop
+        playsInline
+        aria-label="Interactive hero concept — bespoke website motion design"
+        style={{ display: 'block', width: '100%', height: 'auto' }}
+      />
     </div>
   )
 }
@@ -4178,13 +4092,16 @@ function SocialMediaMarketing() {
       <div className="relative z-10 max-w-[82rem] mx-auto px-6 sm:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-16 lg:gap-12 xl:gap-20 items-center">
 
-          {/* ── LEFT: beauty.png image ── */}
+          {/* ── LEFT: campaign visuals triptych ── */}
           <div className="relative">
             <div
               className="smbs-img relative rounded-2xl overflow-hidden"
               style={{
                 opacity: 0, transform: 'translateY(36px)',
                 height: 'clamp(300px, 38vw, 520px)',
+                display: 'grid',
+                gridTemplateColumns: 'repeat(3, 1fr)',
+                gap: '10px',
                 boxShadow: [
                   '0 48px 96px -16px hsl(0 0% 0% / 0.9)',
                   '0 0 0 1px hsl(280 65% 65% / 0.14)',
@@ -4209,13 +4126,21 @@ function SocialMediaMarketing() {
                 ].join(', ')
               }}
             >
-              <img
-                loading="lazy"
-                decoding="async"
-                src="/brand_assets/beauty.webp"
-                alt="Beauty brand social media campaign showcase"
-                style={{ display: 'block', width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top' }}
-              />
+              {[
+                { src: '/brand_assets/campaign-lips-1.png', alt: 'Skincare campaign — beauty product application' },
+                { src: '/brand_assets/campaign-siir-oud.png', alt: 'SIIR Oud fragrance campaign' },
+                { src: '/brand_assets/campaign-lips-3.png', alt: 'Lipstick editorial campaign close-up' },
+              ].map(img => (
+                <div key={img.src} style={{ position: 'relative', borderRadius: '5px', overflow: 'hidden' }}>
+                  <img
+                    loading="lazy"
+                    decoding="async"
+                    src={img.src}
+                    alt={img.alt}
+                    style={{ display: 'block', width: '100%', height: '100%', objectFit: 'cover' }}
+                  />
+                </div>
+              ))}
               <div aria-hidden="true" style={{
                 position: 'absolute', inset: 0,
                 background: 'linear-gradient(135deg, hsl(280 65% 65% / 0.06) 0%, hsl(199 89% 60% / 0.05) 100%)',
@@ -4223,10 +4148,24 @@ function SocialMediaMarketing() {
               }}/>
               <div aria-hidden="true" style={{
                 position: 'absolute', inset: 0,
-                background: 'linear-gradient(to bottom, transparent 60%, hsl(270 20% 3% / 0.55) 100%)',
+                background: 'linear-gradient(to bottom, transparent 78%, hsl(270 20% 3% / 0.45) 100%)',
                 pointerEvents: 'none',
               }}/>
             </div>
+
+            {/* Small caption label — matches other subtle section labels */}
+            <p
+              className="font-sans uppercase"
+              style={{
+                fontSize: '0.72rem',
+                letterSpacing: '0.22em',
+                color: 'hsl(0 0% 100% / 0.56)',
+                marginTop: '1.1rem',
+                textAlign: 'center',
+              }}
+            >
+              Campaign visuals — produced by Weavy
+            </p>
           </div>
 
           {/* ── RIGHT: copy ── */}
@@ -4844,7 +4783,7 @@ function SocialMediaMarketing() {
                   loading="lazy"
                   decoding="async"
                   className="s6-media-img h-full w-full object-cover"
-                  style={{ objectPosition: 'center', filter: 'saturate(0.82) contrast(1.05) brightness(0.98)' }}
+                  style={{ objectPosition: 'center', filter: 'saturate(0.78) contrast(1.04) sepia(0.05)' }}
                 />
               </div>
 
@@ -4943,7 +4882,30 @@ function SocialMediaMarketing() {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-16 gap-y-16 lg:gap-x-24 lg:gap-y-20">
 
           {/* Block 1 — Conversion-Focused Strategy — soft orange */}
-          <div className="smf-block">
+          <div
+            className="smf-block"
+            style={{
+              position: 'relative',
+              padding: '1.75rem 1.6rem',
+              borderRadius: '18px',
+              background: 'linear-gradient(160deg, rgba(255,255,255,0.02), transparent)',
+              border: '1px solid hsl(0 0% 100% / 0.09)',
+              boxShadow: '0 10px 28px -8px hsl(0 0% 0% / 0.4)',
+              transition: 'transform 300ms cubic-bezier(0.16,1,0.3,1), border-color 300ms ease, box-shadow 300ms ease',
+            }}
+            onMouseEnter={e => {
+              const el = e.currentTarget as HTMLElement
+              el.style.transform = 'translateY(-4px)'
+              el.style.borderColor = 'hsl(24 95% 62% / 0.4)'
+              el.style.boxShadow = '0 16px 40px -10px hsl(0 0% 0% / 0.5), 0 0 32px -8px hsl(24 95% 62% / 0.25)'
+            }}
+            onMouseLeave={e => {
+              const el = e.currentTarget as HTMLElement
+              el.style.transform = 'none'
+              el.style.borderColor = 'hsl(0 0% 100% / 0.09)'
+              el.style.boxShadow = '0 10px 28px -8px hsl(0 0% 0% / 0.4)'
+            }}
+          >
             {/* Icon */}
             <div className="smf-icon" style={{ marginBottom: '1.4rem', display: 'inline-block' }}>
               <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
@@ -4980,7 +4942,30 @@ function SocialMediaMarketing() {
           </div>
 
           {/* Block 2 — Automation That Scales — electric cyan */}
-          <div className="smf-block">
+          <div
+            className="smf-block"
+            style={{
+              position: 'relative',
+              padding: '1.75rem 1.6rem',
+              borderRadius: '18px',
+              background: 'linear-gradient(160deg, rgba(255,255,255,0.02), transparent)',
+              border: '1px solid hsl(0 0% 100% / 0.09)',
+              boxShadow: '0 10px 28px -8px hsl(0 0% 0% / 0.4)',
+              transition: 'transform 300ms cubic-bezier(0.16,1,0.3,1), border-color 300ms ease, box-shadow 300ms ease',
+            }}
+            onMouseEnter={e => {
+              const el = e.currentTarget as HTMLElement
+              el.style.transform = 'translateY(-4px)'
+              el.style.borderColor = 'hsl(195 100% 55% / 0.4)'
+              el.style.boxShadow = '0 16px 40px -10px hsl(0 0% 0% / 0.5), 0 0 32px -8px hsl(195 100% 55% / 0.25)'
+            }}
+            onMouseLeave={e => {
+              const el = e.currentTarget as HTMLElement
+              el.style.transform = 'none'
+              el.style.borderColor = 'hsl(0 0% 100% / 0.09)'
+              el.style.boxShadow = '0 10px 28px -8px hsl(0 0% 0% / 0.4)'
+            }}
+          >
             {/* Icon */}
             <div className="smf-icon" style={{ marginBottom: '1.4rem', display: 'inline-block' }}>
               <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
@@ -5017,7 +5002,30 @@ function SocialMediaMarketing() {
           </div>
 
           {/* Block 3 — Premium Brand Presence — soft magenta */}
-          <div className="smf-block">
+          <div
+            className="smf-block"
+            style={{
+              position: 'relative',
+              padding: '1.75rem 1.6rem',
+              borderRadius: '18px',
+              background: 'linear-gradient(160deg, rgba(255,255,255,0.02), transparent)',
+              border: '1px solid hsl(0 0% 100% / 0.09)',
+              boxShadow: '0 10px 28px -8px hsl(0 0% 0% / 0.4)',
+              transition: 'transform 300ms cubic-bezier(0.16,1,0.3,1), border-color 300ms ease, box-shadow 300ms ease',
+            }}
+            onMouseEnter={e => {
+              const el = e.currentTarget as HTMLElement
+              el.style.transform = 'translateY(-4px)'
+              el.style.borderColor = 'hsl(320 80% 65% / 0.4)'
+              el.style.boxShadow = '0 16px 40px -10px hsl(0 0% 0% / 0.5), 0 0 32px -8px hsl(320 80% 65% / 0.25)'
+            }}
+            onMouseLeave={e => {
+              const el = e.currentTarget as HTMLElement
+              el.style.transform = 'none'
+              el.style.borderColor = 'hsl(0 0% 100% / 0.09)'
+              el.style.boxShadow = '0 10px 28px -8px hsl(0 0% 0% / 0.4)'
+            }}
+          >
             {/* Icon */}
             <div className="smf-icon" style={{ marginBottom: '1.4rem', display: 'inline-block' }}>
               <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
@@ -5052,7 +5060,30 @@ function SocialMediaMarketing() {
           </div>
 
           {/* Block 4 — Built for Long-Term Growth — bright blue */}
-          <div className="smf-block">
+          <div
+            className="smf-block"
+            style={{
+              position: 'relative',
+              padding: '1.75rem 1.6rem',
+              borderRadius: '18px',
+              background: 'linear-gradient(160deg, rgba(255,255,255,0.02), transparent)',
+              border: '1px solid hsl(0 0% 100% / 0.09)',
+              boxShadow: '0 10px 28px -8px hsl(0 0% 0% / 0.4)',
+              transition: 'transform 300ms cubic-bezier(0.16,1,0.3,1), border-color 300ms ease, box-shadow 300ms ease',
+            }}
+            onMouseEnter={e => {
+              const el = e.currentTarget as HTMLElement
+              el.style.transform = 'translateY(-4px)'
+              el.style.borderColor = 'hsl(215 90% 62% / 0.4)'
+              el.style.boxShadow = '0 16px 40px -10px hsl(0 0% 0% / 0.5), 0 0 32px -8px hsl(215 90% 62% / 0.25)'
+            }}
+            onMouseLeave={e => {
+              const el = e.currentTarget as HTMLElement
+              el.style.transform = 'none'
+              el.style.borderColor = 'hsl(0 0% 100% / 0.09)'
+              el.style.boxShadow = '0 10px 28px -8px hsl(0 0% 0% / 0.4)'
+            }}
+          >
             {/* Icon */}
             <div className="smf-icon" style={{ marginBottom: '1.4rem', display: 'inline-block' }}>
               <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
@@ -5587,9 +5618,11 @@ function GraphicDesignCreativeSystems() {
           clarity, and commercial impact.
         </p>
 
-        {/* Media wrapper — image today, drop-in <video poster="..."> later */}
+        {/* Media wrapper — image today, drop-in <video poster="..."> later.
+            Sized to ~70% of the original footprint so it no longer dominates
+            the viewport and the heading above stays on-screen. */}
         <div
-          className="relative w-full sm:w-[86vw] lg:w-[min(85vw,1520px)] aspect-[16/9]"
+          className="relative w-[92%] sm:w-[60vw] lg:w-[min(60vw,1064px)] aspect-[16/9]"
           style={{
             borderRadius: '20px',
             overflow: 'hidden',
@@ -5836,9 +5869,9 @@ const GDS_ITEMS = [
 
 function GdsCheckIcon() {
   return (
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" style={{ flexShrink: 0 }}>
-      <circle cx="8" cy="8" r="7.5" fill="hsl(38 90% 58% / 0.10)" stroke="hsl(38 90% 60% / 0.20)" strokeWidth="0.75"/>
-      <path d="M5 8L7 10L11 6" stroke="hsl(38 85% 68%)" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
+    <svg width="18" height="18" viewBox="0 0 16 16" fill="none" aria-hidden="true" style={{ flexShrink: 0 }}>
+      <circle cx="8" cy="8" r="7.5" fill="hsl(38 90% 58% / 0.18)" stroke="hsl(38 90% 60% / 0.4)" strokeWidth="0.75"/>
+      <path d="M5 8L7 10L11 6" stroke="hsl(38 90% 74%)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
     </svg>
   )
 }
@@ -9703,7 +9736,7 @@ export default function Services() {
                   : service.id === 'custom-chatbots'
                   ? () => { setActiveService('chatbot');  setTimeout(() => document.getElementById('chatbot-hero')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 60) }
                   : service.id === 'social-media-marketing'
-                  ? () => { setActiveService('social');   setTimeout(() => document.getElementById('social-media-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 60) }
+                  ? () => { setActiveService('social');   setTimeout(() => document.getElementById('social-media-marketing-detail')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 60) }
                   : service.id === 'graphic-design-animation'
                   ? () => { setActiveService('graphic');  setTimeout(() => document.getElementById('graphic-design-hero')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 60) }
                   : service.id === 'ugc'
@@ -10151,7 +10184,7 @@ export default function Services() {
             <div>
               <p
                 className="bwd1-eyebrow font-sans uppercase text-muted mb-5"
-                style={{ fontSize: '0.9rem', letterSpacing: '0.32em' }}
+                style={{ fontSize: '1.15rem', letterSpacing: '0.32em' }}
               >
                 Service
               </p>
@@ -10242,20 +10275,20 @@ export default function Services() {
               </p>
             </div>
 
-            {/* ── Right: Synergy interactive concept mockup — same width/proportions as the Villa Luna mockup above ── */}
+            {/* ── Right: interactive hero concept mockup — same width/proportions as the Villa Luna mockup above ── */}
             <div className="relative flex flex-col items-center lg:items-end">
 
               <div className="relative flex items-center justify-center lg:justify-end" style={{ width: '100%' }}>
-                {/* Violet ambient glow behind mockup */}
+                {/* Ambient glow behind mockup */}
                 <div aria-hidden="true" style={{
                   position: 'absolute', inset: '-20px',
-                  background: 'radial-gradient(ellipse 70% 60% at 55% 50%, hsl(260 70% 65% / 0.10) 0%, transparent 70%)',
+                  background: 'radial-gradient(ellipse 70% 60% at 55% 50%, hsl(205 85% 60% / 0.10) 0%, transparent 70%)',
                   filter: 'blur(48px)',
                   pointerEvents: 'none',
                 }}/>
 
                 <div className="bwd1-img" style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
-                  <SynergyMockup />
+                  <BespokeWeb1Mockup />
                 </div>
               </div>
 
@@ -10776,15 +10809,14 @@ export default function Services() {
               color: 'transparent',
               textShadow: '0 0 24px rgba(125, 220, 255, 0.16)',
             }}>
-              automate
+              elevate
             </em>{' '}
-            your business?
+            your brand visuals?
           </>}
-          subtext={<>
-            Book a free demo and see how Weavy can manage your calls, messages, bookings, and{' '}
-            leads from one <span style={{ color: 'rgba(191, 239, 255, 0.9)', fontWeight: 500 }}>managed AI platform</span>.
-          </>}
-          ctaLabel="hello@weavyautomation.com"
+          subtext="From campaign graphics to motion design — let's build something your audience remembers."
+          ctaLabel="Start a Project"
+          ctaHref="/contact"
+          ctaVariant="primary"
         />
       )}
 
