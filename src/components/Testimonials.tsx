@@ -5,66 +5,63 @@ const E: [number, number, number, number] = [0.16, 1, 0.3, 1]
 
 const testimonials = [
   {
-    name: 'Briana Patton',
-    role: 'Operations Manager',
-    initials: 'BP',
-    hue: 199,
+    name: 'Zakaria Dahir',
+    role: 'Co-Founder, Champion Office for Scaling Up Nutrition',
+    avatar: '/brand_assets/Dr.Zak.png',
+    avatarFocalPoint: { top: '-35%', left: '-25%' },
     quote:
-      'Weavy transformed our online presence entirely. The chatbot handles 80% of inquiries automatically — our team now focuses on closing deals instead of answering the same questions.',
+      'Weavy understood our mission from the first conversation. They built us a site that communicates trust and credibility — exactly what we needed to connect with partners and stakeholders. The process was smooth, the delivery was fast, and the result speaks for itself.',
   },
   {
-    name: 'Farhan Siddiqui',
-    role: 'Marketing Director',
-    initials: 'FS',
-    hue: 260,
+    name: 'Lila Karim',
+    role: 'Creative Director, Level UP',
+    initials: 'LK',
+    avatarGradient: 'linear-gradient(135deg, hsl(340 60% 26%), hsl(280 55% 16%))',
     quote:
-      'The AI chatbot on our website has become our best sales tool. It qualifies leads and books appointments automatically — 24/7, without us lifting a finger.',
-  },
-  {
-    name: 'Sana Sheikh',
-    role: 'Sales Manager',
-    initials: 'SS',
-    hue: 150,
-    quote:
-      'Onboarding was fast and the team genuinely understood our business. The results exceeded everything we expected. Measurable ROI from week one.',
-  },
-  {
-    name: 'Bilal Ahmed',
-    role: 'IT Manager',
-    initials: 'BA',
-    hue: 210,
-    quote:
-      'The automation systems they built save us hours every day. Implementation was smooth and the results were immediate. Best investment we made this year.',
-  },
-  {
-    name: 'Zainab Hussain',
-    role: 'Project Manager',
-    initials: 'ZH',
-    hue: 30,
-    quote:
-      'Social media went from a burden to a growth engine. The content strategy and scheduling system is exceptional. Our engagement has tripled.',
-  },
-  {
-    name: 'Omar Raza',
-    role: 'CEO',
-    initials: 'OR',
-    hue: 340,
-    quote:
-      'The bespoke website they delivered is stunning. Clean, fast, and exactly on brand. Clients constantly compliment it — it sets us apart from the competition.',
+      'Working with Weavy completely changed how we show up online. The social media strategy and content they delivered felt premium from day one — our engagement grew, our brand looked sharper, and clients started coming to us instead of the other way around.',
   },
 ]
 
-function Avatar({ initials, hue }: { initials: string; hue: number }) {
+function Avatar({
+  name, initials, avatar, avatarGradient, avatarFocalPoint,
+}: {
+  name: string
+  initials?: string
+  avatar?: string
+  avatarGradient?: string
+  avatarFocalPoint?: { top: string; left: string }
+}) {
+  if (initials) {
+    return (
+      <div
+        className="font-label w-9 h-9 rounded-full flex items-center justify-center text-xs font-medium tracking-wide shrink-0 select-none"
+        style={{
+          background: avatarGradient ?? 'linear-gradient(135deg, hsl(199 70% 22%), hsl(230 60% 14%))',
+          border: '1px solid rgba(255,255,255,0.12)',
+          color: 'hsl(199 85% 84%)',
+        }}
+      >
+        {initials}
+      </div>
+    )
+  }
+
   return (
-    <div
-      className="font-label w-9 h-9 rounded-full flex items-center justify-center text-xs font-medium tracking-wide shrink-0 select-none"
-      style={{
-        background: `hsl(${hue} 55% 18%)`,
-        border: `1px solid hsl(${hue} 55% 30% / 0.5)`,
-        color: `hsl(${hue} 70% 70%)`,
-      }}
-    >
-      {initials}
+    <div className="relative w-9 h-9 rounded-full shrink-0 overflow-hidden" style={{ border: '1px solid rgba(255,255,255,0.1)' }}>
+      <img
+        src={avatar}
+        alt={name}
+        style={{
+          position: 'absolute',
+          width: '150%',
+          height: '150%',
+          top: avatarFocalPoint?.top ?? '0',
+          left: avatarFocalPoint?.left ?? '-25%',
+          objectFit: 'cover',
+        }}
+      />
+      {/* Soft inner vignette — blends any residual edge tone from the source photo into the dark card */}
+      <div aria-hidden="true" style={{ position: 'absolute', inset: 0, boxShadow: 'inset 0 0 6px 1px rgba(0,0,0,0.45)' }} />
     </div>
   )
 }
@@ -113,7 +110,7 @@ export default function TestimonialsSection() {
         </motion.div>
 
         {/* Cards grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-3xl mx-auto">
           {testimonials.map((t, index) => (
             <motion.div
               key={t.name}
@@ -152,7 +149,7 @@ export default function TestimonialsSection() {
 
               {/* Author */}
               <div className="flex items-center gap-3 pt-4" style={{ borderTop: '1px solid rgba(255,255,255,0.07)' }}>
-                <Avatar initials={t.initials} hue={t.hue} />
+                <Avatar name={t.name} initials={t.initials} avatar={t.avatar} avatarGradient={t.avatarGradient} avatarFocalPoint={t.avatarFocalPoint} />
                 <div>
                   <p className="font-body font-medium text-primary" style={{ fontSize: '15px' }}>{t.name}</p>
                   <p className="font-label mt-0.5 font-medium" style={{ fontSize: '13px', color: 'var(--text-muted)' }}>{t.role}</p>

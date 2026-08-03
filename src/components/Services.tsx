@@ -5775,15 +5775,15 @@ function GraphicDesignEditorial() {
           <div className="flex items-center gap-4">
             <div style={{ width: 24, height: 1, background: 'hsl(38 90% 58% / 0.55)' }}/>
             <span style={{
-              fontSize: '0.6rem', letterSpacing: '0.3em', textTransform: 'uppercase',
-              color: 'hsl(38 90% 65%)', fontFamily: 'var(--font-sans, sans-serif)', fontWeight: 500,
+              fontSize: '0.77rem', letterSpacing: '0.3em', textTransform: 'uppercase',
+              color: 'hsl(38 95% 72%)', fontFamily: 'var(--font-sans, sans-serif)', fontWeight: 500,
             }}>
               02 — Premium Visual Execution
             </span>
           </div>
           <span style={{
-            fontSize: '0.6rem', letterSpacing: '0.2em', textTransform: 'uppercase',
-            color: 'hsl(0 0% 28%)', fontFamily: 'var(--font-sans, sans-serif)',
+            fontSize: '0.77rem', letterSpacing: '0.2em', textTransform: 'uppercase',
+            color: 'hsl(0 0% 68%)', fontFamily: 'var(--font-sans, sans-serif)',
           }}>
             Graphic Design / Animation
           </span>
@@ -9823,7 +9823,7 @@ export default function Services() {
             <p
               className="bwdc-eyebrow font-sans uppercase"
               style={{
-                fontSize: '0.64rem', letterSpacing: '0.38em',
+                fontSize: '0.87rem', letterSpacing: '0.38em',
                 color: 'hsl(36 40% 62%)', marginBottom: '1.8rem',
               }}
             >
@@ -9882,7 +9882,7 @@ export default function Services() {
             <p
               className="bwdc-sub font-sans font-normal"
               style={{
-                fontSize: 'clamp(0.75rem, 1.2vw, 0.88rem)', letterSpacing: '0.04em',
+                fontSize: 'clamp(0.92rem, 1.47vw, 1.08rem)', letterSpacing: '0.04em',
                 color: 'hsl(0 0% 48%)', lineHeight: 1.7,
               }}
             >
