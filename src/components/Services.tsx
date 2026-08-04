@@ -10178,19 +10178,19 @@ export default function Services() {
         <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to top, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
 
         <div className="relative z-10 max-w-[88rem] mx-auto px-6 sm:px-10">
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_2.35fr] gap-16 lg:gap-14 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.1fr] gap-16 lg:gap-14 items-center">
 
             {/* ── Left: text (unchanged) ── */}
             <div>
               <p
-                className="bwd1-eyebrow font-sans uppercase text-muted mb-5"
+                className="bwd1-eyebrow font-sans uppercase text-muted mb-6"
                 style={{ fontSize: '1.15rem', letterSpacing: '0.32em' }}
               >
                 Service
               </p>
 
               <h2
-                className="bwd1-heading font-heading font-medium text-text mb-8"
+                className="bwd1-heading font-heading font-medium text-text mb-10"
                 style={{
                   fontSize: 'clamp(2rem, 5vw, 3.5rem)',
                   lineHeight: 1.1,
@@ -10214,7 +10214,7 @@ export default function Services() {
               <div className="bwd1-divider" aria-hidden="true" style={{ display: 'none' }} />
 
               <p
-                className="bwd1-body font-sans font-normal mb-12 max-w-xl"
+                className="bwd1-body font-sans font-normal mb-14 max-w-xl"
                 style={{
                   fontSize: 'clamp(0.9rem, 1.5vw, 1.05rem)',
                   lineHeight: 1.8,
@@ -10226,13 +10226,13 @@ export default function Services() {
               </p>
 
               <p
-                className="bwd1-body font-sans font-normal text-text mb-5"
+                className="bwd1-body font-sans font-normal text-text mb-6"
                 style={{ fontSize: '0.78rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: '#7DDCFF', textShadow: '0 0 18px rgba(125,220,255,0.18)' }}
               >
                 What you get
               </p>
 
-              <ul className="mb-12 flex flex-col gap-3">
+              <ul className="mb-14 flex flex-col gap-4">
                 {[
                   'Tailored design aligned to your brand',
                   'Responsive across all devices',
@@ -10257,7 +10257,7 @@ export default function Services() {
               </ul>
 
               <p
-                className="bwd1-body font-sans font-normal text-text mb-5"
+                className="bwd1-body font-sans font-normal text-text mb-6"
                 style={{ fontSize: '0.78rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: '#7DDCFF', textShadow: '0 0 18px rgba(125,220,255,0.18)' }}
               >
                 Why it matters
@@ -10275,7 +10275,9 @@ export default function Services() {
               </p>
             </div>
 
-            {/* ── Right: interactive hero concept mockup — same width/proportions as the Villa Luna mockup above ── */}
+            {/* ── Right: interactive hero concept mockup — sized down to ~73% of its
+                previous width so it balances with the left column instead of
+                dominating it ── */}
             <div className="relative flex flex-col items-center lg:items-end">
 
               <div className="relative flex items-center justify-center lg:justify-end" style={{ width: '100%' }}>
