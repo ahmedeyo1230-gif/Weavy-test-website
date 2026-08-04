@@ -3703,7 +3703,7 @@ function SocialMediaMarketing() {
 
         {/* Heading */}
         <div className="mb-16">
-          <p className="sms-heading font-sans uppercase mb-4" style={{ opacity: 0, transform: 'translateY(20px)', fontSize: '0.7rem', letterSpacing: '0.3em', color: 'hsl(0 0% 40%)' }}>
+          <p className="sms-heading font-sans uppercase mb-4" style={{ opacity: 0, transform: 'translateY(20px)', fontSize: '0.7rem', letterSpacing: '0.3em', color: 'hsl(199 75% 70%)' }}>
             What we deliver
           </p>
           <h2
@@ -3730,7 +3730,7 @@ function SocialMediaMarketing() {
                 onMouseEnter={e => {
                   const num = e.currentTarget.querySelector('.sms-num') as HTMLElement | null
                   if (!num) return
-                  num.style.filter = 'drop-shadow(0 0 6px rgba(125,220,255,0.8)) drop-shadow(0 0 14px rgba(125,220,255,0.45))'
+                  num.style.filter = 'drop-shadow(0 0 8px rgba(125,220,255,0.95)) drop-shadow(0 0 20px rgba(125,220,255,0.6))'
                   gsap.killTweensOf(num)
                   gsap.to(num, { scale: 1.12, duration: 0.25, ease: 'power2.out', transformOrigin: 'center center' })
                   gsap.to(num, { scale: 1, duration: 0.7, delay: 0.25, ease: 'elastic.out(1, 0.45)', transformOrigin: 'center center' })
@@ -3738,7 +3738,7 @@ function SocialMediaMarketing() {
                 onMouseLeave={e => {
                   const num = e.currentTarget.querySelector('.sms-num') as HTMLElement | null
                   if (!num) return
-                  num.style.filter = 'drop-shadow(0 0 4px rgba(125,220,255,0.35))'
+                  num.style.filter = 'drop-shadow(0 0 6px rgba(125,220,255,0.6)) drop-shadow(0 0 14px rgba(125,220,255,0.32))'
                   gsap.killTweensOf(num)
                   gsap.to(num, { scale: 1, duration: 0.35, ease: 'power2.inOut', transformOrigin: 'center center' })
                 }}
@@ -3747,12 +3747,13 @@ function SocialMediaMarketing() {
                 <span
                   className="sms-num font-sans shrink-0"
                   style={{
-                    fontSize: '0.65rem',
+                    fontSize: '0.85rem',
+                    fontWeight: 600,
                     letterSpacing: '0.18em',
                     minWidth: '2rem',
                     fontVariantNumeric: 'tabular-nums',
-                    color: '#7DDCFF',
-                    filter: 'drop-shadow(0 0 4px rgba(125,220,255,0.35))',
+                    color: '#93E5FF',
+                    filter: 'drop-shadow(0 0 6px rgba(125,220,255,0.6)) drop-shadow(0 0 14px rgba(125,220,255,0.32))',
                     transition: 'filter 0.3s ease',
                     display: 'inline-block',
                   }}
@@ -6264,7 +6265,7 @@ function GraphicDesignSplitA() {
             {/* Stat row */}
             <div
               className="gdsa-t flex items-center gap-10"
-              style={{ paddingTop: 'clamp(1.5rem, 2.5vw, 2rem)', borderTop: '1px solid hsl(0 0% 100% / 0.05)' }}
+              style={{ paddingTop: 'clamp(1.5rem, 2.5vw, 2rem)' }}
             >
               {[
                 { value: 'Custom', label: 'Brand direction' },
@@ -10192,7 +10193,7 @@ export default function Services() {
                 style={{
                   fontSize: '0.72rem',
                   letterSpacing: '0.22em',
-                  color: 'hsl(0 0% 100% / 0.56)',
+                  color: 'hsl(0 0% 100% / 0.6)',
                   marginTop: '1.1rem',
                   textAlign: 'center',
                 }}
