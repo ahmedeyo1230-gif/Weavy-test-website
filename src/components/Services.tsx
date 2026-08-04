@@ -10035,116 +10035,6 @@ export default function Services() {
       {/* ── Bespoke Website Design — floating web showcase (Section 6) ── */}
       <BespokeWebShowcase />
 
-      {/* ── Bespoke Website Design — Hero ── */}
-      <section
-        id="bespoke-hero"
-        className="relative w-screen overflow-hidden"
-          style={{
-            height: 'clamp(420px, 52vw, 720px)',
-            marginLeft: 'calc(-50vw + 50%)',
-            marginRight: 'calc(-50vw + 50%)',
-            background: '#010709',
-          }}
-      >
-        {/* Full-width background image */}
-        <img
-          src="/brand_assets/HI-D.webp"
-          alt=""
-          aria-hidden="true"
-          style={{
-            position: 'absolute',
-            inset: 0,
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover',
-            objectPosition: 'center top',
-          }}
-        />
-
-        {/* Dark gradient overlay — fully opaque left-third to mask video behind text */}
-        <div aria-hidden="true" style={{
-          position: 'absolute', inset: 0,
-          background: [
-            'linear-gradient(to right, hsl(0 0% 0% / 1.0) 0%, hsl(0 0% 0% / 0.88) 38%, hsl(0 0% 0% / 0.32) 65%, hsl(0 0% 0% / 0.08) 100%)',
-            'linear-gradient(to top, hsl(0 0% 0% / 0.55) 0%, transparent 60%)',
-          ].join(', '),
-        }}/>
-
-        {/* Dot grid texture */}
-        <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
-          backgroundImage: 'radial-gradient(hsl(210 40% 60% / 0.022) 1px, transparent 1px)',
-          backgroundSize: '28px 28px',
-        }}/>
-
-        {/* Text content */}
-        <div className="relative z-10 h-full flex items-center px-6 sm:px-12 lg:px-20">
-          <div style={{ maxWidth: '44rem' }}>
-
-            {/* Eyebrow */}
-            <p
-              className="font-sans font-normal uppercase mb-5"
-              style={{
-                fontSize: '0.63rem',
-                letterSpacing: '0.32em',
-                color: 'hsl(205 85% 68%)',
-              }}
-            >
-              Bespoke Website Design
-            </p>
-
-            {/* Main heading */}
-            <h1
-              className="font-heading font-medium text-white mb-6"
-              style={{
-                fontSize: 'clamp(2.6rem, 6vw, 5rem)',
-                lineHeight: 1.08,
-                letterSpacing: '-0.04em',
-              }}
-            >
-              <span style={{ display: 'block' }}>Built for your brand.</span>
-              <em style={{
-                display: 'block',
-                fontFamily: 'var(--font-body)',
-                fontStyle: 'italic',
-                fontWeight: 400,
-                color: 'hsl(205 85% 74%)',
-              }}>
-                Designed to perform.
-              </em>
-            </h1>
-
-            {/* Accent rule */}
-            <div style={{
-              height: 1,
-              width: '10rem',
-              background: 'linear-gradient(to right, hsl(205 85% 62% / 0.55), transparent)',
-              marginBottom: '1.6rem',
-            }}/>
-
-            {/* Subtext */}
-            <p
-              className="font-sans font-normal"
-              style={{
-                fontSize: 'clamp(0.88rem, 1.5vw, 1.05rem)',
-                lineHeight: 1.8,
-                color: 'hsl(0 0% 62%)',
-                maxWidth: '34rem',
-              }}
-            >
-              No templates. No shortcuts. Every pixel is crafted around your
-              goals, your audience, and the impression you want to leave.
-            </p>
-
-          </div>
-        </div>
-
-        {/* Bottom fade into next section */}
-        <div aria-hidden="true" className="pointer-events-none absolute left-0 right-0 bottom-0" style={{
-          height: '100px',
-          background: 'linear-gradient(to top, #010709 0%, transparent 100%)',
-        }}/>
-      </section>
-
       {/* ── Bespoke Website Design — full detail ── */}
       <section
         ref={bwd1Ref}
@@ -10178,7 +10068,7 @@ export default function Services() {
         <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to top, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
 
         <div className="relative z-10 max-w-[88rem] mx-auto px-6 sm:px-10">
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.1fr] gap-16 lg:gap-14 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.6fr] gap-16 lg:gap-14 items-center">
 
             {/* ── Left: text (unchanged) ── */}
             <div>
@@ -10275,12 +10165,12 @@ export default function Services() {
               </p>
             </div>
 
-            {/* ── Right: interactive hero concept mockup — sized down to ~73% of its
-                previous width so it balances with the left column instead of
-                dominating it ── */}
-            <div className="relative flex flex-col items-center lg:items-end">
+            {/* ── Right: interactive hero concept mockup — sized up (~18%) and
+                shifted toward the column's start edge so it sits closer to
+                the text column instead of hugging the far right ── */}
+            <div className="relative flex flex-col items-center lg:items-start">
 
-              <div className="relative flex items-center justify-center lg:justify-end" style={{ width: '100%' }}>
+              <div className="relative flex items-center justify-center lg:justify-start" style={{ width: '100%' }}>
                 {/* Ambient glow behind mockup */}
                 <div aria-hidden="true" style={{
                   position: 'absolute', inset: '-20px',
