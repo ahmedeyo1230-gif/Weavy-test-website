@@ -1119,23 +1119,28 @@ function BespokeWebShowcase() {
                 flexShrink: 0,
                 width: 40, height: 40, borderRadius: '50%',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
-                background: 'rgba(255,255,255,0.03)',
-                border: '1px solid rgba(255,255,255,0.12)',
-                color: 'rgba(255,255,255,0.55)',
+                background: 'rgba(255,255,255,0.05)',
+                border: '1px solid rgba(255,255,255,0.22)',
+                color: 'rgba(255,255,255,0.85)',
+                opacity: 0.65,
                 cursor: 'pointer',
-                transition: 'border-color 200ms, color 200ms, background 200ms',
+                transition: 'opacity 220ms, transform 220ms, border-color 220ms, color 220ms, background 220ms',
               }}
               onMouseOver={e => {
                 const el = e.currentTarget as HTMLButtonElement
-                el.style.borderColor = 'rgba(232,201,122,0.45)'
+                el.style.opacity = '1'
+                el.style.transform = 'scale(1.1)'
+                el.style.borderColor = 'rgba(232,201,122,0.55)'
                 el.style.color = '#E8C97A'
-                el.style.background = 'rgba(200,168,90,0.08)'
+                el.style.background = 'rgba(200,168,90,0.1)'
               }}
               onMouseOut={e => {
                 const el = e.currentTarget as HTMLButtonElement
-                el.style.borderColor = 'rgba(255,255,255,0.12)'
-                el.style.color = 'rgba(255,255,255,0.55)'
-                el.style.background = 'rgba(255,255,255,0.03)'
+                el.style.opacity = '0.65'
+                el.style.transform = 'scale(1)'
+                el.style.borderColor = 'rgba(255,255,255,0.22)'
+                el.style.color = 'rgba(255,255,255,0.85)'
+                el.style.background = 'rgba(255,255,255,0.05)'
               }}
             >
               <ChevronLeft size={18} />
@@ -1235,23 +1240,28 @@ function BespokeWebShowcase() {
                 flexShrink: 0,
                 width: 40, height: 40, borderRadius: '50%',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
-                background: 'rgba(255,255,255,0.03)',
-                border: '1px solid rgba(255,255,255,0.12)',
-                color: 'rgba(255,255,255,0.55)',
+                background: 'rgba(255,255,255,0.05)',
+                border: '1px solid rgba(255,255,255,0.22)',
+                color: 'rgba(255,255,255,0.85)',
+                opacity: 0.65,
                 cursor: 'pointer',
-                transition: 'border-color 200ms, color 200ms, background 200ms',
+                transition: 'opacity 220ms, transform 220ms, border-color 220ms, color 220ms, background 220ms',
               }}
               onMouseOver={e => {
                 const el = e.currentTarget as HTMLButtonElement
-                el.style.borderColor = 'rgba(232,201,122,0.45)'
+                el.style.opacity = '1'
+                el.style.transform = 'scale(1.1)'
+                el.style.borderColor = 'rgba(232,201,122,0.55)'
                 el.style.color = '#E8C97A'
-                el.style.background = 'rgba(200,168,90,0.08)'
+                el.style.background = 'rgba(200,168,90,0.1)'
               }}
               onMouseOut={e => {
                 const el = e.currentTarget as HTMLButtonElement
-                el.style.borderColor = 'rgba(255,255,255,0.12)'
-                el.style.color = 'rgba(255,255,255,0.55)'
-                el.style.background = 'rgba(255,255,255,0.03)'
+                el.style.opacity = '0.65'
+                el.style.transform = 'scale(1)'
+                el.style.borderColor = 'rgba(255,255,255,0.22)'
+                el.style.color = 'rgba(255,255,255,0.85)'
+                el.style.background = 'rgba(255,255,255,0.05)'
               }}
             >
               <ChevronRight size={18} />
