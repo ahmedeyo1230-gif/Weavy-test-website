@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { Globe, Bot, BarChart2, Sparkles, Video, Settings2, Plug, Clock, UserCheck, CalendarDays, Zap, Camera, Target, Layers, MessageSquare, Filter } from 'lucide-react'
+import { Globe, Bot, BarChart2, Sparkles, Video, Settings2, Plug, Clock, UserCheck, CalendarDays, Zap, Camera, Target, Layers, MessageSquare, Filter, ChevronLeft, ChevronRight } from 'lucide-react'
 import { MessengerGlowBackground } from './ui/background-components'
 import { TestimonialsSection } from './ui/testimonials-1'
 import { GridBackground, NoiseCanvasBg, DarkSphereGridBg, BespokeCinemaArchBg } from './ui/grid-background'
@@ -865,12 +865,6 @@ const BWS_FEATURES = [
   { icon: '→', label: 'Conversion-Focused' },
 ]
 
-const ZEBRA_SERVICES = [
-  { title: 'Advanced Diagnostics',     caption: 'In-house imaging & bloodwork',   crop: '18% 25%', filter: 'brightness(1.22) contrast(1.08) saturate(1.05)' },
-  { title: 'Specialist Consultations', caption: 'One-to-one, consultant-led',     crop: '62% 40%', filter: 'brightness(1.22) contrast(1.08) saturate(1.05)' },
-  { title: 'Preventive Health',        caption: 'Personalised long-term care',    crop: '80% 60%', filter: 'brightness(1.22) contrast(1.08) saturate(1.05)' },
-]
-
 // Bespoke Website Design's hero-slot mockup — Web1.mp4 inside the same
 // macOS browser chrome used for the Villa Luna mockup above, matched on
 // width/proportions/radius/shadow for visual consistency.
@@ -938,300 +932,73 @@ function BespokeWeb1Mockup() {
   )
 }
 
-// Card 1's hero slot — Zebra Private Health. Gentle GSAP-driven image
-// parallax + a cursor-follow spotlight inside the frame, both gated behind
-// prefers-reduced-motion (matches the pattern already used for Card 2's
-// PrivateResidenceHero — a static, fully legible frame with reduced motion).
-function ZebraHeroVisual() {
-  const frameRef = useRef<HTMLDivElement>(null)
-  const imgRef   = useRef<HTMLImageElement>(null)
-  const spotRef  = useRef<HTMLDivElement>(null)
-  const [reduced, setReduced] = useState(false)
-
-  useEffect(() => {
-    const mq = window.matchMedia('(prefers-reduced-motion: reduce)')
-    setReduced(mq.matches)
-    const handler = (e: MediaQueryListEvent) => setReduced(e.matches)
-    mq.addEventListener('change', handler)
-    return () => mq.removeEventListener('change', handler)
-  }, [])
-
-  useEffect(() => {
-    if (reduced) return
-    const el = frameRef.current
-    if (!el) return
-
-    const onMove = (e: MouseEvent) => {
-      const r = el.getBoundingClientRect()
-      const x = (e.clientX - r.left) / r.width
-      const y = (e.clientY - r.top) / r.height
-      if (imgRef.current) {
-        gsap.to(imgRef.current, { x: (x - 0.5) * 14, y: (y - 0.5) * 10, duration: 0.9, ease: 'power2.out' })
-      }
-      if (spotRef.current) {
-        gsap.to(spotRef.current, { x: x * r.width, y: y * r.height, opacity: 1, duration: 0.35, ease: 'power2.out' })
-      }
-    }
-    const onLeave = () => {
-      if (imgRef.current) gsap.to(imgRef.current, { x: 0, y: 0, duration: 0.9, ease: 'power2.out' })
-      if (spotRef.current) gsap.to(spotRef.current, { opacity: 0, duration: 0.4, ease: 'power2.out' })
-    }
-    el.addEventListener('mousemove', onMove)
-    el.addEventListener('mouseleave', onLeave)
-    return () => {
-      el.removeEventListener('mousemove', onMove)
-      el.removeEventListener('mouseleave', onLeave)
-    }
-  }, [reduced])
-
-  return (
-    <div ref={frameRef} style={{ position: 'relative', height: 'clamp(200px, 26vw, 290px)', overflow: 'hidden' }}>
-      <img
-        ref={imgRef}
-        src="/brand_assets/ZebraClinic.webp"
-        alt="Zebra Private Health — consultant-led clinic interior"
-        loading="lazy"
-        style={{
-          position: 'absolute', inset: '-3%', width: '106%', height: '106%',
-          objectFit: 'cover', objectPosition: 'center 38%',
-          filter: 'brightness(1.22) contrast(1.08) saturate(1.05)',
-          willChange: 'transform',
-        }}
-      />
-      {/* Dark bottom gradient for text legibility */}
-      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(6,8,8,0.15) 0%, rgba(6,8,8,0.08) 52%, rgba(6,8,8,0) 100%)' }} />
-      {/* Warm edge vignette */}
-      <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse 95% 85% at 42% 50%, transparent 38%, rgba(4,5,5,0.08) 72%, rgba(4,5,5,0.15) 100%)' }} />
-
-      {/* Cursor-follow spotlight */}
-      {!reduced && (
-        <div
-          ref={spotRef}
-          aria-hidden="true"
-          style={{
-            position: 'absolute', top: 0, left: 0, width: '160px', height: '160px',
-            marginLeft: '-80px', marginTop: '-80px', borderRadius: '50%',
-            background: 'radial-gradient(circle, rgba(235,220,185,0.14) 0%, rgba(200,168,90,0.06) 45%, transparent 72%)',
-            opacity: 0, pointerEvents: 'none',
-          }}
-        />
-      )}
-
-      {/* Text overlay */}
-      <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: '16px 22px', zIndex: 1 }}>
-        <p style={{ fontSize: '5.5px', letterSpacing: '0.30em', textTransform: 'uppercase', color: 'rgba(200,168,90,0.72)', marginBottom: '5px' }}>
-          Consultant-Led Private Care
-        </p>
-        <h3 style={{ fontSize: 'clamp(13px, 2vw, 18px)', fontWeight: 500, color: '#EDE0C4', lineHeight: 1.15, letterSpacing: '-0.02em', fontFamily: 'var(--font-label)', marginBottom: '6px', maxWidth: '72%' }}>
-          Exceptional care, centred around you.
-        </h3>
-        <p style={{ fontSize: '6.5px', color: 'rgba(210,222,222,0.62)', lineHeight: 1.5, maxWidth: '58%', marginBottom: '9px' }}>
-          Private consultations, advanced diagnostics and personalised treatment in the heart of London.
-        </p>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-          <span style={{ padding: '5px 12px', borderRadius: '4px', background: 'rgba(200,168,90,0.14)', border: '1px solid rgba(200,168,90,0.42)', fontSize: '6.5px', fontWeight: 600, color: '#F0DDA8', letterSpacing: '0.05em' }}>
-            Book a Consultation
-          </span>
-          <span style={{ fontSize: '6.5px', color: 'rgba(200,220,222,0.55)', letterSpacing: '0.03em', borderBottom: '1px solid rgba(200,220,222,0.28)', paddingBottom: '1px' }}>
-            Meet Our Consultants
-          </span>
-        </div>
-      </div>
-    </div>
-  )
-}
-
-function ZebraServiceCard({ svc }: { svc: typeof ZEBRA_SERVICES[number] }) {
-  return (
-    <div
-      style={{
-        borderRadius: '8px', overflow: 'hidden', border: '1px solid rgba(200,168,90,0.10)', background: 'rgba(200,168,90,0.03)',
-        transform: 'translateY(0)',
-        boxShadow: '0 0 0 rgba(200,168,90,0)',
-        transition: 'transform 700ms cubic-bezier(0.16, 1, 0.3, 1), border-color 700ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 700ms cubic-bezier(0.16, 1, 0.3, 1)',
-      }}
-      onMouseEnter={e => {
-        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-        const el = e.currentTarget as HTMLElement
-        el.style.transform = 'translateY(-4px)'
-        el.style.borderColor = 'rgba(228,200,122,0.42)'
-        el.style.boxShadow = '0 10px 24px rgba(0,0,0,0.30), 0 0 18px rgba(200,168,90,0.14)'
-      }}
-      onMouseLeave={e => {
-        const el = e.currentTarget as HTMLElement
-        el.style.transform = 'translateY(0)'
-        el.style.borderColor = 'rgba(200,168,90,0.10)'
-        el.style.boxShadow = '0 0 0 rgba(200,168,90,0)'
-      }}
-    >
-      <div style={{ height: '80px', position: 'relative', overflow: 'hidden' }}>
-        <img
-          src="/brand_assets/ZebraClinic.webp"
-          alt={`${svc.title} at Zebra Private Health`}
-          loading="lazy"
-          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: svc.crop, filter: svc.filter }}
-        />
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(6,8,8,0.15) 0%, rgba(6,8,8,0.06) 55%, transparent 100%)' }} />
-      </div>
-      <div style={{ padding: '8px 9px' }}>
-        <p style={{ fontSize: '8px', fontWeight: 600, color: 'rgba(228,208,168,0.86)', marginBottom: '3px', lineHeight: 1.2 }}>{svc.title}</p>
-        <p style={{ fontSize: '7px', color: 'rgba(180,196,196,0.55)', lineHeight: 1.35 }}>{svc.caption}</p>
-      </div>
-    </div>
-  )
-}
-
-// Card 2's hero slot — a functioning bespoke-site preview (image + real HTML
-// interface, not a poster): cursor-tracked spotlight and a very small 3-D
-// tilt on the frame, plus a distinct 700ms hover state (image scale, title
-// lift) on the image/text themselves. All motion is skipped under
-// prefers-reduced-motion, leaving one static, fully legible frame.
-function PrivateResidenceHero() {
-  const frameRef = useRef<HTMLDivElement>(null)
-  const spotRef  = useRef<HTMLDivElement>(null)
-  const [reduced, setReduced] = useState(false)
-  const [hovered, setHovered] = useState(false)
-
-  useEffect(() => {
-    const mq = window.matchMedia('(prefers-reduced-motion: reduce)')
-    setReduced(mq.matches)
-    const handler = (e: MediaQueryListEvent) => setReduced(e.matches)
-    mq.addEventListener('change', handler)
-    return () => mq.removeEventListener('change', handler)
-  }, [])
-
-  useEffect(() => {
-    if (reduced) return
-    const el = frameRef.current
-    if (!el) return
-    gsap.set(el, { transformPerspective: 900 })
-
-    const onMove = (e: MouseEvent) => {
-      const r = el.getBoundingClientRect()
-      const x = (e.clientX - r.left) / r.width
-      const y = (e.clientY - r.top) / r.height
-      gsap.to(el, { rotateX: (0.5 - y) * 2.6, rotateY: (x - 0.5) * 3.6, duration: 0.6, ease: 'power2.out' })
-      if (spotRef.current) {
-        gsap.to(spotRef.current, { x: x * r.width, y: y * r.height, opacity: 1, duration: 0.35, ease: 'power2.out' })
-      }
-    }
-    const onLeave = () => {
-      gsap.to(el, { rotateX: 0, rotateY: 0, duration: 0.7, ease: 'power2.out' })
-      if (spotRef.current) gsap.to(spotRef.current, { opacity: 0, duration: 0.4, ease: 'power2.out' })
-    }
-    el.addEventListener('mousemove', onMove)
-    el.addEventListener('mouseleave', onLeave)
-    return () => {
-      el.removeEventListener('mousemove', onMove)
-      el.removeEventListener('mouseleave', onLeave)
-    }
-  }, [reduced])
-
-  return (
-    <div
-      ref={frameRef}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      style={{ position: 'relative', height: '155px', overflow: 'hidden', background: '#050810', transformStyle: 'preserve-3d' }}
-    >
-      <img
-        src="/brand_assets/PrivateResidence.webp"
-        alt="Private residence hero — sculptural modern villa at dusk"
-        loading="lazy"
-        style={{
-          position: 'absolute', inset: 0, width: '100%', height: '100%',
-          objectFit: 'cover', objectPosition: 'center 42%',
-          filter: 'brightness(1.22) contrast(1.08) saturate(1.05)',
-          transform: !reduced && hovered ? 'scale(1.035)' : 'scale(1)',
-          transition: 'transform 700ms cubic-bezier(0.16, 1, 0.3, 1)',
-          willChange: 'transform',
-        }}
-      />
-      {/* Dark bottom gradient for text legibility */}
-      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(4,6,10,0.15) 0%, rgba(4,6,10,0.07) 46%, rgba(4,6,10,0) 100%)' }} />
-
-      {/* Cursor-follow spotlight */}
-      {!reduced && (
-        <div
-          ref={spotRef}
-          aria-hidden="true"
-          style={{
-            position: 'absolute', top: 0, left: 0, width: '110px', height: '110px',
-            marginLeft: '-55px', marginTop: '-55px', borderRadius: '50%',
-            background: 'radial-gradient(circle, rgba(235,220,185,0.16) 0%, rgba(200,168,90,0.07) 45%, transparent 72%)',
-            opacity: 0, pointerEvents: 'none',
-          }}
-        />
-      )}
-
-      {/* Text overlay */}
-      <div
-        style={{
-          position: 'absolute', left: 0, right: 0, bottom: 0, padding: '13px 16px',
-          transform: !reduced && hovered ? 'translateY(-6px)' : 'translateY(0)',
-          transition: 'transform 700ms cubic-bezier(0.16, 1, 0.3, 1)',
-        }}
-      >
-        <p style={{ fontSize: '5.5px', letterSpacing: '0.30em', textTransform: 'uppercase', color: 'rgba(200,168,90,0.72)', marginBottom: '5px' }}>
-          Private Residence · London
-        </p>
-        <div aria-hidden="true" style={{ width: '22px', height: '1px', background: 'rgba(200,168,90,0.55)', marginBottom: '6px' }} />
-        <h3 style={{ fontSize: 'clamp(11px, 1.7vw, 14px)', fontWeight: 500, color: '#EDE0C4', lineHeight: 1.12, letterSpacing: '-0.01em', fontFamily: 'var(--font-label)', marginBottom: '6px' }}>
-          FORMED BY LIGHT
-        </h3>
-        <span style={{ fontSize: '7px', color: 'rgba(228,208,168,0.72)', letterSpacing: '0.04em' }}>
-          Explore Project ↗
-        </span>
-      </div>
-    </div>
-  )
-}
+const BWS_PROJECTS = [
+  { image: '/brand_assets/zebra-mockup.png', name: 'ZEBRA', tag: 'Private Health', url: 'zebraprivatehealth.com' },
+  { image: '/brand_assets/vael-mockup.png', name: 'VAEL', tag: 'Creative Studio', url: 'vaelstudio.com' },
+  { image: '/brand_assets/kairos-mockup.png', name: 'KAIROS', tag: 'Brand Identity', url: 'kairos.com' },
+  { image: '/brand_assets/solenne-mockup.png', name: 'SOLENNE', tag: 'Digital Design', url: 'solenne.com' },
+]
 
 function BespokeWebShowcase() {
   const sectionRef = useRef<HTMLElement>(null)
-  const card1Ref   = useRef<HTMLDivElement>(null)
-  const card2Ref   = useRef<HTMLDivElement>(null)
-  const [mouse, setMouse] = useState({ x: 0, y: 0 })
+  const carouselRef = useRef<HTMLDivElement>(null)
+  const [active, setActive] = useState(0)
+  const [paused, setPaused] = useState(false)
+  const resumeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => {
     const el = sectionRef.current
+    const carousel = carouselRef.current
     if (!el) return
     const headerEls = el.querySelectorAll('.bws-header')
-    const wrap1 = card1Ref.current
-    const wrap2 = card2Ref.current
-    if (!wrap1 || !wrap2) return
     gsap.set(headerEls, { opacity: 0, y: 30, filter: 'blur(8px)' })
-    gsap.set(wrap1, { opacity: 0, y: 60, scale: 0.96, filter: 'blur(4px)' })
-    gsap.set(wrap2, { opacity: 0, y: 80, scale: 0.94, filter: 'blur(4px)' })
+    if (carousel) gsap.set(carousel, { opacity: 0, y: 50, filter: 'blur(4px)' })
     const obs = new IntersectionObserver(([entry]) => {
       if (!entry.isIntersecting) return
       const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
       tl.to(headerEls, { opacity: 1, y: 0, filter: 'blur(0px)', duration: 1.0, stagger: 0.12 }, 0)
-      tl.to(wrap1, { opacity: 1, y: 0, scale: 1, filter: 'blur(0px)', duration: 1.15 }, 0.25)
-      tl.to(wrap2, { opacity: 1, y: 0, scale: 1, filter: 'blur(0px)', duration: 1.05 }, 0.4)
+      if (carousel) tl.to(carousel, { opacity: 1, y: 0, filter: 'blur(0px)', duration: 1.0 }, 0.3)
       obs.disconnect()
     }, { threshold: 0.1 })
     obs.observe(el)
     return () => obs.disconnect()
   }, [])
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
-    const rect = sectionRef.current!.getBoundingClientRect()
-    setMouse({
-      x: (e.clientX - rect.left - rect.width  / 2) / (rect.width  / 2),
-      y: (e.clientY - rect.top  - rect.height / 2) / (rect.height / 2),
-    })
-  }
-  const handleMouseLeave = () => setMouse({ x: 0, y: 0 })
+  // Auto-cycle every 5s, paused on hover/click/arrow interaction.
+  useEffect(() => {
+    if (paused) return
+    const id = setInterval(() => {
+      setActive(a => (a + 1) % BWS_PROJECTS.length)
+    }, 5000)
+    return () => clearInterval(id)
+  }, [paused])
 
-  const t1 = `perspective(1400px) rotateX(${4  + mouse.y * 1.8}deg) rotateY(${-7  + mouse.x * 4}deg) rotateZ(-0.6deg)`
-  const t2 = `perspective(1400px) rotateX(${5  + mouse.y * 1.2}deg) rotateY(${-10 + mouse.x * 2.5}deg) rotateZ(-1.2deg)`
+  useEffect(() => () => {
+    if (resumeTimeoutRef.current) clearTimeout(resumeTimeoutRef.current)
+  }, [])
+
+  const scheduleResume = () => {
+    if (resumeTimeoutRef.current) clearTimeout(resumeTimeoutRef.current)
+    resumeTimeoutRef.current = setTimeout(() => setPaused(false), 8000)
+  }
+  const handleMouseEnter = () => {
+    if (resumeTimeoutRef.current) clearTimeout(resumeTimeoutRef.current)
+    setPaused(true)
+  }
+  const handleMouseLeave = () => {
+    scheduleResume()
+  }
+  const goTo = (i: number) => {
+    setActive(((i % BWS_PROJECTS.length) + BWS_PROJECTS.length) % BWS_PROJECTS.length)
+    setPaused(true)
+    scheduleResume()
+  }
+
+  const activeProject = BWS_PROJECTS[active]
 
   return (
     <section
       ref={sectionRef}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
       className="relative w-full overflow-hidden"
       style={{ background: '#060208', padding: 'clamp(6rem, 12vw, 10rem) 0 clamp(7rem, 14vw, 12rem)' }}
     >
@@ -1332,225 +1099,197 @@ function BespokeWebShowcase() {
           </div>
         </div>
 
-        {/* ── Floating mockup stage ── */}
-        <div className="relative mx-auto" style={{ maxWidth: '980px', height: 'clamp(540px, 70vw, 800px)' }}>
+        {/* ── Single-featured carousel ── */}
+        <div
+          ref={carouselRef}
+          className="relative mx-auto"
+          style={{ maxWidth: '1040px' }}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
+          <div style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 'clamp(0.6rem, 2.4vw, 1.75rem)' }}>
 
-          {/* ── Card 2 — back (VAEL STUDIO · dark creative agency) ──
-              Below `md` this used to be `hidden`, leaving only Card 1 on phones.
-              It's now shown at every size — scaled down and tucked further
-              behind/below Card 1 on phones/small tablets so both fit without
-              overflow; `md:` and up restores the exact original desktop/tablet
-              position and size untouched. */}
-          <div
-            ref={card2Ref}
-            className="block w-[58%] -right-[4%] bottom-[6%] md:w-[clamp(438px,66%,670px)] md:right-0 md:bottom-0"
-            style={{
-              position: 'absolute',
-              zIndex: 1,
-              transition: 'transform 0.9s cubic-bezier(0.16, 1, 0.3, 1)',
-              transform: t2,
-              willChange: 'transform',
-            }}
-          >
-            <div aria-hidden="true" style={{ position: 'absolute', bottom: '-22px', left: '8%', right: '8%', height: '34px', background: 'radial-gradient(ellipse 80% 100% at 50% 0%, rgba(125,220,255,0.15), transparent 80%)', filter: 'blur(14px)' }} />
-            <div style={{
-              background: '#070B10',
-              borderRadius: '12px',
-              border: '1px solid rgba(125,220,255,0.11)',
-              boxShadow: '0 28px 72px rgba(0,0,0,0.60), 0 4px 18px rgba(0,0,0,0.38), 0 0 0 1px rgba(125,220,255,0.05)',
-              overflow: 'hidden',
-            }}>
-              {/* Chrome */}
-              <div style={{ height: '28px', background: '#0C1118', borderBottom: '1px solid rgba(125,220,255,0.07)', display: 'flex', alignItems: 'center', padding: '0 10px', gap: '5px' }}>
-                <div style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#FF6058', opacity: 0.65 }} />
-                <div style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#FFBD2E', opacity: 0.65 }} />
-                <div style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#28CA41', opacity: 0.65 }} />
-                <div style={{ flex: 1, height: '14px', background: '#121820', borderRadius: '4px', marginLeft: '8px', display: 'flex', alignItems: 'center', paddingLeft: '8px' }}>
-                  <span style={{ fontSize: '6.5px', color: 'rgba(125,200,255,0.32)', letterSpacing: '0.02em' }}>vaelstudio.com</span>
+            {/* Left arrow */}
+            <button
+              type="button"
+              aria-label="Previous project"
+              onClick={() => goTo(active - 1)}
+              className="bws-arrow"
+              style={{
+                flexShrink: 0,
+                width: 40, height: 40, borderRadius: '50%',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                background: 'rgba(255,255,255,0.03)',
+                border: '1px solid rgba(255,255,255,0.12)',
+                color: 'rgba(255,255,255,0.55)',
+                cursor: 'pointer',
+                transition: 'border-color 200ms, color 200ms, background 200ms',
+              }}
+              onMouseOver={e => {
+                const el = e.currentTarget as HTMLButtonElement
+                el.style.borderColor = 'rgba(232,201,122,0.45)'
+                el.style.color = '#E8C97A'
+                el.style.background = 'rgba(200,168,90,0.08)'
+              }}
+              onMouseOut={e => {
+                const el = e.currentTarget as HTMLButtonElement
+                el.style.borderColor = 'rgba(255,255,255,0.12)'
+                el.style.color = 'rgba(255,255,255,0.55)'
+                el.style.background = 'rgba(255,255,255,0.03)'
+              }}
+            >
+              <ChevronLeft size={18} />
+            </button>
+
+            {/* Browser frame — ~80% of the content width, Villa Luna styling */}
+            <div style={{ position: 'relative', width: '100%', maxWidth: '860px' }}>
+
+              {/* Ambient glow behind mockup */}
+              <div aria-hidden="true" style={{
+                position: 'absolute', inset: '-24px',
+                background: 'radial-gradient(ellipse 75% 65% at 50% 45%, hsl(36 50% 55% / 0.10) 0%, transparent 70%)',
+                filter: 'blur(36px)',
+                pointerEvents: 'none',
+              }}/>
+
+              <div
+                className="bws-browser"
+                style={{
+                  position: 'relative',
+                  width: '100%',
+                  borderRadius: '12px 12px 0 0',
+                  overflow: 'hidden',
+                  boxShadow: [
+                    '0 60px 140px -24px hsl(0 0% 0% / 0.9)',
+                    '0 20px 60px -12px hsl(0 0% 0% / 0.55)',
+                    '0 0 0 1px hsl(36 30% 60% / 0.12)',
+                    'inset 0 1px 0 hsl(36 50% 90% / 0.08)',
+                  ].join(', '),
+                }}
+              >
+                {/* macOS chrome bar */}
+                <div style={{
+                  background: 'hsl(36 12% 88%)',
+                  padding: '9px 14px',
+                  display: 'flex', alignItems: 'center', gap: '8px',
+                  borderBottom: '1px solid hsl(30 10% 74%)',
+                }}>
+                  <div style={{ display: 'flex', gap: '5px', flexShrink: 0 }}>
+                    {['hsl(4 78% 58%)', 'hsl(38 80% 54%)', 'hsl(133 52% 46%)'].map((c, i) => (
+                      <div key={i} style={{ width: 11, height: 11, borderRadius: '50%', background: c }}/>
+                    ))}
+                  </div>
+                  <div style={{ display: 'flex', gap: '7px', marginLeft: '5px', flexShrink: 0 }}>
+                    {[0, 1].map(i => (
+                      <div key={i} style={{ width: 16, height: 10, borderRadius: '2px', background: 'hsl(30 8% 72%)', opacity: 0.65 }}/>
+                    ))}
+                  </div>
+                  <div style={{
+                    flex: 1, background: 'hsl(36 16% 96%)',
+                    border: '1px solid hsl(30 10% 76%)', borderRadius: '5px',
+                    padding: '3px 12px', fontSize: '0.65rem',
+                    fontFamily: "'SF Mono','Fira Code',monospace",
+                    color: 'hsl(28 10% 36%)', letterSpacing: '0.01em',
+                    textAlign: 'center' as const,
+                    transition: 'opacity 0.3s ease',
+                  }}>
+                    {activeProject.url}
+                  </div>
+                  <div style={{ display: 'flex', gap: '7px', flexShrink: 0 }}>
+                    {[0, 1, 2].map(i => (
+                      <div key={i} style={{ width: 16, height: 10, borderRadius: '2px', background: 'hsl(30 8% 72%)', opacity: 0.65 }}/>
+                    ))}
+                  </div>
                 </div>
-              </div>
-              {/* Nav */}
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 16px', borderBottom: '1px solid rgba(255,255,255,0.045)' }}>
-                <div>
-                  <span style={{ fontSize: '10px', fontWeight: 800, letterSpacing: '0.14em', color: '#EEF2F8' }}>VAEL</span>
-                  <span style={{ fontSize: '5.5px', letterSpacing: '0.20em', color: 'rgba(125,200,255,0.40)', display: 'block', marginTop: '-1px' }}>CREATIVE STUDIO</span>
-                </div>
-                <div style={{ display: 'flex', gap: '14px' }}>
-                  {['Work', 'Studio', 'Services', 'Contact'].map(item => (
-                    <span key={item} style={{ fontSize: '7.5px', color: 'rgba(175,200,225,0.42)', letterSpacing: '0.03em' }}>{item}</span>
+
+                {/* Crossfading screenshot stack */}
+                <div style={{ position: 'relative', width: '100%', aspectRatio: '1440 / 900', background: '#0A0A0A' }}>
+                  {BWS_PROJECTS.map((project, i) => (
+                    <img
+                      key={project.name}
+                      loading={i === 0 ? 'eager' : 'lazy'}
+                      decoding="async"
+                      src={project.image}
+                      alt={`${project.name} — ${project.tag} website design concept`}
+                      style={{
+                        position: 'absolute', inset: 0,
+                        width: '100%', height: '100%',
+                        objectFit: 'cover', objectPosition: 'top center',
+                        opacity: active === i ? 1 : 0,
+                        transition: 'opacity 0.5s ease',
+                        pointerEvents: active === i ? 'auto' : 'none',
+                      }}
+                    />
                   ))}
                 </div>
               </div>
-              {/* Hero — private residence editorial preview */}
-              <PrivateResidenceHero />
-              {/* Case study grid — cinematic image blocks */}
-              <div style={{ padding: '10px 14px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
-                {/* KAIROS — luxury watch brand campaign */}
-                <div style={{ borderRadius: '7px', overflow: 'hidden', border: '1px solid rgba(200,168,90,0.14)' }}>
-                  <div style={{ height: '62px', position: 'relative', overflow: 'hidden', background: '#080605' }}>
-                    {/* Warm charcoal background */}
-                    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(158deg, #0D0A07 0%, #0A0806 48%, #060504 80%, #080706 100%)' }} />
-                    {/* Stone surface plane */}
-                    <div style={{ position: 'absolute', bottom: '28%', left: 0, right: 0, height: '1px', background: 'linear-gradient(to right, transparent 8%, rgba(175,158,128,0.22) 22%, rgba(198,182,148,0.35) 52%, rgba(175,158,128,0.22) 78%, transparent 92%)' }} />
-                    <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '28%', background: 'linear-gradient(to top, rgba(10,8,6,0.96), rgba(13,10,7,0.50), rgba(11,9,6,0.08))' }} />
-                    {/* Overhead spotlight */}
-                    <div style={{ position: 'absolute', top: '-25%', left: '20%', width: '38%', height: '88%', background: 'radial-gradient(ellipse at 50% 4%, rgba(248,232,198,0.26) 0%, rgba(225,208,172,0.11) 28%, rgba(200,182,145,0.04) 55%, transparent 70%)', filter: 'blur(4px)' }} />
-                    {/* Bottle base shadow */}
-                    <div style={{ position: 'absolute', bottom: '27%', left: '20%', width: '18%', height: '2.5%', background: 'radial-gradient(ellipse at 50% 50%, rgba(4,3,2,0.92) 0%, transparent 65%)', filter: 'blur(3px)' }} />
-                    {/* Bottle body — tall slim glass */}
-                    <div style={{ position: 'absolute', bottom: '29%', left: '23.5%', width: '8.5%', height: '48%', background: 'linear-gradient(to right, rgba(8,6,4,0.90) 0%, rgba(35,26,16,0.58) 14%, rgba(195,172,122,0.65) 28%, rgba(235,220,185,0.82) 42%, rgba(220,202,165,0.70) 56%, rgba(30,22,14,0.55) 76%, rgba(6,4,3,0.88) 100%)', borderRadius: '10% 10% 4% 4% / 3% 3% 2% 2%' }} />
-                    {/* Specular glass highlight */}
-                    <div style={{ position: 'absolute', bottom: '32%', left: '25.8%', width: '2%', height: '40%', background: 'linear-gradient(to bottom, transparent, rgba(255,248,230,0.88) 28%, rgba(248,238,215,0.68) 68%, transparent)', borderRadius: '50%', filter: 'blur(0.5px)' }} />
-                    {/* Neck */}
-                    <div style={{ position: 'absolute', bottom: '73%', left: '23%', width: '9.5%', height: '7%', background: 'linear-gradient(to right, rgba(10,8,5,0.90), rgba(175,155,112,0.62) 42%, rgba(188,168,122,0.58) 58%, rgba(10,8,5,0.88))' }} />
-                    {/* Cap */}
-                    <div style={{ position: 'absolute', bottom: '80%', left: '22.5%', width: '10.5%', height: '9%', background: 'linear-gradient(to right, rgba(158,140,98,0.72) 0%, rgba(215,198,155,0.92) 35%, rgba(200,182,138,0.82) 65%, rgba(142,126,88,0.68) 100%)', borderRadius: '2px 2px 0 0' }} />
-                    {/* Cast shadow */}
-                    <div style={{ position: 'absolute', bottom: '14%', left: '16%', width: '26%', height: '14%', background: 'linear-gradient(to right, rgba(4,3,2,0.88) 0%, rgba(4,3,2,0.40) 48%, transparent 80%)', filter: 'blur(2.5px)' }} />
-                    {/* Gold brand mark right side */}
-                    <div style={{ position: 'absolute', top: '18%', right: '8%', width: '32%' }}>
-                      <div style={{ height: '0.8px', background: 'rgba(205,172,95,0.72)', marginBottom: '5px', width: '80%' }} />
-                      <div style={{ fontSize: '5.5px', fontWeight: 700, letterSpacing: '0.22em', color: 'rgba(215,185,115,0.85)', fontFamily: 'var(--font-label)', marginBottom: '4px' }}>KAIROS</div>
-                      <div style={{ height: '0.5px', background: 'rgba(200,168,90,0.34)', width: '58%', marginBottom: '3px' }} />
-                      <div style={{ height: '0.5px', background: 'rgba(200,168,90,0.18)', width: '44%' }} />
-                    </div>
-                  </div>
-                  <div style={{ padding: '6px 9px', background: 'rgba(200,168,90,0.06)' }}>
-                    <p style={{ fontSize: '5px', letterSpacing: '0.18em', color: 'rgba(200,168,90,0.60)', marginBottom: '3px', textTransform: 'uppercase' }}>Brand Identity</p>
-                    <p style={{ fontSize: '10px', fontWeight: 700, color: '#E4EBF4', letterSpacing: '-0.01em' }}>KAIROS</p>
-                  </div>
-                </div>
-                {/* SOLENNE — editorial portrait campaign */}
-                <div style={{ borderRadius: '7px', overflow: 'hidden', border: '1px solid rgba(125,220,255,0.10)' }}>
-                  <div style={{ height: '62px', position: 'relative', overflow: 'hidden', background: '#040710' }}>
-                    {/* Deep navy background */}
-                    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(148deg, #060A1A 0%, #050812 38%, #040710 65%, #050916 100%)' }} />
-                    {/* Ambient blue glow */}
-                    <div style={{ position: 'absolute', bottom: '-5%', left: '5%', right: '30%', height: '50%', background: 'radial-gradient(ellipse at 42% 100%, rgba(45,105,255,0.12) 0%, rgba(32,82,220,0.05) 50%, transparent 72%)', filter: 'blur(8px)' }} />
-                    {/* Monitor bezel */}
-                    <div style={{ position: 'absolute', top: '7%', left: '6%', width: '58%', height: '64%', background: 'rgba(6,12,28,0.96)', borderRadius: '3px 3px 0 0', border: '0.5px solid rgba(55,100,215,0.32)' }}>
-                      <div style={{ position: 'absolute', inset: '5%', background: '#03060F', borderRadius: '1px', overflow: 'hidden' }}>
-                        {/* Nav bar */}
-                        <div style={{ height: '18%', background: 'rgba(4,8,18,1)', borderBottom: '0.5px solid rgba(50,90,200,0.25)', display: 'flex', alignItems: 'center', paddingLeft: '8%', gap: '8%' }}>
-                          <div style={{ width: '18%', height: '2px', background: 'rgba(95,175,255,0.58)', borderRadius: '1px' }} />
-                          {[0,1,2].map(n => <div key={n} style={{ width: '7%', height: '1.5px', background: 'rgba(72,138,230,0.22)', borderRadius: '1px' }} />)}
-                        </div>
-                        {/* Stat boxes */}
-                        <div style={{ padding: '5% 6% 3%', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '5%' }}>
-                          <div style={{ background: 'rgba(22,50,125,0.20)', border: '0.5px solid rgba(58,118,255,0.20)', borderRadius: '1.5px', padding: '5%' }}>
-                            <div style={{ height: '2px', background: 'rgba(95,175,255,0.48)', borderRadius: '1px', marginBottom: '2.5px', width: '65%' }} />
-                            <div style={{ height: '1.5px', background: 'rgba(72,138,230,0.22)', borderRadius: '1px', width: '82%' }} />
-                          </div>
-                          <div style={{ background: 'rgba(18,42,108,0.16)', border: '0.5px solid rgba(52,108,240,0.16)', borderRadius: '1.5px', padding: '5%' }}>
-                            <div style={{ height: '2px', background: 'rgba(78,162,255,0.40)', borderRadius: '1px', marginBottom: '2.5px', width: '52%' }} />
-                            <div style={{ height: '1.5px', background: 'rgba(65,128,218,0.18)', borderRadius: '1px', width: '72%' }} />
-                          </div>
-                        </div>
-                        {/* Bar chart */}
-                        <div style={{ paddingLeft: '6%', paddingRight: '6%', display: 'flex', gap: '3%', alignItems: 'flex-end', height: '11px' }}>
-                          {([55,78,42,92,65,88,58] as number[]).map((h,i) => (
-                            <div key={i} style={{ flex: 1, height: `${h}%`, background: (i===3||i===5) ? 'rgba(80,178,255,0.68)' : 'rgba(48,115,230,0.30)', borderRadius: '1px 1px 0 0' }} />
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                    {/* Monitor stand */}
-                    <div style={{ position: 'absolute', top: '71%', left: '31%', width: '4%', height: '15%', background: 'rgba(18,32,75,0.65)' }} />
-                    <div style={{ position: 'absolute', top: '84%', left: '24%', width: '17%', height: '3%', background: 'rgba(16,28,68,0.55)', borderRadius: '1px' }} />
-                    {/* Floating metric card right */}
-                    <div style={{ position: 'absolute', top: '10%', right: '5%', width: '28%', height: '58%', background: 'rgba(10,20,52,0.88)', border: '0.5px solid rgba(55,110,240,0.25)', borderRadius: '3px', padding: '8% 10%', display: 'flex', flexDirection: 'column', gap: '3.5px' }}>
-                      <div style={{ height: '1.5px', background: 'rgba(95,175,255,0.45)', borderRadius: '1px', width: '82%' }} />
-                      <div style={{ height: '1px', background: 'rgba(70,138,228,0.22)', borderRadius: '1px', width: '62%' }} />
-                      <div style={{ height: '1px', background: 'rgba(58,120,215,0.16)', borderRadius: '1px', width: '74%' }} />
-                      <div style={{ marginTop: '2px', height: '7px', background: 'rgba(38,95,245,0.24)', borderRadius: '1px', border: '0.5px solid rgba(78,158,255,0.28)' }} />
-                    </div>
-                    {/* Ambient glow top-right */}
-                    <div style={{ position: 'absolute', top: '-15%', right: '-5%', width: '38%', height: '55%', background: 'radial-gradient(ellipse at 80% 15%, rgba(55,125,255,0.09) 0%, transparent 62%)', filter: 'blur(10px)' }} />
-                    <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '22%', background: 'linear-gradient(to top, rgba(3,5,12,0.88), transparent)' }} />
-                  </div>
-                  <div style={{ padding: '6px 9px', background: 'rgba(125,220,255,0.04)' }}>
-                    <p style={{ fontSize: '5px', letterSpacing: '0.18em', color: 'rgba(125,220,255,0.50)', marginBottom: '3px', textTransform: 'uppercase' }}>Web & Digital</p>
-                    <p style={{ fontSize: '10px', fontWeight: 700, color: '#E4EBF4', letterSpacing: '-0.01em' }}>SOLENNE</p>
-                  </div>
-                </div>
-              </div>
-              {/* Footer bar */}
-              <div style={{ padding: '8px 14px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTop: '1px solid rgba(255,255,255,0.04)' }}>
-                <span style={{ fontSize: '6.5px', color: 'rgba(125,200,255,0.28)', letterSpacing: '0.10em' }}>12+ Years · 180+ Brands</span>
-                <div style={{ padding: '4px 10px', borderRadius: '4px', background: 'rgba(125,220,255,0.07)', border: '1px solid rgba(125,220,255,0.16)', fontSize: '6.5px', fontWeight: 600, color: 'rgba(125,220,255,0.70)', letterSpacing: '0.06em' }}>
-                  View Work →
-                </div>
-              </div>
             </div>
+
+            {/* Right arrow */}
+            <button
+              type="button"
+              aria-label="Next project"
+              onClick={() => goTo(active + 1)}
+              className="bws-arrow"
+              style={{
+                flexShrink: 0,
+                width: 40, height: 40, borderRadius: '50%',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                background: 'rgba(255,255,255,0.03)',
+                border: '1px solid rgba(255,255,255,0.12)',
+                color: 'rgba(255,255,255,0.55)',
+                cursor: 'pointer',
+                transition: 'border-color 200ms, color 200ms, background 200ms',
+              }}
+              onMouseOver={e => {
+                const el = e.currentTarget as HTMLButtonElement
+                el.style.borderColor = 'rgba(232,201,122,0.45)'
+                el.style.color = '#E8C97A'
+                el.style.background = 'rgba(200,168,90,0.08)'
+              }}
+              onMouseOut={e => {
+                const el = e.currentTarget as HTMLButtonElement
+                el.style.borderColor = 'rgba(255,255,255,0.12)'
+                el.style.color = 'rgba(255,255,255,0.55)'
+                el.style.background = 'rgba(255,255,255,0.03)'
+              }}
+            >
+              <ChevronRight size={18} />
+            </button>
           </div>
 
-          {/* ── Card 1 — front (ZEBRA PRIVATE HEALTH · consultant-led private clinic) ── */}
-          <div
-            ref={card1Ref}
-            style={{
-              position: 'absolute', top: 0, left: 0,
-              width: 'clamp(348px, 74%, 716px)',
-              zIndex: 0,
-              transition: 'transform 0.9s cubic-bezier(0.16, 1, 0.3, 1)',
-              transform: t1,
-              willChange: 'transform',
-            }}
-          >
-            <div aria-hidden="true" style={{ position: 'absolute', bottom: '-34px', left: '6%', right: '6%', height: '48px', background: 'radial-gradient(ellipse 80% 100% at 50% 0%, rgba(200,168,90,0.20), transparent 80%)', filter: 'blur(20px)' }} />
-            <div style={{
-              background: '#0C0906',
-              borderRadius: '14px',
-              border: '1px solid rgba(200,168,90,0.14)',
-              boxShadow: '0 52px 120px rgba(0,0,0,0.68), 0 14px 38px rgba(0,0,0,0.42), 0 0 0 1px rgba(200,168,90,0.06)',
-              overflow: 'hidden',
-            }}>
-              {/* Chrome */}
-              <div style={{ height: '32px', background: '#12100A', borderBottom: '1px solid rgba(200,168,90,0.09)', display: 'flex', alignItems: 'center', padding: '0 12px', gap: '5px' }}>
-                <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#FF6058', opacity: 0.62 }} />
-                <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#FFBD2E', opacity: 0.62 }} />
-                <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#28CA41', opacity: 0.62 }} />
-                <div style={{ flex: 1, height: '18px', background: '#1A1510', borderRadius: '5px', marginLeft: '10px', display: 'flex', alignItems: 'center', paddingLeft: '10px' }}>
-                  <span style={{ fontSize: '7.5px', color: 'rgba(200,168,90,0.32)', letterSpacing: '0.02em' }}>zebraprivatehealth.com</span>
-                </div>
-              </div>
-              {/* Nav */}
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '11px 22px', borderBottom: '1px solid rgba(200,168,90,0.07)' }}>
-                <div>
-                  <span style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.20em', color: '#C8A85A', fontFamily: 'var(--font-label)' }}>ZEBRA</span>
-                  <span style={{ fontSize: '5.5px', letterSpacing: '0.24em', textTransform: 'uppercase', color: 'rgba(180,150,80,0.50)', display: 'block', marginTop: '-1px' }}>PRIVATE HEALTH</span>
-                </div>
-                <div style={{ display: 'flex', gap: '18px' }}>
-                  {['Expertise', 'Consultants', 'The Clinic', 'Contact'].map(item => (
-                    <span key={item} style={{ fontSize: '8.5px', color: 'rgba(200,178,135,0.42)', letterSpacing: '0.03em' }}>{item}</span>
-                  ))}
-                </div>
-                <div style={{ padding: '5px 13px', borderRadius: '4px', background: 'rgba(200,168,90,0.10)', border: '1px solid rgba(200,168,90,0.30)', fontSize: '7.5px', fontWeight: 600, color: 'rgba(212,182,112,0.90)', letterSpacing: '0.06em' }}>
-                  Enquire
-                </div>
-              </div>
+          {/* Project name */}
+          <p style={{
+            textAlign: 'center', marginTop: '1.75rem',
+            fontSize: '0.95rem', fontWeight: 500, letterSpacing: '0.02em',
+            color: 'hsl(0 0% 88%)',
+            transition: 'opacity 0.3s ease',
+          }}>
+            <span style={{ color: '#E8C97A' }}>{activeProject.name}</span>
+            {' — '}{activeProject.tag}
+          </p>
 
-              {/* Hero — Zebra Private Health consultation suite */}
-              <ZebraHeroVisual />
-
-              {/* Service card grid */}
-              <div style={{ padding: '14px 22px', display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '10px' }}>
-                {ZEBRA_SERVICES.map(svc => (
-                  <ZebraServiceCard key={svc.title} svc={svc} />
-                ))}
-              </div>
-
-              {/* Stats bar */}
-              <div style={{ display: 'flex', borderTop: '1px solid rgba(200,168,90,0.07)' }}>
-                {['Same-week appointments', 'Consultant-led care'].map((label, i) => (
-                  <div key={label} style={{ flex: 1, padding: '13px 16px', borderRight: i < 1 ? '1px solid rgba(200,168,90,0.07)' : 'none', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <span style={{ fontSize: '8.5px', fontWeight: 600, color: '#C8A85A', letterSpacing: '0.03em', textAlign: 'center' }}>{label}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
+          {/* Dot navigation */}
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '0.55rem', marginTop: '1.1rem' }}>
+            {BWS_PROJECTS.map((project, i) => (
+              <button
+                key={project.name}
+                type="button"
+                aria-label={`Show ${project.name} — ${project.tag}`}
+                aria-current={active === i}
+                onClick={() => goTo(i)}
+                style={{
+                  width: active === i ? 22 : 8, height: 8, borderRadius: '999px',
+                  padding: 0, cursor: 'pointer',
+                  background: active === i ? 'linear-gradient(135deg, #E8C97A, #C8A85A)' : 'transparent',
+                  border: active === i ? 'none' : '1px solid rgba(255,255,255,0.28)',
+                  transition: 'width 0.3s ease, background 0.3s ease, border-color 0.3s ease',
+                }}
+              />
+            ))}
           </div>
-
         </div>
+
       </div>
     </section>
   )
@@ -5619,11 +5358,9 @@ function GraphicDesignCreativeSystems() {
           clarity, and commercial impact.
         </p>
 
-        {/* Media wrapper — image today, drop-in <video poster="..."> later.
-            Sized to ~70% of the original footprint so it no longer dominates
-            the viewport and the heading above stays on-screen. */}
+        {/* Media wrapper — image today, drop-in <video poster="..."> later. */}
         <div
-          className="relative w-[92%] sm:w-[60vw] lg:w-[min(60vw,1064px)] aspect-[16/9]"
+          className="relative w-[98%] sm:w-[70vw] lg:w-[min(70vw,1256px)] aspect-[16/9]"
           style={{
             borderRadius: '20px',
             overflow: 'hidden',
@@ -6190,7 +5927,7 @@ function GraphicDesignSplitA() {
             <div className="gdsa-t flex items-center gap-4 mb-10">
               <div style={{ width: 22, height: 1, background: 'hsl(38 90% 58% / 0.5)' }}/>
               <span className="font-sans uppercase" style={{
-                fontSize: '0.57rem', letterSpacing: '0.32em', color: 'hsl(38 85% 62%)',
+                fontSize: '0.73rem', letterSpacing: '0.32em', color: 'hsl(38 85% 62%)',
               }}>
                 Craft & Direction
               </span>
@@ -10169,7 +9906,7 @@ export default function Services() {
             {/* ── Right: interactive hero concept mockup — sized up (~18%) and
                 shifted toward the column's start edge so it sits closer to
                 the text column instead of hugging the far right ── */}
-            <div className="relative flex flex-col items-center lg:items-start">
+            <div className="relative flex flex-col items-center lg:items-start" style={{ paddingRight: 'clamp(0px, 4vw, 3.5rem)' }}>
 
               <div className="relative flex items-center justify-center lg:justify-start" style={{ width: '100%' }}>
                 {/* Ambient glow behind mockup */}
