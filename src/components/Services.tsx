@@ -3840,7 +3840,7 @@ function SocialMediaMarketing() {
       }}/>
 
       <div className="relative z-10 max-w-[82rem] mx-auto px-6 sm:px-12">
-        <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-16 lg:gap-12 xl:gap-20 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] xl:grid-cols-[780px_1fr] gap-16 lg:gap-12 xl:gap-[68px] items-center">
 
           {/* ── LEFT: campaign visuals triptych ── */}
           <div className="relative">
@@ -3850,8 +3850,8 @@ function SocialMediaMarketing() {
                 opacity: 0, transform: 'translateY(36px)',
                 height: 'clamp(300px, 38vw, 520px)',
                 display: 'grid',
-                gridTemplateColumns: 'repeat(3, 1fr)',
-                gap: '10px',
+                gridTemplateColumns: '31.5fr 37fr 31.5fr',
+                gap: '11px',
                 boxShadow: [
                   '0 48px 96px -16px hsl(0 0% 0% / 0.9)',
                   '0 0 0 1px hsl(280 65% 65% / 0.14)',
@@ -3877,9 +3877,24 @@ function SocialMediaMarketing() {
               }}
             >
               {[
-                { src: '/brand_assets/campaign-lips-1.png', alt: 'Skincare campaign — beauty product application' },
-                { src: '/brand_assets/campaign-siir-oud.png', alt: 'SIIR Oud fragrance campaign' },
-                { src: '/brand_assets/campaign-lips-3.png', alt: 'Lipstick editorial campaign close-up' },
+                {
+                  src: '/brand_assets/campaign-lips-1.png',
+                  alt: 'Skincare campaign — beauty product application',
+                  objectPosition: '35% 50%',
+                },
+                {
+                  src: '/brand_assets/SIIRR.png',
+                  alt: 'SIIR Oud fragrance campaign',
+                  objectPosition: '47% 50%',
+                  transform: 'scale(1.47)',
+                  transformOrigin: '47% 42%',
+                  filter: 'brightness(0.86) saturate(0.92)',
+                },
+                {
+                  src: '/brand_assets/campaign-lips-3.png',
+                  alt: 'Lipstick editorial campaign close-up',
+                  objectPosition: '50% 46%',
+                },
               ].map(img => (
                 <div key={img.src} style={{ position: 'relative', borderRadius: '5px', overflow: 'hidden' }}>
                   <img
@@ -3887,7 +3902,12 @@ function SocialMediaMarketing() {
                     decoding="async"
                     src={img.src}
                     alt={img.alt}
-                    style={{ display: 'block', width: '100%', height: '100%', objectFit: 'cover' }}
+                    style={{
+                      display: 'block', width: '100%', height: '100%',
+                      objectFit: 'cover', objectPosition: img.objectPosition,
+                      transform: img.transform, transformOrigin: img.transformOrigin,
+                      filter: img.filter,
+                    }}
                   />
                 </div>
               ))}
@@ -9816,7 +9836,7 @@ export default function Services() {
         <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to top, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
 
         <div className="relative z-10 max-w-[88rem] mx-auto px-6 sm:px-10">
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.6fr] gap-16 lg:gap-14 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.6fr] gap-16 lg:gap-14 xl:gap-[148px] items-center">
 
             {/* ── Left: text (unchanged) ── */}
             <div>
@@ -9913,12 +9933,13 @@ export default function Services() {
               </p>
             </div>
 
-            {/* ── Right: interactive hero concept mockup — sized up (~18%) and
-                shifted toward the column's start edge so it sits closer to
-                the text column instead of hugging the far right ── */}
-            <div className="relative flex flex-col items-center lg:items-start" style={{ paddingRight: 'clamp(0px, 4vw, 3.5rem)' }}>
+            {/* ── Right: interactive hero concept mockup — right-aligned via
+                CSS Grid so its edge lands on the section's outer content
+                boundary, with the gap above providing the clear space
+                between it and the text column ── */}
+            <div className="relative flex flex-col items-center lg:items-end" style={{ justifySelf: 'end', width: '100%' }}>
 
-              <div className="relative flex items-center justify-center lg:justify-start" style={{ width: '100%' }}>
+              <div className="relative flex items-center justify-center lg:justify-end" style={{ width: '100%', minWidth: 0 }}>
                 {/* Ambient glow behind mockup */}
                 <div aria-hidden="true" style={{
                   position: 'absolute', inset: '-20px',
@@ -9927,7 +9948,7 @@ export default function Services() {
                   pointerEvents: 'none',
                 }}/>
 
-                <div className="bwd1-img" style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+                <div className="bwd1-img" style={{ width: '100%', minWidth: 0 }}>
                   <BespokeWeb1Mockup />
                 </div>
               </div>
