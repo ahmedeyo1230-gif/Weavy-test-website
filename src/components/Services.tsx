@@ -3880,14 +3880,14 @@ function SocialMediaMarketing() {
                 {
                   src: '/brand_assets/campaign-lips-1.png',
                   alt: 'Skincare campaign — beauty product application',
-                  objectPosition: '35% 50%',
+                  objectPosition: '53% 50%',
                 },
                 {
                   src: '/brand_assets/SIIRR.png',
                   alt: 'SIIR Oud fragrance campaign',
-                  objectPosition: '47% 50%',
+                  objectPosition: '66% 50%',
                   transform: 'scale(1.47)',
-                  transformOrigin: '47% 42%',
+                  transformOrigin: '52% 42%',
                   filter: 'brightness(0.86) saturate(0.92)',
                 },
                 {
