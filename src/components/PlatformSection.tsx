@@ -1,139 +1,183 @@
-import { motion } from 'framer-motion'
+import { useEffect, useRef } from 'react'
+import gsap from 'gsap'
+import { MotionPathPlugin } from 'gsap/MotionPathPlugin'
 import { goToPath } from '../lib/navigation'
 
-const E: [number, number, number, number] = [0.16, 1, 0.3, 1]
+gsap.registerPlugin(MotionPathPlugin)
+
+const CYAN = '#22D3EE'
+const GREEN = '#1D9E75'
+
+// ─── Icons — small stroke-only outlines, matching the site's icon style ──────
 
 function Icon({ type, color }: { type: string; color: string }) {
   const s = { width: 22, height: 22, fill: 'none', stroke: color, strokeWidth: 1.5, strokeLinecap: 'round' as const, strokeLinejoin: 'round' as const }
-  if (type === 'phone') return (
-    <svg viewBox="0 0 24 24" style={s}><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.98.36 1.94.68 2.86a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.22-1.25a2 2 0 012.11-.45c.92.32 1.88.55 2.86.68A2 2 0 0122 16.92z"/></svg>
+  if (type === 'inbox') return (
+    <svg viewBox="0 0 24 24" style={s}>
+      <path d="M3 8.5 5.5 3h13L21 8.5" />
+      <path d="M3 8.5v10a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.5" />
+      <path d="M3 8.5h5.2l1.4 3h4.8l1.4-3H21" />
+    </svg>
   )
-  if (type === 'waveform') return (
-    <svg viewBox="0 0 24 24" style={s}><path d="M3 12h2M7 8v8M11 5v14M15 8v8M19 12h2"/></svg>
+  if (type === 'bolt') return (
+    <svg viewBox="0 0 24 24" style={s}>
+      <path d="M13 2 4.5 14h6l-1 8 9-12h-6z" />
+    </svg>
   )
-  if (type === 'chat') return (
-    <svg viewBox="0 0 24 24" style={s}><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
-  )
-  if (type === 'camera') return (
-    <svg viewBox="0 0 24 24" style={s}><rect x="2" y="6" width="20" height="14" rx="3"/><circle cx="12" cy="13" r="3.6"/><path d="M8 6l1.4-2.4A1.6 1.6 0 0110.78 3h2.44a1.6 1.6 0 011.38.8L16 6"/></svg>
-  )
-  if (type === 'bubble2') return (
-    <svg viewBox="0 0 24 24" style={s}><path d="M12 3C6.5 3 2 6.9 2 11.7c0 2.7 1.45 5.13 3.73 6.73L5 22l3.98-2.1c.94.25 1.95.39 3.02.39 5.5 0 10-3.9 10-8.6S17.5 3 12 3z"/><path d="M9 12.2l2.1-2.3 2 1.6 2.1-2.3"/></svg>
+  if (type === 'filter') return (
+    <svg viewBox="0 0 24 24" style={s}>
+      <path d="M4 4h16l-6.2 8.4V19l-3.6 2v-8.6z" />
+    </svg>
   )
   if (type === 'crm') return (
-    <svg viewBox="0 0 24 24" style={s}><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+    <svg viewBox="0 0 24 24" style={s}><rect x="3" y="3" width="18" height="18" rx="2" /><path d="M3 9h18M9 21V9" /></svg>
   )
   if (type === 'calendar') return (
-    <svg viewBox="0 0 24 24" style={s}><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><path d="M9 16l2 2 4-4"/></svg>
+    <svg viewBox="0 0 24 24" style={s}>
+      <rect x="3" y="4" width="18" height="18" rx="2" /><path d="M16 2v4M8 2v4M3 10h18" /><path d="M9 15.5l2 2 4-4.5" />
+    </svg>
   )
   if (type === 'chart') return (
-    <svg viewBox="0 0 24 24" style={s}><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/></svg>
+    <svg viewBox="0 0 24 24" style={s}><path d="M3 3v18h18" /><path d="M7 15l4-5 3 3 5-7" /></svg>
   )
   return null
 }
 
-const MODULES = [
+// ─── Workflow data ────────────────────────────────────────────────────────────
+
+const STAGES = [
   {
-    title: 'Voice Receptionist',
-    desc: 'Handles missed calls, FAQs, bookings, and customer enquiries.',
-    icon: 'phone', color: '#F0C56A', titleColor: '#F7E1B4',
+    key: 'enquiry', icon: 'inbox', label: 'Enquiry',
+    desc: null as string | null,
+    channels: ['Voice', 'WhatsApp', 'Instagram', 'Facebook', 'Web chat'],
   },
-  {
-    title: 'Voice Agent',
-    desc: 'Speaks with customers, qualifies enquiries and routes high-intent leads.',
-    icon: 'waveform', color: '#7DDCFF', titleColor: '#BEEBFF',
-  },
-  {
-    title: 'WhatsApp Agent',
-    desc: 'Handles WhatsApp chats end-to-end, from first message to booked appointment.',
-    icon: 'chat', color: '#34D399', titleColor: '#B4F0D2',
-  },
-  {
-    title: 'Instagram DM',
-    desc: 'Turns Instagram comments and DMs into qualified leads, day or night.',
-    icon: 'camera', color: '#E879C9', titleColor: '#F5B4E1',
-  },
-  {
-    title: 'Facebook Messenger',
-    desc: 'Handles Messenger enquiries and keeps conversations organised.',
-    icon: 'bubble2', color: '#6BA9FF', titleColor: '#B4D2FF',
-  },
-  {
-    title: 'CRM & Lead Management',
-    desc: 'Keeps every lead organised, tracks progress and prevents missed follow-ups.',
-    icon: 'crm', color: '#A78BFA', titleColor: '#D2C3FC',
-  },
-  {
-    title: 'Appointment Booking',
-    desc: 'Automates bookings, reminders, and customer scheduling.',
-    icon: 'calendar', color: '#F0C56A', titleColor: '#EED08C',
-  },
-  {
-    title: 'Analytics Dashboard',
-    desc: 'Shows where leads come from, what converts and where follow-up is needed.',
-    icon: 'chart', color: '#7DDCFF', titleColor: '#B3E9EF',
-  },
+  { key: 'response', icon: 'bolt',     label: 'Response', desc: 'The system answers instantly, day or night' },
+  { key: 'qualify',  icon: 'filter',   label: 'Qualify',  desc: 'Collects details, identifies intent, routes high-value leads' },
+  { key: 'crm',      icon: 'crm',      label: 'CRM',      desc: 'Contact organised, follow-ups triggered automatically' },
+  { key: 'booking',  icon: 'calendar', label: 'Booking',  desc: 'Customer books or is handed to a person', success: true },
+  { key: 'insight',  icon: 'chart',    label: 'Insight',  desc: 'Analytics show source, response and outcome' },
 ]
 
-function ModuleCard({ mod, index }: { mod: typeof MODULES[number]; index: number }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 22 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-40px' }}
-      transition={{ duration: 0.6, delay: (index % 4) * 0.08, ease: E }}
-      style={{
-        position: 'relative',
-        borderRadius: 18,
-        background: 'rgba(255,255,255,0.035)',
-        border: '1px solid rgba(255,255,255,0.11)',
-        boxShadow: '0 10px 28px rgba(0,0,0,0.34)',
-        padding: '1.5rem 1.4rem',
-        overflow: 'hidden',
-      }}
-    >
-      {/* Top accent line */}
-      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 2, background: `linear-gradient(to right, ${mod.color}, transparent 75%)` }} />
+const BOOKING_INDEX = STAGES.findIndex(s => s.success)
 
-      {/* Top accent shimmer — slow left-to-right sweep, staggered per card */}
-      <div
-        aria-hidden="true"
-        className="platform-card-shimmer"
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: '-45%',
-          width: '40%',
-          height: 2,
-          background: `linear-gradient(to right, transparent, ${mod.color}, transparent)`,
-          boxShadow: `0 0 8px ${mod.color}`,
-          animationDelay: `${index * 0.15}s`,
-        }}
-      />
-      <div style={{
-        width: 44, height: 44, borderRadius: 12,
-        background: `${mod.color}14`,
-        border: `1px solid ${mod.color}38`,
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
-        boxShadow: `0 0 16px ${mod.color}1c`,
-        marginBottom: '1.1rem',
-      }}>
-        <Icon type={mod.icon} color={mod.color} />
-      </div>
-
-      <h3 className="font-heading font-medium" style={{ fontSize: '17px', color: mod.titleColor, marginBottom: '0.5rem', letterSpacing: '-0.01em' }}>
-        {mod.title}
-      </h3>
-      <p className="font-body font-normal" style={{ fontSize: '15px', lineHeight: 1.75, color: 'rgba(220,230,235,0.80)', opacity: 1 }}>
-        {mod.desc}
-      </p>
-    </motion.div>
-  )
+// Builds a straight-through path across the measured centre of each stage
+// node, relative to the workflow container — works for both the horizontal
+// (desktop) and vertical (mobile) layouts without any orientation-specific code.
+function buildPathD(container: HTMLElement, nodes: HTMLElement[]) {
+  const cRect = container.getBoundingClientRect()
+  const points = nodes.map(n => {
+    const r = n.getBoundingClientRect()
+    return { x: r.left + r.width / 2 - cRect.left, y: r.top + r.height / 2 - cRect.top }
+  })
+  return points.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x.toFixed(1)} ${p.y.toFixed(1)}`).join(' ')
 }
 
 export default function PlatformSection() {
+  const sectionRef = useRef<HTMLElement>(null)
+  const workflowRef = useRef<HTMLDivElement>(null)
+  const pathRef = useRef<SVGPathElement>(null)
+  const trackRef = useRef<SVGPathElement>(null)
+  const dotRef = useRef<SVGCircleElement>(null)
+  const stageRefs = useRef<(HTMLDivElement | null)[]>([])
+
+  useEffect(() => {
+    const el = sectionRef.current
+    const container = workflowRef.current
+    const path = pathRef.current
+    const track = trackRef.current
+    const dot = dotRef.current
+    if (!el || !container || !path || !track) return
+
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const stageEls = stageRefs.current.filter((n): n is HTMLDivElement => !!n)
+    // The line must pass through each icon circle's centre, not the centre
+    // of the whole stage block (which also includes the label/description
+    // text stacked below it).
+    const nodeCircles = stageEls
+      .map(n => n.querySelector<HTMLElement>('.ocs-node-circle'))
+      .filter((n): n is HTMLElement => !!n)
+    const bookingNode = nodeCircles[BOOKING_INDEX]
+
+    let loopTl: gsap.core.Timeline | null = null
+    let ro: ResizeObserver | null = null
+    let settled = false
+
+    // Measures each stage's true resting position — must only run once the
+    // entrance animation's y-offset has fully resolved back to 0, otherwise
+    // the line is drawn through the mid-animation (shifted) positions.
+    const recomputePath = () => {
+      const d = buildPathD(container, nodeCircles)
+      path.setAttribute('d', d)
+      track.setAttribute('d', d)
+      if (!prefersReduced) {
+        const len = path.getTotalLength()
+        gsap.set(path, { strokeDasharray: len, strokeDashoffset: settled ? 0 : len })
+      }
+    }
+
+    const headerEls = el.querySelectorAll('.ocs-header-el')
+    gsap.set(headerEls, { opacity: 0, y: 22 })
+    gsap.set(stageEls, { opacity: 0, y: 18 })
+    gsap.set([path, track], { opacity: 0 })
+    if (dot) gsap.set(dot, { opacity: 0 })
+
+    const pulseBooking = () => {
+      if (!bookingNode) return
+      gsap.timeline()
+        .to(bookingNode, { boxShadow: `0 0 0 9px ${GREEN}59, 0 0 28px ${GREEN}80`, duration: 0.32, ease: 'power2.out' })
+        .to(bookingNode, { boxShadow: `0 0 0 0px ${GREEN}00, 0 0 16px ${GREEN}33`, duration: 0.95, ease: 'power2.in' }, 0.32)
+    }
+
+    const startLineAndDot = () => {
+      recomputePath()
+      gsap.set([path, track], { opacity: 1 })
+      ro = new ResizeObserver(() => recomputePath())
+      ro.observe(container)
+
+      if (prefersReduced) return
+
+      gsap.to(path, {
+        strokeDashoffset: 0,
+        duration: 1.7,
+        ease: 'power2.inOut',
+        onComplete: () => {
+          settled = true
+          if (!dot) return
+          gsap.set(dot, { opacity: 1 })
+          loopTl = gsap.timeline({ repeat: -1 })
+          loopTl.to(dot, {
+            motionPath: { path, autoRotate: false, alignOrigin: [0.5, 0.5] },
+            duration: 7,
+            ease: 'none',
+          }, 0)
+          if (bookingNode) {
+            loopTl.call(pulseBooking, [], 7 * (BOOKING_INDEX / (STAGES.length - 1)) - 0.15)
+          }
+        },
+      })
+    }
+
+    const obs = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return
+      const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
+      tl.to(headerEls, { opacity: 1, y: 0, duration: 0.75, stagger: 0.1 }, 0)
+      tl.to(stageEls,  { opacity: 1, y: 0, duration: 0.6, stagger: 0.09 }, 0.28)
+      tl.call(startLineAndDot)
+
+      obs.disconnect()
+    }, { threshold: 0.2 })
+    obs.observe(el)
+
+    return () => {
+      obs.disconnect()
+      ro?.disconnect()
+      loopTl?.kill()
+    }
+  }, [])
+
   return (
     <section
+      ref={sectionRef}
       className="relative w-full overflow-hidden"
       style={{
         background: [
@@ -141,19 +185,13 @@ export default function PlatformSection() {
           'linear-gradient(to bottom, #010709 0%, #010709 42%, #000506 100%)',
         ].join(', '),
         paddingTop: 'clamp(5rem, 9vw, 8rem)',
-        // Connected Systems now sits directly underneath — tighten just this
-        // shared edge to a clean ~80-120px (desktop) / 56-80px (tablet) /
-        // 40-64px (mobile) combined gap instead of stacking two full
-        // section paddings (which read as an oversized empty gap).
-        paddingBottom: 'clamp(26px, 5vw, 50px)',
+        paddingBottom: 'clamp(4rem, 8vw, 6.5rem)',
       }}
-      aria-label="The Weavy Platform"
+      aria-label="One Connected System"
     >
       {/* Ambient glow + dot grid, consistent with other platform-style sections */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
-        background: [
-          'radial-gradient(ellipse 60% 50% at 50% 0%, rgba(125,220,255,0.038) 0%, transparent 65%)',
-        ].join(', '),
+        background: 'radial-gradient(ellipse 60% 50% at 50% 0%, rgba(125,220,255,0.038) 0%, transparent 65%)',
       }} />
       <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
         backgroundImage: 'radial-gradient(rgba(125,220,255,0.05) 1px, transparent 1px)',
@@ -161,91 +199,125 @@ export default function PlatformSection() {
         maskImage: 'radial-gradient(ellipse 70% 60% at 50% 30%, black 20%, transparent 100%)',
         WebkitMaskImage: 'radial-gradient(ellipse 70% 60% at 50% 30%, black 20%, transparent 100%)',
       }} />
-      {/* Subtle top-down darkening — fades out well before the card grid,
-          leaving the dotted texture and blue-green undertone visible. */}
       <div aria-hidden="true" className="pointer-events-none absolute top-0 left-0 right-0" style={{
         height: '400px',
         background: 'linear-gradient(to bottom, rgba(0,0,0,0.225) 0%, transparent 100%)',
       }} />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-10">
-        {/* Header */}
-        <div className="text-center max-w-3xl mx-auto" style={{ marginBottom: 'clamp(3rem, 6vw, 4.5rem)' }}>
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.55, ease: E }}
-            className="font-label font-medium"
-            style={{ fontSize: 'clamp(12px, calc(11.3px + 0.19vw), 14px)', letterSpacing: '0.32em', textTransform: 'uppercase', color: 'rgba(191, 239, 255, 0.72)', marginBottom: '1.3rem' }}
-          >
-            One Connected System
-          </motion.p>
 
-          <motion.h2
-            initial={{ opacity: 0, y: 22 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.72, delay: 0.06, ease: E }}
-            className="font-heading font-medium"
+        {/* ── Header — its own display treatment, not the italic "Our Services" style ── */}
+        <div className="text-center max-w-3xl mx-auto" style={{ marginBottom: 'clamp(4rem, 8vw, 6rem)' }}>
+          <div className="ocs-header-el inline-flex items-center gap-3" style={{ marginBottom: '1.4rem' }}>
+            <span aria-hidden="true" style={{ width: 28, height: 1, background: `${CYAN}80` }} />
+            <span
+              className="font-label font-semibold uppercase"
+              style={{ fontSize: 'clamp(13px, 1.3vw, 15px)', letterSpacing: '0.28em', color: CYAN }}
+            >
+              One Connected System
+            </span>
+            <span aria-hidden="true" style={{ width: 28, height: 1, background: `${CYAN}80` }} />
+          </div>
+
+          <h2
+            className="ocs-header-el font-heading font-medium"
             style={{ fontSize: 'clamp(2rem, 4.4vw, 3.2rem)', lineHeight: 1.14, letterSpacing: '-0.032em', color: 'var(--text-primary)' }}
           >
-            Everything working together, so your business runs better.
-          </motion.h2>
+            From first enquiry to booked customer—everything stays connected.
+          </h2>
 
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.65, delay: 0.14, ease: E }}
-            className="font-body font-normal"
-            style={{ fontSize: 'clamp(0.92rem, 1.5vw, 1.05rem)', lineHeight: 1.8, color: 'rgba(220,230,235,0.82)', opacity: 1, marginTop: '1.3rem' }}
+          <p
+            className="ocs-header-el font-body font-normal"
+            style={{ fontSize: 'clamp(0.95rem, 1.6vw, 1.1rem)', lineHeight: 1.8, color: 'var(--text-muted)', marginTop: '1.3rem' }}
           >
-            We connect your calls, messages, bookings, automations and CRM—helping you manage
-            enquiries, follow up faster and turn more conversations into customers.
-          </motion.p>
+            Voice, messaging, CRM, follow-ups and bookings working as one managed flow.
+          </p>
         </div>
 
-        {/* Module grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
-          {MODULES.map((mod, i) => (
-            <ModuleCard key={mod.title} mod={mod} index={i} />
+        {/* ── The workflow — one continuous line through six stages ── */}
+        <div
+          ref={workflowRef}
+          className="relative flex flex-col md:flex-row items-center md:items-start"
+          style={{ gap: 'clamp(3.2rem, 6vw, 1.25rem)' }}
+        >
+          <svg
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0"
+            style={{ width: '100%', height: '100%', overflow: 'visible' }}
+          >
+            <defs>
+              <linearGradient id="ocs-line-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%"  stopColor="#F0C56A" stopOpacity="0.5" />
+                <stop offset="10%" stopColor="#34D399" stopOpacity="0.45" />
+                <stop offset="20%" stopColor="#E879C9" stopOpacity="0.4" />
+                <stop offset="30%" stopColor="#6BA9FF" stopOpacity="0.38" />
+                <stop offset="45%" stopColor={CYAN} stopOpacity="0.65" />
+                <stop offset="100%" stopColor={CYAN} stopOpacity="0.9" />
+              </linearGradient>
+            </defs>
+            {/* Track — faint permanent guide */}
+            <path ref={trackRef} fill="none" stroke="rgba(255,255,255,0.09)" strokeWidth={1.5} />
+            {/* Animated fill — draws in on scroll */}
+            <path ref={pathRef} fill="none" stroke="url(#ocs-line-grad)" strokeWidth={1.5} strokeLinecap="round" />
+            {/* Live enquiry dot */}
+            <circle ref={dotRef} r={5} fill={CYAN} style={{ filter: `drop-shadow(0 0 6px ${CYAN})` }} />
+          </svg>
+
+          {STAGES.map((stage, i) => (
+            <div
+              key={stage.key}
+              ref={el => { stageRefs.current[i] = el }}
+              className="relative z-10 flex flex-col items-center text-center"
+              style={{ flex: '1 1 0', minWidth: 0, maxWidth: 220 }}
+            >
+              <div
+                className="ocs-node-circle"
+                style={{
+                  width: stage.success ? 62 : 54,
+                  height: stage.success ? 62 : 54,
+                  borderRadius: '50%',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  background: stage.success ? `${GREEN}1a` : `${CYAN}14`,
+                  border: `1px solid ${stage.success ? GREEN : CYAN}59`,
+                  boxShadow: `0 0 18px ${stage.success ? GREEN : CYAN}26`,
+                  marginBottom: '1.1rem',
+                  flexShrink: 0,
+                  transition: 'box-shadow 300ms',
+                }}
+              >
+                <Icon type={stage.icon} color={stage.success ? GREEN : CYAN} />
+              </div>
+
+              <h3 className="font-heading font-medium" style={{ fontSize: '16px', color: 'var(--text-primary)', marginBottom: '0.4rem', letterSpacing: '-0.01em' }}>
+                {stage.label}
+              </h3>
+
+              {stage.desc && (
+                <p className="font-body font-normal" style={{ fontSize: '15px', lineHeight: 1.65, color: 'var(--text-muted)' }}>
+                  {stage.desc}
+                </p>
+              )}
+
+              {stage.channels && (
+                <p className="font-body font-normal" style={{ fontSize: '13px', lineHeight: 1.6, color: 'var(--text-muted)', opacity: 0.85 }}>
+                  {stage.channels.join(' · ')}
+                </p>
+              )}
+            </div>
           ))}
         </div>
 
         {/* CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.1, ease: E }}
-          className="flex justify-center"
-          style={{ marginTop: 'clamp(2.5rem, 5vw, 3.5rem)' }}
-        >
+        <div className="ocs-header-el flex justify-center" style={{ marginTop: 'clamp(3rem, 6vw, 4.5rem)' }}>
           <a
             href="/contact"
             onClick={(e) => { e.preventDefault(); goToPath('/contact') }}
             className="font-body btn-glow-primary inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-medium bg-primary text-background hover:bg-white hover:shadow-[0_0_28px_rgba(245,245,245,0.28)] active:scale-[0.97]"
             style={{ transition: 'background-color 200ms, box-shadow 200ms, transform 100ms' }}
           >
-            See how it all connects →
+            See how the system works →
           </a>
-        </motion.div>
-
-        {/* Tagline */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, delay: 0.2, ease: E }}
-          className="text-center"
-          style={{ marginTop: 'clamp(2.5rem, 5vw, 3.5rem)' }}
-        >
-          <div aria-hidden="true" style={{ width: '2.5rem', height: 1, background: 'rgba(125,220,255,0.35)', margin: '0 auto 1.4rem' }} />
-          <p className="font-body font-normal" style={{ fontSize: 'clamp(0.95rem, 1.6vw, 1.15rem)', color: 'rgba(235,245,255,0.82)', letterSpacing: '-0.01em' }}>
-            We make everything work together, so running your business feels simpler.
-          </p>
-        </motion.div>
+        </div>
       </div>
     </section>
   )
