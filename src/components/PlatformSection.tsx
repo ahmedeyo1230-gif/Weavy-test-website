@@ -58,8 +58,6 @@ const STAGES = [
   { key: 'insight',  icon: 'chart',    label: 'Insight',  desc: 'Analytics show source, response and outcome' },
 ]
 
-const BOOKING_INDEX = STAGES.findIndex(s => s.success)
-
 // Builds a straight-through path across the measured centre of each stage
 // node, relative to the workflow container — works for both the horizontal
 // (desktop) and vertical (mobile) layouts without any orientation-specific code.
@@ -72,11 +70,24 @@ function buildPathD(container: HTMLElement, nodes: HTMLElement[]) {
   return points.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x.toFixed(1)} ${p.y.toFixed(1)}`).join(' ')
 }
 
+// Resting / peak glow presets — Booking's green halo is deliberately the
+// smallest and simplest (one thin ring + a restrained bloom) so it reads as
+// a quiet confirmation, not a second visual centre.
+const REST_SHADOW_CYAN  = `0 0 12px ${CYAN}26`
+const REST_SHADOW_GREEN = `0 0 13px ${GREEN}26`
+const PEAK_SHADOW_CYAN  = `0 0 0 2px ${CYAN}66, 0 0 16px ${CYAN}40`
+const PEAK_SHADOW_GREEN = `0 0 0 2px ${GREEN}CC, 0 0 20px ${GREEN}4d`
+
+const LOOP_DURATION = 7.5
+const EDGE_FADE = 0.25 // seconds the dot/trail take to materialise / dematerialise at each loop boundary
+const TRAIL_PX = 120
+
 export default function PlatformSection() {
   const sectionRef = useRef<HTMLElement>(null)
   const workflowRef = useRef<HTMLDivElement>(null)
   const pathRef = useRef<SVGPathElement>(null)
   const trackRef = useRef<SVGPathElement>(null)
+  const trailRef = useRef<SVGPathElement>(null)
   const dotRef = useRef<SVGCircleElement>(null)
   const stageRefs = useRef<(HTMLDivElement | null)[]>([])
 
@@ -85,6 +96,7 @@ export default function PlatformSection() {
     const container = workflowRef.current
     const path = pathRef.current
     const track = trackRef.current
+    const trail = trailRef.current
     const dot = dotRef.current
     if (!el || !container || !path || !track) return
 
@@ -96,11 +108,11 @@ export default function PlatformSection() {
     const nodeCircles = stageEls
       .map(n => n.querySelector<HTMLElement>('.ocs-node-circle'))
       .filter((n): n is HTMLElement => !!n)
-    const bookingNode = nodeCircles[BOOKING_INDEX]
 
     let loopTl: gsap.core.Timeline | null = null
     let ro: ResizeObserver | null = null
     let settled = false
+    let pathLen = 0
 
     // Measures each stage's true resting position — must only run once the
     // entrance animation's y-offset has fully resolved back to 0, otherwise
@@ -109,9 +121,13 @@ export default function PlatformSection() {
       const d = buildPathD(container, nodeCircles)
       path.setAttribute('d', d)
       track.setAttribute('d', d)
+      pathLen = path.getTotalLength()
       if (!prefersReduced) {
-        const len = path.getTotalLength()
-        gsap.set(path, { strokeDasharray: len, strokeDashoffset: settled ? 0 : len })
+        gsap.set(path, { strokeDasharray: pathLen, strokeDashoffset: settled ? 0 : pathLen })
+        if (trail) {
+          trail.setAttribute('d', d)
+          gsap.set(trail, { strokeDasharray: `${TRAIL_PX} ${pathLen + TRAIL_PX}`, strokeDashoffset: 0 })
+        }
       }
     }
 
@@ -120,12 +136,13 @@ export default function PlatformSection() {
     gsap.set(stageEls, { opacity: 0, y: 18 })
     gsap.set([path, track], { opacity: 0 })
     if (dot) gsap.set(dot, { opacity: 0 })
+    if (trail) gsap.set(trail, { opacity: 0 })
 
-    const pulseBooking = () => {
-      if (!bookingNode) return
+    const pulseNode = (nodeEl: HTMLElement | undefined, isBooking: boolean) => {
+      if (!nodeEl) return
       gsap.timeline()
-        .to(bookingNode, { boxShadow: `0 0 0 9px ${GREEN}59, 0 0 28px ${GREEN}80`, duration: 0.32, ease: 'power2.out' })
-        .to(bookingNode, { boxShadow: `0 0 0 0px ${GREEN}00, 0 0 16px ${GREEN}33`, duration: 0.95, ease: 'power2.in' }, 0.32)
+        .to(nodeEl, { boxShadow: isBooking ? PEAK_SHADOW_GREEN : PEAK_SHADOW_CYAN, filter: 'brightness(1.45)', duration: 0.22, ease: 'power2.out' })
+        .to(nodeEl, { boxShadow: isBooking ? REST_SHADOW_GREEN : REST_SHADOW_CYAN, filter: 'brightness(1)', duration: 0.42, ease: 'power2.inOut' }, 0.22)
     }
 
     const startLineAndDot = () => {
@@ -142,17 +159,44 @@ export default function PlatformSection() {
         ease: 'power2.inOut',
         onComplete: () => {
           settled = true
-          if (!dot) return
-          gsap.set(dot, { opacity: 1 })
+
           loopTl = gsap.timeline({ repeat: -1 })
-          loopTl.to(dot, {
-            motionPath: { path, autoRotate: false, alignOrigin: [0.5, 0.5] },
-            duration: 7,
-            ease: 'none',
-          }, 0)
-          if (bookingNode) {
-            loopTl.call(pulseBooking, [], 7 * (BOOKING_INDEX / (STAGES.length - 1)) - 0.15)
+
+          if (dot) {
+            loopTl.to(dot, {
+              motionPath: { path, autoRotate: false, alignOrigin: [0.5, 0.5] },
+              duration: LOOP_DURATION,
+              ease: 'none',
+            }, 0)
+            // Materialise / dematerialise at the loop seam instead of an
+            // instant teleport back to the start — this is what removes the
+            // visible "jump" a raw repeat would otherwise show.
+            loopTl.fromTo(dot, { opacity: 0 }, { opacity: 1, duration: EDGE_FADE, ease: 'power1.out' }, 0)
+            loopTl.to(dot, { opacity: 0, duration: EDGE_FADE, ease: 'power1.in' }, LOOP_DURATION - EDGE_FADE)
           }
+
+          if (trail && pathLen > 0) {
+            loopTl.to(trail, {
+              strokeDashoffset: -(pathLen - TRAIL_PX),
+              duration: LOOP_DURATION,
+              ease: 'none',
+            }, 0)
+            loopTl.fromTo(trail, { opacity: 0 }, { opacity: 1, duration: EDGE_FADE, ease: 'power1.out' }, 0)
+            loopTl.to(trail, { opacity: 0, duration: EDGE_FADE, ease: 'power1.in' }, LOOP_DURATION - EDGE_FADE)
+          }
+
+          // One brighten pulse per stage, timed to when the light actually
+          // passes that stage's position along the path (stages are evenly
+          // spaced, so this is just index / (count - 1) of the duration).
+          STAGES.forEach((stage, i) => {
+            const nodeEl = nodeCircles[i]
+            if (!nodeEl) return
+            const t = LOOP_DURATION * (i / (STAGES.length - 1))
+            // Keep the very first/last pulse just inside the visible
+            // (faded-in) window so it doesn't fire while opacity is 0.
+            const clamped = Math.min(Math.max(t, EDGE_FADE * 0.6), LOOP_DURATION - EDGE_FADE * 0.6)
+            loopTl!.call(() => pulseNode(nodeEl, !!stage.success), [], clamped)
+          })
         },
       })
     }
@@ -246,21 +290,39 @@ export default function PlatformSection() {
             style={{ width: '100%', height: '100%', overflow: 'visible' }}
           >
             <defs>
+              {/* Restrained cyan/teal — no multi-hue blend */}
               <linearGradient id="ocs-line-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%"  stopColor="#F0C56A" stopOpacity="0.5" />
-                <stop offset="10%" stopColor="#34D399" stopOpacity="0.45" />
-                <stop offset="20%" stopColor="#E879C9" stopOpacity="0.4" />
-                <stop offset="30%" stopColor="#6BA9FF" stopOpacity="0.38" />
-                <stop offset="45%" stopColor={CYAN} stopOpacity="0.65" />
-                <stop offset="100%" stopColor={CYAN} stopOpacity="0.9" />
+                <stop offset="0%"   stopColor="#2DD4BF" stopOpacity="0.3" />
+                <stop offset="100%" stopColor={CYAN} stopOpacity="0.55" />
               </linearGradient>
+              {/* Fades both outer ends of the connector into the background */}
+              <linearGradient id="ocs-fade-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%"   stopColor="white" stopOpacity="0" />
+                <stop offset="7%"   stopColor="white" stopOpacity="1" />
+                <stop offset="93%"  stopColor="white" stopOpacity="1" />
+                <stop offset="100%" stopColor="white" stopOpacity="0" />
+              </linearGradient>
+              <mask id="ocs-fade-mask" maskUnits="objectBoundingBox" x="-15%" y="-15%" width="130%" height="130%">
+                <rect x="-15%" y="-15%" width="130%" height="130%" fill="url(#ocs-fade-grad)" />
+              </mask>
             </defs>
-            {/* Track — faint permanent guide */}
-            <path ref={trackRef} fill="none" stroke="rgba(255,255,255,0.09)" strokeWidth={1.5} />
+            {/* Track — faint permanent guide, 1px hairline */}
+            <path ref={trackRef} fill="none" stroke="rgba(255,255,255,0.07)" strokeWidth={1} mask="url(#ocs-fade-mask)" />
             {/* Animated fill — draws in on scroll */}
-            <path ref={pathRef} fill="none" stroke="url(#ocs-line-grad)" strokeWidth={1.5} strokeLinecap="round" />
+            <path ref={pathRef} fill="none" stroke="url(#ocs-line-grad)" strokeWidth={1} strokeLinecap="round" mask="url(#ocs-fade-mask)" />
+            {/* Fading light trail behind the travelling dot */}
+            <path
+              ref={trailRef}
+              fill="none"
+              stroke={CYAN}
+              strokeOpacity={0.4}
+              strokeWidth={2.5}
+              strokeLinecap="round"
+              mask="url(#ocs-fade-mask)"
+              style={{ filter: 'blur(1.5px)' }}
+            />
             {/* Live enquiry dot */}
-            <circle ref={dotRef} r={5} fill={CYAN} style={{ filter: `drop-shadow(0 0 6px ${CYAN})` }} />
+            <circle ref={dotRef} r={2.75} fill={CYAN} style={{ filter: `drop-shadow(0 0 5px ${CYAN})` }} />
           </svg>
 
           {STAGES.map((stage, i) => (
@@ -273,16 +335,16 @@ export default function PlatformSection() {
               <div
                 className="ocs-node-circle"
                 style={{
-                  width: stage.success ? 62 : 54,
-                  height: stage.success ? 62 : 54,
+                  width: 54,
+                  height: 54,
                   borderRadius: '50%',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                   background: stage.success ? `${GREEN}1a` : `${CYAN}14`,
                   border: `1px solid ${stage.success ? GREEN : CYAN}59`,
-                  boxShadow: `0 0 18px ${stage.success ? GREEN : CYAN}26`,
+                  boxShadow: stage.success ? REST_SHADOW_GREEN : REST_SHADOW_CYAN,
                   marginBottom: '1.1rem',
                   flexShrink: 0,
-                  transition: 'box-shadow 300ms',
+                  transition: 'box-shadow 300ms, filter 300ms',
                 }}
               >
                 <Icon type={stage.icon} color={stage.success ? GREEN : CYAN} />

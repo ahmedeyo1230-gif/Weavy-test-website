@@ -4,14 +4,6 @@ import { motion } from 'framer-motion'
 const E: [number, number, number, number] = [0.16, 1, 0.3, 1]
 const GOLD = '#E8C97A'
 
-const JOURNEY = [
-  { id: 'visit',        label: 'Website Visit',     icon: 'globe',   color: '#7DDCFF' },
-  { id: 'conversation', label: 'Conversation',       icon: 'chat',    color: '#34D399' },
-  { id: 'lead',         label: 'Lead Captured',      icon: 'capture', color: '#7DDCFF' },
-  { id: 'crm',          label: 'CRM Updated',        icon: 'crm',     color: '#A78BFA' },
-  { id: 'booking',      label: 'Booking Confirmed',  icon: 'check',   color: GOLD      },
-]
-
 const FLOAT_CARDS = [
   { label: 'New Lead',          sub: 'John Smith · just now', color: '#7DDCFF', dot: '#22D3EE', pos: { top: '-22px', left: '-18px' } },
   { label: 'CRM Updated',       sub: 'HubSpot · synced',      color: '#A78BFA', dot: '#A78BFA', pos: { bottom: '-22px', left: '-18px' } },
@@ -70,19 +62,9 @@ function Icon({ type, color, size = 20 }: { type: string; color: string; size?: 
       <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
     </svg>
   )
-  if (type === 'capture') return (
-    <svg viewBox="0 0 24 24" style={s}>
-      <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
-    </svg>
-  )
   if (type === 'crm') return (
     <svg viewBox="0 0 24 24" style={s}>
       <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/>
-    </svg>
-  )
-  if (type === 'check') return (
-    <svg viewBox="0 0 24 24" style={s}>
-      <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22,4 12,14.01 9,11.01"/>
     </svg>
   )
   if (type === 'phone') return (
@@ -143,8 +125,9 @@ function ChannelBadges() {
 
 /* ── Central dashboard mock — wide "hero" format ── */
 
-function DashboardMock({ leads, reply, bookings }: { leads: number; reply: number; bookings: number }) {
+function DashboardMock({ leads, reply, bookings, inView, reduced }: { leads: number; reply: number; bookings: number; inView: boolean; reduced: boolean }) {
   const bars = [42, 68, 55, 82, 61, 90, 74]
+  const barsUp = reduced || inView
   return (
     <div
       aria-hidden="true"
@@ -197,7 +180,8 @@ function DashboardMock({ leads, reply, bookings }: { leads: number; reply: numbe
                 <div key={i} style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-end', height: '100%' }}>
                   <div style={{
                     width: '100%',
-                    height: `${h}%`,
+                    height: barsUp ? `${h}%` : '0%',
+                    transition: reduced ? 'none' : `height 650ms cubic-bezier(0.16, 1, 0.3, 1) ${i * 60}ms`,
                     borderRadius: '5px 5px 0 0',
                     background: i === 5
                       ? 'linear-gradient(to top, rgba(125,220,255,0.72), rgba(125,220,255,0.32))'
@@ -325,7 +309,7 @@ export default function ConnectedSystems() {
       style={{
         background: '#000506',
         paddingTop: 'clamp(96px, 15vw, 200px)',
-        paddingBottom: 'clamp(64px, 13vw, 180px)',
+        paddingBottom: 'clamp(96px, 15vw, 200px)',
       }}
       aria-label="Connected Systems"
     >
@@ -446,88 +430,8 @@ export default function ConnectedSystems() {
             />
           ))}
 
-          <DashboardMock leads={leads} reply={reply} bookings={bookings} />
+          <DashboardMock leads={leads} reply={reply} bookings={bookings} inView={inView} reduced={reduced} />
         </motion.div>
-
-        {/* ── Customer journey ── */}
-        <div className="mx-auto" style={{ width: 'min(86vw, 1240px)', marginTop: 'clamp(56px, 9vw, 96px)' }}>
-
-          {/* Desktop / tablet — horizontal progression */}
-          <div className="hidden min-[640px]:block relative">
-            <div aria-hidden="true" style={{ position: 'absolute', top: 19, left: '10%', right: '10%', height: 1, background: 'rgba(125,220,255,0.14)' }} />
-            <motion.div
-              aria-hidden="true"
-              initial={reduced ? false : { scaleX: 0 }}
-              whileInView={{ scaleX: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.62, ease: E }}
-              style={{
-                position: 'absolute', top: 19, left: '10%', right: '10%', height: 1,
-                transformOrigin: 'left',
-                background: 'linear-gradient(to right, rgba(125,220,255,0.55), rgba(125,220,255,0.28) 60%, rgba(232,201,122,0.55))',
-              }}
-            />
-            <div className="grid relative" style={{ gridTemplateColumns: 'repeat(5, minmax(0, 1fr))' }}>
-              {JOURNEY.map((step, i) => (
-                <motion.div
-                  key={step.id}
-                  initial={reduced ? false : { opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.45, delay: 0.68 + i * 0.09, ease: E }}
-                  className="flex flex-col items-center text-center"
-                  style={{ padding: '0 8px' }}
-                >
-                  <div style={{
-                    width: 38, height: 38, borderRadius: '50%',
-                    background: `${step.color}14`,
-                    border: `1px solid ${step.color}40`,
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    boxShadow: i === 4 ? '0 0 20px rgba(232,201,122,0.22)' : `0 0 12px ${step.color}1c`,
-                    position: 'relative', zIndex: 2,
-                  }}>
-                    <Icon type={step.icon} color={step.color} size={17} />
-                  </div>
-                  <span style={{ fontFamily: 'var(--font-label)', marginTop: 12, fontSize: '0.85rem', color: i === 4 ? GOLD : 'rgba(248,250,252,0.76)', fontWeight: i === 4 ? 500 : 400 }}>
-                    {step.label}
-                  </span>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-
-          {/* Mobile — clean vertical stepped sequence */}
-          <div className="min-[640px]:hidden flex flex-col gap-3">
-            {JOURNEY.map((step, i) => (
-              <motion.div
-                key={step.id}
-                initial={reduced ? false : { opacity: 0, x: -16 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.42, delay: 0.5 + i * 0.09, ease: E }}
-                style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}
-              >
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flexShrink: 0 }}>
-                  <div style={{
-                    width: 36, height: 36, borderRadius: '50%',
-                    background: `${step.color}14`,
-                    border: `1px solid ${step.color}40`,
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    boxShadow: i === 4 ? '0 0 18px rgba(232,201,122,0.22)' : `0 0 12px ${step.color}1c`,
-                  }}>
-                    <Icon type={step.icon} color={step.color} size={16} />
-                  </div>
-                  {i < JOURNEY.length - 1 && (
-                    <div style={{ width: 1, height: 16, background: `linear-gradient(to bottom, ${step.color}30, transparent)`, marginTop: 2 }} />
-                  )}
-                </div>
-                <span style={{ fontFamily: 'var(--font-label)', fontSize: '0.95rem', color: i === 4 ? GOLD : 'rgba(248,250,252,0.78)', fontWeight: i === 4 ? 500 : 400 }}>
-                  {step.label}
-                </span>
-              </motion.div>
-            ))}
-          </div>
-        </div>
 
       </div>
     </section>
