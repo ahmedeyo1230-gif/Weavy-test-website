@@ -1077,13 +1077,27 @@ body::after {
   .cta-pill-glow { animation: none; opacity: 0.4; transform: none; }
 }
 
-/* ── Bespoke Website Design — main mockup: slightly larger and shifted left
-   on desktop, a smaller shift on tablet, unchanged (centred) on mobile ── */
+/* ── Bespoke Website Design — main mockup: shifted right on desktop, a
+   smaller shift on tablet, unchanged (centred) on mobile ── */
 @media (min-width: 640px) {
-  .bwd1-mockup-shift { transform: translateX(-14px); }
+  .bwd1-mockup-shift { transform: translateX(12px); }
 }
 @media (min-width: 1280px) {
-  .bwd1-mockup-shift { transform: translateX(-28px) scale(1.07); }
+  .bwd1-mockup-shift { transform: translateX(24px); }
+}
+
+/* ── Small section eyebrow labels (GET IN TOUCH, THE WEAVY DIFFERENCE,
+   LET'S BUILD SOMETHING) — slightly larger on desktop, scaling down for
+   tablet and mobile. Font, letter-spacing, alignment and colour are set
+   by each usage and untouched here. ── */
+.section-eyebrow-sm {
+  font-size: 12px;
+}
+@media (min-width: 640px) {
+  .section-eyebrow-sm { font-size: 13px; }
+}
+@media (min-width: 1280px) {
+  .section-eyebrow-sm { font-size: 14px; }
 }
 
 /* ── Respect prefers-reduced-motion ─────────────────────────────────────── */

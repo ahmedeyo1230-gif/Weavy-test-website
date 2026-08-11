@@ -2523,6 +2523,8 @@ function ChatbotIntegrationsSection() {
       {/* Section boundary fades */}
       <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to bottom, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
       <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to top, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
+      {/* Bottom blend — smooths the seam into the Footer's #06080A background */}
+      <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to bottom, transparent 0%, #06080A 100%)', pointerEvents: 'none', zIndex: 3 }} />
 
       <div className="relative z-10 max-w-[82rem] mx-auto px-6 sm:px-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20 items-start">
@@ -4614,13 +4616,18 @@ function SocialMediaMarketing() {
         <rect width="100%" height="100%" filter="url(#smf-grain)" style={{ fill: 'white' }}/>
       </svg>
 
+      {/* Section boundary fades — soften the grain texture's abrupt start/end
+          so this section blends smoothly with its neighbours */}
+      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to bottom, #010709, transparent)', pointerEvents: 'none', zIndex: 1 }} />
+      <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to bottom, transparent 0%, #06080A 100%)', pointerEvents: 'none', zIndex: 1 }} />
+
       <div className="relative z-10 max-w-[68rem] mx-auto px-6 sm:px-10">
 
         {/* ── Centered header ── */}
         <div className="text-center mb-20 lg:mb-24">
           <p
-            className="smf-eyebrow font-sans font-normal uppercase mb-5"
-            style={{ opacity: 0, fontSize: '0.6rem', letterSpacing: '0.38em', color: 'hsl(280 65% 72% / 0.65)' }}
+            className="smf-eyebrow font-sans font-normal uppercase mb-5 section-eyebrow-sm"
+            style={{ opacity: 0, letterSpacing: '0.38em', color: 'hsl(280 65% 72% / 0.65)' }}
           >
             The Weavy Difference
           </p>
@@ -5924,6 +5931,10 @@ function GraphicDesignSplitA() {
         ].join(', '),
       }}/>
 
+      {/* Top blend — softens the grid/grain/bloom layers' abrupt start so
+          this section doesn't read as a hard seam against the section above */}
+      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '90px', background: 'linear-gradient(to bottom, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
+
       <div className="relative z-10 max-w-[92rem] mx-auto px-6 sm:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-[1.55fr_1fr] gap-12 lg:gap-[clamp(3rem,6vw,6rem)] items-center">
 
@@ -6869,6 +6880,9 @@ function GraphicDesignCTA() {
         zIndex: 1,
         background: 'radial-gradient(ellipse 70% 55% at 50% 50%, hsl(195 90% 55% / 0.05) 0%, transparent 68%)',
       }}/>
+
+      {/* Bottom blend — smooths the seam into the Footer's #06080A background */}
+      <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to bottom, transparent 0%, #06080A 100%)', pointerEvents: 'none', zIndex: 2 }} />
 
       <div className="relative z-10 max-w-[58rem] mx-auto px-6 sm:px-10 flex flex-col items-center text-center">
 
@@ -9844,6 +9858,10 @@ export default function Services() {
 
         {/* Section boundary fades */}
         <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to top, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
+        {/* Top blend — softens the transition from Website Showcase's flat
+            #060208, so the radial gradient here doesn't read as a hard
+            tinted seam at the boundary */}
+        <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '110px', background: 'linear-gradient(to bottom, #060208, transparent)', pointerEvents: 'none', zIndex: 2 }} />
 
         <div className="relative z-10 max-w-[88rem] mx-auto px-6 sm:px-10">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.6fr] gap-16 lg:gap-14 xl:gap-[148px] items-center">
@@ -9975,7 +9993,7 @@ export default function Services() {
                   fontSize: '0.72rem',
                   letterSpacing: '0.22em',
                   color: 'hsl(0 0% 100% / 0.6)',
-                  marginTop: '1.1rem',
+                  marginTop: 'calc(1.1rem + 20px)',
                   textAlign: 'center',
                 }}
               >

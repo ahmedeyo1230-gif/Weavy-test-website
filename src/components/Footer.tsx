@@ -326,11 +326,10 @@ export default function Footer({
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="font-label font-medium"
+            className="font-label font-medium section-eyebrow-sm"
             style={{
               position: 'relative',
               zIndex: 1,
-              fontSize: '0.68rem',
               letterSpacing: '0.32em',
               textTransform: 'uppercase',
               color: 'rgba(191, 239, 255, 0.72)',
