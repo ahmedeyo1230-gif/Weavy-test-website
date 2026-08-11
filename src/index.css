@@ -1077,6 +1077,15 @@ body::after {
   .cta-pill-glow { animation: none; opacity: 0.4; transform: none; }
 }
 
+/* ── Bespoke Website Design — main mockup: slightly larger and shifted left
+   on desktop, a smaller shift on tablet, unchanged (centred) on mobile ── */
+@media (min-width: 640px) {
+  .bwd1-mockup-shift { transform: translateX(-14px); }
+}
+@media (min-width: 1280px) {
+  .bwd1-mockup-shift { transform: translateX(-28px) scale(1.07); }
+}
+
 /* ── Respect prefers-reduced-motion ─────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   *,

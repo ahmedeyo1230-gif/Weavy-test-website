@@ -1386,6 +1386,11 @@ function BespokeProcessTimeline() {
     >
       <ShowcaseBackground />
 
+      {/* Bottom blend — smooths the seam into the Client Stories section's
+          #010709 background (this section is #060208; without this the flat
+          colour change reads as a hard line at the boundary) */}
+      <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to bottom, transparent 0%, #010709 100%)', pointerEvents: 'none', zIndex: 2 }} />
+
       <div className="relative z-10 max-w-[72rem] mx-auto px-6 sm:px-10">
 
         {/* Heading + para — centered */}
@@ -1578,6 +1583,11 @@ function BespokeResultsStrip() {
       className="relative w-full overflow-hidden"
       style={{ background: '#010709', padding: 'clamp(3.5rem, 7vw, 5.5rem) 0' }}
     >
+      {/* Bottom blend — smooths the seam into the Footer's #06080A background
+          (this section is #010709; without this the flat colour change reads
+          as a hard line at the boundary) */}
+      <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to bottom, transparent 0%, #06080A 100%)', pointerEvents: 'none', zIndex: 2 }} />
+
       <div className="relative z-10 max-w-[52rem] mx-auto px-6 sm:px-10">
         <div className="flex flex-col sm:flex-row items-center justify-center" style={{ gap: 'clamp(2rem, 5vw, 4rem)' }}>
           {RESULTS_STATS.flatMap((stat, i) => {
@@ -9939,7 +9949,10 @@ export default function Services() {
                 between it and the text column ── */}
             <div className="relative flex flex-col items-center lg:items-end" style={{ justifySelf: 'end', width: '100%' }}>
 
-              <div className="relative flex items-center justify-center lg:justify-end" style={{ width: '100%', minWidth: 0 }}>
+              <div
+                className="relative flex items-center justify-center lg:justify-end bwd1-mockup-shift"
+                style={{ width: '100%', minWidth: 0 }}
+              >
                 {/* Ambient glow behind mockup */}
                 <div aria-hidden="true" style={{
                   position: 'absolute', inset: '-20px',
