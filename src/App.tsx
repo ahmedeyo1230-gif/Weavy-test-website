@@ -107,7 +107,25 @@ export default function App() {
               <PricingSection />
               <TestimonialsSection />
               <BuildingTheFutureMarquee />
-              <Footer />
+              <Footer
+                eyebrow="Get in touch"
+                heading={<>
+                  Ready to build a stronger digital{' '}
+                  <em style={{
+                    fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400,
+                    background: 'linear-gradient(90deg, #FFFFFF 0%, #7DDCFF 45%, #B7AEFF 100%)',
+                    WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
+                    color: 'transparent',
+                    textShadow: '0 0 24px rgba(125, 220, 255, 0.16)',
+                  }}>
+                    presence
+                  </em>?
+                </>}
+                subtext="From intelligent automation and connected CRM systems to bespoke websites, UGC, social media and creative design—we bring everything together to help your business attract, engage and convert more customers."
+                ctaLabel="Start a Project"
+                ctaHref="/contact"
+                ctaVariant="primary"
+              />
             </>
           )}
         </>

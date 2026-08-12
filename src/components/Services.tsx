@@ -4918,9 +4918,9 @@ function SocialMediaMarketing() {
 
     {/* ══ SECTION 8 — Contact / Footer ════════════════════════════════════════ */}
     <Footer
-      eyebrow="Let's build something"
+      eyebrow="Let's grow your presence"
       heading={<>
-        Ready to grow your{' '}
+        Ready to turn attention into{' '}
         <em style={{
           fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400,
           background: 'linear-gradient(90deg, #FFFFFF 0%, #7DDCFF 45%, #B7AEFF 100%)',
@@ -4928,10 +4928,10 @@ function SocialMediaMarketing() {
           color: 'transparent',
           textShadow: '0 0 24px rgba(125, 220, 255, 0.16)',
         }}>
-          brand?
+          growth?
         </em>
       </>}
-      subtext={null}
+      subtext="Let's build a social media strategy with purposeful content, targeted campaigns and clear reporting—designed to strengthen your brand and convert attention into customers."
       ctaLabel="Book a Free Consultation"
       ctaHref="/contact"
       ctaVariant="primary"
@@ -7953,7 +7953,7 @@ function UGCMonitoringReporting() {
           </div>
 
           {/* IMAGE — second in DOM = bottom on mobile, order-1 on desktop (left) */}
-          <div className="ugcmr-layout-image">
+          <div className="ugcmr-layout-image ugcmr-img-scale">
             <div
               className="ugcmr-img"
               style={{

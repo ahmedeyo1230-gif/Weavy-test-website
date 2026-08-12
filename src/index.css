@@ -1078,12 +1078,36 @@ body::after {
 }
 
 /* ── Bespoke Website Design — main mockup: shifted right on desktop, a
-   smaller shift on tablet, unchanged (centred) on mobile ── */
+   smaller shift on tablet, unchanged (centred) on mobile. A small scale
+   increase is layered on top at tablet/desktop — right-anchored once the
+   layout goes right-aligned (lg+) so the mockup only grows leftward and
+   its right edge never moves past its current (already-shifted) position;
+   center-anchored below that while the layout is still centred/stacked. ── */
 @media (min-width: 640px) {
-  .bwd1-mockup-shift { transform: translateX(12px); }
+  .bwd1-mockup-shift { transform: translateX(12px) scale(1.035); transform-origin: center; }
+}
+@media (min-width: 1024px) {
+  .bwd1-mockup-shift { transform: translateX(12px) scale(1.035); transform-origin: right center; }
 }
 @media (min-width: 1280px) {
-  .bwd1-mockup-shift { transform: translateX(24px); }
+  .bwd1-mockup-shift { transform: translateX(24px) scale(1.06); transform-origin: right center; }
+}
+
+/* ── UGC / Content Monitoring — left image: a small scale increase on
+   tablet/desktop, unchanged (centred) on mobile. Applied to the
+   .ugcmr-layout-image wrapper (not .ugcmr-img itself, which GSAP animates
+   inline on scroll-reveal) to avoid clobbering that animation. Below
+   1024px the layout is stacked/centred, so the scale is center-anchored;
+   at 1024px+ the layout goes row/right-aligned (justify-content: flex-end),
+   so it's right-anchored to grow only leftward, away from the text column. ── */
+@media (min-width: 640px) and (max-width: 1023px) {
+  .ugcmr-img-scale { transform: scale(1.035); transform-origin: center; }
+}
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .ugcmr-img-scale { transform: scale(1.035); transform-origin: right center; }
+}
+@media (min-width: 1280px) {
+  .ugcmr-img-scale { transform: scale(1.07); transform-origin: right center; }
 }
 
 /* ── Small section eyebrow labels (GET IN TOUCH, THE WEAVY DIFFERENCE,

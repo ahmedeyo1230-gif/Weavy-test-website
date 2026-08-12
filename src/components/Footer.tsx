@@ -275,7 +275,7 @@ export default function Footer({
           position: 'absolute',
           inset: 0,
           zIndex: 1,
-          background: 'rgba(1,7,9,0.28)',
+          background: 'rgba(1,7,9,0.24)',
           pointerEvents: 'none',
         }}
       />

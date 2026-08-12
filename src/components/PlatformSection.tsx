@@ -355,13 +355,13 @@ export default function PlatformSection() {
               </h3>
 
               {stage.desc && (
-                <p className="font-body font-normal" style={{ fontSize: '15px', lineHeight: 1.65, color: 'var(--text-muted)' }}>
+                <p className="font-body font-normal" style={{ fontSize: '15px', lineHeight: 1.65, color: '#A7B0B3', opacity: 1 }}>
                   {stage.desc}
                 </p>
               )}
 
               {stage.channels && (
-                <p className="font-body font-normal" style={{ fontSize: '13px', lineHeight: 1.6, color: 'var(--text-muted)', opacity: 0.85 }}>
+                <p className="font-body font-normal" style={{ fontSize: '13px', lineHeight: 1.6, color: '#A7B0B3', opacity: 1 }}>
                   {stage.channels.join(' · ')}
                 </p>
               )}

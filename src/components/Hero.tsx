@@ -359,7 +359,7 @@ export default function Hero() {
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
           <div className="absolute top-1/4 left-1/4 w-[520px] h-[520px] bg-accent-cyan/[0.09] rounded-full blur-[130px]" />
           <div className="absolute top-[60%] left-[30%] w-[400px] h-[400px] rounded-full blur-[110px]" style={{ background: 'hsl(270 50% 20% / 0.06)' }} />
-          <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse at center, transparent 0%, rgba(1,7,9,0.26) 62%, rgba(1,7,9,0.52) 90%)' }} />
+          <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse at center, transparent 0%, rgba(1,7,9,0.21) 62%, rgba(1,7,9,0.43) 90%)' }} />
         </div>
 
         {/* Content */}
@@ -369,18 +369,7 @@ export default function Hero() {
           animate="visible"
           className="relative z-10 max-w-5xl mx-auto px-6 sm:px-10 text-center flex flex-col items-center"
         >
-          {/* Styling lives in the `.hero-eyebrow` rule in index.css (not Tailwind
-              text-[…]/tracking-[…] utilities) because the global "p { font-size:
-              16px }" mobile-readability rule there is un-layered and otherwise
-              overrides any Tailwind utility below the 1024px breakpoint. */}
-          <motion.p
-            variants={itemVariants}
-            className="hero-eyebrow mb-6 mt-6 font-medium"
-          >
-            <span className="uppercase">Automation &amp; Managed Services</span>
-          </motion.p>
-
-          <div className="relative">
+          <div className="relative mt-6">
             {/* Water shimmer layer around heading */}
             <div className="hero-water-layer" aria-hidden="true">
               {/* top shimmer line removed */}
