@@ -1102,8 +1102,7 @@ function BespokeWebShowcase() {
         {/* ── Single-featured carousel ── */}
         <div
           ref={carouselRef}
-          className="relative mx-auto"
-          style={{ maxWidth: '1040px' }}
+          className="relative mx-auto bws-carousel-wrap"
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >
@@ -1147,7 +1146,7 @@ function BespokeWebShowcase() {
             </button>
 
             {/* Browser frame — ~80% of the content width, Villa Luna styling */}
-            <div style={{ position: 'relative', width: '100%', maxWidth: '860px' }}>
+            <div className="bws-image-wrap" style={{ position: 'relative', width: '100%' }}>
 
               {/* Ambient glow behind mockup */}
               <div aria-hidden="true" style={{
@@ -10523,8 +10522,9 @@ export default function Services() {
       {activeService === 'ugc' && <UGCPracticeEcosystem />}
       {activeService === 'ugc' && (
         <Footer
+          eyebrow="Let's create something real"
           heading={<>
-            Ready to{' '}
+            Ready to turn{' '}
             <em style={{
               fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400,
               background: 'linear-gradient(90deg, #FFFFFF 0%, #7DDCFF 45%, #B7AEFF 100%)',
@@ -10532,15 +10532,14 @@ export default function Services() {
               color: 'transparent',
               textShadow: '0 0 24px rgba(125, 220, 255, 0.16)',
             }}>
-              automate
+              authentic content
             </em>{' '}
-            your business?
+            into growth?
           </>}
-          subtext={<>
-            Book a free demo and see how Weavy can manage your calls, messages, bookings, and{' '}
-            leads from one <span style={{ color: 'rgba(191, 239, 255, 0.9)', fontWeight: 500 }}>managed AI platform</span>.
-          </>}
-          ctaLabel="hello@weavyautomation.com"
+          subtext="From product reviews and unboxings to lifestyle content and social-first reels, we create UGC that earns trust, captures attention and moves customers to act."
+          ctaLabel="Start a UGC Project"
+          ctaHref="/contact"
+          ctaVariant="primary"
         />
       )}
 

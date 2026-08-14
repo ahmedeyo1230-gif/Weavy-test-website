@@ -141,8 +141,10 @@ export default function PlatformSection() {
     const pulseNode = (nodeEl: HTMLElement | undefined, isBooking: boolean) => {
       if (!nodeEl) return
       gsap.timeline()
-        .to(nodeEl, { boxShadow: isBooking ? PEAK_SHADOW_GREEN : PEAK_SHADOW_CYAN, filter: 'brightness(1.45)', duration: 0.22, ease: 'power2.out' })
-        .to(nodeEl, { boxShadow: isBooking ? REST_SHADOW_GREEN : REST_SHADOW_CYAN, filter: 'brightness(1)', duration: 0.42, ease: 'power2.inOut' }, 0.22)
+        .to(nodeEl, { scale: 1.1, boxShadow: isBooking ? PEAK_SHADOW_GREEN : PEAK_SHADOW_CYAN, filter: 'brightness(1.45)', duration: 0.22, ease: 'power2.out' })
+        // Hold the peak state for ~350ms before returning, so the reaction
+        // reads as a deliberate beat rather than an instant flicker.
+        .to(nodeEl, { scale: 1, boxShadow: isBooking ? REST_SHADOW_GREEN : REST_SHADOW_CYAN, filter: 'brightness(1)', duration: 0.42, ease: 'power2.inOut' }, '+=0.35')
     }
 
     const startLineAndDot = () => {

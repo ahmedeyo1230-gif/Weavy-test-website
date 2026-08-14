@@ -1077,6 +1077,28 @@ body::after {
   .cta-pill-glow { animation: none; opacity: 0.4; transform: none; }
 }
 
+/* ── Bespoke Website Design showcase — main carousel image: ~4% larger on
+   tablet via transform (the frame sits below its 860px cap at these
+   viewports, so a paint-only scale has plenty of clearance before the nav
+   arrows); ~8% larger on desktop via a genuine max-width increase instead
+   of transform, because at 1280px+ the frame is already flush against its
+   860px cap and only has a ~28px gap to each arrow — an 8% transform-scale
+   would overlap them, but growing the actual box (and widening the
+   carousel's own outer cap by the same amount, so flex-shrink doesn't claw
+   the growth back) keeps that gap intact. Mobile is left untouched — its
+   arrow clearance (~10px) is too tight for any safe growth. ── */
+.bws-image-wrap { max-width: 860px; }
+@media (min-width: 640px) and (max-width: 1279px) {
+  .bws-image-wrap { transform: scale(1.04); transform-origin: center; }
+}
+@media (min-width: 1280px) {
+  .bws-image-wrap { max-width: 929px; }
+}
+.bws-carousel-wrap { max-width: 1040px; }
+@media (min-width: 1280px) {
+  .bws-carousel-wrap { max-width: 1109px; }
+}
+
 /* ── Bespoke Website Design — main mockup: shifted right on desktop, a
    smaller shift on tablet, unchanged (centred) on mobile. A small scale
    increase is layered on top at tablet/desktop — right-anchored once the

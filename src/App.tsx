@@ -121,7 +121,7 @@ export default function App() {
                     presence
                   </em>?
                 </>}
-                subtext="From intelligent automation and connected CRM systems to bespoke websites, UGC, social media and creative design—we bring everything together to help your business attract, engage and convert more customers."
+                subtext="From intelligent automation and connected CRM systems to bespoke websites, UGC, reels, social media and creative design—we bring everything together to help your business attract, engage and convert more customers."
                 ctaLabel="Start a Project"
                 ctaHref="/contact"
                 ctaVariant="primary"
