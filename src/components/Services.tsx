@@ -3891,20 +3891,18 @@ function SocialMediaMarketing() {
                 {
                   src: '/brand_assets/campaign-lips-1.png',
                   alt: 'Skincare campaign — beauty product application',
-                  objectPosition: '53% 50%',
+                  objectPosition: '72% 50%',
                 },
                 {
                   src: '/brand_assets/SIIRR.png',
                   alt: 'SIIR Oud fragrance campaign',
-                  objectPosition: '66% 50%',
-                  transform: 'scale(1.47)',
-                  transformOrigin: '52% 42%',
+                  objectPosition: '50% 42%',
                   filter: 'brightness(0.86) saturate(0.92)',
                 },
                 {
                   src: '/brand_assets/campaign-lips-3.png',
                   alt: 'Lipstick editorial campaign close-up',
-                  objectPosition: '50% 46%',
+                  objectPosition: '56% 46%',
                 },
               ].map(img => (
                 <div key={img.src} style={{ position: 'relative', borderRadius: '5px', overflow: 'hidden' }}>
@@ -3916,7 +3914,6 @@ function SocialMediaMarketing() {
                     style={{
                       display: 'block', width: '100%', height: '100%',
                       objectFit: 'cover', objectPosition: img.objectPosition,
-                      transform: img.transform, transformOrigin: img.transformOrigin,
                       filter: img.filter,
                     }}
                   />
@@ -7154,14 +7151,14 @@ function UGCHero() {
           {/* Badge */}
           <div className="ugch-r inline-flex items-center gap-2 mb-8" style={{ background: 'hsl(0 72% 48% / 0.1)', border: '1px solid hsl(0 72% 58% / 0.28)', borderRadius: 999, padding: '0.38rem 1rem' }}>
             <span style={{ width: 7, height: 7, borderRadius: '50%', background: 'hsl(0 72% 62%)', boxShadow: '0 0 9px hsl(0 72% 62% / 0.85)', display: 'inline-block', flexShrink: 0 }}/>
-            <span className="font-sans" style={{ fontSize: '0.64rem', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'hsl(0 72% 74%)' }}>UGC Content Creation</span>
+            <span className="font-sans" style={{ fontSize: '0.64rem', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'hsl(0 72% 74%)' }}>UGC & Creator Content</span>
           </div>
 
           {/* Headline */}
           <h2 className="ugch-r font-heading font-medium" style={{ color: '#fff', fontSize: 'clamp(2rem, 5.8vw, 5rem)', lineHeight: 1.05, letterSpacing: '-0.04em', marginBottom: '1.6rem' }}>
-            Real creators.<br/>
-            Real{' '}
-            <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(0 72% 70%)' }}>results.</em>
+            Real creators. Smarter production.<br/>
+            Content people{' '}
+            <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(0 72% 70%)' }}>trust.</em>
           </h2>
 
           {/* Rule */}
@@ -7169,8 +7166,8 @@ function UGCHero() {
 
           {/* Body */}
           <p className="ugch-r font-sans font-normal" style={{ fontSize: 'clamp(0.9rem, 1.45vw, 1.06rem)', lineHeight: 1.82, color: '#F2F8FC', maxWidth: '30rem', marginBottom: '2.2rem' }}>
-            We match your brand with creators who genuinely connect with your audience —
-            producing content that feels native, converts at scale, and makes people stop scrolling.
+            We combine real creators with AI-assisted ideation and post-production to create
+            authentic, platform-ready content for TikTok, Instagram Reels, YouTube Shorts and paid campaigns.
           </p>
 
           {/* Platform pills */}
@@ -7184,14 +7181,13 @@ function UGCHero() {
         {/* Right: glass metric cards (desktop only) */}
         <div className="hidden lg:flex flex-col gap-4 flex-shrink-0" style={{ width: 220 }}>
           {[
-            { value: '10M+', label: 'Views Generated',  sub: 'across all platforms' },
-            { value: '4.5×', label: 'Conversion Lift',  sub: 'vs. traditional ads'  },
-            { value: '48h',  label: 'Turnaround',       sub: 'brief to delivered'   },
-          ].map(({ value, label, sub }) => (
-            <div key={label} className="ugch-r" style={{ background: 'hsl(0 0% 100% / 0.038)', backdropFilter: 'blur(22px)', border: '1px solid hsl(0 0% 100% / 0.09)', borderRadius: '1rem', padding: '1.15rem 1.45rem', boxShadow: '0 8px 36px hsl(0 0% 0% / 0.32)' }}>
-              <p className="font-sans font-normal" style={{ color: '#fff', fontSize: '2.1rem', letterSpacing: '-0.045em', lineHeight: 1, marginBottom: '0.35rem' }}>{value}</p>
-              <p className="font-sans" style={{ fontSize: '0.7rem', letterSpacing: '0.06em', color: 'hsl(0 0% 78%)', marginBottom: '0.15rem' }}>{label}</p>
-              <p className="font-sans" style={{ fontSize: '0.6rem', color: 'hsl(0 0% 38%)' }}>{sub}</p>
+            { title: 'Real Creators',          desc: 'Human-led content designed to feel natural, credible and connected to your audience.' },
+            { title: 'AI-Assisted Production',  desc: 'Faster ideation, editing and creative variations without losing the human voice.' },
+            { title: 'Multi-Format Delivery',   desc: 'Content prepared for organic social, short-form video and paid campaigns.' },
+          ].map(({ title, desc }) => (
+            <div key={title} className="ugch-r" style={{ background: 'hsl(0 0% 100% / 0.038)', backdropFilter: 'blur(22px)', border: '1px solid hsl(0 0% 100% / 0.09)', borderRadius: '1rem', padding: '1.15rem 1.45rem', boxShadow: '0 8px 36px hsl(0 0% 0% / 0.32)' }}>
+              <p className="font-sans font-medium" style={{ color: '#fff', fontSize: '0.74rem', letterSpacing: '0.07em', textTransform: 'uppercase', marginBottom: '0.5rem' }}>{title}</p>
+              <p className="font-sans" style={{ fontSize: '0.72rem', lineHeight: 1.55, color: 'hsl(0 0% 78%)' }}>{desc}</p>
             </div>
           ))}
         </div>
@@ -7231,33 +7227,27 @@ function UGCHero() {
           <div>
             <p className="ugce-r font-sans uppercase mb-5" style={{ fontSize: '0.64rem', letterSpacing: '0.34em', color: 'hsl(0 72% 60%)' }}>Why UGC Works</p>
             <h2 className="ugce-r font-heading font-medium" style={{ color: '#fff', fontSize: 'clamp(2rem, 3.8vw, 3.1rem)', lineHeight: 1.08, letterSpacing: '-0.033em', marginBottom: '1.5rem' }}>
-              People trust{' '}
-              <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(0 72% 70%)' }}>people</em>,<br/>not brands.
+              People connect with{' '}
+              <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(0 72% 70%)' }}>content</em> that feels real.
             </h2>
             <div className="ugce-r" aria-hidden="true" style={{ width: '2.5rem', height: 1, background: 'hsl(0 72% 58% / 0.4)', marginBottom: '1.5rem' }}/>
             <p className="ugce-r font-sans font-normal" style={{ fontSize: 'clamp(0.88rem, 1.35vw, 1rem)', lineHeight: 1.92, color: '#F2F8FC', maxWidth: '32rem' }}>
-              92% of consumers trust peer recommendations over brand advertising. At Weavy, we close that gap —
-              pairing your brand with authentic creators whose content converts because it{' '}
-              <span style={{ color: '#F2F8FC' }}>feels real</span>.
+              Audiences respond to useful, relatable content—not polished advertising alone. We create
+              creator-led concepts that demonstrate products naturally, communicate the brand clearly and{' '}
+              <span style={{ color: '#F2F8FC' }}>give customers a reason to trust and act</span>.
             </p>
           </div>
 
           {/* Stat table */}
           <div className="ugce-r" style={{ border: '1px solid hsl(0 0% 100% / 0.07)', borderRadius: '1.3rem', overflow: 'hidden' }}>
             {[
-              { val: '78',  suffix: '%',  decimals: '0', desc: 'higher trust rate vs. branded content' },
-              { val: '4.5', suffix: '×',  decimals: '1', desc: 'average conversion lift' },
-              { val: '60',  suffix: '%',  decimals: '0', desc: 'lower cost than traditional production' },
-            ].map(({ val, suffix, decimals, desc }, i, arr) => (
-              <div key={val} className="ugce-stat-row" style={{ padding: '1.65rem 1.9rem', background: 'hsl(0 0% 100% / 0.022)', borderBottom: i < arr.length - 1 ? '1px solid hsl(0 0% 100% / 0.06)' : undefined, display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
-                <span
-                  className="font-sans font-medium ugc-stat-num"
-                  data-val={val}
-                  data-suffix={suffix}
-                  data-decimals={decimals}
-                  style={{ fontSize: 'clamp(2rem, 3.2vw, 2.7rem)', letterSpacing: '-0.05em', color: 'hsl(0 72% 66%)', lineHeight: 1, minWidth: '4.2rem' }}
-                >0{suffix}</span>
-                <span className="font-sans font-normal" style={{ fontSize: '0.84rem', lineHeight: 1.55, color: '#F2F8FC' }}>{desc}</span>
+              { title: 'Authentic Presentation',    desc: 'Real people communicate your product naturally and credibly.' },
+              { title: 'Platform-First Storytelling', desc: 'Every concept is shaped for how people watch, scroll and engage.' },
+              { title: 'Creative Testing',           desc: 'Multiple hooks and formats help identify what connects with your audience.' },
+            ].map(({ title, desc }, i, arr) => (
+              <div key={title} className="ugce-stat-row" style={{ padding: '1.65rem 1.9rem', background: 'hsl(0 0% 100% / 0.022)', borderBottom: i < arr.length - 1 ? '1px solid hsl(0 0% 100% / 0.06)' : undefined }}>
+                <p className="font-sans font-medium" style={{ fontSize: '0.78rem', letterSpacing: '0.07em', textTransform: 'uppercase', color: 'hsl(0 72% 66%)', marginBottom: '0.5rem' }}>{title}</p>
+                <p className="font-sans font-normal" style={{ fontSize: '0.84rem', lineHeight: 1.55, color: '#F2F8FC' }}>{desc}</p>
               </div>
             ))}
           </div>

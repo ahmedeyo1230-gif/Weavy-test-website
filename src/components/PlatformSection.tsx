@@ -114,9 +114,7 @@ export default function PlatformSection() {
     let settled = false
     let pathLen = 0
 
-    // Measures each stage's true resting position — must only run once the
-    // entrance animation's y-offset has fully resolved back to 0, otherwise
-    // the line is drawn through the mid-animation (shifted) positions.
+    // Measures each stage's true resting position.
     const recomputePath = () => {
       const d = buildPathD(container, nodeCircles)
       path.setAttribute('d', d)
@@ -131,6 +129,14 @@ export default function PlatformSection() {
       }
     }
 
+    // Measure immediately, while the stage nodes are still sitting at their
+    // natural resting layout position — i.e. before the entrance animation's
+    // y-offset below is applied via gsap.set. This is what lets the dot start
+    // on time (200ms after the section becomes visible — see the
+    // IntersectionObserver below) without waiting for the ~1.3s entrance
+    // stagger to finish settling back to y:0 first.
+    recomputePath()
+
     const headerEls = el.querySelectorAll('.ocs-header-el')
     gsap.set(headerEls, { opacity: 0, y: 22 })
     gsap.set(stageEls, { opacity: 0, y: 18 })
@@ -141,74 +147,79 @@ export default function PlatformSection() {
     const pulseNode = (nodeEl: HTMLElement | undefined, isBooking: boolean) => {
       if (!nodeEl) return
       gsap.timeline()
-        .to(nodeEl, { scale: 1.1, boxShadow: isBooking ? PEAK_SHADOW_GREEN : PEAK_SHADOW_CYAN, filter: 'brightness(1.45)', duration: 0.22, ease: 'power2.out' })
-        // Hold the peak state for ~350ms before returning, so the reaction
-        // reads as a deliberate beat rather than an instant flicker.
-        .to(nodeEl, { scale: 1, boxShadow: isBooking ? REST_SHADOW_GREEN : REST_SHADOW_CYAN, filter: 'brightness(1)', duration: 0.42, ease: 'power2.inOut' }, '+=0.35')
+        .to(nodeEl, { scale: 1.08, boxShadow: isBooking ? PEAK_SHADOW_GREEN : PEAK_SHADOW_CYAN, filter: 'brightness(1.45)', duration: 0.4, ease: 'power2.out' })
+        .to(nodeEl, { scale: 1, boxShadow: isBooking ? REST_SHADOW_GREEN : REST_SHADOW_CYAN, filter: 'brightness(1)', duration: 0.4, ease: 'power2.inOut' })
     }
 
     const startLineAndDot = () => {
-      recomputePath()
       gsap.set([path, track], { opacity: 1 })
       ro = new ResizeObserver(() => recomputePath())
       ro.observe(container)
 
       if (prefersReduced) return
 
+      // Line-draw and dot travel run concurrently — the dot no longer waits
+      // for the full 1.7s draw to finish. `settled` still only flips once
+      // drawing visually completes, so a resize mid-draw doesn't jump the line.
       gsap.to(path, {
         strokeDashoffset: 0,
         duration: 1.7,
         ease: 'power2.inOut',
-        onComplete: () => {
-          settled = true
+        onComplete: () => { settled = true },
+      })
 
-          loopTl = gsap.timeline({ repeat: -1 })
+      loopTl = gsap.timeline({ repeat: -1 })
 
-          if (dot) {
-            loopTl.to(dot, {
-              motionPath: { path, autoRotate: false, alignOrigin: [0.5, 0.5] },
-              duration: LOOP_DURATION,
-              ease: 'none',
-            }, 0)
-            // Materialise / dematerialise at the loop seam instead of an
-            // instant teleport back to the start — this is what removes the
-            // visible "jump" a raw repeat would otherwise show.
-            loopTl.fromTo(dot, { opacity: 0 }, { opacity: 1, duration: EDGE_FADE, ease: 'power1.out' }, 0)
-            loopTl.to(dot, { opacity: 0, duration: EDGE_FADE, ease: 'power1.in' }, LOOP_DURATION - EDGE_FADE)
-          }
+      if (dot) {
+        loopTl.to(dot, {
+          motionPath: { path, autoRotate: false, alignOrigin: [0.5, 0.5] },
+          duration: LOOP_DURATION,
+          ease: 'none',
+        }, 0)
+        // Materialise / dematerialise at the loop seam instead of an
+        // instant teleport back to the start — this is what removes the
+        // visible "jump" a raw repeat would otherwise show.
+        loopTl.fromTo(dot, { opacity: 0 }, { opacity: 1, duration: EDGE_FADE, ease: 'power1.out' }, 0)
+        loopTl.to(dot, { opacity: 0, duration: EDGE_FADE, ease: 'power1.in' }, LOOP_DURATION - EDGE_FADE)
+      }
 
-          if (trail && pathLen > 0) {
-            loopTl.to(trail, {
-              strokeDashoffset: -(pathLen - TRAIL_PX),
-              duration: LOOP_DURATION,
-              ease: 'none',
-            }, 0)
-            loopTl.fromTo(trail, { opacity: 0 }, { opacity: 1, duration: EDGE_FADE, ease: 'power1.out' }, 0)
-            loopTl.to(trail, { opacity: 0, duration: EDGE_FADE, ease: 'power1.in' }, LOOP_DURATION - EDGE_FADE)
-          }
+      if (trail && pathLen > 0) {
+        loopTl.to(trail, {
+          strokeDashoffset: -(pathLen - TRAIL_PX),
+          duration: LOOP_DURATION,
+          ease: 'none',
+        }, 0)
+        loopTl.fromTo(trail, { opacity: 0 }, { opacity: 1, duration: EDGE_FADE, ease: 'power1.out' }, 0)
+        loopTl.to(trail, { opacity: 0, duration: EDGE_FADE, ease: 'power1.in' }, LOOP_DURATION - EDGE_FADE)
+      }
 
-          // One brighten pulse per stage, timed to when the light actually
-          // passes that stage's position along the path (stages are evenly
-          // spaced, so this is just index / (count - 1) of the duration).
-          STAGES.forEach((stage, i) => {
-            const nodeEl = nodeCircles[i]
-            if (!nodeEl) return
-            const t = LOOP_DURATION * (i / (STAGES.length - 1))
-            // Keep the very first/last pulse just inside the visible
-            // (faded-in) window so it doesn't fire while opacity is 0.
-            const clamped = Math.min(Math.max(t, EDGE_FADE * 0.6), LOOP_DURATION - EDGE_FADE * 0.6)
-            loopTl!.call(() => pulseNode(nodeEl, !!stage.success), [], clamped)
-          })
-        },
+      // One brighten pulse per stage, timed to when the light actually
+      // passes that stage's position along the path (stages are evenly
+      // spaced, so this is just index / (count - 1) of the duration).
+      STAGES.forEach((stage, i) => {
+        const nodeEl = nodeCircles[i]
+        if (!nodeEl) return
+        const t = LOOP_DURATION * (i / (STAGES.length - 1))
+        // Keep the very first/last pulse just inside the visible
+        // (faded-in) window so it doesn't fire while opacity is 0.
+        const clamped = Math.min(Math.max(t, EDGE_FADE * 0.6), LOOP_DURATION - EDGE_FADE * 0.6)
+        loopTl!.call(() => pulseNode(nodeEl, !!stage.success), [], clamped)
       })
     }
+
+    let startCall: gsap.core.Tween | null = null
 
     const obs = new IntersectionObserver(([entry]) => {
       if (!entry.isIntersecting) return
       const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
       tl.to(headerEls, { opacity: 1, y: 0, duration: 0.75, stagger: 0.1 }, 0)
       tl.to(stageEls,  { opacity: 1, y: 0, duration: 0.6, stagger: 0.09 }, 0.28)
-      tl.call(startLineAndDot)
+
+      // The dot starts travelling 200ms after the section enters view,
+      // independent of how long the header/stage entrance stagger above
+      // takes to finish (it's already correctly positioned — see the
+      // recomputePath() call above — so it doesn't need to wait on that).
+      startCall = gsap.delayedCall(0.2, startLineAndDot)
 
       obs.disconnect()
     }, { threshold: 0.2 })
@@ -217,6 +228,7 @@ export default function PlatformSection() {
     return () => {
       obs.disconnect()
       ro?.disconnect()
+      startCall?.kill()
       loopTl?.kill()
     }
   }, [])

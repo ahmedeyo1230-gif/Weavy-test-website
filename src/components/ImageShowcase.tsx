@@ -1199,8 +1199,9 @@ export default function ImageShowcase() {
 
       {/* ── Contact / Footer ── */}
       <Footer
+        eyebrow="Start a project"
         heading={<>
-          Ready to{' '}
+          Ready to create something worth{' '}
           <em style={{
             fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400,
             background: 'linear-gradient(90deg, #FFFFFF 0%, #7DDCFF 45%, #B7AEFF 100%)',
@@ -1208,15 +1209,13 @@ export default function ImageShowcase() {
             color: 'transparent',
             textShadow: '0 0 24px rgba(125, 220, 255, 0.16)',
           }}>
-            automate
-          </em>{' '}
-          your business?
+            remembering
+          </em>?
         </>}
-        subtext={<>
-          Book a free demo and see how Weavy can manage your calls, messages, bookings, and{' '}
-          leads from one <span style={{ color: 'rgba(191, 239, 255, 0.9)', fontWeight: 500 }}>managed AI platform</span>.
-        </>}
-        ctaLabel="hello@weavyautomation.com"
+        subtext="From campaign visuals and brand creative to bespoke websites and social content, we turn strong ideas into polished work designed to attract, engage and perform."
+        ctaLabel="Start a Project"
+        ctaHref="/contact"
+        ctaVariant="primary"
       />
     </>
   )
