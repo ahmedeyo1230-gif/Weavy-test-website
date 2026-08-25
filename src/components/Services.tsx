@@ -3891,7 +3891,7 @@ function SocialMediaMarketing() {
                 {
                   src: '/brand_assets/campaign-lips-1.png',
                   alt: 'Skincare campaign — beauty product application',
-                  objectPosition: '72% 50%',
+                  objectPosition: '50% 50%',
                 },
                 {
                   src: '/brand_assets/SIIRR.png',
@@ -3902,7 +3902,7 @@ function SocialMediaMarketing() {
                 {
                   src: '/brand_assets/campaign-lips-3.png',
                   alt: 'Lipstick editorial campaign close-up',
-                  objectPosition: '56% 46%',
+                  objectPosition: '40% 46%',
                 },
               ].map(img => (
                 <div key={img.src} style={{ position: 'relative', borderRadius: '5px', overflow: 'hidden' }}>
@@ -7662,7 +7662,7 @@ function UGCFindCreators() {
                   autoPlay muted loop playsInline preload="metadata"
                   style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
                 >
-                  <source src="https://pub-731d5e7deddb4fce94cef7393920d429.r2.dev/Cream_velvet.mp4" type="video/mp4" />
+                  <source src="/brand_assets/face-cream.mp4" type="video/mp4" />
                 </video>
 
                 {/* Sound toggle */}

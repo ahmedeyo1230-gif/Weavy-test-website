@@ -58,14 +58,31 @@ const STAGES = [
   { key: 'insight',  icon: 'chart',    label: 'Insight',  desc: 'Analytics show source, response and outcome' },
 ]
 
-// Builds a straight-through path across the measured centre of each stage
-// node, relative to the workflow container — works for both the horizontal
-// (desktop) and vertical (mobile) layouts without any orientation-specific code.
+// Walks the offsetParent chain from `el` up to (but not including) `ancestor`,
+// accumulating pure layout position (offsetLeft/offsetTop). Unlike
+// getBoundingClientRect(), this ignores any CSS `transform` currently applied
+// (e.g. the entrance animation's translateY, or a pulse's scale) — so it
+// always reflects the icon rail's true resting position, regardless of
+// exactly when it's measured relative to those transient animations.
+function railOffset(el: HTMLElement, ancestor: HTMLElement) {
+  let x = 0, y = 0
+  let node: HTMLElement | null = el
+  while (node && node !== ancestor) {
+    x += node.offsetLeft
+    y += node.offsetTop
+    node = node.offsetParent as HTMLElement | null
+  }
+  return { x, y }
+}
+
+// Builds a straight-through path across the true resting centre of each
+// stage's icon circle, relative to the workflow container — works for both
+// the horizontal (desktop) and vertical (mobile) layouts without any
+// orientation-specific code.
 function buildPathD(container: HTMLElement, nodes: HTMLElement[]) {
-  const cRect = container.getBoundingClientRect()
   const points = nodes.map(n => {
-    const r = n.getBoundingClientRect()
-    return { x: r.left + r.width / 2 - cRect.left, y: r.top + r.height / 2 - cRect.top }
+    const { x, y } = railOffset(n, container)
+    return { x: x + n.offsetWidth / 2, y: y + n.offsetHeight / 2 }
   })
   return points.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x.toFixed(1)} ${p.y.toFixed(1)}`).join(' ')
 }
