@@ -34,7 +34,7 @@ const ALL_ARTICLES: Article[] = [
   },
   {
     num: '02',
-    category: 'AI Automation',
+    category: 'Business Automation',
     title: 'How AI Chatbots Improve Customer Response Time',
     excerpt:
       'AI chatbots help businesses answer questions, capture leads, manage bookings, and support customers instantly across websites, WhatsApp, Instagram DM, and Messenger.',
@@ -787,7 +787,7 @@ function BlogCTA() {
 
 const TOPICS = [
   'Website Strategy',
-  'AI Automation',
+  'Business Automation',
   'Social Media Systems',
   'Brand Identity',
   'Content Planning',
@@ -1016,8 +1016,9 @@ export default function Blog() {
 
             {/* ── Contact / Footer ── */}
             <Footer
+              eyebrow="Get in touch"
               heading={<>
-                Ready to{' '}
+                Ready to put the right{' '}
                 <em style={{
                   fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400,
                   background: 'linear-gradient(90deg, #FFFFFF 0%, #7DDCFF 45%, #B7AEFF 100%)',
@@ -1025,15 +1026,12 @@ export default function Blog() {
                   color: 'transparent',
                   textShadow: '0 0 24px rgba(125, 220, 255, 0.16)',
                 }}>
-                  automate
+                  ideas
                 </em>{' '}
-                your business?
+                to work?
               </>}
-              subtext={<>
-                Book a free demo and see how Weavy can manage your calls, messages, bookings, and{' '}
-                leads from one <span style={{ color: 'rgba(191, 239, 255, 0.9)', fontWeight: 500 }}>managed AI platform</span>.
-              </>}
-              ctaLabel="hello@weavyautomation.com"
+              subtext="If something here sparked an idea, let's turn it into a clearer website, smarter workflow or stronger creative direction for your business."
+              ctaLabel="Start a Conversation"
             />
           </motion.div>
         )}
