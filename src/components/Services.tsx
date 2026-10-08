@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { Globe, Bot, BarChart2, Sparkles, Video, Settings2, Plug, Clock, UserCheck, CalendarDays, Zap, Camera, Target, Layers, MessageSquare, Filter, ChevronLeft, ChevronRight } from 'lucide-react'
+import { Globe, Bot, BarChart2, Sparkles, Video, Settings2, Plug, Clock, UserCheck, CalendarDays, Zap, Camera, Target, Layers } from 'lucide-react'
 import { MessengerGlowBackground } from './ui/background-components'
 import { TestimonialsSection } from './ui/testimonials-1'
 import { GridBackground, NoiseCanvasBg, DarkSphereGridBg, BespokeCinemaArchBg } from './ui/grid-background'
@@ -108,10 +108,10 @@ function ServiceCard({ service, onLearnMore }: ServiceCardProps) {
       onClick={e => {
         e.preventDefault()
         if (onLearnMore) {
-          // onLearnMore fully owns the scroll destination for this card — don't
-          // also fire the generic `${id}-detail` scroll below, which would race
-          // it and can win when that anchor happens to exist in the DOM.
           onLearnMore()
+          setTimeout(() => {
+            document.getElementById(`${service.id}-detail`)?.scrollIntoView({ behavior: 'smooth' })
+          }, 50)
         } else {
           document.getElementById(`${service.id}-detail`)?.scrollIntoView({ behavior: 'smooth' })
         }
@@ -360,12 +360,9 @@ function BespokeFollowUp() {
               02 — Conversion-Focused Design
             </span>
           </div>
-          <div className="flex items-center gap-4">
-            <span style={{ fontSize: '14px', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(191, 225, 245, 0.72)', fontFamily: 'var(--font-sans, sans-serif)' }}>
-              Bespoke Website Design
-            </span>
-            <div style={{ width: 24, height: 1, background: 'hsl(199 89% 60% / 0.55)' }}/>
-          </div>
+          <span style={{ fontSize: '0.6rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'hsl(0 0% 28%)', fontFamily: 'var(--font-sans, sans-serif)' }}>
+            Bespoke Website Design
+          </span>
         </div>
 
         {/* Heading left / body+stats right */}
@@ -408,9 +405,9 @@ function BespokeFollowUp() {
                     color: col, letterSpacing: '-0.04em', lineHeight: 1, marginBottom: '0.4rem',
                   }}>{val}</p>
                   <p style={{
-                    fontFamily: 'var(--font-sans, sans-serif)', fontSize: '0.9rem',
+                    fontFamily: 'var(--font-sans, sans-serif)', fontSize: '0.6rem',
                     letterSpacing: '0.16em', textTransform: 'uppercase',
-                    color: 'rgba(244, 248, 250, 0.7)', fontWeight: 500,
+                    color: 'hsl(0 0% 32%)', fontWeight: 400,
                   }}>{label}</p>
                 </div>
               ))}
@@ -865,140 +862,306 @@ const BWS_FEATURES = [
   { icon: '→', label: 'Conversion-Focused' },
 ]
 
-// Bespoke Website Design's hero-slot mockup — Web1.mp4 inside the same
-// macOS browser chrome used for the Villa Luna mockup above, matched on
-// width/proportions/radius/shadow for visual consistency.
-function BespokeWeb1Mockup() {
+const ZEBRA_SERVICES = [
+  { title: 'Advanced Diagnostics',     caption: 'In-house imaging & bloodwork',   crop: '18% 25%', filter: 'brightness(1.22) contrast(1.08) saturate(1.05)' },
+  { title: 'Specialist Consultations', caption: 'One-to-one, consultant-led',     crop: '62% 40%', filter: 'brightness(1.22) contrast(1.08) saturate(1.05)' },
+  { title: 'Preventive Health',        caption: 'Personalised long-term care',    crop: '80% 60%', filter: 'brightness(1.22) contrast(1.08) saturate(1.05)' },
+]
+
+// Card 1's hero slot — Zebra Private Health. Gentle GSAP-driven image
+// parallax + a cursor-follow spotlight inside the frame, both gated behind
+// prefers-reduced-motion (matches the pattern already used for Card 2's
+// PrivateResidenceHero — a static, fully legible frame with reduced motion).
+function ZebraHeroVisual() {
+  const frameRef = useRef<HTMLDivElement>(null)
+  const imgRef   = useRef<HTMLImageElement>(null)
+  const spotRef  = useRef<HTMLDivElement>(null)
+  const [reduced, setReduced] = useState(false)
+
+  useEffect(() => {
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)')
+    setReduced(mq.matches)
+    const handler = (e: MediaQueryListEvent) => setReduced(e.matches)
+    mq.addEventListener('change', handler)
+    return () => mq.removeEventListener('change', handler)
+  }, [])
+
+  useEffect(() => {
+    if (reduced) return
+    const el = frameRef.current
+    if (!el) return
+
+    const onMove = (e: MouseEvent) => {
+      const r = el.getBoundingClientRect()
+      const x = (e.clientX - r.left) / r.width
+      const y = (e.clientY - r.top) / r.height
+      if (imgRef.current) {
+        gsap.to(imgRef.current, { x: (x - 0.5) * 14, y: (y - 0.5) * 10, duration: 0.9, ease: 'power2.out' })
+      }
+      if (spotRef.current) {
+        gsap.to(spotRef.current, { x: x * r.width, y: y * r.height, opacity: 1, duration: 0.35, ease: 'power2.out' })
+      }
+    }
+    const onLeave = () => {
+      if (imgRef.current) gsap.to(imgRef.current, { x: 0, y: 0, duration: 0.9, ease: 'power2.out' })
+      if (spotRef.current) gsap.to(spotRef.current, { opacity: 0, duration: 0.4, ease: 'power2.out' })
+    }
+    el.addEventListener('mousemove', onMove)
+    el.addEventListener('mouseleave', onLeave)
+    return () => {
+      el.removeEventListener('mousemove', onMove)
+      el.removeEventListener('mouseleave', onLeave)
+    }
+  }, [reduced])
+
   return (
-    <div
-      style={{
-        position: 'relative',
-        width: '100%',
-        maxWidth: '920px',
-        borderRadius: '12px 12px 0 0',
-        overflow: 'hidden',
-        boxShadow: [
-          '0 60px 140px -24px hsl(0 0% 0% / 0.9)',
-          '0 20px 60px -12px hsl(0 0% 0% / 0.55)',
-          '0 0 0 1px hsl(205 85% 55% / 0.12)',
-          'inset 0 1px 0 hsl(205 50% 90% / 0.06)',
-        ].join(', '),
-      }}
-    >
-      {/* macOS chrome bar */}
-      <div style={{
-        background: 'hsl(210 14% 90%)',
-        padding: '9px 14px',
-        display: 'flex', alignItems: 'center', gap: '8px',
-        borderBottom: '1px solid hsl(210 10% 76%)',
-      }}>
-        <div style={{ display: 'flex', gap: '5px', flexShrink: 0 }}>
-          {['hsl(4 78% 58%)', 'hsl(38 80% 54%)', 'hsl(133 52% 46%)'].map((c, i) => (
-            <div key={i} style={{ width: 11, height: 11, borderRadius: '50%', background: c }}/>
-          ))}
-        </div>
-        <div style={{ display: 'flex', gap: '7px', marginLeft: '5px', flexShrink: 0 }}>
-          {[0, 1].map(i => (
-            <div key={i} style={{ width: 16, height: 10, borderRadius: '2px', background: 'hsl(210 8% 74%)', opacity: 0.65 }}/>
-          ))}
-        </div>
-        <div style={{
-          flex: 1, background: 'hsl(210 20% 97%)',
-          border: '1px solid hsl(210 10% 78%)', borderRadius: '5px',
-          padding: '3px 12px', fontSize: '0.65rem',
-          fontFamily: "'SF Mono','Fira Code',monospace",
-          color: 'hsl(210 10% 38%)', letterSpacing: '0.01em',
-          textAlign: 'center' as const,
-        }}>
-          weavy.studio
-        </div>
-        <div style={{ display: 'flex', gap: '7px', flexShrink: 0 }}>
-          {[0, 1, 2].map(i => (
-            <div key={i} style={{ width: 16, height: 10, borderRadius: '2px', background: 'hsl(210 8% 74%)', opacity: 0.65 }}/>
-          ))}
+    <div ref={frameRef} style={{ position: 'relative', height: 'clamp(200px, 26vw, 290px)', overflow: 'hidden' }}>
+      <img
+        ref={imgRef}
+        src="/brand_assets/ZebraClinic.webp"
+        alt="Zebra Private Health — consultant-led clinic interior"
+        loading="lazy"
+        style={{
+          position: 'absolute', inset: '-3%', width: '106%', height: '106%',
+          objectFit: 'cover', objectPosition: 'center 38%',
+          filter: 'brightness(1.22) contrast(1.08) saturate(1.05)',
+          willChange: 'transform',
+        }}
+      />
+      {/* Dark bottom gradient for text legibility */}
+      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(6,8,8,0.15) 0%, rgba(6,8,8,0.08) 52%, rgba(6,8,8,0) 100%)' }} />
+      {/* Warm edge vignette */}
+      <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse 95% 85% at 42% 50%, transparent 38%, rgba(4,5,5,0.08) 72%, rgba(4,5,5,0.15) 100%)' }} />
+
+      {/* Cursor-follow spotlight */}
+      {!reduced && (
+        <div
+          ref={spotRef}
+          aria-hidden="true"
+          style={{
+            position: 'absolute', top: 0, left: 0, width: '160px', height: '160px',
+            marginLeft: '-80px', marginTop: '-80px', borderRadius: '50%',
+            background: 'radial-gradient(circle, rgba(235,220,185,0.14) 0%, rgba(200,168,90,0.06) 45%, transparent 72%)',
+            opacity: 0, pointerEvents: 'none',
+          }}
+        />
+      )}
+
+      {/* Text overlay */}
+      <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: '16px 22px', zIndex: 1 }}>
+        <p style={{ fontSize: '5.5px', letterSpacing: '0.30em', textTransform: 'uppercase', color: 'rgba(200,168,90,0.72)', marginBottom: '5px' }}>
+          Consultant-Led Private Care
+        </p>
+        <h3 style={{ fontSize: 'clamp(13px, 2vw, 18px)', fontWeight: 500, color: '#EDE0C4', lineHeight: 1.15, letterSpacing: '-0.02em', fontFamily: 'var(--font-label)', marginBottom: '6px', maxWidth: '72%' }}>
+          Exceptional care, centred around you.
+        </h3>
+        <p style={{ fontSize: '6.5px', color: 'rgba(210,222,222,0.62)', lineHeight: 1.5, maxWidth: '58%', marginBottom: '9px' }}>
+          Private consultations, advanced diagnostics and personalised treatment in the heart of London.
+        </p>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+          <span style={{ padding: '5px 12px', borderRadius: '4px', background: 'rgba(200,168,90,0.14)', border: '1px solid rgba(200,168,90,0.42)', fontSize: '6.5px', fontWeight: 600, color: '#F0DDA8', letterSpacing: '0.05em' }}>
+            Book a Consultation
+          </span>
+          <span style={{ fontSize: '6.5px', color: 'rgba(200,220,222,0.55)', letterSpacing: '0.03em', borderBottom: '1px solid rgba(200,220,222,0.28)', paddingBottom: '1px' }}>
+            Meet Our Consultants
+          </span>
         </div>
       </div>
-
-      <video
-        src="/brand_assets/Web1.mp4"
-        autoPlay
-        muted
-        loop
-        playsInline
-        aria-label="Interactive hero concept — bespoke website motion design"
-        style={{ display: 'block', width: '100%', height: 'auto' }}
-      />
     </div>
   )
 }
 
-const BWS_PROJECTS = [
-  { image: '/brand_assets/zebra-mockup.png', name: 'ZEBRA', tag: 'Private Health', url: 'zebraprivatehealth.com' },
-  { image: '/brand_assets/vael-mockup.png', name: 'VAEL', tag: 'Creative Studio', url: 'vaelstudio.com' },
-  { image: '/brand_assets/kairos-mockup.png', name: 'KAIROS', tag: 'Brand Identity', url: 'kairos.com' },
-  { image: '/brand_assets/solenne-mockup.png', name: 'SOLENNE', tag: 'Digital Design', url: 'solenne.com' },
-]
+function ZebraServiceCard({ svc }: { svc: typeof ZEBRA_SERVICES[number] }) {
+  return (
+    <div
+      style={{
+        borderRadius: '8px', overflow: 'hidden', border: '1px solid rgba(200,168,90,0.10)', background: 'rgba(200,168,90,0.03)',
+        transform: 'translateY(0)',
+        boxShadow: '0 0 0 rgba(200,168,90,0)',
+        transition: 'transform 700ms cubic-bezier(0.16, 1, 0.3, 1), border-color 700ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 700ms cubic-bezier(0.16, 1, 0.3, 1)',
+      }}
+      onMouseEnter={e => {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+        const el = e.currentTarget as HTMLElement
+        el.style.transform = 'translateY(-4px)'
+        el.style.borderColor = 'rgba(228,200,122,0.42)'
+        el.style.boxShadow = '0 10px 24px rgba(0,0,0,0.30), 0 0 18px rgba(200,168,90,0.14)'
+      }}
+      onMouseLeave={e => {
+        const el = e.currentTarget as HTMLElement
+        el.style.transform = 'translateY(0)'
+        el.style.borderColor = 'rgba(200,168,90,0.10)'
+        el.style.boxShadow = '0 0 0 rgba(200,168,90,0)'
+      }}
+    >
+      <div style={{ height: '80px', position: 'relative', overflow: 'hidden' }}>
+        <img
+          src="/brand_assets/ZebraClinic.webp"
+          alt={`${svc.title} at Zebra Private Health`}
+          loading="lazy"
+          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: svc.crop, filter: svc.filter }}
+        />
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(6,8,8,0.15) 0%, rgba(6,8,8,0.06) 55%, transparent 100%)' }} />
+      </div>
+      <div style={{ padding: '8px 9px' }}>
+        <p style={{ fontSize: '8px', fontWeight: 600, color: 'rgba(228,208,168,0.86)', marginBottom: '3px', lineHeight: 1.2 }}>{svc.title}</p>
+        <p style={{ fontSize: '7px', color: 'rgba(180,196,196,0.55)', lineHeight: 1.35 }}>{svc.caption}</p>
+      </div>
+    </div>
+  )
+}
+
+// Card 2's hero slot — a functioning bespoke-site preview (image + real HTML
+// interface, not a poster): cursor-tracked spotlight and a very small 3-D
+// tilt on the frame, plus a distinct 700ms hover state (image scale, title
+// lift) on the image/text themselves. All motion is skipped under
+// prefers-reduced-motion, leaving one static, fully legible frame.
+function PrivateResidenceHero() {
+  const frameRef = useRef<HTMLDivElement>(null)
+  const spotRef  = useRef<HTMLDivElement>(null)
+  const [reduced, setReduced] = useState(false)
+  const [hovered, setHovered] = useState(false)
+
+  useEffect(() => {
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)')
+    setReduced(mq.matches)
+    const handler = (e: MediaQueryListEvent) => setReduced(e.matches)
+    mq.addEventListener('change', handler)
+    return () => mq.removeEventListener('change', handler)
+  }, [])
+
+  useEffect(() => {
+    if (reduced) return
+    const el = frameRef.current
+    if (!el) return
+    gsap.set(el, { transformPerspective: 900 })
+
+    const onMove = (e: MouseEvent) => {
+      const r = el.getBoundingClientRect()
+      const x = (e.clientX - r.left) / r.width
+      const y = (e.clientY - r.top) / r.height
+      gsap.to(el, { rotateX: (0.5 - y) * 2.6, rotateY: (x - 0.5) * 3.6, duration: 0.6, ease: 'power2.out' })
+      if (spotRef.current) {
+        gsap.to(spotRef.current, { x: x * r.width, y: y * r.height, opacity: 1, duration: 0.35, ease: 'power2.out' })
+      }
+    }
+    const onLeave = () => {
+      gsap.to(el, { rotateX: 0, rotateY: 0, duration: 0.7, ease: 'power2.out' })
+      if (spotRef.current) gsap.to(spotRef.current, { opacity: 0, duration: 0.4, ease: 'power2.out' })
+    }
+    el.addEventListener('mousemove', onMove)
+    el.addEventListener('mouseleave', onLeave)
+    return () => {
+      el.removeEventListener('mousemove', onMove)
+      el.removeEventListener('mouseleave', onLeave)
+    }
+  }, [reduced])
+
+  return (
+    <div
+      ref={frameRef}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{ position: 'relative', height: '155px', overflow: 'hidden', background: '#050810', transformStyle: 'preserve-3d' }}
+    >
+      <img
+        src="/brand_assets/PrivateResidence.webp"
+        alt="Private residence hero — sculptural modern villa at dusk"
+        loading="lazy"
+        style={{
+          position: 'absolute', inset: 0, width: '100%', height: '100%',
+          objectFit: 'cover', objectPosition: 'center 42%',
+          filter: 'brightness(1.22) contrast(1.08) saturate(1.05)',
+          transform: !reduced && hovered ? 'scale(1.035)' : 'scale(1)',
+          transition: 'transform 700ms cubic-bezier(0.16, 1, 0.3, 1)',
+          willChange: 'transform',
+        }}
+      />
+      {/* Dark bottom gradient for text legibility */}
+      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(4,6,10,0.15) 0%, rgba(4,6,10,0.07) 46%, rgba(4,6,10,0) 100%)' }} />
+
+      {/* Cursor-follow spotlight */}
+      {!reduced && (
+        <div
+          ref={spotRef}
+          aria-hidden="true"
+          style={{
+            position: 'absolute', top: 0, left: 0, width: '110px', height: '110px',
+            marginLeft: '-55px', marginTop: '-55px', borderRadius: '50%',
+            background: 'radial-gradient(circle, rgba(235,220,185,0.16) 0%, rgba(200,168,90,0.07) 45%, transparent 72%)',
+            opacity: 0, pointerEvents: 'none',
+          }}
+        />
+      )}
+
+      {/* Text overlay */}
+      <div
+        style={{
+          position: 'absolute', left: 0, right: 0, bottom: 0, padding: '13px 16px',
+          transform: !reduced && hovered ? 'translateY(-6px)' : 'translateY(0)',
+          transition: 'transform 700ms cubic-bezier(0.16, 1, 0.3, 1)',
+        }}
+      >
+        <p style={{ fontSize: '5.5px', letterSpacing: '0.30em', textTransform: 'uppercase', color: 'rgba(200,168,90,0.72)', marginBottom: '5px' }}>
+          Private Residence · London
+        </p>
+        <div aria-hidden="true" style={{ width: '22px', height: '1px', background: 'rgba(200,168,90,0.55)', marginBottom: '6px' }} />
+        <h3 style={{ fontSize: 'clamp(11px, 1.7vw, 14px)', fontWeight: 500, color: '#EDE0C4', lineHeight: 1.12, letterSpacing: '-0.01em', fontFamily: 'var(--font-label)', marginBottom: '6px' }}>
+          FORMED BY LIGHT
+        </h3>
+        <span style={{ fontSize: '7px', color: 'rgba(228,208,168,0.72)', letterSpacing: '0.04em' }}>
+          Explore Project ↗
+        </span>
+      </div>
+    </div>
+  )
+}
 
 function BespokeWebShowcase() {
   const sectionRef = useRef<HTMLElement>(null)
-  const carouselRef = useRef<HTMLDivElement>(null)
-  const [active, setActive] = useState(0)
-  const [paused, setPaused] = useState(false)
-  const resumeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const card1Ref   = useRef<HTMLDivElement>(null)
+  const card2Ref   = useRef<HTMLDivElement>(null)
+  const [mouse, setMouse] = useState({ x: 0, y: 0 })
 
   useEffect(() => {
     const el = sectionRef.current
-    const carousel = carouselRef.current
     if (!el) return
     const headerEls = el.querySelectorAll('.bws-header')
+    const wrap1 = card1Ref.current
+    const wrap2 = card2Ref.current
+    if (!wrap1 || !wrap2) return
     gsap.set(headerEls, { opacity: 0, y: 30, filter: 'blur(8px)' })
-    if (carousel) gsap.set(carousel, { opacity: 0, y: 50, filter: 'blur(4px)' })
+    gsap.set(wrap1, { opacity: 0, y: 60, scale: 0.96, filter: 'blur(4px)' })
+    gsap.set(wrap2, { opacity: 0, y: 80, scale: 0.94, filter: 'blur(4px)' })
     const obs = new IntersectionObserver(([entry]) => {
       if (!entry.isIntersecting) return
       const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
       tl.to(headerEls, { opacity: 1, y: 0, filter: 'blur(0px)', duration: 1.0, stagger: 0.12 }, 0)
-      if (carousel) tl.to(carousel, { opacity: 1, y: 0, filter: 'blur(0px)', duration: 1.0 }, 0.3)
+      tl.to(wrap1, { opacity: 1, y: 0, scale: 1, filter: 'blur(0px)', duration: 1.15 }, 0.25)
+      tl.to(wrap2, { opacity: 1, y: 0, scale: 1, filter: 'blur(0px)', duration: 1.05 }, 0.4)
       obs.disconnect()
     }, { threshold: 0.1 })
     obs.observe(el)
     return () => obs.disconnect()
   }, [])
 
-  // Auto-cycle every 5s, paused on hover/click/arrow interaction.
-  useEffect(() => {
-    if (paused) return
-    const id = setInterval(() => {
-      setActive(a => (a + 1) % BWS_PROJECTS.length)
-    }, 5000)
-    return () => clearInterval(id)
-  }, [paused])
+  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+    const rect = sectionRef.current!.getBoundingClientRect()
+    setMouse({
+      x: (e.clientX - rect.left - rect.width  / 2) / (rect.width  / 2),
+      y: (e.clientY - rect.top  - rect.height / 2) / (rect.height / 2),
+    })
+  }
+  const handleMouseLeave = () => setMouse({ x: 0, y: 0 })
 
-  useEffect(() => () => {
-    if (resumeTimeoutRef.current) clearTimeout(resumeTimeoutRef.current)
-  }, [])
-
-  const scheduleResume = () => {
-    if (resumeTimeoutRef.current) clearTimeout(resumeTimeoutRef.current)
-    resumeTimeoutRef.current = setTimeout(() => setPaused(false), 8000)
-  }
-  const handleMouseEnter = () => {
-    if (resumeTimeoutRef.current) clearTimeout(resumeTimeoutRef.current)
-    setPaused(true)
-  }
-  const handleMouseLeave = () => {
-    scheduleResume()
-  }
-  const goTo = (i: number) => {
-    setActive(((i % BWS_PROJECTS.length) + BWS_PROJECTS.length) % BWS_PROJECTS.length)
-    setPaused(true)
-    scheduleResume()
-  }
-
-  const activeProject = BWS_PROJECTS[active]
+  const t1 = `perspective(1400px) rotateX(${4  + mouse.y * 1.8}deg) rotateY(${-7  + mouse.x * 4}deg) rotateZ(-0.6deg)`
+  const t2 = `perspective(1400px) rotateX(${5  + mouse.y * 1.2}deg) rotateY(${-10 + mouse.x * 2.5}deg) rotateZ(-1.2deg)`
 
   return (
     <section
       ref={sectionRef}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
       className="relative w-full overflow-hidden"
       style={{ background: '#060208', padding: 'clamp(6rem, 12vw, 10rem) 0 clamp(7rem, 14vw, 12rem)' }}
     >
@@ -1099,206 +1262,225 @@ function BespokeWebShowcase() {
           </div>
         </div>
 
-        {/* ── Single-featured carousel ── */}
-        <div
-          ref={carouselRef}
-          className="relative mx-auto bws-carousel-wrap"
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-        >
-          <div style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 'clamp(0.6rem, 2.4vw, 1.75rem)' }}>
+        {/* ── Floating mockup stage ── */}
+        <div className="relative mx-auto" style={{ maxWidth: '980px', height: 'clamp(540px, 70vw, 800px)' }}>
 
-            {/* Left arrow */}
-            <button
-              type="button"
-              aria-label="Previous project"
-              onClick={() => goTo(active - 1)}
-              className="bws-arrow"
-              style={{
-                flexShrink: 0,
-                width: 40, height: 40, borderRadius: '50%',
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                background: 'rgba(255,255,255,0.05)',
-                border: '1px solid rgba(255,255,255,0.22)',
-                color: 'rgba(255,255,255,0.85)',
-                opacity: 0.65,
-                cursor: 'pointer',
-                transition: 'opacity 220ms, transform 220ms, border-color 220ms, color 220ms, background 220ms',
-              }}
-              onMouseOver={e => {
-                const el = e.currentTarget as HTMLButtonElement
-                el.style.opacity = '1'
-                el.style.transform = 'scale(1.1)'
-                el.style.borderColor = 'rgba(232,201,122,0.55)'
-                el.style.color = '#E8C97A'
-                el.style.background = 'rgba(200,168,90,0.1)'
-              }}
-              onMouseOut={e => {
-                const el = e.currentTarget as HTMLButtonElement
-                el.style.opacity = '0.65'
-                el.style.transform = 'scale(1)'
-                el.style.borderColor = 'rgba(255,255,255,0.22)'
-                el.style.color = 'rgba(255,255,255,0.85)'
-                el.style.background = 'rgba(255,255,255,0.05)'
-              }}
-            >
-              <ChevronLeft size={18} />
-            </button>
-
-            {/* Browser frame — ~80% of the content width, Villa Luna styling */}
-            <div className="bws-image-wrap" style={{ position: 'relative', width: '100%' }}>
-
-              {/* Ambient glow behind mockup */}
-              <div aria-hidden="true" style={{
-                position: 'absolute', inset: '-24px',
-                background: 'radial-gradient(ellipse 75% 65% at 50% 45%, hsl(36 50% 55% / 0.10) 0%, transparent 70%)',
-                filter: 'blur(36px)',
-                pointerEvents: 'none',
-              }}/>
-
-              <div
-                className="bws-browser"
-                style={{
-                  position: 'relative',
-                  width: '100%',
-                  borderRadius: '12px 12px 0 0',
-                  overflow: 'hidden',
-                  boxShadow: [
-                    '0 60px 140px -24px hsl(0 0% 0% / 0.9)',
-                    '0 20px 60px -12px hsl(0 0% 0% / 0.55)',
-                    '0 0 0 1px hsl(36 30% 60% / 0.12)',
-                    'inset 0 1px 0 hsl(36 50% 90% / 0.08)',
-                  ].join(', '),
-                }}
-              >
-                {/* macOS chrome bar */}
-                <div style={{
-                  background: 'hsl(36 12% 88%)',
-                  padding: '9px 14px',
-                  display: 'flex', alignItems: 'center', gap: '8px',
-                  borderBottom: '1px solid hsl(30 10% 74%)',
-                }}>
-                  <div style={{ display: 'flex', gap: '5px', flexShrink: 0 }}>
-                    {['hsl(4 78% 58%)', 'hsl(38 80% 54%)', 'hsl(133 52% 46%)'].map((c, i) => (
-                      <div key={i} style={{ width: 11, height: 11, borderRadius: '50%', background: c }}/>
-                    ))}
-                  </div>
-                  <div style={{ display: 'flex', gap: '7px', marginLeft: '5px', flexShrink: 0 }}>
-                    {[0, 1].map(i => (
-                      <div key={i} style={{ width: 16, height: 10, borderRadius: '2px', background: 'hsl(30 8% 72%)', opacity: 0.65 }}/>
-                    ))}
-                  </div>
-                  <div style={{
-                    flex: 1, background: 'hsl(36 16% 96%)',
-                    border: '1px solid hsl(30 10% 76%)', borderRadius: '5px',
-                    padding: '3px 12px', fontSize: '0.65rem',
-                    fontFamily: "'SF Mono','Fira Code',monospace",
-                    color: 'hsl(28 10% 36%)', letterSpacing: '0.01em',
-                    textAlign: 'center' as const,
-                    transition: 'opacity 0.3s ease',
-                  }}>
-                    {activeProject.url}
-                  </div>
-                  <div style={{ display: 'flex', gap: '7px', flexShrink: 0 }}>
-                    {[0, 1, 2].map(i => (
-                      <div key={i} style={{ width: 16, height: 10, borderRadius: '2px', background: 'hsl(30 8% 72%)', opacity: 0.65 }}/>
-                    ))}
-                  </div>
+          {/* ── Card 2 — back (VAEL STUDIO · dark creative agency) ──
+              Below `md` this used to be `hidden`, leaving only Card 1 on phones.
+              It's now shown at every size — scaled down and tucked further
+              behind/below Card 1 on phones/small tablets so both fit without
+              overflow; `md:` and up restores the exact original desktop/tablet
+              position and size untouched. */}
+          <div
+            ref={card2Ref}
+            className="block w-[58%] -right-[4%] bottom-[6%] md:w-[clamp(438px,66%,670px)] md:right-0 md:bottom-0"
+            style={{
+              position: 'absolute',
+              zIndex: 1,
+              transition: 'transform 0.9s cubic-bezier(0.16, 1, 0.3, 1)',
+              transform: t2,
+              willChange: 'transform',
+            }}
+          >
+            <div aria-hidden="true" style={{ position: 'absolute', bottom: '-22px', left: '8%', right: '8%', height: '34px', background: 'radial-gradient(ellipse 80% 100% at 50% 0%, rgba(125,220,255,0.15), transparent 80%)', filter: 'blur(14px)' }} />
+            <div style={{
+              background: '#070B10',
+              borderRadius: '12px',
+              border: '1px solid rgba(125,220,255,0.11)',
+              boxShadow: '0 28px 72px rgba(0,0,0,0.60), 0 4px 18px rgba(0,0,0,0.38), 0 0 0 1px rgba(125,220,255,0.05)',
+              overflow: 'hidden',
+            }}>
+              {/* Chrome */}
+              <div style={{ height: '28px', background: '#0C1118', borderBottom: '1px solid rgba(125,220,255,0.07)', display: 'flex', alignItems: 'center', padding: '0 10px', gap: '5px' }}>
+                <div style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#FF6058', opacity: 0.65 }} />
+                <div style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#FFBD2E', opacity: 0.65 }} />
+                <div style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#28CA41', opacity: 0.65 }} />
+                <div style={{ flex: 1, height: '14px', background: '#121820', borderRadius: '4px', marginLeft: '8px', display: 'flex', alignItems: 'center', paddingLeft: '8px' }}>
+                  <span style={{ fontSize: '6.5px', color: 'rgba(125,200,255,0.32)', letterSpacing: '0.02em' }}>vaelstudio.com</span>
                 </div>
-
-                {/* Crossfading screenshot stack */}
-                <div style={{ position: 'relative', width: '100%', aspectRatio: '1440 / 900', background: '#0A0A0A' }}>
-                  {BWS_PROJECTS.map((project, i) => (
-                    <img
-                      key={project.name}
-                      loading={i === 0 ? 'eager' : 'lazy'}
-                      decoding="async"
-                      src={project.image}
-                      alt={`${project.name} — ${project.tag} website design concept`}
-                      style={{
-                        position: 'absolute', inset: 0,
-                        width: '100%', height: '100%',
-                        objectFit: 'cover', objectPosition: 'top center',
-                        opacity: active === i ? 1 : 0,
-                        transition: 'opacity 0.5s ease',
-                        pointerEvents: active === i ? 'auto' : 'none',
-                      }}
-                    />
+              </div>
+              {/* Nav */}
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 16px', borderBottom: '1px solid rgba(255,255,255,0.045)' }}>
+                <div>
+                  <span style={{ fontSize: '10px', fontWeight: 800, letterSpacing: '0.14em', color: '#EEF2F8' }}>VAEL</span>
+                  <span style={{ fontSize: '5.5px', letterSpacing: '0.20em', color: 'rgba(125,200,255,0.40)', display: 'block', marginTop: '-1px' }}>CREATIVE STUDIO</span>
+                </div>
+                <div style={{ display: 'flex', gap: '14px' }}>
+                  {['Work', 'Studio', 'Services', 'Contact'].map(item => (
+                    <span key={item} style={{ fontSize: '7.5px', color: 'rgba(175,200,225,0.42)', letterSpacing: '0.03em' }}>{item}</span>
                   ))}
                 </div>
               </div>
+              {/* Hero — private residence editorial preview */}
+              <PrivateResidenceHero />
+              {/* Case study grid — cinematic image blocks */}
+              <div style={{ padding: '10px 14px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
+                {/* KAIROS — luxury watch brand campaign */}
+                <div style={{ borderRadius: '7px', overflow: 'hidden', border: '1px solid rgba(200,168,90,0.14)' }}>
+                  <div style={{ height: '62px', position: 'relative', overflow: 'hidden', background: '#080605' }}>
+                    {/* Warm charcoal background */}
+                    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(158deg, #0D0A07 0%, #0A0806 48%, #060504 80%, #080706 100%)' }} />
+                    {/* Stone surface plane */}
+                    <div style={{ position: 'absolute', bottom: '28%', left: 0, right: 0, height: '1px', background: 'linear-gradient(to right, transparent 8%, rgba(175,158,128,0.22) 22%, rgba(198,182,148,0.35) 52%, rgba(175,158,128,0.22) 78%, transparent 92%)' }} />
+                    <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '28%', background: 'linear-gradient(to top, rgba(10,8,6,0.96), rgba(13,10,7,0.50), rgba(11,9,6,0.08))' }} />
+                    {/* Overhead spotlight */}
+                    <div style={{ position: 'absolute', top: '-25%', left: '20%', width: '38%', height: '88%', background: 'radial-gradient(ellipse at 50% 4%, rgba(248,232,198,0.26) 0%, rgba(225,208,172,0.11) 28%, rgba(200,182,145,0.04) 55%, transparent 70%)', filter: 'blur(4px)' }} />
+                    {/* Bottle base shadow */}
+                    <div style={{ position: 'absolute', bottom: '27%', left: '20%', width: '18%', height: '2.5%', background: 'radial-gradient(ellipse at 50% 50%, rgba(4,3,2,0.92) 0%, transparent 65%)', filter: 'blur(3px)' }} />
+                    {/* Bottle body — tall slim glass */}
+                    <div style={{ position: 'absolute', bottom: '29%', left: '23.5%', width: '8.5%', height: '48%', background: 'linear-gradient(to right, rgba(8,6,4,0.90) 0%, rgba(35,26,16,0.58) 14%, rgba(195,172,122,0.65) 28%, rgba(235,220,185,0.82) 42%, rgba(220,202,165,0.70) 56%, rgba(30,22,14,0.55) 76%, rgba(6,4,3,0.88) 100%)', borderRadius: '10% 10% 4% 4% / 3% 3% 2% 2%' }} />
+                    {/* Specular glass highlight */}
+                    <div style={{ position: 'absolute', bottom: '32%', left: '25.8%', width: '2%', height: '40%', background: 'linear-gradient(to bottom, transparent, rgba(255,248,230,0.88) 28%, rgba(248,238,215,0.68) 68%, transparent)', borderRadius: '50%', filter: 'blur(0.5px)' }} />
+                    {/* Neck */}
+                    <div style={{ position: 'absolute', bottom: '73%', left: '23%', width: '9.5%', height: '7%', background: 'linear-gradient(to right, rgba(10,8,5,0.90), rgba(175,155,112,0.62) 42%, rgba(188,168,122,0.58) 58%, rgba(10,8,5,0.88))' }} />
+                    {/* Cap */}
+                    <div style={{ position: 'absolute', bottom: '80%', left: '22.5%', width: '10.5%', height: '9%', background: 'linear-gradient(to right, rgba(158,140,98,0.72) 0%, rgba(215,198,155,0.92) 35%, rgba(200,182,138,0.82) 65%, rgba(142,126,88,0.68) 100%)', borderRadius: '2px 2px 0 0' }} />
+                    {/* Cast shadow */}
+                    <div style={{ position: 'absolute', bottom: '14%', left: '16%', width: '26%', height: '14%', background: 'linear-gradient(to right, rgba(4,3,2,0.88) 0%, rgba(4,3,2,0.40) 48%, transparent 80%)', filter: 'blur(2.5px)' }} />
+                    {/* Gold brand mark right side */}
+                    <div style={{ position: 'absolute', top: '18%', right: '8%', width: '32%' }}>
+                      <div style={{ height: '0.8px', background: 'rgba(205,172,95,0.72)', marginBottom: '5px', width: '80%' }} />
+                      <div style={{ fontSize: '5.5px', fontWeight: 700, letterSpacing: '0.22em', color: 'rgba(215,185,115,0.85)', fontFamily: 'var(--font-label)', marginBottom: '4px' }}>KAIROS</div>
+                      <div style={{ height: '0.5px', background: 'rgba(200,168,90,0.34)', width: '58%', marginBottom: '3px' }} />
+                      <div style={{ height: '0.5px', background: 'rgba(200,168,90,0.18)', width: '44%' }} />
+                    </div>
+                  </div>
+                  <div style={{ padding: '6px 9px', background: 'rgba(200,168,90,0.06)' }}>
+                    <p style={{ fontSize: '5px', letterSpacing: '0.18em', color: 'rgba(200,168,90,0.60)', marginBottom: '3px', textTransform: 'uppercase' }}>Brand Identity</p>
+                    <p style={{ fontSize: '10px', fontWeight: 700, color: '#E4EBF4', letterSpacing: '-0.01em' }}>KAIROS</p>
+                  </div>
+                </div>
+                {/* SOLENNE — editorial portrait campaign */}
+                <div style={{ borderRadius: '7px', overflow: 'hidden', border: '1px solid rgba(125,220,255,0.10)' }}>
+                  <div style={{ height: '62px', position: 'relative', overflow: 'hidden', background: '#040710' }}>
+                    {/* Deep navy background */}
+                    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(148deg, #060A1A 0%, #050812 38%, #040710 65%, #050916 100%)' }} />
+                    {/* Ambient blue glow */}
+                    <div style={{ position: 'absolute', bottom: '-5%', left: '5%', right: '30%', height: '50%', background: 'radial-gradient(ellipse at 42% 100%, rgba(45,105,255,0.12) 0%, rgba(32,82,220,0.05) 50%, transparent 72%)', filter: 'blur(8px)' }} />
+                    {/* Monitor bezel */}
+                    <div style={{ position: 'absolute', top: '7%', left: '6%', width: '58%', height: '64%', background: 'rgba(6,12,28,0.96)', borderRadius: '3px 3px 0 0', border: '0.5px solid rgba(55,100,215,0.32)' }}>
+                      <div style={{ position: 'absolute', inset: '5%', background: '#03060F', borderRadius: '1px', overflow: 'hidden' }}>
+                        {/* Nav bar */}
+                        <div style={{ height: '18%', background: 'rgba(4,8,18,1)', borderBottom: '0.5px solid rgba(50,90,200,0.25)', display: 'flex', alignItems: 'center', paddingLeft: '8%', gap: '8%' }}>
+                          <div style={{ width: '18%', height: '2px', background: 'rgba(95,175,255,0.58)', borderRadius: '1px' }} />
+                          {[0,1,2].map(n => <div key={n} style={{ width: '7%', height: '1.5px', background: 'rgba(72,138,230,0.22)', borderRadius: '1px' }} />)}
+                        </div>
+                        {/* Stat boxes */}
+                        <div style={{ padding: '5% 6% 3%', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '5%' }}>
+                          <div style={{ background: 'rgba(22,50,125,0.20)', border: '0.5px solid rgba(58,118,255,0.20)', borderRadius: '1.5px', padding: '5%' }}>
+                            <div style={{ height: '2px', background: 'rgba(95,175,255,0.48)', borderRadius: '1px', marginBottom: '2.5px', width: '65%' }} />
+                            <div style={{ height: '1.5px', background: 'rgba(72,138,230,0.22)', borderRadius: '1px', width: '82%' }} />
+                          </div>
+                          <div style={{ background: 'rgba(18,42,108,0.16)', border: '0.5px solid rgba(52,108,240,0.16)', borderRadius: '1.5px', padding: '5%' }}>
+                            <div style={{ height: '2px', background: 'rgba(78,162,255,0.40)', borderRadius: '1px', marginBottom: '2.5px', width: '52%' }} />
+                            <div style={{ height: '1.5px', background: 'rgba(65,128,218,0.18)', borderRadius: '1px', width: '72%' }} />
+                          </div>
+                        </div>
+                        {/* Bar chart */}
+                        <div style={{ paddingLeft: '6%', paddingRight: '6%', display: 'flex', gap: '3%', alignItems: 'flex-end', height: '11px' }}>
+                          {([55,78,42,92,65,88,58] as number[]).map((h,i) => (
+                            <div key={i} style={{ flex: 1, height: `${h}%`, background: (i===3||i===5) ? 'rgba(80,178,255,0.68)' : 'rgba(48,115,230,0.30)', borderRadius: '1px 1px 0 0' }} />
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                    {/* Monitor stand */}
+                    <div style={{ position: 'absolute', top: '71%', left: '31%', width: '4%', height: '15%', background: 'rgba(18,32,75,0.65)' }} />
+                    <div style={{ position: 'absolute', top: '84%', left: '24%', width: '17%', height: '3%', background: 'rgba(16,28,68,0.55)', borderRadius: '1px' }} />
+                    {/* Floating metric card right */}
+                    <div style={{ position: 'absolute', top: '10%', right: '5%', width: '28%', height: '58%', background: 'rgba(10,20,52,0.88)', border: '0.5px solid rgba(55,110,240,0.25)', borderRadius: '3px', padding: '8% 10%', display: 'flex', flexDirection: 'column', gap: '3.5px' }}>
+                      <div style={{ height: '1.5px', background: 'rgba(95,175,255,0.45)', borderRadius: '1px', width: '82%' }} />
+                      <div style={{ height: '1px', background: 'rgba(70,138,228,0.22)', borderRadius: '1px', width: '62%' }} />
+                      <div style={{ height: '1px', background: 'rgba(58,120,215,0.16)', borderRadius: '1px', width: '74%' }} />
+                      <div style={{ marginTop: '2px', height: '7px', background: 'rgba(38,95,245,0.24)', borderRadius: '1px', border: '0.5px solid rgba(78,158,255,0.28)' }} />
+                    </div>
+                    {/* Ambient glow top-right */}
+                    <div style={{ position: 'absolute', top: '-15%', right: '-5%', width: '38%', height: '55%', background: 'radial-gradient(ellipse at 80% 15%, rgba(55,125,255,0.09) 0%, transparent 62%)', filter: 'blur(10px)' }} />
+                    <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '22%', background: 'linear-gradient(to top, rgba(3,5,12,0.88), transparent)' }} />
+                  </div>
+                  <div style={{ padding: '6px 9px', background: 'rgba(125,220,255,0.04)' }}>
+                    <p style={{ fontSize: '5px', letterSpacing: '0.18em', color: 'rgba(125,220,255,0.50)', marginBottom: '3px', textTransform: 'uppercase' }}>Web & Digital</p>
+                    <p style={{ fontSize: '10px', fontWeight: 700, color: '#E4EBF4', letterSpacing: '-0.01em' }}>SOLENNE</p>
+                  </div>
+                </div>
+              </div>
+              {/* Footer bar */}
+              <div style={{ padding: '8px 14px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTop: '1px solid rgba(255,255,255,0.04)' }}>
+                <span style={{ fontSize: '6.5px', color: 'rgba(125,200,255,0.28)', letterSpacing: '0.10em' }}>12+ Years · 180+ Brands</span>
+                <div style={{ padding: '4px 10px', borderRadius: '4px', background: 'rgba(125,220,255,0.07)', border: '1px solid rgba(125,220,255,0.16)', fontSize: '6.5px', fontWeight: 600, color: 'rgba(125,220,255,0.70)', letterSpacing: '0.06em' }}>
+                  View Work →
+                </div>
+              </div>
             </div>
-
-            {/* Right arrow */}
-            <button
-              type="button"
-              aria-label="Next project"
-              onClick={() => goTo(active + 1)}
-              className="bws-arrow"
-              style={{
-                flexShrink: 0,
-                width: 40, height: 40, borderRadius: '50%',
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                background: 'rgba(255,255,255,0.05)',
-                border: '1px solid rgba(255,255,255,0.22)',
-                color: 'rgba(255,255,255,0.85)',
-                opacity: 0.65,
-                cursor: 'pointer',
-                transition: 'opacity 220ms, transform 220ms, border-color 220ms, color 220ms, background 220ms',
-              }}
-              onMouseOver={e => {
-                const el = e.currentTarget as HTMLButtonElement
-                el.style.opacity = '1'
-                el.style.transform = 'scale(1.1)'
-                el.style.borderColor = 'rgba(232,201,122,0.55)'
-                el.style.color = '#E8C97A'
-                el.style.background = 'rgba(200,168,90,0.1)'
-              }}
-              onMouseOut={e => {
-                const el = e.currentTarget as HTMLButtonElement
-                el.style.opacity = '0.65'
-                el.style.transform = 'scale(1)'
-                el.style.borderColor = 'rgba(255,255,255,0.22)'
-                el.style.color = 'rgba(255,255,255,0.85)'
-                el.style.background = 'rgba(255,255,255,0.05)'
-              }}
-            >
-              <ChevronRight size={18} />
-            </button>
           </div>
 
-          {/* Project name */}
-          <p style={{
-            textAlign: 'center', marginTop: '1.75rem',
-            fontSize: '0.95rem', fontWeight: 500, letterSpacing: '0.02em',
-            color: 'hsl(0 0% 88%)',
-            transition: 'opacity 0.3s ease',
-          }}>
-            <span style={{ color: '#E8C97A' }}>{activeProject.name}</span>
-            {' — '}{activeProject.tag}
-          </p>
+          {/* ── Card 1 — front (ZEBRA PRIVATE HEALTH · consultant-led private clinic) ── */}
+          <div
+            ref={card1Ref}
+            style={{
+              position: 'absolute', top: 0, left: 0,
+              width: 'clamp(348px, 74%, 716px)',
+              zIndex: 0,
+              transition: 'transform 0.9s cubic-bezier(0.16, 1, 0.3, 1)',
+              transform: t1,
+              willChange: 'transform',
+            }}
+          >
+            <div aria-hidden="true" style={{ position: 'absolute', bottom: '-34px', left: '6%', right: '6%', height: '48px', background: 'radial-gradient(ellipse 80% 100% at 50% 0%, rgba(200,168,90,0.20), transparent 80%)', filter: 'blur(20px)' }} />
+            <div style={{
+              background: '#0C0906',
+              borderRadius: '14px',
+              border: '1px solid rgba(200,168,90,0.14)',
+              boxShadow: '0 52px 120px rgba(0,0,0,0.68), 0 14px 38px rgba(0,0,0,0.42), 0 0 0 1px rgba(200,168,90,0.06)',
+              overflow: 'hidden',
+            }}>
+              {/* Chrome */}
+              <div style={{ height: '32px', background: '#12100A', borderBottom: '1px solid rgba(200,168,90,0.09)', display: 'flex', alignItems: 'center', padding: '0 12px', gap: '5px' }}>
+                <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#FF6058', opacity: 0.62 }} />
+                <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#FFBD2E', opacity: 0.62 }} />
+                <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#28CA41', opacity: 0.62 }} />
+                <div style={{ flex: 1, height: '18px', background: '#1A1510', borderRadius: '5px', marginLeft: '10px', display: 'flex', alignItems: 'center', paddingLeft: '10px' }}>
+                  <span style={{ fontSize: '7.5px', color: 'rgba(200,168,90,0.32)', letterSpacing: '0.02em' }}>zebraprivatehealth.com</span>
+                </div>
+              </div>
+              {/* Nav */}
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '11px 22px', borderBottom: '1px solid rgba(200,168,90,0.07)' }}>
+                <div>
+                  <span style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.20em', color: '#C8A85A', fontFamily: 'var(--font-label)' }}>ZEBRA</span>
+                  <span style={{ fontSize: '5.5px', letterSpacing: '0.24em', textTransform: 'uppercase', color: 'rgba(180,150,80,0.50)', display: 'block', marginTop: '-1px' }}>PRIVATE HEALTH</span>
+                </div>
+                <div style={{ display: 'flex', gap: '18px' }}>
+                  {['Expertise', 'Consultants', 'The Clinic', 'Contact'].map(item => (
+                    <span key={item} style={{ fontSize: '8.5px', color: 'rgba(200,178,135,0.42)', letterSpacing: '0.03em' }}>{item}</span>
+                  ))}
+                </div>
+                <div style={{ padding: '5px 13px', borderRadius: '4px', background: 'rgba(200,168,90,0.10)', border: '1px solid rgba(200,168,90,0.30)', fontSize: '7.5px', fontWeight: 600, color: 'rgba(212,182,112,0.90)', letterSpacing: '0.06em' }}>
+                  Enquire
+                </div>
+              </div>
 
-          {/* Dot navigation */}
-          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '0.55rem', marginTop: '1.1rem' }}>
-            {BWS_PROJECTS.map((project, i) => (
-              <button
-                key={project.name}
-                type="button"
-                aria-label={`Show ${project.name} — ${project.tag}`}
-                aria-current={active === i}
-                onClick={() => goTo(i)}
-                style={{
-                  width: active === i ? 22 : 8, height: 8, borderRadius: '999px',
-                  padding: 0, cursor: 'pointer',
-                  background: active === i ? 'linear-gradient(135deg, #E8C97A, #C8A85A)' : 'transparent',
-                  border: active === i ? 'none' : '1px solid rgba(255,255,255,0.28)',
-                  transition: 'width 0.3s ease, background 0.3s ease, border-color 0.3s ease',
-                }}
-              />
-            ))}
+              {/* Hero — Zebra Private Health consultation suite */}
+              <ZebraHeroVisual />
+
+              {/* Service card grid */}
+              <div style={{ padding: '14px 22px', display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '10px' }}>
+                {ZEBRA_SERVICES.map(svc => (
+                  <ZebraServiceCard key={svc.title} svc={svc} />
+                ))}
+              </div>
+
+              {/* Stats bar */}
+              <div style={{ display: 'flex', borderTop: '1px solid rgba(200,168,90,0.07)' }}>
+                {['Same-week appointments', 'Consultant-led care'].map((label, i) => (
+                  <div key={label} style={{ flex: 1, padding: '13px 16px', borderRight: i < 1 ? '1px solid rgba(200,168,90,0.07)' : 'none', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <span style={{ fontSize: '8.5px', fontWeight: 600, color: '#C8A85A', letterSpacing: '0.03em', textAlign: 'center' }}>{label}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
+
         </div>
-
       </div>
     </section>
   )
@@ -1384,11 +1566,6 @@ function BespokeProcessTimeline() {
       style={{ background: '#060208', padding: 'clamp(5rem, 10vw, 8rem) 0' }}
     >
       <ShowcaseBackground />
-
-      {/* Bottom blend — smooths the seam into the Client Stories section's
-          #010709 background (this section is #060208; without this the flat
-          colour change reads as a hard line at the boundary) */}
-      <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to bottom, transparent 0%, #010709 100%)', pointerEvents: 'none', zIndex: 2 }} />
 
       <div className="relative z-10 max-w-[72rem] mx-auto px-6 sm:px-10">
 
@@ -1519,24 +1696,452 @@ function BespokeProcessTimeline() {
   )
 }
 
+// ─── Bespoke Real Users (Section 5) ─────────────────────────────────────────
+
+const REAL_USER_ROWS = [
+  {
+    num: '01',
+    title: 'Fast loading structure',
+    desc: 'Optimised layouts, lightweight sections, and clean visual hierarchy keep the experience smooth.',
+  },
+  {
+    num: '02',
+    title: 'Clear user journeys',
+    desc: 'Every section is placed with intention so visitors know where they are and what to do next.',
+  },
+  {
+    num: '03',
+    title: 'Responsive across devices',
+    desc: 'Your site is built to feel polished on desktop, tablet, and mobile.',
+  },
+  {
+    num: '04',
+    title: 'Conversion-focused actions',
+    desc: 'Buttons, contact points, and key messages are positioned to support enquiries and sales.',
+  },
+]
+
+// Shared premium highlight — applied evenly to all four rows so none reads as
+// more "active" than the rest; hover just nudges it slightly brighter.
+const BRU_ROW_BG = 'linear-gradient(90deg, rgba(125, 220, 255, 0.08), rgba(8, 18, 24, 0.40), rgba(1, 7, 9, 0.20))'
+const BRU_ROW_BG_HOVER = 'linear-gradient(90deg, rgba(125, 220, 255, 0.13), rgba(8, 18, 24, 0.46), rgba(1, 7, 9, 0.24))'
+const BRU_ROW_BORDER = '1px solid rgba(125, 220, 255, 0.08)'
+const BRU_ROW_SHADOW = 'inset 0 0 30px rgba(125, 220, 255, 0.04)'
+
+// ─── Bespoke Web Design Showcase (Section 8) ─────────────────────────────────
+
+const BWDS_FEATURES = [
+  'Bespoke landing page design',
+  'Premium visual presentation',
+  'Clear user journeys',
+  'Responsive layouts across devices',
+  'Conversion-focused structure',
+]
+
+function BespokeWebDesignShowcase() {
+  const ref = useRef<HTMLElement>(null)
+
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+
+    const label    = el.querySelector('.bwds-label')
+    const heading  = el.querySelector('.bwds-heading')
+    const rule     = el.querySelector('.bwds-rule')
+    const para1    = el.querySelector('.bwds-para1')
+    const para2    = el.querySelector('.bwds-para2')
+    const features = el.querySelectorAll('.bwds-feature')
+    const rightEl  = el.querySelector('.bwds-right')
+    const imgWrap  = el.querySelector('.bwds-img-wrap')
+
+    gsap.set(label,    { opacity: 0, y: 20 })
+    gsap.set(heading,  { opacity: 0, y: 36, filter: 'blur(10px)' })
+    gsap.set(rule,     { opacity: 0, scaleX: 0, transformOrigin: 'left center' })
+    gsap.set(para1,    { opacity: 0, y: 22 })
+    gsap.set(para2,    { opacity: 0, y: 22 })
+    gsap.set(features, { opacity: 0, x: -16 })
+    gsap.set(rightEl,  { opacity: 0, y: 30 })
+    gsap.set(imgWrap,  { scale: 0.96 })
+
+    const obs = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return
+      const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
+      tl.to(label,    { opacity: 1, y: 0, duration: 0.7 }, 0)
+      tl.to(heading,  { opacity: 1, y: 0, filter: 'blur(0px)', duration: 1.05 }, 0.1)
+      tl.to(rule,     { opacity: 1, scaleX: 1, duration: 0.8, ease: 'power2.inOut' }, 0.3)
+      tl.to(para1,    { opacity: 1, y: 0, duration: 0.8 }, 0.38)
+      tl.to(para2,    { opacity: 1, y: 0, duration: 0.8 }, 0.5)
+      tl.to(features, { opacity: 1, x: 0, duration: 0.6, stagger: 0.09 }, 0.58)
+      tl.to(rightEl,  { opacity: 1, y: 0, duration: 1.1 }, 0.2)
+      tl.to(imgWrap,  { scale: 1, duration: 1.3, ease: 'power2.out' }, 0.2)
+      obs.disconnect()
+    }, { threshold: 0.08 })
+
+    obs.observe(el)
+    return () => obs.disconnect()
+  }, [])
+
+  return (
+    <section
+      ref={ref}
+      className="relative w-full overflow-hidden"
+      style={{ background: '#060208', padding: 'clamp(5rem, 10vw, 9rem) 0' }}
+    >
+      <ShowcaseBackground />
+
+      <div className="relative z-10 max-w-[76rem] mx-auto px-6 sm:px-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20 items-center">
+
+          {/* ── Left: copy ── */}
+          <div>
+            {/* Label */}
+            <p className="bwds-label font-sans font-normal uppercase mb-5" style={{
+              fontSize: '0.6rem', letterSpacing: '0.34em', color: 'hsl(199 89% 60% / 0.65)',
+            }}>
+              Website Design
+            </p>
+
+            {/* Headline */}
+            <h2 className="bwds-heading font-heading font-medium mb-7" style={{
+              fontSize: 'clamp(1.9rem, 3.8vw, 3rem)',
+              lineHeight: 1.1,
+              letterSpacing: '-0.035em',
+              color: 'hsl(0 0% 96%)',
+            }}>
+              Premium websites built to{' '}
+              <em style={{
+                fontFamily: 'var(--font-body)',
+                fontStyle: 'italic',
+                fontWeight: 400,
+                color: 'hsl(0 0% 68%)',
+              }}>
+                look sharp
+              </em>{' '}
+              and work harder.
+            </h2>
+
+            {/* Accent rule */}
+            <div className="bwds-rule" aria-hidden="true" style={{
+              width: '2rem', height: '1px',
+              background: 'hsl(199 89% 60% / 0.35)',
+              marginBottom: '1.8rem',
+            }} />
+
+            {/* Para 1 */}
+            <p className="bwds-para1 font-sans font-normal mb-5" style={{
+              fontSize: 'clamp(0.88rem, 1.4vw, 1rem)',
+              lineHeight: 1.9,
+              color: '#F2F8FC',
+            }}>
+              We design websites that feel polished from the first glance, with clear structure,
+              refined visuals, and user journeys that help visitors understand your value quickly.
+            </p>
+
+            {/* Para 2 */}
+            <p className="bwds-para2 font-sans font-normal mb-10" style={{
+              fontSize: 'clamp(0.88rem, 1.4vw, 1rem)',
+              lineHeight: 1.9,
+              color: '#F2F8FC',
+            }}>
+              Every page is shaped around clarity, trust, and conversion — from the first
+              hero section to the final call to action.
+            </p>
+
+            {/* Feature list */}
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+              {BWDS_FEATURES.map((feat) => (
+                <li key={feat} className="bwds-feature" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                  {/* Cyan tick */}
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true" style={{ flexShrink: 0 }}>
+                    <circle cx="7" cy="7" r="6.5" stroke="hsl(199 89% 60% / 0.3)"/>
+                    <polyline points="4,7 6,9.2 10,4.8" stroke="hsl(199 89% 60%)" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                  <span className="font-sans font-normal" style={{
+                    fontSize: 'clamp(0.82rem, 1.2vw, 0.9rem)',
+                    color: '#F2F8FC',
+                    letterSpacing: '0.01em',
+                  }}>
+                    {feat}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* ── Right: image ── */}
+          <div className="bwds-right" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            <div className="bwds-img-wrap" style={{
+              borderRadius: '32px',
+              overflow: 'hidden',
+              border: '1px solid hsl(0 0% 100% / 0.1)',
+              boxShadow: '0 40px 100px hsl(0 0% 0% / 0.45), 0 8px 32px hsl(0 0% 0% / 0.25)',
+              width: '100%',
+              maxWidth: '580px',
+            }}>
+              <img
+                loading="lazy"
+                decoding="async"
+                src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?auto=format&fit=crop&w=900&q=80"
+                alt="Premium website design by Weavy"
+                style={{
+                  width: '100%',
+                  height: 'clamp(380px, 55vw, 580px)',
+                  display: 'block',
+                  objectFit: 'cover',
+                  objectPosition: 'center',
+                }}
+              />
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      {/* Bottom fade */}
+      <div aria-hidden="true" style={{
+        position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px',
+        background: 'linear-gradient(to bottom, transparent, #010709)',
+        pointerEvents: 'none',
+      }} />
+    </section>
+  )
+}
+
+function BespokeRealUsers() {
+  const ref = useRef<HTMLElement>(null)
+
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+
+    gsap.set(el.querySelectorAll('.bru-eyebrow'), { opacity: 0, y: 16 })
+    gsap.set(el.querySelectorAll('.bru-heading'), { opacity: 0, y: 36, filter: 'blur(10px)' })
+    gsap.set(el.querySelectorAll('.bru-body'),    { opacity: 0, y: 24 })
+    gsap.set(el.querySelectorAll('.bru-panel'),   { opacity: 0, y: 40, scale: 0.97 })
+    gsap.set(el.querySelectorAll('.bru-row'),     { opacity: 0, x: 22 })
+
+    const obs = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return
+      const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
+      tl.to(el.querySelectorAll('.bru-eyebrow'), { opacity: 1, y: 0, duration: 0.7 }, 0)
+      tl.to(el.querySelectorAll('.bru-heading'), { opacity: 1, y: 0, filter: 'blur(0px)', duration: 1.05 }, 0.1)
+      tl.to(el.querySelectorAll('.bru-body'),    { opacity: 1, y: 0, duration: 0.85 }, 0.25)
+      tl.to(el.querySelectorAll('.bru-panel'),   { opacity: 1, y: 0, scale: 1, duration: 1.1, ease: 'power2.out' }, 0.15)
+      tl.to(el.querySelectorAll('.bru-row'),     { opacity: 1, x: 0, duration: 0.6, stagger: 0.12 }, 0.42)
+      obs.disconnect()
+    }, { threshold: 0.1 })
+
+    obs.observe(el)
+    return () => obs.disconnect()
+  }, [])
+
+  return (
+    <section
+      ref={ref}
+      className="relative w-full overflow-hidden"
+      style={{
+        background: '#060208',
+        padding: 'clamp(5rem, 10vw, 8rem) 0',
+      }}
+    >
+      <ShowcaseBackground />
+
+      <div className="relative z-10 max-w-[82rem] mx-auto px-6 sm:px-12">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.30fr] gap-14 lg:gap-20 items-start">
+
+          {/* ── LEFT: Editorial text ── */}
+          <div style={{ paddingTop: 'clamp(0rem, 2vw, 2rem)' }}>
+
+            <p
+              className="bru-eyebrow font-sans uppercase"
+              style={{
+                fontSize: '0.62rem',
+                letterSpacing: '0.36em',
+                color: 'hsl(199 89% 62%)',
+                marginBottom: '1.6rem',
+              }}
+            >
+              Real User Experience
+            </p>
+
+            <h2
+              className="bru-heading font-heading font-medium"
+              style={{
+                fontSize: 'clamp(2rem, 4.2vw, 3.4rem)',
+                lineHeight: 1.12,
+                letterSpacing: '-0.036em',
+                color: 'hsl(0 0% 93%)',
+                marginBottom: '1.8rem',
+                maxWidth: '22rem',
+              }}
+            >
+              Built to feel effortless from the{' '}
+              <em style={{
+                fontFamily: 'var(--font-body)',
+                fontStyle: 'italic',
+                fontWeight: 400,
+                color: 'hsl(199 89% 74%)',
+              }}>
+                first click.
+              </em>
+            </h2>
+
+            <p
+              className="bru-body font-sans font-normal"
+              style={{
+                fontSize: 'clamp(0.88rem, 1.4vw, 1rem)',
+                lineHeight: 1.88,
+                color: '#F2F8FC',
+                maxWidth: '30rem',
+              }}
+            >
+              A high-performing website should feel simple, fast, and natural to use. We design every page around real user behaviour, making it easier for visitors to understand your offer, explore your services, and take action with confidence.
+            </p>
+
+          </div>
+
+          {/* ── RIGHT: Glass panel ── */}
+          <div
+            className="bru-panel"
+            style={{
+              borderRadius: '28px',
+              border: '1px solid hsl(0 0% 100% / 0.08)',
+              background: 'hsl(214 24% 6% / 0.72)',
+              backdropFilter: 'blur(18px)',
+              WebkitBackdropFilter: 'blur(18px)',
+              boxShadow: [
+                '0 32px 80px -20px hsl(0 0% 0% / 0.72)',
+                '0 0 0 1px hsl(0 0% 100% / 0.03) inset',
+              ].join(', '),
+              overflow: 'hidden',
+            }}
+          >
+            {/* Cyan top accent line */}
+            <div style={{
+              height: '2px',
+              background: 'linear-gradient(to right, hsl(199 89% 60% / 0.7), hsl(205 80% 55% / 0.2), transparent)',
+            }}/>
+
+            <div style={{ padding: 'clamp(1.9rem, 3.4vw, 2.8rem)' }}>
+              {REAL_USER_ROWS.map(({ num, title, desc }, i) => (
+                <div key={num}>
+                  {i > 0 && (
+                    <div style={{
+                      height: '1px',
+                      background: 'hsl(0 0% 100% / 0.06)',
+                      margin: '0.5rem 0',
+                    }}/>
+                  )}
+                  <div
+                    className="bru-row"
+                    style={{
+                      padding: 'clamp(1.4rem, 2.2vw, 1.9rem) 1.25rem',
+                      display: 'grid',
+                      gridTemplateColumns: '2.4rem 1fr',
+                      gap: '1rem',
+                      transition: 'background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease',
+                      borderRadius: '12px',
+                      cursor: 'default',
+                      background: BRU_ROW_BG,
+                      border: BRU_ROW_BORDER,
+                      boxShadow: BRU_ROW_SHADOW,
+                    }}
+                    onMouseEnter={e => {
+                      const el = e.currentTarget as HTMLElement
+                      el.style.background = BRU_ROW_BG_HOVER
+                      const numEl = el.querySelector('.bru-num') as HTMLElement | null
+                      if (numEl) numEl.style.color = '#7FD8FF'
+                    }}
+                    onMouseLeave={e => {
+                      const el = e.currentTarget as HTMLElement
+                      el.style.background = BRU_ROW_BG
+                      const numEl = el.querySelector('.bru-num') as HTMLElement | null
+                      if (numEl) numEl.style.color = '#5ECFFF'
+                    }}
+                  >
+                    {/* Number */}
+                    <span
+                      className="bru-num font-sans"
+                      style={{
+                        fontSize: '0.62rem',
+                        letterSpacing: '0.14em',
+                        color: '#5ECFFF',
+                        paddingTop: '0.2rem',
+                        transition: 'color 0.3s ease',
+                        fontVariantNumeric: 'tabular-nums',
+                      }}
+                    >
+                      {num}
+                    </span>
+
+                    {/* Content */}
+                    <div>
+                      <p
+                        className="font-sans"
+                        style={{
+                          fontSize: 'clamp(0.9rem, 1.4vw, 1.02rem)',
+                          letterSpacing: '-0.018em',
+                          fontWeight: 500,
+                          color: '#EAF7FF',
+                          marginBottom: '0.45rem',
+                          lineHeight: 1.3,
+                        }}
+                      >
+                        {title}
+                      </p>
+                      <p
+                        className="font-sans font-normal"
+                        style={{
+                          fontSize: '0.83rem',
+                          lineHeight: 1.78,
+                          color: '#AEBBC4',
+                        }}
+                      >
+                        {desc}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  )
+}
+
 // ─── Bespoke Testimonials ─────────────────────────────────────────────────────
 
 const BESPOKE_TESTIMONIALS = [
   {
-    name: 'Zakaria Dahir',
-    role: 'Co-Founder, Champion Office for Scaling Up Nutrition',
+    name: 'Lena Hoffmann',
+    role: 'Founder, Atelier Lune',
     rating: 5,
-    text: 'Weavy understood our mission from the first conversation. They built us a site that communicates trust and credibility — exactly what we needed to connect with partners and stakeholders. The process was smooth, the delivery was fast, and the result speaks for itself.',
-    avatar: '/brand_assets/Dr.Zak.png',
-    avatarFocalPoint: { top: '-35%', left: '-25%' },
+    text: 'The website they built for us completely elevated our brand. Leads converted at nearly double our old rate within the first month. Worth every penny.',
+    avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=80&q=80',
   },
   {
-    name: 'Sofia Hayes',
+    name: 'Marcus Reid',
+    role: 'CEO, Northfield Capital',
+    rating: 5,
+    text: 'Our online presence went from embarrassing to industry-leading. The attention to detail and speed of delivery was unlike anything we had seen from an agency before.',
+    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=80&q=80',
+  },
+  {
+    name: 'Sofia Andrade',
     role: 'Marketing Director, Veva Studio',
     rating: 5,
-    text: 'We came to Weavy after outgrowing our old site. They delivered something that truly represents who we are — clean, modern, and built to convert. Our enquiries increased noticeably within the first few weeks of launching.',
-    avatarInitials: 'SH',
-    avatarGradient: 'linear-gradient(135deg, hsl(280 55% 26%), hsl(230 60% 14%))',
+    text: 'Seamless process from start to finish. They understood our vision immediately and the final product genuinely exceeded what we had imagined. Our clients constantly compliment the site.',
+    avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=80&q=80',
+  },
+  {
+    name: 'James Okafor',
+    role: 'Co-Founder, Lumin Labs',
+    rating: 5,
+    text: 'We had tried two other agencies before. Weavy was the only team that actually delivered a fast, beautiful site on time — with zero hand-holding required on our end.',
+    avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=80&q=80',
   },
 ]
 
@@ -1548,80 +2153,6 @@ function BespokeTestimonials() {
       subtitle="Founders and marketing teams who needed more than a template — and got it."
       testimonials={BESPOKE_TESTIMONIALS}
     />
-  )
-}
-
-// ─── Bespoke Results Strip ───────────────────────────────────────────────────
-
-const RESULTS_STATS = [
-  { value: '12+', label: 'Websites Launched' },
-  { value: '100%', label: 'On-Time Delivery' },
-  { value: '6 Weeks', label: 'Average Build Time' },
-]
-
-function BespokeResultsStrip() {
-  const ref = useRef<HTMLElement>(null)
-
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const stats = el.querySelectorAll('.brs-stat')
-    gsap.set(stats, { opacity: 0, y: 18 })
-    const obs = new IntersectionObserver(([entry]) => {
-      if (!entry.isIntersecting) return
-      gsap.to(stats, { opacity: 1, y: 0, duration: 0.65, stagger: 0.12, ease: 'power3.out' })
-      obs.disconnect()
-    }, { threshold: 0.4 })
-    obs.observe(el)
-    return () => obs.disconnect()
-  }, [])
-
-  return (
-    <section
-      ref={ref}
-      className="relative w-full overflow-hidden"
-      style={{ background: '#010709', padding: 'clamp(3.5rem, 7vw, 5.5rem) 0' }}
-    >
-      {/* Bottom blend — smooths the seam into the Footer's #06080A background
-          (this section is #010709; without this the flat colour change reads
-          as a hard line at the boundary) */}
-      <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to bottom, transparent 0%, #06080A 100%)', pointerEvents: 'none', zIndex: 2 }} />
-
-      <div className="relative z-10 max-w-[52rem] mx-auto px-6 sm:px-10">
-        <div className="flex flex-col sm:flex-row items-center justify-center" style={{ gap: 'clamp(2rem, 5vw, 4rem)' }}>
-          {RESULTS_STATS.flatMap((stat, i) => {
-            const nodes = []
-            if (i > 0) {
-              nodes.push(
-                <div
-                  key={`divider-${stat.label}`}
-                  aria-hidden="true"
-                  className="hidden sm:block"
-                  style={{ width: 1, height: '2.75rem', background: 'hsl(0 0% 100% / 0.08)' }}
-                />
-              )
-            }
-            nodes.push(
-              <div key={stat.label} className="brs-stat text-center">
-                <div
-                  className="font-heading font-semibold text-white"
-                  style={{ fontSize: 'clamp(2.2rem, 4.5vw, 3.2rem)', letterSpacing: '-0.02em', lineHeight: 1 }}
-                >
-                  {stat.value}
-                </div>
-                <div
-                  className="font-sans font-normal uppercase"
-                  style={{ fontSize: '0.72rem', letterSpacing: '0.14em', color: 'hsl(0 0% 50%)', marginTop: '0.65rem' }}
-                >
-                  {stat.label}
-                </div>
-              </div>
-            )
-            return nodes
-          })}
-        </div>
-      </div>
-    </section>
   )
 }
 
@@ -2157,31 +2688,23 @@ const WORKFLOW_STEPS = [
     num: '01',
     title: 'Instant response',
     desc: 'The system replies immediately across your chosen channels, so customers are never left waiting.',
-    Icon: MessageSquare,
   },
   {
     num: '02',
     title: 'Smart qualification',
     desc: 'It asks the right questions, collects key details, and understands what the customer needs.',
-    Icon: Filter,
   },
   {
     num: '03',
     title: 'Guided next step',
     desc: 'Customers are directed toward bookings, services, product information, FAQs, or enquiry forms.',
-    Icon: CalendarDays,
   },
   {
     num: '04',
     title: 'Human handover',
     desc: 'When a conversation needs personal attention, the chatbot passes it smoothly to your team.',
-    Icon: UserCheck,
   },
 ]
-
-// Percentage position of each stage's node along the connecting line,
-// matching the 4-column grid's own column centres.
-const WORKFLOW_NODE_POS = ['12.5%', '37.5%', '62.5%', '87.5%']
 
 function ChatbotWorkflowSection() {
   const ref = useRef<HTMLElement>(null)
@@ -2189,17 +2712,11 @@ function ChatbotWorkflowSection() {
   useEffect(() => {
     const el = ref.current
     if (!el) return
-    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-
     gsap.set(el.querySelectorAll('.cwf-label'),   { opacity: 0, y: 14 })
     gsap.set(el.querySelectorAll('.cwf-heading'),  { opacity: 0, y: 28 })
     gsap.set(el.querySelectorAll('.cwf-body'),     { opacity: 0, y: 20 })
     gsap.set(el.querySelectorAll('.cwf-line'),     { opacity: 0, scaleX: 0, transformOrigin: 'left center' })
     gsap.set(el.querySelectorAll('.cwf-step'),     { opacity: 0, y: 32 })
-    gsap.set(el.querySelectorAll('.cwf-node'),     { opacity: 0, scale: 0.4 })
-    const pulse = el.querySelector<HTMLElement>('.cwf-pulse')
-    if (pulse) gsap.set(pulse, { opacity: 0, left: WORKFLOW_NODE_POS[0] })
-
     const obs = new IntersectionObserver(([entry]) => {
       if (!entry.isIntersecting) return
       const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
@@ -2208,15 +2725,6 @@ function ChatbotWorkflowSection() {
       tl.to(el.querySelectorAll('.cwf-body'),     { opacity: 1, y: 0, duration: 0.7  }, 0.25)
       tl.to(el.querySelectorAll('.cwf-line'),     { opacity: 1, scaleX: 1, duration: 1.4, ease: 'power2.inOut' }, 0.55)
       tl.to(el.querySelectorAll('.cwf-step'),     { opacity: 1, y: 0, duration: 0.65, stagger: 0.14 }, 0.48)
-      tl.to(el.querySelectorAll('.cwf-node'),     { opacity: 1, scale: 1, duration: 0.5, stagger: 0.14, ease: 'back.out(2)' }, 0.6)
-
-      // One soft cyan pulse travelling stage 01 → 04, once, no repeat.
-      if (pulse && !reducedMotion) {
-        tl.to(pulse, { opacity: 1, duration: 0.3 }, 0.7)
-        tl.to(pulse, { left: WORKFLOW_NODE_POS[3], duration: 1.3, ease: 'power1.inOut' }, 0.7)
-        tl.to(pulse, { opacity: 0, duration: 0.35 }, 1.85)
-      }
-
       obs.disconnect()
     }, { threshold: 0.1 })
     obs.observe(el)
@@ -2291,12 +2799,6 @@ function ChatbotWorkflowSection() {
         {/* ── Workflow steps ── */}
         <div className="relative">
 
-          {/* Subtle blue-green ambient glow, contained behind the cards */}
-          <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
-            background: 'radial-gradient(ellipse 60% 70% at 50% 45%, hsl(185 55% 30% / 0.09) 0%, transparent 70%)',
-            zIndex: -1,
-          }}/>
-
           {/* Connecting line — desktop only */}
           <div
             aria-hidden="true"
@@ -2311,36 +2813,6 @@ function ChatbotWorkflowSection() {
             }}
           />
 
-          {/* Stage nodes + travelling pulse — desktop only, aligned to the line.
-              Rendered above the cards (z-index above the z-10 grid) so they
-              stay visible instead of sitting behind each card's opaque surface. */}
-          <div aria-hidden="true" className="hidden lg:block absolute" style={{ top: 0, left: 0, right: 0, height: 0, zIndex: 20 }}>
-            {WORKFLOW_NODE_POS.map((pos, i) => (
-              <span
-                key={i}
-                className="cwf-node"
-                style={{
-                  position: 'absolute', left: pos, top: 0,
-                  width: 6, height: 6, borderRadius: '50%',
-                  background: 'hsl(199 89% 65%)',
-                  boxShadow: '0 0 8px hsl(199 89% 60% / 0.7)',
-                  transform: 'translate(-50%, -50%)',
-                }}
-              />
-            ))}
-            <span
-              className="cwf-pulse"
-              aria-hidden="true"
-              style={{
-                position: 'absolute', top: 0,
-                width: 10, height: 10, borderRadius: '50%',
-                background: 'hsl(199 100% 78%)',
-                boxShadow: '0 0 16px 3px hsl(199 89% 65% / 0.85)',
-                transform: 'translate(-50%, -50%)',
-              }}
-            />
-          </div>
-
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6 relative z-10">
             {WORKFLOW_STEPS.map((step) => (
               <BorderRotate
@@ -2348,13 +2820,13 @@ function ChatbotWorkflowSection() {
                 className="cwf-step"
                 animationMode="auto-rotate"
                 animationSpeed={4}
-                borderWidth={1.5}
+                borderWidth={1}
                 borderRadius={28}
-                backgroundColor="#051417"
+                backgroundColor="#05080b"
                 gradientColors={{
                   primary:   '#020609',
-                  secondary: '#0C4A5E',
-                  accent:    '#3DD4EF',
+                  secondary: '#093747',
+                  accent:    '#1ab8d4',
                 }}
                 style={{
                   display:       'flex',
@@ -2362,17 +2834,6 @@ function ChatbotWorkflowSection() {
                   gap:           '1.1rem',
                   padding:       'clamp(1.6rem, 3vw, 2.2rem)',
                   boxShadow:     '0 24px 48px -12px hsl(0 0% 0% / 0.55)',
-                  transition:    'transform 200ms ease',
-                }}
-                onMouseEnter={e => {
-                  const el = e.currentTarget as HTMLElement
-                  el.style.transform = 'translateY(-2px)'
-                  el.style.setProperty('--gradient-accent', '#7FEBFF')
-                }}
-                onMouseLeave={e => {
-                  const el = e.currentTarget as HTMLElement
-                  el.style.transform = 'translateY(0)'
-                  el.style.setProperty('--gradient-accent', '#3DD4EF')
                 }}
               >
                 {/* Top accent line */}
@@ -2383,26 +2844,16 @@ function ChatbotWorkflowSection() {
                   marginBottom: '0.2rem',
                 }}/>
 
-                {/* Icon + number badge */}
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-                  <div style={{
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    width: 28, height: 28, borderRadius: 8, flexShrink: 0,
-                    border: '1px solid hsl(199 89% 60% / 0.35)',
-                    background: 'hsl(199 89% 60% / 0.08)',
-                  }}>
-                    <step.Icon size={14} strokeWidth={1.6} color="hsl(199 89% 65%)" aria-hidden="true" />
-                  </div>
-                  <span className="font-sans" style={{
-                    display:       'inline-block',
-                    fontSize:      '0.62rem',
-                    letterSpacing: '0.22em',
-                    color:         'hsl(199 89% 60% / 0.7)',
-                    fontWeight:    400,
-                  }}>
-                    {step.num}
-                  </span>
-                </div>
+                {/* Number badge */}
+                <span className="font-sans" style={{
+                  display:       'inline-block',
+                  fontSize:      '0.62rem',
+                  letterSpacing: '0.22em',
+                  color:         'hsl(199 89% 60% / 0.7)',
+                  fontWeight:    400,
+                }}>
+                  {step.num}
+                </span>
 
                 {/* Title */}
                 <p className="font-sans" style={{
@@ -2417,9 +2868,9 @@ function ChatbotWorkflowSection() {
 
                 {/* Description */}
                 <p className="font-sans font-normal" style={{
-                  fontSize:   '1rem',
-                  lineHeight: 1.6,
-                  color:      'rgba(244, 248, 250, 0.75)',
+                  fontSize:   'clamp(0.8rem, 1.15vw, 0.875rem)',
+                  lineHeight: 1.8,
+                  color:      'rgba(220, 232, 240, 0.68)',
                 }}>
                   {step.desc}
                 </p>
@@ -2522,8 +2973,6 @@ function ChatbotIntegrationsSection() {
       {/* Section boundary fades */}
       <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to bottom, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
       <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to top, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
-      {/* Bottom blend — smooths the seam into the Footer's #06080A background */}
-      <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to bottom, transparent 0%, #06080A 100%)', pointerEvents: 'none', zIndex: 3 }} />
 
       <div className="relative z-10 max-w-[82rem] mx-auto px-6 sm:px-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20 items-start">
@@ -2946,6 +3395,7 @@ function SocialMediaMarketing() {
   // ── Section 2: Digital Ecosystem ──
   useEffect(() => observe(platRef, el => {
     const mockupEl = el.querySelector('.smp-mockup') as HTMLElement | null
+    const chipEls  = el.querySelectorAll('.smp-chip')
 
     const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
     tl.to(el.querySelectorAll('.smp-label'),   { opacity: 1, y: 0, duration: 0.6 }, 0)
@@ -2953,11 +3403,44 @@ function SocialMediaMarketing() {
     tl.to(el.querySelectorAll('.smp-body'),    { opacity: 1, y: 0, duration: 0.75 }, 0.22)
     tl.to(el.querySelectorAll('.smp-feat'),    { opacity: 1, y: 0, duration: 0.5, stagger: 0.09 }, 0.32)
     tl.to(el.querySelectorAll('.smp-mockup'),  { opacity: 1, y: 0, duration: 1.3, ease: 'power2.out' }, 0.12)
+    tl.to(el.querySelectorAll('.smp-chip'),    { opacity: 1, y: 0, duration: 0.75, stagger: 0.22, ease: 'power2.out' }, 0.55)
 
     // Continuous float after reveal
     tl.add(() => {
       if (mockupEl) {
         gsap.to(mockupEl, { y: -12, duration: 4.2, ease: 'sine.inOut', yoyo: true, repeat: -1 })
+      }
+      chipEls.forEach((chip, i) => {
+        gsap.to(chip, {
+          y: i % 2 === 0 ? -7 : -9,
+          duration: 3.4 + i * 0.6,
+          ease: 'sine.inOut',
+          yoyo: true,
+          repeat: -1,
+          delay: i * 0.5,
+        })
+      })
+
+      // Count-up loops — cycle every 4 s (1.4 s count + 2.6 s pause)
+      const reachEl   = el.querySelector('.smp-reach-val')  as HTMLElement | null
+      const engageEl  = el.querySelector('.smp-engage-val') as HTMLElement | null
+
+      if (reachEl) {
+        const r = { val: 280 }
+        gsap.fromTo(r, { val: 0 }, {
+          val: 280, duration: 1.4, ease: 'power2.out',
+          repeat: -1, repeatDelay: 4.6, delay: 1.2,
+          onUpdate: () => { reachEl.textContent = '+' + Math.round(r.val) },
+        })
+      }
+
+      if (engageEl) {
+        const e = { val: 8.4 }
+        gsap.fromTo(e, { val: 0 }, {
+          val: 8.4, duration: 1.4, ease: 'power2.out',
+          repeat: -1, repeatDelay: 4.6, delay: 1.5,
+          onUpdate: () => { engageEl.textContent = e.val.toFixed(1) },
+        })
       }
     }, '-=0.1')
   }), [])
@@ -2982,17 +3465,22 @@ function SocialMediaMarketing() {
     tl.to(el.querySelectorAll('.smpr-metric'),  { opacity: 1, y: 0, duration: 0.5, stagger: 0.1 }, 0.3)
     tl.to(el.querySelectorAll('.smpr-bg'),      { opacity: 1, y: 0, duration: 1.1, ease: 'power2.out' }, 0.1)
     tl.to(el.querySelectorAll('.smpr-main'),    { opacity: 1, y: 0, duration: 1.2, ease: 'power2.out' }, 0.25)
+    tl.to(el.querySelectorAll('.smpr-badge'),   { opacity: 1, y: 0, duration: 0.7, stagger: 0.2, ease: 'power2.out' }, 0.5)
 
     // Continuous float after reveal
     tl.add(() => {
       if (mainImg) gsap.to(mainImg, { y: -10, duration: 4.5, ease: 'sine.inOut', yoyo: true, repeat: -1 })
       if (bgImg)   gsap.to(bgImg,  { y: -6,  duration: 5.5, ease: 'sine.inOut', yoyo: true, repeat: -1, delay: 0.6 })
+      el.querySelectorAll('.smpr-badge').forEach((b, i) => {
+        gsap.to(b, { y: i % 2 === 0 ? -7 : -9, duration: 3.6 + i * 0.5, ease: 'sine.inOut', yoyo: true, repeat: -1, delay: i * 0.4 })
+      })
     }, '-=0.1')
   }), [])
 
   // ── Section 5: Beauty Campaign Showcase ──
   useEffect(() => observe(beautyRef, el => {
     const imgEl  = el.querySelector('.smbs-img') as HTMLElement | null
+    const numEl  = el.querySelector('.smbs-num-val') as HTMLElement | null
     const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
     tl.to(el.querySelectorAll('.smbs-label'),  { opacity: 1, y: 0, duration: 0.6 }, 0)
     tl.to(el.querySelectorAll('.smbs-hword'),  { opacity: 1, y: 0, duration: 0.72, stagger: 0.09, ease: 'power3.out' }, 0.1)
@@ -3001,6 +3489,18 @@ function SocialMediaMarketing() {
     tl.to(el.querySelectorAll('.smbs-img'),    { opacity: 1, y: 0, duration: 1.2,  ease: 'power2.out' }, 0.15)
     tl.add(() => {
       if (imgEl) gsap.to(imgEl, { y: -10, duration: 4.8, ease: 'sine.inOut', yoyo: true, repeat: -1 })
+      // Looping counter: 0 → 3.8 over 1.5s, then pause 1.5s, repeat (total 3s cycle)
+      if (numEl) {
+        const counter = { val: 0 }
+        gsap.to(counter, {
+          val: 3.8,
+          duration: 1.5,
+          ease: 'power2.out',
+          repeat: -1,
+          repeatDelay: 1.5,
+          onUpdate: () => { numEl.innerText = counter.val.toFixed(1) },
+        })
+      }
     }, '-=0.1')
   }), [])
 
@@ -3432,6 +3932,48 @@ function SocialMediaMarketing() {
               </div>
             </div>
 
+            {/* Floating stat chip — top left */}
+            <div
+              className="smp-chip"
+              style={{
+                opacity: 0, transform: 'translateY(18px)',
+                position: 'absolute', top: '6%', left: '0', zIndex: 20,
+                background: 'hsl(0 0% 5% / 0.9)',
+                backdropFilter: 'blur(22px)',
+                border: '1px solid hsl(0 0% 100% / 0.07)',
+                borderRadius: '0.875rem',
+                padding: '0.9rem 1.3rem',
+                boxShadow: '0 12px 40px -8px hsl(0 0% 0% / 0.65), 0 0 0 1px hsl(0 0% 100% / 0.04)',
+              }}
+            >
+              <p className="font-sans" style={{ fontSize: '0.58rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: 'hsl(199 89% 65%)', marginBottom: '0.32rem' }}>Reach Growth</p>
+              <p className="font-sans font-normal text-text" style={{ fontSize: '1.75rem', letterSpacing: '-0.036em', lineHeight: 1 }}>
+                <span className="smp-reach-val">+280</span><span style={{ fontSize: '0.88rem', color: 'hsl(199 89% 60%)', marginLeft: '1px' }}>%</span>
+              </p>
+              <p className="font-sans font-normal" style={{ fontSize: '0.63rem', color: 'hsl(0 0% 36%)', marginTop: '0.22rem', letterSpacing: '0.04em' }}>avg. across clients</p>
+            </div>
+
+            {/* Floating stat chip — bottom right */}
+            <div
+              className="smp-chip"
+              style={{
+                opacity: 0, transform: 'translateY(18px)',
+                position: 'absolute', bottom: '5%', right: '0', zIndex: 20,
+                background: 'hsl(0 0% 5% / 0.9)',
+                backdropFilter: 'blur(22px)',
+                border: '1px solid hsl(0 0% 100% / 0.07)',
+                borderRadius: '0.875rem',
+                padding: '0.9rem 1.3rem',
+                boxShadow: '0 12px 40px -8px hsl(0 0% 0% / 0.65), 0 0 0 1px hsl(0 0% 100% / 0.04)',
+              }}
+            >
+              <p className="font-sans" style={{ fontSize: '0.58rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: 'hsl(280 65% 72%)', marginBottom: '0.32rem' }}>Engagement Rate</p>
+              <p className="font-sans font-normal text-text" style={{ fontSize: '1.75rem', letterSpacing: '-0.036em', lineHeight: 1 }}>
+                <span className="smp-engage-val">8.4</span><span style={{ fontSize: '0.88rem', color: 'hsl(280 65% 65%)', marginLeft: '1px' }}>%</span>
+              </p>
+              <p className="font-sans font-normal" style={{ fontSize: '0.63rem', color: 'hsl(0 0% 36%)', marginTop: '0.22rem', letterSpacing: '0.04em' }}>12-week average</p>
+            </div>
+
           </div>
         </div>
       </div>
@@ -3463,7 +4005,7 @@ function SocialMediaMarketing() {
 
         {/* Heading */}
         <div className="mb-16">
-          <p className="sms-heading font-sans uppercase mb-4" style={{ opacity: 0, transform: 'translateY(20px)', fontSize: '0.7rem', letterSpacing: '0.3em', color: 'hsl(199 75% 70%)' }}>
+          <p className="sms-heading font-sans uppercase mb-4" style={{ opacity: 0, transform: 'translateY(20px)', fontSize: '0.7rem', letterSpacing: '0.3em', color: 'hsl(0 0% 40%)' }}>
             What we deliver
           </p>
           <h2
@@ -3490,7 +4032,7 @@ function SocialMediaMarketing() {
                 onMouseEnter={e => {
                   const num = e.currentTarget.querySelector('.sms-num') as HTMLElement | null
                   if (!num) return
-                  num.style.filter = 'drop-shadow(0 0 8px rgba(125,220,255,0.95)) drop-shadow(0 0 20px rgba(125,220,255,0.6))'
+                  num.style.filter = 'drop-shadow(0 0 6px rgba(125,220,255,0.8)) drop-shadow(0 0 14px rgba(125,220,255,0.45))'
                   gsap.killTweensOf(num)
                   gsap.to(num, { scale: 1.12, duration: 0.25, ease: 'power2.out', transformOrigin: 'center center' })
                   gsap.to(num, { scale: 1, duration: 0.7, delay: 0.25, ease: 'elastic.out(1, 0.45)', transformOrigin: 'center center' })
@@ -3498,7 +4040,7 @@ function SocialMediaMarketing() {
                 onMouseLeave={e => {
                   const num = e.currentTarget.querySelector('.sms-num') as HTMLElement | null
                   if (!num) return
-                  num.style.filter = 'drop-shadow(0 0 6px rgba(125,220,255,0.6)) drop-shadow(0 0 14px rgba(125,220,255,0.32))'
+                  num.style.filter = 'drop-shadow(0 0 4px rgba(125,220,255,0.35))'
                   gsap.killTweensOf(num)
                   gsap.to(num, { scale: 1, duration: 0.35, ease: 'power2.inOut', transformOrigin: 'center center' })
                 }}
@@ -3507,13 +4049,12 @@ function SocialMediaMarketing() {
                 <span
                   className="sms-num font-sans shrink-0"
                   style={{
-                    fontSize: '0.85rem',
-                    fontWeight: 600,
+                    fontSize: '0.65rem',
                     letterSpacing: '0.18em',
                     minWidth: '2rem',
                     fontVariantNumeric: 'tabular-nums',
-                    color: '#93E5FF',
-                    filter: 'drop-shadow(0 0 6px rgba(125,220,255,0.6)) drop-shadow(0 0 14px rgba(125,220,255,0.32))',
+                    color: '#7DDCFF',
+                    filter: 'drop-shadow(0 0 4px rgba(125,220,255,0.35))',
                     transition: 'filter 0.3s ease',
                     display: 'inline-block',
                   }}
@@ -3692,6 +4233,47 @@ function SocialMediaMarketing() {
 
             </div>
 
+            {/* Stat chips row — below images */}
+            <div className="flex gap-4">
+              <div
+                className="smpr-badge flex-1"
+                style={{
+                  opacity: 0, transform: 'translateY(16px)',
+                  background: 'hsl(0 0% 5% / 0.92)',
+                  backdropFilter: 'blur(20px)',
+                  border: '1px solid hsl(199 89% 60% / 0.22)',
+                  borderRadius: '0.875rem',
+                  padding: '0.85rem 1.2rem',
+                  boxShadow: '0 8px 28px -8px hsl(0 0% 0% / 0.6), 0 0 24px -8px hsl(199 89% 60% / 0.22)',
+                }}
+              >
+                <p className="font-sans" style={{ fontSize: '0.58rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: 'hsl(199 89% 65%)', marginBottom: '0.28rem' }}>Audience Reach</p>
+                <p className="font-sans font-normal text-text" style={{ fontSize: '1.6rem', letterSpacing: '-0.036em', lineHeight: 1 }}>
+                  450<span style={{ fontSize: '0.95rem', color: 'hsl(199 89% 60%)' }}>K+</span>
+                </p>
+                <p className="font-sans font-normal" style={{ fontSize: '0.62rem', color: 'hsl(0 0% 36%)', marginTop: '0.2rem' }}>avg. combined reach</p>
+              </div>
+
+              <div
+                className="smpr-badge flex-1"
+                style={{
+                  opacity: 0, transform: 'translateY(16px)',
+                  background: 'hsl(0 0% 5% / 0.92)',
+                  backdropFilter: 'blur(20px)',
+                  border: '1px solid hsl(280 65% 65% / 0.22)',
+                  borderRadius: '0.875rem',
+                  padding: '0.85rem 1.2rem',
+                  boxShadow: '0 8px 28px -8px hsl(0 0% 0% / 0.6), 0 0 24px -8px hsl(280 65% 65% / 0.2)',
+                }}
+              >
+                <p className="font-sans" style={{ fontSize: '0.58rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: 'hsl(280 65% 72%)', marginBottom: '0.28rem' }}>Engagement</p>
+                <p className="font-sans font-normal text-text" style={{ fontSize: '1.6rem', letterSpacing: '-0.036em', lineHeight: 1 }}>
+                  9.2<span style={{ fontSize: '0.9rem', color: 'hsl(280 65% 65%)' }}>%</span>
+                </p>
+                <p className="font-sans font-normal" style={{ fontSize: '0.62rem', color: 'hsl(0 0% 36%)', marginTop: '0.2rem' }}>12-week avg rate</p>
+              </div>
+            </div>
+
           </div>
 
           {/* ── RIGHT: copy ── */}
@@ -3778,6 +4360,7 @@ function SocialMediaMarketing() {
               {/* Metrics list — horizontal rule style */}
               <ul className="flex flex-col" style={{ borderTop: '1px solid hsl(0 0% 100% / 0.07)' }}>
                 {[
+                  { stat: '450K+', label: 'Audience Reach' },
                   { stat: '∞',     label: 'Multi-Platform Visibility' },
                   { stat: '↑',     label: 'High-Engagement Content Systems' },
                   { stat: '◆',     label: 'Optimised Brand Positioning' },
@@ -3851,18 +4434,15 @@ function SocialMediaMarketing() {
       }}/>
 
       <div className="relative z-10 max-w-[82rem] mx-auto px-6 sm:px-12">
-        <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] xl:grid-cols-[780px_1fr] gap-16 lg:gap-12 xl:gap-[68px] items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-16 lg:gap-12 xl:gap-20 items-center">
 
-          {/* ── LEFT: campaign visuals triptych ── */}
+          {/* ── LEFT: beauty.png image ── */}
           <div className="relative">
             <div
               className="smbs-img relative rounded-2xl overflow-hidden"
               style={{
                 opacity: 0, transform: 'translateY(36px)',
                 height: 'clamp(300px, 38vw, 520px)',
-                display: 'grid',
-                gridTemplateColumns: '31.5fr 37fr 31.5fr',
-                gap: '11px',
                 boxShadow: [
                   '0 48px 96px -16px hsl(0 0% 0% / 0.9)',
                   '0 0 0 1px hsl(280 65% 65% / 0.14)',
@@ -3887,38 +4467,13 @@ function SocialMediaMarketing() {
                 ].join(', ')
               }}
             >
-              {[
-                {
-                  src: '/brand_assets/campaign-lips-1.png',
-                  alt: 'Skincare campaign — beauty product application',
-                  objectPosition: '50% 50%',
-                },
-                {
-                  src: '/brand_assets/SIIRR.png',
-                  alt: 'SIIR Oud fragrance campaign',
-                  objectPosition: '50% 42%',
-                  filter: 'brightness(0.86) saturate(0.92)',
-                },
-                {
-                  src: '/brand_assets/campaign-lips-3.png',
-                  alt: 'Lipstick editorial campaign close-up',
-                  objectPosition: '40% 46%',
-                },
-              ].map(img => (
-                <div key={img.src} style={{ position: 'relative', borderRadius: '5px', overflow: 'hidden' }}>
-                  <img
-                    loading="lazy"
-                    decoding="async"
-                    src={img.src}
-                    alt={img.alt}
-                    style={{
-                      display: 'block', width: '100%', height: '100%',
-                      objectFit: 'cover', objectPosition: img.objectPosition,
-                      filter: img.filter,
-                    }}
-                  />
-                </div>
-              ))}
+              <img
+                loading="lazy"
+                decoding="async"
+                src="/brand_assets/beauty.webp"
+                alt="Beauty brand social media campaign showcase"
+                style={{ display: 'block', width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top' }}
+              />
               <div aria-hidden="true" style={{
                 position: 'absolute', inset: 0,
                 background: 'linear-gradient(135deg, hsl(280 65% 65% / 0.06) 0%, hsl(199 89% 60% / 0.05) 100%)',
@@ -3926,24 +4481,30 @@ function SocialMediaMarketing() {
               }}/>
               <div aria-hidden="true" style={{
                 position: 'absolute', inset: 0,
-                background: 'linear-gradient(to bottom, transparent 78%, hsl(270 20% 3% / 0.45) 100%)',
+                background: 'linear-gradient(to bottom, transparent 60%, hsl(270 20% 3% / 0.55) 100%)',
                 pointerEvents: 'none',
               }}/>
             </div>
 
-            {/* Small caption label — matches other subtle section labels */}
-            <p
-              className="font-sans uppercase"
+            {/* Floating stat badge */}
+            <div
+              className="smbs-img absolute -bottom-4 right-0 sm:bottom-5 sm:right-5"
               style={{
-                fontSize: '0.72rem',
-                letterSpacing: '0.22em',
-                color: 'hsl(0 0% 100% / 0.56)',
-                marginTop: '1.1rem',
-                textAlign: 'center',
+                opacity: 0, transform: 'translateY(16px)',
+                background: 'hsl(0 0% 4% / 0.92)',
+                backdropFilter: 'blur(20px)',
+                border: '1px solid hsl(199 89% 60% / 0.22)',
+                borderRadius: '0.875rem',
+                padding: '0.85rem 1.25rem',
+                boxShadow: '0 8px 28px -8px hsl(0 0% 0% / 0.6), 0 0 24px -8px hsl(199 89% 60% / 0.22)',
               }}
             >
-              Campaign visuals — produced by Weavy
-            </p>
+              <p className="font-sans" style={{ fontSize: '0.56rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: 'hsl(199 89% 65%)', marginBottom: '0.26rem', fontFamily: 'var(--font-label)' }}>Conversion Lift</p>
+              <p className="font-sans font-normal text-text" style={{ fontSize: '1.55rem', letterSpacing: '-0.036em', lineHeight: 1, fontFamily: 'var(--font-label)' }}>
+                <span className="smbs-num-val">3.8</span><span style={{ fontSize: '0.9rem', color: 'hsl(199 89% 60%)' }}>×</span>
+              </p>
+              <p className="font-sans font-normal" style={{ fontSize: '0.6rem', color: 'hsl(0 0% 36%)', marginTop: '0.2rem', fontFamily: 'var(--font-label)' }}>avg. campaign lift</p>
+            </div>
           </div>
 
           {/* ── RIGHT: copy ── */}
@@ -4561,29 +5122,13 @@ function SocialMediaMarketing() {
                   loading="lazy"
                   decoding="async"
                   className="s6-media-img h-full w-full object-cover"
-                  style={{ objectPosition: 'center', filter: 'saturate(0.78) contrast(1.04) sepia(0.05)' }}
+                  style={{ objectPosition: 'center' }}
                 />
               </div>
 
             </div>
 
           </div>
-
-          {/* Closing line */}
-          <p
-            className="s6-body text-center"
-            style={{
-              opacity: 0, transform: 'translateY(18px)',
-              marginTop: 'clamp(2.5rem, 5vw, 3.5rem)',
-              fontFamily: 'var(--font-body)',
-              fontStyle: 'italic',
-              fontWeight: 400,
-              fontSize: 'clamp(1.1rem, 2.2vw, 1.35rem)',
-              color: 'hsl(0 0% 100% / 0.76)',
-            }}
-          >
-            One shoot. Every format. Ready to perform.
-          </p>
 
         </div>
       </div>
@@ -4612,18 +5157,13 @@ function SocialMediaMarketing() {
         <rect width="100%" height="100%" filter="url(#smf-grain)" style={{ fill: 'white' }}/>
       </svg>
 
-      {/* Section boundary fades — soften the grain texture's abrupt start/end
-          so this section blends smoothly with its neighbours */}
-      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to bottom, #010709, transparent)', pointerEvents: 'none', zIndex: 1 }} />
-      <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to bottom, transparent 0%, #06080A 100%)', pointerEvents: 'none', zIndex: 1 }} />
-
       <div className="relative z-10 max-w-[68rem] mx-auto px-6 sm:px-10">
 
         {/* ── Centered header ── */}
         <div className="text-center mb-20 lg:mb-24">
           <p
-            className="smf-eyebrow font-sans font-normal uppercase mb-5 section-eyebrow-sm"
-            style={{ opacity: 0, letterSpacing: '0.38em', color: 'hsl(280 65% 72% / 0.65)' }}
+            className="smf-eyebrow font-sans font-normal uppercase mb-5"
+            style={{ opacity: 0, fontSize: '0.6rem', letterSpacing: '0.38em', color: 'hsl(280 65% 72% / 0.65)' }}
           >
             The Weavy Difference
           </p>
@@ -4665,30 +5205,7 @@ function SocialMediaMarketing() {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-16 gap-y-16 lg:gap-x-24 lg:gap-y-20">
 
           {/* Block 1 — Conversion-Focused Strategy — soft orange */}
-          <div
-            className="smf-block"
-            style={{
-              position: 'relative',
-              padding: '1.75rem 1.6rem',
-              borderRadius: '18px',
-              background: 'linear-gradient(160deg, rgba(255,255,255,0.02), transparent)',
-              border: '1px solid hsl(0 0% 100% / 0.09)',
-              boxShadow: '0 10px 28px -8px hsl(0 0% 0% / 0.4)',
-              transition: 'transform 300ms cubic-bezier(0.16,1,0.3,1), border-color 300ms ease, box-shadow 300ms ease',
-            }}
-            onMouseEnter={e => {
-              const el = e.currentTarget as HTMLElement
-              el.style.transform = 'translateY(-4px)'
-              el.style.borderColor = 'hsl(24 95% 62% / 0.4)'
-              el.style.boxShadow = '0 16px 40px -10px hsl(0 0% 0% / 0.5), 0 0 32px -8px hsl(24 95% 62% / 0.25)'
-            }}
-            onMouseLeave={e => {
-              const el = e.currentTarget as HTMLElement
-              el.style.transform = 'none'
-              el.style.borderColor = 'hsl(0 0% 100% / 0.09)'
-              el.style.boxShadow = '0 10px 28px -8px hsl(0 0% 0% / 0.4)'
-            }}
-          >
+          <div className="smf-block">
             {/* Icon */}
             <div className="smf-icon" style={{ marginBottom: '1.4rem', display: 'inline-block' }}>
               <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
@@ -4725,30 +5242,7 @@ function SocialMediaMarketing() {
           </div>
 
           {/* Block 2 — Automation That Scales — electric cyan */}
-          <div
-            className="smf-block"
-            style={{
-              position: 'relative',
-              padding: '1.75rem 1.6rem',
-              borderRadius: '18px',
-              background: 'linear-gradient(160deg, rgba(255,255,255,0.02), transparent)',
-              border: '1px solid hsl(0 0% 100% / 0.09)',
-              boxShadow: '0 10px 28px -8px hsl(0 0% 0% / 0.4)',
-              transition: 'transform 300ms cubic-bezier(0.16,1,0.3,1), border-color 300ms ease, box-shadow 300ms ease',
-            }}
-            onMouseEnter={e => {
-              const el = e.currentTarget as HTMLElement
-              el.style.transform = 'translateY(-4px)'
-              el.style.borderColor = 'hsl(195 100% 55% / 0.4)'
-              el.style.boxShadow = '0 16px 40px -10px hsl(0 0% 0% / 0.5), 0 0 32px -8px hsl(195 100% 55% / 0.25)'
-            }}
-            onMouseLeave={e => {
-              const el = e.currentTarget as HTMLElement
-              el.style.transform = 'none'
-              el.style.borderColor = 'hsl(0 0% 100% / 0.09)'
-              el.style.boxShadow = '0 10px 28px -8px hsl(0 0% 0% / 0.4)'
-            }}
-          >
+          <div className="smf-block">
             {/* Icon */}
             <div className="smf-icon" style={{ marginBottom: '1.4rem', display: 'inline-block' }}>
               <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
@@ -4785,30 +5279,7 @@ function SocialMediaMarketing() {
           </div>
 
           {/* Block 3 — Premium Brand Presence — soft magenta */}
-          <div
-            className="smf-block"
-            style={{
-              position: 'relative',
-              padding: '1.75rem 1.6rem',
-              borderRadius: '18px',
-              background: 'linear-gradient(160deg, rgba(255,255,255,0.02), transparent)',
-              border: '1px solid hsl(0 0% 100% / 0.09)',
-              boxShadow: '0 10px 28px -8px hsl(0 0% 0% / 0.4)',
-              transition: 'transform 300ms cubic-bezier(0.16,1,0.3,1), border-color 300ms ease, box-shadow 300ms ease',
-            }}
-            onMouseEnter={e => {
-              const el = e.currentTarget as HTMLElement
-              el.style.transform = 'translateY(-4px)'
-              el.style.borderColor = 'hsl(320 80% 65% / 0.4)'
-              el.style.boxShadow = '0 16px 40px -10px hsl(0 0% 0% / 0.5), 0 0 32px -8px hsl(320 80% 65% / 0.25)'
-            }}
-            onMouseLeave={e => {
-              const el = e.currentTarget as HTMLElement
-              el.style.transform = 'none'
-              el.style.borderColor = 'hsl(0 0% 100% / 0.09)'
-              el.style.boxShadow = '0 10px 28px -8px hsl(0 0% 0% / 0.4)'
-            }}
-          >
+          <div className="smf-block">
             {/* Icon */}
             <div className="smf-icon" style={{ marginBottom: '1.4rem', display: 'inline-block' }}>
               <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
@@ -4843,30 +5314,7 @@ function SocialMediaMarketing() {
           </div>
 
           {/* Block 4 — Built for Long-Term Growth — bright blue */}
-          <div
-            className="smf-block"
-            style={{
-              position: 'relative',
-              padding: '1.75rem 1.6rem',
-              borderRadius: '18px',
-              background: 'linear-gradient(160deg, rgba(255,255,255,0.02), transparent)',
-              border: '1px solid hsl(0 0% 100% / 0.09)',
-              boxShadow: '0 10px 28px -8px hsl(0 0% 0% / 0.4)',
-              transition: 'transform 300ms cubic-bezier(0.16,1,0.3,1), border-color 300ms ease, box-shadow 300ms ease',
-            }}
-            onMouseEnter={e => {
-              const el = e.currentTarget as HTMLElement
-              el.style.transform = 'translateY(-4px)'
-              el.style.borderColor = 'hsl(215 90% 62% / 0.4)'
-              el.style.boxShadow = '0 16px 40px -10px hsl(0 0% 0% / 0.5), 0 0 32px -8px hsl(215 90% 62% / 0.25)'
-            }}
-            onMouseLeave={e => {
-              const el = e.currentTarget as HTMLElement
-              el.style.transform = 'none'
-              el.style.borderColor = 'hsl(0 0% 100% / 0.09)'
-              el.style.boxShadow = '0 10px 28px -8px hsl(0 0% 0% / 0.4)'
-            }}
-          >
+          <div className="smf-block">
             {/* Icon */}
             <div className="smf-icon" style={{ marginBottom: '1.4rem', display: 'inline-block' }}>
               <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
@@ -4914,9 +5362,9 @@ function SocialMediaMarketing() {
 
     {/* ══ SECTION 8 — Contact / Footer ════════════════════════════════════════ */}
     <Footer
-      eyebrow="Let's grow your presence"
+      eyebrow="Let's build something"
       heading={<>
-        Ready to turn attention into{' '}
+        Ready to grow your{' '}
         <em style={{
           fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400,
           background: 'linear-gradient(90deg, #FFFFFF 0%, #7DDCFF 45%, #B7AEFF 100%)',
@@ -4924,13 +5372,11 @@ function SocialMediaMarketing() {
           color: 'transparent',
           textShadow: '0 0 24px rgba(125, 220, 255, 0.16)',
         }}>
-          growth?
+          brand?
         </em>
       </>}
-      subtext="Let's build a social media strategy with purposeful content, targeted campaigns and clear reporting—designed to strengthen your brand and convert attention into customers."
-      ctaLabel="Book a Free Consultation"
-      ctaHref="/contact"
-      ctaVariant="primary"
+      subtext={null}
+      ctaLabel="hello@weavyautomation.com"
     />
     </>
   )
@@ -5401,9 +5847,9 @@ function GraphicDesignCreativeSystems() {
           clarity, and commercial impact.
         </p>
 
-        {/* Media wrapper — image today, drop-in <video poster="..."> later. */}
+        {/* Media wrapper — image today, drop-in <video poster="..."> later */}
         <div
-          className="relative w-[98%] sm:w-[70vw] lg:w-[min(70vw,1256px)] aspect-[16/9]"
+          className="relative w-full sm:w-[94vw] lg:w-[min(96vw,1700px)] aspect-[16/9]"
           style={{
             borderRadius: '20px',
             overflow: 'hidden',
@@ -5556,15 +6002,15 @@ function GraphicDesignEditorial() {
           <div className="flex items-center gap-4">
             <div style={{ width: 24, height: 1, background: 'hsl(38 90% 58% / 0.55)' }}/>
             <span style={{
-              fontSize: '0.77rem', letterSpacing: '0.3em', textTransform: 'uppercase',
-              color: 'hsl(38 95% 72%)', fontFamily: 'var(--font-sans, sans-serif)', fontWeight: 500,
+              fontSize: '0.6rem', letterSpacing: '0.3em', textTransform: 'uppercase',
+              color: 'hsl(38 90% 65%)', fontFamily: 'var(--font-sans, sans-serif)', fontWeight: 500,
             }}>
               02 — Premium Visual Execution
             </span>
           </div>
           <span style={{
-            fontSize: '0.77rem', letterSpacing: '0.2em', textTransform: 'uppercase',
-            color: 'hsl(0 0% 68%)', fontFamily: 'var(--font-sans, sans-serif)',
+            fontSize: '0.6rem', letterSpacing: '0.2em', textTransform: 'uppercase',
+            color: 'hsl(0 0% 28%)', fontFamily: 'var(--font-sans, sans-serif)',
           }}>
             Graphic Design / Animation
           </span>
@@ -5609,7 +6055,7 @@ function GraphicDesignEditorial() {
       {/* ════ GALLERY — directly below "a lasting impression." ════ */}
       <div
         className="relative w-full overflow-hidden flex items-center justify-center"
-        style={{ height: '81vh', zIndex: 10 }}
+        style={{ height: '90vh', zIndex: 10 }}
       >
         <CircularGallery
           items={GD_GALLERY_ITEMS}
@@ -5650,9 +6096,9 @@ const GDS_ITEMS = [
 
 function GdsCheckIcon() {
   return (
-    <svg width="18" height="18" viewBox="0 0 16 16" fill="none" aria-hidden="true" style={{ flexShrink: 0 }}>
-      <circle cx="8" cy="8" r="7.5" fill="hsl(38 90% 58% / 0.18)" stroke="hsl(38 90% 60% / 0.4)" strokeWidth="0.75"/>
-      <path d="M5 8L7 10L11 6" stroke="hsl(38 90% 74%)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" style={{ flexShrink: 0 }}>
+      <circle cx="8" cy="8" r="7.5" fill="hsl(38 90% 58% / 0.10)" stroke="hsl(38 90% 60% / 0.20)" strokeWidth="0.75"/>
+      <path d="M5 8L7 10L11 6" stroke="hsl(38 85% 68%)" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
     </svg>
   )
 }
@@ -5927,10 +6373,6 @@ function GraphicDesignSplitA() {
         ].join(', '),
       }}/>
 
-      {/* Top blend — softens the grid/grain/bloom layers' abrupt start so
-          this section doesn't read as a hard seam against the section above */}
-      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '90px', background: 'linear-gradient(to bottom, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
-
       <div className="relative z-10 max-w-[92rem] mx-auto px-6 sm:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-[1.55fr_1fr] gap-12 lg:gap-[clamp(3rem,6vw,6rem)] items-center">
 
@@ -5974,7 +6416,7 @@ function GraphicDesignSplitA() {
             <div className="gdsa-t flex items-center gap-4 mb-10">
               <div style={{ width: 22, height: 1, background: 'hsl(38 90% 58% / 0.5)' }}/>
               <span className="font-sans uppercase" style={{
-                fontSize: '0.73rem', letterSpacing: '0.32em', color: 'hsl(38 85% 62%)',
+                fontSize: '0.57rem', letterSpacing: '0.32em', color: 'hsl(38 85% 62%)',
               }}>
                 Craft & Direction
               </span>
@@ -6049,7 +6491,7 @@ function GraphicDesignSplitA() {
             {/* Stat row */}
             <div
               className="gdsa-t flex items-center gap-10"
-              style={{ paddingTop: 'clamp(1.5rem, 2.5vw, 2rem)' }}
+              style={{ paddingTop: 'clamp(1.5rem, 2.5vw, 2rem)', borderTop: '1px solid hsl(0 0% 100% / 0.05)' }}
             >
               {[
                 { value: 'Custom', label: 'Brand direction' },
@@ -6061,17 +6503,17 @@ function GraphicDesignSplitA() {
                     fontSize: 'clamp(1.4rem, 2.8vw, 2.2rem)',
                     fontWeight: 300,
                     letterSpacing: '-0.04em',
-                    color: 'rgba(244, 248, 250, 0.9)',
+                    color: 'hsl(0 0% 78%)',
                     lineHeight: 1,
                     marginBottom: '5px',
                   }}>
                     {value}
                   </p>
                   <p className="font-sans" style={{
-                    fontSize: '0.92rem',
+                    fontSize: '0.62rem',
                     letterSpacing: '0.2em',
                     textTransform: 'uppercase',
-                    color: 'rgba(244, 248, 250, 0.68)',
+                    color: 'hsl(0 0% 26%)',
                   }}>
                     {label}
                   </p>
@@ -6159,9 +6601,9 @@ function GraphicDesignSplitB() {
 
             {/* Section marker */}
             <div className="gdsb-t flex items-center gap-4 mb-10">
-              <div style={{ width: 22, height: 1, background: 'hsl(0 0% 50%)' }}/>
+              <div style={{ width: 22, height: 1, background: 'hsl(0 0% 30%)' }}/>
               <span className="font-sans uppercase" style={{
-                fontSize: '15px', letterSpacing: '0.32em', color: 'rgba(191, 225, 245, 0.75)',
+                fontSize: '0.57rem', letterSpacing: '0.32em', color: 'hsl(0 0% 32%)',
               }}>
                 The Studio
               </span>
@@ -6459,8 +6901,8 @@ function GraphicDesignFinalPresentation() {
 
             {/* Label */}
             <div className="gdfp-label flex items-center gap-3 mb-8">
-              <div style={{ width: 20, height: 1, background: 'hsl(195 90% 55% / 0.72)' }}/>
-              <span className="font-sans uppercase" style={{ fontSize: '18px', fontWeight: 500, letterSpacing: '0.34em', color: 'hsl(195 90% 62% / 0.82)' }}>
+              <div style={{ width: 20, height: 1, background: 'hsl(195 90% 55% / 0.55)' }}/>
+              <span className="font-sans uppercase" style={{ fontSize: '0.57rem', letterSpacing: '0.34em', color: 'hsl(195 90% 62%)' }}>
                 Final Brand Presentation
               </span>
             </div>
@@ -6727,11 +7169,11 @@ function GraphicDesignFinalPresentation() {
 
           {/* Section marker */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '2rem' }}>
-            <div style={{ width: 20, height: 1, background: 'hsl(195 90% 55% / 0.72)' }}/>
+            <div style={{ width: 20, height: 1, background: 'hsl(195 90% 55% / 0.55)' }}/>
             <span style={{
               fontFamily: 'var(--font-sans, sans-serif)',
-              fontSize: '14px', fontWeight: 500, letterSpacing: '0.34em',
-              color: 'hsl(195 90% 62% / 0.82)', textTransform: 'uppercase',
+              fontSize: '0.57rem', letterSpacing: '0.34em',
+              color: 'hsl(195 90% 62%)', textTransform: 'uppercase',
             }}>
               Final Brand Presentation
             </span>
@@ -6877,21 +7319,12 @@ function GraphicDesignCTA() {
         background: 'radial-gradient(ellipse 70% 55% at 50% 50%, hsl(195 90% 55% / 0.05) 0%, transparent 68%)',
       }}/>
 
-      {/* Bottom blend — smooths the seam into the Footer's #06080A background */}
-      <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to bottom, transparent 0%, #06080A 100%)', pointerEvents: 'none', zIndex: 2 }} />
-
       <div className="relative z-10 max-w-[58rem] mx-auto px-6 sm:px-10 flex flex-col items-center text-center">
 
-        {/* Label — same responsive size/weight/colour as Final Brand Presentation's label */}
-        <style>{`
-          .gdcta-ready-label { font-size: 14px; }
-          @media (min-width: 1024px) {
-            .gdcta-ready-label { font-size: 18px; }
-          }
-        `}</style>
+        {/* Label */}
         <p
-          className="gdcta-el gdcta-ready-label font-sans uppercase mb-7"
-          style={{ fontWeight: 500, letterSpacing: '0.38em', color: 'hsl(195 90% 62% / 0.82)' }}
+          className="gdcta-el font-sans font-normal uppercase mb-7"
+          style={{ fontSize: '0.58rem', letterSpacing: '0.38em', color: 'hsl(195 90% 62% / 0.7)' }}
         >
           Ready to build your visual system?
         </p>
@@ -7151,14 +7584,14 @@ function UGCHero() {
           {/* Badge */}
           <div className="ugch-r inline-flex items-center gap-2 mb-8" style={{ background: 'hsl(0 72% 48% / 0.1)', border: '1px solid hsl(0 72% 58% / 0.28)', borderRadius: 999, padding: '0.38rem 1rem' }}>
             <span style={{ width: 7, height: 7, borderRadius: '50%', background: 'hsl(0 72% 62%)', boxShadow: '0 0 9px hsl(0 72% 62% / 0.85)', display: 'inline-block', flexShrink: 0 }}/>
-            <span className="font-sans" style={{ fontSize: '0.64rem', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'hsl(0 72% 74%)' }}>UGC & Creator Content</span>
+            <span className="font-sans" style={{ fontSize: '0.64rem', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'hsl(0 72% 74%)' }}>UGC Content Creation</span>
           </div>
 
           {/* Headline */}
           <h2 className="ugch-r font-heading font-medium" style={{ color: '#fff', fontSize: 'clamp(2rem, 5.8vw, 5rem)', lineHeight: 1.05, letterSpacing: '-0.04em', marginBottom: '1.6rem' }}>
-            Real creators. Smarter production.<br/>
-            Content people{' '}
-            <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(0 72% 70%)' }}>trust.</em>
+            Real creators.<br/>
+            Real{' '}
+            <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(0 72% 70%)' }}>results.</em>
           </h2>
 
           {/* Rule */}
@@ -7166,8 +7599,8 @@ function UGCHero() {
 
           {/* Body */}
           <p className="ugch-r font-sans font-normal" style={{ fontSize: 'clamp(0.9rem, 1.45vw, 1.06rem)', lineHeight: 1.82, color: '#F2F8FC', maxWidth: '30rem', marginBottom: '2.2rem' }}>
-            We combine real creators with AI-assisted ideation and post-production to create
-            authentic, platform-ready content for TikTok, Instagram Reels, YouTube Shorts and paid campaigns.
+            We match your brand with creators who genuinely connect with your audience —
+            producing content that feels native, converts at scale, and makes people stop scrolling.
           </p>
 
           {/* Platform pills */}
@@ -7181,13 +7614,14 @@ function UGCHero() {
         {/* Right: glass metric cards (desktop only) */}
         <div className="hidden lg:flex flex-col gap-4 flex-shrink-0" style={{ width: 220 }}>
           {[
-            { title: 'Real Creators',          desc: 'Human-led content designed to feel natural, credible and connected to your audience.' },
-            { title: 'AI-Assisted Production',  desc: 'Faster ideation, editing and creative variations without losing the human voice.' },
-            { title: 'Multi-Format Delivery',   desc: 'Content prepared for organic social, short-form video and paid campaigns.' },
-          ].map(({ title, desc }) => (
-            <div key={title} className="ugch-r" style={{ background: 'hsl(0 0% 100% / 0.038)', backdropFilter: 'blur(22px)', border: '1px solid hsl(0 0% 100% / 0.09)', borderRadius: '1rem', padding: '1.15rem 1.45rem', boxShadow: '0 8px 36px hsl(0 0% 0% / 0.32)' }}>
-              <p className="font-sans font-medium" style={{ color: '#fff', fontSize: '0.74rem', letterSpacing: '0.07em', textTransform: 'uppercase', marginBottom: '0.5rem' }}>{title}</p>
-              <p className="font-sans" style={{ fontSize: '0.72rem', lineHeight: 1.55, color: 'hsl(0 0% 78%)' }}>{desc}</p>
+            { value: '10M+', label: 'Views Generated',  sub: 'across all platforms' },
+            { value: '4.5×', label: 'Conversion Lift',  sub: 'vs. traditional ads'  },
+            { value: '48h',  label: 'Turnaround',       sub: 'brief to delivered'   },
+          ].map(({ value, label, sub }) => (
+            <div key={label} className="ugch-r" style={{ background: 'hsl(0 0% 100% / 0.038)', backdropFilter: 'blur(22px)', border: '1px solid hsl(0 0% 100% / 0.09)', borderRadius: '1rem', padding: '1.15rem 1.45rem', boxShadow: '0 8px 36px hsl(0 0% 0% / 0.32)' }}>
+              <p className="font-sans font-normal" style={{ color: '#fff', fontSize: '2.1rem', letterSpacing: '-0.045em', lineHeight: 1, marginBottom: '0.35rem' }}>{value}</p>
+              <p className="font-sans" style={{ fontSize: '0.7rem', letterSpacing: '0.06em', color: 'hsl(0 0% 78%)', marginBottom: '0.15rem' }}>{label}</p>
+              <p className="font-sans" style={{ fontSize: '0.6rem', color: 'hsl(0 0% 38%)' }}>{sub}</p>
             </div>
           ))}
         </div>
@@ -7227,27 +7661,33 @@ function UGCHero() {
           <div>
             <p className="ugce-r font-sans uppercase mb-5" style={{ fontSize: '0.64rem', letterSpacing: '0.34em', color: 'hsl(0 72% 60%)' }}>Why UGC Works</p>
             <h2 className="ugce-r font-heading font-medium" style={{ color: '#fff', fontSize: 'clamp(2rem, 3.8vw, 3.1rem)', lineHeight: 1.08, letterSpacing: '-0.033em', marginBottom: '1.5rem' }}>
-              People connect with{' '}
-              <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(0 72% 70%)' }}>content</em> that feels real.
+              People trust{' '}
+              <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(0 72% 70%)' }}>people</em>,<br/>not brands.
             </h2>
             <div className="ugce-r" aria-hidden="true" style={{ width: '2.5rem', height: 1, background: 'hsl(0 72% 58% / 0.4)', marginBottom: '1.5rem' }}/>
             <p className="ugce-r font-sans font-normal" style={{ fontSize: 'clamp(0.88rem, 1.35vw, 1rem)', lineHeight: 1.92, color: '#F2F8FC', maxWidth: '32rem' }}>
-              Audiences respond to useful, relatable content—not polished advertising alone. We create
-              creator-led concepts that demonstrate products naturally, communicate the brand clearly and{' '}
-              <span style={{ color: '#F2F8FC' }}>give customers a reason to trust and act</span>.
+              92% of consumers trust peer recommendations over brand advertising. At Weavy, we close that gap —
+              pairing your brand with authentic creators whose content converts because it{' '}
+              <span style={{ color: '#F2F8FC' }}>feels real</span>.
             </p>
           </div>
 
           {/* Stat table */}
           <div className="ugce-r" style={{ border: '1px solid hsl(0 0% 100% / 0.07)', borderRadius: '1.3rem', overflow: 'hidden' }}>
             {[
-              { title: 'Authentic Presentation',    desc: 'Real people communicate your product naturally and credibly.' },
-              { title: 'Platform-First Storytelling', desc: 'Every concept is shaped for how people watch, scroll and engage.' },
-              { title: 'Creative Testing',           desc: 'Multiple hooks and formats help identify what connects with your audience.' },
-            ].map(({ title, desc }, i, arr) => (
-              <div key={title} className="ugce-stat-row" style={{ padding: '1.65rem 1.9rem', background: 'hsl(0 0% 100% / 0.022)', borderBottom: i < arr.length - 1 ? '1px solid hsl(0 0% 100% / 0.06)' : undefined }}>
-                <p className="font-sans font-medium" style={{ fontSize: '0.78rem', letterSpacing: '0.07em', textTransform: 'uppercase', color: 'hsl(0 72% 66%)', marginBottom: '0.5rem' }}>{title}</p>
-                <p className="font-sans font-normal" style={{ fontSize: '0.84rem', lineHeight: 1.55, color: '#F2F8FC' }}>{desc}</p>
+              { val: '78',  suffix: '%',  decimals: '0', desc: 'higher trust rate vs. branded content' },
+              { val: '4.5', suffix: '×',  decimals: '1', desc: 'average conversion lift' },
+              { val: '60',  suffix: '%',  decimals: '0', desc: 'lower cost than traditional production' },
+            ].map(({ val, suffix, decimals, desc }, i, arr) => (
+              <div key={val} className="ugce-stat-row" style={{ padding: '1.65rem 1.9rem', background: 'hsl(0 0% 100% / 0.022)', borderBottom: i < arr.length - 1 ? '1px solid hsl(0 0% 100% / 0.06)' : undefined, display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
+                <span
+                  className="font-sans font-medium ugc-stat-num"
+                  data-val={val}
+                  data-suffix={suffix}
+                  data-decimals={decimals}
+                  style={{ fontSize: 'clamp(2rem, 3.2vw, 2.7rem)', letterSpacing: '-0.05em', color: 'hsl(0 72% 66%)', lineHeight: 1, minWidth: '4.2rem' }}
+                >0{suffix}</span>
+                <span className="font-sans font-normal" style={{ fontSize: '0.84rem', lineHeight: 1.55, color: '#F2F8FC' }}>{desc}</span>
               </div>
             ))}
           </div>
@@ -7662,7 +8102,7 @@ function UGCFindCreators() {
                   autoPlay muted loop playsInline preload="metadata"
                   style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
                 >
-                  <source src="/brand_assets/face-cream.mp4" type="video/mp4" />
+                  <source src="https://pub-731d5e7deddb4fce94cef7393920d429.r2.dev/Cream_velvet.mp4" type="video/mp4" />
                 </video>
 
                 {/* Sound toggle */}
@@ -7942,7 +8382,7 @@ function UGCMonitoringReporting() {
           </div>
 
           {/* IMAGE — second in DOM = bottom on mobile, order-1 on desktop (left) */}
-          <div className="ugcmr-layout-image ugcmr-img-scale">
+          <div className="ugcmr-layout-image">
             <div
               className="ugcmr-img"
               style={{
@@ -9513,11 +9953,11 @@ export default function Services() {
             {SERVICES.map((service, i) => {
               const learnMoreHandler =
                 service.id === 'bespoke-website-design'
-                  ? () => { setActiveService('website');  setTimeout(() => document.getElementById('services-hero')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 60) }
+                  ? () => { setActiveService('website');  setTimeout(() => document.getElementById('bespoke-hero')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 60) }
                   : service.id === 'custom-chatbots'
                   ? () => { setActiveService('chatbot');  setTimeout(() => document.getElementById('chatbot-hero')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 60) }
                   : service.id === 'social-media-marketing'
-                  ? () => { setActiveService('social');   setTimeout(() => document.getElementById('social-media-marketing-detail')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 60) }
+                  ? () => { setActiveService('social');   setTimeout(() => document.getElementById('social-media-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 60) }
                   : service.id === 'graphic-design-animation'
                   ? () => { setActiveService('graphic');  setTimeout(() => document.getElementById('graphic-design-hero')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 60) }
                   : service.id === 'ugc'
@@ -9540,10 +9980,315 @@ export default function Services() {
       {/* ── Sections 2–6: Bespoke Website Design ── */}
       {activeService === 'website' && <>
 
+      {/* ── Bespoke Website Design — Hero ── */}
+      <section
+        id="bespoke-hero"
+        className="relative w-screen overflow-hidden"
+          style={{
+            height: 'clamp(420px, 52vw, 720px)',
+            marginLeft: 'calc(-50vw + 50%)',
+            marginRight: 'calc(-50vw + 50%)',
+            background: '#010709',
+          }}
+      >
+        {/* Full-width background image */}
+        <img
+          src="/brand_assets/HI-D.webp"
+          alt=""
+          aria-hidden="true"
+          style={{
+            position: 'absolute',
+            inset: 0,
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            objectPosition: 'center top',
+          }}
+        />
+
+        {/* Dark gradient overlay — fully opaque left-third to mask video behind text */}
+        <div aria-hidden="true" style={{
+          position: 'absolute', inset: 0,
+          background: [
+            'linear-gradient(to right, hsl(0 0% 0% / 1.0) 0%, hsl(0 0% 0% / 0.88) 38%, hsl(0 0% 0% / 0.32) 65%, hsl(0 0% 0% / 0.08) 100%)',
+            'linear-gradient(to top, hsl(0 0% 0% / 0.55) 0%, transparent 60%)',
+          ].join(', '),
+        }}/>
+
+        {/* Dot grid texture */}
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
+          backgroundImage: 'radial-gradient(hsl(210 40% 60% / 0.022) 1px, transparent 1px)',
+          backgroundSize: '28px 28px',
+        }}/>
+
+        {/* Text content */}
+        <div className="relative z-10 h-full flex items-center px-6 sm:px-12 lg:px-20">
+          <div style={{ maxWidth: '44rem' }}>
+
+            {/* Eyebrow */}
+            <p
+              className="font-sans font-normal uppercase mb-5"
+              style={{
+                fontSize: '0.63rem',
+                letterSpacing: '0.32em',
+                color: 'hsl(205 85% 68%)',
+              }}
+            >
+              Bespoke Website Design
+            </p>
+
+            {/* Main heading */}
+            <h1
+              className="font-heading font-medium text-white mb-6"
+              style={{
+                fontSize: 'clamp(2.6rem, 6vw, 5rem)',
+                lineHeight: 1.08,
+                letterSpacing: '-0.04em',
+              }}
+            >
+              <span style={{ display: 'block' }}>Built for your brand.</span>
+              <em style={{
+                display: 'block',
+                fontFamily: 'var(--font-body)',
+                fontStyle: 'italic',
+                fontWeight: 400,
+                color: 'hsl(205 85% 74%)',
+              }}>
+                Designed to perform.
+              </em>
+            </h1>
+
+            {/* Accent rule */}
+            <div style={{
+              height: 1,
+              width: '10rem',
+              background: 'linear-gradient(to right, hsl(205 85% 62% / 0.55), transparent)',
+              marginBottom: '1.6rem',
+            }}/>
+
+            {/* Subtext */}
+            <p
+              className="font-sans font-normal"
+              style={{
+                fontSize: 'clamp(0.88rem, 1.5vw, 1.05rem)',
+                lineHeight: 1.8,
+                color: 'hsl(0 0% 62%)',
+                maxWidth: '34rem',
+              }}
+            >
+              No templates. No shortcuts. Every pixel is crafted around your
+              goals, your audience, and the impression you want to leave.
+            </p>
+
+          </div>
+        </div>
+
+        {/* Bottom fade into next section */}
+        <div aria-hidden="true" className="pointer-events-none absolute left-0 right-0 bottom-0" style={{
+          height: '100px',
+          background: 'linear-gradient(to top, #010709 0%, transparent 100%)',
+        }}/>
+      </section>
+
+      {/* ── Bespoke Website Design — full detail ── */}
+      <section
+        ref={bwd1Ref}
+        id="bespoke-website-design-detail"
+        className="relative w-full overflow-hidden"
+        style={{
+          background: 'radial-gradient(ellipse 90% 70% at 60% 50%, #07141A 0%, #010709 65%)',
+          padding: 'clamp(5rem, 10vw, 8rem) 0',
+        }}
+      >
+        {/* Subtle depth gradient */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background: [
+              'radial-gradient(ellipse 55% 50% at 68% 50%, rgba(200,175,100,0.055) 0%, transparent 70%)',
+              'radial-gradient(ellipse 38% 32% at 30% 45%, rgba(7,20,26,0.6) 0%, transparent 65%)',
+            ].join(', '),
+          }}
+        />
+
+        {/* Faint flowing light line — premium motion */}
+        <div
+          aria-hidden="true"
+          className="bwd1-mesh-line pointer-events-none absolute inset-0"
+          style={{ zIndex: 0 }}
+        />
+
+        {/* Section boundary fades */}
+        <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to top, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
+
+        <div className="relative z-10 max-w-[88rem] mx-auto px-6 sm:px-10">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.12fr] gap-16 lg:gap-14 items-center">
+
+            {/* ── Left: text (unchanged) ── */}
+            <div>
+              <p
+                className="bwd1-eyebrow font-sans uppercase text-muted mb-5"
+                style={{ fontSize: '0.7rem', letterSpacing: '0.32em' }}
+              >
+                Service
+              </p>
+
+              <h2
+                className="bwd1-heading font-heading font-medium text-text mb-8"
+                style={{
+                  fontSize: 'clamp(2rem, 5vw, 3.5rem)',
+                  lineHeight: 1.1,
+                  letterSpacing: '-0.035em',
+                }}
+              >
+                Bespoke{' '}
+                <em style={{
+                  fontFamily: 'var(--font-body)',
+                  fontStyle: 'italic',
+                  fontWeight: 400,
+                  background: 'linear-gradient(115deg, #F8FAFC 5%, #A7F3D0 30%, #2DD4BF 60%, #0F766E 100%)',
+                  WebkitBackgroundClip: 'text',
+                  backgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                }}>
+                  Website Design
+                </em>
+              </h2>
+
+              <div className="bwd1-divider" aria-hidden="true" style={{ display: 'none' }} />
+
+              <p
+                className="bwd1-body font-sans font-normal mb-12 max-w-xl"
+                style={{
+                  fontSize: 'clamp(0.9rem, 1.5vw, 1.05rem)',
+                  lineHeight: 1.8,
+                  color: '#D7DCE2',
+                }}
+              >
+                Custom-built websites designed for clarity, performance, and impact. No templates.
+                Every detail is intentional.
+              </p>
+
+              <p
+                className="bwd1-body font-sans font-normal text-text mb-5"
+                style={{ fontSize: '0.78rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: '#7DDCFF', textShadow: '0 0 18px rgba(125,220,255,0.18)' }}
+              >
+                What you get
+              </p>
+
+              <ul className="mb-12 flex flex-col gap-3">
+                {[
+                  'Tailored design aligned to your brand',
+                  'Responsive across all devices',
+                  'Fast, optimized performance',
+                  'Clean UX focused on conversion',
+                  'SEO-ready foundation',
+                ].map(item => (
+                  <li key={item} className="bwd1-list flex items-start gap-3">
+                    <span
+                      className="mt-[0.45em] shrink-0 w-1 h-1 rounded-full"
+                      style={{ background: 'hsl(205 85% 62%)', boxShadow: '0 0 6px 1px hsl(205 85% 62% / 0.4)' }}
+                      aria-hidden="true"
+                    />
+                    <span
+                      className="font-sans font-normal"
+                      style={{ fontSize: 'clamp(0.88rem, 1.4vw, 1rem)', lineHeight: 1.75, color: 'hsl(0 0% 72%)' }}
+                    >
+                      {item}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+
+              <p
+                className="bwd1-body font-sans font-normal text-text mb-5"
+                style={{ fontSize: '0.78rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: '#7DDCFF', textShadow: '0 0 18px rgba(125,220,255,0.18)' }}
+              >
+                Why it matters
+              </p>
+
+              <p
+                className="bwd1-body font-sans font-normal max-w-xl"
+                style={{
+                  fontSize: 'clamp(0.9rem, 1.5vw, 1.05rem)',
+                  lineHeight: 1.8,
+                  color: '#D7DCE2',
+                }}
+              >
+                A generic site blends in. A bespoke build positions you to stand out and perform.
+              </p>
+            </div>
+
+            {/* ── Right: website 3.png ── */}
+            <div className="relative flex items-center justify-center lg:justify-end">
+
+              {/* Static size/position only — no hover zoom. Desktop: ~8% larger,
+                  shifted 48px left. Tablet: ~4% larger, shifted 20px left.
+                  Mobile: unchanged, centred. */}
+              <style>{`
+                .bwd1-img { max-width: 820px; margin-left: 0; }
+                @media (min-width: 700px) and (max-width: 1023px) {
+                  .bwd1-img { max-width: 852.8px; margin-left: -20px; }
+                }
+                @media (min-width: 1024px) {
+                  .bwd1-img { max-width: 885.6px; margin-left: -48px; }
+                }
+              `}</style>
+
+              {/* Champagne gold ambient glow behind image */}
+              <div aria-hidden="true" style={{
+                position: 'absolute', inset: '-20px',
+                background: 'radial-gradient(ellipse 70% 60% at 55% 50%, rgba(200,175,90,0.08) 0%, transparent 70%)',
+                filter: 'blur(48px)',
+                pointerEvents: 'none',
+              }}/>
+
+              {/* Image frame — static, no hover enlargement */}
+              <div
+                className="bwd1-img"
+                style={{
+                  position: 'relative',
+                  width: '100%',
+                  borderRadius: '20px',
+                  overflow: 'hidden',
+                  boxShadow: [
+                    '0 48px 96px -16px hsl(0 0% 0% / 0.88)',
+                    '0 0 0 1px hsl(0 0% 100% / 0.07)',
+                    '0 0 64px -18px hsl(205 85% 55% / 0.22)',
+                  ].join(', '),
+                  background: '#080a0e',
+                }}
+              >
+                <video
+                  src="/brand_assets/chatbott_web.mp4"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  aria-label="Bespoke website design showcase"
+                  style={{ display: 'block', width: '100%', height: 'auto', objectFit: 'cover' }}
+                />
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+        {/* Bottom fade — softens boundary into Cinema Showcase */}
+        <div aria-hidden="true" style={{
+          position: 'absolute', bottom: 0, left: 0, right: 0,
+          height: '120px',
+          background: 'linear-gradient(to bottom, rgba(1,7,9,0), rgba(1,7,9,0.32))',
+          pointerEvents: 'none',
+          zIndex: 5,
+        }}/>
+      </section>
+
       {/* ── Bespoke Website Design — Cinema Showcase (Section 2) ── */}
       <section
         ref={bwdCinemaRef}
-        id="services-hero"
         className="relative w-full overflow-hidden"
         style={{
           background: '#010709',
@@ -9604,7 +10349,7 @@ export default function Services() {
             <p
               className="bwdc-eyebrow font-sans uppercase"
               style={{
-                fontSize: '0.87rem', letterSpacing: '0.38em',
+                fontSize: '0.64rem', letterSpacing: '0.38em',
                 color: 'hsl(36 40% 62%)', marginBottom: '1.8rem',
               }}
             >
@@ -9663,7 +10408,7 @@ export default function Services() {
             <p
               className="bwdc-sub font-sans font-normal"
               style={{
-                fontSize: 'clamp(0.92rem, 1.47vw, 1.08rem)', letterSpacing: '0.04em',
+                fontSize: 'clamp(0.75rem, 1.2vw, 0.88rem)', letterSpacing: '0.04em',
                 color: 'hsl(0 0% 48%)', lineHeight: 1.7,
               }}
             >
@@ -9813,208 +10558,23 @@ export default function Services() {
       {/* ── Bespoke Website Design — cinematic follow-up ── */}
       <BespokeFollowUp />
 
-      {/* ── Bespoke Website Design — floating web showcase (Section 6) ── */}
-      <BespokeWebShowcase />
-
-      {/* ── Bespoke Website Design — full detail ── */}
-      <section
-        ref={bwd1Ref}
-        id="bespoke-website-design-detail"
-        className="relative w-full overflow-hidden"
-        style={{
-          background: 'radial-gradient(ellipse 90% 70% at 60% 50%, #07141A 0%, #010709 65%)',
-          padding: 'clamp(5rem, 10vw, 8rem) 0',
-        }}
-      >
-        {/* Subtle depth gradient */}
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0"
-          style={{
-            background: [
-              'radial-gradient(ellipse 55% 50% at 68% 50%, rgba(200,175,100,0.055) 0%, transparent 70%)',
-              'radial-gradient(ellipse 38% 32% at 30% 45%, rgba(7,20,26,0.6) 0%, transparent 65%)',
-            ].join(', '),
-          }}
-        />
-
-        {/* Faint flowing light line — premium motion */}
-        <div
-          aria-hidden="true"
-          className="bwd1-mesh-line pointer-events-none absolute inset-0"
-          style={{ zIndex: 0 }}
-        />
-
-        {/* Section boundary fades */}
-        <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to top, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
-        {/* Top blend — softens the transition from Website Showcase's flat
-            #060208, so the radial gradient here doesn't read as a hard
-            tinted seam at the boundary */}
-        <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '110px', background: 'linear-gradient(to bottom, #060208, transparent)', pointerEvents: 'none', zIndex: 2 }} />
-
-        <div className="relative z-10 max-w-[88rem] mx-auto px-6 sm:px-10">
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.6fr] gap-16 lg:gap-14 xl:gap-[148px] items-center">
-
-            {/* ── Left: text (unchanged) ── */}
-            <div>
-              <p
-                className="bwd1-eyebrow font-sans uppercase text-muted mb-6"
-                style={{ fontSize: '1.15rem', letterSpacing: '0.32em' }}
-              >
-                Service
-              </p>
-
-              <h2
-                className="bwd1-heading font-heading font-medium text-text mb-10"
-                style={{
-                  fontSize: 'clamp(2rem, 5vw, 3.5rem)',
-                  lineHeight: 1.1,
-                  letterSpacing: '-0.035em',
-                }}
-              >
-                Bespoke{' '}
-                <em style={{
-                  fontFamily: 'var(--font-body)',
-                  fontStyle: 'italic',
-                  fontWeight: 400,
-                  background: 'linear-gradient(115deg, #F8FAFC 5%, #A7F3D0 30%, #2DD4BF 60%, #0F766E 100%)',
-                  WebkitBackgroundClip: 'text',
-                  backgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                }}>
-                  Website Design
-                </em>
-              </h2>
-
-              <div className="bwd1-divider" aria-hidden="true" style={{ display: 'none' }} />
-
-              <p
-                className="bwd1-body font-sans font-normal mb-14 max-w-xl"
-                style={{
-                  fontSize: 'clamp(0.9rem, 1.5vw, 1.05rem)',
-                  lineHeight: 1.8,
-                  color: '#D7DCE2',
-                }}
-              >
-                Custom-built websites designed for clarity, performance, and impact. No templates.
-                Every detail is intentional.
-              </p>
-
-              <p
-                className="bwd1-body font-sans font-normal text-text mb-6"
-                style={{ fontSize: '0.78rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: '#7DDCFF', textShadow: '0 0 18px rgba(125,220,255,0.18)' }}
-              >
-                What you get
-              </p>
-
-              <ul className="mb-14 flex flex-col gap-4">
-                {[
-                  'Tailored design aligned to your brand',
-                  'Responsive across all devices',
-                  'Fast, optimized performance',
-                  'Clean UX focused on conversion',
-                  'SEO-ready foundation',
-                ].map(item => (
-                  <li key={item} className="bwd1-list flex items-start gap-3">
-                    <span
-                      className="mt-[0.45em] shrink-0 w-1 h-1 rounded-full"
-                      style={{ background: 'hsl(205 85% 62%)', boxShadow: '0 0 6px 1px hsl(205 85% 62% / 0.4)' }}
-                      aria-hidden="true"
-                    />
-                    <span
-                      className="font-sans font-normal"
-                      style={{ fontSize: 'clamp(0.88rem, 1.4vw, 1rem)', lineHeight: 1.75, color: 'hsl(0 0% 72%)' }}
-                    >
-                      {item}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-
-              <p
-                className="bwd1-body font-sans font-normal text-text mb-6"
-                style={{ fontSize: '0.78rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: '#7DDCFF', textShadow: '0 0 18px rgba(125,220,255,0.18)' }}
-              >
-                Why it matters
-              </p>
-
-              <p
-                className="bwd1-body font-sans font-normal max-w-xl"
-                style={{
-                  fontSize: 'clamp(0.9rem, 1.5vw, 1.05rem)',
-                  lineHeight: 1.8,
-                  color: '#D7DCE2',
-                }}
-              >
-                A generic site blends in. A bespoke build positions you to stand out and perform.
-              </p>
-            </div>
-
-            {/* ── Right: interactive hero concept mockup — right-aligned via
-                CSS Grid so its edge lands on the section's outer content
-                boundary, with the gap above providing the clear space
-                between it and the text column ── */}
-            <div className="relative flex flex-col items-center lg:items-end" style={{ justifySelf: 'end', width: '100%' }}>
-
-              <div
-                className="relative flex items-center justify-center lg:justify-end bwd1-mockup-shift"
-                style={{ width: '100%', minWidth: 0 }}
-              >
-                {/* Ambient glow behind mockup */}
-                <div aria-hidden="true" style={{
-                  position: 'absolute', inset: '-20px',
-                  background: 'radial-gradient(ellipse 70% 60% at 55% 50%, hsl(205 85% 60% / 0.10) 0%, transparent 70%)',
-                  filter: 'blur(48px)',
-                  pointerEvents: 'none',
-                }}/>
-
-                <div className="bwd1-img" style={{ width: '100%', minWidth: 0 }}>
-                  <BespokeWeb1Mockup />
-                </div>
-              </div>
-
-              {/* Small caption label — matches the other small section labels
-                  (e.g. "SERVICE", "WHAT YOU GET") but muted, since this is a
-                  supporting caption rather than a content heading. */}
-              <p
-                className="font-sans uppercase"
-                style={{
-                  fontSize: '0.72rem',
-                  letterSpacing: '0.22em',
-                  color: 'hsl(0 0% 100% / 0.6)',
-                  marginTop: 'calc(1.1rem + 20px)',
-                  textAlign: 'center',
-                }}
-              >
-                Interactive hero concept — built by Weavy
-              </p>
-
-            </div>
-
-          </div>
-        </div>
-
-        {/* Bottom fade — softens boundary into Cinema Showcase */}
-        <div aria-hidden="true" style={{
-          position: 'absolute', bottom: 0, left: 0, right: 0,
-          height: '120px',
-          background: 'linear-gradient(to bottom, rgba(1,7,9,0), rgba(1,7,9,0.32))',
-          pointerEvents: 'none',
-          zIndex: 5,
-        }}/>
-      </section>
-
       {/* ── Bespoke Website Design — Care Stories (Section 4) ── */}
       <BespokeCareStories />
 
       {/* ── Bespoke Website Design — process timeline ── */}
       <BespokeProcessTimeline />
 
+      {/* ── Bespoke Website Design — floating web showcase (Section 6) ── */}
+      <BespokeWebShowcase />
+
+      {/* ── Bespoke Website Design — real users performance (Section 7) ── */}
+      <BespokeRealUsers />
+
+      {/* ── Bespoke Website Design — design showcase (Section 8) ── */}
+      <BespokeWebDesignShowcase />
+
       {/* ── Bespoke Website Design — client testimonials ── */}
       <BespokeTestimonials />
-
-      {/* ── Bespoke Website Design — results strip ── */}
-      <BespokeResultsStrip />
 
       {/* ── Bespoke Contact / Footer ── */}
       <Footer
@@ -10027,14 +10587,15 @@ export default function Services() {
             color: 'transparent',
             textShadow: '0 0 24px rgba(125, 220, 255, 0.16)',
           }}>
-            stand out
+            automate
           </em>{' '}
-          online?
+          your business?
         </>}
-        subtext="Tell us about your project and we'll show you what a bespoke Weavy build looks like."
-        ctaLabel="Start a Project"
-        ctaHref="/contact"
-        ctaVariant="primary"
+        subtext={<>
+          Book a free demo and see how Weavy can manage your calls, messages, bookings, and{' '}
+          leads from one <span style={{ color: 'rgba(191, 239, 255, 0.9)', fontWeight: 500 }}>managed AI platform</span>.
+        </>}
+        ctaLabel="hello@weavyautomation.com"
       />
 
       </> /* end activeService === 'website' */}
@@ -10307,10 +10868,10 @@ export default function Services() {
               color: '#F2F8FC',
             }}
           >
-            Your brand doesn't get a second chance to make a first impression online.
+            Automate conversations. Capture more leads. Support customers instantly across your website, WhatsApp, Instagram DM, and Facebook Messenger —
             {' '}
             <span style={{ color: '#F2F8FC' }}>
-              We make sure the first one counts.
+              all from one intelligent AI-powered system built to scale your business 24/7.
             </span>
           </p>
 
@@ -10350,10 +10911,11 @@ export default function Services() {
           </em>{' '}
           your business?
         </>}
-        subtext="Book a free demo and see how Weavy can handle your customer conversations, bookings, and follow-ups — automatically."
-        ctaLabel="Book a Free Demo"
-        ctaHref="/contact"
-        ctaVariant="primary"
+        subtext={<>
+          Book a free demo and see how Weavy can manage your calls, messages, bookings, and{' '}
+          leads from one <span style={{ color: 'rgba(191, 239, 255, 0.9)', fontWeight: 500 }}>managed AI platform</span>.
+        </>}
+        ctaLabel="hello@weavyautomation.com"
       />
 
       </> /* end activeService === 'chatbot' */}
@@ -10490,14 +11052,15 @@ export default function Services() {
               color: 'transparent',
               textShadow: '0 0 24px rgba(125, 220, 255, 0.16)',
             }}>
-              elevate
+              automate
             </em>{' '}
-            your brand visuals?
+            your business?
           </>}
-          subtext="From campaign graphics to motion design — let's build something your audience remembers."
-          ctaLabel="Start a Project"
-          ctaHref="/contact"
-          ctaVariant="primary"
+          subtext={<>
+            Book a free demo and see how Weavy can manage your calls, messages, bookings, and{' '}
+            leads from one <span style={{ color: 'rgba(191, 239, 255, 0.9)', fontWeight: 500 }}>managed AI platform</span>.
+          </>}
+          ctaLabel="hello@weavyautomation.com"
         />
       )}
 
@@ -10512,9 +11075,8 @@ export default function Services() {
       {activeService === 'ugc' && <UGCPracticeEcosystem />}
       {activeService === 'ugc' && (
         <Footer
-          eyebrow="Let's create something real"
           heading={<>
-            Ready to turn{' '}
+            Ready to{' '}
             <em style={{
               fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400,
               background: 'linear-gradient(90deg, #FFFFFF 0%, #7DDCFF 45%, #B7AEFF 100%)',
@@ -10522,14 +11084,15 @@ export default function Services() {
               color: 'transparent',
               textShadow: '0 0 24px rgba(125, 220, 255, 0.16)',
             }}>
-              authentic content
+              automate
             </em>{' '}
-            into growth?
+            your business?
           </>}
-          subtext="From product reviews and unboxings to lifestyle content and social-first reels, we create UGC that earns trust, captures attention and moves customers to act."
-          ctaLabel="Start a UGC Project"
-          ctaHref="/contact"
-          ctaVariant="primary"
+          subtext={<>
+            Book a free demo and see how Weavy can manage your calls, messages, bookings, and{' '}
+            leads from one <span style={{ color: 'rgba(191, 239, 255, 0.9)', fontWeight: 500 }}>managed AI platform</span>.
+          </>}
+          ctaLabel="hello@weavyautomation.com"
         />
       )}
 
