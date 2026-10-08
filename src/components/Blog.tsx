@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Footer from './Footer'
+import { useMediaQuery } from '../lib/useMediaQuery'
 
 // ─── Data ──────────────────────────────────────────────────────────────────────
 
@@ -285,6 +286,7 @@ function ArticleDetail({
 function BlogHeader() {
   return (
     <header
+      id="blog-articles"
       style={{
         maxWidth: '1480px',
         margin: '0 auto',
@@ -443,7 +445,7 @@ function FeaturedArticle({ onRead }: { onRead: () => void }) {
       </div>
 
       {/* Content */}
-      <div style={{ padding: 'clamp(2rem, 4.5vw, 3.5rem)', display: 'grid', gridTemplateColumns: '1fr auto', gap: '2rem', alignItems: 'end' }}>
+      <div className="blog-feat-grid" style={{ padding: 'clamp(2rem, 4.5vw, 3.5rem)', display: 'grid', gridTemplateColumns: '1fr auto', gap: '2rem', alignItems: 'end' }}>
       <div style={{ display: 'flex', flexDirection: 'column', gap: '1.6rem' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
           <span className="mobile-label-min" style={{ fontFamily: 'var(--font-label)', fontWeight: 500, fontSize: '0.56rem', letterSpacing: '0.32em', textTransform: 'uppercase', color: 'rgba(125, 220, 255, 0.82)' }}>
@@ -475,7 +477,7 @@ function FeaturedArticle({ onRead }: { onRead: () => void }) {
         </div>
       </div>
 
-      <span aria-hidden="true" style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontSize: 'clamp(6rem, 14vw, 14rem)', lineHeight: 1, letterSpacing: '-0.06em', color: hovered ? 'rgba(125, 220, 255, 0.14)' : 'rgba(125, 220, 255, 0.10)', userSelect: 'none', transition: 'color 0.4s ease', alignSelf: 'center' }}>
+      <span aria-hidden="true" className="blog-feat-num" style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontSize: 'clamp(6rem, 14vw, 14rem)', lineHeight: 1, letterSpacing: '-0.06em', color: hovered ? 'rgba(125, 220, 255, 0.14)' : 'rgba(125, 220, 255, 0.10)', userSelect: 'none', transition: 'color 0.4s ease', alignSelf: 'center' }}>
         {FEATURED.num}
       </span>
       </div>{/* close content wrapper */}
@@ -936,7 +938,61 @@ function TopicPill({ label, index }: { label: string; index: number }) {
 
 // ─── Blog hero ─────────────────────────────────────────────────────────────────
 
+// Phone hero: Blog_1.webp has its heading baked in, which shrinks to ~6px on
+// a phone. Below 768px the copy is live text and the image's visual — the two
+// outlined quote marks and light beam on its right — sits behind it as a
+// feathered backdrop (on its own, cropped, that half reads as empty).
+function BlogHeroPhone() {
+  const goToArticles = () => document.getElementById('blog-articles')?.scrollIntoView({ behavior: 'smooth' })
+  return (
+    <section className="relative overflow-hidden" style={{ background: '#010709', padding: '112px 24px 56px' }}>
+      <img
+        src="/brand_assets/Blog_1.webp"
+        alt=""
+        aria-hidden="true"
+        decoding="async"
+        fetchPriority="high"
+        style={{
+          position: 'absolute', top: 0, right: '-6%', height: '100%', width: 'auto', maxWidth: 'none',
+          aspectRatio: '1400 / 747', objectFit: 'cover', opacity: 1, pointerEvents: 'none',
+          WebkitMaskImage: 'linear-gradient(to right, transparent 46%, #000 66%)',
+          maskImage: 'linear-gradient(to right, transparent 46%, #000 66%)',
+        }}
+      />
+      {/* Darken behind the copy so the quote marks stay a backdrop */}
+      <div aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'linear-gradient(90deg, rgba(1,7,9,0.82) 0%, rgba(1,7,9,0.3) 55%, rgba(1,7,9,0) 100%), linear-gradient(to top, #010709 0%, transparent 28%)' }} />
+
+      <div className="relative">
+        <div style={{ display: 'flex', alignItems: 'center', gap: '14px', marginBottom: '1.4rem' }}>
+          <span className="mobile-label-min" style={{ fontFamily: 'var(--font-label)', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'hsl(205 60% 70%)' }}>Blog</span>
+          <span aria-hidden="true" style={{ width: 48, height: 1, background: 'hsl(205 60% 70% / 0.5)' }} />
+        </div>
+        <h2 style={{ fontFamily: 'var(--font-accent)', fontWeight: 400, fontSize: 'clamp(2.6rem, 12vw, 3.4rem)', lineHeight: 1.04, letterSpacing: '-0.01em', color: '#F4F6F5', margin: 0 }}>
+          Insights that inspire{' '}
+          <em style={{ fontStyle: 'italic', color: '#9CC4E4' }}>smarter</em>{' '}
+          digital decisions.
+        </h2>
+        <span aria-hidden="true" style={{ display: 'block', width: 56, height: 1, background: 'hsl(205 60% 70% / 0.5)', margin: '1.6rem 0' }} />
+        <p style={{ fontSize: '16px', lineHeight: 1.7, color: 'rgba(220,228,232,0.78)', fontWeight: 400, maxWidth: '22rem', margin: 0 }}>
+          Practical ideas, real strategies and creative thinking to help brands grow, automate and build a powerful digital presence.
+        </p>
+        <button
+          type="button"
+          onClick={goToArticles}
+          className="mobile-label-min"
+          style={{ display: 'inline-flex', alignItems: 'center', gap: '16px', marginTop: '2rem', background: 'none', border: 0, padding: 0, cursor: 'pointer', fontFamily: 'var(--font-label)', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'rgba(240,244,246,0.86)' }}
+        >
+          <span aria-hidden="true" style={{ width: 48, height: 48, borderRadius: '50%', border: '1px solid hsl(205 60% 70% / 0.55)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, letterSpacing: 0 }}>↓</span>
+          Explore articles
+        </button>
+      </div>
+    </section>
+  )
+}
+
 function BlogHero() {
+  const isPhone = useMediaQuery('(max-width: 767px)')
+  if (isPhone) return <BlogHeroPhone />
   return (
     <section style={{ background: '#010709', padding: 'clamp(2rem, 4vw, 3rem) 0 0' }}>
       <motion.div

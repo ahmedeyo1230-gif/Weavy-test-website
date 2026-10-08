@@ -38,3 +38,5 @@ convert_one "Baaris.png" 1200
 convert_one "H.png" 1600
 convert_one "Fefo.png" 1600
 convert_one "A6_Flyer_Mockup_2.png" 1600
+convert_one "Shampoo.png" 1400
+convert_one "Watch_L.png" 1200

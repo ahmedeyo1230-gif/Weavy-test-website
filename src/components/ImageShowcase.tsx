@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, useCallback } from 'react'
 import Footer from './Footer'
+import { useMediaQuery } from '../lib/useMediaQuery'
 
 
 // ─── Types ─────────────────────────────────────────────────────────────────────
@@ -1114,7 +1115,69 @@ function WorkGallery() {
 
 // ─── Main export ───────────────────────────────────────────────────────────────
 
+const WORK_HERO_SRC = 'https://pub-731d5e7deddb4fce94cef7393920d429.r2.dev/section-work.mp4'
+
+// Phone hero: the desktop video has its heading baked into the left half, so
+// on a narrow screen it gets cropped / shrunk to an unreadable size. Below
+// 768px the heading is real text instead, and the video is cropped to just
+// its 3D visual (the right ~36% of the frame), feathered into the background.
+const EDGE_FADE =
+  'linear-gradient(to bottom, transparent 0%, #000 16%, #000 78%, transparent 100%),' +
+  'linear-gradient(to right, transparent 0%, #000 12%, #000 88%, transparent 100%)'
+
+function WorkHeroPhone() {
+  return (
+    <div className="px-6" style={{ paddingTop: '104px' }}>
+      <p
+        className="mobile-label-min"
+        style={{ fontFamily: "'Poppins', var(--font-body)", fontWeight: 400, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(235,245,250,0.82)', margin: '0 0 0.6rem' }}
+      >
+        Check out
+      </p>
+      <h2
+        style={{
+          fontFamily: "'Poppins', var(--font-heading)", fontWeight: 600,
+          fontSize: 'clamp(2.35rem, 10.5vw, 3rem)', lineHeight: 1.08, letterSpacing: '-0.02em',
+          color: '#F8FAFC', textShadow: '0 0 28px rgba(125,220,255,0.18)', margin: 0,
+        }}
+      >
+        Digital Marketing Portfolio
+      </h2>
+      <p
+        style={{ fontFamily: "'Poppins', var(--font-body)", fontWeight: 300, fontSize: '16px', lineHeight: 1.7, color: 'rgba(235,242,246,0.82)', margin: '1rem 0 0', maxWidth: '34rem' }}
+      >
+        We probably haven’t met yet but you have probably seen some of our work! Take a look at what our nerds have been up to recently.
+      </p>
+
+      <div
+        aria-hidden="true"
+        className="relative mx-auto"
+        style={{
+          width: '100%', maxWidth: '420px', aspectRatio: '1 / 1', overflow: 'hidden', marginTop: '1.25rem',
+          // Two edge fades intersected, so all four sides dissolve into the
+          // page background (the video's own backdrop is a lighter navy).
+          WebkitMaskImage: EDGE_FADE, maskImage: EDGE_FADE,
+          WebkitMaskComposite: 'source-in', maskComposite: 'intersect',
+        }}
+      >
+        {/* Frame is ~2:1 (4032×2056); the visual spans x≈57–93%, y≈3–76%. Scale so that
+            span fills the square (with a little air) and offset it into view. */}
+        <video
+          src={WORK_HERO_SRC}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          style={{ position: 'absolute', width: '250%', maxWidth: 'none', height: 'auto', left: '-136%', top: '-1%' }}
+        />
+      </div>
+    </div>
+  )
+}
+
 export default function ImageShowcase() {
+  const isPhone = useMediaQuery('(max-width: 767px)')
   return (
     <>
       {/* ── Hero ── */}
@@ -1123,19 +1186,23 @@ export default function ImageShowcase() {
         className="relative w-full overflow-hidden pb-4 sm:pb-6 lg:pb-0 lg:h-auto"
         style={{ background: '#040B0E' }}
       >
-        <video
-          src="https://pub-731d5e7deddb4fce94cef7393920d429.r2.dev/section-work.mp4"
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          className="object-cover object-top h-[63vw] sm:h-[63vw] lg:h-auto lg:object-contain lg:object-center"
-          style={{
-            display: 'block',
-            width: '100%',
-          }}
-        />
+        {isPhone ? <WorkHeroPhone /> : (
+          // Tablet (768–1023) shows the full 16:9 frame — the old 63vw-tall
+          // object-cover crop trimmed the baked-in heading off the left edge.
+          <video
+            src={WORK_HERO_SRC}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            className="h-auto object-contain object-center"
+            style={{
+              display: 'block',
+              width: '100%',
+            }}
+          />
+        )}
 
         {/* Bottom fade into next section */}
         <div

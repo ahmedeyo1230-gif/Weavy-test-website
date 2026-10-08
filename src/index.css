@@ -1218,3 +1218,21 @@ body::after {
 @media (min-width: 1024px) and (max-width: 1279px) {
   .ocs-workflow { gap: 1.25rem !important; }
 }
+
+/* ── Blog featured article — phones ───────────────────────────────────────
+   The desktop "text | giant numeral" grid leaves the copy ~140px wide on a
+   phone (heading over 6 lines). Stack to one column and tuck the numeral
+   into the bottom-right corner, level with the "Read article" link. */
+@media (max-width: 639px) {
+  .blog-feat-grid {
+    grid-template-columns: 1fr !important;
+    position: relative;
+    padding: 1.75rem 1.5rem 2rem !important;
+  }
+  .blog-feat-num {
+    position: absolute;
+    right: 1.5rem;
+    bottom: 1.1rem;
+    font-size: 4.5rem !important;
+  }
+}
