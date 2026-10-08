@@ -79,7 +79,7 @@ function StatCounter({ value, suffix = '', prefix = '', bigText, label, descript
 
 export default function Stats() {
   return (
-    <section className="py-20 px-6 relative overflow-hidden" style={{ background: '#071011' }}>
+    <section className="py-14 md:py-20 px-6 relative overflow-hidden" style={{ background: '#071011' }}>
       {/* Top blend — continues from About's #0B1114 */}
       <div
         aria-hidden="true"

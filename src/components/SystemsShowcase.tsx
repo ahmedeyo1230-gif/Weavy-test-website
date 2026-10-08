@@ -172,7 +172,7 @@ function ModuleRow({ svc, index }: { svc: ServiceDef; index: number }) {
         <div className="flex-1 min-w-0">
           <div className="flex items-baseline gap-2 mb-1.5">
             <span
-              className="font-mono text-[10px] tracking-widest select-none shrink-0"
+              className="font-mono text-[10px] tracking-widest select-none shrink-0 mobile-label-min"
               style={{ color: `${svc.accent}bb` }}
             >
               {svc.num}
@@ -241,7 +241,7 @@ function ArchitecturePanel() {
             }}
           />
           <span
-            className="font-label font-medium text-[10px] uppercase tracking-[0.2em]"
+            className="font-label font-medium text-[10px] uppercase tracking-[0.2em] mobile-label-min"
             style={{ color: 'var(--text-muted)' }}
           >
             Weavy · System Architecture
@@ -295,7 +295,7 @@ function ArchitecturePanel() {
 
 export default function SystemsShowcase() {
   return (
-    <section className="py-32 px-6 bg-background overflow-hidden relative">
+    <section className="py-20 md:py-32 px-6 bg-background overflow-hidden relative">
 
       {/* Top blend — continues from Stats section boundary */}
       <div

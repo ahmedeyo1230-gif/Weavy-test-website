@@ -196,7 +196,7 @@ export const Contact2 = ({
 
   return (
     <>
-      <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden py-24 px-5">
+      <section className="relative w-full min-h-screen-safe flex items-center justify-center overflow-hidden py-24 px-6 sm:px-5">
 
         {/* ── Ambient glows ── */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -219,7 +219,7 @@ export const Contact2 = ({
             transition={{ duration: 0.9, ease: E }}
             className="text-center mb-16"
           >
-            <p className="font-label text-[0.65rem] font-medium tracking-[0.3em] uppercase mb-4" style={{ color: 'var(--text-muted)' }}>
+            <p className="font-label text-[0.75rem] lg:text-[0.65rem] font-medium tracking-[0.3em] uppercase mb-4" style={{ color: 'var(--text-muted)' }}>
               Let's work together
             </p>
             <h1
@@ -272,10 +272,10 @@ export const Contact2 = ({
                     <Icon size={16} />
                   </span>
                   <div>
-                    <p className="font-label text-[0.62rem] tracking-[0.22em] uppercase font-medium mb-0.5" style={{ color: 'var(--text-muted)' }}>
+                    <p className="font-label text-[0.75rem] lg:text-[0.62rem] tracking-[0.22em] uppercase font-medium mb-0.5" style={{ color: 'var(--text-muted)' }}>
                       {label}
                     </p>
-                    <p className="font-body text-[0.9rem] font-normal group-hover:text-white/90 transition-colors duration-300" style={{ color: 'var(--text-body)' }}>
+                    <p className="font-body text-[0.95rem] lg:text-[0.9rem] font-normal group-hover:text-white/90 transition-colors duration-300" style={{ color: 'var(--text-body)' }}>
                       {value}
                     </p>
                   </div>
@@ -288,7 +288,7 @@ export const Contact2 = ({
                   className="w-2 h-2 rounded-full bg-[#22C55E] flex-shrink-0"
                   style={{ boxShadow: "0 0 8px rgba(34,197,94,0.7)", animation: "contact-pulse 2.2s ease-in-out infinite" }}
                 />
-                <p className="font-label text-[0.78rem] font-medium tracking-wide" style={{ color: 'var(--text-muted)' }}>
+                <p className="font-label text-[0.8125rem] lg:text-[0.78rem] font-medium tracking-wide" style={{ color: 'var(--text-muted)' }}>
                   Available for new projects
                 </p>
               </div>

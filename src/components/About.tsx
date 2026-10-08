@@ -17,7 +17,7 @@ export default function About() { // no diagonal lines bg
     <section
       id="about"
       aria-labelledby="about-heading"
-      className="py-28 lg:py-36 px-6 relative overflow-hidden"
+      className="py-[72px] md:py-28 lg:py-36 px-6 relative overflow-hidden"
       style={{
         background:
           'radial-gradient(circle at 58% 32%, rgba(20, 83, 96, 0.058) 0%, rgba(5, 28, 34, 0.029) 42%, rgba(1, 7, 9, 0) 70%),' +

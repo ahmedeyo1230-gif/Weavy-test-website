@@ -74,7 +74,7 @@ function PlanCard({ plan, index }: { plan: typeof PLANS[number]; index: number }
       }}
     >
       {plan.featured && (
-        <span style={{
+        <span className="mobile-label-min" style={{
           position: 'absolute', top: -12, left: '50%', transform: 'translateX(-50%)',
           fontFamily: 'var(--font-label)',
           fontSize: '0.62rem', letterSpacing: '0.18em', textTransform: 'uppercase',
@@ -164,7 +164,7 @@ export default function PricingSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, ease: E }}
-            className="font-label font-medium"
+            className="font-label font-medium mobile-label-min"
             style={{
               display: 'inline-flex',
               alignItems: 'center',
@@ -186,7 +186,7 @@ export default function PricingSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.55, delay: 0.05, ease: E }}
-            className="font-label font-medium"
+            className="font-label font-medium mobile-label-min"
             style={{ fontSize: '0.67rem', letterSpacing: '0.32em', textTransform: 'uppercase', color: 'rgba(125,220,255,0.68)', marginBottom: '1.3rem' }}
           >
             Monthly Service Plans

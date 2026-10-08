@@ -69,7 +69,7 @@ function Avatar({
 export default function TestimonialsSection() {
   return (
     <section
-      className="py-32 px-6 relative"
+      className="py-20 md:py-32 px-6 relative"
       aria-label="Client Testimonials"
       style={{ background: '#06080A' }}
     >

@@ -222,8 +222,8 @@ const CSS = `
 .ssp-panel {
   position: sticky;
   top: 0;
-  height: 100svh;
   height: 100vh;
+  height: 100svh;
   width: 100%;
   overflow: hidden;
   display: flex;
@@ -461,8 +461,8 @@ const CSS = `
   .ssp-panel {
     position: relative;
     height: auto;
-    min-height: 100svh;
     min-height: 100vh;
+    min-height: 100svh;
     padding: 0;
   }
   .ssp-inner, .ssp-inner--closing {

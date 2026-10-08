@@ -308,8 +308,8 @@ export default function ConnectedSystems() {
       className="relative w-full overflow-hidden"
       style={{
         background: '#000506',
-        paddingTop: 'clamp(96px, 15vw, 200px)',
-        paddingBottom: 'clamp(96px, 15vw, 200px)',
+        paddingTop: 'clamp(72px, 15vw, 200px)',
+        paddingBottom: 'clamp(72px, 15vw, 200px)',
       }}
       aria-label="Connected Systems"
     >

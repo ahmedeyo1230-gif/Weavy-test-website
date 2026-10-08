@@ -67,11 +67,23 @@ html {
   box-sizing: border-box;
 }
 
-/* ── Mobile body text: readable on dark backgrounds ──────────── */
-@media (max-width: 1024px) {
+/* ── Mobile body text: readable on dark backgrounds ────────────
+   Mobile/tablet only (<1024px) — 1024px is iPad landscape and renders the
+   desktop layout, so it gets the desktop typography too.
+   Size/line-height live in @layer base so a <p> that sets its own size via a
+   Tailwind utility (text-xs, text-3xl, …) keeps it; unstyled paragraphs still
+   default to 16px/1.75. Colour/weight stay un-layered on purpose — that
+   brighter mobile tone is a deliberate readability override. */
+@layer base {
+  @media (max-width: 1023px) {
+    p {
+      font-size: 16px;
+      line-height: 1.75;
+    }
+  }
+}
+@media (max-width: 1023px) {
   p {
-    font-size: 16px;
-    line-height: 1.75;
     color: #D1D5DB;
     font-weight: 500;
   }
@@ -1160,6 +1172,14 @@ body::after {
   .section-eyebrow-sm { font-size: 14px; }
 }
 
+/* ── Mobile/tablet minimum for tiny mono eyebrow/meta labels ──────────────
+   Many labels set ~0.55–0.65rem (9–10px) inline for the desktop look; below
+   1024px that is unreadable on a phone. !important is required to outrank
+   the inline style; desktop (≥1024px) keeps each label's own inline size. */
+@media (max-width: 1023px) {
+  .mobile-label-min { font-size: 12px !important; }
+}
+
 /* ── Respect prefers-reduced-motion ─────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -1172,3 +1192,13 @@ body::after {
   }
 }
 
+
+/* ── Full-height sections that respect mobile browser chrome ─────────────
+   100svh = the viewport with the URL bar showing, so a "full-screen" hero
+   doesn't hide its bottom (CTA / scroll cue) behind Safari/Chrome toolbars.
+   100vh first as the fallback for browsers without svh support. On desktop
+   svh === vh, so nothing changes there. */
+.min-h-screen-safe {
+  min-height: 100vh;
+  min-height: 100svh;
+}

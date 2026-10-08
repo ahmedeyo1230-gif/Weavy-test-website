@@ -154,7 +154,7 @@ function ArticleDetail({
           marginBottom: '1.8rem',
         }}
       >
-        <span
+        <span className="mobile-label-min"
           style={{
             fontFamily: 'var(--font-label)',
             fontWeight: 500,
@@ -174,7 +174,7 @@ function ArticleDetail({
             background: 'hsl(0 0% 100% / 0.12)',
           }}
         />
-        <span
+        <span className="mobile-label-min"
           style={{
             fontFamily: 'var(--font-label)',
             fontWeight: 500,
@@ -292,7 +292,7 @@ function BlogHeader() {
           'clamp(5rem, 9vw, 8rem) clamp(1.5rem, 4vw, 3.5rem) clamp(3.5rem, 6vw, 5rem)',
       }}
     >
-      <motion.p
+      <motion.p className="mobile-label-min"
         initial={{ opacity: 0, y: 14 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-60px' }}
@@ -446,11 +446,11 @@ function FeaturedArticle({ onRead }: { onRead: () => void }) {
       <div style={{ padding: 'clamp(2rem, 4.5vw, 3.5rem)', display: 'grid', gridTemplateColumns: '1fr auto', gap: '2rem', alignItems: 'end' }}>
       <div style={{ display: 'flex', flexDirection: 'column', gap: '1.6rem' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-          <span style={{ fontFamily: 'var(--font-label)', fontWeight: 500, fontSize: '0.56rem', letterSpacing: '0.32em', textTransform: 'uppercase', color: 'rgba(125, 220, 255, 0.82)' }}>
+          <span className="mobile-label-min" style={{ fontFamily: 'var(--font-label)', fontWeight: 500, fontSize: '0.56rem', letterSpacing: '0.32em', textTransform: 'uppercase', color: 'rgba(125, 220, 255, 0.82)' }}>
             {FEATURED.category}
           </span>
           <span style={{ display: 'inline-block', width: 1, height: 10, background: 'hsl(0 0% 100% / 0.12)' }} />
-          <span style={{ fontFamily: 'var(--font-label)', fontWeight: 500, fontSize: '0.66rem', color: 'var(--text-muted)', letterSpacing: '0.05em' }}>
+          <span className="mobile-label-min" style={{ fontFamily: 'var(--font-label)', fontWeight: 500, fontSize: '0.66rem', color: 'var(--text-muted)', letterSpacing: '0.05em' }}>
             {FEATURED.readTime}
           </span>
         </div>
@@ -549,7 +549,7 @@ function ArticleCard({
       {/* Text content */}
       <div style={{ padding: 'clamp(1.4rem, 2.5vw, 2rem)', display: 'flex', flexDirection: 'column', gap: '1.1rem', flex: 1 }}>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <span style={{ fontFamily: 'var(--font-label)', fontWeight: 500, fontSize: '0.54rem', letterSpacing: '0.32em', textTransform: 'uppercase', color: 'rgba(125, 220, 255, 0.82)' }}>
+        <span className="mobile-label-min" style={{ fontFamily: 'var(--font-label)', fontWeight: 500, fontSize: '0.54rem', letterSpacing: '0.32em', textTransform: 'uppercase', color: 'rgba(125, 220, 255, 0.82)' }}>
           {article.category}
         </span>
         <span aria-hidden="true" style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontSize: 'clamp(2.4rem, 4vw, 3.6rem)', lineHeight: 1, letterSpacing: '-0.05em', color: hovered ? 'rgba(125, 220, 255, 0.14)' : 'rgba(125, 220, 255, 0.10)', userSelect: 'none', transition: 'color 0.4s ease' }}>
@@ -570,7 +570,7 @@ function ArticleCard({
       </p>
 
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '0.3rem', paddingTop: '1rem', borderTop: '1px solid hsl(0 0% 100% / 0.05)' }}>
-        <span style={{ fontFamily: 'var(--font-label)', fontWeight: 500, fontSize: '0.63rem', color: 'var(--text-muted)', letterSpacing: '0.04em' }}>
+        <span className="mobile-label-min" style={{ fontFamily: 'var(--font-label)', fontWeight: 500, fontSize: '0.63rem', color: 'var(--text-muted)', letterSpacing: '0.04em' }}>
           {article.readTime}
         </span>
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
@@ -632,7 +632,7 @@ function BlogCTA() {
           }}
         >
           {/* Label */}
-          <motion.p
+          <motion.p className="mobile-label-min"
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-60px' }}
@@ -814,7 +814,7 @@ function TopicsStrip() {
         }}
       >
         {/* Label */}
-        <motion.p
+        <motion.p className="mobile-label-min"
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-40px' }}

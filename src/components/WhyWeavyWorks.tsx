@@ -229,7 +229,7 @@ function AutomationOrb() {
 export default function WhyWeavyWorks() {
   return (
     <section
-      className="py-32 px-6 relative overflow-hidden bg-background"
+      className="py-20 md:py-32 px-6 relative overflow-hidden bg-background"
       aria-label="Why Weavy Works"
     >
       {/* Top blend */}

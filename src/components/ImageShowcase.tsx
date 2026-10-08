@@ -163,7 +163,7 @@ function Lightbox({ src, title, category, onClose }: { src: string; title: strin
           padding: '1.2rem 1.6rem',
           background: 'linear-gradient(to top, hsl(0 0% 0% / 0.75) 0%, transparent 100%)',
         }}>
-          <p style={{ fontFamily: 'var(--font-label)', fontWeight: 500, fontSize: '0.58rem', letterSpacing: '0.26em', textTransform: 'uppercase', color: 'hsl(195 60% 65%)', margin: '0 0 0.3rem' }}>
+          <p className="mobile-label-min" style={{ fontFamily: 'var(--font-label)', fontWeight: 500, fontSize: '0.58rem', letterSpacing: '0.26em', textTransform: 'uppercase', color: 'hsl(195 60% 65%)', margin: '0 0 0.3rem' }}>
             {category}
           </p>
           <p style={{ fontFamily: 'var(--font-label)', fontWeight: 500, fontSize: 'clamp(0.9rem, 1.5vw, 1.05rem)', letterSpacing: '-0.02em', color: 'var(--text-primary)', margin: 0 }}>
@@ -282,7 +282,7 @@ function ProjectCard({
           zIndex: 10,
         }}
       >
-        <p style={{
+        <p className="mobile-label-min" style={{
           fontFamily: 'var(--font-label)',
           fontWeight: 500,
           fontSize: '0.58rem',
@@ -329,7 +329,7 @@ function WorkCTA() {
       style={{
         background: '#010709',
         borderTop: '1px solid rgba(125, 220, 255, 0.10)',
-        padding: 'clamp(6rem, 12vw, 10rem) clamp(1.2rem, 3.5vw, 3rem)',
+        padding: 'clamp(6rem, 12vw, 10rem) clamp(1.5rem, 3.5vw, 3rem)',
       }}
     >
       <div
@@ -343,7 +343,7 @@ function WorkCTA() {
         }}
       >
         {/* Label */}
-        <p
+        <p className="mobile-label-min"
           style={{
             ...item(0),
             fontFamily: 'var(--font-label)',
@@ -539,7 +539,7 @@ function WorkTestimonial() {
       style={{
         background: '#010709',
         borderTop: '1px solid rgba(125, 220, 255, 0.10)',
-        padding: 'clamp(5rem, 10vw, 9rem) clamp(1.2rem, 3.5vw, 3rem)',
+        padding: 'clamp(5rem, 10vw, 9rem) clamp(1.5rem, 3.5vw, 3rem)',
       }}
     >
       <div style={{ maxWidth: '1480px', margin: '0 auto' }}>
@@ -765,7 +765,7 @@ function ProjectPhilosophy() {
       style={{
         background: '#010709',
         borderTop: '1px solid rgba(125, 220, 255, 0.10)',
-        padding: 'clamp(5rem, 10vw, 9rem) clamp(1.2rem, 3.5vw, 3rem)',
+        padding: 'clamp(5rem, 10vw, 9rem) clamp(1.5rem, 3.5vw, 3rem)',
       }}
     >
       {/* Grain texture */}
@@ -797,7 +797,7 @@ function ProjectPhilosophy() {
           }}
         >
           {/* Label */}
-          <p
+          <p className="mobile-label-min"
             style={{
               fontFamily: 'var(--font-label)',
               fontWeight: 500,
@@ -945,7 +945,7 @@ function WorkGallery() {
     )}
 
     <section style={{ background: '#010709', borderTop: '1px solid rgba(125, 220, 255, 0.10)' }}>
-      <div style={{ maxWidth: '1520px', margin: '0 auto', padding: 'clamp(5rem, 9vw, 8rem) clamp(1.2rem, 3.5vw, 3rem)' }}>
+      <div style={{ maxWidth: '1520px', margin: '0 auto', padding: 'clamp(5rem, 9vw, 8rem) clamp(1.5rem, 3.5vw, 3rem)' }}>
 
         {/* ── Section header ── */}
         <div
@@ -958,7 +958,7 @@ function WorkGallery() {
             transition: 'opacity 0.9s ease, transform 0.9s cubic-bezier(0.16,1,0.3,1)',
           }}
         >
-          <p style={{
+          <p className="mobile-label-min" style={{
             fontFamily: 'var(--font-label)',
             fontWeight: 500,
             fontSize: '0.58rem',
