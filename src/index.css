@@ -560,6 +560,20 @@ html {
   .hero-section-pb { padding-bottom: 88px; }
 }
 
+/* Extra top clearance so the heading's first line doesn't render behind the
+   fixed glass navbar. On phones narrow enough to wrap the heading onto 3
+   lines (≤480px, confirmed via measurement), the hero's content already
+   nearly fills the viewport height, so align-items centring has almost no
+   slack left to "dilute" this padding into — it lands as close to a
+   1:1 shift. 70px closes the worst-case ~34px overlap with a ~35px buffer,
+   without pushing the CTA/scroll-cue meaningfully further below the fold
+   than they already sit on short devices pre-fix. Tablets and up already
+   clear the navbar naturally (shorter 1–2 line heading) and are untouched. */
+.hero-section-pt { padding-top: 0; }
+@media (max-width: 480px) {
+  .hero-section-pt { padding-top: 70px; }
+}
+
 @media (max-width: 640px) {
   .hero-scroll-wrap {
     bottom: 0px !important;
