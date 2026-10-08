@@ -939,13 +939,13 @@ function TopicPill({ label, index }: { label: string; index: number }) {
 // ─── Blog hero ─────────────────────────────────────────────────────────────────
 
 // Phone hero: Blog_1.webp has its heading baked in, which shrinks to ~6px on
-// a phone. Below 768px the copy is live text and the image's visual — the two
+// a phone. Below 1024px the copy is live text and the image's visual — the two
 // outlined quote marks and light beam on its right — sits behind it as a
 // feathered backdrop (on its own, cropped, that half reads as empty).
 function BlogHeroPhone() {
   const goToArticles = () => document.getElementById('blog-articles')?.scrollIntoView({ behavior: 'smooth' })
   return (
-    <section className="relative overflow-hidden" style={{ background: '#010709', padding: '112px 24px 56px' }}>
+    <section className="relative overflow-hidden md:!px-10 md:!pt-32 md:!pb-20" style={{ background: '#010709', padding: '112px 24px 56px' }}>
       <img
         src="/brand_assets/Blog_1.webp"
         alt=""
@@ -955,8 +955,8 @@ function BlogHeroPhone() {
         style={{
           position: 'absolute', top: 0, right: '-6%', height: '100%', width: 'auto', maxWidth: 'none',
           aspectRatio: '1400 / 747', objectFit: 'cover', opacity: 1, pointerEvents: 'none',
-          WebkitMaskImage: 'linear-gradient(to right, transparent 46%, #000 66%)',
-          maskImage: 'linear-gradient(to right, transparent 46%, #000 66%)',
+          WebkitMaskImage: 'linear-gradient(to right, transparent 58%, #000 72%)',
+          maskImage: 'linear-gradient(to right, transparent 58%, #000 72%)',
         }}
       />
       {/* Darken behind the copy so the quote marks stay a backdrop */}
@@ -991,7 +991,8 @@ function BlogHeroPhone() {
 }
 
 function BlogHero() {
-  const isPhone = useMediaQuery('(max-width: 767px)')
+  // Phones + tablets: the image's baked-in copy is ≤10px below 1024px
+  const isPhone = useMediaQuery('(max-width: 1023px)')
   if (isPhone) return <BlogHeroPhone />
   return (
     <section style={{ background: '#010709', padding: 'clamp(2rem, 4vw, 3rem) 0 0' }}>

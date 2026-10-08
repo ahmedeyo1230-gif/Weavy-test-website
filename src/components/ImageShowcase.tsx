@@ -1117,17 +1117,19 @@ function WorkGallery() {
 
 const WORK_HERO_SRC = 'https://pub-731d5e7deddb4fce94cef7393920d429.r2.dev/section-work.mp4'
 
-// Phone hero: the desktop video has its heading baked into the left half, so
-// on a narrow screen it gets cropped / shrunk to an unreadable size. Below
-// 768px the heading is real text instead, and the video is cropped to just
-// its 3D visual (the right ~36% of the frame), feathered into the background.
+// Phone/tablet hero: the desktop video has its heading baked into the left
+// half, so on a narrow screen it gets cropped / shrunk to an unreadable size.
+// Below 1024px the heading is real text instead (tablet: text | visual
+// columns), and the video is cropped to just its 3D visual (the right ~36% of
+// the frame), feathered into the background.
 const EDGE_FADE =
   'linear-gradient(to bottom, transparent 0%, #000 16%, #000 78%, transparent 100%),' +
   'linear-gradient(to right, transparent 0%, #000 12%, #000 88%, transparent 100%)'
 
 function WorkHeroPhone() {
   return (
-    <div className="px-6" style={{ paddingTop: '104px' }}>
+    <div className="px-6 md:px-10 md:pb-16 md:grid md:grid-cols-[1.1fr_1fr] md:items-center md:gap-6" style={{ paddingTop: '104px' }}>
+      <div>
       <p
         className="mobile-label-min"
         style={{ fontFamily: "'Poppins', var(--font-body)", fontWeight: 400, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(235,245,250,0.82)', margin: '0 0 0.6rem' }}
@@ -1148,6 +1150,7 @@ function WorkHeroPhone() {
       >
         We probably haven’t met yet but you have probably seen some of our work! Take a look at what our nerds have been up to recently.
       </p>
+      </div>
 
       <div
         aria-hidden="true"
@@ -1180,11 +1183,12 @@ const WORK_STORY_SRC = 'https://pub-731d5e7deddb4fce94cef7393920d429.r2.dev/HERO
 
 // Phone version of the "Every project begins with a single question" video:
 // its copy is baked into the left ~30% of the 16:9 frame (≈5–12px on a
-// phone), so below 768px it becomes live text and the video is cropped to
+// phone), so below 1024px it becomes live text and the video is cropped to
 // the studio scene (x 36–100%, full height ≈ 1.14:1).
 function WorkStoryPhone() {
   return (
-    <div className="px-6">
+    <div className="px-6 md:px-10 md:grid md:grid-cols-[1fr_1.15fr] md:items-center md:gap-8">
+      <div>
       <p className="mobile-label-min" style={{ fontFamily: 'var(--font-body)', fontWeight: 400, color: 'rgba(235,240,242,0.78)', lineHeight: 1.5, margin: '0 0 1.4rem' }}>
         Work made to be remembered.<br />Brands built to lead.
       </p>
@@ -1196,6 +1200,7 @@ function WorkStoryPhone() {
         We answer it through strategy, craft, and relentless attention to detail.
       </p>
       <span aria-hidden="true" style={{ display: 'block', width: '60%', height: 1, background: 'rgba(235,240,242,0.35)', margin: '1.6rem 0 1.75rem' }} />
+      </div>
       <div aria-hidden="true" style={{ position: 'relative', width: '100%', aspectRatio: '1.138 / 1', overflow: 'hidden', borderRadius: '0.75rem' }}>
         <video
           src={WORK_STORY_SRC}
@@ -1212,7 +1217,8 @@ function WorkStoryPhone() {
 }
 
 export default function ImageShowcase() {
-  const isPhone = useMediaQuery('(max-width: 767px)')
+  // Phones + tablets: the baked-in video copy is ≤10px below 1024px
+  const isPhone = useMediaQuery('(max-width: 1023px)')
   return (
     <>
       {/* ── Hero ── */}
@@ -1222,8 +1228,8 @@ export default function ImageShowcase() {
         style={{ background: '#040B0E' }}
       >
         {isPhone ? <WorkHeroPhone /> : (
-          // Tablet (768–1023) shows the full 16:9 frame — the old 63vw-tall
-          // object-cover crop trimmed the baked-in heading off the left edge.
+          // Desktop: the full frame (the old 63vw-tall object-cover crop
+          // used below 1024px trimmed the baked-in heading off the left edge).
           <video
             src={WORK_HERO_SRC}
             autoPlay

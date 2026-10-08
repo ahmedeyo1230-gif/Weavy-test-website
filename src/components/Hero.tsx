@@ -236,7 +236,7 @@ export function Navbar() {
                     setActive(label)
                     goToPath(href)
                   }}
-                  className={`font-body font-medium relative block text-xs sm:text-sm px-3 py-1.5 rounded-full transition-colors duration-150 active:scale-[0.97] ${
+                  className={`font-body font-medium relative block text-xs sm:text-sm px-3 py-1.5 max-lg:py-2.5 rounded-full transition-colors duration-150 active:scale-[0.97] ${
                     isActive ? 'text-primary bg-white/10' : 'text-muted hover:text-primary hover:bg-white/5'
                   }`}
                 >

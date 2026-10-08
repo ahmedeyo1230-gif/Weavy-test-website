@@ -219,7 +219,9 @@ export default function PricingSection() {
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 lg:gap-7 items-stretch">
+        {/* Below 1024px the three cards stack in one readable column — at 768px
+            three columns left ~177px per card and wrapped every CTA. */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-7 items-stretch max-lg:max-w-xl max-lg:mx-auto">
           {PLANS.map((plan, i) => (
             <PlanCard key={plan.name} plan={plan} index={i} />
           ))}
