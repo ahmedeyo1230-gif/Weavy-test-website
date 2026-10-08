@@ -42,3 +42,6 @@ temporary screenshots/
 !public/brand_assets/homepage-presenter-enhanced.mp4
 !public/brand_assets/Web1.mp4
 .vercel
+
+# Responsive audit screenshots
+responsive-screenshots/
