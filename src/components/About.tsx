@@ -260,7 +260,7 @@ export default function About() { // no diagonal lines bg
         </div>
 
         {/* ─── Service modules strip ──────────────────────────────────── */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
           {SERVICE_MODULES.map((svc, i) => (
             <motion.div
               key={svc.label}
@@ -268,9 +268,8 @@ export default function About() { // no diagonal lines bg
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-20px' }}
               transition={{ duration: 0.5, delay: i * 0.07, ease: E }}
-              className="group relative rounded-xl overflow-hidden cursor-pointer lg:min-h-[10.25rem]"
+              className="group relative rounded-xl overflow-hidden cursor-pointer lg:min-h-[10.25rem] px-5 py-5 sm:px-[1.9rem] sm:py-[0.625rem]"
               style={{
-                padding: '0.625rem 1.9rem 0.625rem',
                 background: 'hsl(0 0% 100% / 0.022)',
                 border: '1px solid hsl(0 0% 100% / 0.07)',
                 transition: 'border-color 280ms, background-color 280ms, box-shadow 280ms, transform 280ms cubic-bezier(0.16,1,0.3,1)',
@@ -309,7 +308,7 @@ export default function About() { // no diagonal lines bg
                 <div className="gold-line-glint" />
               </div>
               <div
-                className="font-mono select-none mb-5"
+                className="font-mono select-none mb-2.5 sm:mb-5"
                 style={{ fontSize: '0.8rem', color: '#A99BFF', opacity: 0.85 }}
               >
                 {svc.num}

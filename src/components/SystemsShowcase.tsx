@@ -241,7 +241,7 @@ function ArchitecturePanel() {
             }}
           />
           <span
-            className="font-label font-medium text-[10px] uppercase tracking-[0.2em] mobile-label-min"
+            className="font-label font-medium text-[10px] uppercase tracking-[0.12em] sm:tracking-[0.2em] mobile-label-min"
             style={{ color: 'var(--text-muted)' }}
           >
             Weavy · System Architecture
@@ -355,7 +355,7 @@ export default function SystemsShowcase() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.26, ease: E }}
-              className="font-body inline-flex items-center gap-2 text-sm md:text-base w-fit cursor-pointer"
+              className="font-body inline-flex items-center gap-2 text-sm md:text-base w-fit cursor-pointer min-h-[44px] lg:min-h-0"
               style={{ color: 'rgba(244,248,250,0.75)', transition: 'color 200ms' }}
               onMouseEnter={e => {
                 const el = e.currentTarget as HTMLElement
@@ -379,7 +379,7 @@ export default function SystemsShowcase() {
           </div>
 
           {/* ── Right: architecture panel ── */}
-          <div className="relative" style={{ transform: 'scale(1.10)', transformOrigin: 'center' }}>
+          <div className="relative ss-panel-scale">
             {/* Ambient glow behind panel */}
             <div
               className="absolute pointer-events-none"

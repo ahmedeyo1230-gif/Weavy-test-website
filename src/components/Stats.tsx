@@ -43,7 +43,7 @@ function StatCounter({ value, suffix = '', prefix = '', bigText, label, descript
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-50px' }}
       transition={{ duration: reduceMotion ? 0.4 : 0.75, delay: reduceMotion ? 0 : delay, ease: [0.16, 1, 0.3, 1] }}
-      className="flex flex-col items-center justify-center text-center px-6 py-12 relative group"
+      className="flex flex-col items-center justify-center text-center px-4 sm:px-6 py-10 sm:py-12 relative group"
     >
       {/* Subtle top accent line that appears on hover */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-8 h-[1px] bg-gradient-to-r from-transparent via-accent-cyan/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -63,7 +63,7 @@ function StatCounter({ value, suffix = '', prefix = '', bigText, label, descript
         </div>
       ) : (
         <p
-          className="font-label stat-pulse text-3xl md:text-4xl lg:text-5xl font-light tracking-tight text-primary mb-3"
+          className="font-label stat-pulse text-[1.65rem] sm:text-3xl md:text-4xl xl:text-5xl max-lg:leading-[1.15] font-light tracking-tight text-primary mb-3"
           style={{ animationDelay: `${pulseDelay}s` }}
         >
           {bigText}
@@ -72,7 +72,7 @@ function StatCounter({ value, suffix = '', prefix = '', bigText, label, descript
       {label && (
         <p className="font-label text-xs uppercase tracking-widest mb-2 font-medium" style={{ color: 'var(--text-muted)', letterSpacing: '0.15em' }}>{label}</p>
       )}
-      <p className="font-label text-xs font-medium max-w-[120px] leading-relaxed" style={{ color: 'var(--text-description)' }}>{description}</p>
+      <p className="font-label text-[0.8125rem] sm:text-xs font-medium max-w-[150px] sm:max-w-[120px] leading-relaxed" style={{ color: 'var(--text-description)' }}>{description}</p>
     </motion.div>
   )
 }

@@ -288,7 +288,7 @@ export default function WhyWeavyWorks() {
       />
 
       {/* ── 3-column grid ── */}
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[1fr_340px_1fr] gap-12 lg:gap-6 xl:gap-10 items-center">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[1fr_250px_1.15fr] xl:grid-cols-[1fr_340px_1fr] gap-12 lg:gap-6 xl:gap-10 items-center">
 
         {/* Left: heading */}
         <div>

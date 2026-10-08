@@ -61,7 +61,11 @@ function HeroVideo() {
     // `defaultMuted` are forced on the element before any src is attached and
     // again once media data is available, not just via the JSX attribute.
     const forceMuted = () => { video.muted = true; video.defaultMuted = true }
-    const attemptPlay = () => { forceMuted(); video.play().catch(() => {}) }
+    let inView = true
+    const attemptPlay = () => {
+      if (!inView || document.hidden) return
+      forceMuted(); video.play().catch(() => {})
+    }
 
     forceMuted()
     video.addEventListener('loadedmetadata', attemptPlay)
@@ -78,8 +82,12 @@ function HeroVideo() {
     const onVisibilityChange = () => { if (!document.hidden) attemptPlay() }
     document.addEventListener('visibilitychange', onVisibilityChange)
 
+    // Pause once the hero is scrolled out of view so the stream stops
+    // decoding off-screen (saves battery/data on phones); resume on return.
     const io = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) attemptPlay()
+      inView = entry.isIntersecting
+      if (inView) attemptPlay()
+      else video.pause()
     }, { threshold: 0.1 })
     io.observe(video)
 
@@ -165,8 +173,35 @@ export function Navbar() {
     return () => window.removeEventListener('popstate', onNav)
   }, [])
 
+  // While the mobile menu is open: lock page scroll behind it, and close it on
+  // Escape, on a tap outside the header, or if the viewport grows past the
+  // `sm` breakpoint (where the desktop links take over).
+  const headerRef = useRef<HTMLElement>(null)
+  useEffect(() => {
+    if (!menuOpen) return
+    const html = document.documentElement
+    const prevOverflow = html.style.overflow
+    html.style.overflow = 'hidden'
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setMenuOpen(false) }
+    const onPointer = (e: PointerEvent) => {
+      if (headerRef.current && !headerRef.current.contains(e.target as Node)) setMenuOpen(false)
+    }
+    const mq = window.matchMedia('(min-width: 640px)')
+    const onMq = (e: MediaQueryListEvent) => { if (e.matches) setMenuOpen(false) }
+    document.addEventListener('keydown', onKey)
+    document.addEventListener('pointerdown', onPointer)
+    mq.addEventListener('change', onMq)
+    return () => {
+      html.style.overflow = prevOverflow
+      document.removeEventListener('keydown', onKey)
+      document.removeEventListener('pointerdown', onPointer)
+      mq.removeEventListener('change', onMq)
+    }
+  }, [menuOpen])
+
   return (
     <motion.header
+      ref={headerRef}
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
@@ -226,10 +261,11 @@ export function Navbar() {
             used elsewhere) so the three lines stay clearly visible against the
             dark navbar glass, not just on hover. */}
         <button
-          className="sm:hidden flex items-center justify-center w-8 h-8 rounded-full hover:text-primary hover:bg-white/5 transition-colors"
+          className="sm:hidden flex items-center justify-center w-11 h-11 -mr-1.5 rounded-full hover:text-primary hover:bg-white/5 transition-colors"
           style={{ color: 'rgba(235, 245, 255, 0.88)' }}
           aria-label={menuOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={menuOpen}
+          aria-controls="mobile-menu"
           onClick={() => setMenuOpen(v => !v)}
         >
           <span className="flex flex-col gap-[5px] w-[14px]" aria-hidden="true">
@@ -245,6 +281,7 @@ export function Navbar() {
         {menuOpen && (
           <motion.div
             key="mobile-menu"
+            id="mobile-menu"
             initial={{ opacity: 0, y: -8, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -6, scale: 0.98 }}
@@ -388,7 +425,7 @@ export default function Hero() {
             <motion.h1
               id="hero-heading"
               variants={itemVariants}
-              className="font-heading text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-medium tracking-tighter leading-[1.1] mb-8 max-w-4xl relative z-10"
+              className="font-heading text-[2.6rem] min-[390px]:text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-medium tracking-tighter leading-[1.1] mb-6 sm:mb-8 max-w-4xl relative z-10"
             >
               <span style={{ color: '#F4F8FA' }}>AI</span>{' '}
               <em
@@ -416,11 +453,11 @@ export default function Hero() {
             className="font-body text-lg sm:text-xl mb-8 font-light text-center"
           >
             <span aria-hidden="true">
-              <span style={{ color: 'rgba(255,255,255,0.75)' }}>
+              <span className="max-sm:block" style={{ color: 'rgba(255,255,255,0.75)', textWrap: 'balance' }}>
                 More leads, faster replies, less manual work —{' '}
               </span>
               {/* inline-grid spacer: invisible widest phrase sets exact container width, no dead space */}
-              <span className="relative inline-grid">
+              <span className="relative inline-grid max-sm:grid max-sm:justify-items-center max-sm:text-center">
                 <span className="invisible select-none whitespace-nowrap">while you focus on growth.</span>
                 <AnimatePresence mode="wait">
                   <motion.span

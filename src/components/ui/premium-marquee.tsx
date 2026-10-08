@@ -69,6 +69,17 @@ export function PremiumMarquee() {
   const wordRefs = useRef<Map<string, HTMLSpanElement>>(new Map())
   const [groupWidth, setGroupWidth] = useState(900)
   const [stageWidth, setStageWidth] = useState(1440)
+  // Off-screen: pause the CSS scroll and skip the per-frame blur loop
+  // entirely (it reads every word's rect each frame — pure waste unseen).
+  const [onScreen, setOnScreen] = useState(true)
+
+  useEffect(() => {
+    const stage = stageRef.current
+    if (!stage) return
+    const io = new IntersectionObserver(([e]) => setOnScreen(e.isIntersecting), { rootMargin: '100px 0px' })
+    io.observe(stage)
+    return () => io.disconnect()
+  }, [])
 
   useEffect(() => {
     const stage = stageRef.current
@@ -108,7 +119,7 @@ export function PremiumMarquee() {
   // progressively blurred/faded toward the edges. Runs entirely through refs
   // and direct style mutation so it never triggers a React re-render.
   useEffect(() => {
-    if (reduced) return
+    if (reduced || !onScreen) return
     let rafId: number
 
     const tick = () => {
@@ -129,7 +140,7 @@ export function PremiumMarquee() {
 
     rafId = requestAnimationFrame(tick)
     return () => cancelAnimationFrame(rafId)
-  }, [reduced])
+  }, [reduced, onScreen])
 
   return (
     <section
@@ -215,7 +226,7 @@ export function PremiumMarquee() {
             <Group groupIndex={0} measureRef={groupRef} trailingGap={false} />
           </div>
         ) : (
-          <div className="pmq-track pmq-track--animate" aria-hidden="true">
+          <div className="pmq-track pmq-track--animate" aria-hidden="true" style={{ animationPlayState: onScreen ? 'running' : 'paused' }}>
             {Array.from({ length: copies }).map((_, i) => (
               <Group
                 key={i}

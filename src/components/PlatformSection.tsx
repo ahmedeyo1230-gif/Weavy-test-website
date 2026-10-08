@@ -312,7 +312,7 @@ export default function PlatformSection() {
         {/* ── The workflow — one continuous line through six stages ── */}
         <div
           ref={workflowRef}
-          className="relative flex flex-col md:flex-row items-center md:items-start"
+          className="ocs-workflow relative flex flex-col md:flex-row items-center md:items-start"
           style={{ gap: 'clamp(3.2rem, 6vw, 1.25rem)' }}
         >
           <svg

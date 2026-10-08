@@ -471,6 +471,31 @@ const CSS = `
   }
 }
 
+/* Phones: no sticky pin, so a full-viewport panel is just empty space. Size
+   each panel to its content, and bring the 01/02 label out of its absolute
+   desktop corner position into the flow, centred directly above the
+   (centred) heading so the number + heading read as one unit. */
+@media (max-width: 700px) {
+  .ssp-panel {
+    flex-direction: column;
+    min-height: 0;
+    padding: 80px 0 72px;
+  }
+  .ssp-panel--systems { padding-top: 64px; }
+  .ssp-corner-label {
+    position: relative;
+    top: auto;
+    left: auto;
+    margin: 0 24px 28px;
+    text-align: center;
+  }
+  .ssp-inner, .ssp-inner--closing {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  .ssp-inner--closing { min-height: 0; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .ssp-dot--animate { animation: none; box-shadow: 0 0 10px var(--dot-glow, transparent); }
   .ssp-scroll-cue-arrow--animate { animation: none; }
