@@ -41,6 +41,7 @@ temporary screenshots/
 !public/brand_assets/chatbott_web.mp4
 !public/brand_assets/homepage-presenter-enhanced.mp4
 !public/brand_assets/Web1.mp4
+!public/brand_assets/face-cream.mp4
 .vercel
 
 # Responsive audit screenshots
@@ -49,34 +50,54 @@ responsive-screenshots/
 # Root brand_assets/ — design source files, not used by the site
 /brand_assets/
 
-# public/brand_assets files not referenced anywhere in src/ (kept on disk,
-# excluded from git + deploys). If one gets used again, delete its line.
+# public/brand_assets files not referenced by src/ (via /brand_assets/<name>).
+# Kept on disk, excluded from git + deploys. Regenerate if assets change.
+/public/brand_assets/2w.png.png
+/public/brand_assets/A'llure3..mp4
 /public/brand_assets/A6_Flyer_Mockup_2.png
 /public/brand_assets/A6_Flyer_Mockup_2.webp
 /public/brand_assets/Baaris.png
 /public/brand_assets/Baaris.webp
 /public/brand_assets/Blog_1.png
+/public/brand_assets/Claude_image.png
+/public/brand_assets/Count.png
+/public/brand_assets/Cream_velvet.mp4
+/public/brand_assets/Damaal.mp4
 /public/brand_assets/Evy_cream.png
 /public/brand_assets/Fefo.png
 /public/brand_assets/Firefly-12.png
 /public/brand_assets/Firefly_4_1.png
+/public/brand_assets/Food.mp4
+/public/brand_assets/H.png
+/public/brand_assets/HERO_SECTION2.mp4
 /public/brand_assets/HI-D.png
+/public/brand_assets/HI-D.webp
 /public/brand_assets/Influncer.png
+/public/brand_assets/Instagram.png
 /public/brand_assets/Moodboard.png
 /public/brand_assets/Now1.png
 /public/brand_assets/Now_watch.png
+/public/brand_assets/OmarEventOrganiser's\ Facebook\ profile\ page-2.png
 /public/brand_assets/PHOTO-2026-06-01-00-43-01\ \(1\).png
 /public/brand_assets/Perfume.png
 /public/brand_assets/PrivateResidence.png
-/public/brand_assets/SIIRR.png
+/public/brand_assets/PrivateResidence.webp
+/public/brand_assets/Property.png
 /public/brand_assets/Smiley_women.png
 /public/brand_assets/Social_A.png
 /public/brand_assets/Taste_summer.png
+/public/brand_assets/Tiktok_automatiom.png
 /public/brand_assets/Video2_weavy.mp4
+/public/brand_assets/Website.png
+/public/brand_assets/Website_examples.png
+/public/brand_assets/Whatsapp.png
 /public/brand_assets/ZebraClinic.png
-/public/brand_assets/campaign-lips-1.png
-/public/brand_assets/campaign-lips-3.png
+/public/brand_assets/ZebraClinic.webp
+/public/brand_assets/aimedia.png
+/public/brand_assets/beauty.png
+/public/brand_assets/beauty.webp
 /public/brand_assets/campaign-siir-oud.png
+/public/brand_assets/chatbott_web.mp4
 /public/brand_assets/chatgpt-showcase-2.png
 /public/brand_assets/chatgpt-showcase-3.png
 /public/brand_assets/chatgpt-showcase-4.png
@@ -84,20 +105,27 @@ responsive-screenshots/
 /public/brand_assets/dashboard.png
 /public/brand_assets/dashboard1.png
 /public/brand_assets/dashboard1.webp
-/public/brand_assets/face-cream.mp4
 /public/brand_assets/firefly-saas-portrait.png
 /public/brand_assets/hero_section_chatbot.mp4
 /public/brand_assets/homepage-intro-audio-balanced.mp4
 /public/brand_assets/homepage-presenter-enhanced.mp4
-/public/brand_assets/kairos-mockup.png
 /public/brand_assets/makeup-ads-2026.mp4
+/public/brand_assets/messenger.png
+/public/brand_assets/office-portrait.png
 /public/brand_assets/performance.png
 /public/brand_assets/portfolio.png
+/public/brand_assets/section-work.mp4
 /public/brand_assets/section_work.png
 /public/brand_assets/section_work2.png
 /public/brand_assets/section_work3.png
-/public/brand_assets/solenne-mockup.png
+/public/brand_assets/site-design.png
+/public/brand_assets/social_control_room.mp4
+/public/brand_assets/social_lady.png
+/public/brand_assets/tik_youtube_images.png
+/public/brand_assets/tiktok_grid.mp4
 /public/brand_assets/ugc_creator_selection.webp
-/public/brand_assets/vael-mockup.png
 /public/brand_assets/video_weavy1.mov
-/public/brand_assets/zebra-mockup.png
+
+# Local media backups / re-encode outputs
+video_backups/
+video_compressed_r2/
