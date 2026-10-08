@@ -351,17 +351,17 @@ function BespokeFollowUp() {
 
         {/* Metadata bar */}
         <div
-          className="bfu3-r flex items-center justify-between pb-5 mb-12"
+          className="bfu3-r flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between pb-5 mb-10 sm:mb-12"
           style={{ borderBottom: '1px solid hsl(0 0% 100% / 0.06)' }}
         >
           <div className="flex items-center gap-4">
             <div style={{ width: 24, height: 1, background: 'hsl(199 89% 60% / 0.55)' }}/>
-            <span style={{ fontSize: '0.6rem', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'hsl(199 89% 60%)', fontFamily: 'var(--font-sans, sans-serif)', fontWeight: 500 }}>
+            <span className="mobile-label-min" style={{ fontSize: '0.6rem', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'hsl(199 89% 60%)', fontFamily: 'var(--font-sans, sans-serif)', fontWeight: 500 }}>
               02 — Conversion-Focused Design
             </span>
           </div>
           <div className="flex items-center gap-4">
-            <span style={{ fontSize: '14px', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(191, 225, 245, 0.72)', fontFamily: 'var(--font-sans, sans-serif)' }}>
+            <span className="bfu3-meta-right" style={{ fontSize: '14px', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(191, 225, 245, 0.72)', fontFamily: 'var(--font-sans, sans-serif)' }}>
               Bespoke Website Design
             </span>
             <div style={{ width: 24, height: 1, background: 'hsl(199 89% 60% / 0.55)' }}/>
@@ -376,17 +376,17 @@ function BespokeFollowUp() {
             <p style={{
               fontFamily: 'var(--font-sans, sans-serif)', fontWeight: 200,
               fontSize: 'clamp(3.8rem, 8.5vw, 7.5rem)',
-              color: 'hsl(0 0% 90%)', display: 'block', marginBottom: '0.04em',
+              color: 'hsl(0 0% 90%)', display: 'block', marginBottom: '0.04em', lineHeight: 0.87,
             }}>Designed</p>
             <p style={{
               fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400,
               fontSize: 'clamp(3.8rem, 8.5vw, 7.5rem)',
-              color: 'hsl(0 0% 44%)', display: 'block',
+              color: 'hsl(0 0% 44%)', display: 'block', lineHeight: 0.87,
             }}>to convert.</p>
           </div>
 
           {/* Body copy + editorial stat numbers */}
-          <div className="bfu3-r" style={{ maxWidth: '26rem', paddingBottom: '0.5rem' }}>
+          <div className="bfu3-r w-full lg:w-auto" style={{ maxWidth: '26rem', paddingBottom: '0.5rem' }}>
             <p className="font-sans font-normal mb-10" style={{
               fontSize: 'clamp(0.84rem, 1.3vw, 0.98rem)', lineHeight: 1.9, color: '#F2F8FC',
             }}>
@@ -395,7 +395,7 @@ function BespokeFollowUp() {
             </p>
 
             {/* Editorial stat trio */}
-            <div className="flex gap-8 sm:gap-10">
+            <div className="grid grid-cols-3 gap-4 sm:flex sm:gap-10">
               {([
                 { val: `+${s1}%`,                label: 'Conversion Growth', col: 'hsl(199 89% 65%)' },
                 { val: `${(s2/10).toFixed(1)}×`, label: 'Engagement',        col: 'hsl(145 65% 50%)' },
@@ -407,7 +407,7 @@ function BespokeFollowUp() {
                     fontSize: 'clamp(1.4rem, 2.5vw, 2.1rem)',
                     color: col, letterSpacing: '-0.04em', lineHeight: 1, marginBottom: '0.4rem',
                   }}>{val}</p>
-                  <p style={{
+                  <p className="bfu3-stat-label" style={{
                     fontFamily: 'var(--font-sans, sans-serif)', fontSize: '0.9rem',
                     letterSpacing: '0.16em', textTransform: 'uppercase',
                     color: 'rgba(244, 248, 250, 0.7)', fontWeight: 500,
@@ -1287,6 +1287,7 @@ function BespokeWebShowcase() {
                 aria-label={`Show ${project.name} — ${project.tag}`}
                 aria-current={active === i}
                 onClick={() => goTo(i)}
+                className="tap-area-y"
                 style={{
                   width: active === i ? 22 : 8, height: 8, borderRadius: '999px',
                   padding: 0, cursor: 'pointer',
@@ -1454,7 +1455,7 @@ function BespokeProcessTimeline() {
             {PROCESS_STEPS.map(({ num, title, desc }) => (
               <div
                 key={num}
-                className="bpt-step flex flex-col items-center sm:items-center text-left sm:text-center"
+                className="bpt-step flex flex-col items-center text-center"
               >
                 {/* Number bubble */}
                 <div
@@ -4262,7 +4263,7 @@ function SocialMediaMarketing() {
                 }}
               >
                 <img
-                  src="/brand_assets/Watch_L.png"
+                  src="/brand_assets/Watch_L.webp"
                   alt="Instagram luxury watch campaign visual"
                   style={{
                     position: 'absolute', inset: 0,
@@ -4323,7 +4324,7 @@ function SocialMediaMarketing() {
                 <img
                   loading="lazy"
                   decoding="async"
-                  src="/brand_assets/Shampoo.png"
+                  src="/brand_assets/Shampoo.webp"
                   alt="TikTok shampoo campaign visual"
                   style={{ display: 'block', width: '100%', height: 'auto' }}
                 />
@@ -9290,6 +9291,7 @@ export default function Services() {
 
   // Chatbot section scroll animations
   useEffect(() => {
+    if (!chatbotRef.current) return
     const ctx = gsap.context(() => {
       gsap.set('.cb-eyebrow, .cb-heading, .cb-intro, .cb-divider', { opacity: 0, y: 22 })
       gsap.set('.cb-feature', { opacity: 0, y: 28 })
@@ -9445,7 +9447,7 @@ export default function Services() {
         id="section-9"
         aria-labelledby="services-heading"
         className="relative w-full overflow-hidden"
-        style={{ background: '#010709', padding: 'clamp(6rem, 12vw, 10rem) 0 clamp(7rem, 14vw, 12rem)' }}
+        style={{ background: '#010709', padding: 'clamp(6rem, 12vw, 10rem) 0 clamp(4.5rem, 14vw, 12rem)' }}
       >
         {/* Animated beam rays background */}
         <BeamsBackgroundLayer intensity="subtle" />
@@ -9547,7 +9549,7 @@ export default function Services() {
         className="relative w-full overflow-hidden"
         style={{
           background: '#010709',
-          padding: 'clamp(6rem, 11vw, 10rem) 0 clamp(5rem, 9vw, 8rem)',
+          padding: 'clamp(4.5rem, 11vw, 10rem) 0 clamp(5rem, 9vw, 8rem)',
         }}
       >
         {/* Cross-hatch architecture texture */}

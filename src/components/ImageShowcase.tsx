@@ -1176,6 +1176,41 @@ function WorkHeroPhone() {
   )
 }
 
+const WORK_STORY_SRC = 'https://pub-731d5e7deddb4fce94cef7393920d429.r2.dev/HERO_SECTION2.mp4'
+
+// Phone version of the "Every project begins with a single question" video:
+// its copy is baked into the left ~30% of the 16:9 frame (≈5–12px on a
+// phone), so below 768px it becomes live text and the video is cropped to
+// the studio scene (x 36–100%, full height ≈ 1.14:1).
+function WorkStoryPhone() {
+  return (
+    <div className="px-6">
+      <p className="mobile-label-min" style={{ fontFamily: 'var(--font-body)', fontWeight: 400, color: 'rgba(235,240,242,0.78)', lineHeight: 1.5, margin: '0 0 1.4rem' }}>
+        Work made to be remembered.<br />Brands built to lead.
+      </p>
+      <h2 style={{ fontFamily: 'var(--font-accent)', fontWeight: 400, fontSize: 'clamp(2.1rem, 9.4vw, 2.8rem)', lineHeight: 1.08, color: '#EDEAE4', margin: 0 }}>
+        Every project begins with a single question —{' '}
+        <em style={{ fontStyle: 'italic' }}>what does this brand deserve to become?</em>
+      </h2>
+      <p style={{ fontSize: '16px', lineHeight: 1.65, color: 'rgba(235,240,242,0.82)', margin: '1.2rem 0 0', maxWidth: '26rem' }}>
+        We answer it through strategy, craft, and relentless attention to detail.
+      </p>
+      <span aria-hidden="true" style={{ display: 'block', width: '60%', height: 1, background: 'rgba(235,240,242,0.35)', margin: '1.6rem 0 1.75rem' }} />
+      <div aria-hidden="true" style={{ position: 'relative', width: '100%', aspectRatio: '1.138 / 1', overflow: 'hidden', borderRadius: '0.75rem' }}>
+        <video
+          src={WORK_STORY_SRC}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          style={{ position: 'absolute', top: 0, left: '-56.25%', width: '156.25%', maxWidth: 'none', height: 'auto' }}
+        />
+      </div>
+    </div>
+  )
+}
+
 export default function ImageShowcase() {
   const isPhone = useMediaQuery('(max-width: 767px)')
   return (
@@ -1220,6 +1255,7 @@ export default function ImageShowcase() {
         className="relative w-full overflow-hidden"
         style={{ background: '#040B0E', padding: 'clamp(1.5rem, 3vw, 2.5rem) 0' }}
       >
+        {isPhone ? <WorkStoryPhone /> : (
         <div className="relative max-w-[109rem] mx-auto px-[4px] sm:px-[7px] lg:px-8">
           <video
             autoPlay
@@ -1237,9 +1273,10 @@ export default function ImageShowcase() {
               borderRadius: '0.75rem',
             }}
           >
-            <source src="https://pub-731d5e7deddb4fce94cef7393920d429.r2.dev/HERO_SECTION2.mp4" type="video/mp4" />
+            <source src={WORK_STORY_SRC} type="video/mp4" />
           </video>
         </div>
+        )}
 
         {/* Bottom blend into gallery */}
         <div

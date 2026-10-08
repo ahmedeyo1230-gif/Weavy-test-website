@@ -1236,3 +1236,18 @@ body::after {
     font-size: 4.5rem !important;
   }
 }
+
+/* ── Services "Designed to convert" — phones ──────────────────────────────
+   Stat labels are 0.9rem/0.16em inline for desktop; three of them don't fit
+   a 342px row, so shrink + tighten them below 640px. The right-hand meta
+   label drops to label size to sit under the left one. */
+@media (max-width: 639px) {
+  .bfu3-stat-label { font-size: 11.5px !important; letter-spacing: 0.1em !important; }
+  .bfu3-meta-right { font-size: 12px !important; }
+}
+
+/* ── Invisible 44px-tall tap area for tiny dot buttons (carousel dots).
+   Visual size unchanged; width stays the dot's own so neighbours don't
+   overlap. ── */
+.tap-area-y { position: relative; }
+.tap-area-y::after { content: ''; position: absolute; left: 0; right: 0; top: 50%; height: 44px; transform: translateY(-50%); }
