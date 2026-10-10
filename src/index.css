@@ -1255,3 +1255,79 @@ body::after {
    overlap. ── */
 .tap-area-y { position: relative; }
 .tap-area-y::after { content: ''; position: absolute; left: 0; right: 0; top: 50%; height: 44px; transform: translateY(-50%); }
+
+/* ════════════════════════════════════════════════════════════════════════
+   Mobile refinements (<1024px unless noted). Desktop ≥1024px untouched.
+   ════════════════════════════════════════════════════════════════════════ */
+
+/* Fix 1 — Connected Systems: the 120–200px connector line started at the
+   section top but the mobile top padding is only 72px, so it ran through the
+   eyebrow + heading. Below 768px cap it inside that padding (ends ~26px above
+   the eyebrow); the travelling pulse keeps animating within it. */
+@media (max-width: 767px) {
+  .connected-system-line { height: 46px !important; }
+}
+
+/* Fix 2 — About Weavy highlighted phrases: the shared shimmer gradient has a
+   dark #2BA8D9 stop that reads muted on mobile. Scoped to #about so the
+   Systems/Services panel's use of the class is unaffected. Slow, soft sweep;
+   static gradient under reduced motion. */
+@media (max-width: 1023px) {
+  #about .weavy-shimmer-text {
+    background-image: linear-gradient(100deg, #4CC9F0 0%, #8FE3FA 30%, #B8F1FF 46%, #8FE3FA 62%, #4CC9F0 100%);
+    background-size: 220% auto;
+    animation-duration: 9s;
+  }
+}
+@media (max-width: 1023px) and (prefers-reduced-motion: reduce) {
+  #about .weavy-shimmer-text {
+    animation: none;
+    background-image: linear-gradient(90deg, #4CC9F0, #B8F1FF);
+    background-size: 100% auto;
+  }
+}
+
+/* Fix 3 — Bespoke carousel: the browser frame's width was set by the URL text
+   in its address bar (flex min-content), so ZEBRA (longest URL) rendered
+   wider and pushed both arrows off-screen. Let the frame take the remaining
+   row width regardless of URL, and let the URL truncate. */
+@media (max-width: 1023px) {
+  .bws-image-wrap { flex: 1 1 0%; min-width: 0; }
+  .bws-url { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+}
+/* Phones: give every slide the full content width and float the arrows over
+   the frame edges (vertically centred via top/margin, not transform — the
+   arrows set an inline transform on hover/tap). Darker glass backing keeps
+   them legible over light and dark slides alike. */
+@media (max-width: 767px) {
+  .bws-arrow {
+    position: absolute;
+    top: 50%;
+    margin-top: -19px;
+    z-index: 5;
+    width: 38px !important;
+    height: 38px !important;
+    opacity: 0.92 !important;
+    background: rgba(6, 8, 10, 0.62) !important;
+    border-color: rgba(255, 255, 255, 0.32) !important;
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+  }
+  .bws-arrow:first-child { left: 8px; }
+  .bws-arrow:last-child { right: 8px; }
+  /* 44px invisible hit area around the 38px button */
+  .bws-arrow::after { content: ""; position: absolute; inset: -3px; }
+}
+
+/* Fix 6 — Social Media "Digital Ecosystem": the mockup column kept its
+   560px desktop min-height, leaving ~370px of empty space around a ~190px
+   video on phones. Size it to the video below 1024px. */
+@media (max-width: 1023px) {
+  .smp-mockup-col { min-height: 0 !important; }
+}
+
+/* Fix 7 — Footer: remove the hairline border-top above the bottom bar
+   (availability / copyright / socials) on mobile + tablet only. */
+@media (max-width: 1023px) {
+  .footer-bottom-bar { border-top-color: transparent !important; }
+}

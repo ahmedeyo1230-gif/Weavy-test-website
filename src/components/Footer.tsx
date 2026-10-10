@@ -182,6 +182,15 @@ export function Marquee() {
           letter-spacing: 0.04em;
           text-transform: uppercase;
         }
+        /* Mobile/tablet: ~30% smaller so the line reads as a cinematic accent
+           rather than a wall of type; same face, italic and tracking. */
+        @media (max-width: 767px) {
+          .btf-word, .btf-sep { font-size: 24px; }
+          .btf-stage { height: 76px; }
+        }
+        @media (min-width: 768px) and (max-width: 1023px) {
+          .btf-word, .btf-sep { font-size: 28px; }
+        }
         .btf-word {
           color: rgba(216, 227, 229, 0.8);
         }

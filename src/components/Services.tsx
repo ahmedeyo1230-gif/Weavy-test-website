@@ -7,6 +7,7 @@ import { TestimonialsSection } from './ui/testimonials-1'
 import { GridBackground, NoiseCanvasBg, DarkSphereGridBg, BespokeCinemaArchBg } from './ui/grid-background'
 import { BeamsBackgroundLayer } from './ui/beams-background'
 import { CircularGallery, type GalleryItem } from './ui/circular-gallery'
+import { useMediaQuery } from '../lib/useMediaQuery'
 import { GradientBlurBg } from './ui/gradient-blur-bg'
 import { BorderRotate } from './ui/animated-gradient-border'
 import { goToPath } from '../lib/navigation'
@@ -1188,7 +1189,7 @@ function BespokeWebShowcase() {
                       <div key={i} style={{ width: 16, height: 10, borderRadius: '2px', background: 'hsl(30 8% 72%)', opacity: 0.65 }}/>
                     ))}
                   </div>
-                  <div style={{
+                  <div className="bws-url" style={{
                     flex: 1, background: 'hsl(36 16% 96%)',
                     border: '1px solid hsl(30 10% 76%)', borderRadius: '5px',
                     padding: '3px 12px', fontSize: '0.65rem',
@@ -3228,7 +3229,7 @@ function SocialMediaMarketing() {
       }}/>
 
       <div className="relative z-10 max-w-[80rem] mx-auto px-6 sm:px-12">
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.18fr] gap-20 lg:gap-12 xl:gap-24 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.18fr] gap-14 md:gap-20 lg:gap-12 xl:gap-24 items-center">
 
           {/* ── LEFT: copy ── */}
           <div className="relative flex flex-col justify-center">
@@ -3379,7 +3380,7 @@ function SocialMediaMarketing() {
 
           {/* ── RIGHT: floating mockup ── */}
           <div
-            className="relative flex items-center justify-center lg:justify-end"
+            className="smp-mockup-col relative flex items-center justify-center lg:justify-end"
             style={{ minHeight: '560px' }}
           >
 
@@ -5493,6 +5494,7 @@ const GD_GALLERY_ITEMS: GalleryItem[] = [
 // ─── Graphic Design / Animation — Editorial Content + Gallery ────────────────
 
 function GraphicDesignEditorial() {
+  const isPhone = useMediaQuery('(max-width: 767px)')
   const ref = useRef<HTMLElement>(null)
 
   useEffect(() => {
@@ -5614,7 +5616,9 @@ function GraphicDesignEditorial() {
       >
         <CircularGallery
           items={GD_GALLERY_ITEMS}
-          radius={560}
+          radius={isPhone ? 440 : 560}
+          cardWidth={isPhone ? 210 : 270}
+          cardHeight={isPhone ? 280 : 360}
           autoRotateSpeed={0.018}
           className="w-full h-full"
         />
