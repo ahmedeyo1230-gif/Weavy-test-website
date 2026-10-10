@@ -188,7 +188,7 @@ export const Contact2 = ({
 
   const inputClass = (field: string) =>
     cn(
-      "w-full bg-white/[0.03] border text-[#F8FAFC] placeholder:text-white/20 rounded-xl px-4 py-3 text-sm transition-all duration-300 outline-none",
+      "w-full bg-white/[0.03] border text-[#F8FAFC] placeholder:text-white/20 rounded-xl px-4 py-3 text-base lg:text-sm transition-all duration-300 outline-none",
       focused === field
         ? "border-[#38BDF8]/50 shadow-[0_0_20px_-6px_rgba(56,189,248,0.25)]"
         : "border-white/[0.08] hover:border-white/[0.14]"
