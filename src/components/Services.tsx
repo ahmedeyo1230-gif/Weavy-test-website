@@ -1107,7 +1107,7 @@ function BespokeWebShowcase() {
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >
-          <div style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 'clamp(0.6rem, 2.4vw, 1.75rem)' }}>
+          <div className="bws-row" style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 'clamp(0.6rem, 2.4vw, 1.75rem)' }}>
 
             {/* Left arrow */}
             <button
@@ -1280,7 +1280,7 @@ function BespokeWebShowcase() {
           </p>
 
           {/* Dot navigation */}
-          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '0.55rem', marginTop: '1.1rem' }}>
+          <div className="bws-dots" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '0.55rem', marginTop: '1.1rem' }}>
             {BWS_PROJECTS.map((project, i) => (
               <button
                 key={project.name}
@@ -2917,6 +2917,19 @@ const STRATEGY_ITEMS = [
 
 function SocialMediaMarketing() {
   const isBelowDesktop = useMediaQuery('(max-width: 1023px)')
+
+  // Mobile-only one-time light sheen on the "Content backed by strategy" titles
+  // as each scrolls into view (CSS in index.css: .m-strategy-title.is-sheen).
+  // Skipped entirely with reduced motion — titles simply stay bright.
+  useEffect(() => {
+    if (!isBelowDesktop || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    const titles = document.querySelectorAll<HTMLElement>('.m-strategy-title')
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-sheen'); io.unobserve(e.target) } })
+    }, { threshold: 0.6 })
+    titles.forEach(t => io.observe(t))
+    return () => io.disconnect()
+  }, [isBelowDesktop])
   const heroRef     = useRef<HTMLElement>(null)
   const platRef     = useRef<HTMLElement>(null)
   const stratRef    = useRef<HTMLElement>(null)
@@ -3596,7 +3609,7 @@ function SocialMediaMarketing() {
 
               {/* PRIMARY: OmarEventOrganiser — larger, left */}
               <div
-                className="smpr-main relative rounded-2xl overflow-hidden"
+                className="smpr-main m-fb-mockup relative rounded-2xl overflow-hidden"
                 style={{
                   opacity: 0, transform: 'translateY(36px)',
                   flex: '0.7',
@@ -9252,6 +9265,7 @@ function UGCPracticeEcosystem() {
 // ─── Services section ─────────────────────────────────────────────────────────
 
 export default function Services() {
+  const isBelowDesktop = useMediaQuery('(max-width: 1023px)')
   const sectionRef       = useRef<HTMLElement>(null)
   const chatbotRef       = useRef<HTMLElement>(null)
   const bwdCinemaRef     = useRef<HTMLElement>(null)
@@ -9868,7 +9882,7 @@ export default function Services() {
             {/* ── Left: text (unchanged) ── */}
             <div>
               <p
-                className="bwd1-eyebrow font-sans uppercase text-muted mb-6"
+                className="bwd1-eyebrow m-service-label font-sans uppercase text-muted mb-6"
                 style={{ fontSize: '1.15rem', letterSpacing: '0.32em' }}
               >
                 Service
@@ -10014,8 +10028,10 @@ export default function Services() {
         }}/>
       </section>
 
-      {/* ── Bespoke Website Design — Care Stories (Section 4) ── */}
-      <BespokeCareStories />
+      {/* ── Bespoke Website Design — Care Stories (Section 4) — desktop only;
+          removed from the mobile presentation (not rendered below 1024px, so
+          the CareWell mockup is never loaded on phones/tablets) ── */}
+      {!isBelowDesktop && <BespokeCareStories />}
 
       {/* ── Bespoke Website Design — process timeline ── */}
       <BespokeProcessTimeline />

@@ -1295,28 +1295,28 @@ body::after {
   .bws-image-wrap { flex: 1 1 0%; min-width: 0; }
   .bws-url { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 }
-/* Phones: give every slide the full content width and float the arrows over
-   the frame edges (vertically centred via top/margin, not transform — the
-   arrows set an inline transform on hover/tap). Darker glass backing keeps
-   them legible over light and dark slides alike. */
+/* Phones: every slide uses the full content width; the prev/next arrows sit
+   BELOW the mockup — left and right of the centred pagination dots — so they
+   never cover the showcased site. The row's own position:relative is
+   neutralised so the arrows anchor to the carousel wrapper's bottom edge,
+   and the dots row is made 44px tall so all three share one centre line.
+   Vertical placement uses bottom (not transform) because the arrows set an
+   inline transform on hover/tap. */
 @media (max-width: 767px) {
+  .bws-row { position: static !important; }
+  .bws-dots { min-height: 44px; margin-top: 0.85rem !important; }
   .bws-arrow {
     position: absolute;
-    top: 50%;
-    margin-top: -19px;
+    bottom: 0;
     z-index: 5;
-    width: 38px !important;
-    height: 38px !important;
+    width: 44px !important;
+    height: 44px !important;
     opacity: 0.92 !important;
     background: rgba(6, 8, 10, 0.62) !important;
     border-color: rgba(255, 255, 255, 0.32) !important;
-    -webkit-backdrop-filter: blur(8px);
-    backdrop-filter: blur(8px);
   }
-  .bws-arrow:first-child { left: 8px; }
-  .bws-arrow:last-child { right: 8px; }
-  /* 44px invisible hit area around the 38px button */
-  .bws-arrow::after { content: ""; position: absolute; inset: -3px; }
+  .bws-arrow:first-child { left: 0; }
+  .bws-arrow:last-child { right: 0; }
 }
 
 /* Fix 6 — Social Media "Digital Ecosystem": the mockup column kept its
@@ -1409,4 +1409,41 @@ body::after {
 }
 @media (max-width: 1023px) and (prefers-reduced-motion: reduce) {
   .gds-pill, .gds-pill .gds-pill-text, .gds-pill .gds-pill-icon { transition: none; }
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   Final mobile refinements (<1024px unless noted)
+   ════════════════════════════════════════════════════════════════════════ */
+
+/* Fix 1 — Facebook (OmarEventOrganiser) mockup ~18% smaller and centred on
+   phones, where the image row stacks. Width only — its transform/opacity are
+   GSAP-animated and left alone; height follows the image's own ratio. */
+@media (max-width: 639px) {
+  .m-fb-mockup { width: 82%; align-self: center; }
+}
+
+/* Fix 2 — one-time ice-blue light sheen across the strategy titles as they
+   enter view (class added by an IntersectionObserver in SocialMediaMarketing).
+   The band starts and ends off-glyph, so before and after the sweep the title
+   is the same solid #E6F8FF — no dark/light opacity cycling. */
+@media (max-width: 1023px) {
+  .m-strategy-title.is-sheen {
+    background-image: linear-gradient(100deg, #E6F8FF 0%, #E6F8FF 40%, #FFFFFF 47%, #B8F1FF 50%, #FFFFFF 53%, #E6F8FF 60%, #E6F8FF 100%);
+    background-size: 260% 100%;
+    background-position: 100% 0;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: m-title-sheen 2s cubic-bezier(0.4, 0, 0.2, 1) 1 forwards;
+  }
+  @keyframes m-title-sheen {
+    from { background-position: 100% 0; }
+    to   { background-position: 0% 0; }
+  }
+}
+
+/* Fix 5 — Bespoke Website Design "SERVICE" eyebrow: 13px, premium ice-cyan.
+   Letter-spacing, case and font family unchanged. */
+@media (max-width: 1023px) {
+  .m-service-label { font-size: 13px !important; color: #9DDFEF; }
 }
