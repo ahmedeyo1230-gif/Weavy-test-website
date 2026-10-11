@@ -396,7 +396,7 @@ function WorkCTA() {
         />
 
         {/* Paragraph */}
-        <p
+        <p className="m-cta-body"
           style={{
             ...item(280),
             fontFamily: 'var(--font-body)',
@@ -451,7 +451,7 @@ function WorkCTA() {
           </a>
 
           {/* Email link */}
-          <a
+          <a className="m-tx-secondary"
             href="mailto:hello@weavyautomation.com"
             onMouseEnter={() => setEmailHover(true)}
             onMouseLeave={() => setEmailHover(false)}
@@ -503,7 +503,7 @@ function WorkCTA() {
               boxShadow: '0 0 8px hsl(142 71% 52% / 0.6)',
             }} />
           </span>
-          <span style={{
+          <span className="m-cta-status" style={{
             fontFamily: 'var(--font-label)',
             fontWeight: 500,
             fontSize: '0.75rem',
@@ -715,6 +715,7 @@ function PhilosophyRow({
           }}
         />
         <h3
+          className="m-champagne-title"
           style={{
             fontFamily: 'var(--font-heading)',
             fontWeight: 500,

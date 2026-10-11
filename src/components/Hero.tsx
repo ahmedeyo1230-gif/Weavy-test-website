@@ -453,7 +453,7 @@ export default function Hero() {
             className="font-body text-lg sm:text-xl mb-8 font-light text-center"
           >
             <span aria-hidden="true">
-              <span className="max-sm:block" style={{ color: 'rgba(255,255,255,0.75)', textWrap: 'balance' }}>
+              <span className="max-sm:block m-tx-secondary" style={{ color: 'rgba(255,255,255,0.75)', textWrap: 'balance' }}>
                 More leads, faster replies, less manual work —{' '}
               </span>
               {/* inline-grid spacer: invisible widest phrase sets exact container width, no dead space */}
@@ -481,7 +481,7 @@ export default function Hero() {
 
           <motion.p
             variants={itemVariants}
-            className="font-body max-w-xl mx-auto mb-12 leading-relaxed text-base lg:text-lg font-normal"
+            className="font-body max-w-xl mx-auto mb-12 leading-relaxed text-base lg:text-lg font-normal m-tx-secondary"
             style={{ color: 'rgba(228, 238, 245, 0.88)', lineHeight: 1.75 }}
           >
             We help SMEs <span style={heroSubheadHighlight}>capture leads</span>, respond

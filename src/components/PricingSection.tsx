@@ -94,7 +94,7 @@ function PlanCard({ plan, index }: { plan: typeof PLANS[number]; index: number }
           {plan.price}
         </span>
         {plan.period && (
-          <span className="font-label font-medium" style={{ fontSize: '0.85rem', color: 'var(--text-description)' }}>{plan.period}</span>
+          <span className="font-label font-medium m-tx-label" style={{ fontSize: '0.85rem', color: 'var(--text-description)' }}>{plan.period}</span>
         )}
       </div>
 
@@ -102,7 +102,7 @@ function PlanCard({ plan, index }: { plan: typeof PLANS[number]; index: number }
         {plan.setup}
       </p>
 
-      <p className="font-body font-normal" style={{ fontSize: '15px', lineHeight: 1.65, color: 'var(--text-description)', marginBottom: '1.5rem' }}>
+      <p className="font-body font-normal m-tx-secondary" style={{ fontSize: '15px', lineHeight: 1.65, color: 'var(--text-description)', marginBottom: '1.5rem' }}>
         {plan.blurb}
       </p>
 
@@ -110,7 +110,7 @@ function PlanCard({ plan, index }: { plan: typeof PLANS[number]; index: number }
 
       <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: '0.7rem', flex: 1 }}>
         {plan.features.map(f => (
-          <li key={f} style={{ fontFamily: 'var(--font-body)', display: 'flex', alignItems: 'flex-start', gap: '0.6rem', fontSize: '15px', color: 'rgba(235,245,255,0.78)' }}>
+          <li key={f} className="m-tx-secondary" style={{ fontFamily: 'var(--font-body)', display: 'flex', alignItems: 'flex-start', gap: '0.6rem', fontSize: '15px', color: 'rgba(235,245,255,0.78)' }}>
             <span aria-hidden="true" style={{ flexShrink: 0, width: 5, height: 5, borderRadius: '50%', marginTop: '0.5rem', background: plan.featured ? '#7DDCFF' : 'rgba(125,220,255,0.45)' }} />
             {f}
           </li>
@@ -211,7 +211,7 @@ export default function PricingSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.65, delay: 0.14, ease: E }}
-            className="font-body font-normal"
+            className="font-body font-normal m-tx-secondary"
             style={{ fontSize: 'clamp(0.9rem, 1.4vw, 1rem)', lineHeight: 1.8, color: 'var(--text-muted)', marginTop: '1.2rem' }}
           >
             Start with one service, then add more as your business grows. Setup fees vary
@@ -232,7 +232,7 @@ export default function PricingSection() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3, ease: E }}
-          className="font-label font-medium text-center"
+          className="font-label font-medium text-center m-tx-secondary"
           style={{ fontSize: '0.82rem', color: 'var(--text-description)', marginTop: 'clamp(2rem, 4vw, 2.8rem)' }}
         >
           One-time setup fee applies. Monthly subscription covers hosting, optimisation, updates and support.

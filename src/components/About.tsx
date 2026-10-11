@@ -314,7 +314,7 @@ export default function About() { // no diagonal lines bg
                 {svc.num}
               </div>
               <div className="font-heading font-medium mb-2" style={{ fontSize: '1.15rem', color: 'var(--text-primary)' }}>{svc.label}</div>
-              <div className="font-body font-normal leading-relaxed" style={{ fontSize: '0.94rem', color: 'var(--text-description)' }}>
+              <div className="font-body font-normal leading-relaxed m-tx-secondary" style={{ fontSize: '0.94rem', color: 'var(--text-description)' }}>
                 {(() => {
                   const parts = svc.desc.split(svc.highlight)
                   return (

@@ -297,7 +297,7 @@ export default function WhyWeavyWorks() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="font-label font-medium text-xs uppercase tracking-widest text-accent-cyan/70 mb-5"
+            className="font-label font-medium text-xs uppercase tracking-widest text-accent-cyan/70 mb-5 m-why-label"
           >
             Why Weavy Works
           </motion.p>
@@ -370,10 +370,10 @@ export default function WhyWeavyWorks() {
                 {feature.icon}
               </div>
               <div>
-                <h3 className="font-heading text-xl font-medium tracking-tight mb-2" style={{ color: 'var(--text-primary)' }}>
+                <h3 className="font-heading text-xl font-medium tracking-tight mb-2 m-why-title" style={{ color: 'var(--text-primary)' }}>
                   {feature.title}
                 </h3>
-                <p className="font-body font-normal leading-relaxed" style={{ color: 'rgba(255,255,255,0.72)', lineHeight: 1.75 }}>
+                <p className="font-body font-normal leading-relaxed m-tx-secondary" style={{ color: 'rgba(255,255,255,0.72)', lineHeight: 1.75 }}>
                   {feature.description}
                 </p>
               </div>

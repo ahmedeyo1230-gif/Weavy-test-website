@@ -1331,3 +1331,82 @@ body::after {
 @media (max-width: 1023px) {
   .footer-bottom-bar { border-top-color: transparent !important; }
 }
+
+/* ════════════════════════════════════════════════════════════════════════
+   Mobile text tones (<1024px only). Supporting copy across the site was set
+   inline to mid-greys (#98A5A3 / #A7B0B3 / #C4CCCA / hsl 44–56%) or white at
+   65–78% alpha, which reads grey and dim against the near-black sections on
+   a phone. These three tones restore a clear primary / secondary / label
+   hierarchy. !important is required only because the colours they replace
+   are inline styles; accent colours and gradient-clipped highlight phrases
+   are never given these classes.
+   ════════════════════════════════════════════════════════════════════════ */
+@media (max-width: 1023px) {
+  .m-tx-primary   { color: #F5F7FA !important; }
+  .m-tx-secondary { color: #D5DAE0 !important; }
+  .m-tx-label     { color: #B8C4CE !important; }
+  /* Systems in Motion row numbers: drop the 73% alpha on the row's own
+     accent colour (12px label measured 3:1 on the purple row). */
+  .m-tx-accent-solid { color: var(--accent-solid) !important; }
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   Mobile accent refinements (<1024px only). Colours below replace inline
+   styles, hence !important on colour declarations only.
+   ════════════════════════════════════════════════════════════════════════ */
+@media (max-width: 1023px) {
+  /* Fix 2 — Social Media "Content backed by strategy" list titles: ice-white
+     with a faint cyan tint; numbers keep their cyan, descriptions unchanged. */
+  .m-strategy-title {
+    color: #E6F8FF !important;
+    text-shadow: 0 0 18px rgba(125, 220, 255, 0.16) !important;
+  }
+
+  /* Fix 5 — Work "Strategy before visuals" process titles: muted champagne. */
+  .m-champagne-title { color: #D6B56C !important; }
+
+  /* Fix 6 — Work "Let's build work people remember": supporting copy only.
+     Paragraph lifted just above the secondary tone; status label solid ice. */
+  .m-cta-body   { color: #E3E8ED !important; }
+  .m-cta-status { color: #BFEFFF !important; }
+
+  /* Fix 7 — One Connected System step titles: ice-cyan. */
+  .m-workflow-title { color: #8EDFF5 !important; }
+
+  /* Fix 8 — System Architecture headings tinted from each card's accent. */
+  .m-arch-title { color: var(--arch-title) !important; }
+
+  /* Fix 9 — "WHY WEAVY WORKS" eyebrow: silver-blue (was cyan at 70%).
+     It sat underneath the section's 220px top-blend overlay (z-index 10),
+     which is what actually darkened it — lift just the label above it. */
+  .m-why-label { color: #A9DDEB; position: relative; z-index: 11; }
+
+  /* Fix 10 — Why Weavy Works benefit card titles: icy white. */
+  .m-why-title { color: #DDF5FA !important; }
+
+  /* Fix 4 — Graphic Design service pills: feedback only on real interaction
+     (press on touch, hover with a mouse); nothing persists afterwards and the
+     items stay non-focusable since they perform no action. */
+  .gds-pill,
+  .gds-pill .gds-pill-text,
+  .gds-pill .gds-pill-icon {
+    transition: border-color 220ms ease, background-color 220ms ease, color 220ms ease, filter 220ms ease;
+  }
+  .gds-pill:active {
+    border-color: rgba(214, 181, 108, 0.38);
+    background-color: rgba(214, 181, 108, 0.06);
+  }
+  .gds-pill:active .gds-pill-text { color: rgba(255, 255, 255, 0.92); }
+  .gds-pill:active .gds-pill-icon { filter: brightness(1.25) saturate(1.1); }
+}
+@media (max-width: 1023px) and (hover: hover) and (pointer: fine) {
+  .gds-pill:hover {
+    border-color: rgba(214, 181, 108, 0.38);
+    background-color: rgba(214, 181, 108, 0.06);
+  }
+  .gds-pill:hover .gds-pill-text { color: rgba(255, 255, 255, 0.92); }
+  .gds-pill:hover .gds-pill-icon { filter: brightness(1.25) saturate(1.1); }
+}
+@media (max-width: 1023px) and (prefers-reduced-motion: reduce) {
+  .gds-pill, .gds-pill .gds-pill-text, .gds-pill .gds-pill-icon { transition: none; }
+}

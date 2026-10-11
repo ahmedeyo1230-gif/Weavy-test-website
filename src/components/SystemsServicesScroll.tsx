@@ -496,6 +496,19 @@ const CSS = `
   .ssp-inner--closing { min-height: 0; }
 }
 
+/* Phones/tablets: the list text rests at 0.76 opacity and only reaches full
+   strength on hover, which touch screens never trigger, so it stayed dim.
+   Settle at 0.92 instead (same one-time glow, higher resting point). */
+@media (max-width: 1023px) {
+  .ssp-item-text { opacity: 0.92; }
+  .ssp-item-text--animate { animation-name: ssp-item-text-glow-once-touch; }
+  @keyframes ssp-item-text-glow-once-touch {
+    0%   { opacity: 0.8; }
+    55%  { opacity: 1; }
+    100% { opacity: 0.92; }
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .ssp-dot--animate { animation: none; box-shadow: 0 0 10px var(--dot-glow, transparent); }
   .ssp-scroll-cue-arrow--animate { animation: none; }

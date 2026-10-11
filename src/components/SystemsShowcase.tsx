@@ -56,6 +56,15 @@ const SERVICES: ServiceDef[] = [
 // Node centre from panel left edge: px-6 (24px) + half of w-8 (16px) = 40px
 const SPINE_LEFT = 40
 
+// Mobile-only heading tints, derived from each card's accent (lighter so
+// they hold AA contrast on the tinted card backgrounds).
+const ARCH_TITLE_TINT: Record<string, string> = {
+  '#38BDF8': '#8EDFF5', // Content Automation — cyan
+  '#22C55E': '#7BE0AE', // Growth Systems — emerald
+  '#A855F7': '#C4A7FF', // Communication — violet
+  '#F59E0B': '#E6C27A', // Brand Intelligence — champagne-amber
+}
+
 // ─── Module row ───────────────────────────────────────────────────────────────
 
 function ModuleRow({ svc, index }: { svc: ServiceDef; index: number }) {
@@ -172,20 +181,20 @@ function ModuleRow({ svc, index }: { svc: ServiceDef; index: number }) {
         <div className="flex-1 min-w-0">
           <div className="flex items-baseline gap-2 mb-1.5">
             <span
-              className="font-mono text-[10px] tracking-widest select-none shrink-0 mobile-label-min"
-              style={{ color: `${svc.accent}bb` }}
+              className="font-mono text-[10px] tracking-widest select-none shrink-0 mobile-label-min m-tx-accent-solid"
+              style={{ color: `${svc.accent}bb`, ['--accent-solid' as string]: svc.accent }}
             >
               {svc.num}
             </span>
             <h3
               ref={titleRef}
-              className="font-heading font-medium tracking-tight"
-              style={{ fontSize: '16px', color: 'hsl(0 0% 90%)', transition: 'color 220ms' }}
+              className="font-heading font-medium tracking-tight m-arch-title"
+              style={{ fontSize: '16px', color: 'hsl(0 0% 90%)', transition: 'color 220ms', ['--arch-title' as string]: ARCH_TITLE_TINT[svc.accent] }}
             >
               {svc.title}
             </h3>
           </div>
-          <p className="font-body font-normal leading-[1.72]" style={{ fontSize: '15px', color: 'var(--text-description)' }}>
+          <p className="font-body font-normal leading-[1.72] m-tx-secondary" style={{ fontSize: '15px', color: 'var(--text-description)' }}>
             {svc.description}
           </p>
         </div>
@@ -241,7 +250,7 @@ function ArchitecturePanel() {
             }}
           />
           <span
-            className="font-label font-medium text-[10px] uppercase tracking-[0.12em] sm:tracking-[0.2em] mobile-label-min"
+            className="font-label font-medium text-[10px] uppercase tracking-[0.12em] sm:tracking-[0.2em] mobile-label-min m-tx-label"
             style={{ color: 'var(--text-muted)' }}
           >
             Weavy · System Architecture
@@ -342,7 +351,7 @@ export default function SystemsShowcase() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.16, ease: E }}
-              className="font-body text-muted text-lg font-normal leading-relaxed mb-10"
+              className="font-body text-muted text-lg font-normal leading-relaxed mb-10 m-tx-secondary"
             >
               We don't sell hours. We sell outcomes. Here are the core architectures
               we deploy to scale your operations.

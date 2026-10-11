@@ -152,7 +152,7 @@ export default function TestimonialsSection() {
                 <Avatar name={t.name} initials={t.initials} avatar={t.avatar} avatarGradient={t.avatarGradient} avatarFocalPoint={t.avatarFocalPoint} />
                 <div>
                   <p className="font-body font-medium text-primary" style={{ fontSize: '15px' }}>{t.name}</p>
-                  <p className="font-label mt-0.5 font-medium" style={{ fontSize: '13px', color: 'var(--text-muted)' }}>{t.role}</p>
+                  <p className="font-label mt-0.5 font-medium m-tx-label" style={{ fontSize: '13px', color: 'var(--text-muted)' }}>{t.role}</p>
                 </div>
               </div>
             </motion.div>

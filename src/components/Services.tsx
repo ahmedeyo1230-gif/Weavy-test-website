@@ -177,7 +177,7 @@ function ServiceCard({ service, onLearnMore }: ServiceCardProps) {
 
           {/* Description */}
           <p
-            className="font-sans font-normal relative z-10 mb-6 flex-1"
+            className="font-sans font-normal relative z-10 mb-6 flex-1 m-tx-secondary"
             style={{
               fontSize: '0.82rem',
               color: 'hsl(0 0% 48%)',
@@ -2916,6 +2916,7 @@ const STRATEGY_ITEMS = [
 
 
 function SocialMediaMarketing() {
+  const isBelowDesktop = useMediaQuery('(max-width: 1023px)')
   const heroRef     = useRef<HTMLElement>(null)
   const platRef     = useRef<HTMLElement>(null)
   const stratRef    = useRef<HTMLElement>(null)
@@ -3523,7 +3524,7 @@ function SocialMediaMarketing() {
                   {String(i + 1).padStart(2, '0')}
                 </span>
                 {/* Label */}
-                <p className="font-sans font-normal shrink-0" style={{ fontSize: 'clamp(0.95rem, 1.5vw, 1.1rem)', letterSpacing: '-0.015em', minWidth: '18rem', color: '#BFEFFF', textShadow: '0 0 16px rgba(125,220,255,0.12)' }}>
+                <p className="font-sans font-normal shrink-0 m-strategy-title" style={{ fontSize: 'clamp(0.95rem, 1.5vw, 1.1rem)', letterSpacing: '-0.015em', minWidth: '18rem', color: '#BFEFFF', textShadow: '0 0 16px rgba(125,220,255,0.12)' }}>
                   {label}
                 </p>
                 {/* Desc */}
@@ -4291,62 +4292,65 @@ function SocialMediaMarketing() {
               </div>
             </div>
 
-            {/* Image 2: TikTok Shampoo — natural tall vertical */}
-            <div className="flex-1 relative" style={{ zIndex: 2 }}>
-              <div
-                className="s5cv-img-b"
-                style={{
-                  opacity: 0, transform: 'translateY(48px)',
-                  borderRadius: '28px', overflow: 'hidden',
-                  boxShadow: [
-                    '0 48px 96px -16px hsl(0 0% 0% / 0.93)',
-                    '0 0 0 1px hsl(0 0% 100% / 0.08)',
-                    '0 0 72px -16px hsl(280 65% 65% / 0.24)',
-                  ].join(', '),
-                  background: '#080a0e',
-                  transition: 'transform 0.65s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.65s ease',
-                  position: 'relative',
-                }}
-                onMouseEnter={e => {
-                  (e.currentTarget as HTMLElement).style.boxShadow = [
-                    '0 64px 120px -14px hsl(0 0% 0% / 0.97)',
-                    '0 0 0 1px hsl(0 0% 100% / 0.12)',
-                    '0 0 90px -12px hsl(280 65% 65% / 0.34)',
-                  ].join(', ')
-                }}
-                onMouseLeave={e => {
-                  (e.currentTarget as HTMLElement).style.boxShadow = [
-                    '0 48px 96px -16px hsl(0 0% 0% / 0.93)',
-                    '0 0 0 1px hsl(0 0% 100% / 0.08)',
-                    '0 0 72px -16px hsl(280 65% 65% / 0.24)',
-                  ].join(', ')
-                }}
-              >
-                <img
-                  loading="lazy"
-                  decoding="async"
-                  src="/brand_assets/Shampoo.webp"
-                  alt="TikTok shampoo campaign visual"
-                  style={{ display: 'block', width: '100%', height: 'auto' }}
-                />
-                {/* TikTok platform tag */}
-                <div style={{
-                  position: 'absolute', bottom: '0.85rem', right: '0.85rem',
-                  background: 'hsl(0 0% 4% / 0.9)',
-                  backdropFilter: 'blur(14px)',
-                  border: '1px solid hsl(280 65% 65% / 0.22)',
-                  borderRadius: '999px',
-                  padding: '0.28rem 0.8rem',
-                  display: 'flex', alignItems: 'center', gap: '0.38rem',
-                  zIndex: 2,
-                }}>
-                  <span style={{ width: 4, height: 4, borderRadius: '50%', background: 'hsl(280 65% 65%)', flexShrink: 0 }}/>
-                  <span style={{ fontSize: '0.55rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'hsl(280 65% 72%)', fontFamily: 'var(--font-label)', fontWeight: 300 }}>
-                    TikTok
-                  </span>
+            {/* Image 2: TikTok Shampoo — desktop only (removed from the mobile
+                presentation; not rendered below 1024px, so phones never load it) */}
+            {!isBelowDesktop && (
+              <div className="flex-1 relative" style={{ zIndex: 2 }}>
+                <div
+                  className="s5cv-img-b"
+                  style={{
+                    opacity: 0, transform: 'translateY(48px)',
+                    borderRadius: '28px', overflow: 'hidden',
+                    boxShadow: [
+                      '0 48px 96px -16px hsl(0 0% 0% / 0.93)',
+                      '0 0 0 1px hsl(0 0% 100% / 0.08)',
+                      '0 0 72px -16px hsl(280 65% 65% / 0.24)',
+                    ].join(', '),
+                    background: '#080a0e',
+                    transition: 'transform 0.65s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.65s ease',
+                    position: 'relative',
+                  }}
+                  onMouseEnter={e => {
+                    (e.currentTarget as HTMLElement).style.boxShadow = [
+                      '0 64px 120px -14px hsl(0 0% 0% / 0.97)',
+                      '0 0 0 1px hsl(0 0% 100% / 0.12)',
+                      '0 0 90px -12px hsl(280 65% 65% / 0.34)',
+                    ].join(', ')
+                  }}
+                  onMouseLeave={e => {
+                    (e.currentTarget as HTMLElement).style.boxShadow = [
+                      '0 48px 96px -16px hsl(0 0% 0% / 0.93)',
+                      '0 0 0 1px hsl(0 0% 100% / 0.08)',
+                      '0 0 72px -16px hsl(280 65% 65% / 0.24)',
+                    ].join(', ')
+                  }}
+                >
+                  <img
+                    loading="lazy"
+                    decoding="async"
+                    src="/brand_assets/Shampoo.webp"
+                    alt="TikTok shampoo campaign visual"
+                    style={{ display: 'block', width: '100%', height: 'auto' }}
+                  />
+                  {/* TikTok platform tag */}
+                  <div style={{
+                    position: 'absolute', bottom: '0.85rem', right: '0.85rem',
+                    background: 'hsl(0 0% 4% / 0.9)',
+                    backdropFilter: 'blur(14px)',
+                    border: '1px solid hsl(280 65% 65% / 0.22)',
+                    borderRadius: '999px',
+                    padding: '0.28rem 0.8rem',
+                    display: 'flex', alignItems: 'center', gap: '0.38rem',
+                    zIndex: 2,
+                  }}>
+                    <span style={{ width: 4, height: 4, borderRadius: '50%', background: 'hsl(280 65% 65%)', flexShrink: 0 }}/>
+                    <span style={{ fontSize: '0.55rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'hsl(280 65% 72%)', fontFamily: 'var(--font-label)', fontWeight: 300 }}>
+                      TikTok
+                    </span>
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
 
           </div>
 
@@ -5616,9 +5620,9 @@ function GraphicDesignEditorial() {
       >
         <CircularGallery
           items={GD_GALLERY_ITEMS}
-          radius={isPhone ? 440 : 560}
-          cardWidth={isPhone ? 210 : 270}
-          cardHeight={isPhone ? 280 : 360}
+          radius={isPhone ? 375 : 560}
+          cardWidth={isPhone ? 180 : 270}
+          cardHeight={isPhone ? 240 : 360}
           autoRotateSpeed={0.018}
           className="w-full h-full"
         />
@@ -5834,7 +5838,7 @@ function GraphicDesignServices() {
           {GDS_ITEMS.map((item) => (
             <div
               key={item}
-              className="w-full min-w-0 flex items-center gap-4 rounded-full border border-white/10 bg-white/[0.03] px-5 py-4 cursor-default select-none relative"
+              className="gds-pill w-full min-w-0 flex items-center gap-4 rounded-full border border-white/10 bg-white/[0.03] px-5 py-4 cursor-default select-none relative"
               style={{
                 boxShadow: [
                   'inset 0 1px 0 hsl(0 0% 100% / 0.05)',
@@ -5856,11 +5860,11 @@ function GraphicDesignServices() {
                 }}
               />
 
-              <div style={{ flexShrink: 0 }} aria-hidden>
+              <div className="gds-pill-icon" style={{ flexShrink: 0 }} aria-hidden>
                 <GdsCheckIcon />
               </div>
 
-              <span className="text-sm sm:text-base text-white/65 leading-normal whitespace-normal break-words min-w-0 font-sans font-medium">
+              <span className="gds-pill-text text-sm sm:text-base text-white/65 leading-normal whitespace-normal break-words min-w-0 font-sans font-medium">
                 {item}
               </span>
             </div>
@@ -9503,7 +9507,7 @@ export default function Services() {
 
           {/* Subheading */}
           <p
-            className="services-body font-sans font-normal mb-14 max-w-xl"
+            className="services-body font-sans font-normal mb-14 max-w-xl m-tx-secondary"
             style={{
               fontSize: 'clamp(0.9rem, 1.5vw, 1.05rem)',
               lineHeight: 1.8,
@@ -9667,7 +9671,7 @@ export default function Services() {
 
             {/* Sub-labels */}
             <p
-              className="bwdc-sub font-sans font-normal"
+              className="bwdc-sub font-sans font-normal m-tx-secondary"
               style={{
                 fontSize: 'clamp(0.92rem, 1.47vw, 1.08rem)', letterSpacing: '0.04em',
                 color: 'hsl(0 0% 48%)', lineHeight: 1.7,

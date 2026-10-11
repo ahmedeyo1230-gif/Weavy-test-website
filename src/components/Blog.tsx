@@ -452,7 +452,7 @@ function FeaturedArticle({ onRead }: { onRead: () => void }) {
             {FEATURED.category}
           </span>
           <span style={{ display: 'inline-block', width: 1, height: 10, background: 'hsl(0 0% 100% / 0.12)' }} />
-          <span className="mobile-label-min" style={{ fontFamily: 'var(--font-label)', fontWeight: 500, fontSize: '0.66rem', color: 'var(--text-muted)', letterSpacing: '0.05em' }}>
+          <span className="mobile-label-min m-tx-label" style={{ fontFamily: 'var(--font-label)', fontWeight: 500, fontSize: '0.66rem', color: 'var(--text-muted)', letterSpacing: '0.05em' }}>
             {FEATURED.readTime}
           </span>
         </div>
@@ -572,7 +572,7 @@ function ArticleCard({
       </p>
 
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '0.3rem', paddingTop: '1rem', borderTop: '1px solid hsl(0 0% 100% / 0.05)' }}>
-        <span className="mobile-label-min" style={{ fontFamily: 'var(--font-label)', fontWeight: 500, fontSize: '0.63rem', color: 'var(--text-muted)', letterSpacing: '0.04em' }}>
+        <span className="mobile-label-min m-tx-label" style={{ fontFamily: 'var(--font-label)', fontWeight: 500, fontSize: '0.63rem', color: 'var(--text-muted)', letterSpacing: '0.04em' }}>
           {article.readTime}
         </span>
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
@@ -760,7 +760,7 @@ function BlogCTA() {
             </button>
 
             {/* Email link */}
-            <a
+            <a className="m-tx-label"
               href="mailto:hello@weavyautomation.com"
               onMouseEnter={() => setEmailHover(true)}
               onMouseLeave={() => setEmailHover(false)}

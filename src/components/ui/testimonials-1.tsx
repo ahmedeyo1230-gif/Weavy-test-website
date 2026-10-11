@@ -120,7 +120,7 @@ export function TestimonialsSection({
           </h2>
 
           <p
-            className="ts-sub font-sans font-light"
+            className="ts-sub font-sans font-light m-tx-secondary"
             style={{
               fontSize: 'clamp(0.88rem, 1.5vw, 1.02rem)',
               lineHeight: 1.85,
@@ -171,7 +171,7 @@ export function TestimonialsSection({
 
                 <CardContent style={{ padding: '0.5rem 1.5rem 1.25rem', flex: 1 }}>
                   <p
-                    className="font-sans font-light"
+                    className="font-sans font-light m-tx-secondary"
                     style={{
                       fontSize: 'clamp(0.88rem, 1.35vw, 0.97rem)',
                       lineHeight: 1.8,
@@ -241,7 +241,7 @@ export function TestimonialsSection({
                         {t.name}
                       </p>
                       <p
-                        className="font-sans font-light"
+                        className="font-sans font-light m-tx-label"
                         style={{ fontSize: '0.75rem', color: 'hsl(0 0% 44%)' }}
                       >
                         {t.role}

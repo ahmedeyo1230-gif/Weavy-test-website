@@ -70,9 +70,9 @@ function StatCounter({ value, suffix = '', prefix = '', bigText, label, descript
         </p>
       )}
       {label && (
-        <p className="font-label text-xs uppercase tracking-widest mb-2 font-medium" style={{ color: 'var(--text-muted)', letterSpacing: '0.15em' }}>{label}</p>
+        <p className="font-label text-xs uppercase tracking-widest mb-2 font-medium m-tx-label" style={{ color: 'var(--text-muted)', letterSpacing: '0.15em' }}>{label}</p>
       )}
-      <p className="font-label text-[0.8125rem] sm:text-xs font-medium max-w-[150px] sm:max-w-[120px] leading-relaxed" style={{ color: 'var(--text-description)' }}>{description}</p>
+      <p className="font-label text-[0.8125rem] sm:text-xs font-medium max-w-[150px] sm:max-w-[120px] leading-relaxed m-tx-secondary" style={{ color: 'var(--text-description)' }}>{description}</p>
     </motion.div>
   )
 }

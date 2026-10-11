@@ -219,7 +219,7 @@ export const Contact2 = ({
             transition={{ duration: 0.9, ease: E }}
             className="text-center mb-16"
           >
-            <p className="font-label text-[0.75rem] lg:text-[0.65rem] font-medium tracking-[0.3em] uppercase mb-4" style={{ color: 'var(--text-muted)' }}>
+            <p className="font-label text-[0.75rem] lg:text-[0.65rem] font-medium tracking-[0.3em] uppercase mb-4 m-tx-label" style={{ color: 'var(--text-muted)' }}>
               Let's work together
             </p>
             <h1

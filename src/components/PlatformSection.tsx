@@ -302,7 +302,7 @@ export default function PlatformSection() {
           </h2>
 
           <p
-            className="ocs-header-el font-body font-normal"
+            className="ocs-header-el font-body font-normal m-tx-secondary"
             style={{ fontSize: 'clamp(0.95rem, 1.6vw, 1.1rem)', lineHeight: 1.8, color: 'var(--text-muted)', marginTop: '1.3rem' }}
           >
             Voice, messaging, CRM, follow-ups and bookings working as one managed flow.
@@ -381,18 +381,18 @@ export default function PlatformSection() {
                 <Icon type={stage.icon} color={stage.success ? GREEN : CYAN} />
               </div>
 
-              <h3 className="font-heading font-medium" style={{ fontSize: '16px', color: 'var(--text-primary)', marginBottom: '0.4rem', letterSpacing: '-0.01em' }}>
+              <h3 className="font-heading font-medium m-workflow-title" style={{ fontSize: '16px', color: 'var(--text-primary)', marginBottom: '0.4rem', letterSpacing: '-0.01em' }}>
                 {stage.label}
               </h3>
 
               {stage.desc && (
-                <p className="font-body font-normal" style={{ fontSize: '15px', lineHeight: 1.65, color: '#A7B0B3', opacity: 1 }}>
+                <p className="font-body font-normal m-tx-secondary" style={{ fontSize: '15px', lineHeight: 1.65, color: '#A7B0B3', opacity: 1 }}>
                   {stage.desc}
                 </p>
               )}
 
               {stage.channels && (
-                <p className="font-body font-normal" style={{ fontSize: '13px', lineHeight: 1.6, color: '#A7B0B3', opacity: 1 }}>
+                <p className="font-body font-normal m-tx-label" style={{ fontSize: '13px', lineHeight: 1.6, color: '#A7B0B3', opacity: 1 }}>
                   {stage.channels.join(' · ')}
                 </p>
               )}
