@@ -769,7 +769,7 @@ function BlogCTA() {
                 fontWeight: 500,
                 fontSize: 'clamp(0.8rem, 1.2vw, 0.88rem)',
                 letterSpacing: '0.02em',
-                color: emailHover ? 'hsl(0 0% 72%)' : 'hsl(0 0% 34%)',
+                color: emailHover ? 'hsl(0 0% 72%)' : '#B8C4CE',
                 textDecoration: 'none',
                 borderBottom: `1px solid ${emailHover ? 'hsl(0 0% 72% / 0.45)' : 'hsl(0 0% 100% / 0.1)'}`,
                 paddingBottom: '2px',

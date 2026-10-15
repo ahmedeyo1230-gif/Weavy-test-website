@@ -460,7 +460,7 @@ function WorkCTA() {
               fontWeight: 500,
               fontSize: 'clamp(0.82rem, 1.2vw, 0.9rem)',
               letterSpacing: '0.02em',
-              color: emailHover ? 'hsl(0 0% 78%)' : 'rgba(235, 245, 255, 0.80)',
+              color: emailHover ? 'hsl(0 0% 78%)' : '#D5DAE0',
               textDecoration: 'none',
               borderBottom: `1px solid ${emailHover ? 'hsl(0 0% 78% / 0.5)' : 'rgba(125, 220, 255, 0.28)'}`,
               paddingBottom: '1px',
@@ -722,7 +722,7 @@ function PhilosophyRow({
             fontSize: 'clamp(0.95rem, 1.6vw, 1.12rem)',
             lineHeight: 1.3,
             letterSpacing: '-0.02em',
-            color: hovered ? '#fff' : 'hsl(0 0% 72%)',
+            color: hovered ? '#fff' : '#D6B56C',
             marginBottom: '0.6rem',
             transition: 'color 0.3s ease',
           }}

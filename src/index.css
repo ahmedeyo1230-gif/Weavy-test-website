@@ -1447,3 +1447,66 @@ body::after {
 @media (max-width: 1023px) {
   .m-service-label { font-size: 13px !important; color: #9DDFEF; }
 }
+
+/* ════════════════════════════════════════════════════════════════════════
+   DESKTOP refinements (≥1024px) — mirrors the approved mobile text tones and
+   accent colours. Mobile rules above are untouched. !important only where
+   the replaced colour is an inline style. Links (Blog / Work CTA email) and
+   titles with desktop hover effects (architecture, Work process) get their
+   resting colour in the component instead, so their hover still works.
+   ════════════════════════════════════════════════════════════════════════ */
+@media (min-width: 1024px) {
+  .m-tx-primary:not(a)   { color: #F5F7FA !important; }
+  .m-tx-secondary:not(a) { color: #D5DAE0 !important; }
+  .m-tx-label:not(a)     { color: #B8C4CE !important; }
+  .m-tx-accent-solid     { color: var(--accent-solid) !important; }
+
+  .m-strategy-title {
+    color: #E6F8FF !important;
+    text-shadow: 0 0 18px rgba(125, 220, 255, 0.16) !important;
+  }
+  .m-cta-body        { color: #E3E8ED !important; }
+  .m-cta-status      { color: #BFEFFF !important; }
+  .m-workflow-title  { color: #8EDFF5 !important; }
+  .m-why-label       { color: #A9DDEB; }
+  .m-why-title       { color: #DDF5FA !important; }
+  .m-service-label   { color: #9DDFEF; }
+
+  /* Strategy titles — same one-time ice-blue sheen as mobile */
+  .m-strategy-title.is-sheen {
+    background-image: linear-gradient(100deg, #E6F8FF 0%, #E6F8FF 40%, #FFFFFF 47%, #B8F1FF 50%, #FFFFFF 53%, #E6F8FF 60%, #E6F8FF 100%);
+    background-size: 260% 100%;
+    background-position: 100% 0;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: d-title-sheen 2s cubic-bezier(0.4, 0, 0.2, 1) 1 forwards;
+  }
+  @keyframes d-title-sheen {
+    from { background-position: 100% 0; }
+    to   { background-position: 0% 0; }
+  }
+
+  /* Social Media showcase — the shampoo mockup is gone; keep the remaining
+     watch image at its original half-column width and centre it. */
+  .d-watch-solo { flex: 0 0 calc((100% - 1.25rem) / 2); margin-inline: auto; }
+
+  /* Graphic Design service pills — subtle hover highlight (mouse only);
+     the pills remain non-interactive, non-focusable list items. */
+  .gds-pill,
+  .gds-pill .gds-pill-text,
+  .gds-pill .gds-pill-icon {
+    transition: border-color 220ms ease, background-color 220ms ease, color 220ms ease, filter 220ms ease;
+  }
+}
+@media (min-width: 1024px) and (hover: hover) and (pointer: fine) {
+  .gds-pill:hover {
+    border-color: rgba(214, 181, 108, 0.38);
+    background-color: rgba(214, 181, 108, 0.06);
+  }
+  .gds-pill:hover .gds-pill-text { color: rgba(255, 255, 255, 0.92); }
+  .gds-pill:hover .gds-pill-icon { filter: brightness(1.25) saturate(1.1); }
+}
+@media (min-width: 1024px) and (prefers-reduced-motion: reduce) {
+  .gds-pill, .gds-pill .gds-pill-text, .gds-pill .gds-pill-icon { transition: none; }
+}

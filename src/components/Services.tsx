@@ -628,234 +628,6 @@ function BespokeFollowUp() {
   )
 }
 
-// ─── Bespoke Care Stories (Section 4) ───────────────────────────────────────
-
-function BespokeCareStories() {
-  const ref = useRef<HTMLElement>(null)
-
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    gsap.set(el.querySelectorAll('.bcs-img'),     { opacity: 0, x: -36 })
-    gsap.set(el.querySelectorAll('.bcs-eyebrow'), { opacity: 0, y: 18 })
-    gsap.set(el.querySelectorAll('.bcs-hword'),   { opacity: 0, y: '110%' })
-    gsap.set(el.querySelectorAll('.bcs-body'),    { opacity: 0, y: 22 })
-    gsap.set(el.querySelectorAll('.bcs-feat'),    { opacity: 0, y: 16 })
-
-    const obs = new IntersectionObserver(([e]) => {
-      if (!e.isIntersecting) return
-      const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
-      tl.to(el.querySelectorAll('.bcs-img'),     { opacity: 1, x: 0, duration: 1.1, ease: 'power2.out' }, 0)
-      tl.to(el.querySelectorAll('.bcs-eyebrow'), { opacity: 1, y: 0, duration: 0.6 }, 0.18)
-      tl.to(el.querySelectorAll('.bcs-hword'),   { opacity: 1, y: '0%', duration: 0.72, stagger: 0.08, ease: 'power3.out' }, 0.3)
-      tl.to(el.querySelectorAll('.bcs-body'),    { opacity: 1, y: 0, duration: 0.7, stagger: 0.14 }, 0.52)
-      tl.to(el.querySelectorAll('.bcs-feat'),    { opacity: 1, y: 0, duration: 0.55, stagger: 0.1 }, 0.72)
-      obs.disconnect()
-    }, { threshold: 0.12 })
-    obs.observe(el)
-    return () => obs.disconnect()
-  }, [])
-
-  return (
-    <section
-      ref={ref}
-      className="relative w-full overflow-hidden"
-      style={{
-        background: '#060208',
-        padding: 'clamp(5rem, 9vw, 8rem) 0',
-      }}
-    >
-      <ShowcaseBackground />
-
-      <div className="relative z-10 max-w-[80rem] mx-auto px-6 sm:px-10">
-        <div className="grid grid-cols-1 lg:grid-cols-[2.2fr_1fr] gap-12 lg:gap-28 items-center">
-
-          {/* ── LEFT: Image ── */}
-          <div className="bcs-img relative">
-            {/* Champagne gold ambient glow behind image */}
-            <div aria-hidden="true" style={{
-              position: 'absolute', inset: '-36px',
-              background: 'radial-gradient(ellipse 80% 70% at 50% 50%, rgba(200,175,90,0.11) 0%, transparent 70%)',
-              filter: 'blur(40px)',
-              pointerEvents: 'none',
-            }}/>
-
-            {/* Image container */}
-            <div
-              style={{
-                position: 'relative',
-                zIndex: 1,
-                borderRadius: '18px',
-                overflow: 'hidden',
-                border: '3.5px solid rgba(255, 216, 80, 0.55)',
-                boxShadow: [
-                  '0 0 0 1px rgba(255,200,40,0.18)',
-                  '0 0 32px rgba(255,210,60,0.20)',
-                  '0 0 72px rgba(255,200,40,0.10)',
-                  '0 40px 90px -16px hsl(0 0% 0% / 0.82)',
-                  '0 8px 24px -6px hsl(0 0% 0% / 0.45)',
-                ].join(', '),
-                transition: 'box-shadow 380ms cubic-bezier(0.16,1,0.3,1), transform 380ms cubic-bezier(0.16,1,0.3,1)',
-              }}
-              onMouseEnter={e => {
-                const el = e.currentTarget as HTMLDivElement
-                el.style.boxShadow = [
-                  '0 0 0 1px rgba(255,200,40,0.30)',
-                  '0 0 55px rgba(255,210,60,0.38)',
-                  '0 0 110px rgba(255,200,40,0.18)',
-                  '0 48px 100px -16px hsl(0 0% 0% / 0.88)',
-                  '0 8px 24px -6px hsl(0 0% 0% / 0.50)',
-                ].join(', ')
-                el.style.transform = 'translateY(-6px)'
-              }}
-              onMouseLeave={e => {
-                const el = e.currentTarget as HTMLDivElement
-                el.style.boxShadow = [
-                  '0 0 0 1px rgba(255,200,40,0.18)',
-                  '0 0 32px rgba(255,210,60,0.20)',
-                  '0 0 72px rgba(255,200,40,0.10)',
-                  '0 40px 90px -16px hsl(0 0% 0% / 0.82)',
-                  '0 8px 24px -6px hsl(0 0% 0% / 0.45)',
-                ].join(', ')
-                el.style.transform = 'translateY(0)'
-              }}
-            >
-              <img
-                loading="lazy"
-                decoding="async"
-                src="/brand_assets/Website_examples.webp"
-                alt="CareWell — bespoke website designed for a care support brand"
-                width={1600}
-                height={878}
-                style={{
-                  display: 'block',
-                  width: '100%',
-                  height: 'auto',
-                  maxHeight: 'clamp(900px, 95vw, 1500px)',
-                  objectFit: 'cover',
-                  objectPosition: 'top center',
-                }}
-              />
-              {/* Thin bottom vignette */}
-              <div aria-hidden="true" style={{
-                position: 'absolute', bottom: 0, left: 0, right: 0, height: '28%',
-                background: 'linear-gradient(to top, hsl(210 20% 3% / 0.35) 0%, transparent 100%)',
-                pointerEvents: 'none',
-              }}/>
-            </div>
-          </div>
-
-          {/* ── RIGHT: Text ── */}
-          <div style={{ paddingTop: 'clamp(0rem, 2vw, 1.5rem)' }}>
-
-            {/* Eyebrow */}
-            <p
-              className="bcs-eyebrow font-sans uppercase"
-              style={{
-                fontSize: '0.64rem',
-                letterSpacing: '0.34em',
-                color: '#E8C97A',
-                marginBottom: '1.4rem',
-              }}
-            >
-              Care Stories
-            </p>
-
-            {/* Headline — word-by-word reveal */}
-            <h2
-              className="font-heading font-medium"
-              style={{
-                fontSize: 'clamp(2rem, 4vw, 3.2rem)',
-                lineHeight: 1.15,
-                letterSpacing: '-0.035em',
-                color: 'hsl(36 18% 92%)',
-                marginBottom: '1.8rem',
-              }}
-            >
-              {['Support', 'That', 'Feels'].map((w, i) => (
-                <span key={i} style={{ display: 'inline-block', overflow: 'hidden', verticalAlign: 'bottom', marginRight: '0.22em', paddingBottom: '0.04em' }}>
-                  <span className="bcs-hword" style={{ display: 'inline-block', transform: 'translateY(110%)', opacity: 0 }}>{w}</span>
-                </span>
-              ))}
-              <em style={{ display: 'inline-block', overflow: 'hidden', verticalAlign: 'bottom', paddingBottom: '0.04em',
-                fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400 }}>
-                <span className="bcs-hword" style={{ display: 'inline-block', transform: 'translateY(110%)', opacity: 0,
-                  background: 'linear-gradient(115deg, #F8FAFC 10%, #E8C97A 45%, #BFA45A 75%, #E8C97A 100%)',
-                  WebkitBackgroundClip: 'text', backgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Human.</span>
-              </em>
-            </h2>
-
-            {/* Body paragraphs */}
-            <p
-              className="bcs-body font-sans font-normal"
-              style={{
-                fontSize: 'clamp(0.86rem, 1.35vw, 0.98rem)',
-                lineHeight: 1.85,
-                color: '#D7DCE2',
-                maxWidth: '34rem',
-                marginBottom: '1.2rem',
-              }}
-            >
-              Practical guidance, thoughtful advice, and real stories designed to help families navigate care with more clarity and confidence. Every resource is created to feel reassuring, useful, and easy to understand.
-            </p>
-
-            <p
-              className="bcs-body font-sans font-normal"
-              style={{
-                fontSize: 'clamp(0.86rem, 1.35vw, 0.98rem)',
-                lineHeight: 1.85,
-                color: '#D7DCE2',
-                maxWidth: '34rem',
-                marginBottom: '2.4rem',
-              }}
-            >
-              From everyday support to deeper insight, we shape content that connects with people emotionally while delivering information in a calm, trusted, and beautifully presented way.
-            </p>
-
-            {/* Feature list */}
-            <ul
-              style={{
-                listStyle: 'none',
-                padding: 0,
-                margin: 0,
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '0.75rem',
-              }}
-            >
-              {[
-                'Real stories that resonate',
-                'Expert-led guidance',
-                'Clear, compassionate resources',
-              ].map(item => (
-                <li
-                  key={item}
-                  className="bcs-feat"
-                  style={{ display: 'flex', alignItems: 'center', gap: '0.7rem' }}
-                >
-                  <span style={{
-                    display: 'inline-block', width: '18px', height: '1px',
-                    background: 'linear-gradient(to right, #E8C97A, #BFA45A)',
-                    opacity: 0.75, flexShrink: 0,
-                  }}/>
-                  <span style={{
-                    fontFamily: 'var(--font-label)', fontWeight: 300,
-                    fontSize: 'clamp(0.8rem, 1.2vw, 0.88rem)',
-                    letterSpacing: '0.02em', color: '#D7DCE2',
-                  }}>
-                    {item}
-                  </span>
-                </li>
-              ))}
-            </ul>
-
-          </div>
-        </div>
-      </div>
-    </section>
-  )
-}
-
 // ─── Bespoke Web Showcase ─────────────────────────────────────────────────────
 
 const BWS_FEATURES = [
@@ -2916,20 +2688,19 @@ const STRATEGY_ITEMS = [
 
 
 function SocialMediaMarketing() {
-  const isBelowDesktop = useMediaQuery('(max-width: 1023px)')
 
-  // Mobile-only one-time light sheen on the "Content backed by strategy" titles
+  // One-time light sheen on the "Content backed by strategy" titles
   // as each scrolls into view (CSS in index.css: .m-strategy-title.is-sheen).
   // Skipped entirely with reduced motion — titles simply stay bright.
   useEffect(() => {
-    if (!isBelowDesktop || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
     const titles = document.querySelectorAll<HTMLElement>('.m-strategy-title')
     const io = new IntersectionObserver(entries => {
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-sheen'); io.unobserve(e.target) } })
     }, { threshold: 0.6 })
     titles.forEach(t => io.observe(t))
     return () => io.disconnect()
-  }, [isBelowDesktop])
+  }, [])
   const heroRef     = useRef<HTMLElement>(null)
   const platRef     = useRef<HTMLElement>(null)
   const stratRef    = useRef<HTMLElement>(null)
@@ -4246,7 +4017,7 @@ function SocialMediaMarketing() {
           <div className="flex flex-col sm:flex-row sm:items-end gap-5 order-2">
 
             {/* Image 1: Instagram Watch — gallery-mounted tall frame */}
-            <div className="flex-1 relative w-full sm:w-auto" style={{ zIndex: 1 }}>
+            <div className="d-watch-solo flex-1 relative w-full sm:w-auto" style={{ zIndex: 1 }}>
               <div
                 className="s5cv-img-a"
                 style={{
@@ -4304,66 +4075,6 @@ function SocialMediaMarketing() {
                 </div>
               </div>
             </div>
-
-            {/* Image 2: TikTok Shampoo — desktop only (removed from the mobile
-                presentation; not rendered below 1024px, so phones never load it) */}
-            {!isBelowDesktop && (
-              <div className="flex-1 relative" style={{ zIndex: 2 }}>
-                <div
-                  className="s5cv-img-b"
-                  style={{
-                    opacity: 0, transform: 'translateY(48px)',
-                    borderRadius: '28px', overflow: 'hidden',
-                    boxShadow: [
-                      '0 48px 96px -16px hsl(0 0% 0% / 0.93)',
-                      '0 0 0 1px hsl(0 0% 100% / 0.08)',
-                      '0 0 72px -16px hsl(280 65% 65% / 0.24)',
-                    ].join(', '),
-                    background: '#080a0e',
-                    transition: 'transform 0.65s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.65s ease',
-                    position: 'relative',
-                  }}
-                  onMouseEnter={e => {
-                    (e.currentTarget as HTMLElement).style.boxShadow = [
-                      '0 64px 120px -14px hsl(0 0% 0% / 0.97)',
-                      '0 0 0 1px hsl(0 0% 100% / 0.12)',
-                      '0 0 90px -12px hsl(280 65% 65% / 0.34)',
-                    ].join(', ')
-                  }}
-                  onMouseLeave={e => {
-                    (e.currentTarget as HTMLElement).style.boxShadow = [
-                      '0 48px 96px -16px hsl(0 0% 0% / 0.93)',
-                      '0 0 0 1px hsl(0 0% 100% / 0.08)',
-                      '0 0 72px -16px hsl(280 65% 65% / 0.24)',
-                    ].join(', ')
-                  }}
-                >
-                  <img
-                    loading="lazy"
-                    decoding="async"
-                    src="/brand_assets/Shampoo.webp"
-                    alt="TikTok shampoo campaign visual"
-                    style={{ display: 'block', width: '100%', height: 'auto' }}
-                  />
-                  {/* TikTok platform tag */}
-                  <div style={{
-                    position: 'absolute', bottom: '0.85rem', right: '0.85rem',
-                    background: 'hsl(0 0% 4% / 0.9)',
-                    backdropFilter: 'blur(14px)',
-                    border: '1px solid hsl(280 65% 65% / 0.22)',
-                    borderRadius: '999px',
-                    padding: '0.28rem 0.8rem',
-                    display: 'flex', alignItems: 'center', gap: '0.38rem',
-                    zIndex: 2,
-                  }}>
-                    <span style={{ width: 4, height: 4, borderRadius: '50%', background: 'hsl(280 65% 65%)', flexShrink: 0 }}/>
-                    <span style={{ fontSize: '0.55rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'hsl(280 65% 72%)', fontFamily: 'var(--font-label)', fontWeight: 300 }}>
-                      TikTok
-                    </span>
-                  </div>
-                </div>
-              </div>
-            )}
 
           </div>
 
@@ -9265,7 +8976,6 @@ function UGCPracticeEcosystem() {
 // ─── Services section ─────────────────────────────────────────────────────────
 
 export default function Services() {
-  const isBelowDesktop = useMediaQuery('(max-width: 1023px)')
   const sectionRef       = useRef<HTMLElement>(null)
   const chatbotRef       = useRef<HTMLElement>(null)
   const bwdCinemaRef     = useRef<HTMLElement>(null)
@@ -10028,10 +9738,6 @@ export default function Services() {
         }}/>
       </section>
 
-      {/* ── Bespoke Website Design — Care Stories (Section 4) — desktop only;
-          removed from the mobile presentation (not rendered below 1024px, so
-          the CareWell mockup is never loaded on phones/tablets) ── */}
-      {!isBelowDesktop && <BespokeCareStories />}
 
       {/* ── Bespoke Website Design — process timeline ── */}
       <BespokeProcessTimeline />

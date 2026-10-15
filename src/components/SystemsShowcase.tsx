@@ -56,8 +56,8 @@ const SERVICES: ServiceDef[] = [
 // Node centre from panel left edge: px-6 (24px) + half of w-8 (16px) = 40px
 const SPINE_LEFT = 40
 
-// Mobile-only heading tints, derived from each card's accent (lighter so
-// they hold AA contrast on the tinted card backgrounds).
+// Heading tints derived from each card's accent (lighter so they hold AA
+// contrast on the tinted card backgrounds). Hover still lifts to near-white.
 const ARCH_TITLE_TINT: Record<string, string> = {
   '#38BDF8': '#8EDFF5', // Content Automation — cyan
   '#22C55E': '#7BE0AE', // Growth Systems — emerald
@@ -108,7 +108,7 @@ function ModuleRow({ svc, index }: { svc: ServiceDef; index: number }) {
       iconRef.current.style.color       = svc.accent
       iconRef.current.style.background  = `rgb(${svc.glowRgb} / 0.06)`
     }
-    if (titleRef.current) titleRef.current.style.color = 'hsl(0 0% 90%)'
+    if (titleRef.current) titleRef.current.style.color = ARCH_TITLE_TINT[svc.accent]
   }
 
   return (
@@ -189,7 +189,7 @@ function ModuleRow({ svc, index }: { svc: ServiceDef; index: number }) {
             <h3
               ref={titleRef}
               className="font-heading font-medium tracking-tight m-arch-title"
-              style={{ fontSize: '16px', color: 'hsl(0 0% 90%)', transition: 'color 220ms', ['--arch-title' as string]: ARCH_TITLE_TINT[svc.accent] }}
+              style={{ fontSize: '16px', color: ARCH_TITLE_TINT[svc.accent], transition: 'color 220ms', ['--arch-title' as string]: ARCH_TITLE_TINT[svc.accent] }}
             >
               {svc.title}
             </h3>
