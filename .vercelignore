@@ -3,7 +3,7 @@ dist
 *.log
 .DS_Store
 temporary screenshots/
-brand_assets/
+/brand_assets/
 
 # public/brand_assets files not referenced by src/ (via /brand_assets/<name>).
 # Kept on disk, excluded from git + deploys. Regenerate if assets change.
