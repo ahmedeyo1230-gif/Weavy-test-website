@@ -949,32 +949,33 @@ body::after {
 }
 
 @media (max-width: 1023px) {
+  /* Mobile crop: artwork x 1401–2688, y 61–1399 (of 2688×1520). Starts just
+     right of in-image panel 4, so only one complete panel ("Client booked")
+     remains as an intentional outcome detail beside the man; his face, the
+     laptop and the city stay in frame. No shading over the artwork. Hiding
+     every panel would require cutting the laptop out (x > 1700). */
   .cs-glass-frame {
-    aspect-ratio: 1599 / 1520;          /* right 59.5% of the artwork */
+    aspect-ratio: 1287 / 1338;
     max-width: 560px;
     margin-inline: auto;
     border-radius: 20px;
   }
   .cs-glass-img {
     position: absolute;
-    top: 0;
-    left: -68.07%;                       /* 0.405 / 0.595 */
-    width: 168.07%;                      /* 1 / 0.595 */
+    top: -4.559%;                        /* 61 / 1338 */
+    left: -108.858%;                     /* 1401 / 1287 */
+    width: 208.858%;                     /* 2688 / 1287 */
+    height: 113.602%;                    /* 1520 / 1338 — keeps the native ratio */
     max-width: none;
-    height: 100%;
     object-fit: cover;
   }
-  /* A soft oval shade over just the band where in-image panels 4-5 sit, so
-     the text list below is the single readable workflow; the laptop and man
-     stay clear. Bottom fade eases into the list. */
+  /* Light bottom fade only, easing the photo into the steps below */
   .cs-glass-shade {
     display: block;
     position: absolute;
     inset: 0;
     pointer-events: none;
-    background:
-      radial-gradient(ellipse 30% 21% at 19% 37.5%, rgba(0, 5, 6, 0.86) 0%, rgba(0, 5, 6, 0.8) 62%, rgba(0, 5, 6, 0) 100%),
-      linear-gradient(to top, rgba(0, 5, 6, 0.45) 0%, rgba(0, 5, 6, 0) 18%);
+    background: linear-gradient(to top, rgba(0, 5, 6, 0.38) 0%, rgba(0, 5, 6, 0) 16%);
   }
 
   .cs-steps {
@@ -991,13 +992,15 @@ body::after {
     flex-direction: column;
     gap: 10px;
   }
-  /* Thin connector running through the number badges */
+  /* Thin connector: starts at the photo's bottom edge (the 28px gap above
+     the list) and runs through the number badges, tying image and steps
+     into one composition. */
   .cs-steps::before {
     content: "";
     position: absolute;
-    left: 33px; top: 28px; bottom: 28px;
+    left: 33px; top: -28px; bottom: 28px;
     width: 1px;
-    background: linear-gradient(to bottom, rgba(125, 220, 255, 0.05), rgba(125, 220, 255, 0.35), rgba(125, 220, 255, 0.05));
+    background: linear-gradient(to bottom, rgba(125, 220, 255, 0.28), rgba(125, 220, 255, 0.35) 30%, rgba(125, 220, 255, 0.05));
   }
   .cs-step {
     position: relative;
@@ -1147,8 +1150,12 @@ body::after {
     animation: cs-loop-step 6s cubic-bezier(0.4, 0, 0.2, 1) var(--d) infinite paused;
   }
   .cs-anim .cs-step-num { animation-name: cs-loop-step-num; }
-  /* light travelling down the connector, synced to the stages (0 → 4.4s) */
+  /* light travelling down the connector, synced to the stages (0 → 4.4s).
+     Sits beneath the cards (like the connector line), so it glows through
+     the gaps and glass surfaces but never over the badge numbers. */
+  .cs-step { z-index: 1; }
   .cs-steps::after {
+    z-index: 0;
     content: "";
     position: absolute;
     left: 31px;
