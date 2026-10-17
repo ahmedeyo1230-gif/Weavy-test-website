@@ -1036,15 +1036,17 @@ body::after {
     color: #D5DAE0;
   }
 }
-/* ── Connected Systems — one-time workflow light sequence ───────────────────
-   Desktop: an SVG overlay locked to the Glass.png artwork (same viewBox and
-   slice scaling as the image). Additive light only (screen blend) — no shapes
-   cover the artwork and the baked-in text/icons are never moved. Everything
-   rests invisible; .is-playing (added once in view) runs ≈5.3s: each card +
-   icon brightens in turn, a thin light travels each arrow, and the check ring
-   lights with one completion pulse, then all fades back to rest.
-   Phone/tablet: the image overlay is off (the crop changes the geometry);
-   the HTML step cards light in sequence instead (.steps-playing). */
+/* ── Connected Systems — continuous 6s workflow light loop ─────────────────
+   Desktop: SVG overlay locked to the Glass.png artwork (shared viewBox +
+   slice scaling). Additive light only (screen blend): artwork, text and
+   icons are never covered or moved. Every element runs the same 6s cycle,
+   offset by --d: stage i lights at i×1s (0–1 New lead … 4–5 Client booked),
+   each arrow light travels in the 0.35s before the next stage, the check
+   ring + one completion pulse land at 4–5s, and 5–6s is fully at rest, so
+   loops join with no visible reset.
+   Paused (in place) until in view, when scrolled away or the tab is hidden.
+   Mouse hover over a card holds the loop and lights only that stage.
+   Phone/tablet: overlay off; the HTML step cards run the same 6s cycle. */
 .cs-fx {
   position: absolute;
   inset: 0;
@@ -1055,95 +1057,156 @@ body::after {
 }
 .cs-fx-icon, .cs-fx-card, .cs-fx-done-ring, .cs-fx-done-pulse { opacity: 0; }
 .cs-fx-card {
-  stroke: rgba(125, 220, 255, 0.62);
+  stroke: rgba(142, 223, 245, 0.62);
   stroke-width: 1.5px;
   vector-effect: non-scaling-stroke;
 }
-.cs-fx-arrow {
-  stroke: #BFF1FF;
-  stroke-width: 5;
+.cs-fx-arrow, .cs-fx-trail {
   stroke-linecap: round;
-  stroke-dasharray: 14 240;
-  stroke-dashoffset: 14;
+  stroke-dashoffset: 40;
 }
-.cs-fx-done-ring { fill: none; stroke: #A8EBFF; stroke-width: 4; }
+.cs-fx-arrow { stroke: #B8F1FF; stroke-width: 5; stroke-dasharray: 12 300; }
+.cs-fx-trail { stroke: #4CC9F0; stroke-width: 3; stroke-opacity: 0.45; stroke-dasharray: 34 300; }
+.cs-fx-done-ring { fill: none; stroke: #B8F1FF; stroke-width: 4; }
 .cs-fx-done-pulse {
   fill: none;
-  stroke: rgba(125, 220, 255, 0.75);
+  stroke: rgba(142, 223, 245, 0.75);
   stroke-width: 3;
   transform-box: fill-box;
   transform-origin: center;
 }
-.is-playing .cs-fx-icon,
-.is-playing .cs-fx-card {
-  animation: cs-fx-stage 1.8s cubic-bezier(0.4, 0, 0.2, 1) calc(0.9s + var(--d)) 1 both;
+.cs-fx-hit { fill: transparent; pointer-events: none; }
+
+.cs-anim .cs-fx-icon, .cs-anim .cs-fx-card {
+  animation: cs-loop-stage 6s cubic-bezier(0.4, 0, 0.2, 1) var(--d) infinite;
 }
-.is-playing .cs-fx-arrow {
-  animation: cs-fx-arrow 0.6s cubic-bezier(0.45, 0, 0.25, 1) calc(0.9s + var(--d)) 1 both;
+.cs-anim .cs-fx-arrow { animation: cs-loop-arrow 6s linear var(--d) infinite; }
+.cs-anim .cs-fx-trail { animation: cs-loop-arrow 6s linear calc(var(--d) + 0.04s) infinite; }
+.cs-anim .cs-fx-done-ring { animation: cs-loop-done 6s cubic-bezier(0.4, 0, 0.2, 1) var(--d) infinite; }
+.cs-anim .cs-fx-done-pulse { animation: cs-loop-pulse 6s cubic-bezier(0.16, 1, 0.3, 1) calc(var(--d) + 0.25s) infinite; }
+.cs-anim .cs-fx-icon, .cs-anim .cs-fx-card, .cs-anim .cs-fx-arrow, .cs-anim .cs-fx-trail,
+.cs-anim .cs-fx-done-ring, .cs-anim .cs-fx-done-pulse { animation-play-state: paused; }
+.cs-anim.is-live:not(.tab-hidden):not([data-hover]) .cs-fx-icon,
+.cs-anim.is-live:not(.tab-hidden):not([data-hover]) .cs-fx-card,
+.cs-anim.is-live:not(.tab-hidden):not([data-hover]) .cs-fx-arrow,
+.cs-anim.is-live:not(.tab-hidden):not([data-hover]) .cs-fx-trail,
+.cs-anim.is-live:not(.tab-hidden):not([data-hover]) .cs-fx-done-ring,
+.cs-anim.is-live:not(.tab-hidden):not([data-hover]) .cs-fx-done-pulse { animation-play-state: running; }
+
+/* (percentages of 6s) Stage: rise 0–0.35s, hold to 0.7s, settle by 1.6s */
+@keyframes cs-loop-stage {
+  0%    { opacity: 0; }
+  5.8%  { opacity: 1; }
+  11.7% { opacity: 1; }
+  26.7% { opacity: 0; }
+  100%  { opacity: 0; }
 }
-.is-playing .cs-fx-done-ring {
-  animation: cs-fx-done 1.6s cubic-bezier(0.4, 0, 0.2, 1) calc(0.9s + var(--d)) 1 both;
+/* Arrow light: travels left → right in 0.35s, then parked off the line */
+@keyframes cs-loop-arrow {
+  0%    { stroke-dashoffset: 40; }
+  5.8%  { stroke-dashoffset: -60; }
+  100%  { stroke-dashoffset: -60; }
 }
-.is-playing .cs-fx-done-pulse {
-  animation: cs-fx-pulse 1.3s cubic-bezier(0.16, 1, 0.3, 1) calc(1.05s + var(--d)) 1 both;
+/* Check ring: 4.0–5.6s */
+@keyframes cs-loop-done {
+  0%    { opacity: 0; }
+  6%    { opacity: 1; }
+  12%   { opacity: 1; }
+  26%   { opacity: 0; }
+  100%  { opacity: 0; }
 }
-@keyframes cs-fx-stage {
-  0%   { opacity: 0; }
-  30%  { opacity: 1; }
-  100% { opacity: 0; }
+/* One completion pulse: expands and fades over ≈1s */
+@keyframes cs-loop-pulse {
+  0%    { opacity: 0.85; transform: scale(1); }
+  16%   { opacity: 0; transform: scale(1.9); }
+  16.1% { opacity: 0; transform: scale(1); }
+  100%  { opacity: 0; transform: scale(1); }
 }
-@keyframes cs-fx-arrow {
-  from { stroke-dashoffset: 14; }
-  to   { stroke-dashoffset: -60; }
-}
-@keyframes cs-fx-done {
-  0%   { opacity: 0; }
-  25%  { opacity: 1; }
-  100% { opacity: 0; }
-}
-@keyframes cs-fx-pulse {
-  0%   { opacity: 0.85; transform: scale(1); }
-  100% { opacity: 0;    transform: scale(1.9); }
+
+/* Mouse hover: hold the loop, show only the hovered stage (desktop only) */
+@media (min-width: 1024px) and (hover: hover) and (pointer: fine) {
+  .cs-fx-hit { pointer-events: all; cursor: default; }
+  .cs-anim[data-hover] .cs-fx-icon,
+  .cs-anim[data-hover] .cs-fx-card,
+  .cs-anim[data-hover] .cs-fx-arrow,
+  .cs-anim[data-hover] .cs-fx-trail,
+  .cs-anim[data-hover] .cs-fx-done-ring,
+  .cs-anim[data-hover] .cs-fx-done-pulse { opacity: 0 !important; transition: opacity 260ms ease; }
+  .cs-anim[data-hover="0"] .cs-fx-stage[data-i="0"] > *,
+  .cs-anim[data-hover="1"] .cs-fx-stage[data-i="1"] > *,
+  .cs-anim[data-hover="2"] .cs-fx-stage[data-i="2"] > *,
+  .cs-anim[data-hover="3"] .cs-fx-stage[data-i="3"] > *,
+  .cs-anim[data-hover="4"] .cs-fx-stage[data-i="4"] > *,
+  .cs-anim[data-hover="4"] .cs-fx-done-ring { opacity: 1 !important; }
 }
 
 @media (max-width: 1023px) {
   .cs-fx { display: none; }
   .cs-step-num { position: relative; }
-  .steps-playing .cs-step {
-    animation: cs-step-lit 1.6s cubic-bezier(0.4, 0, 0.2, 1) calc(0.35s + var(--d)) 1 both;
+  .cs-anim .cs-step, .cs-anim .cs-step-num {
+    animation: cs-loop-step 6s cubic-bezier(0.4, 0, 0.2, 1) var(--d) infinite paused;
   }
-  .steps-playing .cs-step-num {
-    animation: cs-step-num-lit 1.6s cubic-bezier(0.4, 0, 0.2, 1) calc(0.35s + var(--d)) 1 both;
+  .cs-anim .cs-step-num { animation-name: cs-loop-step-num; }
+  /* light travelling down the connector, synced to the stages (0 → 4.4s) */
+  .cs-steps::after {
+    content: "";
+    position: absolute;
+    left: 31px;
+    top: 28px;
+    width: 5px;
+    height: 36px;
+    border-radius: 3px;
+    background: linear-gradient(to bottom, rgba(184, 241, 255, 0), rgba(184, 241, 255, 0.9), rgba(184, 241, 255, 0));
+    opacity: 0;
+    pointer-events: none;
   }
-  /* completion pulse on the final step's badge */
+  .cs-anim .cs-steps::after { animation: cs-loop-rail 6s cubic-bezier(0.45, 0, 0.55, 1) infinite paused; }
   .cs-step:last-child .cs-step-num::after {
     content: "";
     position: absolute;
     inset: -1px;
     border-radius: 50%;
-    border: 1px solid rgba(125, 220, 255, 0.7);
+    border: 1px solid rgba(142, 223, 245, 0.7);
     opacity: 0;
     pointer-events: none;
   }
-  .steps-playing .cs-step:last-child .cs-step-num::after {
-    animation: cs-fx-pulse 1.3s cubic-bezier(0.16, 1, 0.3, 1) calc(0.6s + var(--d)) 1 both;
+  .cs-anim .cs-step:last-child .cs-step-num::after { animation: cs-loop-pulse 6s cubic-bezier(0.16, 1, 0.3, 1) 4.25s infinite paused; }
+  .cs-anim.steps-live:not(.tab-hidden) .cs-step,
+  .cs-anim.steps-live:not(.tab-hidden) .cs-step-num,
+  .cs-anim.steps-live:not(.tab-hidden) .cs-steps::after,
+  .cs-anim.steps-live:not(.tab-hidden) .cs-step:last-child .cs-step-num::after { animation-play-state: running; }
+  /* tap a step: highlight just that card for a moment (loop keeps running) */
+  .cs-anim[data-tap="0"] .cs-step:nth-child(1),
+  .cs-anim[data-tap="1"] .cs-step:nth-child(2),
+  .cs-anim[data-tap="2"] .cs-step:nth-child(3),
+  .cs-anim[data-tap="3"] .cs-step:nth-child(4),
+  .cs-anim[data-tap="4"] .cs-step:nth-child(5) {
+    border-color: rgba(142, 223, 245, 0.5) !important;
+    background-color: rgba(12, 36, 48, 0.75) !important;
   }
 }
-@keyframes cs-step-lit {
-  0%   { border-color: rgba(125, 220, 255, 0.12); background-color: rgba(9, 22, 30, 0.55); }
-  30%  { border-color: rgba(125, 220, 255, 0.45); background-color: rgba(12, 36, 48, 0.72); }
-  100% { border-color: rgba(125, 220, 255, 0.12); background-color: rgba(9, 22, 30, 0.55); }
+@keyframes cs-loop-step {
+  0%, 26.7%, 100% { border-color: rgba(125, 220, 255, 0.12); background-color: rgba(9, 22, 30, 0.55); }
+  5.8%, 11.7%     { border-color: rgba(142, 223, 245, 0.45); background-color: rgba(12, 36, 48, 0.72); }
 }
-@keyframes cs-step-num-lit {
-  0%   { box-shadow: 0 0 14px rgba(125, 220, 255, 0.12); border-color: rgba(125, 220, 255, 0.42); }
-  30%  { box-shadow: 0 0 22px rgba(125, 220, 255, 0.45); border-color: rgba(168, 235, 255, 0.9); }
-  100% { box-shadow: 0 0 14px rgba(125, 220, 255, 0.12); border-color: rgba(125, 220, 255, 0.42); }
+@keyframes cs-loop-step-num {
+  0%, 26.7%, 100% { box-shadow: 0 0 14px rgba(125, 220, 255, 0.12); border-color: rgba(125, 220, 255, 0.42); }
+  5.8%, 11.7%     { box-shadow: 0 0 22px rgba(76, 201, 240, 0.45); border-color: rgba(184, 241, 255, 0.9); }
+}
+/* small 5×36px element, so animating top (follows the list's real height
+   at every width) costs nothing measurable */
+@keyframes cs-loop-rail {
+  0%    { opacity: 0; top: 28px; }
+  5%    { opacity: 1; }
+  68%   { opacity: 1; }
+  73.3% { opacity: 0; top: calc(100% - 64px); }
+  100%  { opacity: 0; top: calc(100% - 64px); }
 }
 @media (prefers-reduced-motion: reduce) {
   .cs-fx { display: none; }
-  .steps-playing .cs-step,
-  .steps-playing .cs-step-num,
-  .steps-playing .cs-step:last-child .cs-step-num::after { animation: none; }
+  .cs-anim .cs-step, .cs-anim .cs-step-num,
+  .cs-anim .cs-steps::after,
+  .cs-anim .cs-step:last-child .cs-step-num::after { animation: none !important; }
 }
 
 /* Vertical connecting line between Weavy Platform and Connected Systems —
