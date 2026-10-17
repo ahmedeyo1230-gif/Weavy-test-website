@@ -910,20 +910,132 @@ body::after {
   88%            { box-shadow: 0 8px 24px hsl(0 0% 0% / 0.45), 0 0 24px hsl(205 85% 62% / 0.38); }
 }
 
-/* ── Connected Systems visual animations ─────────────────────────────────── */
-@keyframes cs-chart-shimmer {
-  0%   { transform: translateX(-100%); opacity: 0; }
-  4%   { opacity: 1; }
-  26%  { transform: translateX(200%);  opacity: 0; }
-  100% { transform: translateX(200%);  opacity: 0; }
+/* ── Connected Systems — cinematic workflow image (Glass.png) ─────────────
+   Desktop (≥1024px): the full widescreen composition in a rounded frame.
+   Below 1024px the frame re-composes around the man and laptop (right
+   ~60% of the artwork, panels 1-3 outside the frame and panels 4-5 softened
+   by a side shade) and the five steps follow as a real-text list. The image
+   file itself is never altered — only framed. Aspect ratios are fixed up
+   front so nothing shifts while it loads. */
+.cs-glass-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 2688 / 1520;
+  border-radius: 24px;
+  overflow: hidden;
+  background: #04090c;
+  border: 1px solid rgba(125, 220, 255, 0.16);
+  box-shadow:
+    0 56px 140px -24px rgba(0, 0, 0, 0.88),
+    0 0 0 1px rgba(125, 220, 255, 0.06),
+    0 0 110px -30px rgba(125, 220, 255, 0.22);
 }
-.cs-chart-shimmer {
-  animation: cs-chart-shimmer 7s linear infinite;
+.cs-glass-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
-@media (prefers-reduced-motion: reduce) {
-  .cs-chart-shimmer { animation: none; opacity: 0; }
+.cs-glass-shade { display: none; }
+/* Steps: screen-reader only on desktop (the image shows them) */
+.cs-steps {
+  position: absolute;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
+@media (max-width: 1023px) {
+  .cs-glass-frame {
+    aspect-ratio: 1599 / 1520;          /* right 59.5% of the artwork */
+    max-width: 560px;
+    margin-inline: auto;
+    border-radius: 20px;
+  }
+  .cs-glass-img {
+    position: absolute;
+    top: 0;
+    left: -68.07%;                       /* 0.405 / 0.595 */
+    width: 168.07%;                      /* 1 / 0.595 */
+    max-width: none;
+    height: 100%;
+    object-fit: cover;
+  }
+  /* A soft oval shade over just the band where in-image panels 4-5 sit, so
+     the text list below is the single readable workflow; the laptop and man
+     stay clear. Bottom fade eases into the list. */
+  .cs-glass-shade {
+    display: block;
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(ellipse 30% 21% at 19% 37.5%, rgba(0, 5, 6, 0.86) 0%, rgba(0, 5, 6, 0.8) 62%, rgba(0, 5, 6, 0) 100%),
+      linear-gradient(to top, rgba(0, 5, 6, 0.45) 0%, rgba(0, 5, 6, 0) 18%);
+  }
+
+  .cs-steps {
+    position: relative;
+    width: auto; height: auto;
+    margin: 28px auto 0;
+    max-width: 560px;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+    list-style: none;
+    padding: 6px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  /* Thin connector running through the number badges */
+  .cs-steps::before {
+    content: "";
+    position: absolute;
+    left: 33px; top: 28px; bottom: 28px;
+    width: 1px;
+    background: linear-gradient(to bottom, rgba(125, 220, 255, 0.05), rgba(125, 220, 255, 0.35), rgba(125, 220, 255, 0.05));
+  }
+  .cs-step {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 16px;
+    border-radius: 14px;
+    background: rgba(9, 22, 30, 0.55);
+    border: 1px solid rgba(125, 220, 255, 0.12);
+  }
+  .cs-step-num {
+    flex-shrink: 0;
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-family: var(--font-label);
+    font-size: 13px;
+    color: #8EDFF5;
+    background: #06141a;
+    border: 1px solid rgba(125, 220, 255, 0.42);
+    box-shadow: 0 0 14px rgba(125, 220, 255, 0.12);
+  }
+  .cs-step-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+  .cs-step-title {
+    font-family: var(--font-heading);
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.3;
+    color: #F5F7FA;
+  }
+  .cs-step-desc {
+    font-family: var(--font-body);
+    font-size: 14.5px;
+    line-height: 1.5;
+    color: #D5DAE0;
+  }
+}
 /* Vertical connecting line between Weavy Platform and Connected Systems —
    restrained travelling light pulse. overflow:hidden clips the pulse to
    the line's own height; positioning of the line itself is unaffected
