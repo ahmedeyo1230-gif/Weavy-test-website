@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 
 const E: [number, number, number, number] = [0.16, 1, 0.3, 1]
@@ -16,6 +16,66 @@ function useReducedMotion(): boolean {
   return reduced
 }
 
+/* ── Workflow light sequence — overlay geometry ──
+   Measured from Glass.png (2688×1520) pixels: the five card outlines, the four
+   arrow glyphs and the check ring. The overlay SVG shares that coordinate
+   system (viewBox + "slice" scaling = the image's object-fit: cover), so the
+   light stays locked to the artwork at every desktop size. */
+const FX_CARDS = [
+  { x: 87,   y: 353, w: 292, h: 414, icon: [228, 484] },
+  { x: 447,  y: 365, w: 299, h: 399, icon: [591, 497] },
+  { x: 812,  y: 376, w: 274, h: 385, icon: [948, 498] },
+  { x: 1146, y: 388, w: 251, h: 370, icon: [1278, 508] },
+  { x: 1450, y: 398, w: 248, h: 357, icon: [1573, 516] },
+]
+const FX_ARROWS = [
+  { x1: 389, x2: 435, y: 510 },
+  { x1: 756, x2: 800, y: 514 },
+  { x1: 1095, x2: 1137, y: 519 },
+  { x1: 1401, x2: 1441, y: 524 },
+]
+const FX_CHECK = { cx: 1573, cy: 516, r: 59 }
+const FX_STEP = 0.95 // seconds between stages (≈5.3s total)
+
+function WorkflowLight() {
+  return (
+    <svg className="cs-fx" viewBox="0 0 2688 1520" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+      <defs>
+        <radialGradient id="cs-fx-icon">
+          <stop offset="0%" stopColor="#7DDCFF" stopOpacity="0.42" />
+          <stop offset="45%" stopColor="#38BDF8" stopOpacity="0.14" />
+          <stop offset="100%" stopColor="#38BDF8" stopOpacity="0" />
+        </radialGradient>
+        <linearGradient id="cs-fx-sheen" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stopColor="#E6F8FF" stopOpacity="0" />
+          <stop offset="48%" stopColor="#E6F8FF" stopOpacity="0.10" />
+          <stop offset="52%" stopColor="#E6F8FF" stopOpacity="0.10" />
+          <stop offset="100%" stopColor="#E6F8FF" stopOpacity="0" />
+        </linearGradient>
+      </defs>
+      {FX_CARDS.map((c, i) => (
+        <g key={i} className="cs-fx-stage" style={{ ['--d' as string]: `${i * FX_STEP}s` }}>
+          <circle className="cs-fx-icon" cx={c.icon[0]} cy={c.icon[1]} r={118} fill="url(#cs-fx-icon)" />
+          <rect className="cs-fx-card" x={c.x} y={c.y} width={c.w} height={c.h} rx={18} fill="url(#cs-fx-sheen)" />
+        </g>
+      ))}
+      {FX_ARROWS.map((a, i) => (
+        <line
+          key={i}
+          className="cs-fx-arrow"
+          x1={a.x1} y1={a.y} x2={a.x2} y2={a.y}
+          pathLength={100}
+          style={{ ['--d' as string]: `${i * FX_STEP + 0.42}s` }}
+        />
+      ))}
+      <g className="cs-fx-done" style={{ ['--d' as string]: `${4 * FX_STEP + 0.3}s` }}>
+        <circle className="cs-fx-done-ring" cx={FX_CHECK.cx} cy={FX_CHECK.cy} r={FX_CHECK.r} />
+        <circle className="cs-fx-done-pulse" cx={FX_CHECK.cx} cy={FX_CHECK.cy} r={FX_CHECK.r} />
+      </g>
+    </svg>
+  )
+}
+
 /* ── Connected workflow (same five steps shown in Glass.png) ── */
 
 const WORKFLOW_STEPS = [
@@ -30,6 +90,27 @@ const WORKFLOW_STEPS = [
 
 export default function ConnectedSystems() {
   const reduced = useReducedMotion()
+  // One-time light sequences (never with reduced motion), started by adding a
+  // class — no React re-render; the sequences themselves are pure CSS.
+  //   frame in view → "is-playing": desktop image overlay
+  //   step list in view → "steps-playing": phone/tablet step cards
+  const visualRef = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    const root = visualRef.current
+    if (!root || reduced) return
+    const frame = root.querySelector('.cs-glass-frame')
+    const list = root.querySelector('.cs-steps')
+    const io = new IntersectionObserver(entries => {
+      for (const e of entries) {
+        if (!e.isIntersecting) continue
+        root.classList.add(e.target === frame ? 'is-playing' : 'steps-playing')
+        io.unobserve(e.target)
+      }
+    }, { threshold: 0.45 })
+    if (frame) io.observe(frame)
+    if (list) io.observe(list)
+    return () => io.disconnect()
+  }, [reduced])
 
   return (
     <section
@@ -133,7 +214,8 @@ export default function ConnectedSystems() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.15 }}
           transition={{ duration: 0.65, delay: 0.3, ease: E }}
-          className="relative mx-auto"
+          ref={visualRef}
+          className="relative mx-auto cs-anim"
           style={{ width: 'min(86vw, 1240px)', marginTop: 'clamp(56px, 9vw, 100px)' }}
         >
           {/* Soft ambient glow behind the image — an elevated feel without a
@@ -160,6 +242,7 @@ export default function ConnectedSystems() {
               alt="A professional at a laptop in a night-time city office, beside a connected enquiry-to-booking workflow"
             />
             <div aria-hidden="true" className="cs-glass-shade" />
+            <WorkflowLight />
           </div>
 
           {/* The workflow as text: visible list on phones/tablets (the image's
@@ -170,6 +253,7 @@ export default function ConnectedSystems() {
               <motion.li
                 key={step.title}
                 className="cs-step"
+                style={{ ['--d' as string]: `${i * 0.55}s` }}
                 initial={reduced ? false : { opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.6 }}

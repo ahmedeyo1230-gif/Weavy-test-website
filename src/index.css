@@ -1036,6 +1036,116 @@ body::after {
     color: #D5DAE0;
   }
 }
+/* ── Connected Systems — one-time workflow light sequence ───────────────────
+   Desktop: an SVG overlay locked to the Glass.png artwork (same viewBox and
+   slice scaling as the image). Additive light only (screen blend) — no shapes
+   cover the artwork and the baked-in text/icons are never moved. Everything
+   rests invisible; .is-playing (added once in view) runs ≈5.3s: each card +
+   icon brightens in turn, a thin light travels each arrow, and the check ring
+   lights with one completion pulse, then all fades back to rest.
+   Phone/tablet: the image overlay is off (the crop changes the geometry);
+   the HTML step cards light in sequence instead (.steps-playing). */
+.cs-fx {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+.cs-fx-icon, .cs-fx-card, .cs-fx-done-ring, .cs-fx-done-pulse { opacity: 0; }
+.cs-fx-card {
+  stroke: rgba(125, 220, 255, 0.62);
+  stroke-width: 1.5px;
+  vector-effect: non-scaling-stroke;
+}
+.cs-fx-arrow {
+  stroke: #BFF1FF;
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-dasharray: 14 240;
+  stroke-dashoffset: 14;
+}
+.cs-fx-done-ring { fill: none; stroke: #A8EBFF; stroke-width: 4; }
+.cs-fx-done-pulse {
+  fill: none;
+  stroke: rgba(125, 220, 255, 0.75);
+  stroke-width: 3;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.is-playing .cs-fx-icon,
+.is-playing .cs-fx-card {
+  animation: cs-fx-stage 1.8s cubic-bezier(0.4, 0, 0.2, 1) calc(0.9s + var(--d)) 1 both;
+}
+.is-playing .cs-fx-arrow {
+  animation: cs-fx-arrow 0.6s cubic-bezier(0.45, 0, 0.25, 1) calc(0.9s + var(--d)) 1 both;
+}
+.is-playing .cs-fx-done-ring {
+  animation: cs-fx-done 1.6s cubic-bezier(0.4, 0, 0.2, 1) calc(0.9s + var(--d)) 1 both;
+}
+.is-playing .cs-fx-done-pulse {
+  animation: cs-fx-pulse 1.3s cubic-bezier(0.16, 1, 0.3, 1) calc(1.05s + var(--d)) 1 both;
+}
+@keyframes cs-fx-stage {
+  0%   { opacity: 0; }
+  30%  { opacity: 1; }
+  100% { opacity: 0; }
+}
+@keyframes cs-fx-arrow {
+  from { stroke-dashoffset: 14; }
+  to   { stroke-dashoffset: -60; }
+}
+@keyframes cs-fx-done {
+  0%   { opacity: 0; }
+  25%  { opacity: 1; }
+  100% { opacity: 0; }
+}
+@keyframes cs-fx-pulse {
+  0%   { opacity: 0.85; transform: scale(1); }
+  100% { opacity: 0;    transform: scale(1.9); }
+}
+
+@media (max-width: 1023px) {
+  .cs-fx { display: none; }
+  .cs-step-num { position: relative; }
+  .steps-playing .cs-step {
+    animation: cs-step-lit 1.6s cubic-bezier(0.4, 0, 0.2, 1) calc(0.35s + var(--d)) 1 both;
+  }
+  .steps-playing .cs-step-num {
+    animation: cs-step-num-lit 1.6s cubic-bezier(0.4, 0, 0.2, 1) calc(0.35s + var(--d)) 1 both;
+  }
+  /* completion pulse on the final step's badge */
+  .cs-step:last-child .cs-step-num::after {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: 50%;
+    border: 1px solid rgba(125, 220, 255, 0.7);
+    opacity: 0;
+    pointer-events: none;
+  }
+  .steps-playing .cs-step:last-child .cs-step-num::after {
+    animation: cs-fx-pulse 1.3s cubic-bezier(0.16, 1, 0.3, 1) calc(0.6s + var(--d)) 1 both;
+  }
+}
+@keyframes cs-step-lit {
+  0%   { border-color: rgba(125, 220, 255, 0.12); background-color: rgba(9, 22, 30, 0.55); }
+  30%  { border-color: rgba(125, 220, 255, 0.45); background-color: rgba(12, 36, 48, 0.72); }
+  100% { border-color: rgba(125, 220, 255, 0.12); background-color: rgba(9, 22, 30, 0.55); }
+}
+@keyframes cs-step-num-lit {
+  0%   { box-shadow: 0 0 14px rgba(125, 220, 255, 0.12); border-color: rgba(125, 220, 255, 0.42); }
+  30%  { box-shadow: 0 0 22px rgba(125, 220, 255, 0.45); border-color: rgba(168, 235, 255, 0.9); }
+  100% { box-shadow: 0 0 14px rgba(125, 220, 255, 0.12); border-color: rgba(125, 220, 255, 0.42); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cs-fx { display: none; }
+  .steps-playing .cs-step,
+  .steps-playing .cs-step-num,
+  .steps-playing .cs-step:last-child .cs-step-num::after { animation: none; }
+}
+
 /* Vertical connecting line between Weavy Platform and Connected Systems —
    restrained travelling light pulse. overflow:hidden clips the pulse to
    the line's own height; positioning of the line itself is unaffected
