@@ -3,14 +3,21 @@ import { useEffect, useRef, useState } from 'react'
 const WA_HREF =
   'https://wa.me/447300795353?text=Hi%20Weavy%2C%20I%20saw%20your%20website%20and%20I%E2%80%99d%20like%20to%20ask%20about%20your%20automation%20and%20marketing%20services.'
 
-// Content the button must not sit on top of. When any of it passes under the
-// button's corner the button fades out, and returns once the corner is clear.
-// Body text is left out on purpose — on a phone every line runs under the
-// corner, so including it would keep the button permanently hidden. Canvases
-// are left out too: on this site they are decorative section backgrounds.
+// Content the button must not sit on top of: when any of it is under the
+// button, the button fades out, and returns once the spot is clear.
+//  • AVOID elements (media, headings, buttons…) block by their visible box.
+//  • Body text blocks only where a rendered line actually reaches the button —
+//    a paragraph's box spans the whole column even when its lines stop short.
+// Canvases are left out: on this site they are decorative section backgrounds.
 const AVOID = 'img, video, h1, h2, h3, h4, button, .gd-hero-frame, .footer-social-icon, [data-wa-avoid]'
-const ZONE_PAD = 8      // px of clearance kept around the circle
-const SHOW_DELAY = 150  // ms the corner must stay clear before fading back in
+const ZONE_PAD = 6      // px of clearance kept around the circle
+const SHOW_DELAY = 300  // ms the spot must stay clear before fading back in —
+                        // small gaps between paragraphs passing mid-scroll
+                        // don't make it blink in and out
+const CHECK_MS = 100    // scroll re-check throttle
+const POLL_MS = 250     // while anything is near the button, re-check this often:
+                        // content also moves without scrolling (reveal and
+                        // scroll-scrubbed animations, counters, late images)
 
 export default function WhatsAppFloatingButton() {
   const [hovered, setHovered] = useState(false)
@@ -19,73 +26,115 @@ export default function WhatsAppFloatingButton() {
   const [reduceMotion] = useState(() => window.matchMedia('(prefers-reduced-motion: reduce)').matches)
   const ref = useRef<HTMLAnchorElement>(null)
 
-  // Collision awareness without scroll listeners: one IntersectionObserver
-  // whose root is shrunk (via negative rootMargin) to the button's own corner,
-  // so "intersecting" means "under the button".
+  // One IntersectionObserver whose root is shrunk (negative rootMargin) to the
+  // button's corner keeps a small candidate set — whatever is near the button
+  // right now. Only those candidates are measured precisely, on IO changes and
+  // (throttled) while scrolling.
   useEffect(() => {
     const btn = ref.current
     const circle = btn?.querySelector<HTMLElement>('.wa-floating-circle')
     if (!btn || !circle) return
 
-    const hits = new Set<Element>()
+    const near = new Set<Element>()
+    const observed = new WeakSet<Element>()
+    const range = document.createRange()
     let io: IntersectionObserver | null = null
-    let showTimer = 0
-    let resizeTimer = 0
+    let zone = { left: 0, top: 0, right: 0, bottom: 0 }
+    let showTimer = 0, resizeTimer = 0, trailTimer = 0, pollTimer = 0, lastCheck = 0
+
+    const overlaps = (r: { left: number; top: number; right: number; bottom: number }) =>
+      r.right > r.left && r.bottom > r.top &&
+      r.left < zone.right && r.right > zone.left && r.top < zone.bottom && r.bottom > zone.top
+
+    // Visible box: clipped by overflow ancestors (e.g. an oversized image inside
+    // a cropping frame only counts where it is actually shown).
+    const visibleBox = (el: Element) => {
+      const b = el.getBoundingClientRect()
+      let { left, top, right, bottom } = b
+      for (let p = el.parentElement; p && p !== document.body; p = p.parentElement) {
+        const cs = getComputedStyle(p)
+        if (cs.overflowX !== 'visible' || cs.overflowY !== 'visible') {
+          const pr = p.getBoundingClientRect()
+          left = Math.max(left, pr.left); top = Math.max(top, pr.top)
+          right = Math.min(right, pr.right); bottom = Math.min(bottom, pr.bottom)
+        }
+      }
+      return { left, top, right, bottom }
+    }
+
+    const excluded = (el: Element) => btn.contains(el) || !!el.closest('nav, header, #mobile-menu, script, style, noscript')
+
+    const blocks = (el: Element) => {
+      if (!el.isConnected || excluded(el)) return false
+      const cs = getComputedStyle(el)
+      if (cs.visibility === 'hidden' || cs.display === 'none') return false
+      if (el.matches(AVOID)) {
+        // Screen-filling media (page hero videos/backgrounds) would hide the
+        // button on landing.
+        const b = el.getBoundingClientRect()
+        const fills = /^(IMG|VIDEO)$/.test(el.tagName) && b.width >= window.innerWidth * 0.95 && b.height >= window.innerHeight * 0.6
+        if (!fills && overlaps(visibleBox(el))) return true
+      }
+      for (const n of el.childNodes) {
+        if (n.nodeType !== Node.TEXT_NODE || !n.textContent?.trim()) continue
+        range.selectNodeContents(n)
+        for (const r of range.getClientRects()) if (overlaps(r)) return true
+      }
+      return false
+    }
+    const blocked = () => { for (const el of near) if (blocks(el)) return true; return false }
 
     const update = () => {
-      for (const el of hits) if (!el.isConnected) hits.delete(el)
-      if (hits.size) {
+      for (const el of near) if (!el.isConnected) near.delete(el)
+      if (near.size && !pollTimer) pollTimer = window.setInterval(update, POLL_MS)
+      else if (!near.size && pollTimer) { window.clearInterval(pollTimer); pollTimer = 0 }
+      if (blocked()) {
         window.clearTimeout(showTimer); showTimer = 0
         setTucked(true)
       } else if (!showTimer) {
-        showTimer = window.setTimeout(() => { showTimer = 0; setTucked(false) }, SHOW_DELAY)
+        // Re-verify at the moment of showing — content may have moved in since.
+        showTimer = window.setTimeout(() => { showTimer = 0; if (blocked()) update(); else setTucked(false) }, SHOW_DELAY)
       }
     }
-    // Screen-filling media (page hero videos/backgrounds) would hide the button
-    // on landing, and the fixed navbar never reaches the bottom corner. Wide but
-    // short media (e.g. an oversized image cropped by its frame) still counts.
-    const counts = (el: Element) => {
-      if (el.closest('nav, header, #mobile-menu')) return false
-      if (!/^(IMG|VIDEO)$/.test(el.tagName)) return true
-      const r = el.getBoundingClientRect()
-      return !(r.width >= window.innerWidth * 0.95 && r.height >= window.innerHeight * 0.6)
+
+    // Candidates: AVOID elements plus every element that directly holds text.
+    const observe = (el: Element) => { if (!observed.has(el) && !excluded(el)) { observed.add(el); io?.observe(el) } }
+    const watch = (root: Node) => {
+      if (root instanceof Element && root.matches(AVOID)) observe(root)
+      if (root.nodeType === Node.TEXT_NODE) { if (root.parentElement && root.textContent?.trim()) observe(root.parentElement); return }
+      if (!(root instanceof Element)) return
+      root.querySelectorAll(AVOID).forEach(observe)
+      const w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT)
+      for (let n = w.nextNode(); n; n = w.nextNode()) if (n.textContent?.trim() && n.parentElement) observe(n.parentElement)
     }
 
-    const watch = (root: ParentNode) => {
-      if (root instanceof Element && root.matches(AVOID) && !btn.contains(root)) io?.observe(root)
-      root.querySelectorAll(AVOID).forEach(el => { if (!btn.contains(el)) io?.observe(el) })
-    }
-    // The zone runs from just above-left of the circle to the viewport's
-    // bottom-right corner (covering the gutter and safe area too). It is
-    // measured on screen — where the browser actually draws the fixed button,
-    // which can differ from its layout offsets while mobile toolbars collapse —
-    // with the tuck/hover transform briefly cleared so it doesn't skew the box.
+    // The coarse IO root runs from just above-left of the circle to the
+    // viewport's bottom-right corner. It is measured on screen — where the
+    // browser draws the fixed button, which can differ from its layout offsets
+    // while mobile toolbars collapse — with the tuck/hover transform cleared.
+    // The transition is switched off while measuring: mid-transition the box
+    // would still report the animated (tucked) position.
     const build = () => {
-      io?.disconnect(); hits.clear()
-      const prev = btn.style.transform
+      io?.disconnect(); near.clear()
+      const { transform, transition } = btn.style
+      btn.style.transition = 'none'
       btn.style.transform = 'none'
       const r = circle.getBoundingClientRect()
-      btn.style.transform = prev
-      const top = r.top - ZONE_PAD
-      const left = r.left - ZONE_PAD
+      btn.style.transform = transform
+      void btn.offsetWidth // apply the restored transform before transitions return
+      btn.style.transition = transition
+      zone = { left: r.left - ZONE_PAD, top: r.top - ZONE_PAD, right: r.right + ZONE_PAD, bottom: r.bottom + ZONE_PAD }
       io = new IntersectionObserver(entries => {
-        for (const e of entries) {
-          // Real overlap only — zero-size elements (e.g. unloaded lazy images)
-          // count as "intersecting" when they merely touch the zone.
-          const area = e.intersectionRect.width * e.intersectionRect.height
-          if (e.isIntersecting && area > 0 && counts(e.target)) hits.add(e.target)
-          else hits.delete(e.target)
-        }
+        for (const e of entries) e.isIntersecting ? near.add(e.target) : near.delete(e.target)
         update()
-      }, { rootMargin: `${-top}px 0px 0px ${-left}px` })
+      }, { rootMargin: `${-zone.top}px 0px 0px ${-zone.left}px` })
+      for (const el of [...document.querySelectorAll('*')]) if (observed.has(el)) io.observe(el)
       watch(document.body)
     }
 
     build()
     // Routes and lazy sections mount later — observe whatever they add.
-    const mo = new MutationObserver(records => {
-      for (const r of records) r.addedNodes.forEach(n => { if (n instanceof Element) watch(n) })
-    })
+    const mo = new MutationObserver(records => { for (const r of records) r.addedNodes.forEach(watch) })
     mo.observe(document.body, { childList: true, subtree: true })
     // Viewport changes (resizes, mobile toolbars collapsing, zoom) move the
     // corner. visualViewport "scroll" only fires when the visual viewport
@@ -94,13 +143,22 @@ export default function WhatsAppFloatingButton() {
     window.addEventListener('resize', onResize)
     window.visualViewport?.addEventListener('resize', onResize)
     window.visualViewport?.addEventListener('scroll', onResize)
+    // Lines and boxes move under the button as the page scrolls.
+    const onScroll = () => {
+      const now = performance.now()
+      if (now - lastCheck > CHECK_MS) { lastCheck = now; update() }
+      window.clearTimeout(trailTimer); trailTimer = window.setTimeout(update, CHECK_MS + 20)
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
 
     return () => {
       io?.disconnect(); mo.disconnect()
       window.removeEventListener('resize', onResize)
+      window.removeEventListener('scroll', onScroll)
       window.visualViewport?.removeEventListener('resize', onResize)
       window.visualViewport?.removeEventListener('scroll', onResize)
-      window.clearTimeout(showTimer); window.clearTimeout(resizeTimer)
+      for (const t of [showTimer, resizeTimer, trailTimer]) window.clearTimeout(t)
+      window.clearInterval(pollTimer)
     }
   }, [])
 
