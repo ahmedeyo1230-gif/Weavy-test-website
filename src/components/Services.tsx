@@ -51,7 +51,7 @@ const SERVICES = [
       </svg>
     ),
     title: 'Custom Chatbots',
-    description: 'Intelligent AI chatbots for automation, support, and customer engagement.',
+    description: 'Intelligent chatbots for automation, support, and customer engagement.',
     accent: 'hsl(150 58% 50%)',        // green
     accentMuted: 'hsl(150 58% 50% / 0.12)',
     accentBorder: 'hsl(150 58% 50% / 0.35)',
@@ -167,7 +167,7 @@ function ServiceCard({ service, onLearnMore }: ServiceCardProps) {
           <h3
             className="font-heading font-medium text-text mb-3 relative z-10"
             style={{
-              fontSize: 'clamp(0.95rem, 1.3vw, 1.05rem)',
+              fontSize: 'var(--dt-card-title, clamp(0.95rem, 1.3vw, 1.05rem))',
               letterSpacing: '-0.02em',
               lineHeight: 1.3,
             }}
@@ -179,9 +179,9 @@ function ServiceCard({ service, onLearnMore }: ServiceCardProps) {
           <p
             className="font-sans font-normal relative z-10 mb-6 flex-1 m-tx-secondary"
             style={{
-              fontSize: '0.82rem',
+              fontSize: 'var(--dt-card-desc, 0.82rem)',
               color: 'hsl(0 0% 48%)',
-              lineHeight: 1.75,
+              lineHeight: 'var(--dt-card-desc-lh, 1.75)',
             }}
           >
             {service.description}
@@ -825,10 +825,10 @@ function BespokeWebShowcase() {
               built to perform.
             </em>
           </h2>
-          <p className="bws-header font-sans font-normal" style={{ fontSize: 'clamp(0.84rem, 1.3vw, 0.97rem)', lineHeight: 1.9, color: '#D3DCE2', marginBottom: '1rem' }}>
+          <p className="bws-header font-sans font-normal" style={{ fontSize: 'var(--dt-showcase-body, clamp(0.84rem, 1.3vw, 0.97rem))', lineHeight: 1.9, color: '#D3DCE2', marginBottom: '1rem' }}>
             Every site we build is a precision-crafted system — visual, functional, and designed to earn trust from the first scroll. We don't use templates. Every layout, interaction, and detail is shaped around your brand and your audience.
           </p>
-          <p className="bws-header font-sans font-normal" style={{ fontSize: 'clamp(0.84rem, 1.3vw, 0.97rem)', lineHeight: 1.9, color: '#D3DCE2' }}>
+          <p className="bws-header font-sans font-normal" style={{ fontSize: 'var(--dt-showcase-body, clamp(0.84rem, 1.3vw, 0.97rem))', lineHeight: 1.9, color: '#D3DCE2' }}>
             From real estate platforms and service businesses to e-commerce brands and creative studios — we build websites that feel premium, load fast, and convert visitors into clients.
           </p>
 
@@ -841,7 +841,7 @@ function BespokeWebShowcase() {
                   display: 'inline-flex', alignItems: 'center', gap: '0.45rem',
                   padding: '0.52rem 1.3rem', borderRadius: '9999px',
                   border: '1px solid rgba(215,180,100,0.38)',
-                  fontSize: '0.72rem', letterSpacing: '0.07em', fontWeight: 500,
+                  fontSize: 'var(--dt-pill, 0.72rem)', letterSpacing: '0.07em', fontWeight: 500,
                   color: '#E8C97A',
                   background: 'rgba(200,168,90,0.06)',
                   backdropFilter: 'blur(10px)',
@@ -8936,7 +8936,7 @@ export default function Services() {
           <p
             className="services-body font-sans font-normal mb-14 max-w-xl m-tx-secondary"
             style={{
-              fontSize: 'clamp(0.9rem, 1.5vw, 1.05rem)',
+              fontSize: 'var(--dt-intro, clamp(0.9rem, 1.5vw, 1.05rem))',
               lineHeight: 1.8,
               color: 'hsl(0 0% 56%)',
             }}
@@ -9206,7 +9206,7 @@ export default function Services() {
             <p
               className="bwdc-body font-sans font-normal"
               style={{
-                fontSize: 'clamp(0.88rem, 1.4vw, 1rem)', lineHeight: 1.82,
+                fontSize: 'var(--dt-villa-body, clamp(0.88rem, 1.4vw, 1rem))', lineHeight: 1.82,
                 color: '#D3DCE2', marginBottom: '1.4rem',
                 textShadow: '0 1px 18px rgba(0,0,0,0.35)',
               }}
@@ -9216,7 +9216,7 @@ export default function Services() {
             <p
               className="bwdc-body font-sans font-normal"
               style={{
-                fontSize: 'clamp(0.88rem, 1.4vw, 1rem)', lineHeight: 1.82,
+                fontSize: 'var(--dt-villa-body, clamp(0.88rem, 1.4vw, 1rem))', lineHeight: 1.82,
                 color: '#C9D3D8', marginBottom: '1.4rem',
                 textShadow: '0 1px 18px rgba(0,0,0,0.35)',
               }}
@@ -9226,7 +9226,7 @@ export default function Services() {
             <p
               className="bwdc-body font-sans font-normal"
               style={{
-                fontSize: 'clamp(0.88rem, 1.4vw, 1rem)', lineHeight: 1.82,
+                fontSize: 'var(--dt-villa-body, clamp(0.88rem, 1.4vw, 1rem))', lineHeight: 1.82,
                 color: '#C9D3D8',
                 textShadow: '0 1px 18px rgba(0,0,0,0.35)',
               }}
@@ -9328,7 +9328,7 @@ export default function Services() {
               <p
                 className="bwd1-body font-sans font-normal mb-14 max-w-xl"
                 style={{
-                  fontSize: 'clamp(0.9rem, 1.5vw, 1.05rem)',
+                  fontSize: 'var(--dt-bespoke-body, clamp(0.9rem, 1.5vw, 1.05rem))',
                   lineHeight: 1.8,
                   color: '#D7DCE2',
                 }}
@@ -9360,7 +9360,7 @@ export default function Services() {
                     />
                     <span
                       className="font-sans font-normal"
-                      style={{ fontSize: 'clamp(0.88rem, 1.4vw, 1rem)', lineHeight: 1.75, color: 'hsl(0 0% 72%)' }}
+                      style={{ fontSize: 'var(--dt-bespoke-list, clamp(0.88rem, 1.4vw, 1rem))', lineHeight: 1.75, color: 'var(--dt-bespoke-list-color, hsl(0 0% 72%))' }}
                     >
                       {item}
                     </span>
@@ -9378,7 +9378,7 @@ export default function Services() {
               <p
                 className="bwd1-body font-sans font-normal max-w-xl"
                 style={{
-                  fontSize: 'clamp(0.9rem, 1.5vw, 1.05rem)',
+                  fontSize: 'var(--dt-bespoke-body, clamp(0.9rem, 1.5vw, 1.05rem))',
                   lineHeight: 1.8,
                   color: '#D7DCE2',
                 }}

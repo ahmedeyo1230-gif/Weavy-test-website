@@ -2040,3 +2040,45 @@ body::after {
 .s5cv-img-a { height: 520px; }
 @media (min-width: 640px)  { .s5cv-img-a { height: 590px; } }
 @media (min-width: 1024px) { .s5cv-img-a { height: clamp(480px, 52vw, 680px); } }
+
+/* ── Desktop typography — readability pass (≥1024px only) ───────────────────
+   Supporting copy, service cards and lists set their size through these
+   tokens with their original value as the fallback (e.g.
+   var(--dt-card-desc, 0.82rem)). The tokens exist only at ≥1024px, so phones
+   and tablets keep their approved sizes exactly. Headings are untouched. */
+@media (min-width: 1024px) {
+  :root {
+    --dt-about-body:     clamp(17px, 1.25vw, 18px);    /* About WEAVY paragraphs (was 16–17px) */
+    --dt-intro:          clamp(17px, 1.25vw, 18px);    /* "Our Services" intro (was ≤16.8px) */
+    --dt-card-title:     clamp(17.5px, 1.3vw, 19px);   /* service-card titles (was ≤16.8px) */
+    --dt-card-desc:      16px;                         /* service-card descriptions (was 13.1px) */
+    --dt-card-desc-lh:   1.65;
+    --dt-villa-body:     clamp(17px, 1.2vw, 18px);     /* Villa Luna paragraphs (was ≤16px) */
+    --dt-showcase-body:  clamp(16.5px, 1.2vw, 17.5px); /* "Crafted to captivate" (was ≤15.5px) */
+    --dt-pill:           13px;                         /* showcase feature pills (was 11.5px) */
+    --dt-bespoke-body:   clamp(17px, 1.25vw, 18px);    /* Bespoke detail paragraphs (was ≤16.8px) */
+    --dt-bespoke-list:   clamp(16px, 1.15vw, 17px);    /* Bespoke benefit list (was ≤16px) */
+    --dt-bespoke-list-color: #CDD5DB;                  /* was hsl(0 0% 72%) */
+  }
+}
+
+/* ── Connected Systems — cinematic edge blend (≥1024px only) ─────────────────
+   Reuses the frame's .cs-glass-shade layer (mobile keeps its own bottom fade).
+   The workflow panels, text and arrows are baked into Glass.png, so there is no
+   blanket filter: only the photographic surroundings are deepened, with soft
+   gradients that stay outside the panel band (≈23–50% height, 3–63% width) and
+   clear of the man's face (≈69–80% width). Peaks are at the outer edges and
+   fade to nothing well before the panels. */
+@media (min-width: 1024px) {
+  .cs-glass-shade {
+    display: block;
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      linear-gradient(to bottom, rgba(0, 5, 6, 0.22) 0%, rgba(0, 5, 6, 0) 19%),
+      linear-gradient(to top, rgba(0, 5, 6, 0.12) 0%, rgba(0, 5, 6, 0.04) 14%, rgba(0, 5, 6, 0) 26%),
+      radial-gradient(ellipse 34% 48% at 0% 100%, rgba(0, 5, 6, 0.40) 0%, rgba(0, 5, 6, 0) 100%),
+      linear-gradient(to left, rgba(0, 5, 6, 0.20) 0%, rgba(0, 5, 6, 0) 9%);
+  }
+}

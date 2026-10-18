@@ -134,7 +134,7 @@ export default function About() { // no diagonal lines bg
               viewport={{ once: true }}
               transition={{ duration: 0.65, delay: 0.13, ease: E }}
               className="font-body space-y-4 font-normal leading-relaxed"
-              style={{ fontSize: 'clamp(16px, 1vw, 17px)', color: 'var(--text-body)', lineHeight: 1.8 }}
+              style={{ fontSize: 'var(--dt-about-body, clamp(16px, 1vw, 17px))', color: 'var(--text-body)', lineHeight: 1.8 }}
             >
               <p>
                 Weavy is a London-based{' '}
