@@ -1903,3 +1903,106 @@ body::after {
 @media (max-width: 639px) {
   .gd-hero-title { font-size: 8.4cqw; bottom: 5.5cqw; }
 }
+
+/* ── About Weavy — animated dashboard light layer (AboutDashboardFx.tsx) ────
+   SVG in the illustration's own 1400×772 space. Line widths are in image
+   units, so --sw is set per breakpoint to keep strokes ≈1.3–1.6 screen px
+   at the rendered illustration width (≈0.25× on phones, ≈0.67× at 1920).
+   One shared 9s cycle: every element uses animation-delay: var(--d).
+   Paused until on screen (.is-live) and while the tab is hidden. */
+.about-fx {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+  --sw: 5.2;
+}
+@media (min-width: 640px)  { .about-fx { --sw: 2.8; } }
+@media (min-width: 1024px) { .about-fx { --sw: 3.6; } }
+@media (min-width: 1280px) { .about-fx { --sw: 3; } }
+@media (min-width: 1440px) { .about-fx { --sw: 2.6; } }
+@media (min-width: 1700px) { .about-fx { --sw: 2.2; } }
+
+.about-fx * {
+  animation-duration: 9s;
+  animation-delay: var(--d, 0s);
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  animation-play-state: paused;
+}
+.about-fx.is-live:not(.tab-hidden) * { animation-play-state: running; }
+
+/* Building blocks */
+.about-fx .afx-tint { fill: url(#afx-grad); fill-opacity: 0.07; }
+.about-fx .afx-glow { fill: none; stroke: url(#afx-grad); stroke-width: calc(var(--sw) * 4px); stroke-opacity: 0.16; }
+.about-fx .afx-line { fill: none; stroke: url(#afx-grad); stroke-width: calc(var(--sw) * 1px); }
+.about-fx .afx-hl,
+.about-fx .afx-hl-long { opacity: 0; }
+.about-fx .afx-hl { animation-name: afx-hl; }
+.about-fx .afx-hl-long { animation-name: afx-hl-long; }
+
+/* 1 · Activation — soft rim + a light travelling along the navy frame */
+.about-fx .afx-rim {
+  fill: none; stroke: url(#afx-grad); stroke-linecap: round;
+  stroke-width: calc(var(--sw) * 2.2px); opacity: 0; animation-name: afx-rim;
+}
+.about-fx .afx-trail,
+.about-fx .afx-link { opacity: 0; }
+.about-fx .afx-trail { animation-name: afx-trail; }
+.about-fx .afx-link { animation-name: afx-link; }
+.about-fx .afx-trail-core,
+.about-fx .afx-trail-glow { fill: none; stroke-linecap: round; stroke-dasharray: 140 1000; stroke-dashoffset: 140; }
+.about-fx .afx-trail-core { stroke: #E6F7FF; stroke-width: calc(var(--sw) * 1.4px); }
+.about-fx .afx-trail-glow { stroke: url(#afx-grad); stroke-width: calc(var(--sw) * 5px); stroke-opacity: 0.45; }
+.about-fx .afx-trail .afx-trail-core,
+.about-fx .afx-trail .afx-trail-glow { animation-name: afx-dash-frame; animation-timing-function: cubic-bezier(0.45, 0, 0.35, 1); }
+/* On the white gap between cards and panels the core takes the brand gradient */
+.about-fx .afx-link .afx-trail-core { stroke: url(#afx-grad); stroke-dasharray: 160 1000; stroke-dashoffset: 160; }
+.about-fx .afx-link .afx-trail-glow { stroke-opacity: 0.22; stroke-dasharray: 160 1000; stroke-dashoffset: 160; }
+.about-fx .afx-link .afx-trail-core,
+.about-fx .afx-link .afx-trail-glow { animation-name: afx-dash-link; animation-timing-function: cubic-bezier(0.45, 0, 0.35, 1); }
+
+/* Pulse rings (icons, active nav item, typing indicator, scheduled day) */
+.about-fx .afx-ring {
+  fill: none; stroke: #38BDF8; stroke-width: calc(var(--sw) * 1.3px);
+  opacity: 0; transform-box: fill-box; transform-origin: center; animation-name: afx-ring;
+}
+.about-fx .afx-ring--done { stroke: #10B981; }
+.about-fx .afx-dot { fill: #7DDCFF; opacity: 0; animation-name: afx-dot; }
+
+/* 4 · Workflow — sheen across the preview, scheduler outline draws itself */
+.about-fx .afx-sheen { opacity: 0; animation-name: afx-sheen; animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1); }
+.about-fx .afx-draw { opacity: 0; animation-name: afx-draw-fade; }
+.about-fx .afx-draw path { stroke-dasharray: 1000 1000; stroke-dashoffset: 1000; animation-name: afx-draw; animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1); }
+
+/* 5 · Completion */
+.about-fx .afx-done-ring {
+  fill: rgba(16, 185, 129, 0.10); stroke: #10B981; stroke-width: calc(var(--sw) * 1.4px);
+  opacity: 0; animation-name: afx-done;
+}
+
+/* Phones/tablets: same choreography, lighter glow */
+@media (max-width: 1023px) {
+  .about-fx .afx-glow { stroke-opacity: 0.12; }
+  .about-fx .afx-rim { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .about-fx { display: none; }
+}
+
+/* 9s timeline — 1s ≈ 11.1% */
+@keyframes afx-hl       { 0% { opacity: 0 } 3% { opacity: 1 } 9% { opacity: 1 } 16% { opacity: 0 } 100% { opacity: 0 } }
+@keyframes afx-hl-long  { 0% { opacity: 0 } 4% { opacity: 0.9 } 20% { opacity: 0.9 } 29% { opacity: 0 } 100% { opacity: 0 } }
+@keyframes afx-rim      { 0% { opacity: 0 } 7% { opacity: 0.35 } 15% { opacity: 0.35 } 26% { opacity: 0 } 100% { opacity: 0 } }
+@keyframes afx-trail    { 0% { opacity: 0 } 2% { opacity: 1 } 13% { opacity: 1 } 16% { opacity: 0 } 100% { opacity: 0 } }
+@keyframes afx-dash-frame { 0% { stroke-dashoffset: 140 } 15% { stroke-dashoffset: -1000 } 100% { stroke-dashoffset: -1000 } }
+@keyframes afx-link     { 0% { opacity: 0 } 1.5% { opacity: 1 } 12% { opacity: 1 } 14.5% { opacity: 0 } 100% { opacity: 0 } }
+@keyframes afx-dash-link { 0% { stroke-dashoffset: 160 } 14% { stroke-dashoffset: -1000 } 100% { stroke-dashoffset: -1000 } }
+@keyframes afx-ring     { 0% { opacity: 0; transform: scale(1) } 2% { opacity: 0.9 } 12% { opacity: 0; transform: scale(1.45) } 100% { opacity: 0; transform: scale(1.45) } }
+@keyframes afx-dot      { 0% { opacity: 0 } 2.5% { opacity: 0.85 } 5.5% { opacity: 0 } 9% { opacity: 0 } 11.5% { opacity: 0.85 } 14.5% { opacity: 0 } 100% { opacity: 0 } }
+@keyframes afx-sheen    { 0% { opacity: 0; transform: translateX(0) } 2% { opacity: 1 } 10% { opacity: 1 } 12% { opacity: 0; transform: translateX(440px) } 100% { opacity: 0; transform: translateX(440px) } }
+@keyframes afx-draw     { 0% { stroke-dashoffset: 1000 } 0.5% { stroke-dashoffset: 1000 } 10% { stroke-dashoffset: 0 } 100% { stroke-dashoffset: 0 } }
+@keyframes afx-draw-fade { 0% { opacity: 0 } 0.5% { opacity: 1 } 27% { opacity: 1 } 34% { opacity: 0 } 100% { opacity: 0 } }
+@keyframes afx-done     { 0% { opacity: 0 } 4% { opacity: 1 } 13% { opacity: 1 } 19% { opacity: 0 } 100% { opacity: 0 } }

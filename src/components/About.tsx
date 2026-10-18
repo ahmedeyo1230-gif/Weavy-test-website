@@ -1,4 +1,5 @@
 import { motion, useReducedMotion } from 'framer-motion'
+import AboutDashboardFx from './AboutDashboardFx'
 
 const E: [number, number, number, number] = [0.16, 1, 0.3, 1]
 
@@ -258,6 +259,7 @@ export default function About() { // no diagonal lines bg
                 background: 'rgba(2, 10, 14, 0.08)',
                 borderRadius: 'inherit',
               }} />
+              <AboutDashboardFx />
             </div>
             </div>
           </motion.div>
