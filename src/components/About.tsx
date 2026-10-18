@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 
 const E: [number, number, number, number] = [0.16, 1, 0.3, 1]
 
@@ -13,6 +13,7 @@ const SERVICE_MODULES = [
 ]
 
 export default function About() { // no diagonal lines bg
+  const reduceMotion = useReducedMotion()
   return (
     <section
       id="about"
@@ -219,14 +220,17 @@ export default function About() { // no diagonal lines bg
 
           {/* ── Right: Dashboard image ── */}
           <motion.div
-            className="w-full"
-            initial={{ opacity: 0, y: 40, scale: 0.97 }}
+            className="w-full min-w-0"
+            initial={reduceMotion ? false : { opacity: 0, y: 24, scale: 0.965 }}
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.9, delay: 0.2, ease: E }}
+            transition={{ duration: 0.8, delay: 0.15, ease: E }}
           >
+            {/* Float wrapper sits outside the sizing transform so the drift is
+                true pixels, not multiplied by the 1.53× desktop scale. */}
+            <div className="about-illus-float">
             <div
-              className="relative w-full [transform:scale(1.12)] lg:[transform:translateX(calc(10%_+_54px))_scale(1.53)]"
+              className="about-illus relative w-full"
               style={{
                 maskImage: 'radial-gradient(ellipse 88% 82% at 52% 50%, black 45%, transparent 100%)',
                 WebkitMaskImage: 'radial-gradient(ellipse 88% 82% at 52% 50%, black 45%, transparent 100%)',
@@ -254,6 +258,7 @@ export default function About() { // no diagonal lines bg
                 background: 'rgba(2, 10, 14, 0.08)',
                 borderRadius: 'inherit',
               }} />
+            </div>
             </div>
           </motion.div>
 

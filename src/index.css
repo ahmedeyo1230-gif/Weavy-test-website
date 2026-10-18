@@ -1802,3 +1802,105 @@ body::after {
 @media (min-width: 1024px) and (prefers-reduced-motion: reduce) {
   .gds-pill, .gds-pill .gds-pill-text, .gds-pill .gds-pill-icon { transition: none; }
 }
+
+/* ── About Weavy — dashboard illustration sizing + ambient float ─────────────
+   Phones: slight bleed into the gutters (mask softens the edges).
+   Tablet: inset so the plant and floating cubes are no longer clipped.
+   1024–1599: the approved desktop transform, unchanged — the column already
+   bleeds past the viewport there, so there is no room to enlarge.
+   ≥1600: up to ~10% larger, growing into the column gap and capped so the
+   right edge never passes the viewport. */
+.about-illus { transform: scale(1.06); }
+@media (min-width: 640px) {
+  .about-illus { transform: scale(0.94); }
+}
+@media (min-width: 1024px) {
+  .about-illus { transform: translateX(calc(10% + 54px)) scale(1.53); }
+}
+@media (min-width: 1600px) {
+  .about-illus {
+    transform: none;
+    width: clamp(853px, calc(50vw + 21px), 937px);
+    margin-left: -40px;
+  }
+}
+
+.about-illus-float { animation: about-float 7s ease-in-out infinite; }
+@keyframes about-float {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50%      { transform: translate3d(0, -3px, 0); }
+}
+@media (max-width: 1023px) {
+  .about-illus-float { animation-name: about-float-sm; }
+  @keyframes about-float-sm {
+    0%, 100% { transform: translate3d(0, 0, 0); }
+    50%      { transform: translate3d(0, -2px, 0); }
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .about-illus-float { animation: none; }
+}
+
+/* ── Graphic Design hero — meeting photograph in an editorial frame ─────────
+   Desktop shows the full 3840×1648 frame (all three people, no crop).
+   Below 1024 the frame narrows to 2:1 / 19:10 — the crop only trims the
+   sofa ends, keeping every face and both women’s hair in frame. Headline is live text (it used to be baked
+   into the old image) and scales with the frame via container units. */
+.gd-hero-frame {
+  position: relative;
+  container-type: inline-size;
+  width: min(92vw, 1600px);
+  margin-inline: auto;
+  aspect-ratio: 3840 / 1648;
+  border-radius: 24px;
+  overflow: hidden;
+  background: #010709;
+  border: 1px solid rgba(125, 220, 255, 0.12);
+  box-shadow: 0 32px 90px rgba(0, 0, 0, 0.55), 0 0 40px rgba(125, 220, 255, 0.05);
+}
+.gd-hero-img {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  object-position: 50% 35%;
+}
+.gd-hero-shade {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(to top, rgba(1, 7, 9, 0.78) 0%, rgba(1, 7, 9, 0.32) 24%, rgba(1, 7, 9, 0) 46%),
+    radial-gradient(ellipse 120% 100% at 50% 40%, rgba(1, 7, 9, 0) 60%, rgba(1, 7, 9, 0.35) 100%);
+}
+.gd-hero-title {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 4.6cqw;
+  margin: 0;
+  text-align: center;
+  font-family: var(--font-accent);
+  font-weight: 400;
+  font-size: 6.4cqw;
+  line-height: 1;
+  letter-spacing: -0.005em;
+  color: #F7F2EB;
+  text-shadow: 0 0 2.2cqw rgba(255, 205, 160, 0.2), 0 0.25cqw 1.4cqw rgba(0, 0, 0, 0.55);
+}
+@media (max-width: 1023px) {
+  .gd-hero-frame {
+    width: calc(100% - 32px);
+    max-width: 720px;
+    aspect-ratio: 2 / 1;
+    border-radius: 20px;
+  }
+  .gd-hero-title { font-size: 8cqw; bottom: 5.5cqw; }
+}
+@media (max-width: 639px) {
+  .gd-hero-frame { aspect-ratio: 19 / 10; }
+  .gd-hero-title { font-size: 8.4cqw; bottom: 5.5cqw; }
+}

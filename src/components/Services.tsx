@@ -4967,13 +4967,28 @@ function ChatbotHero() {
 // ─── Graphic Design / Animation — Cinematic Hero ─────────────────────────────
 
 function GraphicDesignHero() {
-  // Use a medium pair: start collapsed by default so desktop loads normally,
-  // but allow expanding to a large (but not extreme) size for review.
-  const [expanded, setExpanded] = useState(false)
+  const frameRef = useRef<HTMLDivElement>(null)
 
-  const desktopCollapsed = 'clamp(440px, 62vh, 820px)'
-  const desktopExpanded = 'min(400vh, 3200px)'
-  const desktopHeight = expanded ? desktopExpanded : desktopCollapsed
+  // Restrained editorial entrance — fade, 12px rise, slight scale settle —
+  // then the photograph stays still.
+  useEffect(() => {
+    const frame = frameRef.current
+    if (!frame) return
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      gsap.set(frame, { opacity: 1, y: 0, scale: 1 })
+      return
+    }
+
+    gsap.set(frame, { opacity: 0, y: 12, scale: 0.985 })
+    const obs = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return
+      gsap.to(frame, { opacity: 1, y: 0, scale: 1, duration: 0.9, ease: 'power3.out' })
+      obs.disconnect()
+    }, { threshold: 0.15 })
+    obs.observe(frame)
+    return () => obs.disconnect()
+  }, [])
 
   return (
     <section
@@ -4985,76 +5000,21 @@ function GraphicDesignHero() {
         paddingTop: 'clamp(3rem, 6vw, 5rem)',
       }}
     >
-      {/* Desktop: collapsible hero image */}
-      <div className="hidden lg:block">
-        <div style={{ position: 'relative' }}>
-          <img
-            loading="lazy"
-            decoding="async"
-            src="/brand_assets/Claude_image.webp"
-            alt="Graphic design and animation showcase"
-            style={{
-              display: 'block',
-              width: '100%',
-              height: desktopHeight,
-              objectFit: 'cover',
-              objectPosition: 'center top',
-              filter: 'brightness(0.94) contrast(1.08) saturate(1.06)',
-            }}
-          />
-          {/* Dark cinematic overlay */}
-          <div aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'rgba(1,7,9,0.18)', pointerEvents: 'none', zIndex: 2 }} />
-          {/* Left fade */}
-          <div aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, #010709 0%, transparent 18%, transparent 82%, #010709 100%)', pointerEvents: 'none', zIndex: 3 }} />
-          {/* Top vignette */}
-          <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '120px', background: 'linear-gradient(to bottom, #010709, transparent)', pointerEvents: 'none', zIndex: 3 }} />
-
-          {/* Collapse / Expand control (desktop only) */}
-          <button
-            aria-expanded={expanded}
-            onClick={() => setExpanded(v => !v)}
-            style={{
-              position: 'absolute',
-              right: 20,
-              top: 20,
-              zIndex: 30,
-              background: 'rgba(0,0,0,0.6)',
-              color: '#fff',
-              border: '1px solid rgba(255,255,255,0.08)',
-              padding: '0.55rem 0.85rem',
-              borderRadius: 999,
-              cursor: 'pointer',
-              backdropFilter: 'blur(6px)',
-            }}
-          >
-            {expanded ? '' : ''}
-          </button>
-        </div>
+      <div ref={frameRef} className="gd-hero-frame">
+        <img
+          className="gd-hero-img"
+          loading="lazy"
+          decoding="async"
+          src="/brand_assets/meeting-1800.webp"
+          srcSet="/brand_assets/meeting-1200.webp 1200w, /brand_assets/meeting-1800.webp 1800w, /brand_assets/meeting-2600.webp 2600w"
+          sizes="(min-width: 1024px) min(92vw, 1600px), (min-width: 640px) min(100vw, 720px), 150vw"
+          width={3840}
+          height={1648}
+          alt="Three members of the WEAVY creative team reviewing design work on tablets"
+        />
+        <div aria-hidden="true" className="gd-hero-shade" />
+        <h2 className="gd-hero-title">We Design. We Create.</h2>
       </div>
-
-      {/* Mobile / Tablet: improved fitted image (only below lg) */}
-      <div className="block lg:hidden w-full overflow-hidden bg-[#010709]">
-        <div className="relative mx-auto w-full max-w-[720px] overflow-hidden sm:rounded-[24px] aspect-[3/2]">
-          <img
-            loading="lazy"
-            decoding="async"
-            src="/brand_assets/Claude_image.webp"
-            alt="Graphic design and animation showcase"
-            className="w-full h-full object-contain object-center"
-            style={{ display: 'block', filter: 'brightness(0.94) contrast(1.08) saturate(1.06)' }}
-          />
-          <div aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'rgba(1,7,9,0.16)', pointerEvents: 'none' }} />
-        </div>
-      </div>
-
-      {/* Bottom fade — blends hero image edge into Editorial */}
-      <div aria-hidden="true" style={{
-        position: 'absolute', bottom: 0, left: 0, right: 0,
-        height: '200px',
-        background: 'linear-gradient(to bottom, transparent, rgba(1,7,9,0.5) 55%, #010709 100%)',
-        pointerEvents: 'none',
-        zIndex: 5,
-      }}/>
     </section>
   )
 }
