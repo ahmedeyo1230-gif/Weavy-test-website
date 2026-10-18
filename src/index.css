@@ -1783,7 +1783,7 @@ body::after {
 
   /* Social Media showcase — the shampoo mockup is gone; the remaining watch
      image sits centred at a little over half the column width. */
-  .d-watch-solo { flex: 0 0 calc((100% - 1.25rem) * 0.53); margin-inline: auto; }
+  .d-watch-solo { flex: 0 0 calc((100% - 1.25rem) * 0.58); margin-inline: auto; }
 
   /* Graphic Design service pills — subtle hover highlight (mouse only);
      the pills remain non-interactive, non-focusable list items. */
@@ -2037,6 +2037,6 @@ body::after {
 /* Watch post ("Social campaigns built for the platforms…"): a little larger
    at every size; the image is object-fit: contain, so the box height sets
    its size. Desktop width is set by .d-watch-solo. */
-.s5cv-img-a { height: 470px; }
-@media (min-width: 640px)  { .s5cv-img-a { height: 540px; } }
-@media (min-width: 1024px) { .s5cv-img-a { height: clamp(440px, 48vw, 620px); } }
+.s5cv-img-a { height: 520px; }
+@media (min-width: 640px)  { .s5cv-img-a { height: 590px; } }
+@media (min-width: 1024px) { .s5cv-img-a { height: clamp(480px, 52vw, 680px); } }

@@ -3677,8 +3677,10 @@ function SocialMediaMarketing() {
                 {
                   src: '/brand_assets/campaign-lips-1.png',
                   alt: 'Skincare campaign — beauty product application',
-                  // toward the jar and the hand holding it
-                  objectPosition: '68% 50%',
+                  // balances the fingers applying cream at the cheek, the face and
+                  // the jar (they sit ~57% of the photo apart, so narrow panels
+                  // can only show part of the jar or the fingertips)
+                  objectPosition: '58% 50%',
                 },
                 {
                   src: '/brand_assets/SIIRR.png',
@@ -7223,16 +7225,9 @@ function UGCCreatorSelection() {
 // ─── UGC — Step 01: Find Your Creators ───────────────────────────────────────
 
 function UGCFindCreators() {
-  const ref      = useRef<HTMLElement>(null)
-  const videoRef = useRef<HTMLVideoElement>(null)
-  const [muted, setMuted] = useState(true)
-
-  const toggleMute = () => {
-    const v = videoRef.current
-    if (!v) return
-    v.muted = !v.muted
-    setMuted(v.muted)
-  }
+  const ref = useRef<HTMLElement>(null)
+  // Reduced motion: no autoplay — the poster frame stands in for the clip.
+  const [autoPlay] = useState(() => !window.matchMedia('(prefers-reduced-motion: reduce)').matches)
 
   useEffect(() => {
     const el = ref.current
@@ -7350,39 +7345,16 @@ function UGCFindCreators() {
                 ].join(', '),
               }}>
 
-                {/* Video */}
+                {/* Video — berryfume1 has no sound (its source track is silent and
+                    stripped from this web copy), so there is no sound toggle. */}
                 <video
-                  ref={videoRef}
-                  autoPlay muted loop playsInline preload="metadata"
+                  autoPlay={autoPlay} muted loop playsInline preload="metadata"
+                  poster="/brand_assets/berryfume1-poster.webp"
+                  aria-label="UGC creator presenting a Valéor Cherry setting spray"
                   style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
                 >
-                  <source src="/brand_assets/face-cream.mp4" type="video/mp4" />
+                  <source src="/brand_assets/berryfume1.mp4" type="video/mp4" />
                 </video>
-
-                {/* Sound toggle */}
-                <button
-                  onClick={toggleMute}
-                  aria-label={muted ? 'Unmute video' : 'Mute video'}
-                  style={{
-                    position: 'absolute',
-                    bottom: '12px',
-                    left: '12px',
-                    width: 30, height: 30,
-                    borderRadius: '50%',
-                    background: 'hsl(0 0% 0% / 0.55)',
-                    border: '1px solid hsl(0 0% 100% / 0.18)',
-                    backdropFilter: 'blur(8px)',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    color: 'hsl(0 0% 85%)',
-                    cursor: 'pointer',
-                    zIndex: 10,
-                    transition: 'background 0.2s ease, transform 0.15s ease',
-                  }}
-                  onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = 'hsl(0 0% 0% / 0.8)'; (e.currentTarget as HTMLElement).style.transform = 'scale(1.08)' }}
-                  onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = 'hsl(0 0% 0% / 0.55)'; (e.currentTarget as HTMLElement).style.transform = 'scale(1)' }}
-                >
-                  <IgVolume muted={muted} />
-                </button>
 
                 {/* Bottom scrim */}
                 <div aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, hsl(0 0% 0% / 0.75) 0%, transparent 48%)', zIndex: 1 }}/>
@@ -8016,63 +7988,8 @@ const UGC_PERFUME_FEATURES = [
   'Built for TikTok, Reels, Shorts, and paid ads',
 ]
 
-// Instagram action icon SVGs
-function IgHeart() {
-  return (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-    </svg>
-  )
-}
-function IgComment() {
-  return (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-    </svg>
-  )
-}
-function IgShare() {
-  return (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <line x1="22" y1="2" x2="11" y2="13"/>
-      <polygon points="22 2 15 22 11 13 2 9 22 2"/>
-    </svg>
-  )
-}
-function IgSave() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
-    </svg>
-  )
-}
-function IgVolume({ muted }: { muted: boolean }) {
-  return muted ? (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
-      <line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/>
-    </svg>
-  ) : (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
-      <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
-      <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
-    </svg>
-  )
-}
-
 function UGCPerfumeCampaign() {
-  const ref      = useRef<HTMLElement>(null)
-  const videoRef = useRef<HTMLVideoElement>(null)
-  const [muted, setMuted] = useState(true)
-
-  // Toggle sound
-  const toggleMute = () => {
-    const v = videoRef.current
-    if (!v) return
-    v.muted = !v.muted
-    setMuted(v.muted)
-  }
+  const ref = useRef<HTMLElement>(null)
 
   useEffect(() => {
     const el = ref.current
@@ -8139,210 +8056,35 @@ function UGCPerfumeCampaign() {
           {/* ── LEFT: Instagram mockup ── */}
           <div className="ugcpc-mockup flex justify-center lg:justify-start">
 
-            {/* Phone shell */}
+            {/* Static Instagram post — Allure.png is a finished screenshot of
+                this post (header, actions and caption included), cropped to its
+                own rounded frame, so no UI is layered on top of it. */}
             <div
               className="ugcpc-phone"
               style={{
                 position: 'relative',
                 width: '100%',
                 maxWidth: '400px',
-                borderRadius: '40px',
+                aspectRatio: '800 / 1510',
+                borderRadius: '5.6% / 2.98%',
                 background: 'hsl(0 0% 4%)',
-                border: '1px solid hsl(0 0% 100% / 0.11)',
                 boxShadow: [
                   '0 0 0 1px hsl(38 55% 48% / 0.08)',
                   '0 48px 100px hsl(0 0% 0% / 0.65)',
                   '0 12px 32px hsl(0 0% 0% / 0.4)',
-                  'inset 0 1px 0 hsl(0 0% 100% / 0.06)',
                 ].join(', '),
                 overflow: 'hidden',
               }}
             >
-
-              {/* ── Top status bar ── */}
-              <div
-                style={{
-                  padding: '12px 18px 10px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  background: 'hsl(0 0% 5%)',
-                  borderBottom: '1px solid hsl(0 0% 100% / 0.06)',
-                }}
-              >
-                {/* Left: avatar + name + username */}
-                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                  {/* Avatar ring — larger for bigger mockup */}
-                  <div
-                    style={{
-                      width: 40, height: 40, borderRadius: '50%', flexShrink: 0,
-                      background: 'linear-gradient(135deg, hsl(38 85% 65%), hsl(30 80% 50%), hsl(20 70% 42%))',
-                      padding: '2.5px',
-                      boxShadow: '0 0 0 1px hsl(38 70% 55% / 0.35)',
-                    }}
-                  >
-                    <div
-                      style={{
-                        width: '100%', height: '100%', borderRadius: '50%',
-                        background: 'hsl(0 0% 7%)',
-                        display: 'flex', alignItems: 'center', justifyContent: 'center',
-                      }}
-                    >
-                      <span style={{
-                        fontSize: '0.82rem',
-                        color: 'hsl(38 75% 65%)',
-                        fontWeight: 500,
-                        fontFamily: 'var(--font-body)',
-                        fontStyle: 'italic',
-                        letterSpacing: '-0.02em',
-                      }}>A</span>
-                    </div>
-                  </div>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
-                    {/* Display name — bold brand name */}
-                    <span style={{ fontFamily: 'var(--font-label)', fontWeight: 600, fontSize: '0.78rem', color: 'hsl(0 0% 94%)', letterSpacing: '-0.015em' }}>
-                      A'llure
-                    </span>
-                    {/* Username + sponsored */}
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
-                      <span style={{ fontFamily: 'var(--font-label)', fontWeight: 300, fontSize: '0.6rem', color: 'hsl(0 0% 45%)', letterSpacing: '0.01em' }}>@allure.ugc</span>
-                      <span style={{ width: '2px', height: '2px', borderRadius: '50%', background: 'hsl(0 0% 30%)', display: 'inline-block' }} />
-                      <span style={{ fontFamily: 'var(--font-label)', fontWeight: 300, fontSize: '0.6rem', color: 'hsl(0 0% 38%)', letterSpacing: '0.02em' }}>Sponsored</span>
-                    </div>
-                  </div>
-                </div>
-                {/* Right: Follow + close dots */}
-                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                  <span
-                    style={{
-                      fontFamily: 'var(--font-label)',
-                      fontWeight: 500, fontSize: '0.68rem',
-                      color: 'hsl(207 85% 60%)',
-                      letterSpacing: '-0.01em',
-                    }}
-                  >
-                    Follow
-                  </span>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '3px', opacity: 0.4 }}>
-                    {[0,1,2].map(i => (
-                      <span key={i} style={{ width: 3, height: 3, borderRadius: '50%', background: 'hsl(0 0% 70%)', display: 'block' }} />
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              {/* ── Video + right action column ── */}
-              <div style={{ position: 'relative', display: 'flex' }}>
-
-                {/* Video */}
-                <div style={{ flex: 1, position: 'relative', background: '#000' }}>
-                  <video
-                    ref={videoRef}
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    preload="metadata"
-                    aria-label="UGC perfume campaign — creator unboxing and presenting fragrance"
-                    style={{
-                      display: 'block',
-                      width: '100%',
-                      aspectRatio: '9 / 16',
-                      objectFit: 'cover',
-                    }}
-                  >
-                    <source src="https://pub-731d5e7deddb4fce94cef7393920d429.r2.dev/A'llure3..mp4" type="video/mp4" />
-                  </video>
-
-                  {/* Sound toggle */}
-                  <button
-                    onClick={toggleMute}
-                    aria-label={muted ? 'Unmute video' : 'Mute video'}
-                    style={{
-                      position: 'absolute',
-                      bottom: '10px',
-                      left: '10px',
-                      width: 28, height: 28,
-                      borderRadius: '50%',
-                      background: 'hsl(0 0% 0% / 0.55)',
-                      border: '1px solid hsl(0 0% 100% / 0.18)',
-                      backdropFilter: 'blur(8px)',
-                      display: 'flex', alignItems: 'center', justifyContent: 'center',
-                      color: 'hsl(0 0% 85%)',
-                      cursor: 'pointer',
-                      zIndex: 10,
-                      transition: 'background 0.2s ease, transform 0.15s ease',
-                    }}
-                    onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = 'hsl(0 0% 0% / 0.8)'; (e.currentTarget as HTMLElement).style.transform = 'scale(1.08)' }}
-                    onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = 'hsl(0 0% 0% / 0.55)'; (e.currentTarget as HTMLElement).style.transform = 'scale(1)' }}
-                  >
-                    <IgVolume muted={muted} />
-                  </button>
-                </div>
-
-                {/* Right action bar */}
-                <div
-                  style={{
-                    width: '50px', flexShrink: 0,
-                    background: 'hsl(0 0% 3% / 0.7)',
-                    backdropFilter: 'blur(12px)',
-                    borderLeft: '1px solid hsl(0 0% 100% / 0.05)',
-                    display: 'flex', flexDirection: 'column',
-                    alignItems: 'center',
-                    justifyContent: 'flex-end',
-                    paddingBottom: '14px',
-                    gap: '20px',
-                  }}
-                >
-                  {/* Heart */}
-                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '3px' }}>
-                    <div style={{ color: 'hsl(0 0% 80%)', lineHeight: 0 }}><IgHeart /></div>
-                    <span style={{ fontFamily: 'var(--font-label)', fontSize: '0.5rem', color: '#F2F8FC', letterSpacing: '0.02em' }}>12.8K</span>
-                  </div>
-                  {/* Comment */}
-                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '3px' }}>
-                    <div style={{ color: 'hsl(0 0% 80%)', lineHeight: 0 }}><IgComment /></div>
-                    <span style={{ fontFamily: 'var(--font-label)', fontSize: '0.5rem', color: '#F2F8FC', letterSpacing: '0.02em' }}>348</span>
-                  </div>
-                  {/* Share */}
-                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '3px' }}>
-                    <div style={{ color: 'hsl(0 0% 80%)', lineHeight: 0 }}><IgShare /></div>
-                    <span style={{ fontFamily: 'var(--font-label)', fontSize: '0.5rem', color: '#F2F8FC', letterSpacing: '0.02em' }}>Share</span>
-                  </div>
-                  {/* Save */}
-                  <div style={{ color: 'hsl(0 0% 80%)', lineHeight: 0 }}><IgSave /></div>
-                </div>
-              </div>
-
-              {/* ── Caption bar ── */}
-              <div
-                style={{
-                  padding: '10px 14px 8px',
-                  background: 'hsl(0 0% 5%)',
-                  borderTop: '1px solid hsl(0 0% 100% / 0.06)',
-                }}
-              >
-                <p style={{ fontFamily: 'var(--font-label)', fontWeight: 500, fontSize: '0.66rem', color: 'hsl(0 0% 82%)', marginBottom: '3px', letterSpacing: '-0.01em' }}>
-                  12.8K likes
-                </p>
-                <p style={{ fontFamily: 'var(--font-label)', fontWeight: 300, fontSize: '0.64rem', color: '#F2F8FC', lineHeight: 1.55, margin: 0 }}>
-                  <span style={{ fontWeight: 500, color: 'hsl(0 0% 82%)' }}>allure.ugc</span>
-                  {' '}Unboxing a fragrance made for everyday elegance. Soft, polished, and impossible to ignore.
-                </p>
-              </div>
-
-              {/* ── Reel progress bar ── */}
-              <div style={{ height: '2px', background: 'hsl(0 0% 100% / 0.08)' }}>
-                <div
-                  style={{
-                    height: '100%',
-                    width: '38%',
-                    background: 'linear-gradient(to right, hsl(38 75% 58%), hsl(38 60% 45%))',
-                    borderRadius: '0 1px 1px 0',
-                  }}
-                />
-              </div>
-
+              <img
+                src="/brand_assets/allure-ugc.webp"
+                alt="UGC creator holding an A'llure perfume bottle towards the camera in an Instagram post"
+                width={800}
+                height={1510}
+                loading="lazy"
+                decoding="async"
+                style={{ display: 'block', width: '100%', height: '100%', objectFit: 'cover' }}
+              />
             </div>
           </div>
 
