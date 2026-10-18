@@ -1806,22 +1806,19 @@ body::after {
 /* ── About Weavy — dashboard illustration sizing + ambient float ─────────────
    Phones: slight bleed into the gutters (mask softens the edges).
    Tablet: inset so the plant and floating cubes are no longer clipped.
-   1024–1599: the approved desktop transform, unchanged — the column already
-   bleeds past the viewport there, so there is no room to enlarge.
-   ≥1600: up to ~10% larger, growing into the column gap and capped so the
-   right edge never passes the viewport. */
+   Desktop: as large as the space between the text column and the viewport
+   edge allows — grows 32px into the column gap, stops 16px short of the
+   viewport (8px below 1200, where the container is full-bleed) — capped at
+   937px (~10% over the old 853px). Every character stays fully in view. */
 .about-illus { transform: scale(1.06); }
 @media (min-width: 640px) {
   .about-illus { transform: scale(0.94); }
 }
 @media (min-width: 1024px) {
-  .about-illus { transform: translateX(calc(10% + 54px)) scale(1.53); }
-}
-@media (min-width: 1600px) {
   .about-illus {
     transform: none;
-    width: clamp(853px, calc(50vw + 21px), 937px);
-    margin-left: -40px;
+    width: min(937px, calc(100% + 32px + max(8px, 50vw - 592px)));
+    margin-left: -32px;
   }
 }
 
@@ -1843,9 +1840,10 @@ body::after {
 
 /* ── Graphic Design hero — meeting photograph in an editorial frame ─────────
    Desktop shows the full 3840×1648 frame (all three people, no crop).
-   Below 1024 the frame narrows to 2:1 / 19:10 — the crop only trims the
-   sofa ends, keeping every face and both women’s hair in frame. Headline is live text (it used to be baked
-   into the old image) and scales with the frame via container units. */
+   Below 1024 the frame narrows to 2:1 — the crop only trims the sofa ends,
+   keeping every face and both women’s hair in frame. Headline is live text
+   (it used to be baked into the old image) and scales with the frame via
+   container units. */
 .gd-hero-frame {
   position: relative;
   container-type: inline-size;
@@ -1901,6 +1899,5 @@ body::after {
   .gd-hero-title { font-size: 8cqw; bottom: 5.5cqw; }
 }
 @media (max-width: 639px) {
-  .gd-hero-frame { aspect-ratio: 19 / 10; }
   .gd-hero-title { font-size: 8.4cqw; bottom: 5.5cqw; }
 }
