@@ -1781,9 +1781,9 @@ body::after {
     to   { background-position: 0% 0; }
   }
 
-  /* Social Media showcase — the shampoo mockup is gone; keep the remaining
-     watch image at its original half-column width and centre it. */
-  .d-watch-solo { flex: 0 0 calc((100% - 1.25rem) / 2); margin-inline: auto; }
+  /* Social Media showcase — the shampoo mockup is gone; the remaining watch
+     image sits centred at a little over half the column width. */
+  .d-watch-solo { flex: 0 0 calc((100% - 1.25rem) * 0.53); margin-inline: auto; }
 
   /* Graphic Design service pills — subtle hover highlight (mouse only);
      the pills remain non-interactive, non-focusable list items. */
@@ -1809,18 +1809,26 @@ body::after {
    Phones: slight bleed into the gutters (mask softens the edges).
    Tablet: inset so the plant and floating cubes are no longer clipped.
    Desktop: as large as the space between the text column and the viewport
-   edge allows — grows 32px into the column gap, stops 16px short of the
-   viewport (8px below 1200, where the container is full-bleed) — capped at
-   937px (~10% over the old 853px). Every character stays fully in view. */
-.about-illus { transform: scale(1.06); }
+   edge allows (see below), capped at 990px. Every character stays fully in
+   view. */
+.about-illus { transform: scale(1.10); }
 @media (min-width: 640px) {
-  .about-illus { transform: scale(0.94); }
+  .about-illus { transform: scale(0.98); }
 }
+/* Desktop: grows into the column gap (8px from the text box at lg, 16px from
+   xl, where the gap is wider) and to within 4–8px of the viewport edge — the
+   artwork itself stops ~1.8% inside the image, so nothing is clipped. */
 @media (min-width: 1024px) {
   .about-illus {
     transform: none;
-    width: min(937px, calc(100% + 32px + max(8px, 50vw - 592px)));
-    margin-left: -32px;
+    width: min(990px, calc(100% + 40px + max(20px, 50vw - 580px)));
+    margin-left: -40px;
+  }
+}
+@media (min-width: 1280px) {
+  .about-illus {
+    width: min(990px, calc(100% + 48px + max(20px, 50vw - 584px)));
+    margin-left: -48px;
   }
 }
 
@@ -1867,14 +1875,23 @@ body::after {
   max-width: none;
   object-fit: cover;
   object-position: 50% 35%;
+  /* Slightly lower brightness and compress highlights (the pale wall and
+     window) so the photo sits in the dark page rather than glowing off it;
+     faces and skin tones stay natural. */
+  filter: brightness(0.92) contrast(0.95) saturate(0.98);
 }
 .gd-hero-shade {
   position: absolute;
   inset: 0;
   pointer-events: none;
+  border-radius: inherit;
   background:
     linear-gradient(to top, rgba(1, 7, 9, 0.78) 0%, rgba(1, 7, 9, 0.32) 24%, rgba(1, 7, 9, 0) 46%),
-    radial-gradient(ellipse 120% 100% at 50% 40%, rgba(1, 7, 9, 0) 60%, rgba(1, 7, 9, 0.35) 100%);
+    linear-gradient(to right, rgba(1, 7, 9, 0.30) 0%, rgba(1, 7, 9, 0) 15%, rgba(1, 7, 9, 0) 85%, rgba(1, 7, 9, 0.30) 100%),
+    linear-gradient(to bottom, rgba(1, 7, 9, 0.24) 0%, rgba(1, 7, 9, 0) 18%),
+    radial-gradient(ellipse 120% 100% at 50% 40%, rgba(1, 7, 9, 0) 55%, rgba(1, 7, 9, 0.42) 100%);
+  /* soft inner edge so the frame melts into the background */
+  box-shadow: inset 0 0 70px rgba(1, 7, 9, 0.38);
 }
 .gd-hero-title {
   position: absolute;
@@ -1901,6 +1918,10 @@ body::after {
   .gd-hero-title { font-size: 8cqw; bottom: 5.5cqw; }
 }
 @media (max-width: 639px) {
+  /* Phones: more presence — wider (8px gutters) and a touch taller. 1.95:1
+     still shows ~84% of the photo's width, keeping all three people and
+     both women's hair in frame. */
+  .gd-hero-frame { width: calc(100% - 16px); aspect-ratio: 1.95 / 1; border-radius: 18px; }
   .gd-hero-title { font-size: 8.4cqw; bottom: 5.5cqw; }
 }
 
@@ -2006,3 +2027,16 @@ body::after {
 @keyframes afx-draw     { 0% { stroke-dashoffset: 1000 } 0.5% { stroke-dashoffset: 1000 } 10% { stroke-dashoffset: 0 } 100% { stroke-dashoffset: 0 } }
 @keyframes afx-draw-fade { 0% { opacity: 0 } 0.5% { opacity: 1 } 27% { opacity: 1 } 34% { opacity: 0 } 100% { opacity: 0 } }
 @keyframes afx-done     { 0% { opacity: 0 } 4% { opacity: 1 } 13% { opacity: 1 } 19% { opacity: 0 } 100% { opacity: 0 } }
+
+/* ── Services · Social Media Marketing — campaign visual sizing ─────────────
+   Triptych ("Visuals that stop the scroll cold."): shorter columns give each
+   cover-cropped photo a wider window (focus points set in Services.tsx), so
+   the jar, the perfume cap and bus, and the lipstick read clearly. */
+.smbs-img { height: clamp(250px, 33vw, 450px); }
+
+/* Watch post ("Social campaigns built for the platforms…"): a little larger
+   at every size; the image is object-fit: contain, so the box height sets
+   its size. Desktop width is set by .d-watch-solo. */
+.s5cv-img-a { height: 470px; }
+@media (min-width: 640px)  { .s5cv-img-a { height: 540px; } }
+@media (min-width: 1024px) { .s5cv-img-a { height: clamp(440px, 48vw, 620px); } }

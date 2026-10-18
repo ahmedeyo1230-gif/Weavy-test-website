@@ -3646,7 +3646,6 @@ function SocialMediaMarketing() {
               className="smbs-img relative rounded-2xl overflow-hidden"
               style={{
                 opacity: 0, transform: 'translateY(36px)',
-                height: 'clamp(300px, 38vw, 520px)',
                 display: 'grid',
                 gridTemplateColumns: '31.5fr 37fr 31.5fr',
                 gap: '11px',
@@ -3678,18 +3677,21 @@ function SocialMediaMarketing() {
                 {
                   src: '/brand_assets/campaign-lips-1.png',
                   alt: 'Skincare campaign — beauty product application',
-                  objectPosition: '50% 50%',
+                  // toward the jar and the hand holding it
+                  objectPosition: '68% 50%',
                 },
                 {
                   src: '/brand_assets/SIIRR.png',
                   alt: 'SIIR Oud fragrance campaign',
-                  objectPosition: '50% 42%',
+                  // keeps the cap (left) and the bus (right) either side of the bottle
+                  objectPosition: '42% 42%',
                   filter: 'brightness(0.86) saturate(0.92)',
                 },
                 {
                   src: '/brand_assets/campaign-lips-3.png',
                   alt: 'Lipstick editorial campaign close-up',
-                  objectPosition: '40% 46%',
+                  // centred on the lips and the lipstick
+                  objectPosition: '46% 50%',
                 },
               ].map(img => (
                 <div key={img.src} style={{ position: 'relative', borderRadius: '5px', overflow: 'hidden' }}>
@@ -4023,7 +4025,6 @@ function SocialMediaMarketing() {
                 style={{
                   opacity: 0, transform: 'translateY(36px)',
                   borderRadius: '28px', overflow: 'hidden',
-                  height: 'clamp(400px, 46vw, 580px)',
                   boxShadow: [
                     '0 36px 72px -16px hsl(0 0% 0% / 0.9)',
                     '0 0 0 1px hsl(0 0% 100% / 0.07)',
