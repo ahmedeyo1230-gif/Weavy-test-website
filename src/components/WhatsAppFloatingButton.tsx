@@ -1,31 +1,138 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 const WA_HREF =
   'https://wa.me/447300795353?text=Hi%20Weavy%2C%20I%20saw%20your%20website%20and%20I%E2%80%99d%20like%20to%20ask%20about%20your%20automation%20and%20marketing%20services.'
 
+// Content the button must not sit on top of. When any of it passes under the
+// button's corner the button fades out, and returns once the corner is clear.
+// Body text is left out on purpose — on a phone every line runs under the
+// corner, so including it would keep the button permanently hidden. Canvases
+// are left out too: on this site they are decorative section backgrounds.
+const AVOID = 'img, video, h1, h2, h3, h4, button, .gd-hero-frame, .footer-social-icon, [data-wa-avoid]'
+const ZONE_PAD = 8      // px of clearance kept around the circle
+const SHOW_DELAY = 150  // ms the corner must stay clear before fading back in
+
 export default function WhatsAppFloatingButton() {
   const [hovered, setHovered] = useState(false)
+  const [tucked, setTucked] = useState(false)
+  const [focused, setFocused] = useState(false)
+  const [reduceMotion] = useState(() => window.matchMedia('(prefers-reduced-motion: reduce)').matches)
+  const ref = useRef<HTMLAnchorElement>(null)
+
+  // Collision awareness without scroll listeners: one IntersectionObserver
+  // whose root is shrunk (via negative rootMargin) to the button's own corner,
+  // so "intersecting" means "under the button".
+  useEffect(() => {
+    const btn = ref.current
+    const circle = btn?.querySelector<HTMLElement>('.wa-floating-circle')
+    if (!btn || !circle) return
+
+    const hits = new Set<Element>()
+    let io: IntersectionObserver | null = null
+    let showTimer = 0
+    let resizeTimer = 0
+
+    const update = () => {
+      for (const el of hits) if (!el.isConnected) hits.delete(el)
+      if (hits.size) {
+        window.clearTimeout(showTimer); showTimer = 0
+        setTucked(true)
+      } else if (!showTimer) {
+        showTimer = window.setTimeout(() => { showTimer = 0; setTucked(false) }, SHOW_DELAY)
+      }
+    }
+    // Screen-filling media (page hero videos/backgrounds) would hide the button
+    // on landing, and the fixed navbar never reaches the bottom corner. Wide but
+    // short media (e.g. an oversized image cropped by its frame) still counts.
+    const counts = (el: Element) => {
+      if (el.closest('nav, header, #mobile-menu')) return false
+      if (!/^(IMG|VIDEO)$/.test(el.tagName)) return true
+      const r = el.getBoundingClientRect()
+      return !(r.width >= window.innerWidth * 0.95 && r.height >= window.innerHeight * 0.6)
+    }
+
+    const watch = (root: ParentNode) => {
+      if (root instanceof Element && root.matches(AVOID) && !btn.contains(root)) io?.observe(root)
+      root.querySelectorAll(AVOID).forEach(el => { if (!btn.contains(el)) io?.observe(el) })
+    }
+    // The zone runs from just above-left of the circle to the viewport's
+    // bottom-right corner (covering the gutter and safe area too). It is
+    // measured on screen — where the browser actually draws the fixed button,
+    // which can differ from its layout offsets while mobile toolbars collapse —
+    // with the tuck/hover transform briefly cleared so it doesn't skew the box.
+    const build = () => {
+      io?.disconnect(); hits.clear()
+      const prev = btn.style.transform
+      btn.style.transform = 'none'
+      const r = circle.getBoundingClientRect()
+      btn.style.transform = prev
+      const top = r.top - ZONE_PAD
+      const left = r.left - ZONE_PAD
+      io = new IntersectionObserver(entries => {
+        for (const e of entries) {
+          // Real overlap only — zero-size elements (e.g. unloaded lazy images)
+          // count as "intersecting" when they merely touch the zone.
+          const area = e.intersectionRect.width * e.intersectionRect.height
+          if (e.isIntersecting && area > 0 && counts(e.target)) hits.add(e.target)
+          else hits.delete(e.target)
+        }
+        update()
+      }, { rootMargin: `${-top}px 0px 0px ${-left}px` })
+      watch(document.body)
+    }
+
+    build()
+    // Routes and lazy sections mount later — observe whatever they add.
+    const mo = new MutationObserver(records => {
+      for (const r of records) r.addedNodes.forEach(n => { if (n instanceof Element) watch(n) })
+    })
+    mo.observe(document.body, { childList: true, subtree: true })
+    // Viewport changes (resizes, mobile toolbars collapsing, zoom) move the
+    // corner. visualViewport "scroll" only fires when the visual viewport
+    // shifts against the layout, not on ordinary page scrolling.
+    const onResize = () => { window.clearTimeout(resizeTimer); resizeTimer = window.setTimeout(build, 200) }
+    window.addEventListener('resize', onResize)
+    window.visualViewport?.addEventListener('resize', onResize)
+    window.visualViewport?.addEventListener('scroll', onResize)
+
+    return () => {
+      io?.disconnect(); mo.disconnect()
+      window.removeEventListener('resize', onResize)
+      window.visualViewport?.removeEventListener('resize', onResize)
+      window.visualViewport?.removeEventListener('scroll', onResize)
+      window.clearTimeout(showTimer); window.clearTimeout(resizeTimer)
+    }
+  }, [])
+
+  // Keyboard focus always wins, so the link is never invisible while focused.
+  const hidden = tucked && !focused
+  const transformEase = hovered ? 'cubic-bezier(0.34,1.56,0.64,1)' : 'cubic-bezier(0.22,1,0.36,1)'
 
   return (
     <a
+      ref={ref}
       href={WA_HREF}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat with Weavy on WhatsApp"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
+      onFocus={() => setFocused(true)}
+      onBlur={() => setFocused(false)}
       className="wa-floating-btn"
       style={{
         position: 'fixed',
-        bottom: 'clamp(16px, 3vw, 24px)',
-        right:  'clamp(16px, 3vw, 24px)',
+        bottom: 'calc(clamp(16px, 3vw, 24px) + env(safe-area-inset-bottom, 0px))',
+        right:  'calc(clamp(16px, 3vw, 24px) + env(safe-area-inset-right, 0px))',
         zIndex: 9999,
         display: 'flex',
         alignItems: 'center',
         gap: '10px',
         textDecoration: 'none',
-        transition: 'transform 0.25s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.25s ease',
-        transform: hovered ? 'translateY(-4px) scale(1.06)' : 'translateY(0) scale(1)',
+        transition: reduceMotion ? 'none' : `transform 0.25s ${transformEase}, box-shadow 0.25s ease, opacity 0.22s ease`,
+        transform: hidden ? 'translateY(8px) scale(0.94)' : hovered ? 'translateY(-4px) scale(1.06)' : 'translateY(0) scale(1)',
+        opacity: hidden ? 0 : 1,
+        pointerEvents: hidden ? 'none' : 'auto',
       }}
     >
       {/* Tooltip label */}

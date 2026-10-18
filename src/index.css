@@ -1306,11 +1306,13 @@ body::after {
     color: rgba(255, 255, 255, 0.98) !important;
   }
 
-  /* Floating WhatsApp button — slightly smaller and raised clear of the
-     footer's social icons row. */
+  /* Floating WhatsApp button — slightly smaller, tucked into the bottom
+     corner (clear of the safe area) rather than raised into the reading
+     area. It fades out while the footer's social icons — or any image,
+     heading or button — pass under it (see WhatsAppFloatingButton.tsx). */
   .wa-floating-btn {
-    right: 20px !important;
-    bottom: 84px !important;
+    right: calc(16px + env(safe-area-inset-right, 0px)) !important;
+    bottom: calc(16px + env(safe-area-inset-bottom, 0px)) !important;
   }
   .wa-floating-circle {
     width: 52px !important;
