@@ -25,6 +25,17 @@ const heroSubheadHighlight = {
   color: 'transparent',
 } as const
 
+// The headline's blue-to-purple gradient italic accent ("Automation." /
+// "Creative.") — unchanged from the original "automation" treatment.
+const HERO_ACCENT = {
+  background: 'linear-gradient(90deg, #FFFFFF 0%, #7DDCFF 48%, #B7AEFF 100%)',
+  WebkitBackgroundClip: 'text',
+  WebkitTextFillColor: 'transparent',
+  backgroundClip: 'text',
+  color: 'transparent',
+  textShadow: '0 0 24px rgba(125, 220, 255, 0.16)',
+} as const
+
 // Every top-level nav item is a real, always-clickable path — works the same
 // from any page, in both directions.
 const NAV_LINKS: { label: string; href: string }[] = [
@@ -427,24 +438,13 @@ export default function Hero() {
               variants={itemVariants}
               className="font-heading text-[2.6rem] min-[390px]:text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-medium tracking-tighter leading-[1.1] mb-6 sm:mb-8 max-w-4xl relative z-10"
             >
-              <span style={{ color: '#F4F8FA' }}>AI</span>{' '}
-              <em
-                className="font-accent italic"
-                style={{
-                  background: 'linear-gradient(90deg, #FFFFFF 0%, #7DDCFF 48%, #B7AEFF 100%)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text',
-                  color: 'transparent',
-                  textShadow: '0 0 24px rgba(125, 220, 255, 0.16)',
-                }}
-              >
-                automation
-              </em>
-              <br className="hidden sm:block" />
-              <span style={{ color: 'rgba(235, 245, 255, 0.88)' }}>
-                {' '}for growing businesses
-              </span>
+              {/* Two phrases, one per line: near-white word + the existing
+                  blue-to-purple gradient italic accent for each. */}
+              <span style={{ color: '#F4F8FA' }}>Smart</span>{' '}
+              <em className="font-accent italic" style={HERO_ACCENT}>Automation.</em>{' '}
+              <br />
+              <span style={{ color: '#F4F8FA' }}>Standout</span>{' '}
+              <em className="font-accent italic" style={HERO_ACCENT}>Creative.</em>
             </motion.h1>
           </div>
 

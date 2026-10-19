@@ -2082,3 +2082,9 @@ body::after {
       linear-gradient(to left, rgba(0, 5, 6, 0.20) 0%, rgba(0, 5, 6, 0) 9%);
   }
 }
+
+/* Services · Social "Every platform working together" — desktop media width.
+   The tokens sit in the desktop :root block above; the extra-large column gap
+   narrows 96 → 64px so the larger media fits its column. */
+@media (min-width: 1024px) { :root { --dt-smp-media: 605px; } }
+@media (min-width: 1280px) { .smp-grid { column-gap: 64px; } }

@@ -104,7 +104,7 @@ function ServiceCard({ service, onLearnMore }: ServiceCardProps) {
   return (
     <a
       href={`#${service.id}-detail`}
-      className="service-card group block no-underline"
+      className="service-card group flex flex-col h-full no-underline"
       style={{ scrollBehavior: 'smooth' } as React.CSSProperties}
       onClick={e => {
         e.preventDefault()
@@ -121,7 +121,7 @@ function ServiceCard({ service, onLearnMore }: ServiceCardProps) {
       {/* Outer border shell */}
       <div
         data-shell
-        className="relative rounded-2xl p-px transition-shadow duration-500"
+        className="relative flex flex-1 flex-col rounded-2xl p-px transition-shadow duration-500"
         style={{
           background: `linear-gradient(145deg, ${service.accentBorder}, hsl(0 0% 12% / 0.6) 40%, ${service.accentBorder})`,
           boxShadow: `0 0 0 0 ${service.accentGlow}`,
@@ -146,7 +146,7 @@ function ServiceCard({ service, onLearnMore }: ServiceCardProps) {
 
         {/* Inner card surface */}
         <div
-          className="relative rounded-2xl flex flex-col pt-8 pb-6 px-6 overflow-hidden"
+          className="relative flex-1 rounded-2xl flex flex-col pt-8 pb-6 px-6 overflow-hidden"
           style={{
             background: 'linear-gradient(150deg, hsl(215 22% 9% / 0.98) 0%, hsl(215 14% 6% / 0.99) 100%)',
             backdropFilter: 'blur(12px)',
@@ -172,6 +172,16 @@ function ServiceCard({ service, onLearnMore }: ServiceCardProps) {
               lineHeight: 1.3,
             }}
           >
+            <span
+              aria-hidden="true"
+              className="pointer-events-none absolute"
+              style={{
+                left: '-1.5rem', top: '0.2em', width: 3, height: '1em',
+                borderRadius: '0 3px 3px 0',
+                background: service.accent, opacity: 0.85,
+                boxShadow: `0 0 10px ${service.accentGlow}`,
+              }}
+            />
             {service.title}
           </h3>
 
@@ -3014,7 +3024,7 @@ function SocialMediaMarketing() {
       }}/>
 
       <div className="relative z-10 max-w-[80rem] mx-auto px-6 sm:px-12">
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.18fr] gap-14 md:gap-20 lg:gap-12 xl:gap-24 items-center">
+        <div className="smp-grid grid grid-cols-1 lg:grid-cols-[1fr_1.18fr] gap-14 md:gap-20 lg:gap-12 xl:gap-24 items-center">
 
           {/* ── LEFT: copy ── */}
           <div className="relative flex flex-col justify-center">
@@ -3100,7 +3110,7 @@ function SocialMediaMarketing() {
                 className="smp-body font-sans font-normal mb-10"
                 style={{
                   opacity: 0, transform: 'translateY(18px)',
-                  fontSize: 'clamp(0.88rem, 1.4vw, 1rem)',
+                  fontSize: 'var(--dt-bespoke-body, clamp(0.88rem, 1.4vw, 1rem))',
                   lineHeight: 1.9,
                   color: '#F2F8FC',
                   maxWidth: '34rem',
@@ -3123,7 +3133,7 @@ function SocialMediaMarketing() {
                     className="smp-feat flex items-center justify-between font-sans font-normal"
                     style={{
                       opacity: 0, transform: 'translateY(10px)',
-                      fontSize: 'clamp(0.84rem, 1.2vw, 0.92rem)',
+                      fontSize: 'var(--dt-bespoke-list, clamp(0.84rem, 1.2vw, 0.92rem))',
                       color: '#F2F8FC',
                       borderBottom: '1px solid hsl(0 0% 100% / 0.07)',
                       padding: '0.88rem 0',
@@ -3174,7 +3184,7 @@ function SocialMediaMarketing() {
             {/* GSAP-controlled wrapper: handles opacity + float y */}
             <div
               className="smp-mockup relative z-10"
-              style={{ opacity: 0, transform: 'translateY(44px)', width: '100%', maxWidth: '560px' }}
+              style={{ opacity: 0, transform: 'translateY(44px)', width: '100%', maxWidth: 'var(--dt-smp-media, 560px)' }}
             >
               {/* Perspective tilt + CSS hover inner layer */}
               <div
@@ -4640,7 +4650,7 @@ function SocialMediaMarketing() {
       {/* Bottom fade */}
       <div aria-hidden="true" className="pointer-events-none absolute left-0 right-0 bottom-0" style={{
         height: '100px',
-        background: 'linear-gradient(to top, #010709 0%, transparent 100%)',
+        background: 'linear-gradient(to top, #04090A 0%, transparent 100%)',
         zIndex: 3,
       }}/>
     </section>
@@ -6699,7 +6709,7 @@ function GraphicDesignCTA() {
       {/* Bottom fade into contact footer */}
       <div aria-hidden="true" className="pointer-events-none absolute left-0 right-0 bottom-0" style={{
         height: '100px',
-        background: 'linear-gradient(to top, #010709 0%, transparent 100%)',
+        background: 'linear-gradient(to top, #04090A 0%, transparent 100%)',
         zIndex: 3,
       }}/>
     </section>
@@ -6992,13 +7002,24 @@ function UGCCreatorPhotoCard({ className = '' }: { className?: string }) {
         alt="UGC creator filming beauty content with product setup"
         width={3072}
         height={5504}
-        style={{ display: 'block', width: '100%', height: 'auto', objectFit: 'cover', objectPosition: 'center top' }}
+        style={{
+          display: 'block', width: '100%', height: 'auto', objectFit: 'cover', objectPosition: 'center top',
+          // gently lower brightness and highlights so the photo sits in the dark page;
+          // skin tones and product colours stay natural
+          filter: 'brightness(0.93) contrast(0.96)',
+        }}
       />
 
       {/* Dark charcoal/teal blend overlay */}
       <div aria-hidden="true" style={{
         position: 'absolute', inset: 0, pointerEvents: 'none',
         background: 'rgba(2,18,26,0.20)',
+      }} />
+
+      {/* Soft edge vignette — deepens only the outer frame, clear of the creator */}
+      <div aria-hidden="true" style={{
+        position: 'absolute', inset: 0, pointerEvents: 'none',
+        background: 'radial-gradient(ellipse 85% 75% at 50% 40%, rgba(1,7,9,0) 58%, rgba(1,7,9,0.44) 100%)',
       }} />
 
       {/* Bottom gradient fade to site background */}
@@ -8581,6 +8602,17 @@ function UGCPracticeEcosystem() {
         style={{
           position: 'absolute', top: 0, left: 0, right: 0, height: '1px',
           background: 'linear-gradient(to right, transparent, hsl(0 0% 100% / 0.06) 30%, hsl(0 0% 100% / 0.06) 70%, transparent)',
+        }}
+      />
+
+      {/* Bottom blend into the footer below (#06080A) — removes the hard tone
+          step where this section's #010709 met the footer's background. */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none"
+        style={{
+          position: 'absolute', left: 0, right: 0, bottom: 0, height: '140px',
+          background: 'linear-gradient(to bottom, rgba(6, 8, 10, 0) 0%, #06080A 100%)',
         }}
       />
 
