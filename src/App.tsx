@@ -1,5 +1,6 @@
 import { useState, useEffect, lazy, Suspense } from 'react'
 import { applyPageSeo, PAGE_SEO } from './lib/seo'
+import { isServicesPath, servicePageFromPath, normalisePath, SERVICES_OVERVIEW_PATH, type ServiceKey } from './lib/servicePages'
 import LoadingScreen from './components/LoadingScreen'
 import Hero, { Navbar } from './components/Hero'
 import { PremiumMarquee } from './components/ui/premium-marquee'
@@ -33,21 +34,40 @@ const ROUTE_BY_PATH: Record<string, Route> = {
 }
 
 function routeFromPath(): Route {
+  // /services and every dedicated service page beneath it (/services/<slug>)
+  if (isServicesPath(window.location.pathname)) return 'services'
   return ROUTE_BY_PATH[window.location.pathname] ?? 'home'
 }
 
 export default function App() {
   const [loaded, setLoaded] = useState(false)
   const [route, setRoute] = useState<Route>('home')
+  // Which dedicated service page is open under /services/<slug>; null = the overview.
+  const [serviceKey, setServiceKey] = useState<ServiceKey | null>(null)
 
   useEffect(() => {
     // Every top-level page lives at a real path now. "popstate" fires for
     // back/forward AND for the pushState navigations dispatched by goToPath(),
     // so this is the single source of truth for what's on screen.
+    let lastPath = ''
     const check = () => {
       const next = routeFromPath()
+      let service = null
+      if (next === 'services') {
+        service = servicePageFromPath(window.location.pathname)
+        // Unknown /services/<slug> → fall back to the overview at its canonical URL.
+        if (!service && normalisePath(window.location.pathname) !== SERVICES_OVERVIEW_PATH) {
+          window.history.replaceState({}, '', SERVICES_OVERVIEW_PATH)
+        }
+      }
+      const path = normalisePath(window.location.pathname)
+      // Clicking "Services" while already on the overview doesn't change the
+      // route, so nothing below would scroll — glide back to the top instead.
+      if (next === 'services' && path === lastPath) window.scrollTo({ top: 0, behavior: 'smooth' })
+      lastPath = path
       setRoute(next)
-      applyPageSeo(PAGE_SEO[next])
+      setServiceKey(service?.key ?? null)
+      applyPageSeo(service ? service.seo : PAGE_SEO[next])
     }
     check() // resolve whatever path is already in the URL on first load (deep link / refresh)
     window.addEventListener('popstate', check)
@@ -55,7 +75,8 @@ export default function App() {
   }, [])
 
   // Scroll appropriately whenever the route changes: to the About section for
-  // "/about" (it lives inside the Home page), to the top for everything else.
+  // "/about" (it lives inside the Home page), to the top for everything else —
+  // including moving between the Services overview and a dedicated service page.
   useEffect(() => {
     if (route === 'about') {
       requestAnimationFrame(() => {
@@ -64,7 +85,7 @@ export default function App() {
     } else {
       window.scrollTo({ top: 0, behavior: 'instant' })
     }
-  }, [route])
+  }, [route, serviceKey])
 
   return (
     <>
@@ -76,7 +97,10 @@ export default function App() {
           {route === 'services' ? (
             <>
               <Navbar />
-              <Suspense fallback={null}><Services /></Suspense>
+              {/* Keyed per page so each service page mounts fresh, like a
+                  separate page: its entrance animations and scroll triggers
+                  initialise against its own sections. */}
+              <Suspense fallback={null}><Services key={serviceKey ?? 'overview'} serviceKey={serviceKey} /></Suspense>
             </>
           ) : route === 'work' ? (
             <>

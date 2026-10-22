@@ -339,7 +339,10 @@ export default function About() { // no diagonal lines bg
 
       </div>
 
-      {/* Bottom blend — dissolves #0B1114 into Stats' #071011 */}
+      {/* Bottom blend — dissolves this section's background into Stats' #071011.
+          Ends fully opaque so the last row matches Stats exactly (it stopped
+          at 58%, leaving a visible step). The upper stops are unchanged, so
+          nothing changes over the content. */}
       <div
         aria-hidden="true"
         style={{
@@ -348,7 +351,7 @@ export default function About() { // no diagonal lines bg
           left: 0,
           right: 0,
           height: '200px',
-          background: 'linear-gradient(to bottom, transparent 0%, rgba(7,16,17,0.12) 35%, rgba(7,16,17,0.38) 65%, rgba(7,16,17,0.58) 100%)',
+          background: 'linear-gradient(to bottom, transparent 0%, rgba(7,16,17,0.12) 35%, rgba(7,16,17,0.38) 65%, rgba(7,16,17,0.74) 84%, #071011 100%)',
           pointerEvents: 'none',
           zIndex: 10,
         }}

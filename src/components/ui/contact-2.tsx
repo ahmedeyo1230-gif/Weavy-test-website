@@ -254,7 +254,7 @@ export const Contact2 = ({
               initial={{ opacity: 0, x: -24 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.9, ease: E, delay: 0.15 }}
-              className="flex flex-col gap-5"
+              className="flex flex-col gap-5 min-w-0"
             >
               {[
                 { Icon: Phone, label: "Phone", value: phone, href: `tel:${phone.replace(/\s/g, '')}` },
@@ -271,11 +271,11 @@ export const Contact2 = ({
                   <span className="flex-shrink-0 w-10 h-10 rounded-xl border border-white/[0.08] bg-white/[0.04] flex items-center justify-center text-white/40 group-hover:text-[#38BDF8] group-hover:border-[#38BDF8]/30 transition-all duration-300">
                     <Icon size={16} />
                   </span>
-                  <div>
+                  <div className="min-w-0">
                     <p className="font-label text-[0.75rem] lg:text-[0.62rem] tracking-[0.22em] uppercase font-medium mb-0.5" style={{ color: 'var(--text-muted)' }}>
                       {label}
                     </p>
-                    <p className="font-body text-[0.95rem] lg:text-[0.9rem] font-normal group-hover:text-white/90 transition-colors duration-300" style={{ color: 'var(--text-body)' }}>
+                    <p className="font-body text-[0.95rem] lg:text-[0.9rem] font-normal group-hover:text-white/90 transition-colors duration-300 [overflow-wrap:anywhere]" style={{ color: 'var(--text-body)' }}>
                       {value}
                     </p>
                   </div>

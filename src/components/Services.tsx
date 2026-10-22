@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { Globe, Bot, BarChart2, Sparkles, Video, Settings2, Plug, Clock, UserCheck, CalendarDays, Zap, Camera, Target, Layers, MessageSquare, Filter, ChevronLeft, ChevronRight } from 'lucide-react'
+import { motion, useReducedMotion } from 'framer-motion'
+import { Globe, Bot, BarChart2, Sparkles, Video, Settings2, Plug, Clock, UserCheck, CalendarDays, Zap, Camera, Target, Layers, MessageSquare, Filter, ChevronLeft, ChevronRight, ArrowUpRight } from 'lucide-react'
 import { MessengerGlowBackground } from './ui/background-components'
 import { TestimonialsSection } from './ui/testimonials-1'
 import { GridBackground, NoiseCanvasBg, DarkSphereGridBg, BespokeCinemaArchBg } from './ui/grid-background'
@@ -12,6 +13,7 @@ import { GradientBlurBg } from './ui/gradient-blur-bg'
 import { BorderRotate } from './ui/animated-gradient-border'
 import { goToPath } from '../lib/navigation'
 import Footer from './Footer'
+import { servicePageByCardId, type ServiceKey } from '../lib/servicePages'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -91,31 +93,134 @@ const SERVICES = [
 
 // ─── Card ─────────────────────────────────────────────────────────────────────
 
+// ─── Services overview CTA ───────────────────────────────────────────────────
+// Sits directly beneath the five cards on /services. Continues the overview's
+// #010709 background (the beams layer above already fades to it), adds only a
+// faint cyan glow behind the copy, and dissolves into the footer's #06080A.
+
+const CTA_EASE: [number, number, number, number] = [0.16, 1, 0.3, 1] // same curve as the Footer CTA
+
+function ServicesOverviewCta() {
+  const reduceMotion = useReducedMotion()
+  // Restrained fade-up on first view; static when the user prefers reduced motion.
+  const reveal = (delay: number, y: number) => reduceMotion ? {} : {
+    initial: { opacity: 0, y },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true, margin: '0px 0px -60px 0px' },
+    transition: { duration: 0.75, delay, ease: CTA_EASE },
+  }
+
+  return (
+    <section
+      id="services-cta"
+      aria-labelledby="services-cta-heading"
+      className="relative w-full overflow-hidden"
+      style={{ background: '#010709', padding: 'clamp(0.5rem, 2vw, 1.5rem) 0 clamp(3.5rem, 7vw, 5.5rem)' }}
+    >
+      {/* Dot-grid — same texture as the overview section above */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0"
+        style={{
+          backgroundImage: 'radial-gradient(hsl(210 40% 60% / 0.022) 1px, transparent 1px)',
+          backgroundSize: '28px 28px',
+        }}
+      />
+
+      {/* Very subtle cyan ambient glow behind the copy */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background: 'radial-gradient(ellipse 52% 58% at 50% 46%, hsl(199 89% 60% / 0.065) 0%, hsl(199 89% 60% / 0.022) 45%, transparent 72%)',
+        }}
+      />
+
+      {/* No bottom blend needed: the footer below opens in this section's own
+          #010709 (see Footer's bar-only mode), so the colours already match. */}
+
+      <div className="relative z-10 max-w-[40rem] mx-auto px-6 sm:px-10 flex flex-col items-center text-center">
+        <motion.p
+          {...reveal(0, 12)}
+          className="font-sans uppercase text-muted mb-5"
+          style={{ fontSize: '0.7rem', letterSpacing: '0.32em' }}
+        >
+          Let&rsquo;s build something better
+        </motion.p>
+
+        <motion.h2
+          {...reveal(0.08, 24)}
+          id="services-cta-heading"
+          className="font-heading font-medium text-text mb-5"
+          style={{ fontSize: 'clamp(1.75rem, 4vw, 2.75rem)', lineHeight: 1.12, letterSpacing: '-0.03em' }}
+        >
+          Not sure where to{' '}
+          <em style={{
+            fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400,
+            background: 'linear-gradient(90deg, #FFFFFF 0%, #7DDCFF 45%, #B7AEFF 100%)',
+            WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
+            color: 'transparent',
+            // inline-block + right padding stop the italic "t" being clipped by background-clip
+            display: 'inline-block', paddingRight: '0.08em',
+          }}>
+            start
+          </em>?
+        </motion.h2>
+
+        <motion.p
+          {...reveal(0.16, 16)}
+          className="font-sans font-normal mb-9 m-tx-secondary"
+          style={{
+            fontSize: 'var(--dt-intro, clamp(0.9rem, 1.5vw, 1.05rem))',
+            lineHeight: 1.8,
+            color: 'hsl(0 0% 56%)',
+            maxWidth: '32rem',
+          }}
+        >
+          Tell us about your business. We&rsquo;ll help you identify the right combination of
+          automation, design and marketing services.
+        </motion.p>
+
+        <motion.div {...reveal(0.26, 16)}>
+          <a
+            href="/contact"
+            onClick={(e) => {
+              if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return
+              e.preventDefault()
+              goToPath('/contact')
+            }}
+            className="font-body btn-glow-primary inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-medium bg-primary text-background hover:bg-white hover:shadow-[0_0_28px_rgba(245,245,245,0.28)] active:scale-[0.97]"
+            style={{ transition: 'background-color 200ms, box-shadow 200ms, transform 100ms' }}
+          >
+            Discuss Your Project
+            <ArrowUpRight size={16} strokeWidth={1.75} aria-hidden="true" />
+          </a>
+        </motion.div>
+      </div>
+    </section>
+  )
+}
+
 interface ServiceCardProps {
   service: typeof SERVICES[number]
   index: number
-  onLearnMore?: () => void
 }
 
-function ServiceCard({ service, onLearnMore }: ServiceCardProps) {
+function ServiceCard({ service }: ServiceCardProps) {
   const Icon = service.icon
   const hasCustomIcon = 'customIcon' in service && typeof service.customIcon === 'function'
+  // Each card ("Learn More") opens the service's dedicated page. A real href
+  // keeps open-in-new-tab / copy-link working; normal clicks use the SPA router.
+  const pagePath = servicePageByCardId(service.id)?.path ?? '/services'
 
   return (
     <a
-      href={`#${service.id}-detail`}
+      href={pagePath}
       className="service-card group flex flex-col h-full no-underline"
-      style={{ scrollBehavior: 'smooth' } as React.CSSProperties}
       onClick={e => {
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return
         e.preventDefault()
-        if (onLearnMore) {
-          // onLearnMore fully owns the scroll destination for this card — don't
-          // also fire the generic `${id}-detail` scroll below, which would race
-          // it and can win when that anchor happens to exist in the DOM.
-          onLearnMore()
-        } else {
-          document.getElementById(`${service.id}-detail`)?.scrollIntoView({ behavior: 'smooth' })
-        }
+        goToPath(pagePath)
       }}
     >
       {/* Outer border shell */}
@@ -1167,7 +1272,9 @@ function BespokeProcessTimeline() {
       className="relative w-full overflow-hidden"
       style={{ background: '#060208', padding: 'clamp(5rem, 10vw, 8rem) 0' }}
     >
-      <ShowcaseBackground />
+      {/* Top fade starts from the detail section's #010709 above (same pattern
+          as BespokeFollowUp), removing the teal-to-purple step at the seam */}
+      <ShowcaseBackground topFadeFrom="#010709" />
 
       {/* Bottom blend — smooths the seam into the Client Stories section's
           #010709 background (this section is #060208; without this the flat
@@ -2969,6 +3076,14 @@ function SocialMediaMarketing() {
         backgroundSize: '28px 28px',
       }}/>
 
+      {/* Bottom cinematic fade — dissolves the bright video into the Digital
+          Ecosystem section's #010709. Bottom portion only, painted below the
+          z-10 text layer, so the heading is never covered. */}
+      <div aria-hidden="true" className="pointer-events-none absolute left-0 right-0 bottom-0" style={{
+        height: '38%',
+        background: 'linear-gradient(to bottom, rgba(1,7,9,0) 0%, rgba(1,7,9,0.2) 22%, rgba(1,7,9,0.55) 48%, rgba(1,7,9,0.86) 72%, #010709 92%, #010709 100%)',
+      }}/>
+
       {/* Text content */}
       <div className="relative z-10 h-full flex items-center px-6 sm:px-12 lg:px-20">
         <div>
@@ -4647,10 +4762,10 @@ function SocialMediaMarketing() {
         </div>
       </div>
 
-      {/* Bottom fade */}
+      {/* Bottom fade — ends in the Footer's #06080A so the colours meet exactly */}
       <div aria-hidden="true" className="pointer-events-none absolute left-0 right-0 bottom-0" style={{
         height: '100px',
-        background: 'linear-gradient(to top, #04090A 0%, transparent 100%)',
+        background: 'linear-gradient(to top, #06080A 0%, transparent 100%)',
         zIndex: 3,
       }}/>
     </section>
@@ -5010,7 +5125,10 @@ function GraphicDesignHero() {
       style={{
         background: '#010709',
         backgroundImage: 'radial-gradient(ellipse 65% 70% at 72% 50%, hsl(192 80% 14% / 0.28) 0%, transparent 70%)',
-        paddingTop: 'clamp(3rem, 6vw, 5rem)',
+        // Opens its own page now, so this clears the fixed navbar at every
+        // width (it was clamp(3rem, 6vw, 5rem), which tucked the frame under
+        // the navbar on phones and tablets; desktop moves by only 4px).
+        paddingTop: '5.25rem',
       }}
     >
       <div ref={frameRef} className="gd-hero-frame">
@@ -6849,7 +6967,9 @@ function UGCHero() {
       <div aria-hidden="true" style={{ position: 'absolute', inset: 0, pointerEvents: 'none', backgroundImage: 'repeating-linear-gradient(to bottom, transparent 0px, transparent 3px, hsl(0 0% 0% / 0.055) 3px, hsl(0 0% 0% / 0.055) 4px)' }}/>
 
       {/* Content */}
-      <div className="ugch-content relative z-10 flex items-center justify-between gap-12" style={{ minHeight: 'inherit', paddingTop: '2.5rem', paddingBottom: '3rem' }}>
+      {/* Opens its own page now, so the top padding clears the fixed navbar —
+          at 2.5rem the eyebrow pill sat behind it on desktop. */}
+      <div className="ugch-content relative z-10 flex items-center justify-between gap-12" style={{ minHeight: 'inherit', paddingTop: 'clamp(5.5rem, 8vw, 7rem)', paddingBottom: '3rem' }}>
 
         {/* Left: text */}
         <div className="ugch-text">
@@ -8710,31 +8830,24 @@ function UGCPracticeEcosystem() {
 
 // ─── Services section ─────────────────────────────────────────────────────────
 
-export default function Services() {
+interface ServicesProps {
+  /** Which dedicated service page to render (from /services/<slug>); null renders
+   *  the overview (heading + cards), the "Not sure where to start?" CTA and footer. */
+  serviceKey?: ServiceKey | null
+}
+
+export default function Services({ serviceKey = null }: ServicesProps) {
   const sectionRef       = useRef<HTMLElement>(null)
   const chatbotRef       = useRef<HTMLElement>(null)
   const bwdCinemaRef     = useRef<HTMLElement>(null)
   const bwd1Ref          = useRef<HTMLElement>(null)
-  const [activeService, setActiveService] = useState<'website' | 'chatbot' | 'social' | 'graphic' | 'ugc' | null>('website')
-
-  // Individual services (chatbot, social, graphic, ugc...) are sub-states of this
-  // same /services route, not separate URL paths — so clicking "Services" in the
-  // navbar while already on /services doesn't trigger a route change and would
-  // otherwise leave whichever service detail was open on screen. goToPath()
-  // dispatches "popstate" on every nav click regardless of path change, so use
-  // that here to snap back to the default overview whenever it fires.
-  useEffect(() => {
-    const onNav = () => {
-      if (window.location.pathname === '/services') {
-        setActiveService('website')
-        window.scrollTo({ top: 0, behavior: 'smooth' })
-      }
-    }
-    window.addEventListener('popstate', onNav)
-    return () => window.removeEventListener('popstate', onNav)
-  }, [])
+  // Each service now has its own URL, so the page to show comes from the route.
+  // App remounts this component per page (keyed), so effects run fresh each time.
+  const activeService = serviceKey
 
   useEffect(() => {
+    // Overview reveal — only present at /services, not on dedicated service pages.
+    if (!sectionRef.current) return
     const ctx = gsap.context(() => {
       gsap.set('.services-eyebrow, .services-heading, .services-body', { opacity: 0, y: 24 })
       gsap.set('.service-card', { opacity: 0, y: 44 })
@@ -8908,6 +9021,9 @@ export default function Services() {
 
   return (
     <>
+      {/* ── Services overview (/services): heading + five cards, CTA, footer ── */}
+      {activeService === null && <>
+
       {/* ── Main services section ── */}
       <section
         ref={sectionRef}
@@ -8979,34 +9095,23 @@ export default function Services() {
 
           {/* Card grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {SERVICES.map((service, i) => {
-              const learnMoreHandler =
-                service.id === 'bespoke-website-design'
-                  ? () => { setActiveService('website');  setTimeout(() => document.getElementById('services-hero')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 60) }
-                  : service.id === 'custom-chatbots'
-                  ? () => { setActiveService('chatbot');  setTimeout(() => document.getElementById('chatbot-hero')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 60) }
-                  : service.id === 'social-media-marketing'
-                  ? () => { setActiveService('social');   setTimeout(() => document.getElementById('social-media-marketing-detail')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 60) }
-                  : service.id === 'graphic-design-animation'
-                  ? () => { setActiveService('graphic');  setTimeout(() => document.getElementById('graphic-design-hero')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 60) }
-                  : service.id === 'ugc'
-                  ? () => { setActiveService('ugc');      setTimeout(() => document.getElementById('ugc-hero')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 60) }
-                  : undefined
-              return (
-                <ServiceCard
-                  key={service.id}
-                  service={service}
-                  index={i}
-                  onLearnMore={learnMoreHandler}
-                />
-              )
-            })}
+            {SERVICES.map((service, i) => (
+              <ServiceCard key={service.id} service={service} index={i} />
+            ))}
           </div>
 
         </div>
       </section>
 
-      {/* ── Sections 2–6: Bespoke Website Design ── */}
+      {/* ── "Not sure where to start?" CTA — the overview's single closing CTA ── */}
+      <ServicesOverviewCta />
+
+      {/* Footer bottom bar only — the CTA above replaces the footer's own CTA here */}
+      <Footer showCta={false} />
+
+      </> /* end services overview */}
+
+      {/* ── Bespoke Website Design page (/services/bespoke-website-design) ── */}
       {activeService === 'website' && <>
 
       {/* ── Bespoke Website Design — Cinema Showcase (Section 2) ── */}

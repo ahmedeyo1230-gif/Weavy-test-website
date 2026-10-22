@@ -1343,6 +1343,38 @@ body::after {
   }
 }
 
+/* ── Services overview footer (bar only) — sea-wave visibility ─────────────
+   Scoped to .footer--bar-only, which only the Services overview renders, so
+   every other page's footer is unchanged. The same video asset, animation and
+   colours; only its vertical offset, opacity and brightness are tuned, plus a
+   shorter top blend so the short footer isn't almost entirely veiled.
+   Phones: the video exactly fills the footer height there and the wave's
+   bright core sits at the frame's bottom edge, so it is not raised — doing so
+   leaves an empty strip below the frame (or, faded, dims the core).
+   1024–1279px: the footer bar wraps at the low end (291px tall at 1024), so
+   the video has less room below it — 205px keeps it covering the footer. */
+.footer--bar-only {
+  --fw-opacity: 0.84;
+  --fw-brightness: 0.86; /* ~17% softer than the earlier 1.04 */
+}
+@media (min-width: 768px) {
+  .footer--bar-only {
+    --fw-raise: 73px; /* tablet: proportionate to desktop; crest passes behind the copyright line */
+    --fw-blend-height: 140px;
+  }
+}
+@media (min-width: 1024px) {
+  .footer--bar-only {
+    --fw-raise: 205px;
+    --fw-blend-height: 120px;
+  }
+}
+@media (min-width: 1280px) {
+  .footer--bar-only {
+    --fw-raise: 252px;
+  }
+}
+
 /* ── Platform section — card top-border shimmer sweep ────────────────────── */
 @keyframes platform-card-sweep {
   0%   { left: -45%;  opacity: 0; }

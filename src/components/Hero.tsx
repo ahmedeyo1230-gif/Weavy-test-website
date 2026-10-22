@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import weavyLogo from '../assets/weavy-logo-new.png'
 import { goToPath } from '../lib/navigation'
+import { isServicesPath } from '../lib/servicePages'
 
 const HLS_SRC = 'https://stream.mux.com/Aa02T7oM1wH5Mk5EEVDYhbZ1ChcdhRsS2m1NYyx4Ua1g.m3u8'
 const HERO_POSTER = 'https://image.mux.com/Aa02T7oM1wH5Mk5EEVDYhbZ1ChcdhRsS2m1NYyx4Ua1g/thumbnail.jpg?width=1200&time=1'
@@ -52,6 +53,8 @@ const LABEL_BY_PATH: Record<string, string> = {
   '/work': 'Work', '/blog': 'Blog', '/contact': 'Contact',
 }
 function labelFromPath() {
+  // Dedicated service pages (/services/<slug>) keep "Services" highlighted.
+  if (isServicesPath(window.location.pathname)) return 'Services'
   return LABEL_BY_PATH[window.location.pathname] ?? 'Home'
 }
 

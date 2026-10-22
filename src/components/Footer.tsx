@@ -51,7 +51,11 @@ const SOCIALS = [
   },
 ]
 
-function FooterVideo() {
+/** `tuned` is set only by the bar-only footer (Services overview): the wave's
+ *  vertical offset, opacity and brightness then come from the --fw-* custom
+ *  properties on `.footer--bar-only` in index.css. Every other footer keeps
+ *  the original fixed values below. */
+function FooterVideo({ tuned = false }: { tuned?: boolean }) {
   const videoRef = useRef<HTMLVideoElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
 
@@ -120,12 +124,14 @@ function FooterVideo() {
         className="footer-hlc-video"
         style={{
           position: 'absolute',
-          top: '50%', left: '50%',
+          top: tuned ? 'calc(50% - var(--fw-raise, 0px))' : '50%', left: '50%',
           minWidth: '100%', minHeight: '100%',
           objectFit: 'cover',
           transform: 'translate(-50%, -50%) scaleY(-1)',
-          opacity: 0.75,
-          filter: 'brightness(0.95) saturate(1) contrast(1)',
+          opacity: tuned ? 'var(--fw-opacity, 0.75)' : 0.75,
+          filter: tuned
+            ? 'brightness(var(--fw-brightness, 0.95)) saturate(1) contrast(1)'
+            : 'brightness(0.95) saturate(1) contrast(1)',
           pointerEvents: 'none',
         }}
       />
@@ -244,6 +250,10 @@ interface FooterProps {
    *  on the site (e.g. Hero's "Book a Free Demo") — use for a real button,
    *  not an email address. */
   ctaVariant?: 'glass' | 'primary'
+  /** Set false on pages that close with their own CTA section directly above
+   *  the footer (e.g. the Services overview) so only one CTA is shown. The
+   *  footer then renders just its bottom bar. Defaults to true. */
+  showCta?: boolean
 }
 
 const DEFAULT_HEADING = (
@@ -277,17 +287,21 @@ export default function Footer({
   ctaLabel = 'Book a Free Demo',
   ctaHref = 'mailto:hello@weavyautomation.com',
   ctaVariant = 'glass',
+  showCta = true,
 }: FooterProps = {}) {
   const isInternalCta = ctaHref.startsWith('/')
   return (
     <footer
       id={id}
-      className="relative w-full overflow-hidden"
-      style={{ background: '#06080A', paddingTop: 'clamp(4rem, 8vw, 5rem)' }}
+      className={`relative w-full overflow-hidden${showCta ? '' : ' footer--bar-only'}`}
+      // Bar-only footer (Services overview) uses the CTA section's own #010709
+      // so the two meet in one colour; #06080A is lighter than both sides there
+      // and read as a pale band at the boundary. Other footers are unchanged.
+      style={{ background: showCta ? '#06080A' : '#010709', paddingTop: 'clamp(4rem, 8vw, 5rem)' }}
     >
       {/* Background video — sits above the plain section background, below the
           overlay and footer content (see z-index stack: video 0 < blend/overlay 1 < content 2) */}
-      <FooterVideo />
+      <FooterVideo tuned={!showCta} />
       <div
         aria-hidden="true"
         style={{
@@ -299,7 +313,11 @@ export default function Footer({
         }}
       />
 
-      {/* Top blend — continues from Testimonials boundary; subtle, does not fully hide the video */}
+      {/* Top blend — starts fully opaque in the footer's own #06080A so the top
+          edge is a constant colour that every preceding section's bottom blend
+          (all of which fade to #06080A) meets exactly. Previously it started at
+          35%, letting the video and tint overlay change the edge colour frame to
+          frame, which read as a horizontal line. The video still fades in below. */}
       <div
         aria-hidden="true"
         style={{
@@ -307,8 +325,12 @@ export default function Footer({
           top: 0,
           left: 0,
           right: 0,
-          height: '220px',
-          background: 'linear-gradient(to bottom, rgba(6,8,10,0.35) 0%, rgba(6,8,10,0.24) 40%, rgba(6,8,10,0.10) 72%, transparent 100%)',
+          // Bar-only footer is short, so its blend can be shorter too (--fw-blend-height);
+          // it still starts fully opaque, keeping the seam above exact.
+          height: showCta ? '220px' : 'var(--fw-blend-height, 220px)',
+          background: showCta
+            ? 'linear-gradient(to bottom, #06080A 0%, rgba(6,8,10,0.62) 22%, rgba(6,8,10,0.3) 45%, rgba(6,8,10,0.12) 72%, transparent 100%)'
+            : 'linear-gradient(to bottom, #010709 0%, rgba(1,7,9,0.62) 22%, rgba(1,7,9,0.3) 45%, rgba(1,7,9,0.12) 72%, transparent 100%)',
           pointerEvents: 'none',
           zIndex: 1,
         }}
@@ -317,6 +339,7 @@ export default function Footer({
       <div style={{ position: 'relative', zIndex: 2 }}>
 
         {/* CTA */}
+        {showCta && (
         <div
           style={{
             position: 'relative',
@@ -460,8 +483,11 @@ export default function Footer({
           )}
           </motion.div>
         </div>
+        )}
 
-        {/* Footer bar */}
+        {/* Footer bar — the hairline only separates it from the CTA above, so
+            it's dropped when the CTA is hidden (it would otherwise read as a
+            stray horizontal line at the top of the footer). */}
         <div
           className="footer-bottom-bar"
           style={{
@@ -470,7 +496,7 @@ export default function Footer({
             alignItems: 'center',
             gap: '1.25rem',
             padding: '1.2rem clamp(1.5rem, 5vw, 3.5rem) 2rem',
-            borderTop: '1px solid hsl(0 0% 100% / 0.06)',
+            borderTop: showCta ? '1px solid hsl(0 0% 100% / 0.06)' : 'none',
           }}
         >
           {/* Status dot */}
