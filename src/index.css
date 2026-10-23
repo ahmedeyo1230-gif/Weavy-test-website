@@ -310,7 +310,7 @@ html {
 .hero-bg-video-wrap { background: var(--hv-backing, #000000); }
 .hero-bg-video {
   --hv-scale: 0.86;
-  --hv-raise: 32px;
+  --hv-raise: 16px;
   /* scale around the heading, not the frame centre (on phones the frame is
      as tall as the hero, so its centre sits below the text) */
   transform-origin: 50% var(--hv-origin-y, 50%);
@@ -335,10 +335,15 @@ html {
   }
 }
 @media (min-width: 768px) {
-  .hero-bg-video { --hv-scale: 0.84; --hv-raise: 40px; --hv-origin-y: 24%; }
+  .hero-bg-video { --hv-scale: 0.84; --hv-raise: 20px; --hv-origin-y: 24%; }
 }
 @media (min-width: 1024px) {
-  .hero-bg-video { --hv-scale: 0.83; --hv-raise: 50px; --hv-origin-y: 26%; }
+  /* tablet landscape: 10px lower than before; more brings a bright wave
+     detail back behind the grey supporting line at 1024x768 */
+  .hero-bg-video { --hv-scale: 0.83; --hv-raise: 40px; --hv-origin-y: 26%; }
+}
+@media (min-width: 1280px) {
+  .hero-bg-video { --hv-raise: 25px; } /* desktop: 25px lower than before */
 }
 
 /* ── Hero water shimmer & droplet effect ────────────────────────────────── */
