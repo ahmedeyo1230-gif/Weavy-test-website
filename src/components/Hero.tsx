@@ -143,6 +143,10 @@ function HeroVideo() {
   // play button; if autoplay is blocked or playback errors out, the `poster`
   // frame simply stays on screen as a fallback.
   return (
+    // Wrapper = the hero's full area, backed in the video's own edge tone so any
+    // area the smaller video no longer covers matches the picture, not the
+    // lighter section background.
+    <div className="hero-bg-video-wrap absolute inset-0 pointer-events-none" aria-hidden="true">
     <video
       ref={videoRef}
       autoPlay
@@ -156,13 +160,16 @@ function HeroVideo() {
       aria-hidden="true"
       // eslint-disable-next-line react/no-unknown-property -- legacy iOS Safari (<10) attribute
       webkit-playsinline="true"
-      className="absolute top-1/2 left-1/2 min-w-full min-h-full object-cover pointer-events-none"
+      className="hero-bg-video absolute top-1/2 left-1/2 min-w-full min-h-full object-cover pointer-events-none"
       style={{
-        transform: 'translate(-50%, -50%)',
+        // --hv-scale / --hv-raise (index.css, per breakpoint) shrink and lift
+        // the wave; its edges are feathered there so the smaller frame blends.
+        transform: 'translate(-50%, calc(-50% - var(--hv-raise, 0px))) scale(var(--hv-scale, 1))',
         opacity: 0.94,
         filter: 'brightness(0.90) contrast(1.14) saturate(1.08)',
       }}
     />
+    </div>
   )
 }
 

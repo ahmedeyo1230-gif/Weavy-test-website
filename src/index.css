@@ -298,6 +298,49 @@ html {
   .vs-particle  { animation: none; }
 }
 
+/* ── Homepage hero wave video — smaller and higher ─────────────────────────
+   Only the video's displayed scale and vertical offset change (transform in
+   Hero.tsx); aspect ratio, colours, filter and playback are untouched. At a
+   reduced scale the frame no longer covers the whole hero, so its outer edges
+   are feathered into a black backing instead of showing a rectangle.
+   Phones crop the frame to its centre (it is sized to the hero's height), so
+   they get a gentler scale and a smaller lift than desktop. The backing behind
+   the video is black, matching the video's own edges, so uncovered areas
+   look exactly as the frame did before. */
+.hero-bg-video-wrap { background: var(--hv-backing, #000000); }
+.hero-bg-video {
+  --hv-scale: 0.86;
+  --hv-raise: 32px;
+  /* scale around the heading, not the frame centre (on phones the frame is
+     as tall as the hero, so its centre sits below the text) */
+  transform-origin: 50% var(--hv-origin-y, 50%);
+  --hv-origin-y: 16%;
+  -webkit-mask-image:
+    linear-gradient(to right, transparent 0%, #000 9%, #000 91%, transparent 100%),
+    linear-gradient(to bottom, transparent 0%, #000 7%, #000 88%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(to right, transparent 0%, #000 9%, #000 91%, transparent 100%),
+    linear-gradient(to bottom, transparent 0%, #000 7%, #000 88%, transparent 100%);
+  mask-composite: intersect;
+}
+/* Below 1024px the frame is sized to the hero's height and cropped at the
+   sides, so it is widened in step with the scale: the smaller wave still
+   reaches both edges instead of being cut off by the side feathering. */
+@media (max-width: 1023px) {
+  .hero-bg-video { min-width: calc(100% / var(--hv-scale)); 
+    /* full width after scaling, so only the bottom edge needs feathering */
+    -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 88%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 0%, #000 88%, transparent 100%);
+  }
+}
+@media (min-width: 768px) {
+  .hero-bg-video { --hv-scale: 0.84; --hv-raise: 40px; --hv-origin-y: 24%; }
+}
+@media (min-width: 1024px) {
+  .hero-bg-video { --hv-scale: 0.83; --hv-raise: 50px; --hv-origin-y: 26%; }
+}
+
 /* ── Hero water shimmer & droplet effect ────────────────────────────────── */
 .hero-water-layer {
   position: absolute;
@@ -1386,6 +1429,15 @@ body::after {
 .footer--service-page {
   --fw-opacity: 0.68;
   --fw-brightness: 0.73;
+}
+/* Lower glow: the wave's brightest blue-white core sits at the bottom of the
+   footer. A mask on the video layer only (footer text/icons sit above it) fades
+   it gradually from the middle of the footer down, letting the dark #010709
+   footer background through — ~22-24% less bright across the lowest part, untouched in
+   the upper half, with an eased ramp so no band or edge appears. */
+.footer--service-page .footer-hlc-video-wrap {
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 46%, rgba(0,0,0,0.95) 58%, rgba(0,0,0,0.86) 71%, rgba(0,0,0,0.79) 84%, rgba(0,0,0,0.76) 100%);
+  mask-image: linear-gradient(to bottom, #000 0%, #000 46%, rgba(0,0,0,0.95) 58%, rgba(0,0,0,0.86) 71%, rgba(0,0,0,0.79) 84%, rgba(0,0,0,0.76) 100%);
 }
 
 /* ── Platform section — card top-border shimmer sweep ────────────────────── */
