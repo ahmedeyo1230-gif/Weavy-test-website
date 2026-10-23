@@ -423,8 +423,8 @@ export default function Hero() {
           <div className="relative mt-6">
             {/* Water shimmer layer around heading */}
             <div className="hero-water-layer" aria-hidden="true">
-              {/* top shimmer line removed */}
-              <div className="water-shimmer-line" style={{ top: '52%',  animationDelay: '3.8s',  animationDuration: '13s' }} />
+              {/* top shimmer line removed; upper line (52%, just below
+                  "Smart Automation.") removed — only the lower line remains */}
               <div className="water-shimmer-line" style={{ top: '82%',  animationDelay: '7.2s',  animationDuration: '9.5s' }} />
               <div className="water-drop" style={{ left: '4%',  top: '40%', animationDelay: '0s',   animationDuration: '7s'   }} />
               <div className="water-drop" style={{ left: '96%', top: '25%', animationDelay: '2.4s', animationDuration: '8.5s' }} />

@@ -2,6 +2,7 @@ import { useEffect, useRef, type ReactNode } from 'react'
 import { motion } from 'framer-motion'
 import gsap from 'gsap'
 import { goToPath } from '../lib/navigation'
+import { servicePageFromPath } from '../lib/servicePages'
 
 const HLS_SRC = 'https://stream.mux.com/Aa02T7oM1wH5Mk5EEVDYhbZ1ChcdhRsS2m1NYyx4Ua1g.m3u8'
 const MARQUEE_WORD = 'BUILDING THE FUTURE'
@@ -51,10 +52,11 @@ const SOCIALS = [
   },
 ]
 
-/** `tuned` is set only by the bar-only footer (Services overview): the wave's
- *  vertical offset, opacity and brightness then come from the --fw-* custom
- *  properties on `.footer--bar-only` in index.css. Every other footer keeps
- *  the original fixed values below. */
+/** `tuned` is set by the bar-only footer (Services overview) and by footers on
+ *  the five dedicated service pages: the wave's vertical offset, opacity and
+ *  brightness then come from the --fw-* custom properties on
+ *  `.footer--bar-only` / `.footer--service-page` in index.css. Every other
+ *  footer keeps the original fixed values below. */
 function FooterVideo({ tuned = false }: { tuned?: boolean }) {
   const videoRef = useRef<HTMLVideoElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
@@ -290,18 +292,22 @@ export default function Footer({
   showCta = true,
 }: FooterProps = {}) {
   const isInternalCta = ctaHref.startsWith('/')
+  // Footers on /services/<slug> get a softer wave (see .footer--service-page).
+  // Each service page mounts its own footer, so reading the path here is current.
+  const onServicePage = showCta && servicePageFromPath(window.location.pathname) !== null
+  // All six Services pages (overview + dedicated) open the footer in the
+  // sections' own #010709: #06080A is a neutral grey slightly lighter than both
+  // neighbours and read as a pale band. Home/Work/Blog keep #06080A.
+  const servicesFooter = !showCta || onServicePage
   return (
     <footer
       id={id}
-      className={`relative w-full overflow-hidden${showCta ? '' : ' footer--bar-only'}`}
-      // Bar-only footer (Services overview) uses the CTA section's own #010709
-      // so the two meet in one colour; #06080A is lighter than both sides there
-      // and read as a pale band at the boundary. Other footers are unchanged.
-      style={{ background: showCta ? '#06080A' : '#010709', paddingTop: 'clamp(4rem, 8vw, 5rem)' }}
+      className={`relative w-full overflow-hidden${showCta ? '' : ' footer--bar-only'}${onServicePage ? ' footer--service-page' : ''}`}
+      style={{ background: servicesFooter ? '#010709' : '#06080A', paddingTop: 'clamp(4rem, 8vw, 5rem)' }}
     >
       {/* Background video — sits above the plain section background, below the
           overlay and footer content (see z-index stack: video 0 < blend/overlay 1 < content 2) */}
-      <FooterVideo tuned={!showCta} />
+      <FooterVideo tuned={!showCta || onServicePage} />
       <div
         aria-hidden="true"
         style={{
@@ -328,9 +334,10 @@ export default function Footer({
           // Bar-only footer is short, so its blend can be shorter too (--fw-blend-height);
           // it still starts fully opaque, keeping the seam above exact.
           height: showCta ? '220px' : 'var(--fw-blend-height, 220px)',
-          background: showCta
-            ? 'linear-gradient(to bottom, #06080A 0%, rgba(6,8,10,0.62) 22%, rgba(6,8,10,0.3) 45%, rgba(6,8,10,0.12) 72%, transparent 100%)'
-            : 'linear-gradient(to bottom, #010709 0%, rgba(1,7,9,0.62) 22%, rgba(1,7,9,0.3) 45%, rgba(1,7,9,0.12) 72%, transparent 100%)',
+          background: servicesFooter
+            // eased start (0.9 at 10%) so the tone leaves the section above gradually
+            ? 'linear-gradient(to bottom, #010709 0%, rgba(1,7,9,0.9) 10%, rgba(1,7,9,0.62) 26%, rgba(1,7,9,0.3) 48%, rgba(1,7,9,0.12) 72%, transparent 100%)'
+            : 'linear-gradient(to bottom, #06080A 0%, rgba(6,8,10,0.62) 22%, rgba(6,8,10,0.3) 45%, rgba(6,8,10,0.12) 72%, transparent 100%)',
           pointerEvents: 'none',
           zIndex: 1,
         }}
@@ -496,7 +503,9 @@ export default function Footer({
             alignItems: 'center',
             gap: '1.25rem',
             padding: '1.2rem clamp(1.5rem, 5vw, 3.5rem) 2rem',
-            borderTop: showCta ? '1px solid hsl(0 0% 100% / 0.06)' : 'none',
+            // No hairline on the Services pages: it read as a hard horizontal
+            // line across the wave between the CTA and the bar.
+            borderTop: servicesFooter ? 'none' : '1px solid hsl(0 0% 100% / 0.06)',
           }}
         >
           {/* Status dot */}

@@ -1375,6 +1375,19 @@ body::after {
   }
 }
 
+/* ── Dedicated service pages' footers — softer sea-wave ────────────────────
+   Applied only to footers on /services/<slug> (see Footer.tsx). Position,
+   size and animation are untouched (no --fw-raise). Brightness and opacity
+   each drop ~9.5% (0.95→0.86, 0.75→0.68), together ~18% less luminous and
+   ~18% less contrast against the dark footer. A contrast() filter is avoided
+   on purpose: below 1 it lifts the near-black areas, which would grey the
+   background and could show an edge.
+   Brightness then lowered a further 15% (0.86→0.73) to soften the highlights. */
+.footer--service-page {
+  --fw-opacity: 0.68;
+  --fw-brightness: 0.73;
+}
+
 /* ── Platform section — card top-border shimmer sweep ────────────────────── */
 @keyframes platform-card-sweep {
   0%   { left: -45%;  opacity: 0; }
@@ -2120,3 +2133,18 @@ body::after {
    narrows 96 → 64px so the larger media fits its column. */
 @media (min-width: 1024px) { :root { --dt-smp-media: 605px; } }
 @media (min-width: 1280px) { .smp-grid { column-gap: 64px; } }
+
+/* Social "Digital Ecosystem" image — larger and further right (≥1280px).
+   --smp-push is how far the image's right edge moves past its column into the
+   page's right margin: 50vw − 636px leaves ≥24px to the viewport edge (incl. the
+   3D tilt and a classic scrollbar), capped at 205px. Of that, 66% enlarges the
+   image and 34% moves its left edge right, so at full room (≈1680px+) it is
+   +22% (605 → 740px) and 70px further from the text. Narrower desktops get the
+   same change scaled down; the text column is untouched. */
+@media (min-width: 1280px) {
+  :root {
+    --smp-push: clamp(0px, 50vw - 636px, 205px);
+    --smp-media-w: calc(var(--dt-smp-media) + 0.66 * var(--smp-push));
+    --smp-media-max: none;
+  }
+}

@@ -96,7 +96,11 @@ const SERVICES = [
 // ─── Services overview CTA ───────────────────────────────────────────────────
 // Sits directly beneath the five cards on /services. Continues the overview's
 // #010709 background (the beams layer above already fades to it), adds only a
-// faint cyan glow behind the copy, and dissolves into the footer's #06080A.
+// faint cyan glow behind the copy; its texture and glow fade out over the last
+// part of the section so they don't stop at a hard edge where the footer begins.
+
+// Fades a layer out over the bottom of the CTA section (texture + glow only).
+const CTA_BOTTOM_FADE = 'linear-gradient(to bottom, #000 0%, #000 50%, transparent 100%)'
 
 const CTA_EASE: [number, number, number, number] = [0.16, 1, 0.3, 1] // same curve as the Footer CTA
 
@@ -124,6 +128,8 @@ function ServicesOverviewCta() {
         style={{
           backgroundImage: 'radial-gradient(hsl(210 40% 60% / 0.022) 1px, transparent 1px)',
           backgroundSize: '28px 28px',
+          WebkitMaskImage: CTA_BOTTOM_FADE,
+          maskImage: CTA_BOTTOM_FADE,
         }}
       />
 
@@ -133,6 +139,8 @@ function ServicesOverviewCta() {
         className="pointer-events-none absolute inset-0"
         style={{
           background: 'radial-gradient(ellipse 52% 58% at 50% 46%, hsl(199 89% 60% / 0.065) 0%, hsl(199 89% 60% / 0.022) 45%, transparent 72%)',
+          WebkitMaskImage: CTA_BOTTOM_FADE,
+          maskImage: CTA_BOTTOM_FADE,
         }}
       />
 
@@ -1473,10 +1481,10 @@ function BespokeResultsStrip() {
       className="relative w-full overflow-hidden"
       style={{ background: '#010709', padding: 'clamp(3.5rem, 7vw, 5.5rem) 0' }}
     >
-      {/* Bottom blend — smooths the seam into the Footer's #06080A background
+      {/* Bottom blend — fades this section's texture out before the Footer, which opens in the same #010709
           (this section is #010709; without this the flat colour change reads
           as a hard line at the boundary) */}
-      <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to bottom, transparent 0%, #06080A 100%)', pointerEvents: 'none', zIndex: 2 }} />
+      <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to bottom, transparent 0%, #010709 100%)', pointerEvents: 'none', zIndex: 2 }} />
 
       <div className="relative z-10 max-w-[52rem] mx-auto px-6 sm:px-10">
         <div className="flex flex-col sm:flex-row items-center justify-center" style={{ gap: 'clamp(2rem, 5vw, 4rem)' }}>
@@ -2413,8 +2421,8 @@ function ChatbotIntegrationsSection() {
       {/* Section boundary fades */}
       <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to bottom, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
       <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to top, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
-      {/* Bottom blend — smooths the seam into the Footer's #06080A background */}
-      <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to bottom, transparent 0%, #06080A 100%)', pointerEvents: 'none', zIndex: 3 }} />
+      {/* Bottom blend — fades this section's texture out before the Footer, which opens in the same #010709 */}
+      <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to bottom, transparent 0%, #010709 100%)', pointerEvents: 'none', zIndex: 3 }} />
 
       <div className="relative z-10 max-w-[82rem] mx-auto px-6 sm:px-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20 items-start">
@@ -3299,7 +3307,9 @@ function SocialMediaMarketing() {
             {/* GSAP-controlled wrapper: handles opacity + float y */}
             <div
               className="smp-mockup relative z-10"
-              style={{ opacity: 0, transform: 'translateY(44px)', width: '100%', maxWidth: 'var(--dt-smp-media, 560px)' }}
+              // ≥1280px: --smp-push extends the image into the right page margin
+              // (larger + further from the text); unset elsewhere = unchanged.
+              style={{ opacity: 0, transform: 'translateY(44px)', width: 'var(--smp-media-w, 100%)', maxWidth: 'var(--smp-media-max, var(--dt-smp-media, 560px))', flexShrink: 0, marginRight: 'calc(-1 * var(--smp-push, 0px))' }}
             >
               {/* Perspective tilt + CSS hover inner layer */}
               <div
@@ -4473,7 +4483,7 @@ function SocialMediaMarketing() {
       {/* Section boundary fades — soften the grain texture's abrupt start/end
           so this section blends smoothly with its neighbours */}
       <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to bottom, #010709, transparent)', pointerEvents: 'none', zIndex: 1 }} />
-      <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to bottom, transparent 0%, #06080A 100%)', pointerEvents: 'none', zIndex: 1 }} />
+      <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to bottom, transparent 0%, #010709 100%)', pointerEvents: 'none', zIndex: 1 }} />
 
       <div className="relative z-10 max-w-[68rem] mx-auto px-6 sm:px-10">
 
@@ -4762,10 +4772,10 @@ function SocialMediaMarketing() {
         </div>
       </div>
 
-      {/* Bottom fade — ends in the Footer's #06080A so the colours meet exactly */}
+      {/* Bottom fade — ends in #010709, the colour the Footer opens in on service pages */}
       <div aria-hidden="true" className="pointer-events-none absolute left-0 right-0 bottom-0" style={{
         height: '100px',
-        background: 'linear-gradient(to top, #06080A 0%, transparent 100%)',
+        background: 'linear-gradient(to top, #010709 0%, transparent 100%)',
         zIndex: 3,
       }}/>
     </section>
@@ -6701,8 +6711,8 @@ function GraphicDesignCTA() {
         background: 'radial-gradient(ellipse 70% 55% at 50% 50%, hsl(195 90% 55% / 0.05) 0%, transparent 68%)',
       }}/>
 
-      {/* Bottom blend — smooths the seam into the Footer's #06080A background */}
-      <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to bottom, transparent 0%, #06080A 100%)', pointerEvents: 'none', zIndex: 2 }} />
+      {/* Bottom blend — fades this section's texture out before the Footer, which opens in the same #010709 */}
+      <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to bottom, transparent 0%, #010709 100%)', pointerEvents: 'none', zIndex: 2 }} />
 
       <div className="relative z-10 max-w-[58rem] mx-auto px-6 sm:px-10 flex flex-col items-center text-center">
 
@@ -6827,7 +6837,7 @@ function GraphicDesignCTA() {
       {/* Bottom fade into contact footer */}
       <div aria-hidden="true" className="pointer-events-none absolute left-0 right-0 bottom-0" style={{
         height: '100px',
-        background: 'linear-gradient(to top, #04090A 0%, transparent 100%)',
+        background: 'linear-gradient(to top, #010709 0%, transparent 100%)',
         zIndex: 3,
       }}/>
     </section>
@@ -8725,14 +8735,14 @@ function UGCPracticeEcosystem() {
         }}
       />
 
-      {/* Bottom blend into the footer below (#06080A) — removes the hard tone
+      {/* Bottom blend into the footer below (#010709 on service pages) — removes the hard tone
           step where this section's #010709 met the footer's background. */}
       <div
         aria-hidden="true"
         className="pointer-events-none"
         style={{
           position: 'absolute', left: 0, right: 0, bottom: 0, height: '140px',
-          background: 'linear-gradient(to bottom, rgba(6, 8, 10, 0) 0%, #06080A 100%)',
+          background: 'linear-gradient(to bottom, rgba(1, 7, 9, 0) 0%, #010709 100%)',
         }}
       />
 
