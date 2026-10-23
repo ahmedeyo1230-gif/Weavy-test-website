@@ -1423,27 +1423,31 @@ body::after {
   }
 }
 
-/* ── Dedicated service pages' footers — softer sea-wave ────────────────────
-   Applied only to footers on /services/<slug> (see Footer.tsx). Position,
-   size and animation are untouched (no --fw-raise). Brightness and opacity
-   each drop ~9.5% (0.95→0.86, 0.75→0.68), together ~18% less luminous and
-   ~18% less contrast against the dark footer. A contrast() filter is avoided
-   on purpose: below 1 it lifts the near-black areas, which would grey the
-   background and could show an edge.
-   Brightness then lowered a further 15% (0.86→0.73) to soften the highlights. */
-.footer--service-page {
-  --fw-opacity: 0.68;
-  --fw-brightness: 0.73;
-}
-/* Lower glow: the wave's brightest blue-white core sits at the bottom of the
-   footer. A mask on the video layer only (footer text/icons sit above it) fades
-   it gradually from the middle of the footer down, letting the dark #010709
-   footer background through — ~22-24% less bright across the lowest part, untouched in
-   the upper half, with an eased ramp so no band or edge appears. */
+/* ── Dedicated service pages' footers — same wave as the homepage ──────────
+   The video uses the homepage's exact opacity, brightness and centring (see
+   Footer.tsx). Its size and position come from the box it sits in, so that
+   box is given the homepage footer's height at each width and anchored to the
+   footer's bottom edge: the wave then lands in the same place, at the same
+   size, as on the homepage. (The service footers are shorter — their CTA text
+   is shorter, so the part of the box above them is simply cropped. Where a
+   service footer is briefly taller — UGC at ~930–990px — the strip left above
+   the box sits under the footer's solid top blend, so nothing shows.)
+   --fw-home-h follows the homepage footer's measured height; it steps where
+   the homepage CTA text re-wraps. */
 .footer--service-page .footer-hlc-video-wrap {
-  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 46%, rgba(0,0,0,0.95) 58%, rgba(0,0,0,0.86) 71%, rgba(0,0,0,0.79) 84%, rgba(0,0,0,0.76) 100%);
-  mask-image: linear-gradient(to bottom, #000 0%, #000 46%, rgba(0,0,0,0.95) 58%, rgba(0,0,0,0.86) 71%, rgba(0,0,0,0.79) 84%, rgba(0,0,0,0.76) 100%);
+  inset: auto 0 0 0 !important;
+  height: var(--fw-home-h);
+  --fw-home-h: 871px;
 }
+@media (min-width: 330px)  { .footer--service-page .footer-hlc-video-wrap { --fw-home-h: 842px; } }
+@media (min-width: 390px)  { .footer--service-page .footer-hlc-video-wrap { --fw-home-h: 814px; } }
+@media (min-width: 480px)  { .footer--service-page .footer-hlc-video-wrap { --fw-home-h: 785px; } }
+@media (min-width: 510px)  { .footer--service-page .footer-hlc-video-wrap { --fw-home-h: 767px; } }
+@media (min-width: 530px)  { .footer--service-page .footer-hlc-video-wrap { --fw-home-h: calc(695px + 10vw); } }
+@media (min-width: 750px)  { .footer--service-page .footer-hlc-video-wrap { --fw-home-h: calc(579px + 24vw); } }
+@media (min-width: 930px)  { .footer--service-page .footer-hlc-video-wrap { --fw-home-h: calc(553px + 21vw); } }
+@media (min-width: 1028px) { .footer--service-page .footer-hlc-video-wrap { --fw-home-h: calc(456px + 18.3vw); } }
+@media (min-width: 1280px) { .footer--service-page .footer-hlc-video-wrap { --fw-home-h: 693px; } }
 
 /* ── Platform section — card top-border shimmer sweep ────────────────────── */
 @keyframes platform-card-sweep {

@@ -52,11 +52,11 @@ const SOCIALS = [
   },
 ]
 
-/** `tuned` is set by the bar-only footer (Services overview) and by footers on
- *  the five dedicated service pages: the wave's vertical offset, opacity and
- *  brightness then come from the --fw-* custom properties on
- *  `.footer--bar-only` / `.footer--service-page` in index.css. Every other
- *  footer keeps the original fixed values below. */
+/** `tuned` is set only by the bar-only footer (Services overview): the wave's
+ *  vertical offset, opacity and brightness then come from the --fw-* custom
+ *  properties on `.footer--bar-only` in index.css. Every other footer —
+ *  including the five service pages, which match the homepage — keeps the
+ *  original fixed values below. */
 function FooterVideo({ tuned = false }: { tuned?: boolean }) {
   const videoRef = useRef<HTMLVideoElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
@@ -292,8 +292,9 @@ export default function Footer({
   showCta = true,
 }: FooterProps = {}) {
   const isInternalCta = ctaHref.startsWith('/')
-  // Footers on /services/<slug> get a softer wave (see .footer--service-page).
-  // Each service page mounts its own footer, so reading the path here is current.
+  // Footers on /services/<slug> show the homepage's wave (see
+  // .footer--service-page). Each service page mounts its own footer, so
+  // reading the path here is current.
   const onServicePage = showCta && servicePageFromPath(window.location.pathname) !== null
   // All six Services pages (overview + dedicated) open the footer in the
   // sections' own #010709: #06080A is a neutral grey slightly lighter than both
@@ -307,7 +308,7 @@ export default function Footer({
     >
       {/* Background video — sits above the plain section background, below the
           overlay and footer content (see z-index stack: video 0 < blend/overlay 1 < content 2) */}
-      <FooterVideo tuned={!showCta || onServicePage} />
+      <FooterVideo tuned={!showCta} />
       <div
         aria-hidden="true"
         style={{
