@@ -5,9 +5,9 @@ import { GradientDots } from './ui/gradient-dots'
 
 const E: [number, number, number, number] = [0.16, 1, 0.3, 1]
 
-const BLUE = '#6F8CFF'
-const VIOLET_HEADING = '#B7AEFF'
-const VIOLET_DOT = '#9F94FF'
+const BLUE = '#FFD86B'
+const VIOLET_HEADING = '#FFD86B'
+const VIOLET_DOT = '#FFD86B'
 
 const SYSTEMS_ITEMS = ['Voice Receptionists', 'Voice Agents', 'Chatbots', 'Messaging', 'CRM & Bookings', 'Analytics']
 const SERVICES_ITEMS = ['Bespoke Websites', 'Social Media', 'Paid Advertising', 'Creative Design', 'UGC & Creator Content']
@@ -123,8 +123,8 @@ export default function SystemsServicesScroll() {
           heading="Systems"
           items={SYSTEMS_ITEMS}
           accent={BLUE}
-          ambientRgb="rgba(111,140,255,0.07)"
-          bgBase="#020202"
+          ambientRgb="rgba(255,216,107,0.07)"
+          bgBase="#010709"
           reduced={reduced}
           className="ssp-panel--systems"
           dotLayerOpacity={0.091}
@@ -137,8 +137,8 @@ export default function SystemsServicesScroll() {
           items={SERVICES_ITEMS}
           accent={VIOLET_DOT}
           headingColor={VIOLET_HEADING}
-          ambientRgb="rgba(159, 148, 255, 0.058)"
-          bgBase="#020202"
+          ambientRgb="rgba(255,216,107, 0.058)"
+          bgBase="#010709"
           reduced={reduced}
           className="ssp-panel--services"
           dotLayerOpacity={0.078}
@@ -152,7 +152,7 @@ export default function SystemsServicesScroll() {
               component + ssp-dots texture, same size/spacing/colour palette). */}
           <div aria-hidden="true" style={{ position: 'absolute', inset: 0, overflow: 'hidden', pointerEvents: 'none', opacity: 0.12 }}>
             <GradientDots
-              backgroundColor="#020202"
+              backgroundColor="#010709"
               dotSize={8}
               spacing={10}
               duration={42}
@@ -266,7 +266,7 @@ const CSS = `
   font-size: 16px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: rgba(191, 225, 245, 0.78);
+  color: #FFD86B;
   pointer-events: none;
 }
 
@@ -289,7 +289,7 @@ const CSS = `
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background-image: radial-gradient(rgba(125,220,255,var(--ssp-dots-alpha, 0.045)) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(255,216,107,var(--ssp-dots-alpha, 0.045)) 1px, transparent 1px);
   background-size: 28px 28px;
   mask-image: radial-gradient(ellipse 70% 60% at 50% 45%, black 20%, transparent 100%);
   -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 45%, black 20%, transparent 100%);
@@ -307,9 +307,9 @@ const CSS = `
 
 .ssp-heading {
   font-family: var(--font-heading);
-  font-weight: 700;
+  font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 0.26em;
+  letter-spacing: 0.2em;
   font-size: clamp(1.82rem, 5vw, 3.6rem);
   margin: 0 0 clamp(2.25rem, 4.5vw, 3.1rem);
 }
@@ -331,7 +331,7 @@ const CSS = `
   align-items: center;
   gap: 18px;
   font-family: var(--font-body);
-  font-weight: 400;
+  font-weight: 500;
   font-size: clamp(1.13rem, 2.8vw, 1.74rem);
   color: rgba(242,246,245,0.86);
   letter-spacing: -0.005em;
@@ -364,7 +364,7 @@ const CSS = `
 .ssp-item-text {
   position: relative;
   display: inline-block;
-  opacity: 0.76;
+  opacity: 0.95;
   transition: opacity 380ms ease;
 }
 
@@ -389,9 +389,9 @@ const CSS = `
 }
 
 @keyframes ssp-item-text-glow-once {
-  0%   { opacity: 0.76; }
+  0%   { opacity: 0.85; }
   55%  { opacity: 1; }
-  100% { opacity: 0.76; }
+  100% { opacity: 0.95; }
 }
 
 @keyframes ssp-item-line-glow-once {
@@ -422,7 +422,7 @@ const CSS = `
 
 .ssp-closing {
   font-family: var(--font-heading);
-  font-weight: 300;
+  font-weight: 500;
   font-size: clamp(1.9rem, 4.6vw, 3.4rem);
   line-height: 1.35;
   letter-spacing: -0.01em;
@@ -437,14 +437,14 @@ const CSS = `
   align-items: center;
   gap: 14px;
   margin-top: clamp(60px, 6vw, 80px);
-  color: rgba(125, 220, 255, 0.68);
+  color: rgba(255,216,107, 0.68);
 }
 
 .ssp-scroll-cue-text {
   font-family: var(--font-label);
   font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.24em;
+  font-weight: 500;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
 }
 

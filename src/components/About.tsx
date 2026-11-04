@@ -23,7 +23,7 @@ export default function About() { // no diagonal lines bg
       style={{
         background:
           'radial-gradient(circle at 58% 32%, rgba(20, 83, 96, 0.058) 0%, rgba(5, 28, 34, 0.029) 42%, rgba(1, 7, 9, 0) 70%),' +
-          'linear-gradient(to bottom, #020A0D 0%, #01080B 48%, #010709 100%)',
+          'linear-gradient(to bottom, #010709 0%, #010709 48%, #010709 100%)',
         // Overlaps the Connected Systems section above by 1px so the two
         // sections' backgrounds always share a full pixel at the seam,
         // instead of each edge being anti-aliased independently against
@@ -31,7 +31,7 @@ export default function About() { // no diagonal lines bg
         marginTop: '-1px',
       }}
     >
-      {/* Top fade — blends from the previous section (Connected Systems, #000506) into this section's own background (#0B1114) */}
+      {/* Top fade — blends from the previous section (Connected Systems, #010709) into this section's own background (#010709) */}
       <div
         aria-hidden="true"
         style={{
@@ -40,7 +40,7 @@ export default function About() { // no diagonal lines bg
           left: 0,
           right: 0,
           height: '220px',
-          background: 'linear-gradient(to bottom, #000506 0%, rgba(11,17,20,0.6) 45%, transparent 100%)',
+          background: 'linear-gradient(to bottom, #010709 0%, rgba(1,7,9,0.6) 45%, transparent 100%)',
           pointerEvents: 'none',
           zIndex: 1,
         }}
@@ -83,7 +83,7 @@ export default function About() { // no diagonal lines bg
       <div
         className="absolute top-1/3 right-1/4 w-[520px] h-[520px] rounded-full pointer-events-none"
         aria-hidden="true"
-        style={{ background: 'hsl(199 89% 60% / 0.04)', filter: 'blur(110px)' }}
+        style={{ background: 'hsl(44 100% 71% / 0.04)', filter: 'blur(110px)' }}
       />
 
       <div className="max-w-6xl mx-auto">
@@ -99,7 +99,7 @@ export default function About() { // no diagonal lines bg
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, ease: E }}
-              className="about-eyebrow font-label font-medium uppercase tracking-widest text-accent-cyan/70"
+              className="section-label"
             >
               About Weavy
             </motion.p>
@@ -110,7 +110,7 @@ export default function About() { // no diagonal lines bg
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.65, delay: 0.07, ease: E }}
-              className="font-heading text-4xl md:text-5xl lg:text-[3.25rem] font-medium tracking-tighter leading-[1.1] text-primary"
+              className="font-heading text-4xl md:text-5xl lg:text-[3.25rem] font-medium tracking-tight leading-[1.1] text-primary"
             >
               We make growing a business feel
               <br className="hidden sm:block" />
@@ -118,12 +118,7 @@ export default function About() { // no diagonal lines bg
               <em
                 className="font-serif italic"
                 style={{
-                  background: 'linear-gradient(90deg, #ffffff 0%, #7DDCFF 40%, #2BA8D9 70%, #7DDCFF 100%)',
-                  backgroundSize: '200% auto',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text',
-                  animation: 'gradientShift 4s linear infinite',
+                  color: '#FFD86B',
                 }}
               >less complicated</em>.
             </motion.h2>
@@ -133,27 +128,18 @@ export default function About() { // no diagonal lines bg
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.65, delay: 0.13, ease: E }}
-              className="font-body space-y-4 font-normal leading-relaxed"
+              className="font-body space-y-4 font-medium leading-relaxed"
               style={{ fontSize: 'var(--dt-about-body, clamp(16px, 1vw, 17px))', color: 'var(--text-body)', lineHeight: 1.8 }}
             >
               <p>
-                Weavy is a London-based{' '}
-                <span className="weavy-shimmer-text">automation and creative agency</span> helping
-                businesses work smarter, respond faster and make a stronger impression. We connect
-                the systems behind{' '}
-                <span className="weavy-shimmer-text">enquiries, bookings and follow-ups</span> with
-                the creative work that attracts attention,{' '}
-                <span className="weavy-shimmer-text">builds trust</span> and{' '}
-                <span className="weavy-shimmer-text">saves you time and money</span>.
+                Weavy is a London-based automation and creative agency. We connect the systems behind
+                your <span className="weavy-shimmer-text">enquiries, bookings and follow-ups</span> with
+                the creative work that attracts attention and builds trust.
               </p>
               <p>
-                That means{' '}
-                <span className="weavy-shimmer-text">less for you to manage</span> and{' '}
-                <span className="weavy-shimmer-text">more time to focus on your business</span>
-                —while{' '}
-                <span className="weavy-shimmer-text">one team</span> brings the entire customer
-                journey together, from the{' '}
-                <span className="weavy-shimmer-text">first impression to the confirmed booking</span>.
+                You get less to manage and more time for your business, with{' '}
+                <span className="weavy-shimmer-text">one team</span> looking after the customer journey
+                from first impression to confirmed booking.
               </p>
             </motion.div>
 
@@ -172,32 +158,18 @@ export default function About() { // no diagonal lines bg
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.35, delay: 0.22 + i * 0.055, ease: E }}
-                    className="inline-flex items-center gap-1.5 text-[11px] uppercase tracking-widest rounded-full px-4 py-2 cursor-pointer select-none"
+                    className="inline-flex items-center gap-1.5 text-xs uppercase tracking-wide rounded-full px-4 py-2 select-none"
                     style={{
-                      color: 'rgba(191,239,255,0.82)',
-                      border: '1px solid rgba(43,168,217,0.38)',
+                      color: 'rgba(255,216,107,0.82)',
+                      border: '1px solid rgba(255,216,107,0.38)',
                       backgroundColor: 'rgba(6,17,20,0.50)',
                       boxShadow: 'none',
                       transition: 'border-color 200ms, color 200ms, background-color 200ms, box-shadow 200ms',
                     }}
-                    onMouseEnter={e => {
-                      const el = e.currentTarget as HTMLElement
-                      el.style.borderColor = 'rgba(125,220,255,0.70)'
-                      el.style.color = '#ffffff'
-                      el.style.backgroundColor = 'rgba(9,32,39,0.80)'
-                      el.style.boxShadow = '0 0 22px rgba(125,220,255,0.18)'
-                    }}
-                    onMouseLeave={e => {
-                      const el = e.currentTarget as HTMLElement
-                      el.style.borderColor = 'rgba(43,168,217,0.38)'
-                      el.style.color = 'rgba(191,239,255,0.82)'
-                      el.style.backgroundColor = 'rgba(6,17,20,0.50)'
-                      el.style.boxShadow = 'none'
-                    }}
                   >
                     <span
                       className="w-[5px] h-[5px] rounded-full shrink-0"
-                      style={{ background: 'rgba(43,168,217,0.72)' }}
+                      style={{ background: 'rgba(255,216,107,0.72)' }}
                     />
                     {tag}
                   </motion.span>
@@ -213,7 +185,7 @@ export default function About() { // no diagonal lines bg
               className="h-px w-full max-w-[220px]"
               style={{
                 transformOrigin: 'left center',
-                background: 'linear-gradient(to right, hsl(199 89% 60% / 0.6), transparent)',
+                background: 'linear-gradient(to right, hsl(44 100% 71% / 0.6), transparent)',
               }}
             />
 
@@ -239,7 +211,7 @@ export default function About() { // no diagonal lines bg
             >
               <img
                 src="/brand_assets/dashboard1-transparent.webp"
-                alt="Weavy automation dashboard"
+                alt="Illustrative automation dashboard with sample data"
                 loading="lazy"
                 decoding="async"
                 width={1400}
@@ -262,6 +234,9 @@ export default function About() { // no diagonal lines bg
               <AboutDashboardFx />
             </div>
             </div>
+            <p className="font-body text-center text-xs mt-3" style={{ color: 'var(--text-description)' }}>
+              Illustrative dashboard with sample data
+            </p>
           </motion.div>
 
         </div>
@@ -275,26 +250,11 @@ export default function About() { // no diagonal lines bg
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-20px' }}
               transition={{ duration: 0.5, delay: i * 0.07, ease: E }}
-              className="group relative rounded-xl overflow-hidden cursor-pointer lg:min-h-[10.25rem] px-5 py-5 sm:px-[1.9rem] sm:py-[0.625rem]"
+              className="group relative rounded-xl overflow-hidden lg:min-h-[10.25rem] px-5 py-5 sm:px-6 sm:py-5"
               style={{
                 background: 'hsl(0 0% 100% / 0.022)',
                 border: '1px solid hsl(0 0% 100% / 0.07)',
-                transition: 'border-color 280ms, background-color 280ms, box-shadow 280ms, transform 280ms cubic-bezier(0.16,1,0.3,1)',
-              }}
-              onMouseEnter={e => {
-                const el = e.currentTarget as HTMLDivElement
-                el.style.borderColor = 'rgba(169,155,255,0.32)'
-                el.style.backgroundColor = 'rgba(169,155,255,0.032)'
-                el.style.boxShadow = '0 12px 40px rgba(169,155,255,0.12), 0 0 0 1px rgba(169,155,255,0.09)'
-                el.style.transform = 'translateY(-9px)'
-              }}
-              onMouseLeave={e => {
-                const el = e.currentTarget as HTMLDivElement
-                el.style.borderColor = 'hsl(0 0% 100% / 0.07)'
-                el.style.backgroundColor = 'hsl(0 0% 100% / 0.022)'
-                el.style.boxShadow = 'none'
-                el.style.transform = 'translateY(0)'
-              }}
+                              }}
             >
               {/* Top-left violet accent line */}
               <div
@@ -305,29 +265,29 @@ export default function About() { // no diagonal lines bg
                   left: '14px',
                   width: '72px',
                   height: '2px',
-                  background: 'linear-gradient(90deg, transparent, rgba(183,174,255,0.65), rgba(169,155,255,0.75), transparent)',
+                  background: 'linear-gradient(90deg, transparent, rgba(255,216,107,0.65), rgba(255,216,107,0.75), transparent)',
                   opacity: 0.9,
                   borderRadius: '0 0 2px 2px',
                   overflow: 'hidden',
-                  boxShadow: '0 0 8px 1px rgba(183,174,255,0.35)',
+                  boxShadow: '0 0 8px 1px rgba(255,216,107,0.35)',
                 }}
               >
                 <div className="gold-line-glint" />
               </div>
               <div
-                className="font-mono select-none mb-2.5 sm:mb-5"
-                style={{ fontSize: '0.8rem', color: '#A99BFF', opacity: 0.85 }}
+                className="font-label select-none mb-2.5 sm:mb-4"
+                style={{ fontSize: '0.8rem', color: '#FFD86B' }}
               >
                 {svc.num}
               </div>
               <div className="font-heading font-medium mb-2" style={{ fontSize: '1.15rem', color: 'var(--text-primary)' }}>{svc.label}</div>
-              <div className="font-body font-normal leading-relaxed m-tx-secondary" style={{ fontSize: '0.94rem', color: 'var(--text-description)' }}>
+              <div className="font-body font-medium leading-relaxed m-tx-secondary" style={{ fontSize: '0.94rem', color: 'var(--text-description)' }}>
                 {(() => {
                   const parts = svc.desc.split(svc.highlight)
                   return (
                     <>
                       {parts[0]}
-                      <span style={{ color: '#A99BFF', opacity: 0.88 }}>{svc.highlight}</span>
+                      <span style={{ color: '#FFD86B' }}>{svc.highlight}</span>
                       {parts[1]}
                     </>
                   )
@@ -339,7 +299,7 @@ export default function About() { // no diagonal lines bg
 
       </div>
 
-      {/* Bottom blend — dissolves this section's background into Stats' #071011.
+      {/* Bottom blend — dissolves this section's background into Stats' #010709.
           Ends fully opaque so the last row matches Stats exactly (it stopped
           at 58%, leaving a visible step). The upper stops are unchanged, so
           nothing changes over the content. */}
@@ -351,7 +311,7 @@ export default function About() { // no diagonal lines bg
           left: 0,
           right: 0,
           height: '200px',
-          background: 'linear-gradient(to bottom, transparent 0%, rgba(7,16,17,0.12) 35%, rgba(7,16,17,0.38) 65%, rgba(7,16,17,0.74) 84%, #071011 100%)',
+          background: 'linear-gradient(to bottom, transparent 0%, rgba(1,7,9,0.12) 35%, rgba(1,7,9,0.38) 65%, rgba(1,7,9,0.74) 84%, #010709 100%)',
           pointerEvents: 'none',
           zIndex: 10,
         }}

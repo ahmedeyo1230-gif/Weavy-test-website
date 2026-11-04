@@ -1,7 +1,9 @@
-import { useState, useEffect, lazy, Suspense } from 'react'
+import { useState, useEffect, useRef, lazy, Suspense } from 'react'
+import { Analytics } from '@vercel/analytics/react'
 import { applyPageSeo, PAGE_SEO } from './lib/seo'
 import { isServicesPath, servicePageFromPath, normalisePath, SERVICES_OVERVIEW_PATH, type ServiceKey } from './lib/servicePages'
 import LoadingScreen from './components/LoadingScreen'
+import { shouldPlayIntro } from './lib/intro'
 import Hero, { Navbar } from './components/Hero'
 import { PremiumMarquee } from './components/ui/premium-marquee'
 import SystemsServicesScroll from './components/SystemsServicesScroll'
@@ -22,8 +24,10 @@ const Services     = lazy(() => import('./components/Services'))
 const ImageShowcase = lazy(() => import('./components/ImageShowcase'))
 const Blog         = lazy(() => import('./components/Blog'))
 const Contact      = lazy(() => import('./components/Contact'))
+const Privacy      = lazy(() => import('./components/Privacy'))
+const NotFound     = lazy(() => import('./components/NotFound'))
 
-type Route = 'home' | 'about' | 'services' | 'work' | 'blog' | 'contact'
+type Route = 'home' | 'about' | 'services' | 'work' | 'blog' | 'contact' | 'privacy' | 'notFound'
 
 const ROUTE_BY_PATH: Record<string, Route> = {
   '/about':    'about',
@@ -31,19 +35,27 @@ const ROUTE_BY_PATH: Record<string, Route> = {
   '/work':     'work',
   '/blog':     'blog',
   '/contact':  'contact',
+  '/privacy':  'privacy',
+  '/':         'home',
 }
+
+// Decided once per page load, outside React, so StrictMode's double render
+// can't consume the session flag before the intro is shown.
+const PLAY_INTRO = shouldPlayIntro()
 
 function routeFromPath(): Route {
   // /services and every dedicated service page beneath it (/services/<slug>)
   if (isServicesPath(window.location.pathname)) return 'services'
-  return ROUTE_BY_PATH[window.location.pathname] ?? 'home'
+  return ROUTE_BY_PATH[normalisePath(window.location.pathname)] ?? 'notFound'
 }
 
 export default function App() {
-  const [loaded, setLoaded] = useState(false)
-  const [route, setRoute] = useState<Route>('home')
+  const [introDone, setIntroDone] = useState(!PLAY_INTRO)
+  const [route, setRoute] = useState<Route>(routeFromPath)
   // Which dedicated service page is open under /services/<slug>; null = the overview.
-  const [serviceKey, setServiceKey] = useState<ServiceKey | null>(null)
+  const [serviceKey, setServiceKey] = useState<ServiceKey | null>(() => servicePageFromPath(window.location.pathname)?.key ?? null)
+
+  const isFirstScroll = useRef(true)
 
   useEffect(() => {
     // Every top-level page lives at a real path now. "popstate" fires for
@@ -61,9 +73,12 @@ export default function App() {
         }
       }
       const path = normalisePath(window.location.pathname)
-      // Clicking "Services" while already on the overview doesn't change the
-      // route, so nothing below would scroll — glide back to the top instead.
-      if (next === 'services' && path === lastPath) window.scrollTo({ top: 0, behavior: 'smooth' })
+      // Clicking the link for the page you're already on doesn't change the
+      // route, so the effect below wouldn't run — handle the scroll here.
+      if (path === lastPath) {
+        if (next === 'about') document.getElementById('about')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        else if (next === 'services' || next === 'home') window.scrollTo({ top: 0, behavior: 'smooth' })
+      }
       lastPath = path
       setRoute(next)
       setServiceKey(service?.key ?? null)
@@ -79,21 +94,23 @@ export default function App() {
   // including moving between the Services overview and a dedicated service page.
   useEffect(() => {
     if (route === 'about') {
+      // A direct visit to /about is instant; arriving from a link glides.
+      const behavior: ScrollBehavior = isFirstScroll.current ? 'instant' : 'smooth'
       requestAnimationFrame(() => {
-        document.getElementById('about')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        document.getElementById('about')?.scrollIntoView({ behavior, block: 'start' })
       })
     } else {
       window.scrollTo({ top: 0, behavior: 'instant' })
     }
+    isFirstScroll.current = false
   }, [route, serviceKey])
 
   return (
     <>
-      {!loaded && <LoadingScreen onComplete={() => setLoaded(true)} />}
-      {loaded && <CursorGlow />}
-      {loaded && <WhatsAppFloatingButton />}
-      {loaded && (
-        <>
+      {!introDone && <LoadingScreen onComplete={() => setIntroDone(true)} />}
+      <CursorGlow />
+      <WhatsAppFloatingButton />
+      <Analytics />
           {route === 'services' ? (
             <>
               <Navbar />
@@ -117,6 +134,16 @@ export default function App() {
               <Navbar />
               <Suspense fallback={null}><Contact /></Suspense>
             </>
+          ) : route === 'privacy' ? (
+            <>
+              <Navbar />
+              <Suspense fallback={null}><Privacy /></Suspense>
+            </>
+          ) : route === 'notFound' ? (
+            <>
+              <Navbar />
+              <Suspense fallback={null}><NotFound /></Suspense>
+            </>
           ) : (
             <>
               <Hero />
@@ -134,26 +161,24 @@ export default function App() {
               <Footer
                 eyebrow="Get in touch"
                 heading={<>
-                  Ready to build a stronger digital{' '}
+                  Ready to win more{' '}
                   <em style={{
                     fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400,
-                    background: 'linear-gradient(90deg, #FFFFFF 0%, #7DDCFF 45%, #B7AEFF 100%)',
+                    background: 'linear-gradient(90deg, #FFFFFF 0%, #FFE9A8 45%, #FFD86B 100%)',
                     WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
                     color: 'transparent',
-                    textShadow: '0 0 24px rgba(125, 220, 255, 0.16)',
+                    textShadow: '0 0 24px rgba(255, 216, 107, 0.16)',
                   }}>
-                    presence
+                    customers
                   </em>?
                 </>}
-                subtext="From intelligent automation and connected CRM systems to bespoke websites, UGC, reels, social media and creative design—we bring everything together to help your business attract, engage and convert more customers."
-                ctaLabel="Start a Project"
+                subtext="Tell us what's slowing your business down. We'll recommend the right mix of automation, website and creative work."
+                ctaLabel="Book a Free Demo"
                 ctaHref="/contact"
                 ctaVariant="primary"
               />
             </>
           )}
-        </>
-      )}
     </>
   )
 }

@@ -46,11 +46,11 @@ function StatCounter({ value, suffix = '', prefix = '', bigText, label, descript
       className="flex flex-col items-center justify-center text-center px-4 sm:px-6 py-10 sm:py-12 relative group"
     >
       {/* Subtle top accent line that appears on hover */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-8 h-[1px] bg-gradient-to-r from-transparent via-accent-cyan/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-8 h-[1px] bg-gradient-to-r from-transparent via-gold/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
       {value !== undefined ? (
         <div
-          className="font-label stat-pulse text-5xl md:text-6xl lg:text-7xl font-light tracking-tighter flex items-start text-primary mb-3"
+          className="font-label stat-pulse text-5xl md:text-6xl lg:text-7xl font-medium tracking-tight flex items-start text-primary mb-3"
           style={{ animationDelay: `${pulseDelay}s` }}
         >
           {prefix && (
@@ -58,29 +58,29 @@ function StatCounter({ value, suffix = '', prefix = '', bigText, label, descript
           )}
           <span ref={nodeRef}>0</span>
           {suffix && (
-            <span className="font-serif italic text-accent-cyan text-3xl md:text-4xl mt-2">{suffix}</span>
+            <span className="font-serif italic text-gold text-3xl md:text-4xl mt-2">{suffix}</span>
           )}
         </div>
       ) : (
         <p
-          className="font-label stat-pulse text-[1.65rem] sm:text-3xl md:text-4xl xl:text-5xl max-lg:leading-[1.15] font-light tracking-tight text-primary mb-3"
+          className="font-label stat-pulse text-[1.65rem] sm:text-3xl md:text-4xl xl:text-5xl max-lg:leading-[1.15] font-medium tracking-tight text-primary mb-3"
           style={{ animationDelay: `${pulseDelay}s` }}
         >
           {bigText}
         </p>
       )}
       {label && (
-        <p className="font-label text-xs uppercase tracking-widest mb-2 font-medium m-tx-label" style={{ color: 'var(--text-muted)', letterSpacing: '0.15em' }}>{label}</p>
+        <p className="section-label mb-2">{label}</p>
       )}
-      <p className="font-label text-[0.8125rem] sm:text-xs font-medium max-w-[150px] sm:max-w-[120px] leading-relaxed m-tx-secondary" style={{ color: 'var(--text-description)' }}>{description}</p>
+      <p className="font-body text-sm font-medium max-w-[210px] leading-relaxed m-tx-secondary" style={{ color: 'var(--text-description)' }}>{description}</p>
     </motion.div>
   )
 }
 
 export default function Stats() {
   return (
-    <section className="py-14 md:py-20 px-6 relative overflow-hidden" style={{ background: '#071011' }}>
-      {/* Top blend — continues from About's #0B1114 */}
+    <section className="py-14 md:py-20 px-6 relative overflow-hidden" style={{ background: '#010709' }}>
+      {/* Top blend — continues from About's #010709 */}
       <div
         aria-hidden="true"
         style={{
@@ -89,7 +89,7 @@ export default function Stats() {
           left: 0,
           right: 0,
           height: '180px',
-          background: 'linear-gradient(to bottom, #071011 0%, rgba(7,16,17,0.6) 42%, rgba(7,16,17,0.18) 72%, transparent 100%)',
+          background: 'linear-gradient(to bottom, #010709 0%, rgba(1,7,9,0.6) 42%, rgba(1,7,9,0.18) 72%, transparent 100%)',
           pointerEvents: 'none',
           zIndex: 10,
         }}
@@ -100,7 +100,7 @@ export default function Stats() {
         className="absolute inset-0 pointer-events-none"
         aria-hidden="true"
         style={{
-          background: 'radial-gradient(ellipse 70% 60% at 50% 50%, hsl(199 89% 60% / 0.045) 0%, transparent 70%)',
+          background: 'radial-gradient(ellipse 70% 60% at 50% 50%, hsl(44 100% 71% / 0.045) 0%, transparent 70%)',
         }}
       />
 
@@ -122,10 +122,10 @@ export default function Stats() {
           }}
         >
           <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-y md:divide-y-0 divide-white/[0.06]">
-            <StatCounter value={100} suffix="%"  label="Custom"          description="No templates. Every system is built around the business." delay={0}   pulseDelay={0}    />
-            <StatCounter value={3}                label="Service Pillars" description="Automation, websites, and creative content."               delay={0.2} pulseDelay={0.12} />
-            <StatCounter bigText="Fast Response"  label="Focus"           description="Designed to reduce missed enquiries."                       delay={0.4} pulseDelay={0.24} />
-            <StatCounter bigText="Built to Scale"                         description="Systems made for growth from day one."                      delay={0.6} pulseDelay={0.36} />
+            <StatCounter bigText="24/7"            label="Always on"          description="Enquiries answered day or night, even outside working hours." delay={0}   pulseDelay={0}    />
+            <StatCounter value={5}                  label="Connected channels" description="Voice, WhatsApp, Instagram, Facebook and web chat."            delay={0.2} pulseDelay={0.12} />
+            <StatCounter bigText="One team"        label="Single partner"     description="Automation, websites and creative, managed in one place."       delay={0.4} pulseDelay={0.24} />
+            <StatCounter bigText="Bespoke"         label="Built around you"   description="No templates. Every system is built around your business."      delay={0.6} pulseDelay={0.36} />
           </div>
         </div>
       </motion.div>
@@ -139,7 +139,7 @@ export default function Stats() {
           left: 0,
           right: 0,
           height: '120px',
-          background: 'linear-gradient(to bottom, transparent 0%, rgba(7,16,17,0.55) 55%, #071011 100%)',
+          background: 'linear-gradient(to bottom, transparent 0%, rgba(1,7,9,0.55) 55%, #010709 100%)',
           pointerEvents: 'none',
           zIndex: 10,
         }}

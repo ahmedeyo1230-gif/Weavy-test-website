@@ -70,7 +70,7 @@ export function TestimonialsSection({
         aria-hidden="true"
         className="pointer-events-none absolute inset-0"
         style={{
-          background: 'radial-gradient(ellipse 60% 45% at 50% 0%, hsl(199 89% 60% / 0.05) 0%, transparent 70%)',
+          background: 'radial-gradient(ellipse 60% 45% at 50% 0%, hsl(44 100% 71% / 0.05) 0%, transparent 70%)',
         }}
       />
 
@@ -94,22 +94,22 @@ export function TestimonialsSection({
         <div className="flex flex-col items-center text-center max-w-[44rem] mx-auto mb-16 sm:mb-20">
           {/* Badge */}
           <span
-            className="ts-badge inline-block mb-5 font-sans font-light uppercase"
+            className="ts-badge inline-block mb-5 font-sans font-medium uppercase"
             style={{
-              fontSize: '0.7rem',
-              letterSpacing: '0.22em',
-              color: 'hsl(199 89% 68%)',
-              border: '1px solid hsl(199 89% 60% / 0.3)',
+              fontSize: '0.75rem',
+              letterSpacing: '0.16em',
+              color: 'hsl(44 100% 71%)',
+              border: '1px solid hsl(44 100% 71% / 0.3)',
               borderRadius: '999px',
               padding: '0.3rem 0.9rem',
-              background: 'hsl(199 89% 60% / 0.06)',
+              background: 'hsl(44 100% 71% / 0.06)',
             }}
           >
             {badgeText}
           </span>
 
           <h2
-            className="ts-heading font-sans font-light text-text mb-5"
+            className="ts-heading font-sans font-medium text-text mb-5"
             style={{
               fontSize: 'clamp(1.8rem, 4vw, 3rem)',
               lineHeight: 1.1,
@@ -120,11 +120,11 @@ export function TestimonialsSection({
           </h2>
 
           <p
-            className="ts-sub font-sans font-light m-tx-secondary"
+            className="ts-sub font-sans font-medium m-tx-secondary"
             style={{
               fontSize: 'clamp(0.88rem, 1.5vw, 1.02rem)',
               lineHeight: 1.85,
-              color: 'hsl(0 0% 50%)',
+              color: 'var(--text-muted)',
             }}
           >
             {subtitle}
@@ -146,8 +146,8 @@ export function TestimonialsSection({
                   boxShadow: '0 4px 32px -8px hsl(0 0% 0% / 0.5)',
                 }}
                 onMouseEnter={e => {
-                  (e.currentTarget as HTMLElement).style.borderColor = 'hsl(199 89% 60% / 0.2)'
-                  ;(e.currentTarget as HTMLElement).style.background = 'hsl(199 89% 60% / 0.04)'
+                  (e.currentTarget as HTMLElement).style.borderColor = 'hsl(44 100% 71% / 0.2)'
+                  ;(e.currentTarget as HTMLElement).style.background = 'hsl(44 100% 71% / 0.04)'
                 }}
                 onMouseLeave={e => {
                   (e.currentTarget as HTMLElement).style.borderColor = 'hsl(0 0% 100% / 0.07)'
@@ -161,8 +161,8 @@ export function TestimonialsSection({
                         key={idx}
                         className="h-3.5 w-3.5"
                         style={{
-                          fill: idx < stars ? 'hsl(199 89% 60%)' : 'hsl(0 0% 20%)',
-                          color: idx < stars ? 'hsl(199 89% 60%)' : 'hsl(0 0% 20%)',
+                          fill: idx < stars ? 'hsl(44 100% 71%)' : 'hsl(0 0% 20%)',
+                          color: idx < stars ? 'hsl(44 100% 71%)' : 'hsl(0 0% 20%)',
                         }}
                       />
                     ))}
@@ -171,11 +171,11 @@ export function TestimonialsSection({
 
                 <CardContent style={{ padding: '0.5rem 1.5rem 1.25rem', flex: 1 }}>
                   <p
-                    className="font-sans font-light m-tx-secondary"
+                    className="font-sans font-medium m-tx-secondary"
                     style={{
                       fontSize: 'clamp(0.88rem, 1.35vw, 0.97rem)',
                       lineHeight: 1.8,
-                      color: 'hsl(0 0% 62%)',
+                      color: 'var(--text-description)',
                     }}
                   >
                     "{t.text}"
@@ -199,11 +199,11 @@ export function TestimonialsSection({
                         style={{
                           width: 36,
                           height: 36,
-                          fontSize: '0.72rem',
+                          fontSize: '0.75rem',
                           letterSpacing: '0.02em',
-                          background: t.avatarGradient ?? 'linear-gradient(135deg, hsl(199 70% 22%), hsl(230 60% 14%))',
+                          background: t.avatarGradient ?? 'linear-gradient(135deg, hsl(44 45% 22%), hsl(44 45% 14%))',
                           border: '1px solid hsl(0 0% 100% / 0.12)',
-                          color: 'hsl(199 85% 84%)',
+                          color: 'hsl(44 100% 71%)',
                         }}
                       >
                         {t.avatarInitials}
@@ -236,13 +236,13 @@ export function TestimonialsSection({
                     <div>
                       <p
                         className="font-sans"
-                        style={{ fontSize: '0.85rem', fontWeight: 400, color: 'hsl(0 0% 88%)' }}
+                        style={{ fontSize: '0.85rem', fontWeight: 500, color: 'var(--text-body)' }}
                       >
                         {t.name}
                       </p>
                       <p
-                        className="font-sans font-light m-tx-label"
-                        style={{ fontSize: '0.75rem', color: 'hsl(0 0% 44%)' }}
+                        className="font-sans font-medium m-tx-label"
+                        style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}
                       >
                         {t.role}
                       </p>

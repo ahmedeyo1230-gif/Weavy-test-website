@@ -33,7 +33,7 @@ function createBeam(width: number, height: number): Beam {
         angle: angle,
         speed: 0.6 + Math.random() * 1.2,
         opacity: 0.12 + Math.random() * 0.16,
-        hue: 190 + Math.random() * 70,
+        hue: 40 + Math.random() * 10,
         pulse: Math.random() * Math.PI * 2,
         pulseSpeed: 0.02 + Math.random() * 0.03,
     };
@@ -86,7 +86,7 @@ export function BeamsBackground({
             beam.x = column * spacing + spacing / 2 + (Math.random() - 0.5) * spacing * 0.5;
             beam.width = 100 + Math.random() * 100;
             beam.speed = 0.5 + Math.random() * 0.4;
-            beam.hue = 190 + (index * 70) / totalBeams;
+            beam.hue = 40 + (index * 10) / totalBeams;
             beam.opacity = 0.2 + Math.random() * 0.1;
             return beam;
         }
@@ -220,7 +220,7 @@ export function BeamsBackgroundLayer({
             beam.x = column * spacing + spacing / 2 + (Math.random() - 0.5) * spacing * 0.5;
             beam.width = 80 + Math.random() * 80;
             beam.speed = 0.4 + Math.random() * 0.4;
-            beam.hue = 190 + (index * 70) / totalBeams;
+            beam.hue = 40 + (index * 10) / totalBeams;
             beam.opacity = 0.15 + Math.random() * 0.1;
             return beam;
         }

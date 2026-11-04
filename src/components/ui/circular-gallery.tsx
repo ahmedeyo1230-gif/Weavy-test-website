@@ -127,10 +127,10 @@ const CircularGallery = React.forwardRef<HTMLDivElement, CircularGalleryProps>(
                         'linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 100%)',
                     }}
                   >
-                    <p className="text-sm font-light" style={{ letterSpacing: '0.01em', color: 'rgba(255,255,255,0.9)' }}>
+                    <p className="text-sm font-medium" style={{ letterSpacing: '0.01em', color: 'rgba(255,255,255,0.9)' }}>
                       {item.common}
                     </p>
-                    <p className="text-xs" style={{ color: 'rgba(255,255,255,0.38)', letterSpacing: '0.04em', marginTop: '2px' }}>
+                    <p className="text-xs" style={{ color: 'var(--text-description)', letterSpacing: '0.04em', marginTop: '2px' }}>
                       {item.binomial}
                     </p>
                   </div>

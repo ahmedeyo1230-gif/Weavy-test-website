@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 import { motion } from 'framer-motion'
-import { Bot, Workflow, MessageSquare, LineChart, ArrowRight, type LucideIcon } from 'lucide-react'
+import { CalendarCheck, Workflow, MessageSquare, LineChart, ArrowRight, type LucideIcon } from 'lucide-react'
 import { goToPath } from '../lib/navigation'
 
 const E: [number, number, number, number] = [0.16, 1, 0.3, 1]
@@ -14,56 +14,52 @@ interface ServiceDef {
   glowRgb: string
 }
 
+const GOLD = '#FFD86B'
+const GOLD_RGB = '255 216 107'
+
 const SERVICES: ServiceDef[] = [
   {
     num: '01',
-    Icon: Bot,
-    title: 'Content Automation',
+    Icon: MessageSquare,
+    title: 'Customer Conversations',
     description:
-      'Auto-generate branded content at scale. We build custom LLM pipelines that understand your brand voice and output ready-to-publish assets.',
-    accent: '#38BDF8',
-    glowRgb: '56 189 248',
+      'Voice agents and chatbots answer questions across phone, WhatsApp, Instagram, Facebook and your website, day or night.',
+    accent: GOLD,
+    glowRgb: GOLD_RGB,
   },
   {
     num: '02',
     Icon: Workflow,
-    title: 'Growth Systems',
+    title: 'Lead Capture & CRM',
     description:
-      'Automated funnels, lead generation, and CRM workflows. Never let a lead slip through the cracks again with intelligent routing and follow-up.',
-    accent: '#22C55E',
-    glowRgb: '34 197 94',
+      'Every enquiry is captured, qualified and added to your CRM, with high-value leads routed to the right person.',
+    accent: GOLD,
+    glowRgb: GOLD_RGB,
   },
   {
     num: '03',
-    Icon: MessageSquare,
-    title: 'Communication',
+    Icon: CalendarCheck,
+    title: 'Bookings & Follow-Ups',
     description:
-      'Intelligent chatbots, email automation, and social scheduling. Provide 24/7 support and engagement without expanding your team.',
-    accent: '#A855F7',
-    glowRgb: '168 85 247',
+      'Customers book directly or are handed to your team, and follow-ups are triggered automatically.',
+    accent: GOLD,
+    glowRgb: GOLD_RGB,
   },
   {
     num: '04',
     Icon: LineChart,
-    title: 'Brand Intelligence',
+    title: 'Analytics & Insight',
     description:
-      'Live monitoring, analytics, and automated reporting. Real-time insights delivered directly to your Slack or inbox — automatically.',
-    accent: '#F59E0B',
-    glowRgb: '245 158 11',
+      'See where each enquiry came from, how quickly it was answered and what it turned into.',
+    accent: GOLD,
+    glowRgb: GOLD_RGB,
   },
 ]
 
 // Node centre from panel left edge: px-6 (24px) + half of w-8 (16px) = 40px
 const SPINE_LEFT = 40
 
-// Heading tints derived from each card's accent (lighter so they hold AA
-// contrast on the tinted card backgrounds). Hover still lifts to near-white.
-const ARCH_TITLE_TINT: Record<string, string> = {
-  '#38BDF8': '#8EDFF5', // Content Automation — cyan
-  '#22C55E': '#7BE0AE', // Growth Systems — emerald
-  '#A855F7': '#C4A7FF', // Communication — violet
-  '#F59E0B': '#E6C27A', // Brand Intelligence — champagne-amber
-}
+const ROW_TITLE = '#F7F8F8'
 
 // ─── Module row ───────────────────────────────────────────────────────────────
 
@@ -89,7 +85,7 @@ function ModuleRow({ svc, index }: { svc: ServiceDef; index: number }) {
       iconRef.current.style.color       = svc.accent
       iconRef.current.style.background  = `rgb(${svc.glowRgb} / 0.08)`
     }
-    if (titleRef.current) titleRef.current.style.color = '#f8fafc'
+    if (titleRef.current) titleRef.current.style.color = GOLD
   }
 
   const leave = () => {
@@ -108,7 +104,7 @@ function ModuleRow({ svc, index }: { svc: ServiceDef; index: number }) {
       iconRef.current.style.color       = svc.accent
       iconRef.current.style.background  = `rgb(${svc.glowRgb} / 0.06)`
     }
-    if (titleRef.current) titleRef.current.style.color = ARCH_TITLE_TINT[svc.accent]
+    if (titleRef.current) titleRef.current.style.color = ROW_TITLE
   }
 
   return (
@@ -181,7 +177,7 @@ function ModuleRow({ svc, index }: { svc: ServiceDef; index: number }) {
         <div className="flex-1 min-w-0">
           <div className="flex items-baseline gap-2 mb-1.5">
             <span
-              className="font-mono text-[10px] tracking-widest select-none shrink-0 mobile-label-min m-tx-accent-solid"
+              className="font-mono text-xs tracking-widest select-none shrink-0 mobile-label-min m-tx-accent-solid"
               style={{ color: `${svc.accent}bb`, ['--accent-solid' as string]: svc.accent }}
             >
               {svc.num}
@@ -189,12 +185,12 @@ function ModuleRow({ svc, index }: { svc: ServiceDef; index: number }) {
             <h3
               ref={titleRef}
               className="font-heading font-medium tracking-tight m-arch-title"
-              style={{ fontSize: '16px', color: ARCH_TITLE_TINT[svc.accent], transition: 'color 220ms', ['--arch-title' as string]: ARCH_TITLE_TINT[svc.accent] }}
+              style={{ fontSize: '16px', color: ROW_TITLE, transition: 'color 220ms', ['--arch-title' as string]: ROW_TITLE }}
             >
               {svc.title}
             </h3>
           </div>
-          <p className="font-body font-normal leading-[1.72] m-tx-secondary" style={{ fontSize: '15px', color: 'var(--text-description)' }}>
+          <p className="font-body font-medium leading-[1.72] m-tx-secondary" style={{ fontSize: '15px', color: 'var(--text-description)' }}>
             {svc.description}
           </p>
         </div>
@@ -220,7 +216,7 @@ function ArchitecturePanel() {
         boxShadow:
           '0 0 0 1px hsl(0 0% 100% / 0.02),' +
           '0 24px 64px -12px hsl(0 0% 0% / 0.5),' +
-          '0 0 80px -30px hsl(199 89% 60% / 0.08)',
+          '0 0 80px -30px hsl(44 100% 71% / 0.08)',
       }}
     >
       {/* Top accent line */}
@@ -228,7 +224,7 @@ function ArchitecturePanel() {
         className="absolute top-0 left-0 right-0 h-px pointer-events-none"
         style={{
           background:
-            'linear-gradient(to right, transparent 5%, hsl(199 89% 60% / 0.5) 28%, hsl(270 91% 65% / 0.25) 60%, transparent 95%)',
+            'linear-gradient(to right, transparent 5%, hsl(44 100% 71% / 0.5) 28%, hsl(44 100% 71% / 0.25) 60%, transparent 95%)',
         }}
       />
 
@@ -244,16 +240,16 @@ function ArchitecturePanel() {
           <div
             className="w-[7px] h-[7px] rounded-full"
             style={{
-              background: '#22C55E',
+              background: '#FFD86B',
               boxShadow: '0 0 6px #22C55E88',
               animation: 'energy-core-breathe 2.4s ease-in-out infinite',
             }}
           />
           <span
-            className="font-label font-medium text-[10px] uppercase tracking-[0.12em] sm:tracking-[0.2em] mobile-label-min m-tx-label"
+            className="font-label font-medium text-xs uppercase tracking-[0.12em] sm:tracking-[0.14em] mobile-label-min m-tx-label"
             style={{ color: 'var(--text-muted)' }}
           >
-            Weavy · System Architecture
+            Weavy · Automation Systems
           </span>
         </div>
 
@@ -293,7 +289,7 @@ function ArchitecturePanel() {
         className="h-px pointer-events-none"
         style={{
           background:
-            'linear-gradient(to right, transparent, hsl(199 89% 60% / 0.07), transparent)',
+            'linear-gradient(to right, transparent, hsl(44 100% 71% / 0.07), transparent)',
         }}
       />
     </motion.div>
@@ -315,7 +311,7 @@ export default function SystemsShowcase() {
           left: 0,
           right: 0,
           height: '120px',
-          background: 'linear-gradient(to bottom, #071011 0%, rgba(7,16,17,0.4) 55%, transparent 100%)',
+          background: 'linear-gradient(to bottom, #010709 0%, rgba(1,7,9,0.4) 55%, transparent 100%)',
           pointerEvents: 'none',
           zIndex: 1,
         }}
@@ -330,9 +326,9 @@ export default function SystemsShowcase() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, ease: E }}
-              className="font-label font-medium text-xs uppercase tracking-widest text-accent-cyan/70 mb-5"
+              className="section-label mb-5"
             >
-              Systems in Motion
+              Automation
             </motion.p>
 
             <motion.h2
@@ -340,10 +336,10 @@ export default function SystemsShowcase() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.08, ease: E }}
-              className="font-heading text-4xl md:text-5xl font-medium tracking-tighter mb-6 text-primary"
+              className="font-heading text-4xl md:text-5xl font-medium tracking-tight mb-6 text-primary"
             >
-              Four core{' '}
-              <span className="font-serif italic text-accent-cyan">architectures</span>
+              Four systems that keep{' '}
+              <span className="font-serif italic text-gold">enquiries moving</span>
             </motion.h2>
 
             <motion.p
@@ -351,10 +347,10 @@ export default function SystemsShowcase() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.16, ease: E }}
-              className="font-body text-muted text-lg font-normal leading-relaxed mb-10 m-tx-secondary"
+              className="font-body text-muted text-lg font-medium leading-relaxed mb-10 m-tx-secondary"
             >
-              We don't sell hours. We sell outcomes. Here are the core architectures
-              we deploy to scale your operations.
+              Each system does one job well. Start with the one costing you the most time,
+              then connect the rest as you grow.
             </motion.p>
 
             <motion.a
@@ -364,8 +360,8 @@ export default function SystemsShowcase() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.26, ease: E }}
-              className="font-body inline-flex items-center gap-2 text-sm md:text-base w-fit cursor-pointer min-h-[44px] lg:min-h-0"
-              style={{ color: 'rgba(244,248,250,0.75)', transition: 'color 200ms' }}
+              className="font-body inline-flex items-center gap-2 text-sm md:text-base w-fit cursor-pointer min-h-[44px] xl:min-h-0"
+              style={{ color: 'rgba(244,248,250,0.92)', transition: 'color 200ms' }}
               onMouseEnter={e => {
                 const el = e.currentTarget as HTMLElement
                 el.style.color = 'rgba(244,248,250,1)'
@@ -374,12 +370,12 @@ export default function SystemsShowcase() {
               }}
               onMouseLeave={e => {
                 const el = e.currentTarget as HTMLElement
-                el.style.color = 'rgba(244,248,250,0.75)'
+                el.style.color = 'rgba(244,248,250,0.92)'
                 const arrow = el.querySelector('svg') as SVGElement | null
                 if (arrow) arrow.style.transform = 'translateX(0)'
               }}
             >
-              All services
+              Explore the Services
               <ArrowRight
                 className="w-3.5 h-3.5 md:w-4 md:h-4"
                 style={{ transition: 'transform 220ms cubic-bezier(0.16, 1, 0.3, 1)' }}
@@ -395,7 +391,7 @@ export default function SystemsShowcase() {
               style={{
                 inset: '-48px',
                 background:
-                  'radial-gradient(ellipse at 50% 25%, hsl(199 89% 60% / 0.06), transparent 65%)',
+                  'radial-gradient(ellipse at 50% 25%, hsl(44 100% 71% / 0.06), transparent 65%)',
               }}
             />
             <ArchitecturePanel />
@@ -413,7 +409,7 @@ export default function SystemsShowcase() {
           left: 0,
           right: 0,
           height: '200px',
-          background: 'linear-gradient(to bottom, transparent 0%, rgba(7,16,17,0.12) 35%, rgba(7,16,17,0.38) 65%, rgba(7,16,17,0.58) 100%)',
+          background: 'linear-gradient(to bottom, transparent 0%, rgba(1,7,9,0.12) 35%, rgba(1,7,9,0.38) 65%, rgba(1,7,9,0.58) 100%)',
           pointerEvents: 'none',
           zIndex: 10,
         }}

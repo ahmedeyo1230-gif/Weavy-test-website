@@ -52,7 +52,7 @@ export function BackgroundComponent() {
         backgroundImage: `
           linear-gradient(to right,  hsl(0 0% 100% / 0.04) 1px, transparent 1px),
           linear-gradient(to bottom, hsl(0 0% 100% / 0.04) 1px, transparent 1px),
-          radial-gradient(circle at 50% 50%, hsl(199 89% 60% / 0.13) 0%, hsl(199 89% 60% / 0.05) 40%, transparent 80%)
+          radial-gradient(circle at 50% 50%, hsl(44 100% 71% / 0.13) 0%, hsl(44 100% 71% / 0.05) 40%, transparent 80%)
         `,
         backgroundSize: '32px 32px, 32px 32px, 100% 100%',
       }}

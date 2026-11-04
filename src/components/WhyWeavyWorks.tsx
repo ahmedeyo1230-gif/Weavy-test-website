@@ -7,25 +7,25 @@ const features = [
     icon: <CheckCircle2 className="w-5 h-5" />,
     title: 'End-to-end ownership',
     description:
-      'We handle the strategy, the code, the integrations, and the maintenance. You just get the results.',
+      'We handle the strategy, build, integrations and maintenance, so you have one team to call.',
   },
   {
     icon: <Clock className="w-5 h-5" />,
-    title: 'Async-first delivery',
+    title: 'Straightforward communication',
     description:
-      'No unnecessary meetings. We communicate via Slack and Loom, delivering updates while you sleep.',
+      'Clear updates on what has been done and what comes next, in plain English.',
   },
   {
     icon: <Scaling className="w-5 h-5" />,
-    title: 'Built for scale from day one',
+    title: 'Built to grow with you',
     description:
-      'Our architectures are designed to handle 10× your current volume without breaking a sweat.',
+      'Start with one channel and add more when you are ready, without rebuilding what already works.',
   },
   {
     icon: <Target className="w-5 h-5" />,
-    title: 'Results-obsessed',
+    title: 'Focused on outcomes',
     description:
-      "We tie our success to your metrics. If a system isn't saving you time or making you money, we rebuild it.",
+      'We review each system against what matters to you: enquiries answered, time saved and bookings made.',
   },
 ]
 
@@ -238,7 +238,7 @@ export default function WhyWeavyWorks() {
         style={{
           position: 'absolute', top: 0, left: 0, right: 0,
           height: '220px',
-          background: 'linear-gradient(to bottom, #071011 0%, rgba(7,16,17,0.65) 40%, rgba(7,16,17,0.2) 72%, transparent 100%)',
+          background: 'linear-gradient(to bottom, #010709 0%, rgba(1,7,9,0.65) 40%, rgba(1,7,9,0.2) 72%, transparent 100%)',
           pointerEvents: 'none', zIndex: 10,
         }}
       />
@@ -259,7 +259,7 @@ export default function WhyWeavyWorks() {
       <div className="absolute pointer-events-none" aria-hidden="true"
         style={{
           top: '-15%', left: '-8%', width: '60%', height: '72%',
-          background: 'radial-gradient(ellipse at center, hsl(199 89% 58% / 0.07) 0%, hsl(210 80% 35% / 0.04) 40%, transparent 68%)',
+          background: 'radial-gradient(ellipse at center, hsl(44 100% 71% / 0.07) 0%, hsl(44 100% 71% / 0.04) 40%, transparent 68%)',
         }}
       />
 
@@ -267,7 +267,7 @@ export default function WhyWeavyWorks() {
       <div className="absolute pointer-events-none" aria-hidden="true"
         style={{
           bottom: '-10%', right: '-5%', width: '50%', height: '60%',
-          background: 'radial-gradient(ellipse at center, hsl(180 55% 28% / 0.055) 0%, transparent 65%)',
+          background: 'radial-gradient(ellipse at center, hsl(44 45% 28% / 0.055) 0%, transparent 65%)',
         }}
       />
 
@@ -297,7 +297,7 @@ export default function WhyWeavyWorks() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="font-label font-medium text-xs uppercase tracking-widest text-accent-cyan/70 mb-5 m-why-label"
+            className="section-label mb-5"
           >
             Why Weavy Works
           </motion.p>
@@ -306,10 +306,10 @@ export default function WhyWeavyWorks() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
-            className="font-heading text-4xl md:text-5xl lg:text-6xl font-medium tracking-tighter text-primary"
+            className="font-heading text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight text-primary"
           >
             Built with{' '}
-            <span className="font-serif italic text-accent-cyan">strategy</span>,
+            <span className="font-serif italic text-gold">strategy</span>,
             powered by automation.
           </motion.h2>
           <motion.p
@@ -317,11 +317,11 @@ export default function WhyWeavyWorks() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.16, ease: [0.16, 1, 0.3, 1] }}
-            className="font-body mt-6 text-lg font-normal max-w-md"
+            className="font-body mt-6 text-lg font-medium max-w-md"
             style={{ color: 'var(--text-body)', lineHeight: 1.75 }}
           >
-            We operate differently than traditional agencies. We are an extension
-            of your team, focused purely on leverage.
+            One team takes responsibility from the first plan to ongoing support,
+            so you are not left coordinating separate suppliers.
           </motion.p>
         </div>
 
@@ -349,23 +349,23 @@ export default function WhyWeavyWorks() {
               style={{
                 transition: 'background-color 250ms, border-color 250ms, box-shadow 250ms',
                 background: 'rgba(8,30,38,0.45)',
-                border: '1px solid rgba(77,196,225,0.28)',
-                boxShadow: '0 0 20px rgba(77,196,225,0.06)',
+                border: '1px solid rgba(255,216,107,0.28)',
+                boxShadow: '0 0 20px rgba(255,216,107,0.06)',
               }}
               onMouseEnter={e => {
                 (e.currentTarget as HTMLElement).style.background = 'rgba(9,27,36,0.75)'
-                ;(e.currentTarget as HTMLElement).style.borderColor = 'rgba(125,220,255,0.34)'
-                ;(e.currentTarget as HTMLElement).style.boxShadow = '0 0 28px rgba(125,220,255,0.09)'
+                ;(e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,216,107,0.34)'
+                ;(e.currentTarget as HTMLElement).style.boxShadow = '0 0 28px rgba(255,216,107,0.09)'
               }}
               onMouseLeave={e => {
                 (e.currentTarget as HTMLElement).style.background = 'rgba(8,30,38,0.45)'
-                ;(e.currentTarget as HTMLElement).style.borderColor = 'rgba(77,196,225,0.28)'
-                ;(e.currentTarget as HTMLElement).style.boxShadow = '0 0 20px rgba(77,196,225,0.06)'
+                ;(e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,216,107,0.28)'
+                ;(e.currentTarget as HTMLElement).style.boxShadow = '0 0 20px rgba(255,216,107,0.06)'
               }}
             >
               <div
                 className="flex-shrink-0 w-11 h-11 rounded-full flex items-center justify-center"
-                style={{ background: 'rgba(6,22,30,0.9)', border: '1px solid rgba(125,220,255,0.30)', color: '#7DDCFF', boxShadow: '0 0 16px rgba(125,220,255,0.13)', transition: 'color 250ms, border-color 250ms, box-shadow 250ms' }}
+                style={{ background: 'rgba(6,22,30,0.9)', border: '1px solid rgba(255,216,107,0.30)', color: '#FFD86B', boxShadow: '0 0 16px rgba(255,216,107,0.13)', transition: 'color 250ms, border-color 250ms, box-shadow 250ms' }}
               >
                 {feature.icon}
               </div>
@@ -373,7 +373,7 @@ export default function WhyWeavyWorks() {
                 <h3 className="font-heading text-xl font-medium tracking-tight mb-2 m-why-title" style={{ color: 'var(--text-primary)' }}>
                   {feature.title}
                 </h3>
-                <p className="font-body font-normal leading-relaxed m-tx-secondary" style={{ color: 'rgba(255,255,255,0.72)', lineHeight: 1.75 }}>
+                <p className="font-body font-medium leading-relaxed m-tx-secondary" style={{ color: 'var(--text-body)', lineHeight: 1.7 }}>
                   {feature.description}
                 </p>
               </div>

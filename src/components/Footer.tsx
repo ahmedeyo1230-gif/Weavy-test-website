@@ -7,11 +7,21 @@ import { servicePageFromPath } from '../lib/servicePages'
 const HLS_SRC = 'https://stream.mux.com/Aa02T7oM1wH5Mk5EEVDYhbZ1ChcdhRsS2m1NYyx4Ua1g.m3u8'
 const MARQUEE_WORD = 'BUILDING THE FUTURE'
 
-// Placeholder profile links — swap for the real Weavy handles once available.
-const INSTAGRAM_URL = 'https://instagram.com'
-const FACEBOOK_URL = 'https://facebook.com'
-const TIKTOK_URL = 'https://tiktok.com'
-const LINKEDIN_URL = 'https://linkedin.com'
+// Add the real Weavy profile URLs here. An icon only appears once its URL is set.
+const INSTAGRAM_URL = ''
+const FACEBOOK_URL = ''
+const TIKTOK_URL = ''
+const LINKEDIN_URL = ''
+
+const FOOTER_LINKS = [
+  { label: 'Services', href: '/services' },
+  { label: 'Work', href: '/work' },
+  { label: 'Blog', href: '/blog' },
+  { label: 'Contact', href: '/contact' },
+  { label: 'Privacy', href: '/privacy' },
+]
+const FOOTER_EMAIL = 'hello@weavyautomation.com'
+const FOOTER_PHONE = { label: '+44 208 1295033', href: 'tel:+442081295033' }
 
 const SOCIALS = [
   {
@@ -165,7 +175,7 @@ export function Marquee() {
   return (
     <section
       aria-label="Building the future"
-      style={{ position: 'relative', width: '100%', overflow: 'hidden', background: '#06080A' }}
+      style={{ position: 'relative', width: '100%', overflow: 'hidden', background: '#010709' }}
     >
       <style>{`
         .btf-stage {
@@ -183,9 +193,9 @@ export function Marquee() {
           .btf-stage { height: 165px; }
         }
         .btf-word, .btf-sep {
-          font-family: var(--font-accent);
+          font-family: var(--font-body);
           font-style: italic;
-          font-weight: 400;
+          font-weight: 500;
           font-size: clamp(35px, 3.3vw, 52px);
           letter-spacing: 0.04em;
           text-transform: uppercase;
@@ -203,7 +213,7 @@ export function Marquee() {
           color: rgba(216, 227, 229, 0.8);
         }
         .btf-sep {
-          color: rgba(125, 220, 255, 0.55);
+          color: rgba(255,216,107, 0.55);
         }
         .btf-sr-only {
           position: absolute;
@@ -262,11 +272,11 @@ const DEFAULT_HEADING = (
   <>
     Ready to{' '}
     <em style={{
-      fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400,
-      background: 'linear-gradient(90deg, #FFFFFF 0%, #7DDCFF 45%, #B7AEFF 100%)',
+      fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 500,
+      background: 'linear-gradient(90deg, #FFFFFF 0%, #FFE9A8 45%, #FFD86B 100%)',
       WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
       color: 'transparent',
-      textShadow: '0 0 24px rgba(125, 220, 255, 0.16)',
+      textShadow: '0 0 24px rgba(255,216,107, 0.16)',
     }}>
       automate
     </em>{' '}
@@ -281,14 +291,16 @@ const DEFAULT_SUBTEXT = (
   </>
 )
 
+const activeSocials = SOCIALS.filter(social => social.href)
+
 export default function Footer({
   id = 'contact',
   eyebrow = 'Get in touch',
   heading = DEFAULT_HEADING,
   subtext = DEFAULT_SUBTEXT,
   ctaLabel = 'Book a Free Demo',
-  ctaHref = 'mailto:hello@weavyautomation.com',
-  ctaVariant = 'glass',
+  ctaHref = '/contact',
+  ctaVariant = 'primary',
   showCta = true,
 }: FooterProps = {}) {
   const isInternalCta = ctaHref.startsWith('/')
@@ -297,14 +309,14 @@ export default function Footer({
   // reading the path here is current.
   const onServicePage = showCta && servicePageFromPath(window.location.pathname) !== null
   // All six Services pages (overview + dedicated) open the footer in the
-  // sections' own #010709: #06080A is a neutral grey slightly lighter than both
-  // neighbours and read as a pale band. Home/Work/Blog keep #06080A.
+  // sections' own #010709: #010709 is a neutral grey slightly lighter than both
+  // neighbours and read as a pale band. Home/Work/Blog keep #010709.
   const servicesFooter = !showCta || onServicePage
   return (
     <footer
       id={id}
       className={`relative w-full overflow-hidden${showCta ? '' : ' footer--bar-only'}${onServicePage ? ' footer--service-page' : ''}`}
-      style={{ background: servicesFooter ? '#010709' : '#06080A', paddingTop: 'clamp(4rem, 8vw, 5rem)' }}
+      style={{ background: servicesFooter ? '#010709' : '#010709', paddingTop: 'clamp(4rem, 8vw, 5rem)' }}
     >
       {/* Background video — sits above the plain section background, below the
           overlay and footer content (see z-index stack: video 0 < blend/overlay 1 < content 2) */}
@@ -320,9 +332,9 @@ export default function Footer({
         }}
       />
 
-      {/* Top blend — starts fully opaque in the footer's own #06080A so the top
+      {/* Top blend — starts fully opaque in the footer's own #010709 so the top
           edge is a constant colour that every preceding section's bottom blend
-          (all of which fade to #06080A) meets exactly. Previously it started at
+          (all of which fade to #010709) meets exactly. Previously it started at
           35%, letting the video and tint overlay change the edge colour frame to
           frame, which read as a horizontal line. The video still fades in below. */}
       <div
@@ -338,7 +350,7 @@ export default function Footer({
           background: servicesFooter
             // eased start (0.9 at 10%) so the tone leaves the section above gradually
             ? 'linear-gradient(to bottom, #010709 0%, rgba(1,7,9,0.9) 10%, rgba(1,7,9,0.62) 26%, rgba(1,7,9,0.3) 48%, rgba(1,7,9,0.12) 72%, transparent 100%)'
-            : 'linear-gradient(to bottom, #06080A 0%, rgba(6,8,10,0.62) 22%, rgba(6,8,10,0.3) 45%, rgba(6,8,10,0.12) 72%, transparent 100%)',
+            : 'linear-gradient(to bottom, #010709 0%, rgba(1,7,9,0.62) 22%, rgba(1,7,9,0.3) 45%, rgba(1,7,9,0.12) 72%, transparent 100%)',
           pointerEvents: 'none',
           zIndex: 1,
         }}
@@ -380,9 +392,9 @@ export default function Footer({
             style={{
               position: 'relative',
               zIndex: 1,
-              letterSpacing: '0.32em',
+              letterSpacing: '0.16em',
               textTransform: 'uppercase',
-              color: 'rgba(191, 239, 255, 0.72)',
+              color: 'rgba(255,216,107, 0.72)',
               marginBottom: '2rem',
             }}
           >
@@ -426,7 +438,7 @@ export default function Footer({
                 fontSize: 'clamp(16px, 1.4vw, 18px)',
                 lineHeight: 1.8,
                 color: 'var(--text-body)',
-                fontWeight: 400,
+                fontWeight: 500,
                 maxWidth: '34rem',
                 marginBottom: '2.5rem',
                 textShadow: '0 1px 16px rgba(0,0,0,0.75)',
@@ -447,7 +459,7 @@ export default function Footer({
             <a
               href={ctaHref}
               onClick={isInternalCta ? (e) => { e.preventDefault(); goToPath(ctaHref) } : undefined}
-              className="font-body btn-glow-primary inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-medium bg-primary text-background hover:bg-white hover:shadow-[0_0_28px_rgba(245,245,245,0.28)] active:scale-[0.97]"
+              className="font-body btn-glow-primary inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-medium active:scale-[0.97]"
               style={{ transition: 'background-color 200ms, box-shadow 200ms, transform 100ms' }}
             >
               {ctaLabel}
@@ -472,8 +484,8 @@ export default function Footer({
               }}
               onMouseEnter={e => {
                 const el = e.currentTarget as HTMLAnchorElement
-                el.style.borderColor = 'hsl(199 89% 60% / 0.5)'
-                el.style.boxShadow   = '0 0 32px -6px hsl(199 89% 60% / 0.22), inset 0 0 16px -8px hsl(199 89% 60% / 0.07)'
+                el.style.borderColor = 'hsl(44 100% 71% / 0.5)'
+                el.style.boxShadow   = '0 0 32px -6px hsl(44 100% 71% / 0.22), inset 0 0 16px -8px hsl(44 100% 71% / 0.07)'
                 el.style.background  = 'hsl(0 0% 100% / 0.05)'
               }}
               onMouseLeave={e => {
@@ -493,97 +505,54 @@ export default function Footer({
         </div>
         )}
 
-        {/* Footer bar — the hairline only separates it from the CTA above, so
-            it's dropped when the CTA is hidden (it would otherwise read as a
-            stray horizontal line at the top of the footer). */}
+        {/* Footer bar */}
         <div
           className="footer-bottom-bar"
           style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr auto 1fr',
-            alignItems: 'center',
-            gap: '1.25rem',
-            padding: '1.2rem clamp(1.5rem, 5vw, 3.5rem) 2rem',
-            // No hairline on the Services pages: it read as a hard horizontal
-            // line across the wave between the CTA and the bar.
-            borderTop: servicesFooter ? 'none' : '1px solid hsl(0 0% 100% / 0.06)',
+            padding: '1.5rem clamp(1.5rem, 5vw, 3.5rem) 1.75rem',
+            borderTop: servicesFooter ? 'none' : '1px solid hsl(0 0% 100% / 0.08)',
           }}
         >
-          {/* Status dot */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-            <span
-              aria-hidden="true"
-              style={{
-                width: '7px', height: '7px', borderRadius: '50%',
-                background: 'hsl(142 65% 50%)',
-                boxShadow: '0 0 8px hsl(142 65% 50% / 0.7)',
-                display: 'inline-block',
-                animation: 'footer-dot-pulse 2.2s ease-in-out infinite',
-              }}
-            />
-            <span
-              className="font-label font-medium footer-availability-text"
-              style={{ fontSize: '0.73rem', letterSpacing: '0.1em', color: 'var(--text-body)' }}
-            >
-              Available for projects
-            </span>
-          </div>
-
-          {/* Copyright */}
-          <p
-            className="font-label text-center footer-copyright-text"
-            style={{ fontSize: '0.7rem', letterSpacing: '0.05em', color: 'rgba(225, 236, 242, 0.82)', fontWeight: 500 }}
-          >
-            © {new Date().getFullYear()} Weavy. All rights reserved.
-          </p>
-
-          {/* Social links — kept well clear of the fixed WhatsApp button. The
-              flat +15px on top of the existing clamp() shifts the whole group
-              slightly further left, keeping a ≥80px gap to the WhatsApp
-              circle even at the narrow end of the desktop range (~1024px),
-              where the base clamp's gap alone was closer to ~76px. */}
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.5rem',
-              justifySelf: 'end',
-              marginRight: 'calc(clamp(24px, 10vw, 190px) + 15px)',
-            }}
-          >
-            {SOCIALS.map(({ label, href, icon }) => (
+          <nav aria-label="Footer" className="footer-links">
+            {FOOTER_LINKS.map(({ label, href }) => (
               <a
-                key={label}
+                key={href}
                 href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={label}
-                className="footer-social-icon"
-                style={{
-                  color: 'rgba(235, 243, 248, 0.86)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  width: '40px',
-                  height: '40px',
-                  borderRadius: '50%',
-                  filter: 'drop-shadow(0 0 7px rgba(125, 220, 255, 0.12))',
-                  transition: 'opacity 0.25s ease, transform 0.25s ease, color 0.25s ease',
-                }}
-                onMouseEnter={e => {
-                  const el = e.currentTarget as HTMLAnchorElement
-                  el.style.color = 'rgba(255, 255, 255, 0.98)'
-                  el.style.transform = 'translateY(-2px)'
-                }}
-                onMouseLeave={e => {
-                  const el = e.currentTarget as HTMLAnchorElement
-                  el.style.color = 'rgba(235, 243, 248, 0.86)'
-                  el.style.transform = 'translateY(0)'
+                className="footer-link"
+                onClick={(e) => {
+                  if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return
+                  e.preventDefault()
+                  goToPath(href)
                 }}
               >
-                {icon}
+                {label}
               </a>
             ))}
+          </nav>
+
+          <div className="footer-contact">
+            <a className="footer-link" href={`mailto:${FOOTER_EMAIL}`}>{FOOTER_EMAIL}</a>
+            <a className="footer-link" href={FOOTER_PHONE.href}>{FOOTER_PHONE.label}</a>
+            {activeSocials.length > 0 && (
+              <div className="footer-socials">
+                {activeSocials.map(({ label, href, icon }) => (
+                  <a
+                    key={label}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={label}
+                    className="footer-social-icon"
+                  >
+                    {icon}
+                  </a>
+                ))}
+              </div>
+            )}
+          </div>
+
+          <div className="footer-meta">
+            <p className="footer-copyright-text">© {new Date().getFullYear()} Weavy. London, UK.</p>
           </div>
         </div>
 

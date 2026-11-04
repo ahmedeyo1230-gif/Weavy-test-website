@@ -139,8 +139,8 @@ export const DarkSphereGridBg = ({ className }: GridBackgroundProps) => {
       className={cn("absolute inset-0 z-0 pointer-events-none", className)}
       style={{
         backgroundImage: `
-          linear-gradient(to right,  rgba(125,220,255,0.014) 1px, transparent 1px),
-          linear-gradient(to bottom, rgba(125,220,255,0.014) 1px, transparent 1px),
+          linear-gradient(to right,  rgba(255,216,107,0.014) 1px, transparent 1px),
+          linear-gradient(to bottom, rgba(255,216,107,0.014) 1px, transparent 1px),
           radial-gradient(circle at 50% 50%, rgba(139,92,246,0.03) 0%, transparent 70%)
         `,
         backgroundSize: "32px 32px, 32px 32px, 100% 100%",
@@ -168,7 +168,7 @@ export const BespokeCinemaArchBg = ({ className }: GridBackgroundProps) => {
           backgroundImage: [
             'repeating-linear-gradient(0deg,   rgba(255,255,255,0.022) 0, rgba(255,255,255,0.022) 1px, transparent 1px, transparent 40px)',
             'repeating-linear-gradient(45deg,  rgba(45,212,191,0.068)  0, rgba(45,212,191,0.068)  1px, transparent 1px, transparent 22px)',
-            'repeating-linear-gradient(-45deg, rgba(125,220,255,0.048) 0, rgba(125,220,255,0.048) 1px, transparent 1px, transparent 32px)',
+            'repeating-linear-gradient(-45deg, rgba(255,216,107,0.048) 0, rgba(255,216,107,0.048) 1px, transparent 1px, transparent 32px)',
             'repeating-linear-gradient(90deg,  rgba(255,255,255,0.018) 0, rgba(255,255,255,0.018) 1px, transparent 1px, transparent 80px)',
           ].join(', '),
           backgroundSize: '80px 80px, 44px 44px, 64px 64px, 80px 80px',
@@ -181,7 +181,7 @@ export const BespokeCinemaArchBg = ({ className }: GridBackgroundProps) => {
       <div
         style={{
           position: 'absolute', inset: 0,
-          background: 'radial-gradient(circle at 65% 58%, rgba(232,201,122,0.072) 0%, rgba(45,212,191,0.035) 40%, transparent 70%)',
+          background: 'radial-gradient(circle at 65% 58%, rgba(255,216,107,0.072) 0%, rgba(45,212,191,0.035) 40%, transparent 70%)',
         }}
       />
     </div>

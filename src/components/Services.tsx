@@ -2,12 +2,12 @@ import { useEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { motion, useReducedMotion } from 'framer-motion'
-import { Globe, Bot, BarChart2, Sparkles, Video, Settings2, Plug, Clock, UserCheck, CalendarDays, Zap, Camera, Target, Layers, MessageSquare, Filter, ChevronLeft, ChevronRight, ArrowUpRight } from 'lucide-react'
+import { Globe, Bot, BarChart2, Sparkles, Video, Settings2, Plug, Clock, UserCheck, CalendarDays, Zap, MessageSquare, Filter, ChevronLeft, ChevronRight, ArrowUpRight } from 'lucide-react'
 import { MessengerGlowBackground } from './ui/background-components'
-import { TestimonialsSection } from './ui/testimonials-1'
 import { GridBackground, NoiseCanvasBg, DarkSphereGridBg, BespokeCinemaArchBg } from './ui/grid-background'
 import { BeamsBackgroundLayer } from './ui/beams-background'
 import { CircularGallery, type GalleryItem } from './ui/circular-gallery'
+import { TestimonialsSection } from './ui/testimonials-1'
 import { useMediaQuery } from '../lib/useMediaQuery'
 import { GradientBlurBg } from './ui/gradient-blur-bg'
 import { BorderRotate } from './ui/animated-gradient-border'
@@ -24,11 +24,11 @@ const SERVICES = [
     id: 'bespoke-website-design',
     icon: Globe,
     title: 'Bespoke Website Design',
-    description: 'Tailored, high-performance websites designed for brand identity and user experience.',
-    accent: 'hsl(205 85% 62%)',        // blue
-    accentMuted: 'hsl(205 85% 62% / 0.12)',
-    accentBorder: 'hsl(205 85% 62% / 0.35)',
-    accentGlow: 'hsl(205 85% 62% / 0.22)',
+    description: 'Custom-built websites that explain your value clearly, load fast and turn visitors into enquiries.',
+    accent: 'hsl(44 100% 71%)',        // blue
+    accentMuted: 'hsl(44 100% 71% / 0.12)',
+    accentBorder: 'hsl(44 100% 71% / 0.35)',
+    accentGlow: 'hsl(44 100% 71% / 0.22)',
   },
   {
     id: 'custom-chatbots',
@@ -37,8 +37,8 @@ const SERVICES = [
       <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
         <defs>
           <linearGradient id="cbGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="hsl(195 90% 68%)"/>
-            <stop offset="100%" stopColor="hsl(215 85% 55%)"/>
+            <stop offset="0%" stopColor="hsl(44 100% 71%)"/>
+            <stop offset="100%" stopColor="hsl(44 100% 71%)"/>
           </linearGradient>
         </defs>
         {/* bubble */}
@@ -53,45 +53,62 @@ const SERVICES = [
       </svg>
     ),
     title: 'Custom Chatbots',
-    description: 'Intelligent chatbots for automation, support, and customer engagement.',
-    accent: 'hsl(150 58% 50%)',        // green
-    accentMuted: 'hsl(150 58% 50% / 0.12)',
-    accentBorder: 'hsl(150 58% 50% / 0.35)',
-    accentGlow: 'hsl(150 58% 50% / 0.22)',
+    description: 'AI chatbots for your website, WhatsApp, Instagram and Messenger that answer, qualify and book.',
+    accent: 'hsl(44 100% 71%)',        // green
+    accentMuted: 'hsl(44 100% 71% / 0.12)',
+    accentBorder: 'hsl(44 100% 71% / 0.35)',
+    accentGlow: 'hsl(44 100% 71% / 0.22)',
   },
   {
     id: 'social-media-marketing',
     icon: BarChart2,
     title: 'Social Media Marketing',
-    description: 'Data-driven strategies to grow audience, reach, and conversions.',
-    accent: 'hsl(280 65% 65%)',        // purple
-    accentMuted: 'hsl(280 65% 65% / 0.12)',
-    accentBorder: 'hsl(280 65% 65% / 0.35)',
-    accentGlow: 'hsl(280 65% 65% / 0.22)',
+    description: 'Planned content, paid campaigns and clear reporting that grow your audience and enquiries.',
+    accent: 'hsl(44 100% 71%)',        // purple
+    accentMuted: 'hsl(44 100% 71% / 0.12)',
+    accentBorder: 'hsl(44 100% 71% / 0.35)',
+    accentGlow: 'hsl(44 100% 71% / 0.22)',
   },
   {
     id: 'graphic-design-animation',
     icon: Sparkles,
-    title: 'Graphic Design / Animation',
-    description: 'High-quality visuals, branding assets, and engaging motion graphics.',
-    accent: 'hsl(38 90% 58%)',         // amber
-    accentMuted: 'hsl(38 90% 58% / 0.12)',
-    accentBorder: 'hsl(38 90% 58% / 0.35)',
-    accentGlow: 'hsl(38 90% 58% / 0.22)',
+    title: 'Graphic Design & Animation',
+    description: 'Brand identities, campaign graphics and motion that make your business easier to recognise.',
+    accent: 'hsl(44 100% 71%)',         // amber
+    accentMuted: 'hsl(44 100% 71% / 0.12)',
+    accentBorder: 'hsl(44 100% 71% / 0.35)',
+    accentGlow: 'hsl(44 100% 71% / 0.22)',
   },
   {
     id: 'ugc',
     icon: Video,
     title: 'UGC & Content Creation',
-    description: 'Authentic content creation to boost trust and audience connection.',
-    accent: 'hsl(0 72% 60%)',          // red
-    accentMuted: 'hsl(0 72% 60% / 0.12)',
-    accentBorder: 'hsl(0 72% 60% / 0.35)',
-    accentGlow: 'hsl(0 72% 60% / 0.22)',
+    description: 'Creator-led videos that show your product naturally and give customers a reason to trust it.',
+    accent: 'hsl(44 100% 71%)',          // red
+    accentMuted: 'hsl(44 100% 71% / 0.12)',
+    accentBorder: 'hsl(44 100% 71% / 0.35)',
+    accentGlow: 'hsl(44 100% 71% / 0.22)',
   },
 ]
 
 // ─── Card ─────────────────────────────────────────────────────────────────────
+
+// ─── Primary CTA placed beside each service page's opening copy ──────────────
+function ServiceCta({ label, className = '' }: { label: string; className?: string }) {
+  return (
+    <a
+      href="/contact"
+      onClick={(e) => {
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return
+        e.preventDefault()
+        goToPath('/contact')
+      }}
+      className={`service-cta font-body btn-glow-primary inline-flex w-fit self-start items-center gap-2 rounded-full px-7 py-3.5 text-sm font-medium active:scale-[0.97] ${className}`}
+    >
+      {label}
+    </a>
+  )
+}
 
 // ─── Services overview CTA ───────────────────────────────────────────────────
 // Sits directly beneath the five cards on /services. Continues the overview's
@@ -138,7 +155,7 @@ function ServicesOverviewCta() {
         aria-hidden="true"
         className="pointer-events-none absolute inset-0"
         style={{
-          background: 'radial-gradient(ellipse 52% 58% at 50% 46%, hsl(199 89% 60% / 0.065) 0%, hsl(199 89% 60% / 0.022) 45%, transparent 72%)',
+          background: 'radial-gradient(ellipse 52% 58% at 50% 46%, hsl(44 100% 71% / 0.065) 0%, hsl(44 100% 71% / 0.022) 45%, transparent 72%)',
           WebkitMaskImage: CTA_BOTTOM_FADE,
           maskImage: CTA_BOTTOM_FADE,
         }}
@@ -150,10 +167,10 @@ function ServicesOverviewCta() {
       <div className="relative z-10 max-w-[40rem] mx-auto px-6 sm:px-10 flex flex-col items-center text-center">
         <motion.p
           {...reveal(0, 12)}
-          className="font-sans uppercase text-muted mb-5"
-          style={{ fontSize: '0.7rem', letterSpacing: '0.32em' }}
+          className="font-sans uppercase text-gold mb-5"
+          style={{ fontSize: '0.75rem', letterSpacing: '0.16em' }}
         >
-          Let&rsquo;s build something better
+          Need advice?
         </motion.p>
 
         <motion.h2
@@ -164,8 +181,8 @@ function ServicesOverviewCta() {
         >
           Not sure where to{' '}
           <em style={{
-            fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400,
-            background: 'linear-gradient(90deg, #FFFFFF 0%, #7DDCFF 45%, #B7AEFF 100%)',
+            fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 500,
+            background: 'linear-gradient(90deg, #FFFFFF 0%, #FFE9A8 45%, #FFD86B 100%)',
             WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
             color: 'transparent',
             // inline-block + right padding stop the italic "t" being clipped by background-clip
@@ -177,11 +194,11 @@ function ServicesOverviewCta() {
 
         <motion.p
           {...reveal(0.16, 16)}
-          className="font-sans font-normal mb-9 m-tx-secondary"
+          className="font-sans font-medium mb-9 m-tx-secondary"
           style={{
             fontSize: 'var(--dt-intro, clamp(0.9rem, 1.5vw, 1.05rem))',
             lineHeight: 1.8,
-            color: 'hsl(0 0% 56%)',
+            color: 'var(--text-muted)',
             maxWidth: '32rem',
           }}
         >
@@ -197,10 +214,10 @@ function ServicesOverviewCta() {
               e.preventDefault()
               goToPath('/contact')
             }}
-            className="font-body btn-glow-primary inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-medium bg-primary text-background hover:bg-white hover:shadow-[0_0_28px_rgba(245,245,245,0.28)] active:scale-[0.97]"
+            className="font-body btn-glow-primary inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-medium active:scale-[0.97]"
             style={{ transition: 'background-color 200ms, box-shadow 200ms, transform 100ms' }}
           >
-            Discuss Your Project
+            Start a Project
             <ArrowUpRight size={16} strokeWidth={1.75} aria-hidden="true" />
           </a>
         </motion.div>
@@ -300,10 +317,10 @@ function ServiceCard({ service }: ServiceCardProps) {
 
           {/* Description */}
           <p
-            className="font-sans font-normal relative z-10 mb-6 flex-1 m-tx-secondary"
+            className="font-sans font-medium relative z-10 mb-6 flex-1 m-tx-secondary"
             style={{
               fontSize: 'var(--dt-card-desc, 0.82rem)',
-              color: 'hsl(0 0% 48%)',
+              color: 'var(--text-muted)',
               lineHeight: 'var(--dt-card-desc-lh, 1.75)',
             }}
           >
@@ -350,15 +367,15 @@ function ServiceCard({ service }: ServiceCardProps) {
 // warped violet wireframe grid. Values copied exactly from BespokeWebShowcase
 // so colour/glow/grid intensity match precisely wherever this is applied.
 
-function ShowcaseBackground({ topFadeFrom = '#060208' }: { topFadeFrom?: string }) {
+function ShowcaseBackground({ topFadeFrom = '#010709' }: { topFadeFrom?: string }) {
   return (
     <>
-      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '110px', background: `linear-gradient(to bottom, ${topFadeFrom} 0%, #060208 55%, rgba(6,2,8,0) 100%)`, pointerEvents: 'none', zIndex: 1 }} />
-      <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to top, #060208, transparent)', pointerEvents: 'none', zIndex: 1 }} />
+      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '110px', background: `linear-gradient(to bottom, ${topFadeFrom} 0%, #010709 55%, rgba(1,7,9,0) 100%)`, pointerEvents: 'none', zIndex: 1 }} />
+      <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to top, #010709, transparent)', pointerEvents: 'none', zIndex: 1 }} />
 
       <div aria-hidden="true" style={{
         position: 'absolute', inset: 0,
-        background: 'radial-gradient(ellipse 40% 36% at 8% 6%, rgba(191,64,209,0.05) 0%, rgba(147,42,189,0.0225) 34%, rgba(98,24,150,0.0075) 58%, transparent 74%)',
+        background: 'radial-gradient(ellipse 40% 36% at 8% 6%, rgba(255,216,107,0.05) 0%, rgba(255,216,107,0.0225) 34%, rgba(255,216,107,0.0075) 58%, transparent 74%)',
         pointerEvents: 'none', zIndex: 0,
       }} />
 
@@ -368,7 +385,7 @@ function ShowcaseBackground({ topFadeFrom = '#060208' }: { topFadeFrom?: string 
         viewBox="0 0 1440 800"
         style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', pointerEvents: 'none', zIndex: 0 }}
       >
-        <g fill="none" stroke="#9B6EFF" strokeWidth="1" opacity="0.04">
+        <g fill="none" stroke="#FFD86B" strokeWidth="1" opacity="0.04">
           <path d="M 70,0 C 88,220 50,480 82,800" />
           <path d="M 250,0 C 230,180 275,520 245,800" />
           <path d="M 470,0 C 495,260 445,540 480,800" />
@@ -394,10 +411,6 @@ function BespokeFollowUp() {
   const ref           = useRef<HTMLElement>(null)
   const primaryRef    = useRef<HTMLDivElement>(null)   // 3-D tilt + float target
   const secondaryRef  = useRef<HTMLDivElement>(null)   // cursor-parallax target
-  const hasCountedRef = useRef(false)
-  const [s1, setS1]   = useState(0)   // → 320
-  const [s2, setS2]   = useState(0)   // → 48  (/10 = 4.8)
-  const [s3, setS3]   = useState(0)   // → 92
 
   // ── Cursor-reactive 3-D parallax ──────────────────────────────────────────
   useEffect(() => {
@@ -440,16 +453,6 @@ function BespokeFollowUp() {
     const obs = new IntersectionObserver(([entry]) => {
       if (!entry.isIntersecting) return
       gsap.to(reveals, { opacity: 1, y: 0, duration: 1.05, ease: 'power3.out', stagger: 0.1 })
-      if (!hasCountedRef.current) {
-        hasCountedRef.current = true
-        const run = (setter: (v: number) => void, target: number, step: number, ms: number) => {
-          let v = 0
-          const id = setInterval(() => { v = Math.min(v + step, target); setter(v); if (v >= target) clearInterval(id) }, ms)
-        }
-        run(setS1, 320, 7, 16)
-        run(setS2,  48, 1, 38)
-        run(setS3,  92, 2, 22)
-      }
       obs.disconnect()
     }, { threshold: 0.08 })
 
@@ -461,10 +464,10 @@ function BespokeFollowUp() {
     <section
       ref={ref}
       className="relative w-full overflow-hidden"
-      style={{ background: '#060208', padding: 'clamp(5rem, 8vw, 8rem) 0 clamp(4rem, 7vw, 7rem)' }}
+      style={{ background: '#010709', padding: 'clamp(5rem, 8vw, 8rem) 0 clamp(4rem, 7vw, 7rem)' }}
     >
       {/* Its own predecessor (Cinema Showcase) ends in #010709, not the
-          #060208 shared by every other Bespoke section, so this is the one
+          #010709 shared by every other Bespoke section, so this is the one
           call site that needs the top fade to start from that colour. */}
       <ShowcaseBackground topFadeFrom="#010709" />
 
@@ -479,16 +482,16 @@ function BespokeFollowUp() {
           style={{ borderBottom: '1px solid hsl(0 0% 100% / 0.06)' }}
         >
           <div className="flex items-center gap-4">
-            <div style={{ width: 24, height: 1, background: 'hsl(199 89% 60% / 0.55)' }}/>
-            <span className="mobile-label-min" style={{ fontSize: '0.6rem', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'hsl(199 89% 60%)', fontFamily: 'var(--font-sans, sans-serif)', fontWeight: 500 }}>
-              02 — Conversion-Focused Design
+            <div style={{ width: 24, height: 1, background: 'hsl(44 100% 71% / 0.55)' }}/>
+            <span className="mobile-label-min" style={{ fontSize: '0.75rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'hsl(44 100% 71%)', fontFamily: 'var(--font-sans, sans-serif)', fontWeight: 500 }}>
+              Conversion-Focused Design
             </span>
           </div>
           <div className="flex items-center gap-4">
-            <span className="bfu3-meta-right" style={{ fontSize: '14px', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(191, 225, 245, 0.72)', fontFamily: 'var(--font-sans, sans-serif)' }}>
+            <span className="bfu3-meta-right" style={{ fontSize: '14px', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(255,216,107, 0.72)', fontFamily: 'var(--font-sans, sans-serif)' }}>
               Bespoke Website Design
             </span>
-            <div style={{ width: 24, height: 1, background: 'hsl(199 89% 60% / 0.55)' }}/>
+            <div style={{ width: 24, height: 1, background: 'hsl(44 100% 71% / 0.55)' }}/>
           </div>
         </div>
 
@@ -496,49 +499,26 @@ function BespokeFollowUp() {
         <div className="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-10 lg:gap-20">
 
           {/* Oversized stacked heading */}
-          <div className="bfu3-r" style={{ letterSpacing: '-0.046em', lineHeight: 0.87, flexShrink: 0 }}>
+          <div className="bfu3-r" style={{ letterSpacing: '-0.03em', lineHeight: 1.05, flexShrink: 0 }}>
             <p style={{
-              fontFamily: 'var(--font-sans, sans-serif)', fontWeight: 200,
-              fontSize: 'clamp(3.8rem, 8.5vw, 7.5rem)',
-              color: 'hsl(0 0% 90%)', display: 'block', marginBottom: '0.04em', lineHeight: 0.87,
+              fontFamily: 'var(--font-sans, sans-serif)', fontWeight: 500,
+              fontSize: 'clamp(2.75rem, 8.5vw, 7.5rem)',
+              color: 'var(--text-body)', display: 'block', marginBottom: '0.04em', lineHeight: 1.05,
             }}>Designed</p>
             <p style={{
-              fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400,
-              fontSize: 'clamp(3.8rem, 8.5vw, 7.5rem)',
-              color: 'hsl(0 0% 44%)', display: 'block', lineHeight: 0.87,
+              fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 500,
+              fontSize: 'clamp(2.75rem, 8.5vw, 7.5rem)',
+              color: '#FFD86B', display: 'block', lineHeight: 1.05,
             }}>to convert.</p>
           </div>
 
           {/* Body copy + editorial stat numbers */}
           <div className="bfu3-r w-full lg:w-auto" style={{ maxWidth: '26rem', paddingBottom: '0.5rem' }}>
-            <p className="font-sans font-normal mb-10" style={{
+            <p className="font-sans font-medium mb-10" style={{
               fontSize: 'clamp(0.84rem, 1.3vw, 0.98rem)', lineHeight: 1.9, color: '#F2F8FC',
             }}>
-              Your website should do more than look good. We build clear, fast, and persuasive
-              experiences that help people understand your value and take action.
+              Your website should do more than look good. We build clear, fast and persuasive experiences that help people understand your value and take action.
             </p>
-
-            {/* Editorial stat trio */}
-            <div className="grid grid-cols-3 gap-4 sm:flex sm:gap-10">
-              {([
-                { val: `+${s1}%`,                label: 'Conversion Growth', col: 'hsl(199 89% 65%)' },
-                { val: `${(s2/10).toFixed(1)}×`, label: 'Engagement',        col: 'hsl(145 65% 50%)' },
-                { val: `${s3}%`,                 label: 'Faster Action',     col: 'hsl(280 65% 65%)' },
-              ] as const).map(({ val, label, col }) => (
-                <div key={label}>
-                  <p style={{
-                    fontFamily: 'var(--font-sans, sans-serif)', fontWeight: 300,
-                    fontSize: 'clamp(1.4rem, 2.5vw, 2.1rem)',
-                    color: col, letterSpacing: '-0.04em', lineHeight: 1, marginBottom: '0.4rem',
-                  }}>{val}</p>
-                  <p className="bfu3-stat-label" style={{
-                    fontFamily: 'var(--font-sans, sans-serif)', fontSize: '0.9rem',
-                    letterSpacing: '0.16em', textTransform: 'uppercase',
-                    color: 'rgba(244, 248, 250, 0.7)', fontWeight: 500,
-                  }}>{label}</p>
-                </div>
-              ))}
-            </div>
           </div>
 
         </div>
@@ -553,7 +533,7 @@ function BespokeFollowUp() {
           {/* Glow behind all mockups */}
           <div aria-hidden="true" style={{
             position: 'absolute', inset: '-64px',
-            background: 'radial-gradient(ellipse 80% 65% at 42% 55%, hsl(199 89% 60% / 0.11) 0%, transparent 65%)',
+            background: 'radial-gradient(ellipse 80% 65% at 42% 55%, hsl(44 100% 71% / 0.11) 0%, transparent 65%)',
             filter: 'blur(52px)', zIndex: 0,
           }}/>
 
@@ -571,7 +551,7 @@ function BespokeFollowUp() {
                 boxShadow: [
                   '0 4px 8px hsl(0 0% 0% / 0.5)',
                   '0 60px 130px -28px hsl(0 0% 0% / 0.92)',
-                  '0 0 0 1px hsl(199 89% 60% / 0.04) inset',
+                  '0 0 0 1px hsl(44 100% 71% / 0.04) inset',
                 ].join(', '),
                 background: 'hsl(220 28% 6%)',
                 cursor: 'default',
@@ -580,11 +560,11 @@ function BespokeFollowUp() {
             >
               {/* Chrome */}
               <div style={{ padding: '0.6rem 1rem', background: 'hsl(220 26% 8%)', borderBottom: '1px solid hsl(0 0% 100% / 0.06)', display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
-                <span style={{ width: 9, height: 9, borderRadius: '50%', background: 'hsl(0 70% 45% / 0.42)' }}/>
-                <span style={{ width: 9, height: 9, borderRadius: '50%', background: 'hsl(40 75% 48% / 0.36)' }}/>
+                <span style={{ width: 9, height: 9, borderRadius: '50%', background: 'hsl(44 100% 71% / 0.42)' }}/>
+                <span style={{ width: 9, height: 9, borderRadius: '50%', background: 'hsl(44 100% 71% / 0.36)' }}/>
                 <span style={{ width: 9, height: 9, borderRadius: '50%', background: 'hsl(120 48% 40% / 0.36)' }}/>
                 <div style={{ marginLeft: '0.75rem', flex: 1, height: 22, borderRadius: 6, background: 'hsl(0 0% 100% / 0.03)', border: '1px solid hsl(0 0% 100% / 0.06)', display: 'flex', alignItems: 'center', paddingLeft: 10, gap: 6 }}>
-                  <div style={{ width: 7, height: 7, borderRadius: '50%', background: 'hsl(199 89% 60% / 0.3)' }}/>
+                  <div style={{ width: 7, height: 7, borderRadius: '50%', background: 'hsl(44 100% 71% / 0.3)' }}/>
                   <div style={{ height: 4, width: '28%', borderRadius: 3, background: 'hsl(0 0% 100% / 0.1)' }}/>
                 </div>
               </div>
@@ -595,33 +575,33 @@ function BespokeFollowUp() {
                 {/* Nav */}
                 <div style={{ padding: '1.4rem 2.2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid hsl(0 0% 100% / 0.05)' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-                    <div style={{ width: 28, height: 28, borderRadius: 8, background: 'hsl(199 89% 60% / 0.2)', border: '1px solid hsl(199 89% 60% / 0.3)' }}/>
+                    <div style={{ width: 28, height: 28, borderRadius: 8, background: 'hsl(44 100% 71% / 0.2)', border: '1px solid hsl(44 100% 71% / 0.3)' }}/>
                     <div style={{ height: 8, width: 56, borderRadius: 4, background: 'hsl(0 0% 100% / 0.2)' }}/>
                   </div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '2rem' }}>
                     {[40, 48, 36, 44].map((w, i) => <div key={i} style={{ height: 4, width: w, borderRadius: 3, background: 'hsl(0 0% 100% / 0.08)' }}/>)}
-                    <div style={{ height: 30, width: 88, borderRadius: 999, background: 'hsl(199 89% 60% / 0.16)', border: '1px solid hsl(199 89% 60% / 0.3)', boxShadow: '0 0 16px -4px hsl(199 89% 60% / 0.2)' }}/>
+                    <div style={{ height: 30, width: 88, borderRadius: 999, background: 'hsl(44 100% 71% / 0.16)', border: '1px solid hsl(44 100% 71% / 0.3)', boxShadow: '0 0 16px -4px hsl(44 100% 71% / 0.2)' }}/>
                   </div>
                 </div>
 
                 {/* Hero — gradient blobs + editorial content */}
                 <div style={{ position: 'relative', padding: '3rem 2.2rem 2.5rem', overflow: 'hidden' }}>
                   {/* Atmospheric blobs inside the mockup */}
-                  <div aria-hidden="true" style={{ position: 'absolute', top: '-30%', right: '5%', width: '50%', height: '220%', background: 'radial-gradient(circle, hsl(199 89% 60% / 0.14) 0%, transparent 70%)', filter: 'blur(44px)' }}/>
-                  <div aria-hidden="true" style={{ position: 'absolute', bottom: '-15%', left: '15%', width: '40%', height: '160%', background: 'radial-gradient(circle, hsl(280 65% 60% / 0.07) 0%, transparent 70%)', filter: 'blur(44px)' }}/>
+                  <div aria-hidden="true" style={{ position: 'absolute', top: '-30%', right: '5%', width: '50%', height: '220%', background: 'radial-gradient(circle, hsl(44 100% 71% / 0.14) 0%, transparent 70%)', filter: 'blur(44px)' }}/>
+                  <div aria-hidden="true" style={{ position: 'absolute', bottom: '-15%', left: '15%', width: '40%', height: '160%', background: 'radial-gradient(circle, hsl(44 100% 71% / 0.07) 0%, transparent 70%)', filter: 'blur(44px)' }}/>
 
                   <div style={{ position: 'relative' }}>
                     {/* Status badge */}
-                    <div style={{ display: 'inline-flex', alignItems: 'center', gap: 7, padding: '4px 12px', borderRadius: 999, background: 'hsl(199 89% 60% / 0.1)', border: '1px solid hsl(199 89% 60% / 0.24)', marginBottom: '1.5rem' }}>
-                      <div style={{ width: 5, height: 5, borderRadius: '50%', background: 'hsl(199 89% 60%)', boxShadow: '0 0 7px hsl(199 89% 60% / 0.9)' }}/>
-                      <div style={{ height: 4, width: 72, borderRadius: 3, background: 'hsl(199 89% 60% / 0.44)' }}/>
+                    <div style={{ display: 'inline-flex', alignItems: 'center', gap: 7, padding: '4px 12px', borderRadius: 999, background: 'hsl(44 100% 71% / 0.1)', border: '1px solid hsl(44 100% 71% / 0.24)', marginBottom: '1.5rem' }}>
+                      <div style={{ width: 5, height: 5, borderRadius: '50%', background: 'hsl(44 100% 71%)', boxShadow: '0 0 7px hsl(44 100% 71% / 0.9)' }}/>
+                      <div style={{ height: 4, width: 72, borderRadius: 3, background: 'hsl(44 100% 71% / 0.44)' }}/>
                     </div>
 
                     {/* Editorial heading bars — graded weight creates typographic depth */}
                     <div style={{ marginBottom: '1.6rem' }}>
                       <div style={{ height: 30, width: '84%', borderRadius: 6, background: 'linear-gradient(to right, hsl(0 0% 100% / 0.24), hsl(0 0% 100% / 0.12))', marginBottom: '0.6rem' }}/>
                       <div style={{ height: 30, width: '63%', borderRadius: 6, background: 'linear-gradient(to right, hsl(0 0% 100% / 0.16), hsl(0 0% 100% / 0.07))', marginBottom: '0.6rem' }}/>
-                      <div style={{ height: 30, width: '42%', borderRadius: 6, background: 'linear-gradient(to right, hsl(199 89% 60% / 0.28), hsl(199 89% 60% / 0.07), transparent)' }}/>
+                      <div style={{ height: 30, width: '42%', borderRadius: 6, background: 'linear-gradient(to right, hsl(44 100% 71% / 0.28), hsl(44 100% 71% / 0.07), transparent)' }}/>
                     </div>
 
                     {/* Body text */}
@@ -633,7 +613,7 @@ function BespokeFollowUp() {
 
                     {/* CTAs */}
                     <div style={{ display: 'flex', gap: '0.75rem' }}>
-                      <div style={{ height: 42, width: 140, borderRadius: 999, background: 'hsl(199 89% 60% / 0.22)', border: '1px solid hsl(199 89% 60% / 0.42)', boxShadow: '0 0 32px -6px hsl(199 89% 60% / 0.3)' }}/>
+                      <div style={{ height: 42, width: 140, borderRadius: 999, background: 'hsl(44 100% 71% / 0.22)', border: '1px solid hsl(44 100% 71% / 0.42)', boxShadow: '0 0 32px -6px hsl(44 100% 71% / 0.3)' }}/>
                       <div style={{ height: 42, width: 112, borderRadius: 999, background: 'hsl(0 0% 100% / 0.04)', border: '1px solid hsl(0 0% 100% / 0.1)' }}/>
                     </div>
                   </div>
@@ -642,9 +622,9 @@ function BespokeFollowUp() {
                 {/* Work showcase grid — coloured project cards */}
                 <div style={{ padding: '0 2.2rem 2.2rem', display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.7rem' }}>
                   {[
-                    { bg: 'linear-gradient(135deg, hsl(199 89% 14%) 0%, hsl(215 80% 10%) 100%)', accent: 'hsl(199 89% 60%)' },
-                    { bg: 'linear-gradient(135deg, hsl(270 50% 13%) 0%, hsl(280 60% 17%) 100%)', accent: 'hsl(280 65% 65%)' },
-                    { bg: 'linear-gradient(135deg, hsl(28 60% 12%) 0%, hsl(18 70% 15%) 100%)',   accent: 'hsl(28 85% 58%)' },
+                    { bg: 'linear-gradient(135deg, hsl(44 45% 14%) 0%, hsl(44 45% 10%) 100%)', accent: 'hsl(44 100% 71%)' },
+                    { bg: 'linear-gradient(135deg, hsl(44 45% 13%) 0%, hsl(44 45% 17%) 100%)', accent: 'hsl(44 100% 71%)' },
+                    { bg: 'linear-gradient(135deg, hsl(44 45% 12%) 0%, hsl(44 45% 15%) 100%)',   accent: 'hsl(44 100% 71%)' },
                   ].map(({ bg, accent }, i) => (
                     <div key={i} style={{ borderRadius: 12, padding: '1.2rem', background: bg, border: `1px solid ${accent}28`, height: 104, position: 'relative', overflow: 'hidden' }}>
                       <div style={{ position: 'absolute', top: 10, right: 10, width: 22, height: 22, borderRadius: 6, background: `${accent}22`, border: `1px solid ${accent}40` }}/>
@@ -672,7 +652,7 @@ function BespokeFollowUp() {
                 border: '1px solid hsl(0 0% 100% / 0.1)',
                 boxShadow: [
                   '0 20px 60px -12px hsl(0 0% 0% / 0.78)',
-                  '0 0 40px -20px hsl(199 89% 60% / 0.12)',
+                  '0 0 40px -20px hsl(44 100% 71% / 0.12)',
                 ].join(', '),
                 background: 'hsl(218 26% 7%)',
                 transform: 'rotate(2.5deg)',
@@ -686,15 +666,14 @@ function BespokeFollowUp() {
                 <div style={{ padding: '1.4rem 1.6rem' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
                     <div style={{ height: 5, width: '42%', borderRadius: 3, background: 'hsl(0 0% 100% / 0.15)' }}/>
-                    <div style={{ height: 4, width: '22%', borderRadius: 3, background: 'hsl(199 89% 60% / 0.42)' }}/>
+                    <div style={{ height: 4, width: '22%', borderRadius: 3, background: 'hsl(44 100% 71% / 0.42)' }}/>
                   </div>
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.55rem', marginBottom: '1rem' }}>
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '0.55rem', marginBottom: '1rem' }}>
                     {[
-                      { col: 'hsl(199 89% 60%)', val: '98%',  lw: '55%' },
-                      { col: 'hsl(145 70% 48%)', val: '4.8×', lw: '65%' },
+                      { col: 'hsl(44 100% 71%)', val: 'Clear',  lw: '55%' },
                     ].map(({ col, val, lw }, i) => (
                       <div key={i} style={{ borderRadius: 9, padding: '0.75rem 0.85rem', background: 'hsl(220 28% 9%)', border: '1px solid hsl(0 0% 100% / 0.07)' }}>
-                        <div style={{ fontSize: '1rem', fontWeight: 300, color: col, fontFamily: 'var(--font-sans, sans-serif)', letterSpacing: '-0.03em', lineHeight: 1, marginBottom: 6 }}>{val}</div>
+                        <div style={{ fontSize: '1rem', fontWeight: 500, color: col, fontFamily: 'var(--font-sans, sans-serif)', letterSpacing: '-0.03em', lineHeight: 1, marginBottom: 6 }}>{val}</div>
                         <div style={{ height: 4, width: lw, borderRadius: 3, background: 'hsl(0 0% 100% / 0.08)' }}/>
                       </div>
                     ))}
@@ -704,8 +683,8 @@ function BespokeFollowUp() {
                     {[38, 52, 44, 62, 56, 70, 65, 78, 72, 90].map((h, i) => (
                       <div key={i} style={{
                         flex: 1, height: `${h}%`, borderRadius: 3,
-                        background: i >= 8 ? 'hsl(199 89% 60%)' : `hsl(199 89% 60% / ${0.05 + i * 0.022})`,
-                        boxShadow: i >= 8 ? '0 0 9px hsl(199 89% 60% / 0.5)' : 'none',
+                        background: i >= 8 ? 'hsl(44 100% 71%)' : `hsl(44 100% 71% / ${0.05 + i * 0.022})`,
+                        boxShadow: i >= 8 ? '0 0 9px hsl(44 100% 71% / 0.5)' : 'none',
                       }}/>
                     ))}
                   </div>
@@ -729,20 +708,17 @@ function BespokeFollowUp() {
               display: 'flex', alignItems: 'center', gap: '1rem',
             }}
           >
-            <div style={{ width: 38, height: 38, borderRadius: 11, background: 'hsl(199 89% 60% / 0.12)', border: '1px solid hsl(199 89% 60% / 0.26)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-              <div style={{ width: 18, height: 18, borderRadius: 5, background: 'hsl(199 89% 60% / 0.5)' }}/>
+            <div style={{ width: 38, height: 38, borderRadius: 11, background: 'hsl(44 100% 71% / 0.12)', border: '1px solid hsl(44 100% 71% / 0.26)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+              <div style={{ width: 18, height: 18, borderRadius: 5, background: 'hsl(44 100% 71% / 0.5)' }}/>
             </div>
             <div>
-              <p style={{ fontFamily: 'var(--font-sans, sans-serif)', fontSize: '0.78rem', fontWeight: 300, color: 'hsl(0 0% 86%)', letterSpacing: '-0.02em', lineHeight: 1, marginBottom: 4 }}>
-                Conversion rate up
+              <p style={{ fontFamily: 'var(--font-sans, sans-serif)', fontSize: '0.75rem', fontWeight: 500, color: 'var(--text-body)', letterSpacing: '-0.02em', lineHeight: 1, marginBottom: 4 }}>
+                A clear next step
               </p>
-              <p style={{ fontFamily: 'var(--font-sans, sans-serif)', fontSize: '0.6rem', color: 'hsl(0 0% 36%)', letterSpacing: '0.04em' }}>
-                Last 30 days vs. previous period
+              <p style={{ fontFamily: 'var(--font-sans, sans-serif)', fontSize: '0.75rem', color: 'var(--text-muted)', letterSpacing: '0.04em' }}>
+                On every page
               </p>
             </div>
-            <p style={{ fontFamily: 'var(--font-sans, sans-serif)', fontSize: '1.15rem', fontWeight: 300, color: 'hsl(145 65% 52%)', letterSpacing: '-0.03em', marginLeft: '0.4rem', flexShrink: 0 }}>
-              +{s1}%
-            </p>
           </div>
 
         </div>
@@ -776,8 +752,8 @@ function BespokeWeb1Mockup() {
         boxShadow: [
           '0 60px 140px -24px hsl(0 0% 0% / 0.9)',
           '0 20px 60px -12px hsl(0 0% 0% / 0.55)',
-          '0 0 0 1px hsl(205 85% 55% / 0.12)',
-          'inset 0 1px 0 hsl(205 50% 90% / 0.06)',
+          '0 0 0 1px hsl(44 100% 71% / 0.12)',
+          'inset 0 1px 0 hsl(44 100% 71% / 0.06)',
         ].join(', '),
       }}
     >
@@ -789,7 +765,7 @@ function BespokeWeb1Mockup() {
         borderBottom: '1px solid hsl(210 10% 76%)',
       }}>
         <div style={{ display: 'flex', gap: '5px', flexShrink: 0 }}>
-          {['hsl(4 78% 58%)', 'hsl(38 80% 54%)', 'hsl(133 52% 46%)'].map((c, i) => (
+          {['#FF5F57', '#FEBC2E', '#28C840'].map((c, i) => (
             <div key={i} style={{ width: 11, height: 11, borderRadius: '50%', background: c }}/>
           ))}
         </div>
@@ -801,9 +777,9 @@ function BespokeWeb1Mockup() {
         <div style={{
           flex: 1, background: 'hsl(210 20% 97%)',
           border: '1px solid hsl(210 10% 78%)', borderRadius: '5px',
-          padding: '3px 12px', fontSize: '0.65rem',
-          fontFamily: "'SF Mono','Fira Code',monospace",
-          color: 'hsl(210 10% 38%)', letterSpacing: '0.01em',
+          padding: '3px 12px', fontSize: '0.75rem',
+          fontFamily: 'var(--font-body)',
+          color: '#3F4A52', letterSpacing: '0.01em',
           textAlign: 'center' as const,
         }}>
           weavy.studio
@@ -896,18 +872,18 @@ function BespokeWebShowcase() {
     <section
       ref={sectionRef}
       className="relative w-full overflow-hidden"
-      style={{ background: '#060208', padding: 'clamp(6rem, 12vw, 10rem) 0 clamp(7rem, 14vw, 12rem)' }}
+      style={{ background: '#010709', padding: 'clamp(6rem, 12vw, 10rem) 0 clamp(7rem, 14vw, 12rem)' }}
     >
       {/* Top / bottom blends — its predecessor (Process Timeline) is also
-          #060208, so this fade should start from that colour rather than
+          #010709, so this fade should start from that colour rather than
           the #010709 used for the very first section in this chain. */}
-      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '110px', background: 'linear-gradient(to bottom, #060208 0%, #060208 55%, rgba(6,2,8,0) 100%)', pointerEvents: 'none', zIndex: 1 }} />
-      <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to top, #060208, transparent)', pointerEvents: 'none', zIndex: 1 }} />
+      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '110px', background: 'linear-gradient(to bottom, #010709 0%, #010709 55%, rgba(1,7,9,0) 100%)', pointerEvents: 'none', zIndex: 1 }} />
+      <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to top, #010709, transparent)', pointerEvents: 'none', zIndex: 1 }} />
 
       {/* Restrained magenta-purple glow, upper-left, fading toward centre/right/bottom */}
       <div aria-hidden="true" style={{
         position: 'absolute', inset: 0,
-        background: 'radial-gradient(ellipse 40% 36% at 8% 6%, rgba(191,64,209,0.05) 0%, rgba(147,42,189,0.0225) 34%, rgba(98,24,150,0.0075) 58%, transparent 74%)',
+        background: 'radial-gradient(ellipse 40% 36% at 8% 6%, rgba(255,216,107,0.05) 0%, rgba(255,216,107,0.0225) 34%, rgba(255,216,107,0.0075) 58%, transparent 74%)',
         pointerEvents: 'none', zIndex: 0,
       }} />
 
@@ -918,7 +894,7 @@ function BespokeWebShowcase() {
         viewBox="0 0 1440 800"
         style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', pointerEvents: 'none', zIndex: 0 }}
       >
-        <g fill="none" stroke="#9B6EFF" strokeWidth="1" opacity="0.04">
+        <g fill="none" stroke="#FFD86B" strokeWidth="1" opacity="0.04">
           <path d="M 70,0 C 88,220 50,480 82,800" />
           <path d="M 250,0 C 230,180 275,520 245,800" />
           <path d="M 470,0 C 495,260 445,540 480,800" />
@@ -939,20 +915,20 @@ function BespokeWebShowcase() {
 
         {/* ── Header ── */}
         <div className="text-center" style={{ maxWidth: '46rem', margin: '0 auto clamp(3.5rem, 7vw, 5rem)' }}>
-          <p className="bws-header font-sans uppercase" style={{ fontSize: '0.58rem', letterSpacing: '0.34em', color: 'rgba(125,220,255,0.55)', marginBottom: '1.2rem' }}>
+          <p className="bws-header font-sans uppercase" style={{ fontSize: '0.75rem', letterSpacing: '0.16em', color: 'rgba(255,216,107,0.55)', marginBottom: '1.2rem' }}>
             Website Showcase
           </p>
-          <h2 className="bws-header font-heading" style={{ fontSize: 'clamp(1.9rem, 4vw, 3.2rem)', lineHeight: 1.1, letterSpacing: '-0.038em', fontWeight: 500, color: 'hsl(0 0% 94%)', marginBottom: '1.5rem' }}>
+          <h2 className="bws-header font-heading" style={{ fontSize: 'clamp(1.9rem, 4vw, 3.2rem)', lineHeight: 1.1, letterSpacing: '-0.03em', fontWeight: 500, color: 'var(--text-description)', marginBottom: '1.5rem' }}>
             Crafted to captivate,{' '}
-            <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(41 62% 66%)' }}>
+            <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 500, color: 'hsl(44 100% 71%)' }}>
               built to perform.
             </em>
           </h2>
-          <p className="bws-header font-sans font-normal" style={{ fontSize: 'var(--dt-showcase-body, clamp(0.84rem, 1.3vw, 0.97rem))', lineHeight: 1.9, color: '#D3DCE2', marginBottom: '1rem' }}>
-            Every site we build is a precision-crafted system — visual, functional, and designed to earn trust from the first scroll. We don't use templates. Every layout, interaction, and detail is shaped around your brand and your audience.
+          <p className="bws-header font-sans font-medium" style={{ fontSize: 'var(--dt-showcase-body, clamp(0.84rem, 1.3vw, 0.97rem))', lineHeight: 1.9, color: '#D3DCE2', marginBottom: '1rem' }}>
+            Every site is designed to earn trust from the first scroll, with layouts, interactions and details shaped around your brand and your audience.
           </p>
-          <p className="bws-header font-sans font-normal" style={{ fontSize: 'var(--dt-showcase-body, clamp(0.84rem, 1.3vw, 0.97rem))', lineHeight: 1.9, color: '#D3DCE2' }}>
-            From real estate platforms and service businesses to e-commerce brands and creative studios — we build websites that feel premium, load fast, and convert visitors into clients.
+          <p className="bws-header font-sans font-medium" style={{ fontSize: 'var(--dt-showcase-body, clamp(0.84rem, 1.3vw, 0.97rem))', lineHeight: 1.9, color: '#D3DCE2' }}>
+            From service businesses to e-commerce brands and creative studios, we build websites that feel premium, load fast and turn visitors into clients.
           </p>
 
           {/* Premium glass feature pills */}
@@ -963,29 +939,29 @@ function BespokeWebShowcase() {
                 style={{
                   display: 'inline-flex', alignItems: 'center', gap: '0.45rem',
                   padding: '0.52rem 1.3rem', borderRadius: '9999px',
-                  border: '1px solid rgba(215,180,100,0.38)',
-                  fontSize: 'var(--dt-pill, 0.72rem)', letterSpacing: '0.07em', fontWeight: 500,
-                  color: '#E8C97A',
-                  background: 'rgba(200,168,90,0.06)',
+                  border: '1px solid rgba(255,216,107,0.38)',
+                  fontSize: 'var(--dt-pill, 0.75rem)', letterSpacing: '0.07em', fontWeight: 500,
+                  color: '#FFD86B',
+                  background: 'rgba(255,216,107,0.06)',
                   backdropFilter: 'blur(10px)',
                   WebkitBackdropFilter: 'blur(10px)',
-                  boxShadow: '0 0 0 1px rgba(200,168,90,0.07) inset, 0 2px 12px rgba(200,168,90,0.08)',
+                  boxShadow: '0 0 0 1px rgba(255,216,107,0.07) inset, 0 2px 12px rgba(255,216,107,0.08)',
                   transition: 'border-color 200ms, color 200ms, background 200ms, box-shadow 200ms',
                   cursor: 'default',
                 }}
                 onMouseEnter={e => {
                   const el = e.currentTarget as HTMLElement
-                  el.style.borderColor = 'rgba(228,200,122,0.60)'
-                  el.style.color = '#F5D98A'
-                  el.style.background = 'rgba(200,168,90,0.12)'
-                  el.style.boxShadow = '0 0 22px rgba(200,168,90,0.18) inset, 0 0 30px rgba(200,168,90,0.14)'
+                  el.style.borderColor = 'rgba(255,216,107,0.60)'
+                  el.style.color = '#FFD86B'
+                  el.style.background = 'rgba(255,216,107,0.12)'
+                  el.style.boxShadow = '0 0 22px rgba(255,216,107,0.18) inset, 0 0 30px rgba(255,216,107,0.14)'
                 }}
                 onMouseLeave={e => {
                   const el = e.currentTarget as HTMLElement
-                  el.style.borderColor = 'rgba(215,180,100,0.38)'
-                  el.style.color = '#E8C97A'
-                  el.style.background = 'rgba(200,168,90,0.06)'
-                  el.style.boxShadow = '0 0 0 1px rgba(200,168,90,0.07) inset, 0 2px 12px rgba(200,168,90,0.08)'
+                  el.style.borderColor = 'rgba(255,216,107,0.38)'
+                  el.style.color = '#FFD86B'
+                  el.style.background = 'rgba(255,216,107,0.06)'
+                  el.style.boxShadow = '0 0 0 1px rgba(255,216,107,0.07) inset, 0 2px 12px rgba(255,216,107,0.08)'
                 }}
               >
                 <span style={{ fontSize: '0.75em', opacity: 0.78 }}>{item.icon}</span>
@@ -1025,9 +1001,9 @@ function BespokeWebShowcase() {
                 const el = e.currentTarget as HTMLButtonElement
                 el.style.opacity = '1'
                 el.style.transform = 'scale(1.1)'
-                el.style.borderColor = 'rgba(232,201,122,0.55)'
-                el.style.color = '#E8C97A'
-                el.style.background = 'rgba(200,168,90,0.1)'
+                el.style.borderColor = 'rgba(255,216,107,0.55)'
+                el.style.color = '#FFD86B'
+                el.style.background = 'rgba(255,216,107,0.1)'
               }}
               onMouseOut={e => {
                 const el = e.currentTarget as HTMLButtonElement
@@ -1047,7 +1023,7 @@ function BespokeWebShowcase() {
               {/* Ambient glow behind mockup */}
               <div aria-hidden="true" style={{
                 position: 'absolute', inset: '-24px',
-                background: 'radial-gradient(ellipse 75% 65% at 50% 45%, hsl(36 50% 55% / 0.10) 0%, transparent 70%)',
+                background: 'radial-gradient(ellipse 75% 65% at 50% 45%, hsl(44 100% 71% / 0.10) 0%, transparent 70%)',
                 filter: 'blur(36px)',
                 pointerEvents: 'none',
               }}/>
@@ -1063,7 +1039,7 @@ function BespokeWebShowcase() {
                     '0 60px 140px -24px hsl(0 0% 0% / 0.9)',
                     '0 20px 60px -12px hsl(0 0% 0% / 0.55)',
                     '0 0 0 1px hsl(36 30% 60% / 0.12)',
-                    'inset 0 1px 0 hsl(36 50% 90% / 0.08)',
+                    'inset 0 1px 0 hsl(44 100% 71% / 0.08)',
                   ].join(', '),
                 }}
               >
@@ -1075,7 +1051,7 @@ function BespokeWebShowcase() {
                   borderBottom: '1px solid hsl(30 10% 74%)',
                 }}>
                   <div style={{ display: 'flex', gap: '5px', flexShrink: 0 }}>
-                    {['hsl(4 78% 58%)', 'hsl(38 80% 54%)', 'hsl(133 52% 46%)'].map((c, i) => (
+                    {['#FF5F57', '#FEBC2E', '#28C840'].map((c, i) => (
                       <div key={i} style={{ width: 11, height: 11, borderRadius: '50%', background: c }}/>
                     ))}
                   </div>
@@ -1087,9 +1063,9 @@ function BespokeWebShowcase() {
                   <div className="bws-url" style={{
                     flex: 1, background: 'hsl(36 16% 96%)',
                     border: '1px solid hsl(30 10% 76%)', borderRadius: '5px',
-                    padding: '3px 12px', fontSize: '0.65rem',
-                    fontFamily: "'SF Mono','Fira Code',monospace",
-                    color: 'hsl(28 10% 36%)', letterSpacing: '0.01em',
+                    padding: '3px 12px', fontSize: '0.75rem',
+                    fontFamily: 'var(--font-body)',
+                    color: '#3F4A52', letterSpacing: '0.01em',
                     textAlign: 'center' as const,
                     transition: 'opacity 0.3s ease',
                   }}>
@@ -1146,9 +1122,9 @@ function BespokeWebShowcase() {
                 const el = e.currentTarget as HTMLButtonElement
                 el.style.opacity = '1'
                 el.style.transform = 'scale(1.1)'
-                el.style.borderColor = 'rgba(232,201,122,0.55)'
-                el.style.color = '#E8C97A'
-                el.style.background = 'rgba(200,168,90,0.1)'
+                el.style.borderColor = 'rgba(255,216,107,0.55)'
+                el.style.color = '#FFD86B'
+                el.style.background = 'rgba(255,216,107,0.1)'
               }}
               onMouseOut={e => {
                 const el = e.currentTarget as HTMLButtonElement
@@ -1167,10 +1143,10 @@ function BespokeWebShowcase() {
           <p style={{
             textAlign: 'center', marginTop: '1.75rem',
             fontSize: '0.95rem', fontWeight: 500, letterSpacing: '0.02em',
-            color: 'hsl(0 0% 88%)',
+            color: 'var(--text-body)',
             transition: 'opacity 0.3s ease',
           }}>
-            <span style={{ color: '#E8C97A' }}>{activeProject.name}</span>
+            <span style={{ color: '#FFD86B' }}>{activeProject.name}</span>
             {' — '}{activeProject.tag}
           </p>
 
@@ -1187,7 +1163,7 @@ function BespokeWebShowcase() {
                 style={{
                   width: active === i ? 22 : 8, height: 8, borderRadius: '999px',
                   padding: 0, cursor: 'pointer',
-                  background: active === i ? 'linear-gradient(135deg, #E8C97A, #C8A85A)' : 'transparent',
+                  background: active === i ? 'linear-gradient(135deg, #FFD86B, #FFD86B)' : 'transparent',
                   border: active === i ? 'none' : '1px solid rgba(255,255,255,0.28)',
                   transition: 'width 0.3s ease, background 0.3s ease, border-color 0.3s ease',
                 }}
@@ -1255,8 +1231,8 @@ function BespokeProcessTimeline() {
         el.querySelectorAll<HTMLElement>('.bpt-num-bubble').forEach((bubble, i) => {
           gsap.to(bubble, {
             scale: 1.22,
-            boxShadow: '0 0 28px -2px hsl(199 89% 60% / 0.7)',
-            background: 'hsl(199 89% 60% / 0.18)',
+            boxShadow: '0 0 28px -2px hsl(44 100% 71% / 0.7)',
+            background: 'hsl(44 100% 71% / 0.18)',
             duration: 0.38,
             ease: 'power2.out',
             delay: i * 0.22,
@@ -1278,14 +1254,14 @@ function BespokeProcessTimeline() {
     <section
       ref={ref}
       className="relative w-full overflow-hidden"
-      style={{ background: '#060208', padding: 'clamp(5rem, 10vw, 8rem) 0' }}
+      style={{ background: '#010709', padding: 'clamp(5rem, 10vw, 8rem) 0' }}
     >
       {/* Top fade starts from the detail section's #010709 above (same pattern
           as BespokeFollowUp), removing the teal-to-purple step at the seam */}
       <ShowcaseBackground topFadeFrom="#010709" />
 
       {/* Bottom blend — smooths the seam into the Client Stories section's
-          #010709 background (this section is #060208; without this the flat
+          #010709 background (this section is #010709; without this the flat
           colour change reads as a hard line at the boundary) */}
       <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to bottom, transparent 0%, #010709 100%)', pointerEvents: 'none', zIndex: 2 }} />
 
@@ -1302,12 +1278,12 @@ function BespokeProcessTimeline() {
             }}
           >
             From idea to launch —{' '}
-            <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400 }}>
+            <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 500 }}>
               built with precision
             </em>
           </h2>
           <p
-            className="bpt-para font-sans font-normal"
+            className="bpt-para font-sans font-medium"
             style={{
               fontSize: 'clamp(0.88rem, 1.5vw, 1.02rem)',
               lineHeight: 1.85,
@@ -1342,8 +1318,8 @@ function BespokeProcessTimeline() {
               style={{
                 position: 'absolute',
                 inset: 0,
-                background: 'linear-gradient(to right, hsl(199 89% 60% / 0.6), hsl(205 80% 55% / 0.25))',
-                boxShadow: '0 0 8px 0 hsl(199 89% 60% / 0.3)',
+                background: 'linear-gradient(to right, hsl(44 100% 71% / 0.6), hsl(44 100% 71% / 0.25))',
+                boxShadow: '0 0 8px 0 hsl(44 100% 71% / 0.3)',
               }}
             />
           </div>
@@ -1362,9 +1338,9 @@ function BespokeProcessTimeline() {
                     width: 38,
                     height: 38,
                     borderRadius: '50%',
-                    border: '1px solid hsl(199 89% 60% / 0.35)',
-                    background: 'hsl(199 89% 60% / 0.07)',
-                    boxShadow: '0 0 18px -4px hsl(199 89% 60% / 0.3)',
+                    border: '1px solid hsl(44 100% 71% / 0.35)',
+                    background: 'hsl(44 100% 71% / 0.07)',
+                    boxShadow: '0 0 18px -4px hsl(44 100% 71% / 0.3)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -1375,10 +1351,10 @@ function BespokeProcessTimeline() {
                   <span
                     className="font-sans"
                     style={{
-                      fontSize: '0.72rem',
-                      fontWeight: 400,
+                      fontSize: '0.75rem',
+                      fontWeight: 500,
                       letterSpacing: '0.08em',
-                      color: 'hsl(199 89% 70%)',
+                      color: 'hsl(44 100% 71%)',
                     }}
                   >
                     {num}
@@ -1387,7 +1363,7 @@ function BespokeProcessTimeline() {
 
                 {/* Title */}
                 <p
-                  className="font-sans font-normal text-text mb-2"
+                  className="font-sans font-medium text-text mb-2"
                   style={{
                     fontSize: 'clamp(0.95rem, 1.4vw, 1.05rem)',
                     letterSpacing: '-0.015em',
@@ -1398,7 +1374,7 @@ function BespokeProcessTimeline() {
 
                 {/* Description */}
                 <p
-                  className="font-sans font-normal"
+                  className="font-sans font-medium"
                   style={{
                     fontSize: '0.84rem',
                     lineHeight: 1.75,
@@ -1418,6 +1394,9 @@ function BespokeProcessTimeline() {
   )
 }
 
+// ─── Bespoke Results Strip ───────────────────────────────────────────────────
+
+
 // ─── Bespoke Testimonials ─────────────────────────────────────────────────────
 
 const BESPOKE_TESTIMONIALS = [
@@ -1435,7 +1414,7 @@ const BESPOKE_TESTIMONIALS = [
     rating: 5,
     text: 'We came to Weavy after outgrowing our old site. They delivered something that truly represents who we are — clean, modern, and built to convert. Our enquiries increased noticeably within the first few weeks of launching.',
     avatarInitials: 'SH',
-    avatarGradient: 'linear-gradient(135deg, hsl(280 55% 26%), hsl(230 60% 14%))',
+    avatarGradient: 'linear-gradient(135deg, hsl(44 45% 26%), hsl(44 45% 14%))',
   },
 ]
 
@@ -1450,79 +1429,6 @@ function BespokeTestimonials() {
   )
 }
 
-// ─── Bespoke Results Strip ───────────────────────────────────────────────────
-
-const RESULTS_STATS = [
-  { value: '12+', label: 'Websites Launched' },
-  { value: '100%', label: 'On-Time Delivery' },
-  { value: '6 Weeks', label: 'Average Build Time' },
-]
-
-function BespokeResultsStrip() {
-  const ref = useRef<HTMLElement>(null)
-
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const stats = el.querySelectorAll('.brs-stat')
-    gsap.set(stats, { opacity: 0, y: 18 })
-    const obs = new IntersectionObserver(([entry]) => {
-      if (!entry.isIntersecting) return
-      gsap.to(stats, { opacity: 1, y: 0, duration: 0.65, stagger: 0.12, ease: 'power3.out' })
-      obs.disconnect()
-    }, { threshold: 0.4 })
-    obs.observe(el)
-    return () => obs.disconnect()
-  }, [])
-
-  return (
-    <section
-      ref={ref}
-      className="relative w-full overflow-hidden"
-      style={{ background: '#010709', padding: 'clamp(3.5rem, 7vw, 5.5rem) 0' }}
-    >
-      {/* Bottom blend — fades this section's texture out before the Footer, which opens in the same #010709
-          (this section is #010709; without this the flat colour change reads
-          as a hard line at the boundary) */}
-      <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to bottom, transparent 0%, #010709 100%)', pointerEvents: 'none', zIndex: 2 }} />
-
-      <div className="relative z-10 max-w-[52rem] mx-auto px-6 sm:px-10">
-        <div className="flex flex-col sm:flex-row items-center justify-center" style={{ gap: 'clamp(2rem, 5vw, 4rem)' }}>
-          {RESULTS_STATS.flatMap((stat, i) => {
-            const nodes = []
-            if (i > 0) {
-              nodes.push(
-                <div
-                  key={`divider-${stat.label}`}
-                  aria-hidden="true"
-                  className="hidden sm:block"
-                  style={{ width: 1, height: '2.75rem', background: 'hsl(0 0% 100% / 0.08)' }}
-                />
-              )
-            }
-            nodes.push(
-              <div key={stat.label} className="brs-stat text-center">
-                <div
-                  className="font-heading font-semibold text-white"
-                  style={{ fontSize: 'clamp(2.2rem, 4.5vw, 3.2rem)', letterSpacing: '-0.02em', lineHeight: 1 }}
-                >
-                  {stat.value}
-                </div>
-                <div
-                  className="font-sans font-normal uppercase"
-                  style={{ fontSize: '0.72rem', letterSpacing: '0.14em', color: 'hsl(0 0% 50%)', marginTop: '0.65rem' }}
-                >
-                  {stat.label}
-                </div>
-              </div>
-            )
-            return nodes
-          })}
-        </div>
-      </div>
-    </section>
-  )
-}
 
 // ─── Chatbot WhatsApp Business (Section 2) ───────────────────────────────────
 
@@ -1571,7 +1477,7 @@ function ChatbotWhatsAppBusiness() {
     >
       {/* Grid + bloom behind the right text column */}
       <GradientBlurBg
-        accentColor="hsl(142 60% 48% / 0.08)"
+        accentColor="hsl(44 100% 71% / 0.08)"
         accentPosition="76% 52%"
         accentRadius="540px"
         gridColor="hsl(0 0% 100% / 0.024)"
@@ -1590,7 +1496,7 @@ function ChatbotWhatsAppBusiness() {
             {/* Ambient glow behind image */}
             <div aria-hidden="true" style={{
               position: 'absolute', inset: '-24px',
-              background: 'radial-gradient(ellipse 75% 65% at 45% 50%, hsl(142 60% 45% / 0.07) 0%, transparent 70%)',
+              background: 'radial-gradient(ellipse 75% 65% at 45% 50%, hsl(44 100% 71% / 0.07) 0%, transparent 70%)',
               filter: 'blur(32px)',
               pointerEvents: 'none',
             }}/>
@@ -1605,7 +1511,7 @@ function ChatbotWhatsAppBusiness() {
               boxShadow: [
                 '0 48px 100px -20px hsl(0 0% 0% / 0.88)',
                 '0 0 0 1px hsl(0 0% 100% / 0.03) inset',
-                '0 0 60px -18px hsl(142 60% 45% / 0.18)',
+                '0 0 60px -18px hsl(44 100% 71% / 0.18)',
               ].join(', '),
               background: '#080b0f',
             }}>
@@ -1636,23 +1542,23 @@ function ChatbotWhatsAppBusiness() {
           <div>
             <p
               className="cbwb-label font-sans uppercase"
-              style={{ fontSize: '0.62rem', letterSpacing: '0.36em', color: 'hsl(142 60% 52%)', marginBottom: '1.6rem' }}
+              style={{ fontSize: '0.75rem', letterSpacing: '0.16em', color: 'hsl(44 100% 71%)', marginBottom: '1.6rem' }}
             >
-              Section 02
+              WhatsApp
             </p>
 
             <h2
               className="cbwb-heading font-heading font-medium"
-              style={{ fontSize: 'clamp(2rem, 4.2vw, 3.4rem)', lineHeight: 1.1, letterSpacing: '-0.036em', color: 'hsl(0 0% 93%)', marginBottom: '1.8rem', maxWidth: '30rem' }}
+              style={{ fontSize: 'clamp(2rem, 4.2vw, 3.4rem)', lineHeight: 1.1, letterSpacing: '-0.03em', color: 'var(--text-description)', marginBottom: '1.8rem', maxWidth: '30rem' }}
             >
               WhatsApp Business chatbots that{' '}
-              <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(142 60% 64%)' }}>
+              <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 500, color: 'hsl(44 100% 71%)' }}>
                 reply instantly.
               </em>
             </h2>
 
             <p
-              className="cbwb-body font-sans font-normal"
+              className="cbwb-body font-sans font-medium"
               style={{ fontSize: 'clamp(0.88rem, 1.4vw, 1rem)', lineHeight: 1.88, color: '#F2F8FC', maxWidth: '32rem', marginBottom: '1.3rem' }}
             >
               Turn WhatsApp into a faster customer support and sales channel. We build intelligent
@@ -1661,12 +1567,10 @@ function ChatbotWhatsAppBusiness() {
             </p>
 
             <p
-              className="cbwb-body font-sans font-normal"
+              className="cbwb-body font-sans font-medium"
               style={{ fontSize: 'clamp(0.88rem, 1.4vw, 1rem)', lineHeight: 1.88, color: '#F2F8FC', maxWidth: '32rem', marginBottom: '2.6rem' }}
             >
-              From menus, bookings, FAQs, locations, pricing, product details, and lead capture,
-              your WhatsApp chatbot becomes a reliable assistant that helps convert more
-              conversations into real business opportunities.
+              It can share menus, prices, locations and product details, take bookings and capture leads, then hand over to your team when a person is needed.
             </p>
 
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.7rem' }}>
@@ -1679,10 +1583,10 @@ function ChatbotWhatsAppBusiness() {
                   <span style={{
                     display: 'inline-block',
                     width: '18px', height: '1px',
-                    background: 'hsl(142 60% 52%)',
+                    background: 'hsl(44 100% 71%)',
                     flexShrink: 0,
                   }}/>
-                  <span className="font-sans font-normal" style={{ fontSize: 'clamp(0.82rem, 1.2vw, 0.9rem)', letterSpacing: '0.02em', color: '#F2F8FC' }}>
+                  <span className="font-sans font-medium" style={{ fontSize: 'clamp(0.82rem, 1.2vw, 0.9rem)', letterSpacing: '0.02em', color: '#F2F8FC' }}>
                     {item}
                   </span>
                 </li>
@@ -1741,9 +1645,9 @@ function ChatbotInstagramDM() {
       {/* ── Original Section 3 background effects — preserved exactly ── */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
         background: [
-          'radial-gradient(ellipse 50% 55% at 75% 50%, hsl(320 80% 55% / 0.07) 0%, transparent 65%)',
-          'radial-gradient(ellipse 35% 40% at 85% 20%, hsl(35 90% 58% / 0.05) 0%, transparent 55%)',
-          'radial-gradient(ellipse 30% 35% at 65% 80%, hsl(270 70% 60% / 0.05) 0%, transparent 55%)',
+          'radial-gradient(ellipse 50% 55% at 75% 50%, hsl(44 100% 71% / 0.07) 0%, transparent 65%)',
+          'radial-gradient(ellipse 35% 40% at 85% 20%, hsl(44 100% 71% / 0.05) 0%, transparent 55%)',
+          'radial-gradient(ellipse 30% 35% at 65% 80%, hsl(44 100% 71% / 0.05) 0%, transparent 55%)',
         ].join(', '),
       }}/>
       <GridBackground />
@@ -1762,23 +1666,23 @@ function ChatbotInstagramDM() {
           <div>
             <p
               className="cbid-label font-sans uppercase"
-              style={{ fontSize: '0.62rem', letterSpacing: '0.36em', color: 'hsl(320 70% 65%)', marginBottom: '1.6rem' }}
+              style={{ fontSize: '0.75rem', letterSpacing: '0.16em', color: 'hsl(44 100% 71%)', marginBottom: '1.6rem' }}
             >
-              Section 03
+              Instagram
             </p>
 
             <h2
               className="cbid-heading font-heading font-medium"
-              style={{ fontSize: 'clamp(2rem, 4.2vw, 3.4rem)', lineHeight: 1.1, letterSpacing: '-0.036em', color: 'hsl(0 0% 93%)', marginBottom: '1.8rem', maxWidth: '30rem' }}
+              style={{ fontSize: 'clamp(2rem, 4.2vw, 3.4rem)', lineHeight: 1.1, letterSpacing: '-0.03em', color: 'var(--text-description)', marginBottom: '1.8rem', maxWidth: '30rem' }}
             >
               Instagram DM automation that keeps{' '}
-              <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(320 70% 72%)' }}>
+              <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 500, color: 'hsl(44 100% 71%)' }}>
                 conversations moving.
               </em>
             </h2>
 
             <p
-              className="cbid-body font-sans font-normal"
+              className="cbid-body font-sans font-medium"
               style={{ fontSize: 'clamp(0.88rem, 1.4vw, 1rem)', lineHeight: 1.88, color: '#F2F8FC', maxWidth: '32rem', marginBottom: '1.3rem' }}
             >
               Turn Instagram messages into a faster customer journey. We build DM automation
@@ -1787,12 +1691,10 @@ function ChatbotInstagramDM() {
             </p>
 
             <p
-              className="cbid-body font-sans font-normal"
+              className="cbid-body font-sans font-medium"
               style={{ fontSize: 'clamp(0.88rem, 1.4vw, 1rem)', lineHeight: 1.88, color: '#F2F8FC', maxWidth: '32rem', marginBottom: '2.6rem' }}
             >
-              From FAQs and service details to lead qualification and follow-up messages, your
-              Instagram inbox becomes a smarter system that helps convert attention into real
-              business opportunities.
+              It handles FAQs, service details, lead qualification and follow-ups, so interest in your inbox turns into a clear next step.
             </p>
 
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.7rem' }}>
@@ -1805,10 +1707,10 @@ function ChatbotInstagramDM() {
                   <span style={{
                     display: 'inline-block',
                     width: '18px', height: '1px',
-                    background: 'hsl(320 70% 65%)',
+                    background: 'hsl(44 100% 71%)',
                     flexShrink: 0,
                   }}/>
-                  <span className="font-sans font-normal" style={{ fontSize: 'clamp(0.82rem, 1.2vw, 0.9rem)', letterSpacing: '0.02em', color: '#F2F8FC' }}>
+                  <span className="font-sans font-medium" style={{ fontSize: 'clamp(0.82rem, 1.2vw, 0.9rem)', letterSpacing: '0.02em', color: '#F2F8FC' }}>
                     {item}
                   </span>
                 </li>
@@ -1821,7 +1723,7 @@ function ChatbotInstagramDM() {
 
             <div aria-hidden="true" style={{
               position: 'absolute', inset: '-24px',
-              background: 'radial-gradient(ellipse 75% 65% at 55% 50%, hsl(320 70% 55% / 0.07) 0%, transparent 70%)',
+              background: 'radial-gradient(ellipse 75% 65% at 55% 50%, hsl(44 100% 71% / 0.07) 0%, transparent 70%)',
               filter: 'blur(32px)',
               pointerEvents: 'none',
             }}/>
@@ -1836,7 +1738,7 @@ function ChatbotInstagramDM() {
               boxShadow: [
                 '0 48px 100px -20px hsl(0 0% 0% / 0.88)',
                 '0 0 0 1px hsl(0 0% 100% / 0.03) inset',
-                '0 0 60px -18px hsl(320 70% 55% / 0.18)',
+                '0 0 60px -18px hsl(44 100% 71% / 0.18)',
               ].join(', '),
               background: '#080b0f',
             }}>
@@ -1911,13 +1813,13 @@ function ChatbotFacebookMessenger() {
       <MessengerGlowBackground />
       <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
         background: [
-          'radial-gradient(ellipse 50% 55% at 28% 50%, hsl(215 90% 58% / 0.07) 0%, transparent 65%)',
-          'radial-gradient(ellipse 35% 40% at 15% 25%, hsl(225 85% 62% / 0.05) 0%, transparent 55%)',
-          'radial-gradient(ellipse 30% 35% at 40% 80%, hsl(200 80% 58% / 0.04) 0%, transparent 55%)',
+          'radial-gradient(ellipse 50% 55% at 28% 50%, hsl(44 100% 71% / 0.07) 0%, transparent 65%)',
+          'radial-gradient(ellipse 35% 40% at 15% 25%, hsl(44 100% 71% / 0.05) 0%, transparent 55%)',
+          'radial-gradient(ellipse 30% 35% at 40% 80%, hsl(44 100% 71% / 0.04) 0%, transparent 55%)',
         ].join(', '),
       }}/>
       <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
-        backgroundImage: 'radial-gradient(hsl(215 50% 60% / 0.018) 1px, transparent 1px)',
+        backgroundImage: 'radial-gradient(hsl(44 100% 71% / 0.018) 1px, transparent 1px)',
         backgroundSize: '28px 28px',
       }}/>
       {/* Section boundary fades */}
@@ -1926,7 +1828,7 @@ function ChatbotFacebookMessenger() {
 
       {/* ── Grid + radial bloom anchored to the text (right) column ── */}
       <GradientBlurBg
-        accentColor="hsl(215 60% 62% / 0.028)"
+        accentColor="hsl(44 100% 71% / 0.028)"
         accentPosition="76% 52%"
         accentRadius="560px"
         gridColor="hsl(215 40% 70% / 0.04)"
@@ -1941,7 +1843,7 @@ function ChatbotFacebookMessenger() {
 
             <div aria-hidden="true" style={{
               position: 'absolute', inset: '-24px',
-              background: 'radial-gradient(ellipse 75% 65% at 45% 50%, hsl(215 85% 58% / 0.07) 0%, transparent 70%)',
+              background: 'radial-gradient(ellipse 75% 65% at 45% 50%, hsl(44 100% 71% / 0.07) 0%, transparent 70%)',
               filter: 'blur(32px)',
               pointerEvents: 'none',
             }}/>
@@ -1956,7 +1858,7 @@ function ChatbotFacebookMessenger() {
               boxShadow: [
                 '0 48px 100px -20px hsl(0 0% 0% / 0.88)',
                 '0 0 0 1px hsl(0 0% 100% / 0.03) inset',
-                '0 0 60px -18px hsl(215 85% 58% / 0.18)',
+                '0 0 60px -18px hsl(44 100% 71% / 0.18)',
               ].join(', '),
               background: '#080b0f',
             }}>
@@ -1981,23 +1883,23 @@ function ChatbotFacebookMessenger() {
           <div>
             <p
               className="cbfm-label font-sans uppercase"
-              style={{ fontSize: '0.62rem', letterSpacing: '0.36em', color: 'hsl(215 85% 65%)', marginBottom: '1.6rem' }}
+              style={{ fontSize: '0.75rem', letterSpacing: '0.16em', color: 'hsl(44 100% 71%)', marginBottom: '1.6rem' }}
             >
-              Section 04
+              Messenger
             </p>
 
             <h2
               className="cbfm-heading font-heading font-medium"
-              style={{ fontSize: 'clamp(2rem, 4.2vw, 3.4rem)', lineHeight: 1.1, letterSpacing: '-0.036em', color: 'hsl(0 0% 93%)', marginBottom: '1.8rem', maxWidth: '30rem' }}
+              style={{ fontSize: 'clamp(2rem, 4.2vw, 3.4rem)', lineHeight: 1.1, letterSpacing: '-0.03em', color: 'var(--text-description)', marginBottom: '1.8rem', maxWidth: '30rem' }}
             >
               Facebook Messenger automation built for{' '}
-              <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(215 85% 72%)' }}>
+              <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 500, color: 'hsl(44 100% 71%)' }}>
                 faster conversations.
               </em>
             </h2>
 
             <p
-              className="cbfm-body font-sans font-normal"
+              className="cbfm-body font-sans font-medium"
               style={{ fontSize: 'clamp(0.88rem, 1.4vw, 1rem)', lineHeight: 1.88, color: '#F2F8FC', maxWidth: '32rem', marginBottom: '1.3rem' }}
             >
               Keep your brand responsive with Messenger automation that answers questions
@@ -2006,12 +1908,10 @@ function ChatbotFacebookMessenger() {
             </p>
 
             <p
-              className="cbfm-body font-sans font-normal"
+              className="cbfm-body font-sans font-medium"
               style={{ fontSize: 'clamp(0.88rem, 1.4vw, 1rem)', lineHeight: 1.88, color: '#F2F8FC', maxWidth: '32rem', marginBottom: '2.6rem' }}
             >
-              From product questions and booking support to lead capture and follow-ups, we
-              design Messenger workflows that reduce response time, improve consistency, and
-              create a smoother customer experience across every interaction.
+              It supports product questions, bookings, lead capture and follow-ups, giving every customer a quicker, more consistent reply.
             </p>
 
             <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 2rem', display: 'flex', flexDirection: 'column', gap: '0.7rem' }}>
@@ -2024,10 +1924,10 @@ function ChatbotFacebookMessenger() {
                   <span style={{
                     display: 'inline-block',
                     width: '18px', height: '1px',
-                    background: 'hsl(215 85% 65%)',
+                    background: 'hsl(44 100% 71%)',
                     flexShrink: 0,
                   }}/>
-                  <span className="font-sans font-normal" style={{ fontSize: 'clamp(0.82rem, 1.2vw, 0.9rem)', letterSpacing: '0.02em', color: '#F2F8FC' }}>
+                  <span className="font-sans font-medium" style={{ fontSize: 'clamp(0.82rem, 1.2vw, 0.9rem)', letterSpacing: '0.02em', color: '#F2F8FC' }}>
                     {item}
                   </span>
                 </li>
@@ -2035,7 +1935,7 @@ function ChatbotFacebookMessenger() {
             </ul>
 
             <p
-              className="cbfm-closing font-sans font-normal"
+              className="cbfm-closing font-sans font-medium"
               style={{ fontSize: 'clamp(0.8rem, 1.2vw, 0.88rem)', lineHeight: 1.8, color: '#F2F8FC', maxWidth: '30rem', fontStyle: 'italic' }}
             >
               Designed to help businesses stay available, professional, and efficient without
@@ -2131,14 +2031,14 @@ function ChatbotWorkflowSection() {
       {/* Ambient glow */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
         background: [
-          'radial-gradient(ellipse 65% 50% at 50% 0%, hsl(199 89% 60% / 0.05) 0%, transparent 70%)',
-          'radial-gradient(ellipse 40% 35% at 80% 80%, hsl(215 80% 60% / 0.03) 0%, transparent 60%)',
+          'radial-gradient(ellipse 65% 50% at 50% 0%, hsl(44 100% 71% / 0.05) 0%, transparent 70%)',
+          'radial-gradient(ellipse 40% 35% at 80% 80%, hsl(44 100% 71% / 0.03) 0%, transparent 60%)',
         ].join(', '),
       }}/>
 
       {/* Dot grid */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
-        backgroundImage: 'radial-gradient(hsl(199 89% 60% / 0.018) 1px, transparent 1px)',
+        backgroundImage: 'radial-gradient(hsl(44 100% 71% / 0.018) 1px, transparent 1px)',
         backgroundSize: '28px 28px',
       }}/>
       {/* Section boundary fades */}
@@ -2151,7 +2051,7 @@ function ChatbotWorkflowSection() {
         <div className="text-center mb-16 lg:mb-20">
           <p
             className="cwf-label font-sans uppercase"
-            style={{ fontSize: '0.62rem', letterSpacing: '0.38em', color: 'hsl(199 89% 60%)', marginBottom: '1.4rem' }}
+            style={{ fontSize: '0.75rem', letterSpacing: '0.16em', color: 'hsl(44 100% 71%)', marginBottom: '1.4rem' }}
           >
             Automation Workflow
           </p>
@@ -2161,18 +2061,18 @@ function ChatbotWorkflowSection() {
               fontSize: 'clamp(2rem, 4vw, 3.2rem)',
               lineHeight: 1.1,
               letterSpacing: '-0.034em',
-              color: 'hsl(0 0% 93%)',
+              color: 'var(--text-description)',
               maxWidth: '38rem',
               margin: '0 auto 1.6rem',
             }}
           >
             From first message to qualified lead —{' '}
-            <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(199 89% 68%)' }}>
+            <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 500, color: 'hsl(44 100% 71%)' }}>
               automatically.
             </em>
           </h2>
           <p
-            className="cwf-body font-sans font-normal"
+            className="cwf-body font-sans font-medium"
             style={{
               fontSize: 'clamp(0.88rem, 1.4vw, 1rem)',
               lineHeight: 1.88,
@@ -2192,7 +2092,7 @@ function ChatbotWorkflowSection() {
 
           {/* Subtle blue-green ambient glow, contained behind the cards */}
           <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
-            background: 'radial-gradient(ellipse 60% 70% at 50% 45%, hsl(185 55% 30% / 0.09) 0%, transparent 70%)',
+            background: 'radial-gradient(ellipse 60% 70% at 50% 45%, hsl(44 45% 30% / 0.09) 0%, transparent 70%)',
             zIndex: -1,
           }}/>
 
@@ -2205,7 +2105,7 @@ function ChatbotWorkflowSection() {
               left: 'calc(12.5% + 1.5rem)',
               right: 'calc(12.5% + 1.5rem)',
               height: '1px',
-              background: 'linear-gradient(to right, hsl(199 89% 60% / 0.0), hsl(199 89% 60% / 0.22), hsl(199 89% 60% / 0.22), hsl(199 89% 60% / 0.0))',
+              background: 'linear-gradient(to right, hsl(44 100% 71% / 0.0), hsl(44 100% 71% / 0.22), hsl(44 100% 71% / 0.22), hsl(44 100% 71% / 0.0))',
               zIndex: 0,
             }}
           />
@@ -2221,8 +2121,8 @@ function ChatbotWorkflowSection() {
                 style={{
                   position: 'absolute', left: pos, top: 0,
                   width: 6, height: 6, borderRadius: '50%',
-                  background: 'hsl(199 89% 65%)',
-                  boxShadow: '0 0 8px hsl(199 89% 60% / 0.7)',
+                  background: 'hsl(44 100% 71%)',
+                  boxShadow: '0 0 8px hsl(44 100% 71% / 0.7)',
                   transform: 'translate(-50%, -50%)',
                 }}
               />
@@ -2233,8 +2133,8 @@ function ChatbotWorkflowSection() {
               style={{
                 position: 'absolute', top: 0,
                 width: 10, height: 10, borderRadius: '50%',
-                background: 'hsl(199 100% 78%)',
-                boxShadow: '0 0 16px 3px hsl(199 89% 65% / 0.85)',
+                background: 'hsl(44 100% 71%)',
+                boxShadow: '0 0 16px 3px hsl(44 100% 71% / 0.85)',
                 transform: 'translate(-50%, -50%)',
               }}
             />
@@ -2253,7 +2153,7 @@ function ChatbotWorkflowSection() {
                 gradientColors={{
                   primary:   '#020609',
                   secondary: '#0C4A5E',
-                  accent:    '#3DD4EF',
+                  accent:    '#FFD86B',
                 }}
                 style={{
                   display:       'flex',
@@ -2266,18 +2166,18 @@ function ChatbotWorkflowSection() {
                 onMouseEnter={e => {
                   const el = e.currentTarget as HTMLElement
                   el.style.transform = 'translateY(-2px)'
-                  el.style.setProperty('--gradient-accent', '#7FEBFF')
+                  el.style.setProperty('--gradient-accent', '#FFD86B')
                 }}
                 onMouseLeave={e => {
                   const el = e.currentTarget as HTMLElement
                   el.style.transform = 'translateY(0)'
-                  el.style.setProperty('--gradient-accent', '#3DD4EF')
+                  el.style.setProperty('--gradient-accent', '#FFD86B')
                 }}
               >
                 {/* Top accent line */}
                 <div aria-hidden="true" style={{
                   height:     '1px',
-                  background: 'linear-gradient(to right, hsl(199 89% 60% / 0.45), transparent)',
+                  background: 'linear-gradient(to right, hsl(44 100% 71% / 0.45), transparent)',
                   borderRadius: '1px',
                   marginBottom: '0.2rem',
                 }}/>
@@ -2287,17 +2187,17 @@ function ChatbotWorkflowSection() {
                   <div style={{
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
                     width: 28, height: 28, borderRadius: 8, flexShrink: 0,
-                    border: '1px solid hsl(199 89% 60% / 0.35)',
-                    background: 'hsl(199 89% 60% / 0.08)',
+                    border: '1px solid hsl(44 100% 71% / 0.35)',
+                    background: 'hsl(44 100% 71% / 0.08)',
                   }}>
-                    <step.Icon size={14} strokeWidth={1.6} color="hsl(199 89% 65%)" aria-hidden="true" />
+                    <step.Icon size={14} strokeWidth={1.6} color="hsl(44 100% 71%)" aria-hidden="true" />
                   </div>
                   <span className="font-sans" style={{
                     display:       'inline-block',
-                    fontSize:      '0.62rem',
-                    letterSpacing: '0.22em',
-                    color:         'hsl(199 89% 60% / 0.7)',
-                    fontWeight:    400,
+                    fontSize: '0.75rem',
+                    letterSpacing: '0.16em',
+                    color:         'hsl(44 100% 71% / 0.7)',
+                    fontWeight: 500,
                   }}>
                     {step.num}
                   </span>
@@ -2306,7 +2206,7 @@ function ChatbotWorkflowSection() {
                 {/* Title */}
                 <p className="font-sans" style={{
                   fontSize:      'clamp(0.95rem, 1.5vw, 1.05rem)',
-                  fontWeight:    300,
+                  fontWeight: 500,
                   letterSpacing: '-0.018em',
                   color:         'hsl(0 0% 90%)',
                   lineHeight:    1.3,
@@ -2315,7 +2215,7 @@ function ChatbotWorkflowSection() {
                 </p>
 
                 {/* Description */}
-                <p className="font-sans font-normal" style={{
+                <p className="font-sans font-medium" style={{
                   fontSize:   '1rem',
                   lineHeight: 1.6,
                   color:      'rgba(244, 248, 250, 0.75)',
@@ -2335,12 +2235,12 @@ function ChatbotWorkflowSection() {
 // ─── Chatbot Integrations (Section 8) ────────────────────────────────────────
 
 const INTEGRATION_ROWS = [
-  { num: '01', title: 'Website Chat',        desc: 'Instant support directly on your website.',                                icon: 'globe',    color: '#7DDCFF' },
-  { num: '02', title: 'WhatsApp Business',   desc: 'Fast replies, FAQs, bookings, and customer conversations.',                 icon: 'chat',     color: '#34D399' },
-  { num: '03', title: 'Instagram DM',        desc: 'Automated responses for enquiries, offers, and lead capture.',              icon: 'camera',   color: '#E879C9' },
-  { num: '04', title: 'Facebook Messenger',  desc: 'Smart message flows for customers already engaging with your page.',        icon: 'bubble2',  color: '#6BA9FF' },
-  { num: '05', title: 'CRM & Email Alerts',  desc: 'Send qualified leads, contact details, and enquiry summaries to your team.', icon: 'crm',      color: '#A78BFA' },
-  { num: '06', title: 'Human Handover',      desc: 'Escalate important conversations when personal support is needed.',        icon: 'handover', color: '#F0C56A' },
+  { num: '01', title: 'Website Chat',        desc: 'Instant support directly on your website.',                                icon: 'globe',    color: '#FFD86B' },
+  { num: '02', title: 'WhatsApp Business',   desc: 'Fast replies, FAQs, bookings, and customer conversations.',                 icon: 'chat',     color: '#FFD86B' },
+  { num: '03', title: 'Instagram DM',        desc: 'Automated responses for enquiries, offers, and lead capture.',              icon: 'camera',   color: '#FFD86B' },
+  { num: '04', title: 'Facebook Messenger',  desc: 'Smart message flows for customers already engaging with your page.',        icon: 'bubble2',  color: '#FFD86B' },
+  { num: '05', title: 'CRM & Email Alerts',  desc: 'Send qualified leads, contact details, and enquiry summaries to your team.', icon: 'crm',      color: '#FFD86B' },
+  { num: '06', title: 'Human Handover',      desc: 'Escalate important conversations when personal support is needed.',        icon: 'handover', color: '#FFD86B' },
 ]
 
 function CBIIcon({ type, color }: { type: string; color: string }) {
@@ -2368,9 +2268,9 @@ function CBIIcon({ type, color }: { type: string; color: string }) {
 
 // Shared premium highlight — applied evenly to all six rows so none reads as
 // more "finished" than the rest; hover just nudges it slightly brighter.
-const CBI_ROW_BG = 'linear-gradient(90deg, rgba(125, 220, 255, 0.07), rgba(43, 168, 217, 0.035), rgba(1, 7, 9, 0))'
-const CBI_ROW_BG_HOVER = 'linear-gradient(90deg, rgba(125, 220, 255, 0.11), rgba(43, 168, 217, 0.055), rgba(1, 7, 9, 0))'
-const CBI_ROW_BORDER = 'rgba(125, 220, 255, 0.08)'
+const CBI_ROW_BG = 'linear-gradient(90deg, rgba(255,216,107, 0.07), rgba(255,216,107, 0.035), rgba(1, 7, 9, 0))'
+const CBI_ROW_BG_HOVER = 'linear-gradient(90deg, rgba(255,216,107, 0.11), rgba(255,216,107, 0.055), rgba(1, 7, 9, 0))'
+const CBI_ROW_BORDER = 'rgba(255,216,107, 0.08)'
 const CBI_ROW_TITLE_COLOR = 'rgba(245, 250, 255, 0.90)'
 const CBI_ROW_DESC_COLOR = 'rgba(210, 224, 232, 0.58)'
 
@@ -2408,14 +2308,14 @@ function ChatbotIntegrationsSection() {
       {/* Ambient glow */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
         background: [
-          'radial-gradient(ellipse 55% 45% at 0% 55%, hsl(199 89% 60% / 0.05) 0%, transparent 65%)',
-          'radial-gradient(ellipse 40% 35% at 100% 30%, hsl(215 80% 60% / 0.03) 0%, transparent 60%)',
+          'radial-gradient(ellipse 55% 45% at 0% 55%, hsl(44 100% 71% / 0.05) 0%, transparent 65%)',
+          'radial-gradient(ellipse 40% 35% at 100% 30%, hsl(44 100% 71% / 0.03) 0%, transparent 60%)',
         ].join(', '),
       }}/>
 
       {/* Dot grid */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
-        backgroundImage: 'radial-gradient(hsl(199 89% 60% / 0.016) 1px, transparent 1px)',
+        backgroundImage: 'radial-gradient(hsl(44 100% 71% / 0.016) 1px, transparent 1px)',
         backgroundSize: '28px 28px',
       }}/>
       {/* Section boundary fades */}
@@ -2431,7 +2331,7 @@ function ChatbotIntegrationsSection() {
           <div className="lg:pt-2">
             <p
               className="cbi-label font-sans uppercase"
-              style={{ fontSize: '0.62rem', letterSpacing: '0.38em', color: 'hsl(199 89% 60%)', marginBottom: '1.4rem' }}
+              style={{ fontSize: '0.75rem', letterSpacing: '0.16em', color: 'hsl(44 100% 71%)', marginBottom: '1.4rem' }}
             >
               Connected Systems
             </p>
@@ -2448,13 +2348,13 @@ function ChatbotIntegrationsSection() {
               }}
             >
               One automation system connected across every customer{' '}
-              <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(199 89% 68%)' }}>
+              <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 500, color: 'hsl(44 100% 71%)' }}>
                 touchpoint.
               </em>
             </h2>
 
             <p
-              className="cbi-body font-sans font-normal"
+              className="cbi-body font-sans font-medium"
               style={{
                 fontSize:   'clamp(0.88rem, 1.4vw, 1rem)',
                 lineHeight: 1.88,
@@ -2472,8 +2372,8 @@ function ChatbotIntegrationsSection() {
               marginTop:  '2.8rem',
               width:      '3rem',
               height:     '1px',
-              background: 'hsl(199 89% 60% / 0.35)',
-              boxShadow:  '0 0 8px 0 hsl(199 89% 60% / 0.2)',
+              background: 'hsl(44 100% 71% / 0.35)',
+              boxShadow:  '0 0 8px 0 hsl(44 100% 71% / 0.2)',
             }}/>
           </div>
 
@@ -2497,16 +2397,16 @@ function ChatbotIntegrationsSection() {
               alignItems:   'center',
               gap:          '0.6rem',
             }}>
-              <div style={{ width: 6, height: 6, borderRadius: '50%', background: 'hsl(199 89% 60% / 0.5)' }}/>
-              <span className="font-sans" style={{ fontSize: '0.6rem', letterSpacing: '0.3em', color: 'hsl(0 0% 28%)', textTransform: 'uppercase' }}>
+              <div style={{ width: 6, height: 6, borderRadius: '50%', background: 'hsl(44 100% 71% / 0.5)' }}/>
+              <span className="font-sans" style={{ fontSize: '0.75rem', letterSpacing: '0.16em', color: 'var(--text-muted)', textTransform: 'uppercase' }}>
                 Active integrations
               </span>
               <span style={{
                 marginLeft:    'auto',
-                fontSize:      '0.6rem',
+                fontSize: '0.75rem',
                 letterSpacing: '0.2em',
-                color:         'hsl(199 89% 60% / 0.55)',
-                fontFamily:    'monospace',
+                color:         'hsl(44 100% 71% / 0.55)',
+                fontFamily: 'var(--font-body)',
               }}>
                 {INTEGRATION_ROWS.length} channels
               </span>
@@ -2555,7 +2455,7 @@ function ChatbotIntegrationsSection() {
                   <div style={{ flex: 1, minWidth: 0 }}>
                     <p className="font-sans" style={{
                       fontSize:      'clamp(0.85rem, 1.25vw, 0.92rem)',
-                      fontWeight:    300,
+                      fontWeight: 500,
                       letterSpacing: '-0.01em',
                       color:         CBI_ROW_TITLE_COLOR,
                       marginBottom:  '0.28rem',
@@ -2563,7 +2463,7 @@ function ChatbotIntegrationsSection() {
                     }}>
                       {row.title}
                     </p>
-                    <p className="font-sans font-normal" style={{
+                    <p className="font-sans font-medium" style={{
                       fontSize:   'clamp(0.75rem, 1.1vw, 0.8rem)',
                       lineHeight: 1.7,
                       color:      CBI_ROW_DESC_COLOR,
@@ -2577,7 +2477,7 @@ function ChatbotIntegrationsSection() {
                     width:      5,
                     height:     5,
                     borderRadius: '50%',
-                    background: 'hsl(199 89% 60% / 0.2)',
+                    background: 'hsl(44 100% 71% / 0.2)',
                     flexShrink: 0,
                     marginTop:  '0.45rem',
                     transition: 'background 0.25s ease',
@@ -2598,7 +2498,6 @@ function ChatbotIntegrationsSection() {
 const TIKTOK_FEATURES = [
   'Automated video scheduling',
   'Engagement and comment workflows',
-  'Auto DM and follower follow-up',
   'Performance analytics and reporting',
   'Growth tracking across campaigns',
 ]
@@ -2643,7 +2542,7 @@ function ChatbotTikTokAutomation() {
     >
       {/* Grid + radial bloom behind the left text */}
       <GradientBlurBg
-        accentColor="hsl(195 90% 55% / 0.08)"
+        accentColor="hsl(44 100% 71% / 0.08)"
         accentPosition="24% 52%"
         accentRadius="560px"
         gridColor="hsl(0 0% 100% / 0.025)"
@@ -2661,13 +2560,13 @@ function ChatbotTikTokAutomation() {
             <p
               className="ctta-label font-sans uppercase"
               style={{
-                fontSize: '0.62rem',
-                letterSpacing: '0.36em',
-                color: 'hsl(195 88% 62%)',
+                fontSize: '0.75rem',
+                letterSpacing: '0.16em',
+                color: 'hsl(44 100% 71%)',
                 marginBottom: '1.6rem',
               }}
             >
-              Section 05
+              TikTok
             </p>
 
             <h2
@@ -2675,8 +2574,8 @@ function ChatbotTikTokAutomation() {
               style={{
                 fontSize: 'clamp(2rem, 4.2vw, 3.4rem)',
                 lineHeight: 1.1,
-                letterSpacing: '-0.036em',
-                color: 'hsl(0 0% 93%)',
+                letterSpacing: '-0.03em',
+                color: 'var(--text-description)',
                 marginBottom: '1.8rem',
                 maxWidth: '28rem',
               }}
@@ -2685,15 +2584,15 @@ function ChatbotTikTokAutomation() {
               <em style={{
                 fontFamily: 'var(--font-body)',
                 fontStyle: 'italic',
-                fontWeight: 400,
-                color: 'hsl(195 88% 72%)',
+                fontWeight: 500,
+                color: 'hsl(44 100% 71%)',
               }}>
                 content growth.
               </em>
             </h2>
 
             <p
-              className="ctta-body font-sans font-normal"
+              className="ctta-body font-sans font-medium"
               style={{
                 fontSize: 'clamp(0.88rem, 1.4vw, 1rem)',
                 lineHeight: 1.88,
@@ -2706,7 +2605,7 @@ function ChatbotTikTokAutomation() {
             </p>
 
             <p
-              className="ctta-body font-sans font-normal"
+              className="ctta-body font-sans font-medium"
               style={{
                 fontSize: 'clamp(0.88rem, 1.4vw, 1rem)',
                 lineHeight: 1.88,
@@ -2728,11 +2627,11 @@ function ChatbotTikTokAutomation() {
                   <span style={{
                     display: 'inline-block',
                     width: '18px', height: '1px',
-                    background: 'hsl(195 88% 62%)',
+                    background: 'hsl(44 100% 71%)',
                     flexShrink: 0,
                   }}/>
                   <span
-                    className="font-sans font-normal"
+                    className="font-sans font-medium"
                     style={{
                       fontSize: 'clamp(0.82rem, 1.2vw, 0.9rem)',
                       letterSpacing: '0.02em',
@@ -2752,7 +2651,7 @@ function ChatbotTikTokAutomation() {
             {/* Ambient glow behind image */}
             <div aria-hidden="true" style={{
               position: 'absolute', inset: '-24px',
-              background: 'radial-gradient(ellipse 75% 65% at 55% 50%, hsl(195 88% 55% / 0.08) 0%, transparent 70%)',
+              background: 'radial-gradient(ellipse 75% 65% at 55% 50%, hsl(44 100% 71% / 0.08) 0%, transparent 70%)',
               filter: 'blur(32px)',
               pointerEvents: 'none',
             }}/>
@@ -2767,7 +2666,7 @@ function ChatbotTikTokAutomation() {
               boxShadow: [
                 '0 48px 100px -20px hsl(0 0% 0% / 0.88)',
                 '0 0 0 1px hsl(0 0% 100% / 0.03) inset',
-                '0 0 60px -18px hsl(195 88% 55% / 0.18)',
+                '0 0 60px -18px hsl(44 100% 71% / 0.18)',
               ].join(', '),
               background: '#080b0f',
             }}>
@@ -3051,7 +2950,7 @@ function SocialMediaMarketing() {
     <section
       ref={heroRef}
       id="social-media-marketing-detail"
-      className="relative w-screen overflow-hidden"
+      className="relative w-full overflow-hidden"
       style={{ height: 'clamp(460px, 58vw, 700px)', marginLeft: 'calc(-50vw + 50%)', marginRight: 'calc(-50vw + 50%)', background: '#010709' }}
     >
       {/* Full-width background video */}
@@ -3097,10 +2996,10 @@ function SocialMediaMarketing() {
         <div>
           <h2
             className="smh-heading font-heading font-medium text-text"
-            style={{ opacity: 0, transform: 'translateY(28px)', fontSize: 'clamp(2.6rem, 6vw, 5rem)', lineHeight: 1.1, letterSpacing: '-0.04em' }}
+            style={{ opacity: 0, transform: 'translateY(28px)', fontSize: 'clamp(2.6rem, 6vw, 5rem)', lineHeight: 1.1, letterSpacing: '-0.03em' }}
           >
             <span style={{ display: 'block' }}>Social Media</span>
-            <em style={{ display: 'block', fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(280 65% 72%)' }}>
+            <em style={{ display: 'block', fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 500, color: 'hsl(44 100% 71%)' }}>
               Marketing
             </em>
           </h2>
@@ -3159,15 +3058,15 @@ function SocialMediaMarketing() {
                 position: 'absolute',
                 top: '-2.5rem', left: '-1rem',
                 fontSize: 'clamp(7rem, 17vw, 14rem)',
-                lineHeight: 0.82,
-                letterSpacing: '-0.06em',
+                lineHeight: 1.05,
+                letterSpacing: '-0.03em',
                 color: 'transparent',
                 WebkitTextStroke: '1px hsl(0 0% 100% / 0.032)',
                 userSelect: 'none',
                 pointerEvents: 'none',
                 zIndex: 0,
-                fontFamily: 'sans-serif',
-                fontWeight: 300,
+                fontFamily: 'var(--font-body)',
+                fontWeight: 500,
               }}
             >
               Social
@@ -3181,15 +3080,15 @@ function SocialMediaMarketing() {
                 className="smp-label inline-flex items-center gap-2 mb-8 font-sans font-medium uppercase self-start"
                 style={{
                   opacity: 0, transform: 'translateY(16px)',
-                  fontSize: '0.63rem', letterSpacing: '0.3em',
-                  color: 'hsl(199 89% 68%)',
-                  border: '1px solid hsl(199 89% 60% / 0.28)',
+                  fontSize: '0.75rem', letterSpacing: '0.16em',
+                  color: 'hsl(44 100% 71%)',
+                  border: '1px solid hsl(44 100% 71% / 0.28)',
                   borderRadius: '999px',
                   padding: '0.33rem 1.05rem',
-                  background: 'hsl(199 89% 60% / 0.06)',
+                  background: 'hsl(44 100% 71% / 0.06)',
                 }}
               >
-                <span style={{ width: 5, height: 5, borderRadius: '50%', background: 'hsl(199 89% 60%)', flexShrink: 0 }}/>
+                <span style={{ width: 5, height: 5, borderRadius: '50%', background: 'hsl(44 100% 71%)', flexShrink: 0 }}/>
                 Digital Ecosystem
               </span>
 
@@ -3200,7 +3099,7 @@ function SocialMediaMarketing() {
                   opacity: 0, transform: 'translateY(28px)',
                   fontSize: 'clamp(2rem, 3.8vw, 3.2rem)',
                   lineHeight: 1.08,
-                  letterSpacing: '-0.036em',
+                  letterSpacing: '-0.03em',
                 }}
               >
                 Every platform<br />
@@ -3209,8 +3108,8 @@ function SocialMediaMarketing() {
                   style={{
                     fontFamily: 'var(--font-body)',
                     fontStyle: 'italic',
-                    fontWeight: 400,
-                    background: 'linear-gradient(108deg, hsl(199 89% 74%) 0%, hsl(240 60% 74%) 55%, hsl(280 65% 74%) 100%)',
+                    fontWeight: 500,
+                    background: 'linear-gradient(108deg, hsl(44 100% 71%) 0%, hsl(44 100% 71%) 55%, hsl(44 100% 71%) 100%)',
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
                     backgroundClip: 'text',
@@ -3223,14 +3122,14 @@ function SocialMediaMarketing() {
               {/* Thin accent rule */}
               <div style={{
                 height: 1,
-                background: 'linear-gradient(to right, hsl(199 89% 60% / 0.35), transparent)',
+                background: 'linear-gradient(to right, hsl(44 100% 71% / 0.35), transparent)',
                 marginBottom: '1.6rem',
                 maxWidth: '20rem',
               }}/>
 
               {/* Body */}
               <p
-                className="smp-body font-sans font-normal mb-10"
+                className="smp-body font-sans font-medium mb-10"
                 style={{
                   opacity: 0, transform: 'translateY(18px)',
                   fontSize: 'var(--dt-bespoke-body, clamp(0.88rem, 1.4vw, 1rem))',
@@ -3239,9 +3138,10 @@ function SocialMediaMarketing() {
                   maxWidth: '34rem',
                 }}
               >
-                We create connected social media systems that keep your content active, engaging,
-                and strategically aligned across every major platform.
+                We create connected social media systems that keep your content active, consistent and aligned across every major platform.
               </p>
+
+              <ServiceCta label="Start a Project" className="mb-8" />
 
               {/* Feature list — horizontal-rule style */}
               <ul className="flex flex-col" style={{ borderTop: '1px solid hsl(0 0% 100% / 0.07)' }}>
@@ -3253,7 +3153,7 @@ function SocialMediaMarketing() {
                 ].map(text => (
                   <li
                     key={text}
-                    className="smp-feat flex items-center justify-between font-sans font-normal"
+                    className="smp-feat flex items-center justify-between font-sans font-medium"
                     style={{
                       opacity: 0, transform: 'translateY(10px)',
                       fontSize: 'var(--dt-bespoke-list, clamp(0.84rem, 1.2vw, 0.92rem))',
@@ -3264,7 +3164,7 @@ function SocialMediaMarketing() {
                       transition: 'color 0.25s ease',
                     }}
                     onMouseEnter={e => {
-                      (e.currentTarget as HTMLElement).style.color = 'hsl(0 0% 88%)';
+                      (e.currentTarget as HTMLElement).style.color = 'var(--text-body)';
                       ((e.currentTarget as HTMLElement).querySelector('.smp-arrow') as HTMLElement | null)?.style.setProperty('opacity', '1')
                     }}
                     onMouseLeave={e => {
@@ -3273,14 +3173,14 @@ function SocialMediaMarketing() {
                     }}
                   >
                     <span className="flex items-center gap-3">
-                      <span style={{ fontSize: '0.45rem', color: 'hsl(199 89% 60%)', flexShrink: 0 }}>◆</span>
+                      <span style={{ fontSize: '0.45rem', color: 'hsl(44 100% 71%)', flexShrink: 0 }}>◆</span>
                       {text}
                     </span>
                     <span
                       className="smp-arrow font-sans"
                       style={{
-                        fontSize: '0.72rem',
-                        color: 'hsl(199 89% 65%)',
+                        fontSize: '0.75rem',
+                        color: 'hsl(44 100% 71%)',
                         opacity: 0.28,
                         transition: 'opacity 0.25s ease',
                         flexShrink: 0,
@@ -3375,8 +3275,8 @@ function SocialMediaMarketing() {
       {/* Soft cinematic atmosphere */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
         background: [
-          'radial-gradient(ellipse 70% 55% at 55% 50%, hsl(199 89% 60% / 0.07) 0%, transparent 70%)',
-          'radial-gradient(ellipse 45% 40% at 20% 75%, hsl(195 70% 50% / 0.05) 0%, transparent 65%)',
+          'radial-gradient(ellipse 70% 55% at 55% 50%, hsl(44 100% 71% / 0.07) 0%, transparent 70%)',
+          'radial-gradient(ellipse 45% 40% at 20% 75%, hsl(44 100% 71% / 0.05) 0%, transparent 65%)',
         ].join(', '),
         filter: 'blur(60px)',
       }}/>
@@ -3385,7 +3285,7 @@ function SocialMediaMarketing() {
 
         {/* Heading */}
         <div className="mb-16">
-          <p className="sms-heading font-sans uppercase mb-4" style={{ opacity: 0, transform: 'translateY(20px)', fontSize: '0.7rem', letterSpacing: '0.3em', color: 'hsl(199 75% 70%)' }}>
+          <p className="sms-heading font-sans uppercase mb-4" style={{ opacity: 0, transform: 'translateY(20px)', fontSize: '0.75rem', letterSpacing: '0.16em', color: 'hsl(44 100% 71%)' }}>
             What we deliver
           </p>
           <h2
@@ -3393,7 +3293,7 @@ function SocialMediaMarketing() {
             style={{ opacity: 0, transform: 'translateY(24px)', fontSize: 'clamp(1.8rem, 4vw, 3rem)', lineHeight: 1.08, letterSpacing: '-0.033em', maxWidth: '34rem' }}
           >
             Content backed by{' '}
-            <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400 }}>strategy</em>
+            <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 500 }}>strategy</em>
           </h2>
         </div>
 
@@ -3412,7 +3312,7 @@ function SocialMediaMarketing() {
                 onMouseEnter={e => {
                   const num = e.currentTarget.querySelector('.sms-num') as HTMLElement | null
                   if (!num) return
-                  num.style.filter = 'drop-shadow(0 0 8px rgba(125,220,255,0.95)) drop-shadow(0 0 20px rgba(125,220,255,0.6))'
+                  num.style.filter = 'drop-shadow(0 0 8px rgba(255,216,107,0.95)) drop-shadow(0 0 20px rgba(255,216,107,0.6))'
                   gsap.killTweensOf(num)
                   gsap.to(num, { scale: 1.12, duration: 0.25, ease: 'power2.out', transformOrigin: 'center center' })
                   gsap.to(num, { scale: 1, duration: 0.7, delay: 0.25, ease: 'elastic.out(1, 0.45)', transformOrigin: 'center center' })
@@ -3420,7 +3320,7 @@ function SocialMediaMarketing() {
                 onMouseLeave={e => {
                   const num = e.currentTarget.querySelector('.sms-num') as HTMLElement | null
                   if (!num) return
-                  num.style.filter = 'drop-shadow(0 0 6px rgba(125,220,255,0.6)) drop-shadow(0 0 14px rgba(125,220,255,0.32))'
+                  num.style.filter = 'drop-shadow(0 0 6px rgba(255,216,107,0.6)) drop-shadow(0 0 14px rgba(255,216,107,0.32))'
                   gsap.killTweensOf(num)
                   gsap.to(num, { scale: 1, duration: 0.35, ease: 'power2.inOut', transformOrigin: 'center center' })
                 }}
@@ -3430,12 +3330,12 @@ function SocialMediaMarketing() {
                   className="sms-num font-sans shrink-0"
                   style={{
                     fontSize: '0.85rem',
-                    fontWeight: 600,
+                    fontWeight: 500,
                     letterSpacing: '0.18em',
                     minWidth: '2rem',
                     fontVariantNumeric: 'tabular-nums',
-                    color: '#93E5FF',
-                    filter: 'drop-shadow(0 0 6px rgba(125,220,255,0.6)) drop-shadow(0 0 14px rgba(125,220,255,0.32))',
+                    color: '#FFD86B',
+                    filter: 'drop-shadow(0 0 6px rgba(255,216,107,0.6)) drop-shadow(0 0 14px rgba(255,216,107,0.32))',
                     transition: 'filter 0.3s ease',
                     display: 'inline-block',
                   }}
@@ -3443,11 +3343,11 @@ function SocialMediaMarketing() {
                   {String(i + 1).padStart(2, '0')}
                 </span>
                 {/* Label */}
-                <p className="font-sans font-normal shrink-0 m-strategy-title" style={{ fontSize: 'clamp(0.95rem, 1.5vw, 1.1rem)', letterSpacing: '-0.015em', minWidth: '18rem', color: '#BFEFFF', textShadow: '0 0 16px rgba(125,220,255,0.12)' }}>
+                <p className="font-sans font-medium shrink-0 m-strategy-title" style={{ fontSize: 'clamp(0.95rem, 1.5vw, 1.1rem)', letterSpacing: '-0.015em', minWidth: '18rem', color: '#FFD86B', textShadow: '0 0 16px rgba(255,216,107,0.12)' }}>
                   {label}
                 </p>
                 {/* Desc */}
-                <p className="font-sans font-normal" style={{ fontSize: '0.84rem', lineHeight: 1.75, color: '#C9D3D8' }}>
+                <p className="font-sans font-medium" style={{ fontSize: '0.84rem', lineHeight: 1.75, color: '#C9D3D8' }}>
                   {desc}
                 </p>
               </div>
@@ -3498,9 +3398,9 @@ function SocialMediaMarketing() {
       <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
         zIndex: 0,
         background: [
-          'radial-gradient(ellipse 80% 60% at 62% 50%, hsl(195 80% 55% / 0.07) 0%, transparent 70%)',
-          'radial-gradient(ellipse 50% 40% at 75% 40%, hsl(199 89% 60% / 0.05) 0%, transparent 60%)',
-          'radial-gradient(ellipse 60% 50% at 50% 100%, hsl(195 70% 40% / 0.04) 0%, transparent 65%)',
+          'radial-gradient(ellipse 80% 60% at 62% 50%, hsl(44 100% 71% / 0.07) 0%, transparent 70%)',
+          'radial-gradient(ellipse 50% 40% at 75% 40%, hsl(44 100% 71% / 0.05) 0%, transparent 60%)',
+          'radial-gradient(ellipse 60% 50% at 50% 100%, hsl(44 100% 71% / 0.04) 0%, transparent 65%)',
         ].join(', '),
       }}/>
 
@@ -3521,8 +3421,8 @@ function SocialMediaMarketing() {
                   flex: '0.7',
                   boxShadow: [
                     '0 40px 80px -16px hsl(0 0% 0% / 0.88)',
-                    '0 0 0 1px hsl(280 65% 65% / 0.14)',
-                    '0 0 72px -18px hsl(280 65% 65% / 0.38)',
+                    '0 0 0 1px hsl(44 100% 71% / 0.14)',
+                    '0 0 72px -18px hsl(44 100% 71% / 0.38)',
                   ].join(', '),
                   transition: 'transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.6s ease',
                 }}
@@ -3530,16 +3430,16 @@ function SocialMediaMarketing() {
                   (e.currentTarget as HTMLElement).style.transform = 'translateY(-4px) scale(1.02)'
                   ;(e.currentTarget as HTMLElement).style.boxShadow = [
                     '0 56px 100px -16px hsl(0 0% 0% / 0.92)',
-                    '0 0 0 1px hsl(280 65% 65% / 0.26)',
-                    '0 0 90px -14px hsl(280 65% 65% / 0.52)',
+                    '0 0 0 1px hsl(44 100% 71% / 0.26)',
+                    '0 0 90px -14px hsl(44 100% 71% / 0.52)',
                   ].join(', ')
                 }}
                 onMouseLeave={e => {
                   (e.currentTarget as HTMLElement).style.transform = 'none'
                   ;(e.currentTarget as HTMLElement).style.boxShadow = [
                     '0 40px 80px -16px hsl(0 0% 0% / 0.88)',
-                    '0 0 0 1px hsl(280 65% 65% / 0.14)',
-                    '0 0 72px -18px hsl(280 65% 65% / 0.38)',
+                    '0 0 0 1px hsl(44 100% 71% / 0.14)',
+                    '0 0 72px -18px hsl(44 100% 71% / 0.38)',
                   ].join(', ')
                 }}
               >
@@ -3568,8 +3468,8 @@ function SocialMediaMarketing() {
                   alignSelf: 'flex-start',
                   boxShadow: [
                     '0 32px 64px -16px hsl(0 0% 0% / 0.82)',
-                    '0 0 0 1px hsl(199 89% 60% / 0.14)',
-                    '0 0 56px -16px hsl(199 89% 60% / 0.32)',
+                    '0 0 0 1px hsl(44 100% 71% / 0.14)',
+                    '0 0 56px -16px hsl(44 100% 71% / 0.32)',
                   ].join(', '),
                   transition: 'transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.6s ease',
                 }}
@@ -3577,16 +3477,16 @@ function SocialMediaMarketing() {
                   (e.currentTarget as HTMLElement).style.transform = 'translateY(-4px) scale(1.02)'
                   ;(e.currentTarget as HTMLElement).style.boxShadow = [
                     '0 44px 80px -16px hsl(0 0% 0% / 0.88)',
-                    '0 0 0 1px hsl(199 89% 60% / 0.24)',
-                    '0 0 70px -12px hsl(199 89% 60% / 0.46)',
+                    '0 0 0 1px hsl(44 100% 71% / 0.24)',
+                    '0 0 70px -12px hsl(44 100% 71% / 0.46)',
                   ].join(', ')
                 }}
                 onMouseLeave={e => {
                   (e.currentTarget as HTMLElement).style.transform = 'none'
                   ;(e.currentTarget as HTMLElement).style.boxShadow = [
                     '0 32px 64px -16px hsl(0 0% 0% / 0.82)',
-                    '0 0 0 1px hsl(199 89% 60% / 0.14)',
-                    '0 0 56px -16px hsl(199 89% 60% / 0.32)',
+                    '0 0 0 1px hsl(44 100% 71% / 0.14)',
+                    '0 0 56px -16px hsl(44 100% 71% / 0.32)',
                   ].join(', ')
                 }}
               >
@@ -3602,7 +3502,7 @@ function SocialMediaMarketing() {
                 {/* Subtle neon tint */}
                 <div aria-hidden="true" style={{
                   position: 'absolute', inset: 0,
-                  background: 'linear-gradient(135deg, hsl(199 89% 60% / 0.08) 0%, hsl(280 65% 65% / 0.07) 100%)',
+                  background: 'linear-gradient(135deg, hsl(44 100% 71% / 0.08) 0%, hsl(44 100% 71% / 0.07) 100%)',
                   mixBlendMode: 'screen', pointerEvents: 'none',
                 }}/>
                 <div aria-hidden="true" style={{
@@ -3623,11 +3523,11 @@ function SocialMediaMarketing() {
             <div aria-hidden="true" style={{
               position: 'absolute', top: '-2rem', right: '-1rem',
               fontSize: 'clamp(6rem, 14vw, 12rem)',
-              lineHeight: 0.82, letterSpacing: '-0.06em',
+              lineHeight: 1.05, letterSpacing: '-0.03em',
               color: 'transparent',
               WebkitTextStroke: '1px hsl(0 0% 100% / 0.03)',
               userSelect: 'none', pointerEvents: 'none', zIndex: 0,
-              fontFamily: 'sans-serif', fontWeight: 300,
+              fontFamily: 'var(--font-body)', fontWeight: 500,
             }}>
               Brand
             </div>
@@ -3639,22 +3539,22 @@ function SocialMediaMarketing() {
                 className="smpr-label inline-flex items-center gap-2 mb-8 font-sans font-medium uppercase self-start"
                 style={{
                   opacity: 0, transform: 'translateY(16px)',
-                  fontSize: '0.63rem', letterSpacing: '0.3em',
-                  color: 'hsl(280 65% 72%)',
-                  border: '1px solid hsl(280 65% 65% / 0.28)',
+                  fontSize: '0.75rem', letterSpacing: '0.16em',
+                  color: 'hsl(44 100% 71%)',
+                  border: '1px solid hsl(44 100% 71% / 0.28)',
                   borderRadius: '999px',
                   padding: '0.33rem 1.05rem',
-                  background: 'hsl(280 65% 65% / 0.06)',
+                  background: 'hsl(44 100% 71% / 0.06)',
                 }}
               >
-                <span style={{ width: 5, height: 5, borderRadius: '50%', background: 'hsl(280 65% 65%)', boxShadow: '0 0 7px hsl(280 65% 65%)', flexShrink: 0 }}/>
+                <span style={{ width: 5, height: 5, borderRadius: '50%', background: 'hsl(44 100% 71%)', boxShadow: '0 0 7px hsl(44 100% 71%)', flexShrink: 0 }}/>
                 Social Authority
               </span>
 
               {/* Heading */}
               <h2
                 className="smpr-heading font-heading font-medium text-text mb-5"
-                style={{ fontSize: 'clamp(1.9rem, 3.6vw, 3rem)', lineHeight: 1.22, letterSpacing: '-0.035em' }}
+                style={{ fontSize: 'clamp(1.9rem, 3.6vw, 3rem)', lineHeight: 1.22, letterSpacing: '-0.03em' }}
               >
                 {['Profiles', 'built', 'to', 'attract'].map((word, i) => (
                   <span key={i} style={{ display: 'inline-block', overflow: 'hidden', verticalAlign: 'bottom', marginRight: '0.24em', paddingBottom: '0.05em' }}>
@@ -3663,12 +3563,12 @@ function SocialMediaMarketing() {
                     </span>
                   </span>
                 ))}
-                <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400, display: 'inline-block', overflow: 'hidden', verticalAlign: 'bottom', paddingBottom: '0.05em' }}>
+                <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 500, display: 'inline-block', overflow: 'hidden', verticalAlign: 'bottom', paddingBottom: '0.05em' }}>
                   <span
                     className="smpr-hword"
                     style={{
                       display: 'inline-block', transform: 'translateY(110%)', opacity: 0,
-                      background: 'linear-gradient(108deg, hsl(280 65% 74%) 0%, hsl(240 60% 74%) 50%, hsl(199 89% 74%) 100%)',
+                      background: 'linear-gradient(108deg, hsl(44 100% 71%) 0%, hsl(44 100% 71%) 50%, hsl(44 100% 71%) 100%)',
                       WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
                     }}
                   >
@@ -3680,21 +3580,20 @@ function SocialMediaMarketing() {
               {/* Accent rule */}
               <div style={{
                 height: 1,
-                background: 'linear-gradient(to right, hsl(280 65% 65% / 0.35), transparent)',
+                background: 'linear-gradient(to right, hsl(44 100% 71% / 0.35), transparent)',
                 marginBottom: '1.6rem', maxWidth: '20rem',
               }}/>
 
               {/* Body */}
               <p
-                className="smpr-body font-sans font-normal mb-10"
+                className="smpr-body font-sans font-medium mb-10"
                 style={{
                   opacity: 0, transform: 'translateY(18px)',
                   fontSize: 'clamp(0.88rem, 1.4vw, 1rem)',
                   lineHeight: 1.9, color: '#F2F8FC', maxWidth: '34rem',
                 }}
               >
-                We create high-converting social media experiences that make brands look professional,
-                engaging, and instantly recognisable across every major platform.
+                We shape profiles and content so your brand looks professional, stays recognisable and gives people a reason to follow.
               </p>
 
               {/* Metrics list — horizontal rule style */}
@@ -3706,7 +3605,7 @@ function SocialMediaMarketing() {
                 ].map(({ stat, label }) => (
                   <li
                     key={label}
-                    className="smpr-metric flex items-center justify-between font-sans font-normal"
+                    className="smpr-metric flex items-center justify-between font-sans font-medium"
                     style={{
                       opacity: 0, transform: 'translateY(10px)',
                       fontSize: 'clamp(0.84rem, 1.2vw, 0.92rem)',
@@ -3716,14 +3615,14 @@ function SocialMediaMarketing() {
                       cursor: 'default',
                       transition: 'color 0.25s ease',
                     }}
-                    onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = 'hsl(0 0% 88%)' }}
+                    onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = 'var(--text-body)' }}
                     onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = '#F2F8FC' }}
                   >
                     <span className="flex items-center gap-3">
-                      <span style={{ fontSize: '0.7rem', color: 'hsl(280 65% 65%)', flexShrink: 0, width: '1.8rem', textAlign: 'center' }}>{stat}</span>
+                      <span style={{ fontSize: '0.75rem', color: 'hsl(44 100% 71%)', flexShrink: 0, width: '1.8rem', textAlign: 'center' }}>{stat}</span>
                       {label}
                     </span>
-                    <span style={{ fontSize: '0.72rem', color: 'hsl(280 65% 65%)', opacity: 0.35, flexShrink: 0, marginLeft: '1rem' }}>→</span>
+                    <span style={{ fontSize: '0.75rem', color: 'hsl(44 100% 71%)', opacity: 0.35, flexShrink: 0, marginLeft: '1rem' }}>→</span>
                   </li>
                 ))}
               </ul>
@@ -3766,9 +3665,9 @@ function SocialMediaMarketing() {
       <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
         zIndex: 0,
         background: [
-          'radial-gradient(ellipse 70% 60% at 25% 50%, hsl(280 65% 65% / 0.07) 0%, transparent 70%)',
-          'radial-gradient(ellipse 50% 40% at 15% 40%, hsl(199 89% 60% / 0.04) 0%, transparent 60%)',
-          'radial-gradient(ellipse 60% 50% at 50% 100%, hsl(280 60% 40% / 0.04) 0%, transparent 65%)',
+          'radial-gradient(ellipse 70% 60% at 25% 50%, hsl(44 100% 71% / 0.07) 0%, transparent 70%)',
+          'radial-gradient(ellipse 50% 40% at 15% 40%, hsl(44 100% 71% / 0.04) 0%, transparent 60%)',
+          'radial-gradient(ellipse 60% 50% at 50% 100%, hsl(44 100% 71% / 0.04) 0%, transparent 65%)',
         ].join(', '),
       }}/>
 
@@ -3786,8 +3685,8 @@ function SocialMediaMarketing() {
                 gap: '11px',
                 boxShadow: [
                   '0 48px 96px -16px hsl(0 0% 0% / 0.9)',
-                  '0 0 0 1px hsl(280 65% 65% / 0.14)',
-                  '0 0 72px -18px hsl(280 65% 65% / 0.32)',
+                  '0 0 0 1px hsl(44 100% 71% / 0.14)',
+                  '0 0 72px -18px hsl(44 100% 71% / 0.32)',
                 ].join(', '),
                 transition: 'transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.6s ease',
               }}
@@ -3795,16 +3694,16 @@ function SocialMediaMarketing() {
                 (e.currentTarget as HTMLElement).style.transform = 'translateY(-6px) scale(1.01)'
                 ;(e.currentTarget as HTMLElement).style.boxShadow = [
                   '0 64px 120px -14px hsl(0 0% 0% / 0.94)',
-                  '0 0 0 1px hsl(280 65% 65% / 0.26)',
-                  '0 0 96px -14px hsl(280 65% 65% / 0.46)',
+                  '0 0 0 1px hsl(44 100% 71% / 0.26)',
+                  '0 0 96px -14px hsl(44 100% 71% / 0.46)',
                 ].join(', ')
               }}
               onMouseLeave={e => {
                 (e.currentTarget as HTMLElement).style.transform = 'none'
                 ;(e.currentTarget as HTMLElement).style.boxShadow = [
                   '0 48px 96px -16px hsl(0 0% 0% / 0.9)',
-                  '0 0 0 1px hsl(280 65% 65% / 0.14)',
-                  '0 0 72px -18px hsl(280 65% 65% / 0.32)',
+                  '0 0 0 1px hsl(44 100% 71% / 0.14)',
+                  '0 0 72px -18px hsl(44 100% 71% / 0.32)',
                 ].join(', ')
               }}
             >
@@ -3847,7 +3746,7 @@ function SocialMediaMarketing() {
               ))}
               <div aria-hidden="true" style={{
                 position: 'absolute', inset: 0,
-                background: 'linear-gradient(135deg, hsl(280 65% 65% / 0.06) 0%, hsl(199 89% 60% / 0.05) 100%)',
+                background: 'linear-gradient(135deg, hsl(44 100% 71% / 0.06) 0%, hsl(44 100% 71% / 0.05) 100%)',
                 mixBlendMode: 'screen', pointerEvents: 'none',
               }}/>
               <div aria-hidden="true" style={{
@@ -3861,8 +3760,8 @@ function SocialMediaMarketing() {
             <p
               className="font-sans uppercase"
               style={{
-                fontSize: '0.72rem',
-                letterSpacing: '0.22em',
+                fontSize: '0.75rem',
+                letterSpacing: '0.16em',
                 color: 'hsl(0 0% 100% / 0.56)',
                 marginTop: '1.1rem',
                 textAlign: 'center',
@@ -3879,11 +3778,11 @@ function SocialMediaMarketing() {
             <div aria-hidden="true" style={{
               position: 'absolute', top: '-2rem', right: '-1rem',
               fontSize: 'clamp(6rem, 14vw, 12rem)',
-              lineHeight: 0.82, letterSpacing: '-0.06em',
+              lineHeight: 1.05, letterSpacing: '-0.03em',
               color: 'transparent',
               WebkitTextStroke: '1px hsl(0 0% 100% / 0.03)',
               userSelect: 'none', pointerEvents: 'none', zIndex: 0,
-              fontFamily: 'sans-serif', fontWeight: 300,
+              fontFamily: 'var(--font-body)', fontWeight: 500,
             }}>
               Beauty
             </div>
@@ -3895,18 +3794,18 @@ function SocialMediaMarketing() {
                 className="smbs-label font-sans uppercase mb-6"
                 style={{
                   opacity: 0, transform: 'translateY(16px)',
-                  fontSize: '0.6rem', letterSpacing: '0.32em',
-                  color: 'hsl(0 0% 32%)', fontWeight: 300,
+                  fontSize: '0.75rem', letterSpacing: '0.16em',
+                  color: 'var(--text-muted)', fontWeight: 500,
                   fontFamily: 'var(--font-label)',
                 }}
               >
-                SECTION 05
+                Campaign Visuals
               </p>
 
               {/* Heading */}
               <h2
                 className="smbs-heading font-heading font-medium text-text mb-5"
-                style={{ fontSize: 'clamp(1.9rem, 3.6vw, 3rem)', lineHeight: 1.22, letterSpacing: '-0.035em' }}
+                style={{ fontSize: 'clamp(1.9rem, 3.6vw, 3rem)', lineHeight: 1.22, letterSpacing: '-0.03em' }}
               >
                 {['Visuals', 'that', 'stop', 'the'].map((word, i) => (
                   <span key={i} style={{ display: 'inline-block', overflow: 'hidden', verticalAlign: 'bottom', marginRight: '0.24em', paddingBottom: '0.05em' }}>
@@ -3915,12 +3814,12 @@ function SocialMediaMarketing() {
                     </span>
                   </span>
                 ))}
-                <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400, display: 'inline-block', overflow: 'hidden', verticalAlign: 'bottom', paddingBottom: '0.05em' }}>
+                <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 500, display: 'inline-block', overflow: 'hidden', verticalAlign: 'bottom', paddingBottom: '0.05em' }}>
                   <span
                     className="smbs-hword"
                     style={{
                       display: 'inline-block', transform: 'translateY(110%)', opacity: 0,
-                      background: 'linear-gradient(108deg, hsl(280 65% 74%) 0%, hsl(240 60% 74%) 50%, hsl(199 89% 74%) 100%)',
+                      background: 'linear-gradient(108deg, hsl(44 100% 71%) 0%, hsl(44 100% 71%) 50%, hsl(44 100% 71%) 100%)',
                       WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
                     }}
                   >
@@ -3932,13 +3831,13 @@ function SocialMediaMarketing() {
               {/* Accent rule */}
               <div style={{
                 height: 1,
-                background: 'linear-gradient(to right, hsl(280 65% 65% / 0.35), transparent)',
+                background: 'linear-gradient(to right, hsl(44 100% 71% / 0.35), transparent)',
                 marginBottom: '1.6rem', maxWidth: '20rem',
               }}/>
 
               {/* Body 1 */}
               <p
-                className="smbs-body font-sans font-normal mb-5"
+                className="smbs-body font-sans font-medium mb-5"
                 style={{
                   opacity: 0, transform: 'translateY(18px)',
                   fontSize: 'clamp(0.87rem, 1.35vw, 0.97rem)',
@@ -3946,14 +3845,12 @@ function SocialMediaMarketing() {
                   fontFamily: 'var(--font-label)',
                 }}
               >
-                We produce beauty and lifestyle visuals engineered for social performance — content
-                that looks editorial, feels on-brand, and drives measurable results across Instagram,
-                TikTok, and paid placements.
+                We produce beauty and lifestyle visuals that look editorial and feel on-brand across Instagram, TikTok and paid placements.
               </p>
 
               {/* Body 2 */}
               <p
-                className="smbs-body font-sans font-normal mb-10"
+                className="smbs-body font-sans font-medium mb-10"
                 style={{
                   opacity: 0, transform: 'translateY(18px)',
                   fontSize: 'clamp(0.87rem, 1.35vw, 0.97rem)',
@@ -3961,8 +3858,7 @@ function SocialMediaMarketing() {
                   fontFamily: 'var(--font-label)',
                 }}
               >
-                From luxury skincare to high-end fragrance and cosmetics, every creative is
-                crafted to reflect premium positioning and connect instantly with the right audience.
+                From luxury skincare to high-end fragrance and cosmetics, every creative reflects premium positioning and speaks directly to the right audience.
               </p>
 
               {/* Bullet list */}
@@ -3976,7 +3872,7 @@ function SocialMediaMarketing() {
                 ].map(item => (
                   <li
                     key={item}
-                    className="smbs-item flex items-center gap-3 font-sans font-normal"
+                    className="smbs-item flex items-center gap-3 font-sans font-medium"
                     style={{
                       opacity: 0, transform: 'translateY(10px)',
                       fontSize: 'clamp(0.84rem, 1.2vw, 0.9rem)',
@@ -3987,10 +3883,10 @@ function SocialMediaMarketing() {
                       transition: 'color 0.25s ease',
                       fontFamily: 'var(--font-label)',
                     }}
-                    onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = 'hsl(0 0% 86%)' }}
+                    onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = 'var(--text-body)' }}
                     onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = '#F2F8FC' }}
                   >
-                    <span style={{ fontSize: '0.42rem', color: 'hsl(280 65% 65%)', flexShrink: 0 }}>◆</span>
+                    <span style={{ fontSize: '0.42rem', color: 'hsl(44 100% 71%)', flexShrink: 0 }}>◆</span>
                     {item}
                   </li>
                 ))}
@@ -4026,8 +3922,8 @@ function SocialMediaMarketing() {
       {/* Atmospheric glow */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
         background: [
-          'radial-gradient(ellipse 65% 50% at 72% 50%, hsl(199 89% 60% / 0.055) 0%, transparent 70%)',
-          'radial-gradient(ellipse 45% 40% at 22% 55%, hsl(280 65% 65% / 0.035) 0%, transparent 65%)',
+          'radial-gradient(ellipse 65% 50% at 72% 50%, hsl(44 100% 71% / 0.055) 0%, transparent 70%)',
+          'radial-gradient(ellipse 45% 40% at 22% 55%, hsl(44 100% 71% / 0.035) 0%, transparent 65%)',
         ].join(', '),
         filter: 'blur(60px)',
       }}/>
@@ -4049,17 +3945,17 @@ function SocialMediaMarketing() {
               className="s5cv-label font-sans uppercase mb-6"
               style={{
                 opacity: 0, transform: 'translateY(16px)',
-                fontSize: '0.6rem', letterSpacing: '0.32em',
-                color: 'hsl(0 0% 32%)', fontWeight: 300,
+                fontSize: '0.75rem', letterSpacing: '0.16em',
+                color: 'var(--text-muted)', fontWeight: 500,
               }}
             >
-              SECTION 06
+              Social Campaigns
             </p>
 
             {/* Headline */}
             <h2
               className="s5cv-heading font-heading font-medium text-text mb-5"
-              style={{ fontSize: 'clamp(1.9rem, 3.6vw, 3.1rem)', lineHeight: 1.22, letterSpacing: '-0.035em' }}
+              style={{ fontSize: 'clamp(1.9rem, 3.6vw, 3.1rem)', lineHeight: 1.22, letterSpacing: '-0.03em' }}
             >
               {['Social', 'campaigns', 'built', 'for', 'the', 'platforms'].map((word, i) => (
                 <span key={i} style={{ display: 'inline-block', overflow: 'hidden', verticalAlign: 'bottom', marginRight: '0.24em', paddingBottom: '0.05em' }}>
@@ -4068,12 +3964,12 @@ function SocialMediaMarketing() {
                   </span>
                 </span>
               ))}
-              <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400, display: 'inline-block', overflow: 'hidden', verticalAlign: 'bottom', paddingBottom: '0.05em' }}>
+              <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 500, display: 'inline-block', overflow: 'hidden', verticalAlign: 'bottom', paddingBottom: '0.05em' }}>
                 <span
                   className="s5cv-hword"
                   style={{
                     display: 'inline-block', transform: 'translateY(110%)', opacity: 0,
-                    background: 'linear-gradient(108deg, hsl(199 89% 74%) 0%, hsl(240 60% 74%) 55%, hsl(280 65% 74%) 100%)',
+                    background: 'linear-gradient(108deg, hsl(44 100% 71%) 0%, hsl(44 100% 71%) 55%, hsl(44 100% 71%) 100%)',
                     WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
                   }}
                 >
@@ -4085,13 +3981,13 @@ function SocialMediaMarketing() {
             {/* Thin accent rule */}
             <div style={{
               height: 1,
-              background: 'linear-gradient(to right, hsl(199 89% 60% / 0.3), transparent)',
+              background: 'linear-gradient(to right, hsl(44 100% 71% / 0.3), transparent)',
               marginBottom: '1.8rem', maxWidth: '22rem',
             }}/>
 
             {/* Body 1 */}
             <p
-              className="s5cv-body font-sans font-normal mb-5"
+              className="s5cv-body font-sans font-medium mb-5"
               style={{
                 opacity: 0, transform: 'translateY(18px)',
                 fontSize: 'clamp(0.87rem, 1.35vw, 0.97rem)',
@@ -4099,14 +3995,12 @@ function SocialMediaMarketing() {
                 fontFamily: 'var(--font-label)',
               }}
             >
-              We design campaign visuals that feel native to Instagram, TikTok, Facebook, and paid social
-              placements — not generic graphics forced into a feed. Every creative is shaped around the
-              format, audience behaviour, visual hook, and brand tone.
+              We design campaign visuals that feel native to Instagram, TikTok, Facebook and paid social, not generic graphics forced into a feed. Each one is shaped around the format, the audience and your brand.
             </p>
 
             {/* Body 2 */}
             <p
-              className="s5cv-body font-sans font-normal mb-10"
+              className="s5cv-body font-sans font-medium mb-10"
               style={{
                 opacity: 0, transform: 'translateY(18px)',
                 fontSize: 'clamp(0.87rem, 1.35vw, 0.97rem)',
@@ -4114,9 +4008,7 @@ function SocialMediaMarketing() {
                 fontFamily: 'var(--font-label)',
               }}
             >
-              From luxury product posts to scroll-stopping short-form visuals, we create assets that
-              look premium, communicate quickly, and are ready to perform across organic content, ads,
-              stories, reels, and social launches.
+              From product posts to short-form video, we create assets that communicate quickly and are ready for organic content, ads, stories, reels and launches.
             </p>
 
             {/* Bullet list */}
@@ -4130,7 +4022,7 @@ function SocialMediaMarketing() {
               ].map(item => (
                 <li
                   key={item}
-                  className="s5cv-item flex items-center gap-3 font-sans font-normal"
+                  className="s5cv-item flex items-center gap-3 font-sans font-medium"
                   style={{
                     opacity: 0, transform: 'translateY(10px)',
                     fontSize: 'clamp(0.84rem, 1.2vw, 0.9rem)',
@@ -4141,10 +4033,10 @@ function SocialMediaMarketing() {
                     transition: 'color 0.25s ease',
                     fontFamily: 'var(--font-label)',
                   }}
-                  onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = 'hsl(0 0% 86%)' }}
+                  onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = 'var(--text-body)' }}
                   onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = '#F2F8FC' }}
                 >
-                  <span style={{ fontSize: '0.42rem', color: 'hsl(199 89% 60%)', flexShrink: 0 }}>◆</span>
+                  <span style={{ fontSize: '0.42rem', color: 'hsl(44 100% 71%)', flexShrink: 0 }}>◆</span>
                   {item}
                 </li>
               ))}
@@ -4165,7 +4057,7 @@ function SocialMediaMarketing() {
                   boxShadow: [
                     '0 36px 72px -16px hsl(0 0% 0% / 0.9)',
                     '0 0 0 1px hsl(0 0% 100% / 0.07)',
-                    '0 0 56px -18px hsl(199 89% 60% / 0.22)',
+                    '0 0 56px -18px hsl(44 100% 71% / 0.22)',
                   ].join(', '),
                   background: '#080a0e',
                   transition: 'transform 0.65s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.65s ease',
@@ -4175,14 +4067,14 @@ function SocialMediaMarketing() {
                   (e.currentTarget as HTMLElement).style.boxShadow = [
                     '0 50px 96px -14px hsl(0 0% 0% / 0.94)',
                     '0 0 0 1px hsl(0 0% 100% / 0.1)',
-                    '0 0 76px -14px hsl(199 89% 60% / 0.32)',
+                    '0 0 76px -14px hsl(44 100% 71% / 0.32)',
                   ].join(', ')
                 }}
                 onMouseLeave={e => {
                   (e.currentTarget as HTMLElement).style.boxShadow = [
                     '0 36px 72px -16px hsl(0 0% 0% / 0.9)',
                     '0 0 0 1px hsl(0 0% 100% / 0.07)',
-                    '0 0 56px -18px hsl(199 89% 60% / 0.22)',
+                    '0 0 56px -18px hsl(44 100% 71% / 0.22)',
                   ].join(', ')
                 }}
               >
@@ -4200,14 +4092,14 @@ function SocialMediaMarketing() {
                   position: 'absolute', bottom: '0.85rem', left: '0.85rem',
                   background: 'hsl(0 0% 4% / 0.9)',
                   backdropFilter: 'blur(14px)',
-                  border: '1px solid hsl(199 89% 60% / 0.22)',
+                  border: '1px solid hsl(44 100% 71% / 0.22)',
                   borderRadius: '999px',
                   padding: '0.28rem 0.8rem',
                   display: 'flex', alignItems: 'center', gap: '0.38rem',
                   zIndex: 2,
                 }}>
-                  <span style={{ width: 4, height: 4, borderRadius: '50%', background: 'hsl(199 89% 60%)', flexShrink: 0 }}/>
-                  <span style={{ fontSize: '0.55rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'hsl(199 89% 68%)', fontFamily: 'var(--font-label)', fontWeight: 300 }}>
+                  <span style={{ width: 4, height: 4, borderRadius: '50%', background: 'hsl(44 100% 71%)', flexShrink: 0 }}/>
+                  <span style={{ fontSize: '0.75rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'hsl(44 100% 71%)', fontFamily: 'var(--font-label)', fontWeight: 500 }}>
                     Instagram
                   </span>
                 </div>
@@ -4249,8 +4141,8 @@ function SocialMediaMarketing() {
       {/* Warm amber atmospheric tint */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
         background: [
-          'radial-gradient(ellipse 75% 55% at 50% 55%, hsl(32 90% 55% / 0.055) 0%, transparent 70%)',
-          'radial-gradient(ellipse 50% 40% at 25% 60%, hsl(199 89% 60% / 0.04) 0%, transparent 65%)',
+          'radial-gradient(ellipse 75% 55% at 50% 55%, hsl(44 100% 71% / 0.055) 0%, transparent 70%)',
+          'radial-gradient(ellipse 50% 40% at 25% 60%, hsl(44 100% 71% / 0.04) 0%, transparent 65%)',
         ].join(', '),
         filter: 'blur(60px)',
       }}/>
@@ -4263,11 +4155,11 @@ function SocialMediaMarketing() {
           <div className="mb-10 lg:mb-14">
 
             <p
-              className="s6-badge font-sans font-normal uppercase mb-4"
+              className="s6-badge font-sans font-medium uppercase mb-4"
               style={{
                 opacity: 0, transform: 'translateY(16px)',
-                fontSize: '0.56rem', letterSpacing: '0.38em',
-                color: 'hsl(199 89% 60% / 0.65)',
+                fontSize: '0.75rem', letterSpacing: '0.16em',
+                color: 'hsl(44 100% 71% / 0.65)',
               }}
             >
               Campaign Formats
@@ -4279,16 +4171,16 @@ function SocialMediaMarketing() {
                 opacity: 0, transform: 'translateY(24px)',
                 fontSize: 'clamp(1.9rem, 3.8vw, 3.2rem)',
                 lineHeight: 1.1,
-                letterSpacing: '-0.036em',
-                color: 'hsl(0 0% 95%)',
+                letterSpacing: '-0.03em',
+                color: 'var(--text-description)',
                 marginBottom: 'clamp(1rem, 2vw, 1.4rem)',
               }}
             >
               One campaign.{' '}
               <em style={{
                 fontFamily: 'var(--font-body)',
-                fontStyle: 'italic', fontWeight: 400,
-                color: 'hsl(0 0% 58%)',
+                fontStyle: 'italic', fontWeight: 500,
+                color: '#FFD86B',
               }}>
                 Built for every platform.
               </em>
@@ -4299,13 +4191,13 @@ function SocialMediaMarketing() {
               aria-hidden="true"
               style={{
                 width: '2rem', height: '1px',
-                background: 'hsl(199 89% 60% / 0.3)',
+                background: 'hsl(44 100% 71% / 0.3)',
                 marginBottom: 'clamp(1rem, 2vw, 1.4rem)',
               }}
             />
 
             <p
-              className="s6-body font-sans font-normal"
+              className="s6-body font-sans font-medium"
               style={{
                 opacity: 0, transform: 'translateY(18px)',
                 fontSize: 'clamp(0.85rem, 1.3vw, 0.97rem)',
@@ -4333,16 +4225,16 @@ function SocialMediaMarketing() {
                 style={{ opacity: 0, transform: 'translateY(18px)' }}
               >
                 <p
-                  className="font-sans font-normal uppercase mb-1"
+                  className="font-sans font-medium uppercase mb-1"
                   style={{
-                    fontSize: '0.54rem', letterSpacing: '0.32em',
-                    color: 'hsl(32 90% 62%)',
+                    fontSize: '0.75rem', letterSpacing: '0.16em',
+                    color: 'hsl(44 100% 71%)',
                   }}
                 >
                   Landscape Campaign
                 </p>
                 <p
-                  className="font-sans font-normal"
+                  className="font-sans font-medium"
                   style={{
                     fontSize: 'clamp(0.76rem, 1.1vw, 0.84rem)',
                     lineHeight: 1.7, color: '#F2F8FC',
@@ -4357,10 +4249,10 @@ function SocialMediaMarketing() {
                 className="s6-video aspect-video rounded-[28px] overflow-hidden border border-white/10"
                 style={{
                   opacity: 0, transform: 'translateY(40px)',
-                  background: '#06080a',
+                  background: '#010709',
                   boxShadow: [
                     '0 32px 72px -16px hsl(0 0% 0% / 0.88)',
-                    '0 0 60px -20px hsl(32 90% 55% / 0.14)',
+                    '0 0 60px -20px hsl(44 100% 71% / 0.14)',
                   ].join(', '),
                 }}
               >
@@ -4392,16 +4284,16 @@ function SocialMediaMarketing() {
                 style={{ opacity: 0, transform: 'translateY(18px)' }}
               >
                 <p
-                  className="font-sans font-normal uppercase mb-1"
+                  className="font-sans font-medium uppercase mb-1"
                   style={{
-                    fontSize: '0.54rem', letterSpacing: '0.32em',
-                    color: 'hsl(199 89% 62%)',
+                    fontSize: '0.75rem', letterSpacing: '0.16em',
+                    color: 'hsl(44 100% 71%)',
                   }}
                 >
                   Vertical Social Cut
                 </p>
                 <p
-                  className="font-sans font-normal"
+                  className="font-sans font-medium"
                   style={{
                     fontSize: 'clamp(0.76rem, 1.1vw, 0.84rem)',
                     lineHeight: 1.7, color: '#F2F8FC',
@@ -4416,10 +4308,10 @@ function SocialMediaMarketing() {
                 className="s6-video aspect-[9/16] rounded-[28px] overflow-hidden border border-white/10"
                 style={{
                   opacity: 0, transform: 'translateY(40px)',
-                  background: '#06080a',
+                  background: '#010709',
                   boxShadow: [
                     '0 32px 72px -16px hsl(0 0% 0% / 0.88)',
-                    '0 0 60px -20px hsl(199 89% 55% / 0.12)',
+                    '0 0 60px -20px hsl(44 100% 71% / 0.12)',
                   ].join(', '),
                 }}
               >
@@ -4445,7 +4337,7 @@ function SocialMediaMarketing() {
               marginTop: 'clamp(2.5rem, 5vw, 3.5rem)',
               fontFamily: 'var(--font-body)',
               fontStyle: 'italic',
-              fontWeight: 400,
+              fontWeight: 500,
               fontSize: 'clamp(1.1rem, 2.2vw, 1.35rem)',
               color: 'hsl(0 0% 100% / 0.76)',
             }}
@@ -4490,8 +4382,8 @@ function SocialMediaMarketing() {
         {/* ── Centered header ── */}
         <div className="text-center mb-20 lg:mb-24">
           <p
-            className="smf-eyebrow font-sans font-normal uppercase mb-5 section-eyebrow-sm"
-            style={{ opacity: 0, letterSpacing: '0.38em', color: 'hsl(280 65% 72% / 0.65)' }}
+            className="smf-eyebrow font-sans font-medium uppercase mb-5 section-eyebrow-sm"
+            style={{ opacity: 0, letterSpacing: '0.16em', color: 'hsl(44 100% 71% / 0.65)' }}
           >
             The Weavy Difference
           </p>
@@ -4501,8 +4393,8 @@ function SocialMediaMarketing() {
               opacity: 0,
               fontSize: 'clamp(2.2rem, 4.5vw, 3.6rem)',
               lineHeight: 1.06,
-              letterSpacing: '-0.04em',
-              color: 'hsl(0 0% 96%)',
+              letterSpacing: '-0.03em',
+              color: 'var(--text-description)',
               maxWidth: '38rem',
             }}
           >
@@ -4510,8 +4402,8 @@ function SocialMediaMarketing() {
             <em style={{
               fontFamily: 'var(--font-body)',
               fontStyle: 'italic',
-              fontWeight: 400,
-              color: 'hsl(0 0% 64%)',
+              fontWeight: 500,
+              color: '#FFD86B',
             }}>
               Work With Weavy
             </em>
@@ -4524,7 +4416,7 @@ function SocialMediaMarketing() {
               opacity: 0,
               width: '2.4rem',
               height: '1px',
-              background: 'hsl(280 65% 72% / 0.35)',
+              background: 'hsl(44 100% 71% / 0.35)',
             }}
           />
         </div>
@@ -4547,8 +4439,8 @@ function SocialMediaMarketing() {
             onMouseEnter={e => {
               const el = e.currentTarget as HTMLElement
               el.style.transform = 'translateY(-4px)'
-              el.style.borderColor = 'hsl(24 95% 62% / 0.4)'
-              el.style.boxShadow = '0 16px 40px -10px hsl(0 0% 0% / 0.5), 0 0 32px -8px hsl(24 95% 62% / 0.25)'
+              el.style.borderColor = 'hsl(44 100% 71% / 0.4)'
+              el.style.boxShadow = '0 16px 40px -10px hsl(0 0% 0% / 0.5), 0 0 32px -8px hsl(44 100% 71% / 0.25)'
             }}
             onMouseLeave={e => {
               const el = e.currentTarget as HTMLElement
@@ -4560,27 +4452,27 @@ function SocialMediaMarketing() {
             {/* Icon */}
             <div className="smf-icon" style={{ marginBottom: '1.4rem', display: 'inline-block' }}>
               <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-                <circle cx="16" cy="16" r="12" stroke="hsl(24 95% 62%)" strokeWidth="1.4" opacity="0.25"/>
-                <path d="M10 22 L16 10 L22 22" stroke="hsl(24 95% 62%)" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
-                <path d="M12.5 18 h7" stroke="hsl(24 95% 62%)" strokeWidth="1.4" strokeLinecap="round" opacity="0.6"/>
-                <circle cx="16" cy="10" r="1.8" fill="hsl(24 95% 62%)"/>
+                <circle cx="16" cy="16" r="12" stroke="hsl(44 100% 71%)" strokeWidth="1.4" opacity="0.25"/>
+                <path d="M10 22 L16 10 L22 22" stroke="hsl(44 100% 71%)" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M12.5 18 h7" stroke="hsl(44 100% 71%)" strokeWidth="1.4" strokeLinecap="round" opacity="0.6"/>
+                <circle cx="16" cy="10" r="1.8" fill="hsl(44 100% 71%)"/>
               </svg>
             </div>
             {/* Heading */}
             <h3
-              className="smf-block-heading font-heading font-semibold mb-4"
+              className="smf-block-heading font-heading font-medium mb-4"
               style={{
                 fontSize: 'clamp(1rem, 1.6vw, 1.12rem)',
                 letterSpacing: '-0.022em',
                 lineHeight: 1.25,
-                color: 'hsl(24 95% 68%)',
+                color: 'hsl(44 100% 71%)',
               }}
             >
               Conversion-Focused Strategy
             </h3>
             {/* Body */}
             <p
-              className="smf-block-body font-sans font-normal"
+              className="smf-block-body font-sans font-medium"
               style={{
                 fontSize: 'clamp(0.85rem, 1.2vw, 0.94rem)',
                 lineHeight: 1.9,
@@ -4588,7 +4480,7 @@ function SocialMediaMarketing() {
                 maxWidth: '28rem',
               }}
             >
-              Every project is designed around clarity, positioning, and measurable growth. We build digital systems that guide attention, strengthen trust, and turn visitors into real customers.
+              Every project is designed around clarity, positioning and clear goals. We build digital systems that guide attention, strengthen trust and give visitors an obvious next step.
             </p>
           </div>
 
@@ -4607,8 +4499,8 @@ function SocialMediaMarketing() {
             onMouseEnter={e => {
               const el = e.currentTarget as HTMLElement
               el.style.transform = 'translateY(-4px)'
-              el.style.borderColor = 'hsl(195 100% 55% / 0.4)'
-              el.style.boxShadow = '0 16px 40px -10px hsl(0 0% 0% / 0.5), 0 0 32px -8px hsl(195 100% 55% / 0.25)'
+              el.style.borderColor = 'hsl(44 100% 71% / 0.4)'
+              el.style.boxShadow = '0 16px 40px -10px hsl(0 0% 0% / 0.5), 0 0 32px -8px hsl(44 100% 71% / 0.25)'
             }}
             onMouseLeave={e => {
               const el = e.currentTarget as HTMLElement
@@ -4620,27 +4512,27 @@ function SocialMediaMarketing() {
             {/* Icon */}
             <div className="smf-icon" style={{ marginBottom: '1.4rem', display: 'inline-block' }}>
               <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-                <circle cx="16" cy="16" r="5" stroke="hsl(195 100% 55%)" strokeWidth="1.6"/>
-                <path d="M16 4 v4 M16 24 v4 M4 16 h4 M24 16 h4" stroke="hsl(195 100% 55%)" strokeWidth="1.4" strokeLinecap="round" opacity="0.5"/>
-                <path d="M7.5 7.5 l2.8 2.8 M21.7 21.7 l2.8 2.8 M21.7 10.3 l-2.8 2.8 M10.3 21.7 l-2.8 2.8" stroke="hsl(195 100% 55%)" strokeWidth="1.3" strokeLinecap="round" opacity="0.3"/>
-                <circle cx="16" cy="16" r="2.2" fill="hsl(195 100% 55%)" opacity="0.9"/>
+                <circle cx="16" cy="16" r="5" stroke="hsl(44 100% 71%)" strokeWidth="1.6"/>
+                <path d="M16 4 v4 M16 24 v4 M4 16 h4 M24 16 h4" stroke="hsl(44 100% 71%)" strokeWidth="1.4" strokeLinecap="round" opacity="0.5"/>
+                <path d="M7.5 7.5 l2.8 2.8 M21.7 21.7 l2.8 2.8 M21.7 10.3 l-2.8 2.8 M10.3 21.7 l-2.8 2.8" stroke="hsl(44 100% 71%)" strokeWidth="1.3" strokeLinecap="round" opacity="0.3"/>
+                <circle cx="16" cy="16" r="2.2" fill="hsl(44 100% 71%)" opacity="0.9"/>
               </svg>
             </div>
             {/* Heading */}
             <h3
-              className="smf-block-heading font-heading font-semibold mb-4"
+              className="smf-block-heading font-heading font-medium mb-4"
               style={{
                 fontSize: 'clamp(1rem, 1.6vw, 1.12rem)',
                 letterSpacing: '-0.022em',
                 lineHeight: 1.25,
-                color: 'hsl(195 100% 62%)',
+                color: 'hsl(44 100% 71%)',
               }}
             >
               Automation That Scales
             </h3>
             {/* Body */}
             <p
-              className="smf-block-body font-sans font-normal"
+              className="smf-block-body font-sans font-medium"
               style={{
                 fontSize: 'clamp(0.85rem, 1.2vw, 0.94rem)',
                 lineHeight: 1.9,
@@ -4667,8 +4559,8 @@ function SocialMediaMarketing() {
             onMouseEnter={e => {
               const el = e.currentTarget as HTMLElement
               el.style.transform = 'translateY(-4px)'
-              el.style.borderColor = 'hsl(320 80% 65% / 0.4)'
-              el.style.boxShadow = '0 16px 40px -10px hsl(0 0% 0% / 0.5), 0 0 32px -8px hsl(320 80% 65% / 0.25)'
+              el.style.borderColor = 'hsl(44 100% 71% / 0.4)'
+              el.style.boxShadow = '0 16px 40px -10px hsl(0 0% 0% / 0.5), 0 0 32px -8px hsl(44 100% 71% / 0.25)'
             }}
             onMouseLeave={e => {
               const el = e.currentTarget as HTMLElement
@@ -4680,25 +4572,25 @@ function SocialMediaMarketing() {
             {/* Icon */}
             <div className="smf-icon" style={{ marginBottom: '1.4rem', display: 'inline-block' }}>
               <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-                <polygon points="16,5 19.5,13 28,13.5 22,19.5 24,28 16,23.5 8,28 10,19.5 4,13.5 12.5,13" stroke="hsl(320 80% 65%)" strokeWidth="1.5" strokeLinejoin="round" fill="none"/>
-                <circle cx="16" cy="16" r="2.4" fill="hsl(320 80% 65%)" opacity="0.8"/>
+                <polygon points="16,5 19.5,13 28,13.5 22,19.5 24,28 16,23.5 8,28 10,19.5 4,13.5 12.5,13" stroke="hsl(44 100% 71%)" strokeWidth="1.5" strokeLinejoin="round" fill="none"/>
+                <circle cx="16" cy="16" r="2.4" fill="hsl(44 100% 71%)" opacity="0.8"/>
               </svg>
             </div>
             {/* Heading */}
             <h3
-              className="smf-block-heading font-heading font-semibold mb-4"
+              className="smf-block-heading font-heading font-medium mb-4"
               style={{
                 fontSize: 'clamp(1rem, 1.6vw, 1.12rem)',
                 letterSpacing: '-0.022em',
                 lineHeight: 1.25,
-                color: 'hsl(320 80% 68%)',
+                color: 'hsl(44 100% 71%)',
               }}
             >
               Premium Brand Presence
             </h3>
             {/* Body */}
             <p
-              className="smf-block-body font-sans font-normal"
+              className="smf-block-body font-sans font-medium"
               style={{
                 fontSize: 'clamp(0.85rem, 1.2vw, 0.94rem)',
                 lineHeight: 1.9,
@@ -4725,8 +4617,8 @@ function SocialMediaMarketing() {
             onMouseEnter={e => {
               const el = e.currentTarget as HTMLElement
               el.style.transform = 'translateY(-4px)'
-              el.style.borderColor = 'hsl(215 90% 62% / 0.4)'
-              el.style.boxShadow = '0 16px 40px -10px hsl(0 0% 0% / 0.5), 0 0 32px -8px hsl(215 90% 62% / 0.25)'
+              el.style.borderColor = 'hsl(44 100% 71% / 0.4)'
+              el.style.boxShadow = '0 16px 40px -10px hsl(0 0% 0% / 0.5), 0 0 32px -8px hsl(44 100% 71% / 0.25)'
             }}
             onMouseLeave={e => {
               const el = e.currentTarget as HTMLElement
@@ -4738,26 +4630,26 @@ function SocialMediaMarketing() {
             {/* Icon */}
             <div className="smf-icon" style={{ marginBottom: '1.4rem', display: 'inline-block' }}>
               <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-                <polyline points="4,24 10,16 16,19 24,9 28,12" stroke="hsl(215 90% 62%)" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
-                <polyline points="21,9 28,9 28,16" stroke="hsl(215 90% 62%)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                <line x1="4" y1="27" x2="28" y2="27" stroke="hsl(215 90% 62%)" strokeWidth="1.2" strokeLinecap="round" opacity="0.28"/>
+                <polyline points="4,24 10,16 16,19 24,9 28,12" stroke="hsl(44 100% 71%)" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+                <polyline points="21,9 28,9 28,16" stroke="hsl(44 100% 71%)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                <line x1="4" y1="27" x2="28" y2="27" stroke="hsl(44 100% 71%)" strokeWidth="1.2" strokeLinecap="round" opacity="0.28"/>
               </svg>
             </div>
             {/* Heading */}
             <h3
-              className="smf-block-heading font-heading font-semibold mb-4"
+              className="smf-block-heading font-heading font-medium mb-4"
               style={{
                 fontSize: 'clamp(1rem, 1.6vw, 1.12rem)',
                 letterSpacing: '-0.022em',
                 lineHeight: 1.25,
-                color: 'hsl(215 90% 68%)',
+                color: 'hsl(44 100% 71%)',
               }}
             >
               Built for Long-Term Growth
             </h3>
             {/* Body */}
             <p
-              className="smf-block-body font-sans font-normal"
+              className="smf-block-body font-sans font-medium"
               style={{
                 fontSize: 'clamp(0.85rem, 1.2vw, 0.94rem)',
                 lineHeight: 1.9,
@@ -4786,17 +4678,17 @@ function SocialMediaMarketing() {
       heading={<>
         Ready to turn attention into{' '}
         <em style={{
-          fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400,
-          background: 'linear-gradient(90deg, #FFFFFF 0%, #7DDCFF 45%, #B7AEFF 100%)',
+          fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 500,
+          background: 'linear-gradient(90deg, #FFFFFF 0%, #FFE9A8 45%, #FFD86B 100%)',
           WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
           color: 'transparent',
-          textShadow: '0 0 24px rgba(125, 220, 255, 0.16)',
+          textShadow: '0 0 24px rgba(255,216,107, 0.16)',
         }}>
           growth?
         </em>
       </>}
       subtext="Let's build a social media strategy with purposeful content, targeted campaigns and clear reporting—designed to strengthen your brand and convert attention into customers."
-      ctaLabel="Book a Free Consultation"
+      ctaLabel="Start a Project"
       ctaHref="/contact"
       ctaVariant="primary"
     />
@@ -4808,11 +4700,11 @@ function SocialMediaMarketing() {
 
 const CHATBOT_FEATURES = [
   { Icon: Settings2,    title: 'Custom Logic',        desc: 'Built around your exact workflows, not off-the-shelf scripts.' },
-  { Icon: Plug,         title: 'Easy Integration',    desc: 'Live on your website or platform within hours.' },
-  { Icon: Clock,        title: '24 / 7 Support',      desc: 'Never misses a query — handles volume around the clock.' },
+  { Icon: Plug,         title: 'Easy Integration',    desc: 'Connects to the website and messaging channels you already use.' },
+  { Icon: Clock,        title: '24 / 7 Support',      desc: 'Replies around the clock, including evenings and weekends.' },
   { Icon: UserCheck,    title: 'Lead Qualification',  desc: 'Captures and routes leads before they reach your team.' },
-  { Icon: CalendarDays, title: 'Bookings & Orders',   desc: 'Manages appointments, queries, and orders autonomously.' },
-  { Icon: Zap,          title: 'Trained on Your Data',desc: 'Fine-tuned on your knowledge base and improves over time.' },
+  { Icon: CalendarDays, title: 'Bookings & Orders',   desc: 'Handles appointments, queries and orders, with handover to your team.' },
+  { Icon: Zap,          title: 'Trained on Your Data',desc: 'Built on your own services, FAQs and knowledge base.' },
 ]
 
 function ChatbotMockup() {
@@ -4854,7 +4746,7 @@ function ChatbotMockup() {
       {/* Ambient glow */}
       <div aria-hidden="true" style={{
         position: 'absolute', inset: 0, pointerEvents: 'none',
-        background: 'radial-gradient(ellipse 75% 65% at 50% 48%, hsl(195 90% 55% / 0.1) 0%, transparent 68%)',
+        background: 'radial-gradient(ellipse 75% 65% at 50% 48%, hsl(44 100% 71% / 0.1) 0%, transparent 68%)',
         filter: 'blur(28px)',
       }}/>
 
@@ -4863,15 +4755,15 @@ function ChatbotMockup() {
         position: 'absolute', left: '50%', top: '16px',
         transform: 'translateX(-50%)',
         width: '100%', maxWidth: '348px',
-        filter: 'drop-shadow(0 30px 50px hsl(195 90% 50% / 0.18))',
+        filter: 'drop-shadow(0 30px 50px hsl(44 100% 71% / 0.18))',
       }}>
         {/* Float wrapper — owns the chatbot-float animation */}
         <div style={{ animation: 'chatbot-float 4.5s ease-in-out infinite' }}>
           {/* Gradient border shell */}
           <div style={{
             borderRadius: '20px', padding: '1px',
-            background: 'linear-gradient(148deg, hsl(195 85% 55% / 0.65), hsl(215 75% 52% / 0.18) 48%, hsl(195 85% 55% / 0.52))',
-            boxShadow: '0 0 40px -10px hsl(195 90% 55% / 0.26), 0 28px 56px -18px hsl(0 0% 0% / 0.65)',
+            background: 'linear-gradient(148deg, hsl(44 100% 71% / 0.65), hsl(44 100% 71% / 0.18) 48%, hsl(44 100% 71% / 0.52))',
+            boxShadow: '0 0 40px -10px hsl(44 100% 71% / 0.26), 0 28px 56px -18px hsl(0 0% 0% / 0.65)',
           }}>
             <div style={{
               borderRadius: '19px', overflow: 'hidden',
@@ -4886,9 +4778,9 @@ function ChatbotMockup() {
               }}>
                 <div style={{
                   width: '33px', height: '33px', borderRadius: '50%', flexShrink: 0,
-                  background: 'linear-gradient(135deg, hsl(195 90% 55%), hsl(215 80% 46%))',
+                  background: 'linear-gradient(135deg, hsl(44 100% 71%), hsl(44 100% 71%))',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  boxShadow: '0 0 14px hsl(195 90% 55% / 0.55)',
+                  boxShadow: '0 0 14px hsl(44 100% 71% / 0.55)',
                 }}>
                   <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
                     <rect x="3" y="5" width="14" height="11" rx="3.5" stroke="white" strokeWidth="1.4"/>
@@ -4899,16 +4791,16 @@ function ChatbotMockup() {
                   </svg>
                 </div>
                 <div style={{ flex: 1 }}>
-                  <div style={{ fontSize: '0.84rem', color: 'hsl(0 0% 92%)', fontFamily: 'var(--font-label)', fontWeight: 300, letterSpacing: '-0.01em' }}>AI Assistant</div>
-                  <div style={{ fontSize: '0.67rem', fontFamily: 'var(--font-label)', display: 'flex', alignItems: 'center', gap: '5px', color: 'hsl(150 65% 52%)' }}>
+                  <div style={{ fontSize: '0.84rem', color: 'var(--text-description)', fontFamily: 'var(--font-label)', fontWeight: 500, letterSpacing: '-0.01em' }}>AI Assistant</div>
+                  <div style={{ fontSize: '0.75rem', fontFamily: 'var(--font-label)', display: 'flex', alignItems: 'center', gap: '5px', color: 'hsl(44 100% 71%)' }}>
                     {/* Online dot — subtle pulse to simulate live connection */}
                     <span aria-hidden="true" style={{
                       width: '5px', height: '5px', borderRadius: '50%',
-                      background: 'hsl(150 65% 52%)', display: 'inline-block',
-                      boxShadow: '0 0 6px hsl(150 65% 52%)',
+                      background: 'hsl(44 100% 71%)', display: 'inline-block',
+                      boxShadow: '0 0 6px hsl(44 100% 71%)',
                       animation: 'chatbot-status-pulse 2.6s ease-in-out infinite',
                     }}/>
-                    Online · Trained on your data
+                    Example conversation
                   </div>
                 </div>
                 <div aria-hidden="true" style={{ display: 'flex', gap: '4px' }}>
@@ -4921,9 +4813,9 @@ function ChatbotMockup() {
 
                 {/* Bot greeting — always visible */}
                 <div style={{ display: 'flex', gap: '9px', alignItems: 'flex-end' }}>
-                  <div aria-hidden="true" style={{ width: '25px', height: '25px', borderRadius: '50%', background: 'linear-gradient(135deg, hsl(195 90% 55%), hsl(215 80% 46%))', flexShrink: 0 }}/>
+                  <div aria-hidden="true" style={{ width: '25px', height: '25px', borderRadius: '50%', background: 'linear-gradient(135deg, hsl(44 100% 71%), hsl(44 100% 71%))', flexShrink: 0 }}/>
                   <div style={{ background: 'hsl(215 22% 13%)', border: '1px solid hsl(0 0% 100% / 0.06)', borderRadius: '5px 14px 14px 14px', padding: '9px 13px', maxWidth: '80%' }}>
-                    <p style={{ fontSize: '0.77rem', color: 'hsl(0 0% 80%)', fontFamily: 'var(--font-label)', lineHeight: 1.65, margin: 0 }}>
+                    <p style={{ fontSize: '0.75rem', color: 'var(--text-body)', fontFamily: 'var(--font-label)', lineHeight: 1.65, margin: 0 }}>
                       Hi! I'm your AI assistant, trained specifically for your business. How can I help?
                     </p>
                   </div>
@@ -4931,8 +4823,8 @@ function ChatbotMockup() {
 
                 {/* User message — fades in at phase 1 */}
                 <div style={{ display: 'flex', justifyContent: 'flex-end', ...msgAnim(showUser) }}>
-                  <div style={{ background: 'linear-gradient(135deg, hsl(205 78% 40%), hsl(215 72% 33%))', borderRadius: '14px 5px 14px 14px', padding: '9px 13px', maxWidth: '80%' }}>
-                    <p style={{ fontSize: '0.77rem', color: 'hsl(0 0% 94%)', fontFamily: 'var(--font-label)', lineHeight: 1.65, margin: 0 }}>
+                  <div style={{ background: 'linear-gradient(135deg, hsl(44 100% 71%), hsl(44 85% 62%))', borderRadius: '14px 5px 14px 14px', padding: '9px 13px', maxWidth: '80%' }}>
+                    <p style={{ fontSize: '0.75rem', color: '#010709', fontFamily: 'var(--font-label)', lineHeight: 1.65, margin: 0 }}>
                       Can I book a consultation for Thursday?
                     </p>
                   </div>
@@ -4940,9 +4832,9 @@ function ChatbotMockup() {
 
                 {/* Bot reply — fades in at phase 3 (above typing in DOM = below typing in sequence) */}
                 <div style={{ display: 'flex', gap: '9px', alignItems: 'flex-end', ...msgAnim(showReply) }}>
-                  <div aria-hidden="true" style={{ width: '25px', height: '25px', borderRadius: '50%', background: 'linear-gradient(135deg, hsl(195 90% 55%), hsl(215 80% 46%))', flexShrink: 0 }}/>
+                  <div aria-hidden="true" style={{ width: '25px', height: '25px', borderRadius: '50%', background: 'linear-gradient(135deg, hsl(44 100% 71%), hsl(44 100% 71%))', flexShrink: 0 }}/>
                   <div style={{ background: 'hsl(215 22% 13%)', border: '1px solid hsl(0 0% 100% / 0.06)', borderRadius: '5px 14px 14px 14px', padding: '9px 13px', maxWidth: '80%' }}>
-                    <p style={{ fontSize: '0.77rem', color: 'hsl(0 0% 80%)', fontFamily: 'var(--font-label)', lineHeight: 1.65, margin: 0 }}>
+                    <p style={{ fontSize: '0.75rem', color: 'var(--text-body)', fontFamily: 'var(--font-label)', lineHeight: 1.65, margin: 0 }}>
                       Thursday works! I have 2 pm and 4 pm available — which suits you?
                     </p>
                   </div>
@@ -4950,12 +4842,12 @@ function ChatbotMockup() {
 
                 {/* Typing indicator — appears at phase 2, stays through phase 3+ */}
                 <div style={{ display: 'flex', gap: '9px', alignItems: 'flex-end', ...msgAnim(showTyping) }}>
-                  <div aria-hidden="true" style={{ width: '25px', height: '25px', borderRadius: '50%', background: 'linear-gradient(135deg, hsl(195 90% 55%), hsl(215 80% 46%))', flexShrink: 0 }}/>
+                  <div aria-hidden="true" style={{ width: '25px', height: '25px', borderRadius: '50%', background: 'linear-gradient(135deg, hsl(44 100% 71%), hsl(44 100% 71%))', flexShrink: 0 }}/>
                   <div style={{ background: 'hsl(215 22% 13%)', border: '1px solid hsl(0 0% 100% / 0.06)', borderRadius: '5px 14px 14px 14px', padding: '11px 15px', display: 'flex', gap: '5px', alignItems: 'center' }}>
                     {[0,1,2].map(j => (
                       <span key={j} aria-hidden="true" style={{
                         width: '5px', height: '5px', borderRadius: '50%', display: 'block',
-                        background: 'hsl(195 85% 60%)',
+                        background: 'hsl(44 100% 71%)',
                         animation: `typing-dot 1.4s ease-in-out ${j * 0.18}s infinite`,
                       }}/>
                     ))}
@@ -4973,17 +4865,17 @@ function ChatbotMockup() {
                 <div style={{
                   flex: 1, padding: '8px 13px', borderRadius: '18px',
                   background: 'hsl(215 18% 12%)', border: '1px solid hsl(0 0% 100% / 0.07)',
-                  fontSize: '0.75rem', color: 'hsl(0 0% 30%)', fontFamily: 'var(--font-label)',
+                  fontSize: '0.75rem', color: 'var(--text-muted)', fontFamily: 'var(--font-label)',
                   display: 'flex', alignItems: 'center',
                 }}>
                   Ask me anything…
                   <span aria-hidden="true" style={{
-                    color: 'hsl(195 85% 60%)', marginLeft: '1px',
+                    color: 'hsl(44 100% 71%)', marginLeft: '1px',
                     animation: 'cursor-blink 1.1s ease-in-out infinite',
-                    lineHeight: 1, fontSize: '0.78rem',
+                    lineHeight: 1, fontSize: '0.75rem',
                   }}>|</span>
                 </div>
-                <div aria-hidden="true" style={{ width: '32px', height: '32px', borderRadius: '50%', flexShrink: 0, background: 'linear-gradient(135deg, hsl(195 90% 55%), hsl(215 80% 46%))', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 0 10px hsl(195 90% 55% / 0.4)' }}>
+                <div aria-hidden="true" style={{ width: '32px', height: '32px', borderRadius: '50%', flexShrink: 0, background: 'linear-gradient(135deg, hsl(44 100% 71%), hsl(44 100% 71%))', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 0 10px hsl(44 100% 71% / 0.4)' }}>
                   <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true">
                     <path d="M2 6.5h9M7.5 3l3.5 3.5L7.5 10" stroke="white" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
@@ -4993,27 +4885,6 @@ function ChatbotMockup() {
             </div>
           </div>
         </div>
-      </div>
-
-      {/* ── Floating stat cards — float + occasional glow pulse ── */}
-      <div aria-hidden="true" style={{
-        position: 'absolute', top: '32px', right: '0',
-        background: 'hsl(215 25% 9% / 0.92)', backdropFilter: 'blur(14px)',
-        border: '1px solid hsl(150 60% 50% / 0.28)', borderRadius: '12px', padding: '10px 15px',
-        animation: 'chatbot-float 5.5s ease-in-out 0.8s infinite, chatbot-card-glow-green 7s ease-in-out 1.5s infinite',
-      }}>
-        <div style={{ fontSize: '0.58rem', color: 'hsl(0 0% 40%)', fontFamily: 'var(--font-label)', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '4px' }}>Response</div>
-        <div style={{ fontSize: '1.05rem', color: 'hsl(150 68% 54%)', fontFamily: 'var(--font-label)', fontWeight: 300, letterSpacing: '-0.02em' }}>{'< 0.8s'}</div>
-      </div>
-
-      <div aria-hidden="true" style={{
-        position: 'absolute', bottom: '64px', left: '0',
-        background: 'hsl(215 25% 9% / 0.92)', backdropFilter: 'blur(14px)',
-        border: '1px solid hsl(205 85% 62% / 0.28)', borderRadius: '12px', padding: '10px 15px',
-        animation: 'chatbot-float 6s ease-in-out 0.3s infinite, chatbot-card-glow-blue 7s ease-in-out 4s infinite',
-      }}>
-        <div style={{ fontSize: '0.58rem', color: 'hsl(0 0% 40%)', fontFamily: 'var(--font-label)', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '4px' }}>Satisfaction</div>
-        <div style={{ fontSize: '1.05rem', color: 'hsl(205 85% 62%)', fontFamily: 'var(--font-label)', fontWeight: 300, letterSpacing: '-0.02em' }}>97.4%</div>
       </div>
 
     </div>
@@ -5029,7 +4900,7 @@ function ChatbotHero() {
       className="relative w-full"
       style={{
         background: '#010709',
-        backgroundImage: 'radial-gradient(ellipse 65% 70% at 72% 50%, hsl(192 80% 14% / 0.28) 0%, transparent 70%)',
+        backgroundImage: 'radial-gradient(ellipse 65% 70% at 72% 50%, hsl(44 45% 14% / 0.28) 0%, transparent 70%)',
         padding: 'clamp(5rem, 8vw, 7rem) clamp(1rem, 4vw, 3rem) clamp(3rem, 5vw, 4.5rem)',
       }}
     >
@@ -5080,8 +4951,8 @@ function ChatbotHero() {
         >
           {/* Eyebrow */}
           <p
-            className="font-sans font-normal uppercase mb-3"
-            style={{ fontSize: '0.63rem', letterSpacing: '0.32em', color: 'hsl(195 80% 68%)' }}
+            className="font-sans font-medium uppercase mb-3"
+            style={{ fontSize: '0.75rem', letterSpacing: '0.16em', color: 'hsl(44 100% 71%)' }}
           >
             AI-Powered
           </p>
@@ -5089,10 +4960,10 @@ function ChatbotHero() {
           {/* Heading */}
           <h2
             className="font-heading font-medium text-white text-[clamp(2.1rem,4.2vw,3.64rem)] lg:text-[clamp(3rem,6vw,5.2rem)]"
-            style={{ lineHeight: 1.08, letterSpacing: '-0.04em' }}
+            style={{ lineHeight: 1.08, letterSpacing: '-0.03em' }}
           >
             <span style={{ display: 'block' }}>Custom</span>
-            <em style={{ display: 'block', fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(195 80% 72%)' }}>
+            <em style={{ display: 'block', fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 500, color: 'hsl(44 100% 71%)' }}>
               Chatbot
             </em>
           </h2>
@@ -5134,7 +5005,7 @@ function GraphicDesignHero() {
       className="relative w-full"
       style={{
         background: '#010709',
-        backgroundImage: 'radial-gradient(ellipse 65% 70% at 72% 50%, hsl(192 80% 14% / 0.28) 0%, transparent 70%)',
+        backgroundImage: 'radial-gradient(ellipse 65% 70% at 72% 50%, hsl(44 45% 14% / 0.28) 0%, transparent 70%)',
         // Opens its own page now, so this clears the fixed navbar at every
         // width (it was clamp(3rem, 6vw, 5rem), which tucked the frame under
         // the navbar on phones and tablets; desktop moves by only 4px).
@@ -5208,14 +5079,14 @@ function GraphicDesignCreativeSystems() {
       >
         {/* Section label */}
         <div className="flex items-center gap-3 mb-5">
-          <div style={{ width: 24, height: 1, background: 'rgba(125,220,255,0.45)' }} />
+          <div style={{ width: 24, height: 1, background: 'rgba(255,216,107,0.45)' }} />
           <span style={{
-            fontSize: '0.65rem', letterSpacing: '0.3em', textTransform: 'uppercase',
-            color: 'rgba(125,220,255,0.75)', fontFamily: 'var(--font-sans, sans-serif)', fontWeight: 500,
+            fontSize: '0.75rem', letterSpacing: '0.16em', textTransform: 'uppercase',
+            color: 'rgba(255,216,107,0.75)', fontFamily: 'var(--font-sans, sans-serif)', fontWeight: 500,
           }}>
             Creative Systems
           </span>
-          <div style={{ width: 24, height: 1, background: 'rgba(125,220,255,0.45)' }} />
+          <div style={{ width: 24, height: 1, background: 'rgba(255,216,107,0.45)' }} />
         </div>
 
         {/* Supporting sentence */}
@@ -5228,9 +5099,10 @@ function GraphicDesignCreativeSystems() {
             maxWidth: '640px',
           }}
         >
-          From brand identity to campaign visuals, every detail is designed with control,
-          clarity, and commercial impact.
+          From brand identity to campaign visuals, every detail is designed with clarity and commercial impact in mind.
         </p>
+
+        <ServiceCta label="Start a Project" className="mt-7 mb-10 !self-center" />
 
         {/* Media wrapper — image today, drop-in <video poster="..."> later. */}
         <div
@@ -5238,8 +5110,8 @@ function GraphicDesignCreativeSystems() {
           style={{
             borderRadius: '20px',
             overflow: 'hidden',
-            border: '1px solid rgba(125,220,255,0.20)',
-            boxShadow: '0 24px 80px rgba(0,0,0,0.45), 0 0 32px rgba(125,220,255,0.08)',
+            border: '1px solid rgba(255,216,107,0.20)',
+            boxShadow: '0 24px 80px rgba(0,0,0,0.45), 0 0 32px rgba(255,216,107,0.08)',
             background: '#010709',
           }}
         >
@@ -5359,8 +5231,8 @@ function GraphicDesignEditorial() {
       <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
         zIndex: 1,
         background: [
-          'radial-gradient(ellipse 70% 55% at 50% 28%, hsl(38 90% 58% / 0.05) 0%, transparent 70%)',
-          'radial-gradient(ellipse 35% 28% at 82% 72%, hsl(28 80% 50% / 0.025) 0%, transparent 60%)',
+          'radial-gradient(ellipse 70% 55% at 50% 28%, hsl(44 100% 71% / 0.05) 0%, transparent 70%)',
+          'radial-gradient(ellipse 35% 28% at 82% 72%, hsl(44 100% 71% / 0.025) 0%, transparent 60%)',
         ].join(', '),
       }}/>
 
@@ -5386,17 +5258,17 @@ function GraphicDesignEditorial() {
           style={{ borderBottom: '1px solid hsl(0 0% 100% / 0.06)' }}
         >
           <div className="flex items-center gap-4">
-            <div style={{ width: 24, height: 1, background: 'hsl(38 90% 58% / 0.55)' }}/>
+            <div style={{ width: 24, height: 1, background: 'hsl(44 100% 71% / 0.55)' }}/>
             <span style={{
-              fontSize: '0.77rem', letterSpacing: '0.3em', textTransform: 'uppercase',
-              color: 'hsl(38 95% 72%)', fontFamily: 'var(--font-sans, sans-serif)', fontWeight: 500,
+              fontSize: '0.75rem', letterSpacing: '0.16em', textTransform: 'uppercase',
+              color: 'hsl(44 100% 71%)', fontFamily: 'var(--font-sans, sans-serif)', fontWeight: 500,
             }}>
-              02 — Premium Visual Execution
+              Premium Visual Execution
             </span>
           </div>
           <span style={{
-            fontSize: '0.77rem', letterSpacing: '0.2em', textTransform: 'uppercase',
-            color: 'hsl(0 0% 68%)', fontFamily: 'var(--font-sans, sans-serif)',
+            fontSize: '0.75rem', letterSpacing: '0.2em', textTransform: 'uppercase',
+            color: 'var(--text-description)', fontFamily: 'var(--font-sans, sans-serif)',
           }}>
             Graphic Design / Animation
           </span>
@@ -5405,33 +5277,24 @@ function GraphicDesignEditorial() {
         {/* Heading left / Body right */}
         <div className="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-10 lg:gap-20">
 
-          <div className="gde-r" style={{ letterSpacing: '-0.046em', lineHeight: 0.87, flexShrink: 0 }}>
+          <div className="gde-r" style={{ letterSpacing: '-0.03em', lineHeight: 1.05, flexShrink: 0 }}>
             <p style={{
-              fontFamily: 'var(--font-sans, sans-serif)', fontWeight: 200,
-              fontSize: 'clamp(3.8rem, 8.5vw, 7.5rem)',
-              color: 'hsl(0 0% 90%)', display: 'block', marginBottom: '0.04em',
+              fontFamily: 'var(--font-sans, sans-serif)', fontWeight: 500,
+              fontSize: 'clamp(2.75rem, 8.5vw, 7.5rem)',
+              color: 'var(--text-body)', display: 'block', marginBottom: '0.04em',
             }}>Motion that</p>
             <p style={{
-              fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400,
-              fontSize: 'clamp(3.8rem, 8.5vw, 7.5rem)',
-              color: 'hsl(0 0% 44%)', display: 'block',
+              fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 500,
+              fontSize: 'clamp(2.75rem, 8.5vw, 7.5rem)',
+              color: '#FFD86B', display: 'block',
             }}>commands.</p>
           </div>
 
           <div className="gde-r" style={{ maxWidth: '26rem', paddingBottom: '0.5rem' }}>
-            <p className="font-sans font-normal mb-7" style={{
+            <p className="font-sans font-medium mb-7" style={{
               fontSize: 'clamp(0.84rem, 1.3vw, 0.98rem)', lineHeight: 1.9, color: '#F2F8FC',
             }}>
-              Every brand deserves a visual language that is impossible to ignore. We design and
-              animate premium assets — from complete identity systems to campaign-ready motion
-              graphics — built to perform across every screen and platform.
-            </p>
-            <p className="font-sans font-normal" style={{
-              fontSize: 'clamp(0.84rem, 1.3vw, 0.98rem)', lineHeight: 1.9, color: '#F2F8FC',
-            }}>
-              From concept to delivery, our creative process is shaped around clarity and impact.
-              Cinematic animations, social-first creatives, and high-production brand visuals
-              that leave a lasting impression.
+              We design and animate the assets your brand needs, from identity systems to campaign-ready motion graphics, ready for every screen and platform.
             </p>
           </div>
 
@@ -5485,8 +5348,8 @@ const GDS_ITEMS = [
 function GdsCheckIcon() {
   return (
     <svg width="18" height="18" viewBox="0 0 16 16" fill="none" aria-hidden="true" style={{ flexShrink: 0 }}>
-      <circle cx="8" cy="8" r="7.5" fill="hsl(38 90% 58% / 0.18)" stroke="hsl(38 90% 60% / 0.4)" strokeWidth="0.75"/>
-      <path d="M5 8L7 10L11 6" stroke="hsl(38 90% 74%)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+      <circle cx="8" cy="8" r="7.5" fill="hsl(44 100% 71% / 0.18)" stroke="hsl(44 100% 71% / 0.4)" strokeWidth="0.75"/>
+      <path d="M5 8L7 10L11 6" stroke="hsl(44 100% 71%)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
     </svg>
   )
 }
@@ -5516,7 +5379,6 @@ function GraphicDesignServices() {
 
     const cardEls = Array.from(cards)
     cardEls.forEach(c => {
-      const shimmer = c.querySelector<HTMLElement>('.gdsvs-shimmer')
 
       const onEnter = () => {
         gsap.to(c, {
@@ -5526,21 +5388,14 @@ function GraphicDesignServices() {
         // border glow — set via boxShadow
         gsap.to(c, {
           boxShadow: [
-            'inset 0 1px 0 hsl(38 90% 65% / 0.18)',
+            'inset 0 1px 0 hsl(44 100% 71% / 0.18)',
             'inset 0 -1px 0 hsl(0 0% 0% / 0.25)',
-            '0 0 0 1.5px hsl(38 85% 58% / 0.5)',
-            '0 6px 24px hsl(38 85% 50% / 0.18)',
+            '0 0 0 1.5px hsl(44 100% 71% / 0.5)',
+            '0 6px 24px hsl(44 100% 71% / 0.18)',
             '0 12px 36px hsl(0 0% 0% / 0.5)',
           ].join(', '),
           duration: 0.3, ease: 'power2.out',
         })
-        // shimmer sweep
-        if (shimmer) {
-          gsap.fromTo(shimmer,
-            { x: '-120%', opacity: 0.7 },
-            { x: '220%',  opacity: 0, duration: 0.65, ease: 'power1.inOut' }
-          )
-        }
       }
 
       const onLeave = () => {
@@ -5585,7 +5440,7 @@ function GraphicDesignServices() {
       <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
         zIndex: 1,
         background: [
-          'radial-gradient(ellipse 65% 45% at 50% 0%, hsl(38 90% 58% / 0.055) 0%, transparent 70%)',
+          'radial-gradient(ellipse 65% 45% at 50% 0%, hsl(44 100% 71% / 0.055) 0%, transparent 70%)',
           'radial-gradient(ellipse 40% 30% at 50% 110%, hsl(0 0% 0% / 0.5) 0%, transparent 70%)',
         ].join(', '),
       }}/>
@@ -5609,11 +5464,11 @@ function GraphicDesignServices() {
 
         {/* Eyebrow */}
         <div className="gdsvs-h flex items-center gap-4 mb-7">
-          <div style={{ width: 20, height: 1, background: 'hsl(38 90% 58% / 0.5)' }}/>
-          <span className="font-sans uppercase" style={{ fontSize: '0.58rem', letterSpacing: '0.34em', color: 'hsl(38 90% 62%)' }}>
+          <div style={{ width: 20, height: 1, background: 'hsl(44 100% 71% / 0.5)' }}/>
+          <span className="font-sans uppercase" style={{ fontSize: '0.75rem', letterSpacing: '0.16em', color: 'hsl(44 100% 71%)' }}>
             What We Deliver
           </span>
-          <div style={{ width: 20, height: 1, background: 'hsl(38 90% 58% / 0.5)' }}/>
+          <div style={{ width: 20, height: 1, background: 'hsl(44 100% 71% / 0.5)' }}/>
         </div>
 
         {/* Headline */}
@@ -5624,21 +5479,21 @@ function GraphicDesignServices() {
             fontWeight: 500,
             fontSize: 'clamp(2.5rem, 5.8vw, 4.8rem)',
             lineHeight: 1.0,
-            letterSpacing: '-0.042em',
-            color: 'hsl(0 0% 93%)',
+            letterSpacing: '-0.03em',
+            color: 'var(--text-description)',
             marginBottom: '1.5rem',
             maxWidth: '46rem',
           }}
         >
           Every format.<br />
-          <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(0 0% 36%)' }}>
+          <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 500, color: '#FFD86B' }}>
             Every screen.
           </em>
         </h2>
 
         {/* Subtext */}
         <p
-          className="gdsvs-h font-sans font-normal"
+          className="gdsvs-h font-sans font-medium"
           style={{
             fontSize: 'clamp(0.86rem, 1.3vw, 1rem)',
             lineHeight: 1.88,
@@ -5647,9 +5502,7 @@ function GraphicDesignServices() {
             marginBottom: 'clamp(3.5rem, 6vw, 5.5rem)',
           }}
         >
-          From cinematic motion graphics to social-first brand campaigns — we produce
-          premium creative assets that communicate with precision, convert with confidence,
-          and elevate every touchpoint your audience encounters.
+          From motion graphics to social campaigns, we produce the creative assets your brand needs, each one formatted and ready to use.
         </p>
 
         {/* Hairline divider */}
@@ -5673,23 +5526,11 @@ function GraphicDesignServices() {
                 ].join(', '),
               }}
             >
-              {/* Shimmer sweep element (visual only) */}
-              <div
-                className="absolute inset-y-0 left-0 pointer-events-none"
-                aria-hidden="true"
-                style={{
-                  width: '40%',
-                  background: 'linear-gradient(90deg, transparent, hsl(38 90% 70% / 0.22), transparent)',
-                  transform: 'translateX(-120%)',
-                  borderRadius: '100px',
-                }}
-              />
-
               <div className="gds-pill-icon" style={{ flexShrink: 0 }} aria-hidden>
                 <GdsCheckIcon />
               </div>
 
-              <span className="gds-pill-text text-sm sm:text-base text-white/65 leading-normal whitespace-normal break-words min-w-0 font-sans font-medium">
+              <span className="gds-pill-text text-sm sm:text-base text-white/90 leading-normal whitespace-normal break-words min-w-0 font-sans font-medium">
                 {item}
               </span>
             </div>
@@ -5756,8 +5597,8 @@ function GraphicDesignSplitA() {
       <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
         zIndex: 1,
         background: [
-          'radial-gradient(ellipse 55% 75% at -5% 50%, hsl(25 95% 55% / 0.07) 0%, transparent 65%)',
-          'radial-gradient(ellipse 30% 45% at 8% 18%,  hsl(185 90% 55% / 0.04) 0%, transparent 58%)',
+          'radial-gradient(ellipse 55% 75% at -5% 50%, hsl(44 100% 71% / 0.07) 0%, transparent 65%)',
+          'radial-gradient(ellipse 30% 45% at 8% 18%,  hsl(44 100% 71% / 0.04) 0%, transparent 58%)',
         ].join(', '),
       }}/>
 
@@ -5777,8 +5618,8 @@ function GraphicDesignSplitA() {
               boxShadow: [
                 '0 1px 0 1px hsl(0 0% 100% / 0.05)',
                 '0 24px 60px -10px hsl(0 0% 0% / 0.75)',
-                '0 8px 28px -6px hsl(25 95% 50% / 0.16)',
-                '0 0 70px -18px hsl(185 90% 55% / 0.12)',
+                '0 8px 28px -6px hsl(44 100% 71% / 0.16)',
+                '0 0 70px -18px hsl(44 100% 71% / 0.12)',
               ].join(', '),
             }}>
               <img
@@ -5806,9 +5647,9 @@ function GraphicDesignSplitA() {
 
             {/* Section marker */}
             <div className="gdsa-t flex items-center gap-4 mb-10">
-              <div style={{ width: 22, height: 1, background: 'hsl(38 90% 58% / 0.5)' }}/>
+              <div style={{ width: 22, height: 1, background: 'hsl(44 100% 71% / 0.5)' }}/>
               <span className="font-sans uppercase" style={{
-                fontSize: '0.73rem', letterSpacing: '0.32em', color: 'hsl(38 85% 62%)',
+                fontSize: '0.75rem', letterSpacing: '0.16em', color: 'hsl(44 100% 71%)',
               }}>
                 Craft & Direction
               </span>
@@ -5819,24 +5660,24 @@ function GraphicDesignSplitA() {
               className="gdsa-t"
               style={{
                 marginBottom: 'clamp(2rem, 3.5vw, 3rem)',
-                letterSpacing: '-0.046em',
-                lineHeight: 0.88,
+                letterSpacing: '-0.03em',
+                lineHeight: 1.05,
               }}
             >
               <p style={{
                 fontFamily: 'var(--font-sans, sans-serif)',
-                fontWeight: 200,
+                fontWeight: 500,
                 fontSize: 'clamp(3.2rem, 6.8vw, 6.4rem)',
-                color: 'hsl(0 0% 90%)',
+                color: 'var(--text-body)',
                 display: 'block',
               }}>
                 Visuals that
               </p>
               <p style={{
                 fontFamily: 'var(--font-sans, sans-serif)',
-                fontWeight: 200,
+                fontWeight: 500,
                 fontSize: 'clamp(3.2rem, 6.8vw, 6.4rem)',
-                color: 'hsl(0 0% 90%)',
+                color: 'var(--text-body)',
                 display: 'block',
               }}>
                 demand
@@ -5844,9 +5685,9 @@ function GraphicDesignSplitA() {
               <p style={{
                 fontFamily: 'var(--font-body)',
                 fontStyle: 'italic',
-                fontWeight: 400,
+                fontWeight: 500,
                 fontSize: 'clamp(3.2rem, 6.8vw, 6.4rem)',
-                color: 'hsl(0 0% 34%)',
+                color: '#FFD86B',
                 display: 'block',
               }}>
                 attention.
@@ -5865,7 +5706,7 @@ function GraphicDesignSplitA() {
 
             {/* Body copy */}
             <p
-              className="gdsa-t font-sans font-normal"
+              className="gdsa-t font-sans font-medium"
               style={{
                 fontSize: 'clamp(0.86rem, 1.3vw, 1rem)',
                 lineHeight: 1.92,
@@ -5874,44 +5715,8 @@ function GraphicDesignSplitA() {
                 marginBottom: 'clamp(2rem, 3.5vw, 3rem)',
               }}
             >
-              Every brand has a story. We translate it into motion graphics, identity systems,
-              and campaign visuals that move with precision and land with impact. From the first
-              frame to the final export, every creative decision is made in service of one
-              outcome — a visual language your audience cannot ignore.
+              We turn your brand story into motion graphics, identity systems and campaign visuals, with every creative decision tied to a clear goal.
             </p>
-
-            {/* Stat row */}
-            <div
-              className="gdsa-t flex items-center gap-10"
-              style={{ paddingTop: 'clamp(1.5rem, 2.5vw, 2rem)' }}
-            >
-              {[
-                { value: 'Custom', label: 'Brand direction' },
-                { value: '4K',      label: 'Video-ready exports' },
-                { value: '12+',     label: 'Creative formats' },
-              ].map(({ value, label }) => (
-                <div key={label}>
-                  <p className="font-sans" style={{
-                    fontSize: 'clamp(1.4rem, 2.8vw, 2.2rem)',
-                    fontWeight: 300,
-                    letterSpacing: '-0.04em',
-                    color: 'rgba(244, 248, 250, 0.9)',
-                    lineHeight: 1,
-                    marginBottom: '5px',
-                  }}>
-                    {value}
-                  </p>
-                  <p className="font-sans" style={{
-                    fontSize: '0.92rem',
-                    letterSpacing: '0.2em',
-                    textTransform: 'uppercase',
-                    color: 'rgba(244, 248, 250, 0.68)',
-                  }}>
-                    {label}
-                  </p>
-                </div>
-              ))}
-            </div>
 
           </div>
         </div>
@@ -5965,8 +5770,8 @@ function GraphicDesignSplitB() {
       <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
         zIndex: 1,
         background: [
-          'radial-gradient(ellipse 50% 65% at 105% 50%, hsl(220 55% 45% / 0.05) 0%, transparent 65%)',
-          'radial-gradient(ellipse 35% 40% at 95% 15%,  hsl(200 65% 50% / 0.03) 0%, transparent 55%)',
+          'radial-gradient(ellipse 50% 65% at 105% 50%, hsl(44 100% 71% / 0.05) 0%, transparent 65%)',
+          'radial-gradient(ellipse 35% 40% at 95% 15%,  hsl(44 100% 71% / 0.03) 0%, transparent 55%)',
         ].join(', '),
       }}/>
 
@@ -5995,33 +5800,33 @@ function GraphicDesignSplitB() {
             <div className="gdsb-t flex items-center gap-4 mb-10">
               <div style={{ width: 22, height: 1, background: 'hsl(0 0% 50%)' }}/>
               <span className="font-sans uppercase" style={{
-                fontSize: '15px', letterSpacing: '0.32em', color: 'rgba(191, 225, 245, 0.75)',
+                fontSize: '15px', letterSpacing: '0.16em', color: 'rgba(255,216,107, 0.75)',
               }}>
-                The Studio
+                How We Work
               </span>
             </div>
 
             {/* Headline */}
             <div
               className="gdsb-t"
-              style={{ marginBottom: 'clamp(2rem, 3.5vw, 3rem)', letterSpacing: '-0.046em', lineHeight: 0.88 }}
+              style={{ marginBottom: 'clamp(2rem, 3.5vw, 3rem)', letterSpacing: '-0.03em', lineHeight: 1.05 }}
             >
               <p style={{
-                fontFamily: 'var(--font-sans, sans-serif)', fontWeight: 700,
+                fontFamily: 'var(--font-sans, sans-serif)', fontWeight: 500,
                 fontSize: 'clamp(3rem, 6.5vw, 6rem)',
-                color: 'hsl(0 0% 92%)', display: 'block',
-              }}>Where ideas</p>
+                color: 'var(--text-description)', display: 'block',
+              }}>From brief</p>
               <p style={{
-                fontFamily: 'var(--font-sans, sans-serif)', fontWeight: 700,
+                fontFamily: 'var(--font-sans, sans-serif)', fontWeight: 500,
                 fontSize: 'clamp(3rem, 6.5vw, 6rem)',
-                color: 'hsl(0 0% 92%)', display: 'block',
-              }}>become</p>
+                color: 'var(--text-description)', display: 'block',
+              }}>to final</p>
               <p style={{
                 fontFamily: 'var(--font-body)',
-                fontStyle: 'italic', fontWeight: 400,
+                fontStyle: 'italic', fontWeight: 500,
                 fontSize: 'clamp(3rem, 6.5vw, 6rem)',
-                color: 'hsl(0 0% 32%)', display: 'block',
-              }}>culture.</p>
+                color: '#FFD86B', display: 'block',
+              }}>delivery.</p>
             </div>
 
             {/* Divider */}
@@ -6031,15 +5836,13 @@ function GraphicDesignSplitB() {
             }}/>
 
             {/* Body */}
-            <p className="gdsb-t font-sans font-normal" style={{
+            <p className="gdsb-t font-sans font-medium" style={{
               fontSize: 'clamp(0.86rem, 1.3vw, 1rem)',
               lineHeight: 1.92, color: '#F2F8FC',
               maxWidth: '28rem',
               marginBottom: 'clamp(2.5rem, 4vw, 3.5rem)',
             }}>
-              Our studio is built for precision. A focused environment where brand strategy,
-              motion craft, and digital storytelling converge — producing work that earns
-              attention and sustains it across every platform your audience calls home.
+              Every project follows a clear process, so strategy, design and motion stay aligned from the first brief to the final files.
             </p>
 
             {/* Process list */}
@@ -6055,35 +5858,35 @@ function GraphicDesignSplitB() {
                   style={{
                     display: 'flex', alignItems: 'center', justifyContent: 'space-between',
                     padding: '0.9rem 0',
-                    borderBottom: '1px solid rgba(125, 220, 255, 0.12)',
+                    borderBottom: '1px solid rgba(255,216,107, 0.12)',
                     transition: 'border-color 0.25s ease',
                   }}
                   onMouseEnter={e => {
                     const li = e.currentTarget as HTMLLIElement
-                    li.style.borderBottomColor = 'rgba(125, 220, 255, 0.22)'
+                    li.style.borderBottomColor = 'rgba(255,216,107, 0.22)'
                     const title = li.querySelector('[data-gdsb-title]') as HTMLElement | null
                     if (title) title.style.color = 'rgba(245, 250, 255, 0.94)'
                     const numEl = li.querySelector('[data-gdsb-num]') as HTMLElement | null
-                    if (numEl) numEl.style.textShadow = '0 0 18px rgba(125, 220, 255, 0.28)'
+                    if (numEl) numEl.style.textShadow = '0 0 18px rgba(255,216,107, 0.28)'
                   }}
                   onMouseLeave={e => {
                     const li = e.currentTarget as HTMLLIElement
-                    li.style.borderBottomColor = 'rgba(125, 220, 255, 0.12)'
+                    li.style.borderBottomColor = 'rgba(255,216,107, 0.12)'
                     const title = li.querySelector('[data-gdsb-title]') as HTMLElement | null
-                    if (title) title.style.color = 'rgba(235, 245, 255, 0.82)'
+                    if (title) title.style.color = 'var(--text-description)'
                     const numEl = li.querySelector('[data-gdsb-num]') as HTMLElement | null
-                    if (numEl) numEl.style.textShadow = '0 0 12px rgba(125, 220, 255, 0.14)'
+                    if (numEl) numEl.style.textShadow = '0 0 12px rgba(255,216,107, 0.14)'
                   }}
                 >
                   <span data-gdsb-title className="font-sans font-medium" style={{
                     fontSize: 'clamp(0.88rem, 1.1vw, 0.9rem)',
-                    color: 'rgba(235, 245, 255, 0.82)', letterSpacing: '0.01em',
+                    color: 'var(--text-description)', letterSpacing: '0.01em',
                     transition: 'color 0.25s ease',
                   }}>{step}</span>
                   <span data-gdsb-num className="font-sans" style={{
-                    fontSize: '0.58rem', letterSpacing: '0.22em',
-                    color: '#7DDCFF', textTransform: 'uppercase',
-                    textShadow: '0 0 12px rgba(125, 220, 255, 0.14)',
+                    fontSize: '0.75rem', letterSpacing: '0.16em',
+                    color: '#FFD86B', textTransform: 'uppercase',
+                    textShadow: '0 0 12px rgba(255,216,107, 0.14)',
                     transition: 'text-shadow 0.25s ease',
                   }}>{num}</span>
                 </li>
@@ -6100,7 +5903,7 @@ function GraphicDesignSplitB() {
               boxShadow: [
                 '0 1px 0 1px hsl(0 0% 100% / 0.05)',
                 '0 24px 60px -10px hsl(0 0% 0% / 0.85)',
-                '0 0 70px -18px hsl(220 55% 55% / 0.14)',
+                '0 0 70px -18px hsl(44 100% 71% / 0.14)',
               ].join(', '),
             }}>
               <img
@@ -6125,22 +5928,22 @@ function GraphicDesignSplitB() {
               fontFamily: 'var(--font-heading, sans-serif)', fontWeight: 500,
               fontSize: 'clamp(1.8rem, 6.6vw, 2.6rem)',
               lineHeight: 1.08, letterSpacing: '-0.02em',
-              color: 'hsl(0 0% 94%)', margin: 0, marginBottom: '0.7rem'
+              color: 'var(--text-description)', margin: 0, marginBottom: '0.7rem'
             }}>
-              Where ideas become{' '}
-              <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(0 0% 32%)' }}>
-                culture.
+              From brief to final{' '}
+              <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 500, color: '#FFD86B' }}>
+                delivery.
               </em>
             </h2>
 
             <div style={{ height: '1px', background: 'hsl(0 0% 100% / 0.06)', margin: '0.9rem 0' }} />
 
             <p style={{
-              fontFamily: 'var(--font-sans, sans-serif)', fontWeight: 300,
+              fontFamily: 'var(--font-sans, sans-serif)', fontWeight: 500,
               fontSize: '0.98rem', lineHeight: 1.85,
               color: '#F2F8FC', margin: 0, marginBottom: '1.25rem'
             }}>
-              Our studio is built for precision. A focused environment where brand strategy, motion craft, and digital storytelling converge — producing work that earns attention and sustains it across every platform your audience calls home.
+              Every project follows a clear process, so strategy, design and motion stay aligned from the first brief to the final files.
             </p>
           </div>
 
@@ -6158,18 +5961,18 @@ function GraphicDesignSplitB() {
               ] as const).map(([num, step]) => (
                 <div key={num} style={{
                   background: 'linear-gradient(180deg, hsl(0 0% 6% / 0.96), hsl(0 0% 4% / 0.96))',
-                  border: '1px solid rgba(125, 220, 255, 0.12)',
+                  border: '1px solid rgba(255,216,107, 0.12)',
                   borderRadius: '12px', padding: '14px', display: 'flex', flexDirection: 'column', justifyContent: 'center',
                   minHeight: '78px', boxShadow: '0 6px 18px rgba(0,0,0,0.55)',
                 }}>
                   <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: '12px' }}>
                     <span style={{
-                      fontFamily: 'monospace', fontSize: '0.66rem', color: '#7DDCFF', letterSpacing: '0.18em',
-                      textShadow: '0 0 12px rgba(125, 220, 255, 0.14)',
+                      fontFamily: 'var(--font-body)', fontSize: '0.75rem', color: '#FFD86B', letterSpacing: '0.18em',
+                      textShadow: '0 0 12px rgba(255,216,107, 0.14)',
                     }}>{num}</span>
                   </div>
                   <div style={{ marginTop: '6px' }}>
-                    <span style={{ fontFamily: 'var(--font-sans, sans-serif)', fontWeight: 300, fontSize: '0.92rem', color: 'rgba(235, 245, 255, 0.82)', lineHeight: 1.3 }}>
+                    <span style={{ fontFamily: 'var(--font-sans, sans-serif)', fontWeight: 500, fontSize: '0.92rem', color: 'var(--text-description)', lineHeight: 1.3 }}>
                       {step}
                     </span>
                   </div>
@@ -6206,7 +6009,7 @@ function GraphicDesignSplitB() {
   )
 }
 
-// ─── Graphic Design — Final Brand Presentation (Section 6) ──────────────────
+// ─── Graphic Design — Final Delivery (Section 6) ──────────────────
 
 function GraphicDesignFinalPresentation() {
   const ref = useRef<HTMLElement>(null)
@@ -6273,8 +6076,8 @@ function GraphicDesignFinalPresentation() {
       <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
         zIndex: 1,
         background: [
-          'radial-gradient(ellipse 55% 65% at -2% 35%,  hsl(38 85% 58% / 0.05)  0%, transparent 65%)',
-          'radial-gradient(ellipse 50% 60% at 102% 70%, hsl(195 90% 55% / 0.06) 0%, transparent 60%)',
+          'radial-gradient(ellipse 55% 65% at -2% 35%,  hsl(44 100% 71% / 0.05)  0%, transparent 65%)',
+          'radial-gradient(ellipse 50% 60% at 102% 70%, hsl(44 100% 71% / 0.06) 0%, transparent 60%)',
         ].join(', '),
       }}/>
 
@@ -6293,9 +6096,9 @@ function GraphicDesignFinalPresentation() {
 
             {/* Label */}
             <div className="gdfp-label flex items-center gap-3 mb-8">
-              <div style={{ width: 20, height: 1, background: 'hsl(195 90% 55% / 0.72)' }}/>
-              <span className="font-sans uppercase" style={{ fontSize: '18px', fontWeight: 500, letterSpacing: '0.34em', color: 'hsl(195 90% 62% / 0.82)' }}>
-                Final Brand Presentation
+              <div style={{ width: 20, height: 1, background: 'hsl(44 100% 71% / 0.72)' }}/>
+              <span className="font-sans uppercase" style={{ fontSize: '18px', fontWeight: 500, letterSpacing: '0.16em', color: 'hsl(44 100% 71% / 0.82)' }}>
+                Final Delivery
               </span>
             </div>
 
@@ -6305,34 +6108,34 @@ function GraphicDesignFinalPresentation() {
               style={{
                 fontSize: 'clamp(2.2rem, 4.5vw, 4rem)',
                 lineHeight: 1.08,
-                letterSpacing: '-0.04em',
-                color: 'hsl(0 0% 94%)',
+                letterSpacing: '-0.03em',
+                color: 'var(--text-description)',
                 marginBottom: 'clamp(1.6rem, 2.5vw, 2.2rem)',
                 maxWidth: '26rem',
               }}
             >
-              Where Vision Becomes{' '}
+              Ready for{' '}
               <em style={{
                 fontFamily: 'var(--font-body)',
-                fontStyle: 'italic', fontWeight: 400,
-                color: 'hsl(0 0% 48%)',
+                fontStyle: 'italic', fontWeight: 500,
+                color: '#FFD86B',
               }}>
-                Influence.
+                every platform.
               </em>
             </h2>
 
             {/* Rule */}
             <div
               className="gdfp-rule"
-              style={{ width: '2rem', height: '1px', background: 'hsl(195 90% 55% / 0.3)', marginBottom: 'clamp(1.8rem, 3vw, 2.5rem)' }}
+              style={{ width: '2rem', height: '1px', background: 'hsl(44 100% 71% / 0.3)', marginBottom: 'clamp(1.8rem, 3vw, 2.5rem)' }}
             />
 
             {/* Para */}
-            <p className="gdfp-body font-sans font-normal" style={{
+            <p className="gdfp-body font-sans font-medium" style={{
               fontSize: 'clamp(0.86rem, 1.3vw, 0.98rem)', lineHeight: 1.92,
               color: '#F2F8FC', marginBottom: 'clamp(2rem, 3.5vw, 3rem)', maxWidth: '30rem',
             }}>
-              Every project begins with strategy and ends with impact. We combine brand thinking, design excellence, motion craftsmanship, and digital storytelling to create work that captures attention, builds recognition, and delivers lasting value across every platform.
+              We finish each project with refined visuals, motion-ready assets and correctly formatted files for websites, campaigns, reels and ads.
             </p>
 
             {/* Feature list */}
@@ -6347,15 +6150,15 @@ function GraphicDesignFinalPresentation() {
                 <li key={item} className="gdfp-feat" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                   <div style={{
                     width: 18, height: 18, borderRadius: '50%', flexShrink: 0,
-                    background: 'hsl(195 90% 55% / 0.08)',
-                    border: '1px solid hsl(195 90% 55% / 0.22)',
+                    background: 'hsl(44 100% 71% / 0.08)',
+                    border: '1px solid hsl(44 100% 71% / 0.22)',
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
                   }}>
                     <svg width="8" height="8" viewBox="0 0 8 8" fill="none" aria-hidden="true">
-                      <path d="M1.5 4L3 5.5L6.5 2" stroke="hsl(195 90% 62%)" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
+                      <path d="M1.5 4L3 5.5L6.5 2" stroke="hsl(44 100% 71%)" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
                   </div>
-                  <span className="font-sans font-normal" style={{ fontSize: 'clamp(0.82rem, 1.2vw, 0.92rem)', color: '#F2F8FC', letterSpacing: '0.01em' }}>
+                  <span className="font-sans font-medium" style={{ fontSize: 'clamp(0.82rem, 1.2vw, 0.92rem)', color: '#F2F8FC', letterSpacing: '0.01em' }}>
                     {item}
                   </span>
                 </li>
@@ -6363,10 +6166,10 @@ function GraphicDesignFinalPresentation() {
             </ul>
 
             {/* Closing line */}
-            <p className="gdfp-close font-sans font-normal" style={{
+            <p className="gdfp-close font-sans font-medium" style={{
               fontSize: 'clamp(0.78rem, 1.1vw, 0.88rem)', lineHeight: 1.85,
               color: '#F2F8FC', maxWidth: '28rem',
-              borderLeft: '2px solid hsl(195 90% 55% / 0.18)',
+              borderLeft: '2px solid hsl(44 100% 71% / 0.18)',
               paddingLeft: '1rem',
             }}>
               Built to look sharp across websites, campaigns, reels, advertisements, and digital platforms.
@@ -6375,12 +6178,13 @@ function GraphicDesignFinalPresentation() {
           </div>
 
           {/* ── RIGHT: Layered mockup ── */}
-          <div style={{ position: 'relative', height: 'clamp(500px, 58vw, 640px)' }}>
+          <div
+            aria-hidden="true" style={{ position: 'relative', height: 'clamp(500px, 58vw, 640px)' }}>
 
             {/* Backlight */}
             <div aria-hidden="true" style={{
               position: 'absolute', inset: '-40px', zIndex: 0,
-              background: 'radial-gradient(ellipse 70% 60% at 55% 48%, hsl(195 90% 55% / 0.09), transparent 68%)',
+              background: 'radial-gradient(ellipse 70% 60% at 55% 48%, hsl(44 100% 71% / 0.09), transparent 68%)',
               filter: 'blur(40px)', pointerEvents: 'none',
             }}/>
 
@@ -6407,10 +6211,10 @@ function GraphicDesignFinalPresentation() {
                     <div key={c} style={{ width: 9, height: 9, borderRadius: '50%', background: c }}/>
                   ))}
                 </div>
-                <span style={{ fontSize: '0.54rem', letterSpacing: '0.22em', color: 'hsl(0 0% 26%)', textTransform: 'uppercase', fontFamily: 'monospace' }}>
+                <span style={{ fontSize: '0.75rem', letterSpacing: '0.16em', color: 'var(--text-muted)', textTransform: 'uppercase', fontFamily: 'var(--font-body)' }}>
                   Brand Identity System
                 </span>
-                <span style={{ fontSize: '0.54rem', color: 'hsl(0 0% 22%)', fontFamily: 'monospace' }}>2026</span>
+                <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontFamily: 'var(--font-body)' }}>2026</span>
               </div>
 
               {/* Content */}
@@ -6419,17 +6223,17 @@ function GraphicDesignFinalPresentation() {
                 {/* Hero gradient banner */}
                 <div style={{
                   height: '100px', borderRadius: '12px', marginBottom: '20px',
-                  background: 'linear-gradient(135deg, hsl(215 70% 12%) 0%, hsl(195 80% 16%) 45%, hsl(220 60% 10%) 100%)',
-                  border: '1px solid hsl(195 90% 55% / 0.1)',
+                  background: 'linear-gradient(135deg, hsl(44 45% 12%) 0%, hsl(44 45% 16%) 45%, hsl(44 45% 10%) 100%)',
+                  border: '1px solid hsl(44 100% 71% / 0.1)',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                   position: 'relative', overflow: 'hidden',
                 }}>
-                  <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse 65% 80% at 30% 50%, hsl(195 90% 55% / 0.13), transparent 68%)' }}/>
+                  <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse 65% 80% at 30% 50%, hsl(44 100% 71% / 0.13), transparent 68%)' }}/>
                   <span style={{
                     fontFamily: 'var(--font-body)',
-                    fontStyle: 'italic', fontWeight: 400,
+                    fontStyle: 'italic', fontWeight: 500,
                     fontSize: '1.85rem', letterSpacing: '-0.03em',
-                    color: 'hsl(0 0% 82%)', position: 'relative', zIndex: 1,
+                    color: '#FFD86B', position: 'relative', zIndex: 1,
                   }}>
                     Weavy Studio
                   </span>
@@ -6437,9 +6241,9 @@ function GraphicDesignFinalPresentation() {
 
                 {/* Colour system */}
                 <div style={{ marginBottom: '18px' }}>
-                  <span style={{ fontSize: '0.5rem', letterSpacing: '0.24em', color: 'hsl(0 0% 28%)', textTransform: 'uppercase', display: 'block', marginBottom: '9px' }}>Colour System</span>
+                  <span style={{ fontSize: '0.5rem', letterSpacing: '0.16em', color: 'var(--text-muted)', textTransform: 'uppercase', display: 'block', marginBottom: '9px' }}>Colour System</span>
                   <div style={{ display: 'flex', gap: '7px' }}>
-                    {['hsl(195 90% 55%)','hsl(38 85% 58%)','hsl(320 75% 62%)','hsl(215 80% 62%)','hsl(0 0% 88%)','hsl(0 0% 11%)'].map((c, i) => (
+                    {['hsl(44 100% 71%)','hsl(44 100% 71%)','hsl(44 100% 71%)','hsl(44 100% 71%)','hsl(0 0% 88%)','hsl(0 0% 11%)'].map((c, i) => (
                       <div key={i} style={{ width: 26, height: 26, borderRadius: '7px', background: c, border: '1px solid hsl(0 0% 100% / 0.07)', flexShrink: 0 }}/>
                     ))}
                   </div>
@@ -6450,10 +6254,10 @@ function GraphicDesignFinalPresentation() {
 
                 {/* Typeface */}
                 <div style={{ marginBottom: '18px' }}>
-                  <span style={{ fontSize: '0.5rem', letterSpacing: '0.24em', color: 'hsl(0 0% 28%)', textTransform: 'uppercase', display: 'block', marginBottom: '7px' }}>Typeface</span>
+                  <span style={{ fontSize: '0.5rem', letterSpacing: '0.16em', color: 'var(--text-muted)', textTransform: 'uppercase', display: 'block', marginBottom: '7px' }}>Typeface</span>
                   <div style={{ display: 'flex', alignItems: 'baseline', gap: '10px' }}>
-                    <span style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontSize: '1.5rem', color: 'hsl(0 0% 68%)', lineHeight: 1 }}>Aa</span>
-                    <span style={{ fontFamily: 'sans-serif', fontWeight: 300, fontSize: '0.75rem', color: 'hsl(0 0% 32%)' }}>Brand Sans Light</span>
+                    <span style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontSize: '1.5rem', color: '#FFD86B', lineHeight: 1 }}>Aa</span>
+                    <span style={{ fontFamily: 'var(--font-body)', fontWeight: 500, fontSize: '0.75rem', color: 'var(--text-muted)' }}>Brand Sans Light</span>
                   </div>
                 </div>
 
@@ -6465,7 +6269,7 @@ function GraphicDesignFinalPresentation() {
                       padding: '3px 8px', borderRadius: '4px',
                       background: 'hsl(0 0% 100% / 0.04)',
                       border: '1px solid hsl(0 0% 100% / 0.07)',
-                      color: 'hsl(0 0% 36%)', fontFamily: 'monospace',
+                      color: 'var(--text-muted)', fontFamily: 'var(--font-body)',
                     }}>{fmt}</span>
                   ))}
                 </div>
@@ -6489,24 +6293,20 @@ function GraphicDesignFinalPresentation() {
                 padding: '9px 11px 8px', display: 'flex', alignItems: 'center', gap: '7px',
                 borderBottom: '1px solid hsl(0 0% 100% / 0.05)',
               }}>
-                <div style={{ width: 21, height: 21, borderRadius: '50%', background: 'linear-gradient(135deg, hsl(38 85% 55%), hsl(320 70% 55%))', flexShrink: 0 }}/>
+                <div style={{ width: 21, height: 21, borderRadius: '50%', background: 'linear-gradient(135deg, hsl(44 100% 71%), hsl(44 100% 71%))', flexShrink: 0 }}/>
                 <div>
-                  <p style={{ fontSize: '0.54rem', fontWeight: 600, color: 'hsl(0 0% 80%)', margin: 0, lineHeight: 1.2 }}>@weavy.studio</p>
-                  <p style={{ fontSize: '0.49rem', color: 'hsl(0 0% 32%)', margin: 0, lineHeight: 1.2 }}>Brand Visuals</p>
+                  <p style={{ fontSize: '0.75rem', fontWeight: 500, color: 'var(--text-body)', margin: 0, lineHeight: 1.2 }}>@weavy.studio</p>
+                  <p style={{ fontSize: '0.49rem', color: 'var(--text-muted)', margin: 0, lineHeight: 1.2 }}>Brand Visuals</p>
                 </div>
               </div>
               <div style={{
                 height: '88px',
-                background: 'linear-gradient(145deg, hsl(215 40% 10%), hsl(195 60% 13%))',
+                background: 'linear-gradient(145deg, hsl(215 40% 10%), hsl(44 45% 13%))',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                 position: 'relative', overflow: 'hidden',
               }}>
-                <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse at 40% 50%, hsl(195 80% 55% / 0.15), transparent 65%)' }}/>
-                <span style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontSize: '0.88rem', color: 'hsl(0 0% 58%)', position: 'relative', zIndex: 1 }}>campaign</span>
-              </div>
-              <div style={{ padding: '7px 11px', display: 'flex', alignItems: 'center', gap: '10px' }}>
-                <span style={{ fontSize: '0.49rem', color: 'hsl(0 0% 40%)' }}>♥ 48.2K</span>
-                <span style={{ fontSize: '0.49rem', color: 'hsl(0 0% 30%)' }}>💬 1.4K</span>
+                <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse at 40% 50%, hsl(44 100% 71% / 0.15), transparent 65%)' }}/>
+                <span style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontSize: '0.88rem', color: '#FFD86B', position: 'relative', zIndex: 1 }}>campaign</span>
               </div>
             </div>
 
@@ -6517,8 +6317,8 @@ function GraphicDesignFinalPresentation() {
                 position: 'absolute', bottom: 0, left: '6%', right: '6%',
                 zIndex: 4,
                 borderRadius: '15px',
-                border: '1px solid hsl(195 90% 55% / 0.15)',
-                boxShadow: '0 12px 36px hsl(0 0% 0% / 0.55), 0 0 0 1px hsl(195 90% 55% / 0.06)',
+                border: '1px solid hsl(44 100% 71% / 0.15)',
+                boxShadow: '0 12px 36px hsl(0 0% 0% / 0.55), 0 0 0 1px hsl(44 100% 71% / 0.06)',
                 background: 'hsl(215 18% 6%)',
                 padding: '13px 16px',
                 display: 'flex', alignItems: 'center', justifyContent: 'space-between',
@@ -6527,26 +6327,26 @@ function GraphicDesignFinalPresentation() {
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                 <div style={{
                   width: 28, height: 28, borderRadius: '50%', flexShrink: 0,
-                  background: 'hsl(195 90% 55% / 0.12)',
-                  border: '1px solid hsl(195 90% 55% / 0.25)',
+                  background: 'hsl(44 100% 71% / 0.12)',
+                  border: '1px solid hsl(44 100% 71% / 0.25)',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                 }}>
                   <svg width="9" height="9" viewBox="0 0 9 9" fill="none" aria-hidden="true">
-                    <polygon points="3,2 8,4.5 3,7" fill="hsl(195 90% 62%)"/>
+                    <polygon points="3,2 8,4.5 3,7" fill="hsl(44 100% 71%)"/>
                   </svg>
                 </div>
                 <div>
-                  <p style={{ fontSize: '0.6rem', fontWeight: 500, color: 'hsl(0 0% 80%)', margin: 0, lineHeight: 1.3 }}>Motion Ready</p>
-                  <p style={{ fontSize: '0.5rem', color: 'hsl(0 0% 34%)', margin: 0, lineHeight: 1.3 }}>Final export package</p>
+                  <p style={{ fontSize: '0.75rem', fontWeight: 500, color: 'var(--text-body)', margin: 0, lineHeight: 1.3 }}>Motion Ready</p>
+                  <p style={{ fontSize: '0.5rem', color: 'var(--text-muted)', margin: 0, lineHeight: 1.3 }}>Final export package</p>
                 </div>
               </div>
               <div style={{ display: 'flex', gap: '5px' }}>
                 {['.mp4', '.gif'].map(f => (
                   <span key={f} style={{
                     fontSize: '0.47rem', padding: '2px 7px', borderRadius: '4px',
-                    background: 'hsl(195 90% 55% / 0.08)',
-                    border: '1px solid hsl(195 90% 55% / 0.18)',
-                    color: 'hsl(195 90% 62%)', fontFamily: 'monospace',
+                    background: 'hsl(44 100% 71% / 0.08)',
+                    border: '1px solid hsl(44 100% 71% / 0.18)',
+                    color: 'hsl(44 100% 71%)', fontFamily: 'var(--font-body)',
                   }}>{f}</span>
                 ))}
               </div>
@@ -6561,13 +6361,13 @@ function GraphicDesignFinalPresentation() {
 
           {/* Section marker */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '2rem' }}>
-            <div style={{ width: 20, height: 1, background: 'hsl(195 90% 55% / 0.72)' }}/>
+            <div style={{ width: 20, height: 1, background: 'hsl(44 100% 71% / 0.72)' }}/>
             <span style={{
               fontFamily: 'var(--font-sans, sans-serif)',
-              fontSize: '14px', fontWeight: 500, letterSpacing: '0.34em',
-              color: 'hsl(195 90% 62% / 0.82)', textTransform: 'uppercase',
+              fontSize: '14px', fontWeight: 500, letterSpacing: '0.16em',
+              color: 'hsl(44 100% 71% / 0.82)', textTransform: 'uppercase',
             }}>
-              Final Brand Presentation
+              Final Delivery
             </span>
           </div>
 
@@ -6575,33 +6375,31 @@ function GraphicDesignFinalPresentation() {
           <h2 style={{
             fontFamily: 'var(--font-heading, sans-serif)', fontWeight: 500,
             fontSize: 'clamp(2rem, 7vw, 2.8rem)',
-            lineHeight: 1.1, letterSpacing: '-0.038em',
-            color: 'hsl(0 0% 94%)',
+            lineHeight: 1.1, letterSpacing: '-0.03em',
+            color: 'var(--text-description)',
             marginBottom: '1.5rem',
           }}>
-            Where Vision Becomes{' '}
+            Ready for{' '}
             <em style={{
               fontFamily: 'var(--font-body)',
-              fontStyle: 'italic', fontWeight: 400,
-              color: 'hsl(0 0% 48%)',
+              fontStyle: 'italic', fontWeight: 500,
+              color: '#FFD86B',
             }}>
-              Influence.
+              every platform.
             </em>
           </h2>
 
           {/* Rule */}
-          <div style={{ width: '2rem', height: '1px', background: 'hsl(195 90% 55% / 0.3)', marginBottom: '1.5rem' }} />
+          <div style={{ width: '2rem', height: '1px', background: 'hsl(44 100% 71% / 0.3)', marginBottom: '1.5rem' }} />
 
           {/* Paragraph */}
           <p style={{
-            fontFamily: 'var(--font-sans, sans-serif)', fontWeight: 300,
+            fontFamily: 'var(--font-sans, sans-serif)', fontWeight: 500,
             fontSize: '0.95rem', lineHeight: 1.9,
             color: '#F2F8FC',
             marginBottom: '2.5rem',
           }}>
-            Every project begins with strategy and ends with impact. We combine brand thinking,
-            design excellence, motion craftsmanship, and digital storytelling to create work that
-            captures attention, builds recognition, and delivers lasting value across every platform.
+            We finish each project with refined visuals, motion-ready assets and correctly formatted files for websites, campaigns, reels and ads.
           </p>
 
           {/* 2×2 Process grid */}
@@ -6626,12 +6424,12 @@ function GraphicDesignFinalPresentation() {
                   display: 'flex', flexDirection: 'column', gap: '0.55rem',
                 }}>
                   <span style={{
-                    fontSize: '0.5rem', letterSpacing: '0.28em',
-                    color: 'hsl(195 90% 55% / 0.6)', textTransform: 'uppercase',
-                    fontFamily: 'monospace',
+                    fontSize: '0.75rem', letterSpacing: '0.12em',
+                    color: 'hsl(44 100% 71% / 0.6)', textTransform: 'uppercase',
+                    fontFamily: 'var(--font-body)',
                   }}>{num}</span>
                   <span style={{
-                    fontFamily: 'var(--font-sans, sans-serif)', fontWeight: 300,
+                    fontFamily: 'var(--font-sans, sans-serif)', fontWeight: 500,
                     fontSize: '0.83rem', color: '#F2F8FC', lineHeight: 1.5,
                   }}>{step}</span>
                 </div>
@@ -6668,188 +6466,13 @@ function GraphicDesignFinalPresentation() {
 
 // ─── Graphic Design — Final CTA (Start Your Visual System) ──────────────────
 
-function GraphicDesignCTA() {
-  const ref = useRef<HTMLElement>(null)
-  const [primaryHover,   setPrimaryHover]   = useState(false)
-  const [secondaryHover, setSecondaryHover] = useState(false)
-
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    gsap.set(el.querySelectorAll('.gdcta-el'), { opacity: 0, y: 24 })
-    const obs = new IntersectionObserver(([entry]) => {
-      if (!entry.isIntersecting) return
-      gsap.to(el.querySelectorAll('.gdcta-el'), {
-        opacity: 1, y: 0,
-        duration: 0.85, ease: 'power3.out',
-        stagger: 0.13,
-      })
-      obs.disconnect()
-    }, { threshold: 0.1 })
-    obs.observe(el)
-    return () => obs.disconnect()
-  }, [])
-
-  return (
-    <section
-      ref={ref}
-      className="relative w-full overflow-hidden"
-      style={{ background: '#010709', padding: 'clamp(6rem, 12vw, 10rem) 0' }}
-    >
-      {/* Grain */}
-      <svg aria-hidden="true" className="pointer-events-none absolute inset-0 w-full h-full" style={{ opacity: 0.022, zIndex: 1 }}>
-        <filter id="gdcta-gr">
-          <feTurbulence type="fractalNoise" baseFrequency="0.64" numOctaves="3" stitchTiles="stitch" result="n"/>
-          <feColorMatrix type="saturate" values="0" in="n"/>
-        </filter>
-        <rect width="100%" height="100%" filter="url(#gdcta-gr)" fill="white"/>
-      </svg>
-
-      {/* Subtle centered ambient glow */}
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
-        zIndex: 1,
-        background: 'radial-gradient(ellipse 70% 55% at 50% 50%, hsl(195 90% 55% / 0.05) 0%, transparent 68%)',
-      }}/>
-
-      {/* Bottom blend — fades this section's texture out before the Footer, which opens in the same #010709 */}
-      <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to bottom, transparent 0%, #010709 100%)', pointerEvents: 'none', zIndex: 2 }} />
-
-      <div className="relative z-10 max-w-[58rem] mx-auto px-6 sm:px-10 flex flex-col items-center text-center">
-
-        {/* Label — same responsive size/weight/colour as Final Brand Presentation's label */}
-        <style>{`
-          .gdcta-ready-label { font-size: 14px; }
-          @media (min-width: 1024px) {
-            .gdcta-ready-label { font-size: 18px; }
-          }
-        `}</style>
-        <p
-          className="gdcta-el gdcta-ready-label font-sans uppercase mb-7"
-          style={{ fontWeight: 500, letterSpacing: '0.38em', color: 'hsl(195 90% 62% / 0.82)' }}
-        >
-          Ready to build your visual system?
-        </p>
-
-        {/* Headline */}
-        <h2
-          className="gdcta-el font-heading font-medium"
-          style={{
-            fontSize: 'clamp(2.4rem, 5.5vw, 4.4rem)',
-            lineHeight: 1.06,
-            letterSpacing: '-0.04em',
-            color: 'hsl(0 0% 95%)',
-            marginBottom: 'clamp(1.4rem, 2.5vw, 2rem)',
-            maxWidth: '46rem',
-          }}
-        >
-          Let&apos;s create visuals that make your brand{' '}
-          <em style={{
-            fontFamily: 'var(--font-body)',
-            fontStyle: 'italic', fontWeight: 400,
-            color: 'hsl(0 0% 52%)',
-          }}>
-            impossible to ignore.
-          </em>
-        </h2>
-
-        {/* Rule */}
-        <div
-          className="gdcta-el"
-          aria-hidden="true"
-          style={{
-            width: '2rem', height: '1px',
-            background: 'hsl(195 90% 55% / 0.28)',
-            marginBottom: 'clamp(1.4rem, 2.5vw, 2rem)',
-          }}
-        />
-
-        {/* Paragraph */}
-        <p
-          className="gdcta-el font-sans font-normal"
-          style={{
-            fontSize: 'clamp(0.88rem, 1.4vw, 1rem)',
-            lineHeight: 1.9,
-            color: '#F2F8FC',
-            maxWidth: '38rem',
-            marginBottom: 'clamp(2.8rem, 5vw, 4rem)',
-          }}
-        >
-          From brand assets and campaign graphics to motion design and social-first content, we create polished visuals built to strengthen your presence and help your audience remember you.
-        </p>
-
-        {/* Buttons */}
-        <div className="gdcta-el" style={{ display: 'flex', alignItems: 'center', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center' }}>
-
-          {/* Primary */}
-          <button
-            onMouseEnter={() => setPrimaryHover(true)}
-            onMouseLeave={() => setPrimaryHover(false)}
-            onClick={() => goToPath('/contact')}
-            style={{
-              padding: '0.95rem 2.4rem',
-              borderRadius: '999px',
-              border: 'none',
-              background: primaryHover ? 'hsl(0 0% 92%)' : '#fff',
-              color: '#050e10',
-              fontFamily: 'var(--font-sans, sans-serif)',
-              fontWeight: 400,
-              fontSize: 'clamp(0.85rem, 1.3vw, 0.96rem)',
-              letterSpacing: '0.01em',
-              cursor: 'pointer',
-              boxShadow: primaryHover
-                ? '0 0 0 4px hsl(195 80% 55% / 0.16), 0 12px 40px hsl(0 0% 0% / 0.5)'
-                : '0 8px 32px hsl(0 0% 0% / 0.4)',
-              transform: primaryHover ? 'scale(1.03)' : 'scale(1)',
-              transition: 'background 0.3s ease, box-shadow 0.35s ease, transform 0.3s cubic-bezier(0.16,1,0.3,1)',
-              whiteSpace: 'nowrap',
-            }}
-          >
-            Start a project
-          </button>
-
-          {/* Secondary */}
-          <button
-            onMouseEnter={() => setSecondaryHover(true)}
-            onMouseLeave={() => setSecondaryHover(false)}
-            onClick={() => goToPath('/work')}
-            style={{
-              padding: '0.95rem 2.4rem',
-              borderRadius: '999px',
-              border: `1px solid ${secondaryHover ? 'hsl(0 0% 100% / 0.28)' : 'hsl(0 0% 100% / 0.13)'}`,
-              background: secondaryHover ? 'hsl(0 0% 100% / 0.06)' : 'transparent',
-              color: secondaryHover ? 'hsl(0 0% 88%)' : 'hsl(0 0% 52%)',
-              fontFamily: 'var(--font-sans, sans-serif)',
-              fontWeight: 300,
-              fontSize: 'clamp(0.85rem, 1.3vw, 0.96rem)',
-              letterSpacing: '0.01em',
-              cursor: 'pointer',
-              transition: 'border-color 0.3s ease, background 0.3s ease, color 0.3s ease',
-              whiteSpace: 'nowrap',
-            }}
-          >
-            View our work
-          </button>
-
-        </div>
-
-      </div>
-
-      {/* Bottom fade into contact footer */}
-      <div aria-hidden="true" className="pointer-events-none absolute left-0 right-0 bottom-0" style={{
-        height: '100px',
-        background: 'linear-gradient(to top, #010709 0%, transparent 100%)',
-        zIndex: 3,
-      }}/>
-    </section>
-  )
-}
 
 // ─── UGC — Hero + Editorial Introduction ─────────────────────────────────────
 
 const UGC_TICKER = ['TikTok', 'Instagram', 'YouTube', 'Reels', 'Shorts', 'UGC', 'Creators', 'Viral Content', 'Authentic', 'Short-Form']
 
 const UGC_CARDS = [
-  { num: '01', title: 'Product Reviews & Unboxings',  desc: 'Authentic first-person reviews that dissolve purchase hesitation and build instant credibility.' },
+  { num: '01', title: 'Product Reviews & Unboxings',  desc: 'First-person reviews that answer buyer questions and build credibility.' },
   { num: '02', title: 'Lifestyle & Tutorial Content', desc: 'Scroll-stopping content that places your brand naturally inside real, relatable moments.' },
   { num: '03', title: 'Brand Story Reels',            desc: 'Cinematic short-form stories that communicate your identity in under 60 seconds — and stay in people\'s heads.' },
 ]
@@ -6960,7 +6583,7 @@ function UGCHero() {
       ref={heroRef}
       id="ugc-hero"
       className="relative overflow-hidden"
-      style={{ width: '100vw', marginLeft: 'calc(-50vw + 50%)', background: '#020508' }}
+      style={{ width: '100%', background: '#020508' }}
     >
       {/* Background video */}
       <video autoPlay muted loop playsInline preload="metadata" aria-hidden="true" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', pointerEvents: 'none' }}>
@@ -6969,7 +6592,7 @@ function UGCHero() {
 
       {/* Layered overlays */}
       <div aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'linear-gradient(108deg, hsl(0 0% 2% / 0.94) 0%, hsl(0 0% 2% / 0.62) 50%, hsl(0 0% 2% / 0.1) 100%)' }}/>
-      <div aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse 52% 75% at 2% 55%, hsl(0 72% 45% / 0.13) 0%, transparent 65%)' }}/>
+      <div aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse 52% 75% at 2% 55%, hsl(44 100% 71% / 0.13) 0%, transparent 65%)' }}/>
       <svg aria-hidden="true" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', opacity: 0.045, pointerEvents: 'none' }}>
         <filter id="ugc-g"><feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="3" stitchTiles="stitch" result="n"/><feColorMatrix type="saturate" values="0" in="n"/></filter>
         <rect width="100%" height="100%" filter="url(#ugc-g)" fill="white"/>
@@ -6985,31 +6608,33 @@ function UGCHero() {
         <div className="ugch-text">
 
           {/* Badge */}
-          <div className="ugch-r inline-flex items-center gap-2 mb-8" style={{ background: 'hsl(0 72% 48% / 0.1)', border: '1px solid hsl(0 72% 58% / 0.28)', borderRadius: 999, padding: '0.38rem 1rem' }}>
-            <span style={{ width: 7, height: 7, borderRadius: '50%', background: 'hsl(0 72% 62%)', boxShadow: '0 0 9px hsl(0 72% 62% / 0.85)', display: 'inline-block', flexShrink: 0 }}/>
-            <span className="font-sans" style={{ fontSize: '0.64rem', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'hsl(0 72% 74%)' }}>UGC & Creator Content</span>
+          <div className="ugch-r inline-flex items-center gap-2 mb-8" style={{ background: 'hsl(44 100% 71% / 0.1)', border: '1px solid hsl(44 100% 71% / 0.28)', borderRadius: 999, padding: '0.38rem 1rem' }}>
+            <span style={{ width: 7, height: 7, borderRadius: '50%', background: 'hsl(44 100% 71%)', boxShadow: '0 0 9px hsl(44 100% 71% / 0.85)', display: 'inline-block', flexShrink: 0 }}/>
+            <span className="font-sans" style={{ fontSize: '0.75rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'hsl(44 100% 71%)' }}>UGC & Creator Content</span>
           </div>
 
           {/* Headline */}
-          <h2 className="ugch-r font-heading font-medium" style={{ color: '#fff', fontSize: 'clamp(2rem, 5.8vw, 5rem)', lineHeight: 1.05, letterSpacing: '-0.04em', marginBottom: '1.6rem' }}>
+          <h2 className="ugch-r font-heading font-medium" style={{ color: '#fff', fontSize: 'clamp(2rem, 5.8vw, 5rem)', lineHeight: 1.05, letterSpacing: '-0.03em', marginBottom: '1.6rem' }}>
             Real creators. Smarter production.<br/>
             Content people{' '}
-            <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(0 72% 70%)' }}>trust.</em>
+            <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 500, color: 'hsl(44 100% 71%)' }}>trust.</em>
           </h2>
 
           {/* Rule */}
-          <div className="ugch-r" aria-hidden="true" style={{ width: '3.5rem', height: 1, background: 'hsl(0 72% 58% / 0.5)', marginBottom: '1.5rem' }}/>
+          <div className="ugch-r" aria-hidden="true" style={{ width: '3.5rem', height: 1, background: 'hsl(44 100% 71% / 0.5)', marginBottom: '1.5rem' }}/>
 
           {/* Body */}
-          <p className="ugch-r font-sans font-normal" style={{ fontSize: 'clamp(0.9rem, 1.45vw, 1.06rem)', lineHeight: 1.82, color: '#F2F8FC', maxWidth: '30rem', marginBottom: '2.2rem' }}>
+          <p className="ugch-r font-sans font-medium" style={{ fontSize: 'clamp(0.9rem, 1.45vw, 1.06rem)', lineHeight: 1.82, color: '#F2F8FC', maxWidth: '30rem', marginBottom: '2.2rem' }}>
             We combine real creators with AI-assisted ideation and post-production to create
             authentic, platform-ready content for TikTok, Instagram Reels, YouTube Shorts and paid campaigns.
           </p>
 
+          <div className="ugch-r mb-6"><ServiceCta label="Start a Project" /></div>
+
           {/* Platform pills */}
           <div className="ugch-r flex flex-wrap gap-2">
             {['TikTok', 'Instagram Reels', 'YouTube Shorts', 'LinkedIn'].map(p => (
-              <span key={p} className="font-sans" style={{ fontSize: '0.68rem', letterSpacing: '0.05em', padding: '0.32rem 0.8rem', borderRadius: 999, border: '1px solid hsl(0 0% 100% / 0.11)', color: '#F2F8FC', background: 'hsl(0 0% 100% / 0.04)', backdropFilter: 'blur(8px)' }}>{p}</span>
+              <span key={p} className="font-sans" style={{ fontSize: '0.75rem', letterSpacing: '0.05em', padding: '0.32rem 0.8rem', borderRadius: 999, border: '1px solid hsl(0 0% 100% / 0.11)', color: '#F2F8FC', background: 'hsl(0 0% 100% / 0.04)', backdropFilter: 'blur(8px)' }}>{p}</span>
             ))}
           </div>
         </div>
@@ -7022,19 +6647,19 @@ function UGCHero() {
             { title: 'Multi-Format Delivery',   desc: 'Content prepared for organic social, short-form video and paid campaigns.' },
           ].map(({ title, desc }) => (
             <div key={title} className="ugch-r" style={{ background: 'hsl(0 0% 100% / 0.038)', backdropFilter: 'blur(22px)', border: '1px solid hsl(0 0% 100% / 0.09)', borderRadius: '1rem', padding: '1.15rem 1.45rem', boxShadow: '0 8px 36px hsl(0 0% 0% / 0.32)' }}>
-              <p className="font-sans font-medium" style={{ color: '#fff', fontSize: '0.74rem', letterSpacing: '0.07em', textTransform: 'uppercase', marginBottom: '0.5rem' }}>{title}</p>
-              <p className="font-sans" style={{ fontSize: '0.72rem', lineHeight: 1.55, color: 'hsl(0 0% 78%)' }}>{desc}</p>
+              <p className="font-sans font-medium" style={{ color: '#fff', fontSize: '0.75rem', letterSpacing: '0.07em', textTransform: 'uppercase', marginBottom: '0.5rem' }}>{title}</p>
+              <p className="font-sans" style={{ fontSize: '0.75rem', lineHeight: 1.55, color: 'var(--text-description)' }}>{desc}</p>
             </div>
           ))}
         </div>
       </div>
 
       {/* Ticker strip */}
-      <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 38, background: 'hsl(0 72% 45% / 0.07)', backdropFilter: 'blur(12px)', borderTop: '1px solid hsl(0 72% 58% / 0.14)', overflow: 'hidden', display: 'flex', alignItems: 'center' }}>
+      <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 38, background: 'hsl(44 100% 71% / 0.07)', backdropFilter: 'blur(12px)', borderTop: '1px solid hsl(44 100% 71% / 0.14)', overflow: 'hidden', display: 'flex', alignItems: 'center' }}>
         <div ref={tickerRef} style={{ display: 'flex', gap: '2.8rem', whiteSpace: 'nowrap', willChange: 'transform' }}>
           {[...UGC_TICKER, ...UGC_TICKER].map((t, i) => (
-            <span key={i} className="font-sans" style={{ fontSize: '0.82rem', letterSpacing: '0.28em', textTransform: 'uppercase', color: 'hsl(0 0% 72%)' }}>
-              {t}<span style={{ color: 'hsl(0 72% 62%)', marginLeft: '1.4rem' }}>·</span>
+            <span key={i} className="font-sans" style={{ fontSize: '0.82rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--text-description)' }}>
+              {t}<span style={{ color: 'hsl(44 100% 71%)', marginLeft: '1.4rem' }}>·</span>
             </span>
           ))}
         </div>
@@ -7048,7 +6673,7 @@ function UGCHero() {
       style={{ background: '#010709', padding: 'clamp(5rem, 10vw, 8.5rem) 0' }}
     >
       {/* Ambient glows */}
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{ background: ['radial-gradient(ellipse 50% 55% at 18% 62%, hsl(0 72% 48% / 0.055) 0%, transparent 65%)', 'radial-gradient(ellipse 38% 38% at 82% 28%, hsl(0 55% 38% / 0.035) 0%, transparent 60%)'].join(', ') }}/>
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{ background: ['radial-gradient(ellipse 50% 55% at 18% 62%, hsl(44 100% 71% / 0.055) 0%, transparent 65%)', 'radial-gradient(ellipse 38% 38% at 82% 28%, hsl(44 100% 71% / 0.035) 0%, transparent 60%)'].join(', ') }}/>
       <svg aria-hidden="true" className="pointer-events-none absolute inset-0 w-full h-full" style={{ opacity: 0.025 }}>
         <filter id="ugce-g"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" result="n"/><feColorMatrix type="saturate" values="0" in="n"/></filter>
         <rect width="100%" height="100%" filter="url(#ugce-g)" fill="white"/>
@@ -7061,13 +6686,13 @@ function UGCHero() {
 
           {/* Manifesto */}
           <div>
-            <p className="ugce-r font-sans uppercase mb-5" style={{ fontSize: '0.64rem', letterSpacing: '0.34em', color: 'hsl(0 72% 60%)' }}>Why UGC Works</p>
+            <p className="ugce-r font-sans uppercase mb-5" style={{ fontSize: '0.75rem', letterSpacing: '0.16em', color: 'hsl(44 100% 71%)' }}>Why UGC Works</p>
             <h2 className="ugce-r font-heading font-medium" style={{ color: '#fff', fontSize: 'clamp(2rem, 3.8vw, 3.1rem)', lineHeight: 1.08, letterSpacing: '-0.033em', marginBottom: '1.5rem' }}>
               People connect with{' '}
-              <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(0 72% 70%)' }}>content</em> that feels real.
+              <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 500, color: 'hsl(44 100% 71%)' }}>content</em> that feels real.
             </h2>
-            <div className="ugce-r" aria-hidden="true" style={{ width: '2.5rem', height: 1, background: 'hsl(0 72% 58% / 0.4)', marginBottom: '1.5rem' }}/>
-            <p className="ugce-r font-sans font-normal" style={{ fontSize: 'clamp(0.88rem, 1.35vw, 1rem)', lineHeight: 1.92, color: '#F2F8FC', maxWidth: '32rem' }}>
+            <div className="ugce-r" aria-hidden="true" style={{ width: '2.5rem', height: 1, background: 'hsl(44 100% 71% / 0.4)', marginBottom: '1.5rem' }}/>
+            <p className="ugce-r font-sans font-medium" style={{ fontSize: 'clamp(0.88rem, 1.35vw, 1rem)', lineHeight: 1.92, color: '#F2F8FC', maxWidth: '32rem' }}>
               Audiences respond to useful, relatable content—not polished advertising alone. We create
               creator-led concepts that demonstrate products naturally, communicate the brand clearly and{' '}
               <span style={{ color: '#F2F8FC' }}>give customers a reason to trust and act</span>.
@@ -7082,23 +6707,23 @@ function UGCHero() {
               { title: 'Creative Testing',           desc: 'Multiple hooks and formats help identify what connects with your audience.' },
             ].map(({ title, desc }, i, arr) => (
               <div key={title} className="ugce-stat-row" style={{ padding: '1.65rem 1.9rem', background: 'hsl(0 0% 100% / 0.022)', borderBottom: i < arr.length - 1 ? '1px solid hsl(0 0% 100% / 0.06)' : undefined }}>
-                <p className="font-sans font-medium" style={{ fontSize: '0.78rem', letterSpacing: '0.07em', textTransform: 'uppercase', color: 'hsl(0 72% 66%)', marginBottom: '0.5rem' }}>{title}</p>
-                <p className="font-sans font-normal" style={{ fontSize: '0.84rem', lineHeight: 1.55, color: '#F2F8FC' }}>{desc}</p>
+                <p className="font-sans font-medium" style={{ fontSize: '0.75rem', letterSpacing: '0.07em', textTransform: 'uppercase', color: 'hsl(44 100% 71%)', marginBottom: '0.5rem' }}>{title}</p>
+                <p className="font-sans font-medium" style={{ fontSize: '0.84rem', lineHeight: 1.55, color: '#F2F8FC' }}>{desc}</p>
               </div>
             ))}
           </div>
         </div>
 
         {/* ── What We Create ── */}
-        <p className="ugce-r font-sans uppercase mb-8" style={{ fontSize: '0.64rem', letterSpacing: '0.34em', color: 'hsl(0 0% 32%)' }}>What We Create</p>
+        <p className="ugce-r font-sans uppercase mb-8" style={{ fontSize: '0.75rem', letterSpacing: '0.16em', color: 'var(--text-muted)' }}>What We Create</p>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
           {UGC_CARDS.map(({ num, title, desc }) => (
             <div key={num} className="ugce-r" style={{ position: 'relative', overflow: 'hidden', background: 'hsl(0 0% 100% / 0.022)', border: '1px solid hsl(0 0% 100% / 0.07)', borderRadius: '1.25rem', padding: '2rem' }}>
               {/* Ghost number */}
-              <span aria-hidden="true" className="font-sans font-normal" style={{ position: 'absolute', top: '1.1rem', right: '1.3rem', fontSize: '3.8rem', lineHeight: 1, letterSpacing: '-0.06em', color: 'hsl(0 72% 52% / 0.07)', userSelect: 'none' }}>{num}</span>
-              <div aria-hidden="true" style={{ width: '1.8rem', height: 2, background: 'hsl(0 72% 58% / 0.55)', borderRadius: 2, marginBottom: '1.25rem' }}/>
+              <span aria-hidden="true" className="font-sans font-medium" style={{ position: 'absolute', top: '1.1rem', right: '1.3rem', fontSize: '3.8rem', lineHeight: 1, letterSpacing: '-0.03em', color: 'hsl(44 100% 71% / 0.07)', userSelect: 'none' }}>{num}</span>
+              <div aria-hidden="true" style={{ width: '1.8rem', height: 2, background: 'hsl(44 100% 71% / 0.55)', borderRadius: 2, marginBottom: '1.25rem' }}/>
               <h3 className="font-heading font-medium" style={{ color: '#fff', fontSize: 'clamp(0.95rem, 1.4vw, 1.08rem)', letterSpacing: '-0.01em', lineHeight: 1.28, marginBottom: '0.88rem' }}>{title}</h3>
-              <p className="font-sans font-normal" style={{ fontSize: '0.81rem', lineHeight: 1.78, color: '#F2F8FC' }}>{desc}</p>
+              <p className="font-sans font-medium" style={{ fontSize: '0.81rem', lineHeight: 1.78, color: '#F2F8FC' }}>{desc}</p>
             </div>
           ))}
         </div>
@@ -7121,7 +6746,7 @@ function UGCCreatorPhotoCard({ className = '' }: { className?: string }) {
         position: 'relative',
         borderRadius: '1.4rem',
         overflow: 'hidden',
-        boxShadow: '0 0 0 1px rgba(125,220,255,0.10), 0 32px 80px -16px rgba(0,0,0,0.88), 0 0 60px -20px rgba(125,220,255,0.12)',
+        boxShadow: '0 0 0 1px rgba(255,216,107,0.10), 0 32px 80px -16px rgba(0,0,0,0.88), 0 0 60px -20px rgba(255,216,107,0.12)',
       }}
     >
       {/* Photographic image */}
@@ -7158,7 +6783,7 @@ function UGCCreatorPhotoCard({ className = '' }: { className?: string }) {
         background: 'linear-gradient(to bottom, transparent 45%, rgba(1,7,9,0.65) 100%)',
       }} />
 
-      {/* Badge: Approved Creator — top left, floating */}
+      {/* Badge: Example Creator — top left, floating */}
       <div
         className="ugc-badge-float"
         style={{
@@ -7167,44 +6792,18 @@ function UGCCreatorPhotoCard({ className = '' }: { className?: string }) {
           background: 'rgba(3,10,14,0.76)',
           backdropFilter: 'blur(10px)',
           WebkitBackdropFilter: 'blur(10px)',
-          border: '1px solid rgba(52,211,153,0.38)',
+          border: '1px solid rgba(255,216,107,0.38)',
           borderRadius: '2rem',
           padding: '0.32rem 0.85rem',
           animationDelay: '0s',
         }}
       >
-        <div style={{ width: 5, height: 5, borderRadius: '50%', background: '#34D399', boxShadow: '0 0 7px #34D399', flexShrink: 0 }} />
-        <span style={{ fontSize: 9, fontWeight: 600, color: '#34D399', letterSpacing: '0.13em', textTransform: 'uppercase' }}>Approved Creator</span>
-      </div>
-
-      {/* Metric badges — bottom, floating with staggered delay */}
-      <div style={{
-        position: 'absolute', bottom: '1.2rem', left: '1.1rem', right: '1.1rem',
-        display: 'flex', gap: '0.45rem', flexWrap: 'wrap',
-      }}>
-        {([
-          { label: 'Brand Fit',  val: '94%',  color: '#7DDCFF', delay: '0.6s' },
-          { label: 'Engagement', val: '6.4%', color: '#A78BFA', delay: '1.2s' },
-          { label: 'Avg Views',  val: '82K',  color: '#F0C56A', delay: '1.8s' },
-        ] as { label: string; val: string; color: string; delay: string }[]).map(({ label, val, color, delay }) => (
-          <div key={label} className="ugc-badge-float" style={{
-            display: 'flex', alignItems: 'center', gap: '0.38rem',
-            background: 'rgba(3,10,14,0.78)',
-            backdropFilter: 'blur(10px)',
-            WebkitBackdropFilter: 'blur(10px)',
-            border: `1px solid ${color}2e`,
-            borderRadius: '2rem',
-            padding: '0.3rem 0.78rem',
-            animationDelay: delay,
-          }}>
-            <span style={{ fontSize: 8, color: 'rgba(255,255,255,0.42)', letterSpacing: '0.10em', textTransform: 'uppercase' }}>{label}</span>
-            <span style={{ fontSize: 10.5, fontWeight: 700, color, fontFamily: 'monospace' }}>{val}</span>
-          </div>
-        ))}
+        <div style={{ width: 5, height: 5, borderRadius: '50%', background: '#FFD86B', boxShadow: '0 0 7px #FFD86B', flexShrink: 0 }} />
+        <span style={{ fontSize: 12, fontWeight: 500, color: '#FFD86B', letterSpacing: '0.08em', textTransform: 'uppercase' }}>Example Creator</span>
       </div>
 
       {/* Inset border glow */}
-      <div aria-hidden="true" style={{ position: 'absolute', inset: 0, borderRadius: '1.4rem', pointerEvents: 'none', boxShadow: 'inset 0 0 0 1px rgba(125,220,255,0.09)' }} />
+      <div aria-hidden="true" style={{ position: 'absolute', inset: 0, borderRadius: '1.4rem', pointerEvents: 'none', boxShadow: 'inset 0 0 0 1px rgba(255,216,107,0.09)' }} />
     </div>
   )
 }
@@ -7242,20 +6841,20 @@ function UGCCreatorSelection() {
 
   const stepLabel = (
     <div className="ugccs-text" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.5rem', flexWrap: 'wrap' }}>
-      <span className="font-sans" style={{ fontSize: '0.6rem', letterSpacing: '0.32em', textTransform: 'uppercase', color: 'hsl(195 80% 62%)', flexShrink: 0 }}>01</span>
-      <div aria-hidden="true" style={{ width: '2rem', height: 1, background: 'hsl(195 80% 55% / 0.4)', flexShrink: 0 }}/>
-      <span className="font-sans" style={{ fontSize: '0.6rem', letterSpacing: '0.28em', textTransform: 'uppercase', color: 'hsl(195 80% 62%)' }}>UGC Creator Selection</span>
+      <span className="font-sans" style={{ fontSize: '0.75rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'hsl(44 100% 71%)', flexShrink: 0 }}>01</span>
+      <div aria-hidden="true" style={{ width: '2rem', height: 1, background: 'hsl(44 100% 71% / 0.4)', flexShrink: 0 }}/>
+      <span className="font-sans" style={{ fontSize: '0.75rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'hsl(44 100% 71%)' }}>UGC Creator Selection</span>
     </div>
   )
 
   const decorative = (
     <>
-      <div aria-hidden="true" style={{ pointerEvents: 'none', position: 'absolute', inset: 0, background: 'radial-gradient(ellipse 50% 55% at 100% 45%, hsl(195 80% 50% / 0.045) 0%, transparent 65%), radial-gradient(ellipse 35% 40% at 0% 65%, hsl(195 70% 40% / 0.03) 0%, transparent 60%)' }}/>
+      <div aria-hidden="true" style={{ pointerEvents: 'none', position: 'absolute', inset: 0, background: 'radial-gradient(ellipse 50% 55% at 100% 45%, hsl(44 100% 71% / 0.045) 0%, transparent 65%), radial-gradient(ellipse 35% 40% at 0% 65%, hsl(44 100% 71% / 0.03) 0%, transparent 60%)' }}/>
       <svg aria-hidden="true" style={{ pointerEvents: 'none', position: 'absolute', inset: 0, width: '100%', height: '100%', opacity: 0.025 }}>
         <filter id="ugccs-gr"><feTurbulence type="fractalNoise" baseFrequency="0.66" numOctaves="3" stitchTiles="stitch" result="n"/><feColorMatrix type="saturate" values="0" in="n"/></filter>
         <rect width="100%" height="100%" filter="url(#ugccs-gr)" fill="white"/>
       </svg>
-      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '1px', background: 'linear-gradient(to right, transparent, hsl(195 80% 55% / 0.12), transparent)' }}/>
+      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '1px', background: 'linear-gradient(to right, transparent, hsl(44 100% 71% / 0.12), transparent)' }}/>
     </>
   )
 
@@ -7265,21 +6864,20 @@ function UGCCreatorSelection() {
 
   const bodyText = (
     <>
-      <div className="ugccs-text" aria-hidden="true" style={{ width: '2.5rem', height: 1, background: 'hsl(195 80% 55% / 0.38)', marginBottom: '1.6rem' }}/>
-      <p className="ugccs-text font-sans font-normal w-full max-w-none text-left text-base leading-8 sm:text-lg" style={{ color: '#F2F8FC', marginBottom: '1.2rem' }}>
+      <div className="ugccs-text" aria-hidden="true" style={{ width: '2.5rem', height: 1, background: 'hsl(44 100% 71% / 0.38)', marginBottom: '1.6rem' }}/>
+      <p className="ugccs-text font-sans font-medium w-full max-w-none text-left text-base leading-8 sm:text-lg" style={{ color: '#F2F8FC', marginBottom: '1.2rem' }}>
         Every creator we recommend is validated by their numbers. We look beyond follower count
         and dig into engagement rate, average views, and audience quality — so your budget
         goes to creators who actually perform.
       </p>
-      <p className="ugccs-text font-sans font-normal w-full max-w-none text-left text-base leading-8 sm:text-lg" style={{ color: '#F2F8FC', marginBottom: '2rem' }}>
-        No guessing, no wasted spend. We present the metrics that matter so you can
-        select with confidence and brief creators who are built to deliver.
+      <p className="ugccs-text font-sans font-medium w-full max-w-none text-left text-base leading-8 sm:text-lg" style={{ color: '#F2F8FC', marginBottom: '2rem' }}>
+        We present the metrics that matter, so you can choose with confidence and brief the right creators.
       </p>
       <ul className="ugccs-text" style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.7rem' }}>
         {UGC_INSIGHTS.map((item) => (
           <li key={item} style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
-            <span aria-hidden="true" style={{ width: '5px', height: '5px', borderRadius: '50%', background: 'hsl(195 80% 58%)', boxShadow: '0 0 6px hsl(195 80% 58% / 0.6)', flexShrink: 0 }}/>
-            <span className="font-sans font-normal" style={{ fontSize: '0.88rem', color: '#F2F8FC', letterSpacing: '0.01em' }}>{item}</span>
+            <span aria-hidden="true" style={{ width: '5px', height: '5px', borderRadius: '50%', background: 'hsl(44 100% 71%)', boxShadow: '0 0 6px hsl(44 100% 71% / 0.6)', flexShrink: 0 }}/>
+            <span className="font-sans font-medium" style={{ fontSize: '0.88rem', color: '#F2F8FC', letterSpacing: '0.01em' }}>{item}</span>
           </li>
         ))}
       </ul>
@@ -7301,10 +6899,10 @@ function UGCCreatorSelection() {
               {stepLabel}
               <h2
                 className="ugccs-text font-heading font-medium"
-                style={{ color: '#fff', fontSize: 'clamp(2rem, 2.8vw, 3rem)', lineHeight: 1.05, letterSpacing: '-0.035em', marginBottom: '1.6rem' }}
+                style={{ color: '#fff', fontSize: 'clamp(2rem, 2.8vw, 3rem)', lineHeight: 1.05, letterSpacing: '-0.03em', marginBottom: '1.6rem' }}
               >
                 Creators chosen by{' '}
-                <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(195 80% 72%)' }}>
+                <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 500, color: 'hsl(44 100% 71%)' }}>
                   data, not guesswork.
                 </em>
               </h2>
@@ -7321,9 +6919,9 @@ function UGCCreatorSelection() {
 
           {/* 1. Section label */}
           <div className="ugccs-text w-full flex items-center gap-3 flex-wrap">
-            <span className="font-sans" style={{ fontSize: '0.6rem', letterSpacing: '0.32em', textTransform: 'uppercase', color: 'hsl(195 80% 62%)' }}>01</span>
-            <div aria-hidden="true" style={{ width: '2rem', height: 1, background: 'hsl(195 80% 55% / 0.4)' }}/>
-            <span className="font-sans" style={{ fontSize: '0.6rem', letterSpacing: '0.28em', textTransform: 'uppercase', color: 'hsl(195 80% 62%)' }}>UGC Creator Selection</span>
+            <span className="font-sans" style={{ fontSize: '0.75rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'hsl(44 100% 71%)' }}>01</span>
+            <div aria-hidden="true" style={{ width: '2rem', height: 1, background: 'hsl(44 100% 71% / 0.4)' }}/>
+            <span className="font-sans" style={{ fontSize: '0.75rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'hsl(44 100% 71%)' }}>UGC Creator Selection</span>
           </div>
 
           {/* 2. Heading */}
@@ -7332,7 +6930,7 @@ function UGCCreatorSelection() {
             style={{ letterSpacing: '-0.02em', margin: '0 0 0.5rem 0' }}
           >
             Creators chosen by{' '}
-            <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(195 80% 72%)' }}>
+            <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 500, color: 'hsl(44 100% 71%)' }}>
               data, not guesswork.
             </em>
           </h2>
@@ -7342,20 +6940,19 @@ function UGCCreatorSelection() {
 
           {/* 4. Paragraphs */}
           <div className="ugccs-text w-full space-y-5">
-            <p className="w-full max-w-none text-left text-base leading-7 text-white/70 sm:text-lg sm:leading-8">
+            <p className="w-full max-w-none text-left text-base leading-7 text-white/90 sm:text-lg sm:leading-8">
               Every creator we recommend is validated by their numbers. We look beyond follower count
               and dig into engagement rate, average views, and audience quality — so your budget
               goes to creators who actually perform.
             </p>
             <p className="w-full max-w-none text-left text-base leading-7 sm:text-lg sm:leading-8" style={{ color: '#F2F8FC' }}>
-              No guessing, no wasted spend. We present the metrics that matter so you can
-              select with confidence and brief creators who are built to deliver.
+              We present the metrics that matter, so you can choose with confidence and brief the right creators.
             </p>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.7rem' }}>
               {UGC_INSIGHTS.map((item) => (
                 <li key={item} style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
-                  <span aria-hidden="true" style={{ width: '5px', height: '5px', borderRadius: '50%', background: 'hsl(195 80% 58%)', boxShadow: '0 0 6px hsl(195 80% 58% / 0.6)', flexShrink: 0 }}/>
-                  <span className="font-sans font-normal" style={{ fontSize: '0.88rem', color: '#F2F8FC', letterSpacing: '0.01em' }}>{item}</span>
+                  <span aria-hidden="true" style={{ width: '5px', height: '5px', borderRadius: '50%', background: 'hsl(44 100% 71%)', boxShadow: '0 0 6px hsl(44 100% 71% / 0.6)', flexShrink: 0 }}/>
+                  <span className="font-sans font-medium" style={{ fontSize: '0.88rem', color: '#F2F8FC', letterSpacing: '0.01em' }}>{item}</span>
                 </li>
               ))}
             </ul>
@@ -7407,8 +7004,8 @@ function UGCFindCreators() {
       {/* Subtle ambient glow */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
         background: [
-          'radial-gradient(ellipse 48% 55% at 0% 50%, hsl(195 80% 50% / 0.045) 0%, transparent 65%)',
-          'radial-gradient(ellipse 35% 40% at 100% 60%, hsl(195 70% 40% / 0.03) 0%, transparent 60%)',
+          'radial-gradient(ellipse 48% 55% at 0% 50%, hsl(44 100% 71% / 0.045) 0%, transparent 65%)',
+          'radial-gradient(ellipse 35% 40% at 100% 60%, hsl(44 100% 71% / 0.03) 0%, transparent 60%)',
         ].join(', '),
       }}/>
 
@@ -7429,9 +7026,9 @@ function UGCFindCreators() {
 
             {/* Step label */}
             <div className="ugcfc-text ugc-step-label flex items-center gap-3 mb-8">
-              <span className="font-sans" style={{ fontSize: '0.6rem', letterSpacing: '0.32em', textTransform: 'uppercase', color: 'hsl(195 80% 62%)', flexShrink: 0 }}>02</span>
-              <div style={{ width: '2rem', height: 1, background: 'hsl(195 80% 55% / 0.4)', flexShrink: 0 }} aria-hidden="true"/>
-              <span className="font-sans" style={{ fontSize: '0.6rem', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'hsl(195 80% 62%)' }}>Find Your UGC Creators</span>
+              <span className="font-sans" style={{ fontSize: '0.75rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'hsl(44 100% 71%)', flexShrink: 0 }}>02</span>
+              <div style={{ width: '2rem', height: 1, background: 'hsl(44 100% 71% / 0.4)', flexShrink: 0 }} aria-hidden="true"/>
+              <span className="font-sans" style={{ fontSize: '0.75rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'hsl(44 100% 71%)' }}>Find Your UGC Creators</span>
             </div>
 
             {/* Headline */}
@@ -7441,12 +7038,12 @@ function UGCFindCreators() {
                 color: '#ffffff',
                 fontSize: 'clamp(1.9rem, 3.6vw, 3rem)',
                 lineHeight: 1.08,
-                letterSpacing: '-0.035em',
+                letterSpacing: '-0.03em',
                 marginBottom: '1.8rem',
               }}
             >
               We find creators{' '}
-              <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(195 80% 72%)' }}>
+              <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 500, color: 'hsl(44 100% 71%)' }}>
                 built for your brand.
               </em>
             </h2>
@@ -7455,12 +7052,12 @@ function UGCFindCreators() {
             <div
               className="ugcfc-text"
               aria-hidden="true"
-              style={{ width: '2.5rem', height: 1, background: 'hsl(195 80% 55% / 0.38)', marginBottom: '1.8rem' }}
+              style={{ width: '2.5rem', height: 1, background: 'hsl(44 100% 71% / 0.38)', marginBottom: '1.8rem' }}
             />
 
             {/* Paragraph 1 */}
             <p
-              className="ugcfc-text font-sans font-normal"
+              className="ugcfc-text font-sans font-medium"
               style={{ fontSize: 'clamp(0.88rem, 1.4vw, 1.02rem)', lineHeight: 1.9, color: '#F2F8FC', marginBottom: '1.4rem' }}
             >
               We identify creators who match your brand style, audience, and campaign goals.
@@ -7470,7 +7067,7 @@ function UGCFindCreators() {
 
             {/* Paragraph 2 */}
             <p
-              className="ugcfc-text font-sans font-normal"
+              className="ugcfc-text font-sans font-medium"
               style={{ fontSize: 'clamp(0.88rem, 1.4vw, 1.02rem)', lineHeight: 1.9, color: '#F2F8FC' }}
             >
               From lifestyle fit to on-camera confidence, every creator is selected with intention —
@@ -7492,7 +7089,7 @@ function UGCFindCreators() {
                 boxShadow: [
                   '0 0 0 1px hsl(0 0% 100% / 0.08)',
                   '0 40px 90px -20px hsl(0 0% 0% / 0.85)',
-                  '0 0 60px -15px hsl(195 80% 50% / 0.1)',
+                  '0 0 60px -15px hsl(44 100% 71% / 0.1)',
                 ].join(', '),
               }}>
 
@@ -7528,13 +7125,13 @@ function UGCFindCreators() {
 
                     {/* Left: user info */}
                     <div style={{ maxWidth: '62%' }}>
-                      <p className="font-sans" style={{ fontSize: '13px', fontWeight: 700, color: '#fff', marginBottom: '5px' }}>@weavy.studio</p>
-                      <p className="font-sans" style={{ fontSize: '11px', color: 'hsl(0 0% 82%)', lineHeight: 1.45, marginBottom: '10px' }}>
-                        Real creators, real results ✨ #UGC #ContentCreation #BrandMarketing
+                      <p className="font-sans" style={{ fontSize: '13px', fontWeight: 500, color: '#fff', marginBottom: '5px' }}>@weavy.studio</p>
+                      <p className="font-sans" style={{ fontSize: '12px', color: 'var(--text-body)', lineHeight: 1.45, marginBottom: '10px' }}>
+                        Real creators ✨ #UGC #ContentCreation #BrandMarketing
                       </p>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
                         <svg width="11" height="11" viewBox="0 0 24 24" fill="white"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
-                        <p className="font-sans" style={{ fontSize: '10px', color: 'hsl(0 0% 72%)' }}>Original Sound — weavy.studio</p>
+                        <p className="font-sans" style={{ fontSize: '12px', color: 'var(--text-description)' }}>Demonstration video</p>
                       </div>
                     </div>
 
@@ -7543,36 +7140,32 @@ function UGCFindCreators() {
 
                       {/* Avatar + follow */}
                       <div style={{ position: 'relative', marginBottom: '6px' }}>
-                        <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'linear-gradient(135deg, hsl(195 80% 50%), hsl(280 65% 60%))', border: '2px solid #fff', overflow: 'hidden' }}>
-                          <div style={{ width: '100%', height: '100%', background: 'hsl(195 50% 18%)' }}/>
+                        <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'linear-gradient(135deg, hsl(44 100% 71%), hsl(44 100% 71%))', border: '2px solid #fff', overflow: 'hidden' }}>
+                          <div style={{ width: '100%', height: '100%', background: 'hsl(44 45% 18%)' }}/>
                         </div>
                         <div style={{ position: 'absolute', bottom: '-8px', left: '50%', transform: 'translateX(-50%)', width: '16px', height: '16px', borderRadius: '50%', background: '#fe2c55', border: '2px solid #000', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                          <span style={{ color: '#fff', fontSize: '10px', lineHeight: 1, fontWeight: 700 }}>+</span>
+                          <span style={{ color: '#fff', fontSize: '12px', lineHeight: 1, fontWeight: 500 }}>+</span>
                         </div>
                       </div>
 
                       {/* Like */}
                       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '3px' }}>
                         <svg width="26" height="26" viewBox="0 0 24 24" fill="#fe2c55" stroke="none"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-                        <span className="font-sans" style={{ fontSize: '10px', color: '#fff', fontWeight: 600 }}>1M</span>
                       </div>
 
                       {/* Comment */}
                       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '3px' }}>
                         <svg width="26" height="26" viewBox="0 0 24 24" fill="white" stroke="none"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-                        <span className="font-sans" style={{ fontSize: '10px', color: '#fff', fontWeight: 600 }}>24.8K</span>
                       </div>
 
                       {/* Bookmark */}
                       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '3px' }}>
                         <svg width="26" height="26" viewBox="0 0 24 24" fill="white" stroke="none"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
-                        <span className="font-sans" style={{ fontSize: '10px', color: '#fff', fontWeight: 600 }}>18.2K</span>
                       </div>
 
                       {/* Share */}
                       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '3px' }}>
                         <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-                        <span className="font-sans" style={{ fontSize: '10px', color: '#fff', fontWeight: 600 }}>9.4K</span>
                       </div>
 
                       {/* Disc */}
@@ -7710,14 +7303,14 @@ function UGCMonitoringReporting() {
       style={{ position: 'relative', background: '#010709', padding: 'clamp(5rem, 10vw, 9rem) 0' }}
     >
       {/* Ambient glow */}
-      <div aria-hidden="true" style={{ pointerEvents: 'none', position: 'absolute', inset: 0, background: 'radial-gradient(ellipse 48% 55% at 0% 50%, hsl(195 80% 50% / 0.042) 0%, transparent 65%), radial-gradient(ellipse 35% 40% at 100% 60%, hsl(195 70% 40% / 0.028) 0%, transparent 60%)' }}/>
+      <div aria-hidden="true" style={{ pointerEvents: 'none', position: 'absolute', inset: 0, background: 'radial-gradient(ellipse 48% 55% at 0% 50%, hsl(44 100% 71% / 0.042) 0%, transparent 65%), radial-gradient(ellipse 35% 40% at 100% 60%, hsl(44 100% 71% / 0.028) 0%, transparent 60%)' }}/>
       {/* Grain */}
       <svg aria-hidden="true" style={{ pointerEvents: 'none', position: 'absolute', inset: 0, width: '100%', height: '100%', opacity: 0.025 }}>
         <filter id="ugcmr-gr"><feTurbulence type="fractalNoise" baseFrequency="0.66" numOctaves="3" stitchTiles="stitch" result="n"/><feColorMatrix type="saturate" values="0" in="n"/></filter>
         <rect width="100%" height="100%" filter="url(#ugcmr-gr)" fill="white"/>
       </svg>
       {/* Top separator */}
-      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '1px', background: 'linear-gradient(to right, transparent, hsl(195 80% 55% / 0.12), transparent)' }}/>
+      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '1px', background: 'linear-gradient(to right, transparent, hsl(44 100% 71% / 0.12), transparent)' }}/>
 
       {/* Content */}
       <div className="ugcmr-layout-inner" style={{ position: 'relative', zIndex: 10 }}>
@@ -7726,33 +7319,33 @@ function UGCMonitoringReporting() {
           {/* TEXT — first in DOM = top on mobile, order-2 on desktop (right) */}
           <div className="ugcmr-layout-text">
             <div className="ugcmr-text" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.75rem', flexWrap: 'wrap' }}>
-              <span className="font-sans" style={{ fontSize: '0.6rem', letterSpacing: '0.32em', textTransform: 'uppercase', color: 'hsl(195 80% 62%)', flexShrink: 0 }}>03</span>
-              <div aria-hidden="true" style={{ width: '2rem', height: 1, background: 'hsl(195 80% 55% / 0.4)', flexShrink: 0 }}/>
-              <span className="font-sans" style={{ fontSize: '0.6rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: 'hsl(195 80% 62%)' }}>Content Monitoring & Reporting</span>
+              <span className="font-sans" style={{ fontSize: '0.75rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'hsl(44 100% 71%)', flexShrink: 0 }}>03</span>
+              <div aria-hidden="true" style={{ width: '2rem', height: 1, background: 'hsl(44 100% 71% / 0.4)', flexShrink: 0 }}/>
+              <span className="font-sans" style={{ fontSize: '0.75rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'hsl(44 100% 71%)' }}>Content Monitoring & Reporting</span>
             </div>
             <h2
               className="ugcmr-text font-heading font-medium"
-              style={{ color: '#fff', fontSize: 'clamp(2rem, 5vw, 3rem)', lineHeight: 1.05, letterSpacing: '-0.035em', marginBottom: '1.6rem' }}
+              style={{ color: '#fff', fontSize: 'clamp(2rem, 5vw, 3rem)', lineHeight: 1.05, letterSpacing: '-0.03em', marginBottom: '1.6rem' }}
             >
               Every result,{' '}
-              <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(195 80% 72%)' }}>
+              <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 500, color: 'hsl(44 100% 71%)' }}>
                 clearly reported.
               </em>
             </h2>
-            <div className="ugcmr-text" aria-hidden="true" style={{ width: '2.5rem', height: 1, background: 'hsl(195 80% 55% / 0.38)', marginBottom: '1.6rem' }}/>
-            <p className="ugcmr-text font-sans font-normal" style={{ fontSize: '1rem', lineHeight: 2, color: '#F2F8FC', marginBottom: '1.2rem' }}>
+            <div className="ugcmr-text" aria-hidden="true" style={{ width: '2.5rem', height: 1, background: 'hsl(44 100% 71% / 0.38)', marginBottom: '1.6rem' }}/>
+            <p className="ugcmr-text font-sans font-medium" style={{ fontSize: '1rem', lineHeight: 2, color: '#F2F8FC', marginBottom: '1.2rem' }}>
               During the campaign, we track and collect every piece of published UGC across Instagram,
               including Stories, TikTok, and YouTube, so your content stays organised and easy to review.
             </p>
-            <p className="ugcmr-text font-sans font-normal" style={{ fontSize: '1rem', lineHeight: 2, color: '#F2F8FC', marginBottom: '2rem' }}>
+            <p className="ugcmr-text font-sans font-medium" style={{ fontSize: '1rem', lineHeight: 2, color: '#F2F8FC', marginBottom: '2rem' }}>
               At the end of each month, we provide clear reporting with downloadable media assets,
               campaign performance insights, and key results such as impressions, clicks, leads, and sales.
             </p>
             <ul className="ugcmr-text" style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.7rem' }}>
               {UGC_REPORT_POINTS.map(item => (
                 <li key={item} style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
-                  <span aria-hidden="true" style={{ width: '5px', height: '5px', borderRadius: '50%', background: 'hsl(195 80% 58%)', boxShadow: '0 0 6px hsl(195 80% 58% / 0.6)', flexShrink: 0 }}/>
-                  <span className="font-sans font-normal" style={{ fontSize: '0.88rem', color: '#F2F8FC', letterSpacing: '0.01em' }}>{item}</span>
+                  <span aria-hidden="true" style={{ width: '5px', height: '5px', borderRadius: '50%', background: 'hsl(44 100% 71%)', boxShadow: '0 0 6px hsl(44 100% 71% / 0.6)', flexShrink: 0 }}/>
+                  <span className="font-sans font-medium" style={{ fontSize: '0.88rem', color: '#F2F8FC', letterSpacing: '0.01em' }}>{item}</span>
                 </li>
               ))}
             </ul>
@@ -7768,7 +7361,7 @@ function UGCMonitoringReporting() {
                 overflow: 'hidden',
                 width: '100%',
                 maxWidth: '680px',
-                boxShadow: '0 0 0 1px hsl(195 80% 55% / 0.1), 0 32px 72px -16px hsl(0 0% 0% / 0.75), 0 0 48px -12px hsl(195 80% 50% / 0.08)',
+                boxShadow: '0 0 0 1px hsl(44 100% 71% / 0.1), 0 32px 72px -16px hsl(0 0% 0% / 0.75), 0 0 48px -12px hsl(44 100% 71% / 0.08)',
               }}
             >
               <div aria-hidden="true" style={{ position: 'absolute', inset: 0, zIndex: 2, borderRadius: '1.4rem', pointerEvents: 'none', boxShadow: 'inset 0 0 0 1px hsl(0 0% 100% / 0.07)' }}/>
@@ -7807,9 +7400,9 @@ const UGCTU_BARS = [
 ]
 
 const UGCTU_ROWS = [
-  { platform: 'Instagram Reel', creator: '@creator_a', status: 'Active',   color: 'hsl(160 60% 52%)' },
-  { platform: 'TikTok Video',   creator: '@creator_b', status: 'Active',   color: 'hsl(160 60% 52%)' },
-  { platform: 'Instagram Story',creator: '@creator_c', status: 'Complete', color: 'hsl(0 0% 38%)'    },
+  { platform: 'Instagram Reel', creator: '@creator_a', status: 'Active',   color: 'hsl(44 100% 71%)' },
+  { platform: 'TikTok Video',   creator: '@creator_b', status: 'Active',   color: 'hsl(44 100% 71%)' },
+  { platform: 'Instagram Story',creator: '@creator_c', status: 'Complete', color: 'var(--text-muted)'    },
 ]
 
 function UGCTrackingUrls() {
@@ -7921,8 +7514,8 @@ function UGCTrackingUrls() {
       {/* Ambient glow */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
         background: [
-          'radial-gradient(ellipse 55% 60% at 90% 50%, hsl(160 70% 45% / 0.045) 0%, transparent 65%)',
-          'radial-gradient(ellipse 38% 42% at 10% 55%, hsl(195 80% 50% / 0.03) 0%, transparent 60%)',
+          'radial-gradient(ellipse 55% 60% at 90% 50%, hsl(44 100% 71% / 0.045) 0%, transparent 65%)',
+          'radial-gradient(ellipse 38% 42% at 10% 55%, hsl(44 100% 71% / 0.03) 0%, transparent 60%)',
         ].join(', '),
       }}/>
 
@@ -7936,7 +7529,7 @@ function UGCTrackingUrls() {
       </svg>
 
       {/* Top separator */}
-      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '1px', background: 'linear-gradient(to right, transparent, hsl(160 65% 50% / 0.14), transparent)' }}/>
+      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '1px', background: 'linear-gradient(to right, transparent, hsl(44 100% 71% / 0.14), transparent)' }}/>
 
       <div className="relative z-10 max-w-[72rem] mx-auto px-6 sm:px-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20 items-center">
@@ -7944,35 +7537,35 @@ function UGCTrackingUrls() {
           {/* ── LEFT: text ── */}
           <div>
             <div className="ugctu-text ugc-step-label flex items-center gap-3 mb-6">
-              <span className="font-sans" style={{ fontSize: '0.6rem', letterSpacing: '0.32em', textTransform: 'uppercase', color: 'hsl(160 65% 55%)', flexShrink: 0 }}>04</span>
-              <div aria-hidden="true" style={{ width: '2rem', height: 1, background: 'hsl(160 65% 50% / 0.4)', flexShrink: 0 }}/>
-              <span className="font-sans" style={{ fontSize: '0.6rem', letterSpacing: '0.32em', textTransform: 'uppercase', color: 'hsl(160 65% 55%)' }}>Tracking URLs</span>
+              <span className="font-sans" style={{ fontSize: '0.75rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'hsl(44 100% 71%)', flexShrink: 0 }}>04</span>
+              <div aria-hidden="true" style={{ width: '2rem', height: 1, background: 'hsl(44 100% 71% / 0.4)', flexShrink: 0 }}/>
+              <span className="font-sans" style={{ fontSize: '0.75rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'hsl(44 100% 71%)' }}>Tracking URLs</span>
             </div>
 
-            <p className="ugctu-text font-sans" style={{ fontSize: '0.62rem', letterSpacing: '0.28em', textTransform: 'uppercase', color: 'hsl(160 60% 50% / 0.65)', marginBottom: '1.4rem' }}>
+            <p className="ugctu-text font-sans" style={{ fontSize: '0.75rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'hsl(44 100% 71% / 0.65)', marginBottom: '1.4rem' }}>
               Performance Visibility
             </p>
 
             <h2
               className="ugctu-text font-heading font-medium"
-              style={{ color: '#fff', fontSize: 'clamp(1.9rem, 3.6vw, 3rem)', lineHeight: 1.08, letterSpacing: '-0.035em', marginBottom: '1.8rem' }}
+              style={{ color: '#fff', fontSize: 'clamp(1.9rem, 3.6vw, 3rem)', lineHeight: 1.08, letterSpacing: '-0.03em', marginBottom: '1.8rem' }}
             >
               Know exactly which creator,{' '}
-              <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(160 65% 65%)' }}>
+              <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 500, color: 'hsl(44 100% 71%)' }}>
                 platform,
               </em>{' '}
               and placement is driving results.
             </h2>
 
-            <div className="ugctu-text" aria-hidden="true" style={{ width: '2.5rem', height: 1, background: 'hsl(160 65% 50% / 0.38)', marginBottom: '1.8rem' }}/>
+            <div className="ugctu-text" aria-hidden="true" style={{ width: '2.5rem', height: 1, background: 'hsl(44 100% 71% / 0.38)', marginBottom: '1.8rem' }}/>
 
-            <p className="ugctu-text font-sans font-normal" style={{ fontSize: 'clamp(0.88rem, 1.4vw, 1.02rem)', lineHeight: 1.9, color: '#F2F8FC', marginBottom: '1.2rem' }}>
+            <p className="ugctu-text font-sans font-medium" style={{ fontSize: 'clamp(0.88rem, 1.4vw, 1.02rem)', lineHeight: 1.9, color: '#F2F8FC', marginBottom: '1.2rem' }}>
               Every campaign can be measured with clear tracking links and structured reporting,
               so you are not relying on guesswork. Each creator, post, story, reel, or video can
               be monitored to understand where the strongest results are coming from.
             </p>
 
-            <p className="ugctu-text font-sans font-normal" style={{ fontSize: 'clamp(0.88rem, 1.4vw, 1.02rem)', lineHeight: 1.9, color: '#F2F8FC', marginBottom: '2.4rem' }}>
+            <p className="ugctu-text font-sans font-medium" style={{ fontSize: 'clamp(0.88rem, 1.4vw, 1.02rem)', lineHeight: 1.9, color: '#F2F8FC', marginBottom: '2.4rem' }}>
               From impressions and clicks to leads, enquiries, and sales, the reporting view
               helps you see what is working, what needs improving, and where to focus the next campaign.
             </p>
@@ -7980,8 +7573,8 @@ function UGCTrackingUrls() {
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
               {UGC_TRACKING_FEATURES.map(item => (
                 <li key={item} className="ugctu-feat" style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
-                  <span aria-hidden="true" style={{ width: '5px', height: '5px', borderRadius: '50%', flexShrink: 0, background: 'hsl(160 65% 52%)', boxShadow: '0 0 6px hsl(160 65% 50% / 0.55)' }}/>
-                  <span className="font-sans font-normal" style={{ fontSize: '0.88rem', color: '#F2F8FC', letterSpacing: '0.01em' }}>{item}</span>
+                  <span aria-hidden="true" style={{ width: '5px', height: '5px', borderRadius: '50%', flexShrink: 0, background: 'hsl(44 100% 71%)', boxShadow: '0 0 6px hsl(44 100% 71% / 0.55)' }}/>
+                  <span className="font-sans font-medium" style={{ fontSize: '0.88rem', color: '#F2F8FC', letterSpacing: '0.01em' }}>{item}</span>
                 </li>
               ))}
             </ul>
@@ -7990,6 +7583,7 @@ function UGCTrackingUrls() {
           {/* ── RIGHT: animated analytics dashboard ── */}
           <div className="ugctu-dash flex justify-center lg:justify-end">
             <div
+              aria-hidden="true"
               style={{
                 width: '100%',
                 maxWidth: '460px',
@@ -7997,9 +7591,9 @@ function UGCTrackingUrls() {
                 background: 'hsl(210 18% 7%)',
                 border: '1px solid hsl(0 0% 100% / 0.08)',
                 boxShadow: [
-                  '0 0 0 1px hsl(160 65% 50% / 0.06)',
+                  '0 0 0 1px hsl(44 100% 71% / 0.06)',
                   '0 40px 90px -20px hsl(0 0% 0% / 0.7)',
-                  '0 0 60px -20px hsl(160 65% 45% / 0.08)',
+                  '0 0 60px -20px hsl(44 100% 71% / 0.08)',
                 ].join(', '),
                 overflow: 'hidden',
               }}
@@ -8010,11 +7604,11 @@ function UGCTrackingUrls() {
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                   <div
                     className="ugctu-dot"
-                    style={{ width: 6, height: 6, borderRadius: '50%', background: 'hsl(160 65% 52%)', boxShadow: '0 0 6px hsl(160 65% 52% / 0.7)', transformOrigin: 'center' }}
+                    style={{ width: 6, height: 6, borderRadius: '50%', background: 'hsl(44 100% 71%)', boxShadow: '0 0 6px hsl(44 100% 71% / 0.7)', transformOrigin: 'center' }}
                   />
-                  <span style={{ fontFamily: 'var(--font-label)', fontWeight: 500, fontSize: '0.7rem', color: 'hsl(0 0% 78%)', letterSpacing: '-0.01em' }}>Campaign Analytics</span>
+                  <span style={{ fontFamily: 'var(--font-label)', fontWeight: 500, fontSize: '0.75rem', color: 'var(--text-description)', letterSpacing: '-0.01em' }}>Campaign Analytics</span>
                 </div>
-                <span style={{ fontFamily: 'var(--font-label)', fontWeight: 300, fontSize: '0.6rem', color: 'hsl(0 0% 32%)', letterSpacing: '0.02em' }}>Last 30 days</span>
+                <span style={{ fontFamily: 'var(--font-label)', fontWeight: 500, fontSize: '0.75rem', color: 'var(--text-muted)', letterSpacing: '0.02em' }}>Demonstration data</span>
               </div>
 
               {/* Metric cards — numbers count up via ref */}
@@ -8025,12 +7619,12 @@ function UGCTrackingUrls() {
                     className="ugctu-card"
                     style={{ background: 'hsl(210 18% 9%)', border: '1px solid hsl(0 0% 100% / 0.07)', borderRadius: '0.6rem', padding: '10px 10px 8px' }}
                   >
-                    <p style={{ fontFamily: 'var(--font-label)', fontWeight: 300, fontSize: '0.52rem', color: 'hsl(0 0% 35%)', letterSpacing: '0.04em', textTransform: 'uppercase', marginBottom: '5px' }}>{label}</p>
+                    <p style={{ fontFamily: 'var(--font-label)', fontWeight: 500, fontSize: '0.52rem', color: 'var(--text-muted)', letterSpacing: '0.04em', textTransform: 'uppercase', marginBottom: '5px' }}>{label}</p>
                     <p
                       ref={el => { numRefs.current[i] = el }}
-                      style={{ fontFamily: 'var(--font-label)', fontWeight: 500, fontSize: '0.85rem', color: 'hsl(0 0% 90%)', letterSpacing: '-0.02em', lineHeight: 1, marginBottom: '5px' }}
+                      style={{ fontFamily: 'var(--font-label)', fontWeight: 500, fontSize: '0.85rem', color: 'var(--text-body)', letterSpacing: '-0.02em', lineHeight: 1, marginBottom: '5px' }}
                     >—</p>
-                    <p style={{ fontFamily: 'var(--font-label)', fontWeight: 400, fontSize: '0.52rem', color: 'hsl(160 60% 52%)' }}>{delta}</p>
+                    <p style={{ fontFamily: 'var(--font-label)', fontWeight: 500, fontSize: '0.52rem', color: 'hsl(44 100% 71%)' }}>{delta}</p>
                   </div>
                 ))}
               </div>
@@ -8038,18 +7632,18 @@ function UGCTrackingUrls() {
               {/* Line chart — path draws in via stroke-dashoffset */}
               <div style={{ padding: '14px 18px 0' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-                  <span style={{ fontFamily: 'var(--font-label)', fontWeight: 400, fontSize: '0.6rem', color: 'hsl(0 0% 38%)', letterSpacing: '0.02em' }}>Click performance</span>
+                  <span style={{ fontFamily: 'var(--font-label)', fontWeight: 500, fontSize: '0.75rem', color: 'var(--text-muted)', letterSpacing: '0.02em' }}>Click performance</span>
                   <div style={{ display: 'flex', gap: '10px' }}>
                     {['Wk 1', 'Wk 2', 'Wk 3', 'Wk 4'].map(w => (
-                      <span key={w} style={{ fontFamily: 'var(--font-label)', fontWeight: 300, fontSize: '0.52rem', color: 'hsl(0 0% 28%)' }}>{w}</span>
+                      <span key={w} style={{ fontFamily: 'var(--font-label)', fontWeight: 500, fontSize: '0.52rem', color: 'var(--text-muted)' }}>{w}</span>
                     ))}
                   </div>
                 </div>
                 <svg viewBox="0 0 380 72" style={{ width: '100%', height: 'auto', display: 'block', overflow: 'visible' }} aria-hidden="true">
                   <defs>
                     <linearGradient id="ugctu-area" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stopColor="hsl(160 65% 52%)" stopOpacity="0.18"/>
-                      <stop offset="100%" stopColor="hsl(160 65% 52%)" stopOpacity="0"/>
+                      <stop offset="0%" stopColor="hsl(44 100% 71%)" stopOpacity="0.18"/>
+                      <stop offset="100%" stopColor="hsl(44 100% 71%)" stopOpacity="0"/>
                     </linearGradient>
                   </defs>
                   {/* Area fill — fades in after line draws */}
@@ -8063,32 +7657,32 @@ function UGCTrackingUrls() {
                     ref={chartRef}
                     d="M0,62 C40,58 60,50 95,42 C130,34 140,30 175,22 C210,14 225,24 260,16 C295,8 320,12 355,6 L380,4"
                     fill="none"
-                    stroke="hsl(160 65% 52%)"
+                    stroke="hsl(44 100% 71%)"
                     strokeWidth="1.5"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                   />
                   {/* Dots */}
                   {([[0,62],[95,42],[190,18],[285,14],[380,4]] as [number,number][]).map(([x,y], i) => (
-                    <circle key={i} cx={x} cy={y} r="2.8" fill="hsl(160 65% 52%)" stroke="hsl(210 18% 7%)" strokeWidth="1.5"/>
+                    <circle key={i} cx={x} cy={y} r="2.8" fill="hsl(44 100% 71%)" stroke="hsl(210 18% 7%)" strokeWidth="1.5"/>
                   ))}
                 </svg>
               </div>
 
               {/* Bar chart — fills grow from left */}
               <div style={{ padding: '12px 18px 0' }}>
-                <span style={{ fontFamily: 'var(--font-label)', fontWeight: 400, fontSize: '0.6rem', color: 'hsl(0 0% 38%)', letterSpacing: '0.02em', display: 'block', marginBottom: '10px' }}>Creator performance</span>
+                <span style={{ fontFamily: 'var(--font-label)', fontWeight: 500, fontSize: '0.75rem', color: 'var(--text-muted)', letterSpacing: '0.02em', display: 'block', marginBottom: '10px' }}>Creator performance</span>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                   {UGCTU_BARS.map(({ name, val }, i) => (
                     <div key={name} style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                      <span className="ugctu-bar-name" style={{ fontFamily: 'var(--font-label)', fontWeight: 300, fontSize: '0.58rem', color: 'hsl(0 0% 40%)', width: '70px', flexShrink: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{name}</span>
+                      <span className="ugctu-bar-name" style={{ fontFamily: 'var(--font-label)', fontWeight: 500, fontSize: '0.75rem', color: 'var(--text-muted)', width: '70px', flexShrink: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{name}</span>
                       <div style={{ flex: 1, height: '4px', background: 'hsl(0 0% 100% / 0.06)', borderRadius: '2px', overflow: 'hidden' }}>
                         <div
                           ref={el => { barRefs.current[i] = el }}
-                          style={{ height: '100%', width: '0%', background: 'linear-gradient(to right, hsl(160 65% 38%), hsl(160 65% 56%))', borderRadius: '2px' }}
+                          style={{ height: '100%', width: '0%', background: 'linear-gradient(to right, hsl(44 100% 71%), hsl(44 100% 71%))', borderRadius: '2px' }}
                         />
                       </div>
-                      <span className="ugctu-bar-val" style={{ fontFamily: 'var(--font-label)', fontWeight: 300, fontSize: '0.54rem', color: 'hsl(0 0% 34%)', width: '56px', textAlign: 'right', flexShrink: 0 }}>{val}</span>
+                      <span className="ugctu-bar-val" style={{ fontFamily: 'var(--font-label)', fontWeight: 500, fontSize: '0.75rem', color: 'var(--text-muted)', width: '56px', textAlign: 'right', flexShrink: 0 }}>{val}</span>
                     </div>
                   ))}
                 </div>
@@ -8096,7 +7690,7 @@ function UGCTrackingUrls() {
 
               {/* Tracked placements — rows slide in */}
               <div style={{ padding: '14px 14px 16px' }}>
-                <span style={{ fontFamily: 'var(--font-label)', fontWeight: 400, fontSize: '0.6rem', color: 'hsl(0 0% 38%)', letterSpacing: '0.02em', display: 'block', marginBottom: '8px', paddingLeft: '4px' }}>Tracked placements</span>
+                <span style={{ fontFamily: 'var(--font-label)', fontWeight: 500, fontSize: '0.75rem', color: 'var(--text-muted)', letterSpacing: '0.02em', display: 'block', marginBottom: '8px', paddingLeft: '4px' }}>Tracked placements</span>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
                   {UGCTU_ROWS.map(({ platform, creator, status, color }, i) => (
                     <div
@@ -8111,10 +7705,10 @@ function UGCTrackingUrls() {
                       }}
                     >
                       <div>
-                        <p style={{ fontFamily: 'var(--font-label)', fontWeight: 400, fontSize: '0.64rem', color: 'hsl(0 0% 72%)', letterSpacing: '-0.01em', marginBottom: '2px' }}>{platform}</p>
-                        <p style={{ fontFamily: 'var(--font-label)', fontWeight: 300, fontSize: '0.56rem', color: 'hsl(0 0% 34%)' }}>{creator}</p>
+                        <p style={{ fontFamily: 'var(--font-label)', fontWeight: 500, fontSize: '0.75rem', color: 'var(--text-description)', letterSpacing: '-0.01em', marginBottom: '2px' }}>{platform}</p>
+                        <p style={{ fontFamily: 'var(--font-label)', fontWeight: 500, fontSize: '0.75rem', color: 'var(--text-muted)' }}>{creator}</p>
                       </div>
-                      <span style={{ fontFamily: 'var(--font-label)', fontWeight: 400, fontSize: '0.54rem', color, letterSpacing: '0.05em', textTransform: 'uppercase' }}>{status}</span>
+                      <span style={{ fontFamily: 'var(--font-label)', fontWeight: 500, fontSize: '0.75rem', color, letterSpacing: '0.05em', textTransform: 'uppercase' }}>{status}</span>
                     </div>
                   ))}
                 </div>
@@ -8177,8 +7771,8 @@ function UGCPerfumeCampaign() {
         className="pointer-events-none absolute inset-0"
         style={{
           background: [
-            'radial-gradient(ellipse 55% 60% at 16% 50%, hsl(38 65% 48% / 0.05) 0%, transparent 65%)',
-            'radial-gradient(ellipse 38% 42% at 88% 48%, hsl(38 55% 38% / 0.03) 0%, transparent 60%)',
+            'radial-gradient(ellipse 55% 60% at 16% 50%, hsl(44 100% 71% / 0.05) 0%, transparent 65%)',
+            'radial-gradient(ellipse 38% 42% at 88% 48%, hsl(44 100% 71% / 0.03) 0%, transparent 60%)',
           ].join(', '),
         }}
       />
@@ -8220,7 +7814,7 @@ function UGCPerfumeCampaign() {
                 borderRadius: '5.6% / 2.98%',
                 background: 'hsl(0 0% 4%)',
                 boxShadow: [
-                  '0 0 0 1px hsl(38 55% 48% / 0.08)',
+                  '0 0 0 1px hsl(44 100% 71% / 0.08)',
                   '0 48px 100px hsl(0 0% 0% / 0.65)',
                   '0 12px 32px hsl(0 0% 0% / 0.4)',
                 ].join(', '),
@@ -8244,8 +7838,8 @@ function UGCPerfumeCampaign() {
 
             {/* Label */}
             <div className="ugcpc-text ugc-step-label flex items-center gap-3 mb-8">
-              <span aria-hidden="true" style={{ width: '1.8rem', height: 1, background: 'hsl(38 75% 58% / 0.55)', flexShrink: 0 }} />
-              <span className="font-sans" style={{ fontSize: '0.6rem', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'hsl(38 75% 62%)' }}>
+              <span aria-hidden="true" style={{ width: '1.8rem', height: 1, background: 'hsl(44 100% 71% / 0.55)', flexShrink: 0 }} />
+              <span className="font-sans" style={{ fontSize: '0.75rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'hsl(44 100% 71%)' }}>
                 UGC Perfume Campaign
               </span>
             </div>
@@ -8256,24 +7850,24 @@ function UGCPerfumeCampaign() {
               style={{ color: '#fff', fontSize: 'clamp(1.8rem, 3.4vw, 2.8rem)', lineHeight: 1.1, letterSpacing: '-0.033em', marginBottom: '1.6rem' }}
             >
               Product storytelling that feels{' '}
-              <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400, color: 'hsl(38 75% 68%)' }}>
+              <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 500, color: 'hsl(44 100% 71%)' }}>
                 real, polished,
               </em>{' '}
               and ready to convert.
             </h2>
 
             {/* Accent rule */}
-            <div className="ugcpc-text" aria-hidden="true" style={{ width: '2.5rem', height: 1, background: 'hsl(38 70% 55% / 0.4)', marginBottom: '1.8rem' }} />
+            <div className="ugcpc-text" aria-hidden="true" style={{ width: '2.5rem', height: 1, background: 'hsl(44 100% 71% / 0.4)', marginBottom: '1.8rem' }} />
 
             {/* Paragraph 1 */}
-            <p className="ugcpc-text font-sans font-normal" style={{ fontSize: 'clamp(0.88rem, 1.4vw, 1.02rem)', lineHeight: 1.9, color: '#F2F8FC', marginBottom: '1.2rem' }}>
+            <p className="ugcpc-text font-sans font-medium" style={{ fontSize: 'clamp(0.88rem, 1.4vw, 1.02rem)', lineHeight: 1.9, color: '#F2F8FC', marginBottom: '1.2rem' }}>
               This style of creator-led content brings the product into a real lifestyle moment.
               The unboxing, reaction, and close product reveal help the fragrance feel more personal,
               more desirable, and easier for viewers to trust.
             </p>
 
             {/* Paragraph 2 */}
-            <p className="ugcpc-text font-sans font-normal" style={{ fontSize: 'clamp(0.88rem, 1.4vw, 1.02rem)', lineHeight: 1.9, color: '#F2F8FC', marginBottom: '2.4rem' }}>
+            <p className="ugcpc-text font-sans font-medium" style={{ fontSize: 'clamp(0.88rem, 1.4vw, 1.02rem)', lineHeight: 1.9, color: '#F2F8FC', marginBottom: '2.4rem' }}>
               From the first package reveal to the final product recommendation, the video is designed
               to feel natural while still keeping the brand premium, clear, and visually engaging.
             </p>
@@ -8282,16 +7876,16 @@ function UGCPerfumeCampaign() {
             <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 2.4rem', display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
               {UGC_PERFUME_FEATURES.map(item => (
                 <li key={item} className="ugcpc-feat" style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
-                  <span aria-hidden="true" style={{ width: '5px', height: '5px', borderRadius: '50%', flexShrink: 0, background: 'hsl(38 75% 58%)', boxShadow: '0 0 6px hsl(38 75% 55% / 0.55)' }} />
-                  <span className="font-sans font-normal" style={{ fontSize: '0.88rem', color: '#F2F8FC', letterSpacing: '0.01em' }}>{item}</span>
+                  <span aria-hidden="true" style={{ width: '5px', height: '5px', borderRadius: '50%', flexShrink: 0, background: 'hsl(44 100% 71%)', boxShadow: '0 0 6px hsl(44 100% 71% / 0.55)' }} />
+                  <span className="font-sans font-medium" style={{ fontSize: '0.88rem', color: '#F2F8FC', letterSpacing: '0.01em' }}>{item}</span>
                 </li>
               ))}
             </ul>
 
             {/* Closing line */}
             <p
-              className="ugcpc-text font-sans font-normal"
-              style={{ fontSize: '0.82rem', lineHeight: 1.8, color: '#F2F8FC', borderLeft: '1px solid hsl(38 60% 50% / 0.25)', paddingLeft: '1rem', fontStyle: 'italic' }}
+              className="ugcpc-text font-sans font-medium"
+              style={{ fontSize: '0.82rem', lineHeight: 1.8, color: '#F2F8FC', borderLeft: '1px solid hsl(44 100% 71% / 0.25)', paddingLeft: '1rem', fontStyle: 'italic' }}
             >
               Perfect for brands that want content that feels authentic without losing a luxury finish.
             </p>
@@ -8402,11 +7996,11 @@ function UGCPerformanceSystem() {
 
             {/* Label */}
             <p
-              className="ugcps-label font-sans font-normal uppercase"
+              className="ugcps-label font-sans font-medium uppercase"
               style={{
-                fontSize: '0.58rem',
-                letterSpacing: '0.36em',
-                color: 'hsl(38 70% 62% / 0.7)',
+                fontSize: '0.75rem',
+                letterSpacing: '0.16em',
+                color: 'hsl(44 100% 71% / 0.7)',
                 marginBottom: '1.6rem',
               }}
             >
@@ -8419,8 +8013,8 @@ function UGCPerformanceSystem() {
               style={{
                 fontSize: 'clamp(2rem, 4vw, 3.2rem)',
                 lineHeight: 1.1,
-                letterSpacing: '-0.04em',
-                color: 'hsl(0 0% 95%)',
+                letterSpacing: '-0.03em',
+                color: 'var(--text-description)',
                 marginBottom: 'clamp(1.6rem, 3vw, 2.4rem)',
               }}
             >
@@ -8428,8 +8022,8 @@ function UGCPerformanceSystem() {
               <em style={{
                 fontFamily: 'var(--font-body)',
                 fontStyle: 'italic',
-                fontWeight: 400,
-                color: 'hsl(0 0% 60%)',
+                fontWeight: 500,
+                color: '#FFD86B',
               }}>
                 and works with purpose.
               </em>
@@ -8442,14 +8036,14 @@ function UGCPerformanceSystem() {
               style={{
                 width: '2rem',
                 height: '1px',
-                background: 'hsl(38 70% 55% / 0.4)',
+                background: 'hsl(44 100% 71% / 0.4)',
                 marginBottom: 'clamp(1.6rem, 3vw, 2.4rem)',
               }}
             />
 
             {/* Paragraph 1 */}
             <p
-              className="ugcps-body font-sans font-normal"
+              className="ugcps-body font-sans font-medium"
               style={{
                 fontSize: 'clamp(0.85rem, 1.35vw, 0.98rem)',
                 lineHeight: 1.9,
@@ -8463,7 +8057,7 @@ function UGCPerformanceSystem() {
 
             {/* Paragraph 2 */}
             <p
-              className="ugcps-body font-sans font-normal"
+              className="ugcps-body font-sans font-medium"
               style={{
                 fontSize: 'clamp(0.85rem, 1.35vw, 0.98rem)',
                 lineHeight: 1.9,
@@ -8497,18 +8091,18 @@ function UGCPerformanceSystem() {
               }}
             >
               <p
-                className="font-sans font-normal uppercase"
+                className="font-sans font-medium uppercase"
                 style={{
-                  fontSize: '0.55rem',
-                  letterSpacing: '0.3em',
-                  color: 'hsl(195 70% 58% / 0.6)',
+                  fontSize: '0.75rem',
+                  letterSpacing: '0.16em',
+                  color: 'hsl(44 100% 71% / 0.6)',
                   marginBottom: '0.5rem',
                 }}
               >
                 Process Overview
               </p>
               <p
-                className="font-sans font-normal"
+                className="font-sans font-medium"
                 style={{
                   fontSize: 'clamp(0.82rem, 1.3vw, 0.95rem)',
                   lineHeight: 1.5,
@@ -8535,19 +8129,19 @@ function UGCPerformanceSystem() {
                     padding: 'clamp(1.3rem, 2.2vw, 1.8rem) clamp(1.6rem, 3vw, 2.8rem)',
                     borderBottom: i < UGC_PS_ROWS.length - 1 ? '1px solid hsl(0 0% 100% / 0.07)' : 'none',
                     background: hoveredRow === i
-                      ? 'linear-gradient(90deg, hsl(38 60% 55% / 0.10) 0%, hsl(195 70% 55% / 0.08) 100%)'
-                      : 'linear-gradient(90deg, rgba(125,220,255,0.06) 0%, rgba(232,201,122,0.03) 60%, transparent 100%)',
+                      ? 'linear-gradient(90deg, hsl(44 100% 71% / 0.10) 0%, hsl(44 100% 71% / 0.08) 100%)'
+                      : 'linear-gradient(90deg, rgba(255,216,107,0.06) 0%, rgba(255,216,107,0.03) 60%, transparent 100%)',
                     transition: 'background 0.35s ease',
                     cursor: 'default',
                   }}
                 >
                   {/* Row number */}
                   <span
-                    className="font-sans font-normal"
+                    className="font-sans font-medium"
                     style={{
-                      fontSize: '0.65rem',
+                      fontSize: '0.75rem',
                       letterSpacing: '0.06em',
-                      color: hoveredRow === i ? 'hsl(38 70% 60%)' : 'hsl(195 70% 55% / 0.65)',
+                      color: hoveredRow === i ? 'hsl(44 100% 71%)' : 'hsl(44 100% 71% / 0.65)',
                       paddingTop: '0.2rem',
                       transition: 'color 0.3s ease',
                       lineHeight: 1,
@@ -8574,11 +8168,11 @@ function UGCPerformanceSystem() {
 
                     {/* Row body */}
                     <p
-                      className="font-sans font-normal"
+                      className="font-sans font-medium"
                       style={{
                         fontSize: 'clamp(0.78rem, 1.15vw, 0.88rem)',
                         lineHeight: 1.78,
-                        color: 'hsl(0 0% 56%)',
+                        color: 'var(--text-muted)',
                         margin: 0,
                       }}
                     >
@@ -8606,237 +8200,6 @@ function UGCPerformanceSystem() {
   )
 }
 
-// ─── UGC — Practice Growth Ecosystem ─────────────────────────────────────────
-
-const UGC_ECOSYSTEM_CARDS = [
-  {
-    Icon: Camera,
-    title: 'Practice Immersion',
-    body: 'We replace generic visuals with real, trust-building content that reflects your clinic, your team, and the patient experience people can expect.',
-  },
-  {
-    Icon: Target,
-    title: 'Conversion Campaigns',
-    body: 'We create targeted social campaigns designed to attract the right patients, build confidence, and turn online attention into booked appointments.',
-  },
-  {
-    Icon: Layers,
-    title: 'Content Systems',
-    body: 'We build a clear content structure your practice can use consistently across social media, ads, website pages, and patient communication.',
-  },
-]
-
-function UGCPracticeEcosystem() {
-  const sectionRef = useRef<HTMLElement>(null)
-
-  useEffect(() => {
-    const el = sectionRef.current
-    if (!el) return
-
-    const headerEl  = el.querySelector<HTMLElement>('.upe-header')
-    const cardEls   = el.querySelectorAll<HTMLElement>('.upe-card')
-    const iconEls   = el.querySelectorAll<HTMLElement>('.upe-icon')
-    const titleEls  = el.querySelectorAll<HTMLElement>('.upe-title')
-    const bodyEls   = el.querySelectorAll<HTMLElement>('.upe-body')
-
-    gsap.set(headerEl, { opacity: 0, y: 28 })
-    gsap.set(cardEls,  { opacity: 0, y: 36 })
-    gsap.set(iconEls,  { opacity: 0, scale: 0.5, filter: 'blur(6px)' })
-    gsap.set(titleEls, { opacity: 0, y: 14 })
-    gsap.set(bodyEls,  { opacity: 0, y: 10 })
-
-    const obs = new IntersectionObserver(([entry]) => {
-      if (!entry.isIntersecting) return
-
-      const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
-
-      // Header sweeps in
-      tl.to(headerEl, { opacity: 1, y: 0, duration: 0.9 }, 0)
-
-      // Cards lift up, staggered
-      tl.to(cardEls, { opacity: 1, y: 0, duration: 0.8, stagger: 0.13 }, 0.28)
-
-      // Icons pop in with spring, slightly behind cards
-      tl.to(iconEls, {
-        opacity: 1, scale: 1, filter: 'blur(0px)',
-        duration: 0.65, stagger: 0.14,
-        ease: 'back.out(1.9)',
-      }, 0.42)
-
-      // Titles slide up
-      tl.to(titleEls, { opacity: 1, y: 0, duration: 0.6, stagger: 0.13 }, 0.58)
-
-      // Body copy fades in last
-      tl.to(bodyEls, { opacity: 1, y: 0, duration: 0.55, stagger: 0.13 }, 0.72)
-
-      // ── Continuous idle animations per icon SVG internals ──
-      tl.add(() => {
-        const icons = el.querySelectorAll<HTMLElement>('.upe-icon')
-
-        // ── Icon 0: Camera ──
-        // Whole SVG spins continuously
-        const icon0 = icons[0]
-        if (icon0) {
-          const svg0 = icon0.querySelector('svg')
-          if (svg0) gsap.to(svg0, { rotation: 360, duration: 6, ease: 'none', repeat: -1, transformOrigin: '50% 50%' })
-        }
-
-        // ── Icon 1: Target ──
-        // Whole SVG rotates slowly (radar sweep)
-        // Each concentric circle pulses outward in sequence (ripple)
-        const icon1 = icons[1]
-        if (icon1) {
-          const svg1 = icon1.querySelector('svg')
-          if (svg1) gsap.to(svg1, { rotation: 360, duration: 10, ease: 'none', repeat: -1, transformOrigin: '50% 50%' })
-
-          const circles = icon1.querySelectorAll<SVGCircleElement>('circle')
-          circles.forEach((c, i) => {
-            gsap.fromTo(c,
-              { opacity: 0.35, scale: 0.82, transformOrigin: '50% 50%' },
-              {
-                opacity: 1, scale: 1,
-                duration: 1.1 + i * 0.38,
-                ease: 'sine.inOut', yoyo: true, repeat: -1,
-                delay: i * 0.42,
-                transformOrigin: '50% 50%',
-              }
-            )
-          })
-        }
-
-        // ── Icon 2: Layers ──
-        // Whole SVG spins continuously
-        const icon2 = icons[2]
-        if (icon2) {
-          const svg2 = icon2.querySelector('svg')
-          if (svg2) gsap.to(svg2, { rotation: 360, duration: 6, ease: 'none', repeat: -1, transformOrigin: '50% 50%' })
-        }
-      }, '-=0.1')
-
-      obs.disconnect()
-    }, { threshold: 0.1 })
-
-    obs.observe(el)
-    return () => obs.disconnect()
-  }, [])
-
-  return (
-    <section
-      ref={sectionRef}
-      className="relative w-full overflow-hidden"
-      style={{ background: '#010709', padding: 'clamp(5rem, 10vw, 8rem) 0' }}
-    >
-      {/* Top hairline */}
-      <div
-        aria-hidden="true"
-        style={{
-          position: 'absolute', top: 0, left: 0, right: 0, height: '1px',
-          background: 'linear-gradient(to right, transparent, hsl(0 0% 100% / 0.06) 30%, hsl(0 0% 100% / 0.06) 70%, transparent)',
-        }}
-      />
-
-      {/* Bottom blend into the footer below (#010709 on service pages) — removes the hard tone
-          step where this section's #010709 met the footer's background. */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none"
-        style={{
-          position: 'absolute', left: 0, right: 0, bottom: 0, height: '140px',
-          background: 'linear-gradient(to bottom, rgba(1, 7, 9, 0) 0%, #010709 100%)',
-        }}
-      />
-
-      <div className="relative z-10 max-w-[72rem] mx-auto px-6 sm:px-10">
-
-        {/* ── Dark header banner ── */}
-        <div
-          className="upe-header rounded-[18px] text-center mb-10 lg:mb-12"
-          style={{
-            background: 'hsl(218 38% 10%)',
-            border: '1px solid hsl(218 30% 18%)',
-            padding: 'clamp(2.4rem, 5vw, 3.4rem) clamp(1.5rem, 4vw, 3rem)',
-          }}
-        >
-          <p
-            className="font-sans font-normal uppercase mb-3"
-            style={{
-              fontSize: '0.6rem',
-              letterSpacing: '0.32em',
-              color: 'hsl(42 70% 58%)',
-            }}
-          >
-            The High-Performing
-          </p>
-          <h2
-            className="font-heading font-bold uppercase"
-            style={{
-              fontSize: 'clamp(1.9rem, 4.5vw, 3rem)',
-              letterSpacing: '0.03em',
-              color: 'hsl(42 78% 62%)',
-              lineHeight: 1.1,
-            }}
-          >
-            Practice Growth Ecosystem
-          </h2>
-        </div>
-
-        {/* ── 3 cards ── */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 lg:gap-6">
-          {UGC_ECOSYSTEM_CARDS.map(({ Icon, title, body }) => (
-            <div
-              key={title}
-              className="upe-card rounded-[18px] p-8 lg:p-10 flex flex-col items-center text-center"
-              style={{
-                background: 'hsl(218 35% 8%)',
-                border: '1px solid hsl(218 28% 16%)',
-              }}
-            >
-              <div
-                className="upe-icon"
-                style={{
-                  width: '52px',
-                  height: '52px',
-                  borderRadius: '12px',
-                  background: 'hsl(218 30% 13%)',
-                  border: '1px solid hsl(218 28% 20%)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  marginBottom: '1.4rem',
-                }}
-              >
-                <Icon size={21} strokeWidth={1.5} style={{ color: 'hsl(42 75% 60%)' }} />
-              </div>
-
-              <h3
-                className="upe-title font-heading font-semibold mb-3"
-                style={{
-                  fontSize: '1.02rem',
-                  letterSpacing: '-0.01em',
-                  color: 'hsl(42 78% 62%)',
-                }}
-              >
-                {title}
-              </h3>
-
-              <p
-                className="upe-body font-sans font-normal"
-                style={{
-                  fontSize: 'clamp(0.8rem, 1.1vw, 0.88rem)',
-                  lineHeight: 1.82,
-                  color: '#F2F8FC',
-                }}
-              >
-                {body}
-              </p>
-            </div>
-          ))}
-        </div>
-
-      </div>
-    </section>
-  )
-}
 
 // ─── Services section ─────────────────────────────────────────────────────────
 
@@ -9060,7 +8423,7 @@ export default function Services({ serviceKey = null }: ServicesProps) {
           aria-hidden="true"
           className="pointer-events-none absolute inset-0"
           style={{
-            background: 'radial-gradient(ellipse 60% 45% at 50% 0%, hsl(199 89% 60% / 0.05) 0%, transparent 70%)',
+            background: 'radial-gradient(ellipse 60% 45% at 50% 0%, hsl(44 100% 71% / 0.05) 0%, transparent 70%)',
           }}
         />
 
@@ -9068,8 +8431,8 @@ export default function Services({ serviceKey = null }: ServicesProps) {
 
           {/* Eyebrow */}
           <p
-            className="services-eyebrow font-sans uppercase text-muted mb-5"
-            style={{ fontSize: '0.7rem', letterSpacing: '0.32em' }}
+            className="services-eyebrow font-sans uppercase text-gold mb-5"
+            style={{ fontSize: '0.75rem', letterSpacing: '0.16em' }}
           >
             Professional Services
           </p>
@@ -9081,22 +8444,22 @@ export default function Services({ serviceKey = null }: ServicesProps) {
             style={{
               fontSize: 'clamp(2rem, 5vw, 3.5rem)',
               lineHeight: 1.1,
-              letterSpacing: '-0.035em',
+              letterSpacing: '-0.03em',
             }}
           >
             Our{' '}
-            <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400 }}>
+            <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 500 }}>
               Services
             </em>
           </h2>
 
           {/* Subheading */}
           <p
-            className="services-body font-sans font-normal mb-14 max-w-xl m-tx-secondary"
+            className="services-body font-sans font-medium mb-14 max-w-xl m-tx-secondary"
             style={{
               fontSize: 'var(--dt-intro, clamp(0.9rem, 1.5vw, 1.05rem))',
               lineHeight: 1.8,
-              color: 'hsl(0 0% 56%)',
+              color: 'var(--text-muted)',
             }}
           >
             We design and deliver bespoke websites, intelligent automation and creative campaigns
@@ -9147,8 +8510,8 @@ export default function Services({ serviceKey = null }: ServicesProps) {
         <div aria-hidden="true" style={{
           position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0,
           background: [
-            'radial-gradient(ellipse 60% 55% at 66% 58%, rgba(232,201,122,0.160) 0%, transparent 68%)',
-            'radial-gradient(ellipse 40% 35% at 66% 58%, rgba(191,164,90,0.120) 0%, transparent 55%)',
+            'radial-gradient(ellipse 60% 55% at 66% 58%, rgba(255,216,107,0.160) 0%, transparent 68%)',
+            'radial-gradient(ellipse 40% 35% at 66% 58%, rgba(255,216,107,0.120) 0%, transparent 55%)',
           ].join(', '),
           filter: 'blur(18px)',
         }}/>
@@ -9188,7 +8551,7 @@ export default function Services({ serviceKey = null }: ServicesProps) {
             <p
               className="bwdc-eyebrow font-sans uppercase"
               style={{
-                fontSize: '0.87rem', letterSpacing: '0.38em',
+                fontSize: '0.87rem', letterSpacing: '0.16em',
                 color: 'hsl(36 40% 62%)', marginBottom: '1.8rem',
               }}
             >
@@ -9200,7 +8563,7 @@ export default function Services({ serviceKey = null }: ServicesProps) {
               className="font-heading font-medium"
               style={{
                 fontSize: 'clamp(2.4rem, 5.5vw, 5rem)',
-                lineHeight: 1.08, letterSpacing: '-0.04em',
+                lineHeight: 1.08, letterSpacing: '-0.03em',
                 color: 'hsl(36 20% 92%)',
                 marginBottom: '1.6rem',
               }}
@@ -9233,8 +8596,8 @@ export default function Services({ serviceKey = null }: ServicesProps) {
                     style={{
                       display: 'inline-block', transform: 'translateY(110%)', opacity: 0,
                       fontFamily: 'var(--font-body)',
-                      fontStyle: 'italic', fontWeight: 400,
-                      color: 'hsl(36 50% 74%)',
+                      fontStyle: 'italic', fontWeight: 500,
+                      color: 'hsl(44 100% 71%)',
                     }}
                   >
                     Timeless.
@@ -9245,14 +8608,15 @@ export default function Services({ serviceKey = null }: ServicesProps) {
 
             {/* Sub-labels */}
             <p
-              className="bwdc-sub font-sans font-normal m-tx-secondary"
+              className="bwdc-sub font-sans font-medium m-tx-secondary"
               style={{
                 fontSize: 'clamp(0.92rem, 1.47vw, 1.08rem)', letterSpacing: '0.04em',
-                color: 'hsl(0 0% 48%)', lineHeight: 1.7,
+                color: 'var(--text-muted)', lineHeight: 1.7,
               }}
             >
-              Minimal systems.&nbsp;&nbsp;Cinematic presentation.&nbsp;&nbsp;Exceptional digital presence.
+              Bespoke websites that look premium, load fast and turn visitors into enquiries.
             </p>
+            <ServiceCta label="Start a Project" className="mt-7 !self-center" />
           </div>
 
           {/* ── Browser mockup — centered, floating ── */}
@@ -9263,7 +8627,7 @@ export default function Services({ serviceKey = null }: ServicesProps) {
               position: 'absolute',
               top: '8%', left: '50%', transform: 'translateX(-50%)',
               width: '90%', height: '80%',
-              background: 'radial-gradient(ellipse 80% 70% at 50% 45%, hsl(36 50% 55% / 0.09) 0%, transparent 68%)',
+              background: 'radial-gradient(ellipse 80% 70% at 50% 45%, hsl(44 100% 71% / 0.09) 0%, transparent 68%)',
               filter: 'blur(32px)',
               pointerEvents: 'none',
             }}/>
@@ -9281,7 +8645,7 @@ export default function Services({ serviceKey = null }: ServicesProps) {
                   '0 60px 140px -24px hsl(0 0% 0% / 0.9)',
                   '0 20px 60px -12px hsl(0 0% 0% / 0.55)',
                   '0 0 0 1px hsl(36 30% 60% / 0.12)',
-                  'inset 0 1px 0 hsl(36 50% 90% / 0.08)',
+                  'inset 0 1px 0 hsl(44 100% 71% / 0.08)',
                 ].join(', '),
               }}
             >
@@ -9293,7 +8657,7 @@ export default function Services({ serviceKey = null }: ServicesProps) {
                 borderBottom: '1px solid hsl(30 10% 74%)',
               }}>
                 <div style={{ display: 'flex', gap: '5px', flexShrink: 0 }}>
-                  {['hsl(4 78% 58%)', 'hsl(38 80% 54%)', 'hsl(133 52% 46%)'].map((c, i) => (
+                  {['#FF5F57', '#FEBC2E', '#28C840'].map((c, i) => (
                     <div key={i} style={{ width: 11, height: 11, borderRadius: '50%', background: c }}/>
                   ))}
                 </div>
@@ -9305,9 +8669,9 @@ export default function Services({ serviceKey = null }: ServicesProps) {
                 <div style={{
                   flex: 1, background: 'hsl(36 16% 96%)',
                   border: '1px solid hsl(30 10% 76%)', borderRadius: '5px',
-                  padding: '3px 12px', fontSize: '0.65rem',
-                  fontFamily: "'SF Mono','Fira Code',monospace",
-                  color: 'hsl(28 10% 36%)', letterSpacing: '0.01em',
+                  padding: '3px 12px', fontSize: '0.75rem',
+                  fontFamily: 'var(--font-body)',
+                  color: '#3F4A52', letterSpacing: '0.01em',
                   textAlign: 'center' as const,
                 }}>
                   villa.luna.com
@@ -9351,34 +8715,24 @@ export default function Services({ serviceKey = null }: ServicesProps) {
             margin: '0 auto',
           }}>
             <p
-              className="bwdc-body font-sans font-normal"
+              className="bwdc-body font-sans font-medium"
               style={{
                 fontSize: 'var(--dt-villa-body, clamp(0.88rem, 1.4vw, 1rem))', lineHeight: 1.82,
                 color: '#D3DCE2', marginBottom: '1.4rem',
                 textShadow: '0 1px 18px rgba(0,0,0,0.35)',
               }}
             >
-              Every interface is carefully crafted with the same precision as luxury interiors and modern architecture — balancing clarity, emotion, performance, and visual sophistication.
+              Every site starts with your brand, your audience and the impression you want to leave. We then design and build it from the ground up, with no templates or shortcuts.
             </p>
             <p
-              className="bwdc-body font-sans font-normal"
+              className="bwdc-body font-sans font-medium"
               style={{
                 fontSize: 'var(--dt-villa-body, clamp(0.88rem, 1.4vw, 1rem))', lineHeight: 1.82,
                 color: '#C9D3D8', marginBottom: '1.4rem',
                 textShadow: '0 1px 18px rgba(0,0,0,0.35)',
               }}
             >
-              No templates. No shortcuts. Each project begins with an in-depth understanding of your brand, your audience, and the impression you want to leave — then we build from the ground up.
-            </p>
-            <p
-              className="bwdc-body font-sans font-normal"
-              style={{
-                fontSize: 'var(--dt-villa-body, clamp(0.88rem, 1.4vw, 1rem))', lineHeight: 1.82,
-                color: '#C9D3D8',
-                textShadow: '0 1px 18px rgba(0,0,0,0.35)',
-              }}
-            >
-              The result is a digital presence that feels as considered and enduring as the finest architecture — built to perform, designed to last.
+              The result is a website that is clear to use, quick to load and easy to grow.
             </p>
           </div>
 
@@ -9416,7 +8770,7 @@ export default function Services({ serviceKey = null }: ServicesProps) {
           className="pointer-events-none absolute inset-0"
           style={{
             background: [
-              'radial-gradient(ellipse 55% 50% at 68% 50%, rgba(200,175,100,0.055) 0%, transparent 70%)',
+              'radial-gradient(ellipse 55% 50% at 68% 50%, rgba(255,216,107,0.055) 0%, transparent 70%)',
               'radial-gradient(ellipse 38% 32% at 30% 45%, rgba(7,20,26,0.6) 0%, transparent 65%)',
             ].join(', '),
           }}
@@ -9432,9 +8786,9 @@ export default function Services({ serviceKey = null }: ServicesProps) {
         {/* Section boundary fades */}
         <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to top, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
         {/* Top blend — softens the transition from Website Showcase's flat
-            #060208, so the radial gradient here doesn't read as a hard
+            #010709, so the radial gradient here doesn't read as a hard
             tinted seam at the boundary */}
-        <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '110px', background: 'linear-gradient(to bottom, #060208, transparent)', pointerEvents: 'none', zIndex: 2 }} />
+        <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '110px', background: 'linear-gradient(to bottom, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
 
         <div className="relative z-10 max-w-[88rem] mx-auto px-6 sm:px-10">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.6fr] gap-16 lg:gap-14 xl:gap-[148px] items-center">
@@ -9442,8 +8796,8 @@ export default function Services({ serviceKey = null }: ServicesProps) {
             {/* ── Left: text (unchanged) ── */}
             <div>
               <p
-                className="bwd1-eyebrow m-service-label font-sans uppercase text-muted mb-6"
-                style={{ fontSize: '1.15rem', letterSpacing: '0.32em' }}
+                className="bwd1-eyebrow m-service-label font-sans uppercase text-gold mb-6"
+                style={{ fontSize: '1.15rem', letterSpacing: '0.16em' }}
               >
                 Service
               </p>
@@ -9453,15 +8807,15 @@ export default function Services({ serviceKey = null }: ServicesProps) {
                 style={{
                   fontSize: 'clamp(2rem, 5vw, 3.5rem)',
                   lineHeight: 1.1,
-                  letterSpacing: '-0.035em',
+                  letterSpacing: '-0.03em',
                 }}
               >
                 Bespoke{' '}
                 <em style={{
                   fontFamily: 'var(--font-body)',
                   fontStyle: 'italic',
-                  fontWeight: 400,
-                  background: 'linear-gradient(115deg, #F8FAFC 5%, #A7F3D0 30%, #2DD4BF 60%, #0F766E 100%)',
+                  fontWeight: 500,
+                  background: 'linear-gradient(115deg, #F8FAFC 5%, #FFD86B 30%, #FFD86B 60%, #0F766E 100%)',
                   WebkitBackgroundClip: 'text',
                   backgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
@@ -9473,7 +8827,7 @@ export default function Services({ serviceKey = null }: ServicesProps) {
               <div className="bwd1-divider" aria-hidden="true" style={{ display: 'none' }} />
 
               <p
-                className="bwd1-body font-sans font-normal mb-14 max-w-xl"
+                className="bwd1-body font-sans font-medium mb-14 max-w-xl"
                 style={{
                   fontSize: 'var(--dt-bespoke-body, clamp(0.9rem, 1.5vw, 1.05rem))',
                   lineHeight: 1.8,
@@ -9485,8 +8839,8 @@ export default function Services({ serviceKey = null }: ServicesProps) {
               </p>
 
               <p
-                className="bwd1-body font-sans font-normal text-text mb-6"
-                style={{ fontSize: '0.78rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: '#7DDCFF', textShadow: '0 0 18px rgba(125,220,255,0.18)' }}
+                className="bwd1-body font-sans font-medium text-text mb-6"
+                style={{ fontSize: '0.75rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: '#FFD86B', textShadow: '0 0 18px rgba(255,216,107,0.18)' }}
               >
                 What you get
               </p>
@@ -9495,18 +8849,18 @@ export default function Services({ serviceKey = null }: ServicesProps) {
                 {[
                   'Tailored design aligned to your brand',
                   'Responsive across all devices',
-                  'Fast, optimized performance',
+                  'Fast, optimised performance',
                   'Clean UX focused on conversion',
                   'SEO-ready foundation',
                 ].map(item => (
                   <li key={item} className="bwd1-list flex items-start gap-3">
                     <span
                       className="mt-[0.45em] shrink-0 w-1 h-1 rounded-full"
-                      style={{ background: 'hsl(205 85% 62%)', boxShadow: '0 0 6px 1px hsl(205 85% 62% / 0.4)' }}
+                      style={{ background: 'hsl(44 100% 71%)', boxShadow: '0 0 6px 1px hsl(44 100% 71% / 0.4)' }}
                       aria-hidden="true"
                     />
                     <span
-                      className="font-sans font-normal"
+                      className="font-sans font-medium"
                       style={{ fontSize: 'var(--dt-bespoke-list, clamp(0.88rem, 1.4vw, 1rem))', lineHeight: 1.75, color: 'var(--dt-bespoke-list-color, hsl(0 0% 72%))' }}
                     >
                       {item}
@@ -9516,14 +8870,14 @@ export default function Services({ serviceKey = null }: ServicesProps) {
               </ul>
 
               <p
-                className="bwd1-body font-sans font-normal text-text mb-6"
-                style={{ fontSize: '0.78rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: '#7DDCFF', textShadow: '0 0 18px rgba(125,220,255,0.18)' }}
+                className="bwd1-body font-sans font-medium text-text mb-6"
+                style={{ fontSize: '0.75rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: '#FFD86B', textShadow: '0 0 18px rgba(255,216,107,0.18)' }}
               >
                 Why it matters
               </p>
 
               <p
-                className="bwd1-body font-sans font-normal max-w-xl"
+                className="bwd1-body font-sans font-medium max-w-xl"
                 style={{
                   fontSize: 'var(--dt-bespoke-body, clamp(0.9rem, 1.5vw, 1.05rem))',
                   lineHeight: 1.8,
@@ -9547,7 +8901,7 @@ export default function Services({ serviceKey = null }: ServicesProps) {
                 {/* Ambient glow behind mockup */}
                 <div aria-hidden="true" style={{
                   position: 'absolute', inset: '-20px',
-                  background: 'radial-gradient(ellipse 70% 60% at 55% 50%, hsl(205 85% 60% / 0.10) 0%, transparent 70%)',
+                  background: 'radial-gradient(ellipse 70% 60% at 55% 50%, hsl(44 100% 71% / 0.10) 0%, transparent 70%)',
                   filter: 'blur(48px)',
                   pointerEvents: 'none',
                 }}/>
@@ -9563,8 +8917,8 @@ export default function Services({ serviceKey = null }: ServicesProps) {
               <p
                 className="font-sans uppercase"
                 style={{
-                  fontSize: '0.72rem',
-                  letterSpacing: '0.22em',
+                  fontSize: '0.75rem',
+                  letterSpacing: '0.16em',
                   color: 'hsl(0 0% 100% / 0.6)',
                   marginTop: 'calc(1.1rem + 20px)',
                   textAlign: 'center',
@@ -9595,19 +8949,16 @@ export default function Services({ serviceKey = null }: ServicesProps) {
       {/* ── Bespoke Website Design — client testimonials ── */}
       <BespokeTestimonials />
 
-      {/* ── Bespoke Website Design — results strip ── */}
-      <BespokeResultsStrip />
-
       {/* ── Bespoke Contact / Footer ── */}
       <Footer
         heading={<>
           Ready to{' '}
           <em style={{
-            fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400,
-            background: 'linear-gradient(90deg, #FFFFFF 0%, #7DDCFF 45%, #B7AEFF 100%)',
+            fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 500,
+            background: 'linear-gradient(90deg, #FFFFFF 0%, #FFE9A8 45%, #FFD86B 100%)',
             WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
             color: 'transparent',
-            textShadow: '0 0 24px rgba(125, 220, 255, 0.16)',
+            textShadow: '0 0 24px rgba(255,216,107, 0.16)',
           }}>
             stand out
           </em>{' '}
@@ -9636,9 +8987,9 @@ export default function Services({ serviceKey = null }: ServicesProps) {
         {/* Ambient glows */}
         <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
           background: [
-            'radial-gradient(ellipse 50% 60% at 72% 50%, hsl(195 90% 55% / 0.07) 0%, transparent 65%)',
-            'radial-gradient(ellipse 40% 40% at 20% 30%, hsl(215 80% 55% / 0.04) 0%, transparent 60%)',
-            'radial-gradient(ellipse 30% 25% at 85% 85%, hsl(270 65% 60% / 0.03) 0%, transparent 55%)',
+            'radial-gradient(ellipse 50% 60% at 72% 50%, hsl(44 100% 71% / 0.07) 0%, transparent 65%)',
+            'radial-gradient(ellipse 40% 40% at 20% 30%, hsl(44 100% 71% / 0.04) 0%, transparent 60%)',
+            'radial-gradient(ellipse 30% 25% at 85% 85%, hsl(44 100% 71% / 0.03) 0%, transparent 55%)',
           ].join(', '),
         }} />
         {/* Dot-grid */}
@@ -9655,26 +9006,27 @@ export default function Services({ serviceKey = null }: ServicesProps) {
 
             {/* ── Left: content ── */}
             <div>
-              <p className="cb-eyebrow font-sans uppercase text-muted mb-5" style={{ fontSize: '0.7rem', letterSpacing: '0.32em' }}>
+              <p className="cb-eyebrow font-sans uppercase text-gold mb-5" style={{ fontSize: '0.75rem', letterSpacing: '0.16em' }}>
                 Service
               </p>
 
               <h2
                 className="cb-heading font-heading font-medium text-text mb-8"
-                style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)', lineHeight: 1.1, letterSpacing: '-0.035em' }}
+                style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)', lineHeight: 1.1, letterSpacing: '-0.03em' }}
               >
-                Custom Chatbot{' '}
-                <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400 }}>
-                  for Websites
+                AI chatbots for your website,{' '}
+                <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 500 }}>
+                  WhatsApp, Instagram and Messenger
                 </em>
               </h2>
 
-              <div className="cb-divider w-full h-px mb-10" style={{ background: 'linear-gradient(to right, hsl(195 90% 55% / 0.45), transparent)' }} aria-hidden="true" />
+              <div className="cb-divider w-full h-px mb-10" style={{ background: 'linear-gradient(to right, hsl(44 100% 71% / 0.45), transparent)' }} aria-hidden="true" />
 
-              <p className="cb-intro font-sans font-normal mb-10" style={{ fontSize: 'clamp(0.9rem, 1.5vw, 1.05rem)', lineHeight: 1.8, color: '#F2F8FC' }}>
-                AI-powered chatbots built to automate, engage, and scale your operations —
-                designed around real workflows, not generic scripts.
+              <p className="cb-intro font-sans font-medium mb-10" style={{ fontSize: 'clamp(0.9rem, 1.5vw, 1.05rem)', lineHeight: 1.8, color: '#F2F8FC' }}>
+                Answer common questions, capture leads and take bookings automatically, using a chatbot built around how your business actually works.
               </p>
+
+              <ServiceCta label="Book a Free Demo" className="mb-10" />
 
               {/* Feature blocks grid */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-12">
@@ -9689,15 +9041,15 @@ export default function Services({ serviceKey = null }: ServicesProps) {
                     }}
                     onMouseEnter={e => {
                       const el = e.currentTarget as HTMLElement
-                      el.style.borderColor = 'hsl(195 90% 55% / 0.28)'
-                      el.style.boxShadow   = '0 0 22px -6px hsl(195 90% 55% / 0.16)'
+                      el.style.borderColor = 'hsl(44 100% 71% / 0.28)'
+                      el.style.boxShadow   = '0 0 22px -6px hsl(44 100% 71% / 0.16)'
                       const iconWrap = el.querySelector('[data-cbf-icon]') as HTMLElement | null
                       if (iconWrap) {
-                        iconWrap.style.borderColor = 'hsl(195 90% 55% / 0.4)'
-                        iconWrap.style.boxShadow    = '0 0 14px -2px hsl(195 90% 55% / 0.32)'
+                        iconWrap.style.borderColor = 'hsl(44 100% 71% / 0.4)'
+                        iconWrap.style.boxShadow    = '0 0 14px -2px hsl(44 100% 71% / 0.32)'
                       }
                       const heading = el.querySelector('[data-cbf-title]') as HTMLElement | null
-                      if (heading) heading.style.textShadow = '0 0 16px rgba(125, 220, 255, 0.22)'
+                      if (heading) heading.style.textShadow = '0 0 16px rgba(255,216,107, 0.22)'
                     }}
                     onMouseLeave={e => {
                       const el = e.currentTarget as HTMLElement
@@ -9705,11 +9057,11 @@ export default function Services({ serviceKey = null }: ServicesProps) {
                       el.style.boxShadow   = 'none'
                       const iconWrap = el.querySelector('[data-cbf-icon]') as HTMLElement | null
                       if (iconWrap) {
-                        iconWrap.style.borderColor = 'hsl(195 90% 55% / 0.22)'
-                        iconWrap.style.boxShadow    = '0 0 10px -2px hsl(195 90% 55% / 0.2)'
+                        iconWrap.style.borderColor = 'hsl(44 100% 71% / 0.22)'
+                        iconWrap.style.boxShadow    = '0 0 10px -2px hsl(44 100% 71% / 0.2)'
                       }
                       const heading = el.querySelector('[data-cbf-title]') as HTMLElement | null
-                      if (heading) heading.style.textShadow = '0 0 12px rgba(125, 220, 255, 0.12)'
+                      if (heading) heading.style.textShadow = '0 0 12px rgba(255,216,107, 0.12)'
                     }}
                   >
                     <div
@@ -9717,13 +9069,13 @@ export default function Services({ serviceKey = null }: ServicesProps) {
                       className="shrink-0 flex items-center justify-center rounded-lg"
                       style={{
                         width: '32px', height: '32px',
-                        background: 'hsl(195 90% 55% / 0.1)',
-                        border: '1px solid hsl(195 90% 55% / 0.22)',
-                        boxShadow: '0 0 10px -2px hsl(195 90% 55% / 0.2)',
+                        background: 'hsl(44 100% 71% / 0.1)',
+                        border: '1px solid hsl(44 100% 71% / 0.22)',
+                        boxShadow: '0 0 10px -2px hsl(44 100% 71% / 0.2)',
                         transition: 'border-color 0.25s ease, box-shadow 0.25s ease',
                       }}
                     >
-                      <Icon size={14} strokeWidth={1.5} style={{ color: 'hsl(195 88% 60%)' }} aria-hidden="true" />
+                      <Icon size={14} strokeWidth={1.5} style={{ color: 'hsl(44 100% 71%)' }} aria-hidden="true" />
                     </div>
                     <div>
                       <div
@@ -9732,14 +9084,14 @@ export default function Services({ serviceKey = null }: ServicesProps) {
                         style={{
                           fontSize: '0.84rem',
                           letterSpacing: '-0.01em',
-                          color: '#BFEFFF',
-                          textShadow: '0 0 12px rgba(125, 220, 255, 0.12)',
+                          color: '#FFD86B',
+                          textShadow: '0 0 12px rgba(255,216,107, 0.12)',
                           transition: 'text-shadow 0.25s ease',
                         }}
                       >
                         {title}
                       </div>
-                      <div className="font-body font-normal" style={{ fontSize: '0.76rem', color: '#F2F8FC', lineHeight: 1.65 }}>
+                      <div className="font-body font-medium" style={{ fontSize: '0.75rem', color: '#F2F8FC', lineHeight: 1.65 }}>
                         {desc}
                       </div>
                     </div>
@@ -9750,18 +9102,18 @@ export default function Services({ serviceKey = null }: ServicesProps) {
               {/* Meta rows */}
               <div className="cb-meta flex flex-col gap-5">
                 <div>
-                  <p className="font-sans mb-2" style={{ fontSize: '0.68rem', letterSpacing: '0.26em', textTransform: 'uppercase', color: 'hsl(195 80% 55%)' }}>
+                  <p className="font-sans mb-2" style={{ fontSize: '0.75rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'hsl(44 100% 71%)' }}>
                     Who it's for
                   </p>
-                  <p className="font-sans font-normal" style={{ fontSize: 'clamp(0.85rem, 1.3vw, 0.95rem)', lineHeight: 1.8, color: '#F2F8FC' }}>
+                  <p className="font-sans font-medium" style={{ fontSize: 'clamp(0.85rem, 1.3vw, 0.95rem)', lineHeight: 1.8, color: '#F2F8FC' }}>
                     Real estate, dentists, law firms, accounting firms, fashion brands, and more.
                   </p>
                 </div>
                 <div>
-                  <p className="font-sans mb-2" style={{ fontSize: '0.68rem', letterSpacing: '0.26em', textTransform: 'uppercase', color: 'hsl(195 80% 55%)' }}>
+                  <p className="font-sans mb-2" style={{ fontSize: '0.75rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'hsl(44 100% 71%)' }}>
                     Why it matters
                   </p>
-                  <p className="font-sans font-normal" style={{ fontSize: 'clamp(0.85rem, 1.3vw, 0.95rem)', lineHeight: 1.8, color: '#F2F8FC' }}>
+                  <p className="font-sans font-medium" style={{ fontSize: 'clamp(0.85rem, 1.3vw, 0.95rem)', lineHeight: 1.8, color: '#F2F8FC' }}>
                     Manual support limits scale. Custom chatbots handle volume instantly,
                     improve response time, and convert more interactions into results.
                   </p>
@@ -9786,7 +9138,7 @@ export default function Services({ serviceKey = null }: ServicesProps) {
                     height: 'auto',
                     display: 'block',
                     borderRadius: '1rem',
-                    boxShadow: '0 0 0 1px hsl(195 90% 55% / 0.18), 0 24px 64px -12px hsl(195 90% 55% / 0.2), 0 32px 80px -20px hsl(0 0% 0% / 0.72)',
+                    boxShadow: '0 0 0 1px hsl(44 100% 71% / 0.18), 0 24px 64px -12px hsl(44 100% 71% / 0.2), 0 32px 80px -20px hsl(0 0% 0% / 0.72)',
                   }}
                 />
                 <div aria-hidden="true" style={{
@@ -9831,85 +9183,6 @@ export default function Services({ serviceKey = null }: ServicesProps) {
       {/* ── Custom Chatbots — TikTok Automation (Section 5) ── */}
       <ChatbotTikTokAutomation />
 
-      {/* ── Chatbot manifesto quote ── */}
-      <section
-        className="relative w-full overflow-hidden"
-        style={{ background: '#010709', padding: 'clamp(5rem, 11vw, 9rem) 0' }}
-      >
-        {/* Radial cyan ambient */}
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0"
-          style={{
-            background: [
-              'radial-gradient(ellipse 70% 55% at 50% 50%, hsl(199 89% 60% / 0.06) 0%, transparent 70%)',
-              'radial-gradient(ellipse 40% 30% at 20% 80%, hsl(210 80% 55% / 0.03) 0%, transparent 60%)',
-            ].join(', '),
-          }}
-        />
-
-        {/* Dot grid */}
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0"
-          style={{
-            backgroundImage: 'radial-gradient(hsl(199 89% 60% / 0.022) 1px, transparent 1px)',
-            backgroundSize: '28px 28px',
-          }}
-        />
-
-        {/* Section boundary fades */}
-        <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to bottom, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
-        <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to top, #010709, transparent)', pointerEvents: 'none', zIndex: 2 }} />
-
-        <div className="relative z-10 max-w-[54rem] mx-auto px-6 sm:px-10 flex flex-col items-center text-center">
-
-          {/* Cyan opening mark */}
-          <span
-            aria-hidden="true"
-            className="mb-8 select-none"
-            style={{
-              fontFamily: 'var(--font-body)',
-              fontSize: 'clamp(3rem, 6vw, 5rem)',
-              lineHeight: 1,
-              color: 'hsl(199 89% 60% / 0.35)',
-              letterSpacing: '-0.02em',
-            }}
-          >
-            "
-          </span>
-
-          {/* Quote body */}
-          <p
-            className="font-sans font-normal"
-            style={{
-              fontSize: 'clamp(1.1rem, 2.4vw, 1.75rem)',
-              lineHeight: 1.65,
-              letterSpacing: '-0.022em',
-              color: '#F2F8FC',
-            }}
-          >
-            Your brand doesn't get a second chance to make a first impression online.
-            {' '}
-            <span style={{ color: '#F2F8FC' }}>
-              We make sure the first one counts.
-            </span>
-          </p>
-
-          {/* Bottom accent line */}
-          <div
-            aria-hidden="true"
-            className="mt-12"
-            style={{
-              width: '3rem',
-              height: '1px',
-              background: 'hsl(199 89% 60% / 0.45)',
-              boxShadow: '0 0 10px 0 hsl(199 89% 60% / 0.3)',
-            }}
-          />
-        </div>
-
-      </section>
 
       {/* ── Custom Chatbots — Automation Workflow ── */}
       <ChatbotWorkflowSection />
@@ -9922,11 +9195,11 @@ export default function Services({ serviceKey = null }: ServicesProps) {
         heading={<>
           Ready to{' '}
           <em style={{
-            fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400,
-            background: 'linear-gradient(90deg, #FFFFFF 0%, #7DDCFF 45%, #B7AEFF 100%)',
+            fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 500,
+            background: 'linear-gradient(90deg, #FFFFFF 0%, #FFE9A8 45%, #FFD86B 100%)',
             WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
             color: 'transparent',
-            textShadow: '0 0 24px rgba(125, 220, 255, 0.16)',
+            textShadow: '0 0 24px rgba(255,216,107, 0.16)',
           }}>
             automate
           </em>{' '}
@@ -9949,47 +9222,47 @@ export default function Services({ serviceKey = null }: ServicesProps) {
       >
         {/* Ambient glow */}
         <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
-          background: 'radial-gradient(ellipse 70% 45% at 50% 0%, hsl(199 89% 60% / 0.07) 0%, transparent 70%)',
+          background: 'radial-gradient(ellipse 70% 45% at 50% 0%, hsl(44 100% 71% / 0.07) 0%, transparent 70%)',
         }}/>
         {/* Dot-grid */}
         <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
-          backgroundImage: 'radial-gradient(hsl(199 89% 60% / 0.018) 1px, transparent 1px)',
+          backgroundImage: 'radial-gradient(hsl(44 100% 71% / 0.018) 1px, transparent 1px)',
           backgroundSize: '28px 28px',
         }}/>
 
         <div className="relative z-10 max-w-[52rem] mx-auto px-6 sm:px-10 flex flex-col items-center text-center">
 
           {/* Eyebrow */}
-          <p className="font-sans uppercase mb-6" style={{ fontSize: '0.7rem', letterSpacing: '0.32em', color: 'hsl(280 65% 65%)' }}>
+          <p className="font-sans uppercase mb-6" style={{ fontSize: '0.75rem', letterSpacing: '0.16em', color: 'hsl(44 100% 71%)' }}>
             Social Media
           </p>
 
           {/* Heading */}
           <h2
             className="font-heading font-medium text-text mb-6"
-            style={{ fontSize: 'clamp(2rem, 5vw, 3.4rem)', lineHeight: 1.08, letterSpacing: '-0.035em' }}
+            style={{ fontSize: 'clamp(2rem, 5vw, 3.4rem)', lineHeight: 1.08, letterSpacing: '-0.03em' }}
           >
             Social Media{' '}
-            <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400 }}>
+            <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 500 }}>
               Marketing
             </em>
           </h2>
 
           {/* Divider */}
-          <div className="mb-10" style={{ width: '3rem', height: '1px', background: 'hsl(280 65% 65% / 0.45)' }} aria-hidden="true"/>
+          <div className="mb-10" style={{ width: '3rem', height: '1px', background: 'hsl(44 100% 71% / 0.45)' }} aria-hidden="true"/>
 
           {/* Lead */}
-          <p className="font-sans font-normal mb-6" style={{ fontSize: 'clamp(1rem, 2vw, 1.15rem)', lineHeight: 1.75, color: 'hsl(0 0% 78%)', maxWidth: '38rem' }}>
+          <p className="font-sans font-medium mb-6" style={{ fontSize: 'clamp(1rem, 2vw, 1.15rem)', lineHeight: 1.75, color: 'var(--text-description)', maxWidth: '38rem' }}>
             At Weavy, we turn your social media into a consistent growth engine.
           </p>
 
           {/* Problem */}
-          <p className="font-sans font-normal mb-6" style={{ fontSize: 'clamp(0.88rem, 1.5vw, 1rem)', lineHeight: 1.8, color: 'hsl(0 0% 52%)', maxWidth: '36rem' }}>
+          <p className="font-sans font-medium mb-6" style={{ fontSize: 'clamp(0.88rem, 1.5vw, 1rem)', lineHeight: 1.8, color: 'var(--text-muted)', maxWidth: '36rem' }}>
             Most brands post without strategy — leading to low engagement and missed opportunities.
           </p>
 
           {/* Extended problem */}
-          <p className="font-sans font-normal mb-10" style={{ fontSize: 'clamp(0.88rem, 1.5vw, 1rem)', lineHeight: 1.8, color: 'hsl(0 0% 52%)', maxWidth: '36rem' }}>
+          <p className="font-sans font-medium mb-10" style={{ fontSize: 'clamp(0.88rem, 1.5vw, 1rem)', lineHeight: 1.8, color: 'var(--text-muted)', maxWidth: '36rem' }}>
             Without a clear direction, content fails to connect, reach the right audience, or drive meaningful results.
           </p>
 
@@ -10007,24 +9280,24 @@ export default function Services({ serviceKey = null }: ServicesProps) {
                 height: 'auto',
                 display: 'block',
                 borderRadius: '1rem',
-                boxShadow: '0 8px 48px -8px hsl(199 89% 60% / 0.18), 0 24px 64px -16px hsl(0 0% 0% / 0.72)',
+                boxShadow: '0 8px 48px -8px hsl(44 100% 71% / 0.18), 0 24px 64px -16px hsl(0 0% 0% / 0.72)',
               }}
             />
           </div>
 
           {/* Our Solution block */}
-          <div className="w-full mb-12" style={{ maxWidth: '36rem', textAlign: 'left', borderLeft: '1px solid hsl(280 65% 65% / 0.3)', paddingLeft: '1.5rem' }}>
-            <p className="font-sans uppercase mb-3" style={{ fontSize: '0.65rem', letterSpacing: '0.28em', color: 'hsl(280 65% 65%)' }}>
+          <div className="w-full mb-12" style={{ maxWidth: '36rem', textAlign: 'left', borderLeft: '1px solid hsl(44 100% 71% / 0.3)', paddingLeft: '1.5rem' }}>
+            <p className="font-sans uppercase mb-3" style={{ fontSize: '0.75rem', letterSpacing: '0.16em', color: 'hsl(44 100% 71%)' }}>
               Our Solution
             </p>
-            <p className="font-sans font-normal" style={{ fontSize: 'clamp(0.88rem, 1.5vw, 1rem)', lineHeight: 1.8, color: 'hsl(0 0% 68%)' }}>
+            <p className="font-sans font-medium" style={{ fontSize: 'clamp(0.88rem, 1.5vw, 1rem)', lineHeight: 1.8, color: 'var(--text-description)' }}>
               We create a structured system built around your brand and audience.
             </p>
           </div>
 
           {/* What we handle */}
           <div className="w-full mb-12" style={{ maxWidth: '36rem' }}>
-            <p className="font-sans uppercase mb-5" style={{ fontSize: '0.65rem', letterSpacing: '0.28em', color: 'hsl(0 0% 45%)' }}>
+            <p className="font-sans uppercase mb-5" style={{ fontSize: '0.75rem', letterSpacing: '0.16em', color: 'var(--text-muted)' }}>
               What we handle
             </p>
             <ul className="flex flex-col gap-3" style={{ listStyle: 'none', margin: 0, padding: 0 }}>
@@ -10035,8 +9308,8 @@ export default function Services({ serviceKey = null }: ServicesProps) {
                 'Email marketing',
                 'High-performing paid ads',
               ].map(item => (
-                <li key={item} className="font-sans font-normal flex items-center justify-center gap-3" style={{ fontSize: 'clamp(0.88rem, 1.5vw, 1rem)', color: 'hsl(0 0% 72%)' }}>
-                  <span style={{ width: '4px', height: '4px', borderRadius: '50%', background: 'hsl(280 65% 65% / 0.6)', flexShrink: 0, display: 'inline-block' }}/>
+                <li key={item} className="font-sans font-medium flex items-center justify-center gap-3" style={{ fontSize: 'clamp(0.88rem, 1.5vw, 1rem)', color: 'var(--text-description)' }}>
+                  <span style={{ width: '4px', height: '4px', borderRadius: '50%', background: 'hsl(44 100% 71% / 0.6)', flexShrink: 0, display: 'inline-block' }}/>
                   {item}
                 </li>
               ))}
@@ -10044,8 +9317,8 @@ export default function Services({ serviceKey = null }: ServicesProps) {
           </div>
 
           {/* Closing line */}
-          <p className="font-sans font-normal mb-16" style={{ fontSize: 'clamp(0.88rem, 1.5vw, 1rem)', lineHeight: 1.8, color: 'hsl(0 0% 52%)', maxWidth: '36rem' }}>
-            We focus on the right audience, strong content, and measurable results — while you focus on your business.
+          <p className="font-sans font-medium mb-16" style={{ fontSize: 'clamp(0.88rem, 1.5vw, 1rem)', lineHeight: 1.8, color: 'var(--text-muted)', maxWidth: '36rem' }}>
+            We focus on the right audience and strong content, while you focus on your business.
           </p>
 
 
@@ -10060,17 +9333,16 @@ export default function Services({ serviceKey = null }: ServicesProps) {
       {activeService === 'graphic' && <GraphicDesignSplitA />}
       {activeService === 'graphic' && <GraphicDesignSplitB />}
       {activeService === 'graphic' && <GraphicDesignFinalPresentation />}
-      {activeService === 'graphic' && <GraphicDesignCTA />}
       {activeService === 'graphic' && (
         <Footer
           heading={<>
             Ready to{' '}
             <em style={{
-              fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400,
-              background: 'linear-gradient(90deg, #FFFFFF 0%, #7DDCFF 45%, #B7AEFF 100%)',
+              fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 500,
+              background: 'linear-gradient(90deg, #FFFFFF 0%, #FFE9A8 45%, #FFD86B 100%)',
               WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
               color: 'transparent',
-              textShadow: '0 0 24px rgba(125, 220, 255, 0.16)',
+              textShadow: '0 0 24px rgba(255,216,107, 0.16)',
             }}>
               elevate
             </em>{' '}
@@ -10091,25 +9363,24 @@ export default function Services({ serviceKey = null }: ServicesProps) {
       {activeService === 'ugc' && <UGCTrackingUrls />}
       {activeService === 'ugc' && <UGCPerfumeCampaign />}
       {activeService === 'ugc' && <UGCPerformanceSystem />}
-      {activeService === 'ugc' && <UGCPracticeEcosystem />}
       {activeService === 'ugc' && (
         <Footer
           eyebrow="Let's create something real"
           heading={<>
             Ready to turn{' '}
             <em style={{
-              fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400,
-              background: 'linear-gradient(90deg, #FFFFFF 0%, #7DDCFF 45%, #B7AEFF 100%)',
+              fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 500,
+              background: 'linear-gradient(90deg, #FFFFFF 0%, #FFE9A8 45%, #FFD86B 100%)',
               WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
               color: 'transparent',
-              textShadow: '0 0 24px rgba(125, 220, 255, 0.16)',
+              textShadow: '0 0 24px rgba(255,216,107, 0.16)',
             }}>
               authentic content
             </em>{' '}
             into growth?
           </>}
           subtext="From product reviews and unboxings to lifestyle content and social-first reels, we create UGC that earns trust, captures attention and moves customers to act."
-          ctaLabel="Start a UGC Project"
+          ctaLabel="Start a Project"
           ctaHref="/contact"
           ctaVariant="primary"
         />
@@ -10125,8 +9396,8 @@ export default function Services({ serviceKey = null }: ServicesProps) {
         >
           <div className="max-w-[52rem] mx-auto px-6 sm:px-10">
             <p
-              className="font-sans uppercase text-muted mb-4"
-              style={{ fontSize: '0.7rem', letterSpacing: '0.32em' }}
+              className="font-sans uppercase text-gold mb-4"
+              style={{ fontSize: '0.75rem', letterSpacing: '0.16em' }}
             >
               Service
             </p>

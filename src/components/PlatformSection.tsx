@@ -257,7 +257,7 @@ export default function PlatformSection() {
       style={{
         background: [
           'radial-gradient(circle at 50% 18%, rgba(24, 105, 125, 0.034) 0%, rgba(5, 24, 29, 0.019) 36%, rgba(1, 7, 9, 0) 64%)',
-          'linear-gradient(to bottom, #010709 0%, #010709 42%, #000506 100%)',
+          'linear-gradient(to bottom, #010709 0%, #010709 42%, #010709 100%)',
         ].join(', '),
         paddingTop: 'clamp(5rem, 9vw, 8rem)',
         paddingBottom: 'clamp(4rem, 8vw, 6.5rem)',
@@ -284,14 +284,14 @@ export default function PlatformSection() {
         {/* ── Header — its own display treatment, not the italic "Our Services" style ── */}
         <div className="text-center max-w-3xl mx-auto" style={{ marginBottom: 'clamp(4rem, 8vw, 6rem)' }}>
           <div className="ocs-header-el inline-flex items-center gap-3" style={{ marginBottom: '1.4rem' }}>
-            <span aria-hidden="true" style={{ width: 28, height: 1, background: `${CYAN}80` }} />
+            <span aria-hidden="true" style={{ width: 28, height: 1, background: '#FFD86B80' }} />
             <span
-              className="font-label font-semibold uppercase"
-              style={{ fontSize: 'clamp(13px, 1.3vw, 15px)', letterSpacing: '0.28em', color: CYAN }}
+              className="font-label font-medium uppercase"
+              style={{ fontSize: 'clamp(13px, 1.3vw, 15px)', letterSpacing: '0.16em', color: '#FFD86B' }}
             >
               One Connected System
             </span>
-            <span aria-hidden="true" style={{ width: 28, height: 1, background: `${CYAN}80` }} />
+            <span aria-hidden="true" style={{ width: 28, height: 1, background: '#FFD86B80' }} />
           </div>
 
           <h2
@@ -302,7 +302,7 @@ export default function PlatformSection() {
           </h2>
 
           <p
-            className="ocs-header-el font-body font-normal m-tx-secondary"
+            className="ocs-header-el font-body font-medium m-tx-secondary"
             style={{ fontSize: 'clamp(0.95rem, 1.6vw, 1.1rem)', lineHeight: 1.8, color: 'var(--text-muted)', marginTop: '1.3rem' }}
           >
             Voice, messaging, CRM, follow-ups and bookings working as one managed flow.
@@ -386,13 +386,13 @@ export default function PlatformSection() {
               </h3>
 
               {stage.desc && (
-                <p className="font-body font-normal m-tx-secondary" style={{ fontSize: '15px', lineHeight: 1.65, color: '#A7B0B3', opacity: 1 }}>
+                <p className="font-body font-medium m-tx-secondary" style={{ fontSize: '15px', lineHeight: 1.65, color: 'var(--text-description)', opacity: 1 }}>
                   {stage.desc}
                 </p>
               )}
 
               {stage.channels && (
-                <p className="font-body font-normal m-tx-label" style={{ fontSize: '13px', lineHeight: 1.6, color: '#A7B0B3', opacity: 1 }}>
+                <p className="font-body font-medium m-tx-label" style={{ fontSize: '13px', lineHeight: 1.6, color: 'var(--text-description)', opacity: 1 }}>
                   {stage.channels.join(' · ')}
                 </p>
               )}
@@ -405,10 +405,10 @@ export default function PlatformSection() {
           <a
             href="/contact"
             onClick={(e) => { e.preventDefault(); goToPath('/contact') }}
-            className="font-body btn-glow-primary inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-medium bg-primary text-background hover:bg-white hover:shadow-[0_0_28px_rgba(245,245,245,0.28)] active:scale-[0.97]"
+            className="font-body btn-glow-primary inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-medium active:scale-[0.97]"
             style={{ transition: 'background-color 200ms, box-shadow 200ms, transform 100ms' }}
           >
-            See how the system works →
+            Book a Free Demo →
           </a>
         </div>
       </div>

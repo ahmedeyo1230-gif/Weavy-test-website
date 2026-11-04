@@ -16,7 +16,7 @@ interface GradientBlurBgProps {
 
 export function GradientBlurBg({
   className,
-  accentColor    = "hsl(199 89% 60% / 0.10)",
+  accentColor    = "hsl(44 100% 71% / 0.10)",
   accentPosition = "8% 60%",
   accentRadius   = "640px",
   gridColor      = "hsl(0 0% 100% / 0.028)",

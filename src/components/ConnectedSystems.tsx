@@ -157,7 +157,7 @@ export default function ConnectedSystems() {
     <section
       className="relative w-full overflow-hidden"
       style={{
-        background: '#000506',
+        background: '#010709',
         paddingTop: 'clamp(72px, 15vw, 200px)',
         paddingBottom: 'clamp(72px, 15vw, 200px)',
       }}
@@ -199,8 +199,8 @@ export default function ConnectedSystems() {
       }} />
 
       {/* Top / bottom fades */}
-      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 120, background: 'linear-gradient(to bottom, #000506, transparent)', pointerEvents: 'none' }} />
-      <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 120, background: 'linear-gradient(to top, #000506, transparent)', pointerEvents: 'none' }} />
+      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 120, background: 'linear-gradient(to bottom, #010709, transparent)', pointerEvents: 'none' }} />
+      <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 120, background: 'linear-gradient(to top, #010709, transparent)', pointerEvents: 'none' }} />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-10">
 
@@ -216,7 +216,7 @@ export default function ConnectedSystems() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.12, ease: E }}
               className="font-label"
-              style={{ fontSize: '0.85rem', letterSpacing: '0.30em', textTransform: 'uppercase', color: 'rgba(174,235,255,0.94)', marginBottom: '1.4rem' }}
+              style={{ fontSize: '0.85rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: '#FFD86B', marginBottom: '1.4rem' }}
             >
               Connected Systems
             </motion.p>
@@ -227,10 +227,10 @@ export default function ConnectedSystems() {
               viewport={{ once: true }}
               transition={{ duration: 0.65, delay: 0.18, ease: E }}
               className="font-heading font-medium"
-              style={{ fontSize: 'clamp(2.6rem, 6vw, 6rem)', lineHeight: 0.98, letterSpacing: '-0.03em', color: 'var(--text-primary)' }}
+              style={{ fontSize: 'clamp(2.6rem, 6vw, 6rem)', lineHeight: 1.05, letterSpacing: '-0.03em', color: 'var(--text-primary)' }}
             >
               From first click to{' '}
-              <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400, color: '#7DDCFF' }}>
+              <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 500, color: '#FFD86B' }}>
                 booked client.
               </em>
             </motion.h2>
@@ -241,7 +241,7 @@ export default function ConnectedSystems() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.55, delay: 0.24, ease: E }}
-            className="font-body font-normal"
+            className="font-body font-medium"
             style={{ fontSize: 'clamp(17px, 1.2vw, 18px)', lineHeight: 1.7, color: 'var(--text-body)', maxWidth: 430, marginTop: '1.6rem' }}
           >
             Designed to capture, qualify and follow up enquiries—moving more

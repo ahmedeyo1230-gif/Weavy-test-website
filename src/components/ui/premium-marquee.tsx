@@ -125,13 +125,16 @@ export function PremiumMarquee() {
     const tick = () => {
       const viewportCenter = window.innerWidth / 2
       const focusRadius = window.innerWidth / 2
+      // Phones fit one or two words, so a focus blur would read as a rendering fault.
+      const maxBlur = window.innerWidth < 768 ? 0 : MAX_BLUR_PX
+      const minOpacity = window.innerWidth < 768 ? 0.75 : MIN_OPACITY
       wordRefs.current.forEach(el => {
         const rect = el.getBoundingClientRect()
         const wordCenter = rect.left + rect.width / 2
         const t = Math.min(1, Math.abs(wordCenter - viewportCenter) / focusRadius)
         const eased = smoothstep(t)
-        const blur = eased * MAX_BLUR_PX
-        const opacity = 1 - eased * (1 - MIN_OPACITY)
+        const blur = eased * maxBlur
+        const opacity = 1 - eased * (1 - minOpacity)
         el.style.filter = blur > 0.02 ? `blur(${blur.toFixed(2)}px)` : 'none'
         el.style.opacity = opacity.toFixed(3)
       })
@@ -179,7 +182,7 @@ export function PremiumMarquee() {
 
         .pmq-word {
           display: inline-block;
-          font-family: 'Poppins', 'Inter', sans-serif;
+          font-family: var(--font-body);
           font-weight: 500;
           letter-spacing: 0.04em;
           white-space: nowrap;

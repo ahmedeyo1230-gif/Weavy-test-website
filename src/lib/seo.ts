@@ -2,40 +2,53 @@ export interface PageSeo {
   title: string
   description: string
   path: string
+  /** Keeps a page out of search results (used by the not-found view). */
+  noindex?: boolean
 }
 
-const SITE_URL = 'https://weavyautomation.com'
+const SITE_URL = 'https://www.weavyautomation.com'
 
-export const PAGE_SEO: Record<'home' | 'about' | 'services' | 'work' | 'blog' | 'contact', PageSeo> = {
+export const PAGE_SEO: Record<'home' | 'about' | 'services' | 'work' | 'blog' | 'contact' | 'privacy' | 'notFound', PageSeo> = {
   home: {
-    title: 'Weavy — AI Automation Platform for Growing Businesses',
-    description: 'Weavy helps SMEs automate customer conversations, leads, bookings, and follow-ups across voice, WhatsApp, Instagram, Facebook, CRM, and analytics.',
+    title: 'Weavy — AI Automation & Creative Agency in London',
+    description: 'Weavy answers, qualifies and books new enquiries across voice, WhatsApp, Instagram and Facebook, and builds the websites and creative that bring them in.',
     path: '/',
   },
   about: {
-    title: 'About — Weavy Automation | AI Automation, Web Design & Creative Systems',
-    description: 'Weavy helps businesses grow with premium websites, AI automation, chatbots, social media systems, UGC content, graphic design, and video editing.',
+    title: 'About Weavy — London Automation & Creative Agency',
+    description: 'Weavy is a London-based automation and creative agency. One team connects the systems behind your enquiries and bookings with the creative that attracts customers.',
     path: '/about',
   },
   services: {
-    title: 'Services — Weavy Automation | Websites, AI Chatbots & Social Systems',
-    description: 'Explore Weavy\'s services: bespoke website design, AI chatbot automation, social media marketing, graphic design, and UGC content — built to scale your business.',
+    title: 'Services — Weavy | Websites, AI Chatbots, Social & Creative',
+    description: 'Bespoke websites, AI chatbots, social media marketing, graphic design and UGC content, planned and delivered by one team.',
     path: '/services',
   },
   work: {
-    title: 'Our Work — Weavy Automation | Client Case Studies',
-    description: 'See how Weavy has helped brands grow with premium websites, automation systems, and content campaigns — real projects, real results.',
+    title: 'Selected Work — Weavy',
+    description: 'A selection of brand campaigns, product visuals and creative systems by Weavy.',
     path: '/work',
   },
   blog: {
-    title: 'Blog — Weavy Automation | Automation & Growth Insights',
-    description: 'Ideas and insights on AI automation, web design, and content systems for brands building smarter, more scalable operations.',
+    title: 'Blog — Weavy | Automation & Growth Insights',
+    description: 'Practical ideas on websites, AI automation, social media and visual identity for growing businesses.',
     path: '/blog',
   },
   contact: {
-    title: 'Contact — Weavy Automation | Book a Call',
-    description: 'Get in touch with Weavy to discuss AI automation, web design, chatbots, or content systems for your business.',
+    title: 'Contact — Weavy | Book a Free Demo',
+    description: 'Tell Weavy what you need help with: automation, chatbots, a new website or creative work.',
     path: '/contact',
+  },
+  privacy: {
+    title: 'Privacy Notice — Weavy',
+    description: 'How the Weavy website handles your information.',
+    path: '/privacy',
+  },
+  notFound: {
+    title: 'Page Not Found — Weavy',
+    description: 'This page could not be found.',
+    path: '/',
+    noindex: true,
   },
 }
 
@@ -51,6 +64,7 @@ function setMeta(attr: 'name' | 'property', key: string, content: string) {
 
 export function applyPageSeo(page: PageSeo) {
   document.title = page.title
+  setMeta('name', 'robots', page.noindex ? 'noindex, follow' : 'index, follow')
   setMeta('name', 'description', page.description)
   setMeta('property', 'og:title', page.title)
   setMeta('property', 'og:description', page.description)

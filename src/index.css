@@ -1,51 +1,38 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,200;0,300;0,400;0,500;1,200&family=Instrument+Sans:ital,wght@0,400;0,500;1,400;1,500&family=Instrument+Serif:ital@0;1&family=Geist+Mono:wght@400;500&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap');
 @import "tailwindcss";
 
 @theme {
   /* ── Core backgrounds ─────────────────────────────────────── */
-  --color-bg: #071011;
+  --color-bg: #010709;
   --color-surface: #101820;
   --color-raised: #0d1a1e;
 
   /* ── Text ─────────────────────────────────────────────────── */
   --color-text: #F8FAFC;
-  --color-body: #CBD5E1;
-  --color-muted: #94A3B8;
+  --color-body: #E2E7E8;
+  --color-muted: #BAC4C6;
   --color-text-primary: #F8FAFC;
   --color-accent: #F8FAFC;
 
   /* ── Magic Patterns / legacy ─────────────────────────────── */
-  --color-background: #071011;
+  --color-background: #010709;
   --color-primary: #F8FAFC;
   --color-stroke: hsl(0 0% 18%);
   --color-border: hsl(0 0% 18%);
 
   /* ── Accent palette ──────────────────────────────────────── */
-  --color-accent-cyan: #3ab3e8;
-  --color-accent-blue: #2563eb;
   --color-gold: #FFD86B;
-  --color-champagne: #E7C873;
+  --color-accent-blue: #FFD86B;
+  --color-gold: #FFD86B;
+  --color-champagne: #FFD86B;
 
   /* ── Typography ──────────────────────────────────────────────────────────
-     Central token block. These are the ONLY lines that need changing when
-     the licensed PP fonts replace the current stand-ins:
-       heading → PP Neue Montreal Medium (500)  [still Instrument Sans]
-       body    → PP Neue Montreal Regular (400) [still Instrument Sans]
-       label   → PP Neue Montreal Mono          [now Geist Mono]
-       accent  → PP Editorial New Italic        [now Instrument Serif Italic] */
-  --font-heading: 'Instrument Sans', sans-serif;
-  --font-body: 'Instrument Sans', sans-serif;
-  --font-mono: 'Geist Mono', monospace;
+     Poppins Medium (500) is the site default. Instrument Serif Italic is the
+     hero's accent only (via the `font-accent` utility in Hero.tsx). */
+  --font-heading: 'Poppins', ui-sans-serif, system-ui, sans-serif;
+  --font-body: 'Poppins', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-body);
   --font-accent: 'Instrument Serif', serif;
-  --font-label: var(--font-mono);
-
-  /* Legacy aliases — kept so the many existing font-sans/font-serif/font-display
-     utility classes across the codebase resolve through the tokens above
-     without every call site needing to be renamed.
-     font-serif/font-display stay mapped to --font-body (Instrument Sans) —
-     NOT --font-accent — because the Instrument Serif Italic accent treatment
-     is scoped to the hero's own accent words only (via the `font-accent`
-     utility directly in Hero.tsx), not every italic accent word site-wide. */
+  --font-label: var(--font-body);
   --font-sans: var(--font-body);
   --font-serif: var(--font-body);
   --font-display: var(--font-body);
@@ -53,10 +40,10 @@
   /* ── Text colour tokens ────────────────────────────────────────────────
      Central place for text colour by role. Edit these four lines to
      retune contrast/readability sitewide. */
-  --text-primary: #F4F6F5;
-  --text-body: #D7DDDB;
-  --text-description: #C4CCCA;
-  --text-muted: #98A5A3;
+  --text-primary: #F8F9F9;
+  --text-body: #E2E7E8;
+  --text-description: #D0D7D8;
+  --text-muted: #BAC4C6;
 }
 
 html {
@@ -75,18 +62,52 @@ html {
    default to 16px/1.75. Colour/weight stay un-layered on purpose — that
    brighter mobile tone is a deliberate readability override. */
 @layer base {
+  body { font-weight: 500; }
+  /* A <p> with its own inline font-size is display type: it keeps its own
+     line height rather than the body default. */
   @media (max-width: 1023px) {
-    p {
+    p:not([style*="font-size"]) {
       font-size: 16px;
       line-height: 1.75;
     }
   }
 }
-@media (max-width: 1023px) {
-  p {
-    color: #D1D5DB;
-    font-weight: 500;
-  }
+
+/* ── Section label: the one eyebrow style used across the site ────────────── */
+.section-label {
+  font-family: var(--font-label);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  line-height: 1.5;
+  text-transform: uppercase;
+  color: var(--color-gold);
+}
+
+/* ── Primary CTA: the single gold action style ──────────────────────────── */
+.btn-glow-primary {
+  background-color: var(--color-gold);
+  color: #010709;
+  box-shadow: 0 8px 28px -12px rgba(255, 216, 107, 0.55);
+  transition: background-color 200ms, box-shadow 200ms, transform 100ms;
+}
+.btn-glow-primary:hover {
+  background-color: #FFE38F;
+  box-shadow: 0 10px 34px -10px rgba(255, 216, 107, 0.7);
+}
+.btn-glow-primary:focus-visible {
+  outline: 2px solid #FFF;
+  outline-offset: 3px;
+}
+
+/* ── Opening CTA on service pages: independent of each page's reveal timeline ── */
+.service-cta { animation: service-cta-in 700ms cubic-bezier(0.16, 1, 0.3, 1) 450ms both; }
+@keyframes service-cta-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .service-cta { animation: none; }
 }
 
 /* ── Hero eyebrow label ("AI Automation Platform") ──────────
@@ -101,7 +122,7 @@ html {
   color: #94A3B8;
   font-family: var(--font-label);
   font-size: 13px;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.16em;
   text-shadow: none;
 }
 @media (max-width: 639px) {
@@ -109,7 +130,7 @@ html {
     color: rgba(235, 245, 255, 0.78);
     font-size: 13px;
     letter-spacing: 0.18em;
-    text-shadow: 0 0 12px rgba(125, 220, 255, 0.10);
+    text-shadow: 0 0 12px rgba(255,216,107, 0.10);
   }
 }
 
@@ -165,11 +186,11 @@ html {
   pointer-events: none;
 }
 .bwdc-flow-line::before {
-  background: linear-gradient(to right, transparent 0%, rgba(232,201,122,0.353) 25%, rgba(232,201,122,0.554) 50%, rgba(232,201,122,0.353) 75%, transparent 100%);
+  background: linear-gradient(to right, transparent 0%, rgba(255,216,107,0.353) 25%, rgba(255,216,107,0.554) 50%, rgba(255,216,107,0.353) 75%, transparent 100%);
   animation: bwdc-flow 16s ease-in-out infinite;
 }
 .bwdc-flow-line::after {
-  background: linear-gradient(to right, transparent 0%, rgba(125,220,255,0.176) 30%, rgba(125,220,255,0.302) 50%, rgba(125,220,255,0.176) 70%, transparent 100%);
+  background: linear-gradient(to right, transparent 0%, rgba(255,216,107,0.176) 30%, rgba(255,216,107,0.302) 50%, rgba(255,216,107,0.176) 70%, transparent 100%);
   animation: bwdc-flow 16s ease-in-out infinite 8s;
 }
 @media (prefers-reduced-motion: reduce) {
@@ -199,7 +220,7 @@ html {
   left: -10%;
   width: 120%;
   height: 1px;
-  background: linear-gradient(to right, transparent 0%, rgba(200,175,100,0.18) 30%, rgba(232,201,122,0.28) 50%, rgba(200,175,100,0.18) 70%, transparent 100%);
+  background: linear-gradient(to right, transparent 0%, rgba(255,216,107,0.18) 30%, rgba(255,216,107,0.28) 50%, rgba(255,216,107,0.18) 70%, transparent 100%);
   animation: bwd1-light-flow 12s ease-in-out infinite;
   pointer-events: none;
 }
@@ -251,7 +272,7 @@ html {
 
 /* ── Video Showcase — ice shimmer on heading ─────────────────────────────── */
 .shimmer-ice {
-  background: linear-gradient(90deg, #ffffff 0%, #ffffff 35%, #7ddcff 50%, #ffffff 65%, #ffffff 100%);
+  background: linear-gradient(90deg, #ffffff 0%, #ffffff 35%, #FFD86B 50%, #ffffff 65%, #ffffff 100%);
   background-size: 200% auto;
   -webkit-background-clip: text;
   background-clip: text;
@@ -267,7 +288,7 @@ html {
   position: absolute;
   width: 2px;
   height: 2px;
-  background: rgba(125, 220, 255, 0.55);
+  background: rgba(255,216,107, 0.55);
   border-radius: 50%;
   pointer-events: none;
   z-index: 2;
@@ -283,7 +304,7 @@ html {
   position: absolute;
   left: 0; right: 0;
   height: 1px;
-  background: linear-gradient(to right, transparent 0%, rgba(125,220,255,0.35) 30%, rgba(125,220,255,0.55) 50%, rgba(125,220,255,0.35) 70%, transparent 100%);
+  background: linear-gradient(to right, transparent 0%, rgba(255,216,107,0.35) 30%, rgba(255,216,107,0.55) 50%, rgba(255,216,107,0.35) 70%, transparent 100%);
   animation: vs-scan 10s ease-in-out infinite;
   top: -1px;
 }
@@ -498,15 +519,15 @@ html {
   background: conic-gradient(
     from var(--about-border-angle),
     transparent          0deg,
-    hsl(199 89% 60% / 0) 30deg,
-    hsl(199 89% 60% / 0.9) 65deg,
-    hsl(210 85% 65% / 0.6) 90deg,
-    hsl(199 89% 60% / 0) 120deg,
+    hsl(44 100% 71% / 0) 30deg,
+    hsl(44 100% 71% / 0.9) 65deg,
+    hsl(44 100% 71% / 0.6) 90deg,
+    hsl(44 100% 71% / 0) 120deg,
     transparent         180deg,
-    hsl(199 89% 60% / 0) 210deg,
-    hsl(215 85% 62% / 0.75) 245deg,
-    hsl(199 89% 65% / 0.5) 270deg,
-    hsl(199 89% 60% / 0) 300deg,
+    hsl(44 100% 71% / 0) 210deg,
+    hsl(44 100% 71% / 0.75) 245deg,
+    hsl(44 100% 71% / 0.5) 270deg,
+    hsl(44 100% 71% / 0) 300deg,
     transparent         360deg
   );
   animation: about-border-spin 5s linear infinite;
@@ -523,15 +544,15 @@ html {
   background: conic-gradient(
     from var(--about-border-angle),
     transparent          0deg,
-    hsl(199 89% 55% / 0) 40deg,
-    hsl(199 89% 68% / 0.55) 70deg,
-    hsl(210 80% 68% / 0.35) 95deg,
-    hsl(199 89% 55% / 0) 125deg,
+    hsl(44 100% 71% / 0) 40deg,
+    hsl(44 100% 71% / 0.55) 70deg,
+    hsl(44 100% 71% / 0.35) 95deg,
+    hsl(44 100% 71% / 0) 125deg,
     transparent         180deg,
-    hsl(199 89% 55% / 0) 220deg,
-    hsl(215 85% 65% / 0.45) 250deg,
-    hsl(199 89% 65% / 0.3) 275deg,
-    hsl(199 89% 55% / 0) 305deg,
+    hsl(44 100% 71% / 0) 220deg,
+    hsl(44 100% 71% / 0.45) 250deg,
+    hsl(44 100% 71% / 0.3) 275deg,
+    hsl(44 100% 71% / 0) 305deg,
     transparent         360deg
   );
   animation: about-border-spin 5s linear infinite;
@@ -544,8 +565,8 @@ html {
   border-radius: calc(1rem - 1px);
   height: 100%;
   box-shadow:
-    0 0 18px -4px hsl(199 89% 60% / 0.22),
-    0 0 40px -8px hsl(210 85% 62% / 0.14),
+    0 0 18px -4px hsl(44 100% 71% / 0.22),
+    0 0 40px -8px hsl(44 100% 71% / 0.14),
     0 12px 40px -10px hsl(0 0% 0% / 0.6);
 }
 
@@ -710,7 +731,7 @@ html {
   background: linear-gradient(
     105deg,
     transparent 25%,
-    rgba(169, 155, 255, 0.40) 50%,
+    rgba(255,216,107, 0.40) 50%,
     transparent 75%
   );
   animation: gold-line-glint 3.2s linear infinite;
@@ -728,7 +749,7 @@ html {
 }
 
 .weavy-shimmer-text {
-  background: linear-gradient(90deg, #e2f4ff 0%, #7DDCFF 38%, #2BA8D9 55%, #7DDCFF 72%, #e2f4ff 100%);
+  background: linear-gradient(90deg, #FFF3CC 0%, #FFD86B 38%, #FFD86B 55%, #FFD86B 72%, #FFF3CC 100%);
   background-size: 200% auto;
   -webkit-background-clip: text;
   background-clip: text;
@@ -740,7 +761,7 @@ html {
 @media (prefers-reduced-motion: reduce) {
   .weavy-shimmer-text {
     animation: none;
-    background: linear-gradient(90deg, #7DDCFF, #2BA8D9);
+    background: linear-gradient(90deg, #FFD86B, #FFD86B);
     background-size: 100% auto;
   }
 }
@@ -781,9 +802,9 @@ html, body, #root {
   padding: 0;
   width: 100%;
   height: 100%;
-  background: hsl(0 0% 4%);
-  color: hsl(0 0% 96%);
-  font-family: var(--font-body), system-ui, sans-serif;
+  background: #010709;
+  color: var(--text-primary);
+  font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -852,7 +873,7 @@ body::after {
   top: 20%;
   bottom: 20%;
   width: 2px;
-  background: linear-gradient(to bottom, transparent, hsl(199 89% 60% / 0.65), transparent);
+  background: linear-gradient(to bottom, transparent, hsl(44 100% 71% / 0.65), transparent);
   border-radius: 999px;
   opacity: 0;
   transform: scaleY(0.4);
@@ -869,13 +890,13 @@ body::after {
 
 /* ── Selection colour ────────────────────────────────────────────────────── */
 ::selection {
-  background: hsl(199 89% 60% / 0.22);
+  background: hsl(44 100% 71% / 0.22);
   color: hsl(0 0% 96%);
 }
 
 /* ── Focus visible ring ──────────────────────────────────────────────────── */
 :focus-visible {
-  outline: 1.5px solid hsl(199 89% 60% / 0.55);
+  outline: 1.5px solid hsl(44 100% 71% / 0.55);
   outline-offset: 3px;
 }
 
@@ -944,18 +965,18 @@ body::after {
 }
 
 @keyframes chatbot-status-pulse {
-  0%, 100% { opacity: 1;    box-shadow: 0 0 6px hsl(150 65% 52%); }
-  50%       { opacity: 0.55; box-shadow: 0 0 12px hsl(150 65% 52% / 0.85); }
+  0%, 100% { opacity: 1;    box-shadow: 0 0 6px hsl(44 100% 71%); }
+  50%       { opacity: 0.55; box-shadow: 0 0 12px hsl(44 100% 71% / 0.85); }
 }
 
 @keyframes chatbot-card-glow-green {
   0%, 75%, 100% { box-shadow: 0 8px 24px hsl(0 0% 0% / 0.45); }
-  88%            { box-shadow: 0 8px 24px hsl(0 0% 0% / 0.45), 0 0 24px hsl(150 60% 50% / 0.38); }
+  88%            { box-shadow: 0 8px 24px hsl(0 0% 0% / 0.45), 0 0 24px hsl(44 100% 71% / 0.38); }
 }
 
 @keyframes chatbot-card-glow-blue {
   0%, 75%, 100% { box-shadow: 0 8px 24px hsl(0 0% 0% / 0.45); }
-  88%            { box-shadow: 0 8px 24px hsl(0 0% 0% / 0.45), 0 0 24px hsl(205 85% 62% / 0.38); }
+  88%            { box-shadow: 0 8px 24px hsl(0 0% 0% / 0.45), 0 0 24px hsl(44 100% 71% / 0.38); }
 }
 
 /* ── Connected Systems — cinematic workflow image (Glass.png) ─────────────
@@ -1322,42 +1343,66 @@ body::after {
   animation: ugc-badge-float 4.2s ease-in-out infinite;
 }
 
-/* Footer social icons — visible keyboard-focus ring, all breakpoints. */
+/* ── Footer bar: site links, contact details and legal line ─────────────── */
+.footer-bottom-bar {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 1rem 2rem;
+  font-size: 0.875rem;
+  color: var(--text-body);
+}
+.footer-links,
+.footer-contact,
+.footer-socials {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem 1.5rem;
+}
+.footer-contact { justify-content: flex-end; }
+/* Keep the right-hand column clear of the fixed WhatsApp button. */
+@media (min-width: 768px) {
+  .footer-bottom-bar { padding-right: calc(clamp(1.5rem, 5vw, 3.5rem) + 72px) !important; }
+}
+.footer-socials { gap: 0.25rem; }
+.footer-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: color 180ms ease;
+}
+.footer-link:hover { color: var(--color-gold); }
+.footer-meta {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.5rem 1.5rem;
+  font-size: 0.8125rem;
+  color: var(--text-description);
+}
+.footer-social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  color: var(--text-primary);
+  transition: color 180ms ease;
+}
+.footer-social-icon:hover { color: var(--color-gold); }
+.footer-link:focus-visible,
 .footer-social-icon:focus-visible {
-  outline: 2px solid rgba(125, 220, 255, 0.6);
+  outline: 2px solid var(--color-gold);
   outline-offset: 2px;
 }
 
-/* ── Footer bottom bar (availability / copyright / socials) — mobile & tablet
-   only, so desktop layout stays exactly as-is. Uses !important because each
-   footer implementation sets these colours inline (including via JS hover
-   handlers), and only a stylesheet !important rule outranks an inline style. */
 @media (max-width: 1024px) {
-  .footer-bottom-bar {
-    /* Must clear the fixed WhatsApp button's top edge (bottom:84px + 52px tall
-       = 136px above the viewport bottom), plus a small buffer. */
-    padding-bottom: 152px !important;
-  }
-  .footer-availability-text {
-    color: rgba(220, 232, 240, 0.76) !important;
-  }
-  .footer-copyright-text {
-    color: rgba(225, 236, 242, 0.82) !important;
-    font-weight: 500 !important;
-  }
-  .footer-social-icon {
-    color: rgba(235, 243, 248, 0.86) !important;
-  }
-  .footer-social-icon:hover,
-  .footer-social-icon:active,
-  .footer-social-icon:focus-visible {
-    color: rgba(255, 255, 255, 0.98) !important;
-  }
-
-  /* Floating WhatsApp button — slightly smaller, tucked into the bottom
-     corner (clear of the safe area) rather than raised into the reading
-     area. It fades out while the footer's social icons — or any image,
-     heading or button — pass under it (see WhatsAppFloatingButton.tsx). */
+  /* Floating WhatsApp button: slightly smaller and tucked into the corner. */
   .wa-floating-btn {
     right: calc(16px + env(safe-area-inset-right, 0px)) !important;
     bottom: calc(16px + env(safe-area-inset-bottom, 0px)) !important;
@@ -1368,24 +1413,23 @@ body::after {
   }
 }
 
-/* Narrow phones — the 3-column (availability / copyright / socials) grid
-   doesn't have room to stay on one row each, so stack them centered instead
-   of letting all three wrap to 2-3 lines simultaneously. */
-@media (max-width: 480px) {
+@media (max-width: 767px) {
+  /* Stacked and centred; the bottom padding keeps the legal line clear of the
+     fixed WhatsApp button. */
   .footer-bottom-bar {
-    grid-template-columns: 1fr !important;
-    justify-items: center !important;
-    text-align: center !important;
-    gap: 0.85rem !important;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+    padding-bottom: 5.5rem !important;
   }
-  .footer-bottom-bar > div:last-child {
-    justify-self: center !important;
-    margin-right: 0 !important;
-  }
+  .footer-links,
+  .footer-contact,
+  .footer-meta { justify-content: center; }
+  .footer-meta { flex-direction: column; align-items: center; }
+}
 
-  /* HLC sea-wave — no scaling/hiding here, only a crop-anchor tweak so the
-     wave reads as bottom-composed on a narrow portrait viewport, matching
-     the desktop composition. Visibility, opacity and filter are untouched. */
+@media (max-width: 480px) {
+  /* HLC sea-wave: crop anchor only, so the wave stays bottom-composed. */
   .footer-hlc-video {
     object-position: 50% 76%;
   }
@@ -1474,7 +1518,7 @@ body::after {
   50% {
     opacity: 1;
     filter: brightness(1.08);
-    text-shadow: 0 0 18px rgba(125, 220, 255, 0.16);
+    text-shadow: 0 0 18px rgba(255,216,107, 0.16);
     transform: translateY(-2px);
   }
 }
@@ -1669,12 +1713,12 @@ body::after {
 }
 
 /* Fix 2 — About Weavy highlighted phrases: the shared shimmer gradient has a
-   dark #2BA8D9 stop that reads muted on mobile. Scoped to #about so the
+   dark #FFD86B stop that reads muted on mobile. Scoped to #about so the
    Systems/Services panel's use of the class is unaffected. Slow, soft sweep;
    static gradient under reduced motion. */
 @media (max-width: 1023px) {
   #about .weavy-shimmer-text {
-    background-image: linear-gradient(100deg, #4CC9F0 0%, #8FE3FA 30%, #B8F1FF 46%, #8FE3FA 62%, #4CC9F0 100%);
+    background-image: linear-gradient(100deg, #FFD86B 0%, #FFD86B 30%, #FFD86B 46%, #FFD86B 62%, #FFD86B 100%);
     background-size: 220% auto;
     animation-duration: 9s;
   }
@@ -1682,7 +1726,7 @@ body::after {
 @media (max-width: 1023px) and (prefers-reduced-motion: reduce) {
   #about .weavy-shimmer-text {
     animation: none;
-    background-image: linear-gradient(90deg, #4CC9F0, #B8F1FF);
+    background-image: linear-gradient(90deg, #FFD86B, #FFD86B);
     background-size: 100% auto;
   }
 }
@@ -1712,7 +1756,7 @@ body::after {
     width: 44px !important;
     height: 44px !important;
     opacity: 0.92 !important;
-    background: rgba(6, 8, 10, 0.62) !important;
+    background: rgba(1,7,9, 0.62) !important;
     border-color: rgba(255, 255, 255, 0.32) !important;
   }
   .bws-arrow:first-child { left: 0; }
@@ -1729,7 +1773,6 @@ body::after {
 /* Fix 7 — Footer: remove the hairline border-top above the bottom bar
    (availability / copyright / socials) on mobile + tablet only. */
 @media (max-width: 1023px) {
-  .footer-bottom-bar { border-top-color: transparent !important; }
 }
 
 /* ════════════════════════════════════════════════════════════════════════
@@ -1743,8 +1786,8 @@ body::after {
    ════════════════════════════════════════════════════════════════════════ */
 @media (max-width: 1023px) {
   .m-tx-primary   { color: #F5F7FA !important; }
-  .m-tx-secondary { color: #D5DAE0 !important; }
-  .m-tx-label     { color: #B8C4CE !important; }
+  .m-tx-secondary { color: #E2E7E8 !important; }
+  .m-tx-label     { color: #C9D1D3 !important; }
   /* Systems in Motion row numbers: drop the 73% alpha on the row's own
      accent colour (12px label measured 3:1 on the purple row). */
   .m-tx-accent-solid { color: var(--accent-solid) !important; }
@@ -1759,7 +1802,7 @@ body::after {
      with a faint cyan tint; numbers keep their cyan, descriptions unchanged. */
   .m-strategy-title {
     color: #E6F8FF !important;
-    text-shadow: 0 0 18px rgba(125, 220, 255, 0.16) !important;
+    text-shadow: 0 0 18px rgba(255,216,107, 0.16) !important;
   }
 
   /* Fix 5 — Work "Strategy before visuals" process titles: muted champagne. */
@@ -1768,10 +1811,10 @@ body::after {
   /* Fix 6 — Work "Let's build work people remember": supporting copy only.
      Paragraph lifted just above the secondary tone; status label solid ice. */
   .m-cta-body   { color: #E3E8ED !important; }
-  .m-cta-status { color: #BFEFFF !important; }
+  .m-cta-status { color: var(--text-body) !important; }
 
   /* Fix 7 — One Connected System step titles: ice-cyan. */
-  .m-workflow-title { color: #8EDFF5 !important; }
+  .m-workflow-title { color: #F5F7FA !important; }
 
   /* Fix 8 — System Architecture headings tinted from each card's accent. */
   .m-arch-title { color: var(--arch-title) !important; }
@@ -1779,10 +1822,10 @@ body::after {
   /* Fix 9 — "WHY WEAVY WORKS" eyebrow: silver-blue (was cyan at 70%).
      It sat underneath the section's 220px top-blend overlay (z-index 10),
      which is what actually darkened it — lift just the label above it. */
-  .m-why-label { color: #A9DDEB; position: relative; z-index: 11; }
+  .m-why-label { color: #FFD86B; position: relative; z-index: 11; }
 
   /* Fix 10 — Why Weavy Works benefit card titles: icy white. */
-  .m-why-title { color: #DDF5FA !important; }
+  .m-why-title { color: #F5F7FA !important; }
 
   /* Fix 4 — Graphic Design service pills: feedback only on real interaction
      (press on touch, hover with a mouse); nothing persists afterwards and the
@@ -1793,16 +1836,16 @@ body::after {
     transition: border-color 220ms ease, background-color 220ms ease, color 220ms ease, filter 220ms ease;
   }
   .gds-pill:active {
-    border-color: rgba(214, 181, 108, 0.38);
-    background-color: rgba(214, 181, 108, 0.06);
+    border-color: rgba(255,216,107, 0.38);
+    background-color: rgba(255,216,107, 0.06);
   }
   .gds-pill:active .gds-pill-text { color: rgba(255, 255, 255, 0.92); }
   .gds-pill:active .gds-pill-icon { filter: brightness(1.25) saturate(1.1); }
 }
 @media (max-width: 1023px) and (hover: hover) and (pointer: fine) {
   .gds-pill:hover {
-    border-color: rgba(214, 181, 108, 0.38);
-    background-color: rgba(214, 181, 108, 0.06);
+    border-color: rgba(255,216,107, 0.38);
+    background-color: rgba(255,216,107, 0.06);
   }
   .gds-pill:hover .gds-pill-text { color: rgba(255, 255, 255, 0.92); }
   .gds-pill:hover .gds-pill-icon { filter: brightness(1.25) saturate(1.1); }
@@ -1828,7 +1871,7 @@ body::after {
    is the same solid #E6F8FF — no dark/light opacity cycling. */
 @media (max-width: 1023px) {
   .m-strategy-title.is-sheen {
-    background-image: linear-gradient(100deg, #E6F8FF 0%, #E6F8FF 40%, #FFFFFF 47%, #B8F1FF 50%, #FFFFFF 53%, #E6F8FF 60%, #E6F8FF 100%);
+    background-image: linear-gradient(100deg, #E6F8FF 0%, #E6F8FF 40%, #FFFFFF 47%, #FFD86B 50%, #FFFFFF 53%, #E6F8FF 60%, #E6F8FF 100%);
     background-size: 260% 100%;
     background-position: 100% 0;
     -webkit-background-clip: text;
@@ -1845,7 +1888,7 @@ body::after {
 /* Fix 5 — Bespoke Website Design "SERVICE" eyebrow: 13px, premium ice-cyan.
    Letter-spacing, case and font family unchanged. */
 @media (max-width: 1023px) {
-  .m-service-label { font-size: 13px !important; color: #9DDFEF; }
+  .m-service-label { font-size: 13px !important; color: #FFD86B; }
 }
 
 /* ════════════════════════════════════════════════════════════════════════
@@ -1857,24 +1900,24 @@ body::after {
    ════════════════════════════════════════════════════════════════════════ */
 @media (min-width: 1024px) {
   .m-tx-primary:not(a)   { color: #F5F7FA !important; }
-  .m-tx-secondary:not(a) { color: #D5DAE0 !important; }
-  .m-tx-label:not(a)     { color: #B8C4CE !important; }
+  .m-tx-secondary:not(a) { color: #E2E7E8 !important; }
+  .m-tx-label:not(a)     { color: #C9D1D3 !important; }
   .m-tx-accent-solid     { color: var(--accent-solid) !important; }
 
   .m-strategy-title {
     color: #E6F8FF !important;
-    text-shadow: 0 0 18px rgba(125, 220, 255, 0.16) !important;
+    text-shadow: 0 0 18px rgba(255,216,107, 0.16) !important;
   }
   .m-cta-body        { color: #E3E8ED !important; }
-  .m-cta-status      { color: #BFEFFF !important; }
-  .m-workflow-title  { color: #8EDFF5 !important; }
-  .m-why-label       { color: #A9DDEB; }
+  .m-cta-status      { color: var(--text-body) !important; }
+  .m-workflow-title  { color: #F5F7FA !important; }
+  .m-why-label       { color: #FFD86B; }
   .m-why-title       { color: #DDF5FA !important; }
-  .m-service-label   { color: #9DDFEF; }
+  .m-service-label   { color: #FFD86B; }
 
   /* Strategy titles — same one-time ice-blue sheen as mobile */
   .m-strategy-title.is-sheen {
-    background-image: linear-gradient(100deg, #E6F8FF 0%, #E6F8FF 40%, #FFFFFF 47%, #B8F1FF 50%, #FFFFFF 53%, #E6F8FF 60%, #E6F8FF 100%);
+    background-image: linear-gradient(100deg, #E6F8FF 0%, #E6F8FF 40%, #FFFFFF 47%, #FFD86B 50%, #FFFFFF 53%, #E6F8FF 60%, #E6F8FF 100%);
     background-size: 260% 100%;
     background-position: 100% 0;
     -webkit-background-clip: text;
@@ -1901,8 +1944,8 @@ body::after {
 }
 @media (min-width: 1024px) and (hover: hover) and (pointer: fine) {
   .gds-pill:hover {
-    border-color: rgba(214, 181, 108, 0.38);
-    background-color: rgba(214, 181, 108, 0.06);
+    border-color: rgba(255,216,107, 0.38);
+    background-color: rgba(255,216,107, 0.06);
   }
   .gds-pill:hover .gds-pill-text { color: rgba(255, 255, 255, 0.92); }
   .gds-pill:hover .gds-pill-icon { filter: brightness(1.25) saturate(1.1); }
@@ -1969,8 +2012,8 @@ body::after {
   border-radius: 24px;
   overflow: hidden;
   background: #010709;
-  border: 1px solid rgba(125, 220, 255, 0.12);
-  box-shadow: 0 32px 90px rgba(0, 0, 0, 0.55), 0 0 40px rgba(125, 220, 255, 0.05);
+  border: 1px solid rgba(255,216,107, 0.12);
+  box-shadow: 0 32px 90px rgba(0, 0, 0, 0.55), 0 0 40px rgba(255,216,107, 0.05);
 }
 .gd-hero-img {
   position: absolute;
@@ -2007,7 +2050,7 @@ body::after {
   margin: 0;
   text-align: center;
   font-family: var(--font-accent);
-  font-weight: 400;
+  font-weight: 500;
   font-size: 6.4cqw;
   line-height: 1;
   letter-spacing: -0.005em;

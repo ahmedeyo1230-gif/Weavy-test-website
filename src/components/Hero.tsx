@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useLenis } from 'lenis/react'
 import weavyLogo from '../assets/weavy-logo-new.png'
 import { goToPath } from '../lib/navigation'
-import { isServicesPath } from '../lib/servicePages'
+import { isServicesPath, normalisePath } from '../lib/servicePages'
 
 const HLS_SRC = 'https://stream.mux.com/Aa02T7oM1wH5Mk5EEVDYhbZ1ChcdhRsS2m1NYyx4Ua1g.m3u8'
 const HERO_POSTER = 'https://image.mux.com/Aa02T7oM1wH5Mk5EEVDYhbZ1ChcdhRsS2m1NYyx4Ua1g/thumbnail.jpg?width=1200&time=1'
@@ -52,10 +53,12 @@ const LABEL_BY_PATH: Record<string, string> = {
   '/': 'Home', '/about': 'About', '/services': 'Services',
   '/work': 'Work', '/blog': 'Blog', '/contact': 'Contact',
 }
+// Pages outside the main navigation highlight nothing.
+const NO_ACTIVE = ''
 function labelFromPath() {
   // Dedicated service pages (/services/<slug>) keep "Services" highlighted.
   if (isServicesPath(window.location.pathname)) return 'Services'
-  return LABEL_BY_PATH[window.location.pathname] ?? 'Home'
+  return LABEL_BY_PATH[normalisePath(window.location.pathname)] ?? NO_ACTIVE
 }
 
 // ─── HLS Video Background ─────────────────────────────────────────────────────
@@ -196,29 +199,36 @@ export function Navbar() {
 
   // While the mobile menu is open: lock page scroll behind it, and close it on
   // Escape, on a tap outside the header, or if the viewport grows past the
-  // `sm` breakpoint (where the desktop links take over).
+  // `md` breakpoint (where the desktop links take over).
   const headerRef = useRef<HTMLElement>(null)
+  // The homepage's smooth scroller moves the page itself, so it must be paused too.
+  const lenis = useLenis()
   useEffect(() => {
     if (!menuOpen) return
     const html = document.documentElement
     const prevOverflow = html.style.overflow
+    const prevBodyOverflow = document.body.style.overflow
     html.style.overflow = 'hidden'
+    document.body.style.overflow = 'hidden'
+    lenis?.stop()
     const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setMenuOpen(false) }
     const onPointer = (e: PointerEvent) => {
       if (headerRef.current && !headerRef.current.contains(e.target as Node)) setMenuOpen(false)
     }
-    const mq = window.matchMedia('(min-width: 640px)')
+    const mq = window.matchMedia('(min-width: 768px)')
     const onMq = (e: MediaQueryListEvent) => { if (e.matches) setMenuOpen(false) }
     document.addEventListener('keydown', onKey)
     document.addEventListener('pointerdown', onPointer)
     mq.addEventListener('change', onMq)
     return () => {
       html.style.overflow = prevOverflow
+      document.body.style.overflow = prevBodyOverflow
+      lenis?.start()
       document.removeEventListener('keydown', onKey)
       document.removeEventListener('pointerdown', onPointer)
       mq.removeEventListener('change', onMq)
     }
-  }, [menuOpen])
+  }, [menuOpen, lenis])
 
   return (
     <motion.header
@@ -244,7 +254,7 @@ export function Navbar() {
         </a>
 
         {/* Desktop links */}
-        <ul className="hidden sm:flex items-center gap-0.5" role="list">
+        <ul className="hidden md:flex items-center gap-0.5" role="list">
           {NAV_LINKS.map(({ label, href }) => {
             const isActive = active === label
             return (
@@ -257,7 +267,7 @@ export function Navbar() {
                     setActive(label)
                     goToPath(href)
                   }}
-                  className={`font-body font-medium relative block text-xs sm:text-sm px-3 py-1.5 max-lg:py-2.5 rounded-full transition-colors duration-150 active:scale-[0.97] ${
+                  className={`font-body font-medium relative block text-xs sm:text-sm px-3 py-1.5 max-xl:py-2.5 rounded-full transition-colors duration-150 active:scale-[0.97] ${
                     isActive ? 'text-primary bg-white/10' : 'text-muted hover:text-primary hover:bg-white/5'
                   }`}
                 >
@@ -272,17 +282,17 @@ export function Navbar() {
         <a
           href="/contact"
           onClick={(e) => { e.preventDefault(); setActive('Contact'); goToPath('/contact') }}
-          className="font-body hidden sm:inline-flex items-center gap-1.5 bg-primary text-background text-xs sm:text-sm px-4 py-2 rounded-full font-medium transition-colors duration-150 hover:bg-white hover:shadow-[0_0_20px_rgba(245,245,245,0.25)] active:scale-[0.97] shrink-0"
-          style={{ transition: 'color 150ms, background-color 150ms, box-shadow 150ms, transform 100ms' }}
+          className="font-body btn-glow-primary hidden md:inline-flex items-center gap-1.5 text-xs lg:text-sm px-4 py-2 min-h-[44px] xl:min-h-0 rounded-full font-medium active:scale-[0.97] shrink-0"
+          style={{ transition: 'background-color 150ms, box-shadow 150ms, transform 100ms' }}
         >
-          Say hi →
+          Book a Free Demo
         </a>
 
         {/* Hamburger – mobile/tablet. Brighter ice-white (vs. the dim --color-muted
             used elsewhere) so the three lines stay clearly visible against the
             dark navbar glass, not just on hover. */}
         <button
-          className="sm:hidden flex items-center justify-center w-11 h-11 -mr-1.5 rounded-full hover:text-primary hover:bg-white/5 transition-colors"
+          className="md:hidden flex items-center justify-center w-11 h-11 -mr-1.5 rounded-full hover:text-primary hover:bg-white/5 transition-colors"
           style={{ color: 'rgba(235, 245, 255, 0.88)' }}
           aria-label={menuOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={menuOpen}
@@ -307,7 +317,7 @@ export function Navbar() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -6, scale: 0.98 }}
             transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
-            className="sm:hidden mt-2 rounded-2xl overflow-hidden"
+            className="md:hidden mt-2 rounded-2xl overflow-hidden"
             style={{
               background: 'rgba(1, 7, 9, 0.97)',
               backdropFilter: 'blur(24px)',
@@ -350,6 +360,20 @@ export function Navbar() {
                 </motion.li>
               ))}
             </ul>
+            <div className="p-4">
+              <a
+                href="/contact"
+                onClick={(e) => {
+                  e.preventDefault()
+                  setActive('Contact')
+                  setMenuOpen(false)
+                  goToPath('/contact')
+                }}
+                className="font-body btn-glow-primary flex items-center justify-center rounded-full px-6 py-3.5 text-sm font-medium"
+              >
+                Book a Free Demo
+              </a>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
@@ -415,7 +439,7 @@ export default function Hero() {
 
         {/* Cinematic background glows */}
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-          <div className="absolute top-1/4 left-1/4 w-[520px] h-[520px] bg-accent-cyan/[0.09] rounded-full blur-[130px]" />
+          <div className="absolute top-1/4 left-1/4 w-[520px] h-[520px] bg-[#3ab3e8]/[0.09] rounded-full blur-[130px]" />
           <div className="absolute top-[60%] left-[30%] w-[400px] h-[400px] rounded-full blur-[110px]" style={{ background: 'hsl(270 50% 20% / 0.06)' }} />
           <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse at center, transparent 0%, rgba(1,7,9,0.21) 62%, rgba(1,7,9,0.43) 90%)' }} />
         </div>
@@ -446,7 +470,7 @@ export default function Hero() {
             <motion.h1
               id="hero-heading"
               variants={itemVariants}
-              className="font-heading text-[2.6rem] min-[390px]:text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-medium tracking-tighter leading-[1.1] mb-6 sm:mb-8 max-w-4xl relative z-10"
+              className="font-heading text-[clamp(2rem,10.2vw,3rem)] sm:text-6xl md:text-7xl lg:text-8xl font-medium tracking-[-0.035em] leading-[1.1] mb-6 sm:mb-8 max-w-4xl relative z-10"
             >
               {/* Two phrases, one per line: near-white word + the existing
                   blue-to-purple gradient italic accent for each. */}
@@ -460,7 +484,7 @@ export default function Hero() {
 
           <motion.p
             variants={itemVariants}
-            className="font-body text-lg sm:text-xl mb-8 font-light text-center"
+            className="font-body text-lg max-[359px]:text-base sm:text-xl mb-8 max-[359px]:mb-5 font-medium text-center"
           >
             <span aria-hidden="true">
               <span className="max-sm:block m-tx-secondary" style={{ color: 'rgba(255,255,255,0.75)', textWrap: 'balance' }}>
@@ -491,14 +515,12 @@ export default function Hero() {
 
           <motion.p
             variants={itemVariants}
-            className="font-body max-w-xl mx-auto mb-12 leading-relaxed text-base lg:text-lg font-normal m-tx-secondary"
+            className="font-body max-w-xl mx-auto mb-8 max-[359px]:mb-6 sm:mb-12 leading-relaxed text-base max-[359px]:text-sm lg:text-lg font-medium m-tx-secondary"
             style={{ color: 'rgba(228, 238, 245, 0.88)', lineHeight: 1.75 }}
           >
-            We help SMEs <span style={heroSubheadHighlight}>capture leads</span>, respond
-            instantly, automate bookings and manage customer conversations across voice,
-            WhatsApp, Instagram, Facebook and CRM—all through{' '}
-            <span style={heroSubheadHighlight}>one connected system</span>. Our creative
-            growth services help brands stand out, build trust and attract more customers.
+            Weavy <span style={heroSubheadHighlight}>answers, qualifies and books</span> new
+            enquiries across voice, WhatsApp, Instagram and Facebook. We also build the{' '}
+            <span style={heroSubheadHighlight}>websites and creative</span> that bring them in.
           </motion.p>
 
           <motion.div
@@ -508,7 +530,7 @@ export default function Hero() {
             <a
               href="/contact"
               onClick={(e) => { e.preventDefault(); goToPath('/contact') }}
-              className="font-body btn-glow-primary inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-medium bg-primary text-background hover:bg-white hover:shadow-[0_0_28px_rgba(245,245,245,0.28)] active:scale-[0.97]"
+              className="font-body btn-glow-primary inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-medium active:scale-[0.97]"
               style={{ transition: 'background-color 200ms, box-shadow 200ms, transform 100ms' }}
             >
               Book a Free Demo →
