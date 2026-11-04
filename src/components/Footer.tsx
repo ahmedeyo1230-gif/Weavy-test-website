@@ -299,8 +299,8 @@ export default function Footer({
   heading = DEFAULT_HEADING,
   subtext = DEFAULT_SUBTEXT,
   ctaLabel = 'Book a Free Demo',
-  ctaHref = '/contact',
-  ctaVariant = 'primary',
+  ctaHref = 'mailto:hello@weavyautomation.com',
+  ctaVariant = 'glass',
   showCta = true,
 }: FooterProps = {}) {
   const isInternalCta = ctaHref.startsWith('/')

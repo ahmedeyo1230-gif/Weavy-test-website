@@ -26,7 +26,7 @@ export default function Privacy() {
 
           <Block title="When you contact us">
             <p>
-              When you submit the contact form, your name, email address, the service you chose and your message are sent to us by email. We use them to reply to your enquiry and to discuss the work you asked about. This website does not keep its own copy.
+              What you type into the contact form on this website is not sent to us or stored by the website. To reach us, please email, call or message us on WhatsApp.
             </p>
             <p>
               If you email, call or message us on WhatsApp, we receive your contact details and whatever you include in your message. We use this to reply and to discuss the work you asked about.
@@ -36,8 +36,7 @@ export default function Privacy() {
           <Block title="Services that power this website">
             <p>Like most websites, this site relies on outside services that receive basic technical data, such as your IP address and browser type, when they deliver content to you:</p>
             <ul className="list-disc pl-5 space-y-2">
-              <li>Vercel hosts the website and provides privacy-friendly visit statistics, without cookies.</li>
-              <li>An email delivery provider sends contact form messages to us.</li>
+              <li>Vercel hosts the website and, where turned on, provides privacy-friendly visit statistics without cookies.</li>
               <li>Google Fonts delivers the typefaces.</li>
               <li>Mux and Cloudflare R2 deliver the videos.</li>
               <li>Unsplash delivers some blog images.</li>

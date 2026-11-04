@@ -1,37 +1,16 @@
-import { useRef, useState } from "react"
+import { useState } from "react"
 import { motion } from "framer-motion"
-import { CheckCircle2, ChevronDown, Mail, Phone, Send } from "lucide-react"
+import { Mail, Phone, Globe, Send } from "lucide-react"
 import { Label } from "@/components/ui/label"
 import { cn } from "@/lib/utils"
 import Footer from "@/components/Footer"
-import { goToPath } from "@/lib/navigation"
-import { WHATSAPP_HREF } from "@/lib/contactLinks"
 
 interface Contact2Props {
   title?: string
   description?: string
   phone?: string
   email?: string
-}
-
-const SERVICE_OPTIONS = [
-  "Book a free demo",
-  "AI chatbots or voice agents",
-  "CRM, bookings and automation",
-  "Website design",
-  "Social media marketing",
-  "Graphic design or animation",
-  "UGC and content creation",
-  "Not sure yet",
-]
-
-type FormStatus = "idle" | "sending" | "sent" | "error"
-type FormError = "invalid" | "rate_limited" | "unavailable"
-
-const FORM_ERRORS: Record<FormError, string> = {
-  invalid: "Please check your details and try again.",
-  rate_limited: "We've received several attempts from this connection. Please wait a few minutes or contact us directly.",
-  unavailable: "We couldn't send your message. Your details are still in the form, so you can try again or contact us directly.",
+  web?: { label: string; url: string }
 }
 
 const E: [number, number, number, number] = [0.16, 1, 0.3, 1]
@@ -50,10 +29,10 @@ function NetworkVisual() {
       className="pointer-events-none select-none w-full rounded-2xl overflow-hidden flex items-center justify-center"
       style={{
         minHeight: "320px",
-        border: "1px solid rgba(255,216,107,0.14)",
-        background: "rgba(255,216,107,0.018)",
+        border: "1px solid rgba(56,189,248,0.14)",
+        background: "rgba(56,189,248,0.018)",
         boxShadow:
-          "0 0 0 1px rgba(255,216,107,0.04), 0 0 48px -8px rgba(255,216,107,0.14), 0 0 96px -24px rgba(255,216,107,0.08), inset 0 1px 0 rgba(255,216,107,0.07)",
+          "0 0 0 1px rgba(56,189,248,0.04), 0 0 48px -8px rgba(56,189,248,0.14), 0 0 96px -24px rgba(34,211,238,0.08), inset 0 1px 0 rgba(56,189,248,0.07)",
       }}
     >
       <svg
@@ -122,68 +101,68 @@ function NetworkVisual() {
 
         {/* Lines */}
         <g strokeLinecap="round">
-          <line x1="150" y1="140" x2="105" y2="85"  stroke="#FFD86B" strokeWidth="0.7" className="l-a" />
-          <line x1="150" y1="140" x2="200" y2="90"  stroke="#FFD86B" strokeWidth="0.7" className="l-b" />
-          <line x1="150" y1="140" x2="215" y2="195" stroke="#FFD86B" strokeWidth="0.7" className="l-c" />
-          <line x1="150" y1="140" x2="80"  y2="200" stroke="#FFD86B" strokeWidth="0.7" className="l-d" />
-          <line x1="105" y1="85"  x2="200" y2="90"  stroke="#FFD86B" strokeWidth="0.55" className="l-e" />
-          <line x1="200" y1="90"  x2="215" y2="195" stroke="#FFD86B" strokeWidth="0.55" className="l-f" />
-          <line x1="215" y1="195" x2="80"  y2="200" stroke="#FFD86B" strokeWidth="0.55" className="l-g" />
-          <line x1="80"  y1="200" x2="105" y2="85"  stroke="#FFD86B" strokeWidth="0.55" className="l-h" />
-          <line x1="105" y1="85"  x2="60"  y2="38"  stroke="#FFD86B" strokeWidth="0.45" className="l-a" />
-          <line x1="200" y1="90"  x2="235" y2="45"  stroke="#FFD86B" strokeWidth="0.45" className="l-b" />
-          <line x1="215" y1="195" x2="265" y2="165" stroke="#FFD86B" strokeWidth="0.45" className="l-c" />
-          <line x1="215" y1="195" x2="242" y2="258" stroke="#FFD86B" strokeWidth="0.45" className="l-i" />
-          <line x1="80"  y1="200" x2="110" y2="260" stroke="#FFD86B" strokeWidth="0.45" className="l-j" />
-          <line x1="80"  y1="200" x2="28"  y2="228" stroke="#FFD86B" strokeWidth="0.45" className="l-k" />
-          <line x1="105" y1="85"  x2="35"  y2="115" stroke="#FFD86B" strokeWidth="0.45" className="l-d" />
+          <line x1="150" y1="140" x2="105" y2="85"  stroke="#38BDF8" strokeWidth="0.7" className="l-a" />
+          <line x1="150" y1="140" x2="200" y2="90"  stroke="#38BDF8" strokeWidth="0.7" className="l-b" />
+          <line x1="150" y1="140" x2="215" y2="195" stroke="#22D3EE" strokeWidth="0.7" className="l-c" />
+          <line x1="150" y1="140" x2="80"  y2="200" stroke="#22D3EE" strokeWidth="0.7" className="l-d" />
+          <line x1="105" y1="85"  x2="200" y2="90"  stroke="#38BDF8" strokeWidth="0.55" className="l-e" />
+          <line x1="200" y1="90"  x2="215" y2="195" stroke="#0EA5E9" strokeWidth="0.55" className="l-f" />
+          <line x1="215" y1="195" x2="80"  y2="200" stroke="#22D3EE" strokeWidth="0.55" className="l-g" />
+          <line x1="80"  y1="200" x2="105" y2="85"  stroke="#0EA5E9" strokeWidth="0.55" className="l-h" />
+          <line x1="105" y1="85"  x2="60"  y2="38"  stroke="#38BDF8" strokeWidth="0.45" className="l-a" />
+          <line x1="200" y1="90"  x2="235" y2="45"  stroke="#38BDF8" strokeWidth="0.45" className="l-b" />
+          <line x1="215" y1="195" x2="265" y2="165" stroke="#0EA5E9" strokeWidth="0.45" className="l-c" />
+          <line x1="215" y1="195" x2="242" y2="258" stroke="#22D3EE" strokeWidth="0.45" className="l-i" />
+          <line x1="80"  y1="200" x2="110" y2="260" stroke="#22D3EE" strokeWidth="0.45" className="l-j" />
+          <line x1="80"  y1="200" x2="28"  y2="228" stroke="#0EA5E9" strokeWidth="0.45" className="l-k" />
+          <line x1="105" y1="85"  x2="35"  y2="115" stroke="#38BDF8" strokeWidth="0.45" className="l-d" />
         </g>
 
         {/* Traveling particles */}
         {!reduceMotion && (
           <g>
-            <circle r="1.6" fill="#FFD86B" filter="url(#nv-dot-glow)" opacity="0.95">
+            <circle r="1.6" fill="#38BDF8" filter="url(#nv-dot-glow)" opacity="0.95">
               <animateMotion dur="5s" repeatCount="indefinite" begin="0s"><mpath href="#nvp1" /></animateMotion>
             </circle>
-            <circle r="1.6" fill="#FFD86B" filter="url(#nv-dot-glow)" opacity="0.9">
+            <circle r="1.6" fill="#22D3EE" filter="url(#nv-dot-glow)" opacity="0.9">
               <animateMotion dur="7s" repeatCount="indefinite" begin="1.5s"><mpath href="#nvp2" /></animateMotion>
             </circle>
-            <circle r="1.3" fill="#FFD86B" filter="url(#nv-dot-glow)" opacity="0.82">
+            <circle r="1.3" fill="#38BDF8" filter="url(#nv-dot-glow)" opacity="0.82">
               <animateMotion dur="6s" repeatCount="indefinite" begin="3s"><mpath href="#nvp3" /></animateMotion>
             </circle>
-            <circle r="1.3" fill="#FFD86B" filter="url(#nv-dot-glow)" opacity="0.78">
+            <circle r="1.3" fill="#0EA5E9" filter="url(#nv-dot-glow)" opacity="0.78">
               <animateMotion dur="8s" repeatCount="indefinite" begin="0.8s"><mpath href="#nvp4" /></animateMotion>
             </circle>
-            <circle r="1.3" fill="#FFD86B" filter="url(#nv-dot-glow)" opacity="0.78">
+            <circle r="1.3" fill="#22D3EE" filter="url(#nv-dot-glow)" opacity="0.78">
               <animateMotion dur="6.5s" repeatCount="indefinite" begin="2.2s"><mpath href="#nvp5" /></animateMotion>
             </circle>
           </g>
         )}
 
         {/* Node halos */}
-        <circle cx="105" cy="85"  r="16" fill="#FFD86B" filter="url(#nv-node-glow)" className="nv-ha" />
-        <circle cx="200" cy="90"  r="16" fill="#FFD86B" filter="url(#nv-node-glow)" className="nv-hb" />
-        <circle cx="215" cy="195" r="16" fill="#FFD86B" filter="url(#nv-node-glow)" className="nv-hc" />
-        <circle cx="80"  cy="200" r="16" fill="#FFD86B" filter="url(#nv-node-glow)" className="nv-hd" />
-        <circle cx="150" cy="140" r="26" fill="#FFD86B" filter="url(#nv-hub-glow)"  className="nv-hub-h" />
+        <circle cx="105" cy="85"  r="16" fill="#38BDF8" filter="url(#nv-node-glow)" className="nv-ha" />
+        <circle cx="200" cy="90"  r="16" fill="#38BDF8" filter="url(#nv-node-glow)" className="nv-hb" />
+        <circle cx="215" cy="195" r="16" fill="#22D3EE" filter="url(#nv-node-glow)" className="nv-hc" />
+        <circle cx="80"  cy="200" r="16" fill="#22D3EE" filter="url(#nv-node-glow)" className="nv-hd" />
+        <circle cx="150" cy="140" r="26" fill="#38BDF8" filter="url(#nv-hub-glow)"  className="nv-hub-h" />
 
         {/* Outer nodes */}
-        <circle cx="60"  cy="38"  r="2"   fill="#FFD86B" className="nv-na" />
-        <circle cx="235" cy="45"  r="1.8" fill="#FFD86B" className="nv-nb" />
-        <circle cx="265" cy="165" r="1.8" fill="#FFD86B" className="nv-nc" />
-        <circle cx="242" cy="258" r="2"   fill="#FFD86B" className="nv-na" />
-        <circle cx="110" cy="260" r="1.8" fill="#FFD86B" className="nv-nd" />
-        <circle cx="28"  cy="228" r="1.8" fill="#FFD86B" className="nv-nb" />
-        <circle cx="35"  cy="115" r="1.8" fill="#FFD86B" className="nv-nc" />
+        <circle cx="60"  cy="38"  r="2"   fill="#38BDF8" className="nv-na" />
+        <circle cx="235" cy="45"  r="1.8" fill="#38BDF8" className="nv-nb" />
+        <circle cx="265" cy="165" r="1.8" fill="#0EA5E9" className="nv-nc" />
+        <circle cx="242" cy="258" r="2"   fill="#22D3EE" className="nv-na" />
+        <circle cx="110" cy="260" r="1.8" fill="#0EA5E9" className="nv-nd" />
+        <circle cx="28"  cy="228" r="1.8" fill="#38BDF8" className="nv-nb" />
+        <circle cx="35"  cy="115" r="1.8" fill="#22D3EE" className="nv-nc" />
 
         {/* Inner nodes */}
-        <circle cx="105" cy="85"  r="3.5" fill="#FFD86B" className="nv-na" />
-        <circle cx="200" cy="90"  r="3.5" fill="#FFD86B" className="nv-nb" />
-        <circle cx="215" cy="195" r="3.5" fill="#FFD86B" className="nv-nc" />
-        <circle cx="80"  cy="200" r="3.5" fill="#FFD86B" className="nv-nd" />
+        <circle cx="105" cy="85"  r="3.5" fill="#38BDF8" className="nv-na" />
+        <circle cx="200" cy="90"  r="3.5" fill="#38BDF8" className="nv-nb" />
+        <circle cx="215" cy="195" r="3.5" fill="#22D3EE" className="nv-nc" />
+        <circle cx="80"  cy="200" r="3.5" fill="#22D3EE" className="nv-nd" />
 
         {/* Hub */}
-        <circle cx="150" cy="140" r="6.5" fill="#FFD86B" className="nv-hub" />
+        <circle cx="150" cy="140" r="6.5" fill="#38BDF8" className="nv-hub" />
         <circle cx="150" cy="140" r="3"   fill="#E0F7FF" opacity="0.95" className="nv-hub" />
       </svg>
     </div>
@@ -193,50 +172,25 @@ function NetworkVisual() {
 // ── Main export ───────────────────────────────────────────────────────────────
 
 export const Contact2 = ({
-  title = "Tell us what you need",
-  description = "Share a few details and we'll recommend the right next step, whether that's a free demo of an automation system or a new creative project.",
+  title = "Get in touch",
+  description = "Have a project in mind? We'd love to hear about it. Tell us what you're building and let's make it happen.",
   phone = "+44 (0) 20 1234 5678",
   email = "hello@weavyautomation.com",
+  web = { label: "weavyautomation.com", url: "https://weavyautomation.com" },
 }: Contact2Props) => {
   const [focused, setFocused] = useState<string | null>(null)
-  const [status, setStatus] = useState<FormStatus>("idle")
-  const [formError, setFormError] = useState<FormError | null>(null)
+  const [submitted, setSubmitted] = useState(false)
 
-  // A ref rather than state, so a rapid second tap can't slip through before re-render.
-  const submitting = useRef(false)
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    if (submitting.current) return
-    submitting.current = true
-    setStatus("sending")
-    setFormError(null)
-    try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify(Object.fromEntries(new FormData(e.currentTarget))),
-        signal: AbortSignal.timeout(15000),
-      })
-      const result = (await response.json().catch(() => null)) as { ok?: boolean; code?: string } | null
-      if (response.ok && result?.ok) {
-        setStatus("sent")
-        submitting.current = false
-        return
-      }
-      setFormError(result?.code === "invalid" || result?.code === "rate_limited" ? result.code : "unavailable")
-    } catch {
-      setFormError("unavailable")
-    }
-    submitting.current = false
-    setStatus("error")
+    setSubmitted(true)
   }
 
   const inputClass = (field: string) =>
     cn(
-      "w-full bg-white/[0.03] border text-[#F8FAFC] placeholder:text-white/20 rounded-xl px-4 py-3 text-base transition-all duration-300 outline-none",
+      "w-full bg-white/[0.03] border text-[#F8FAFC] placeholder:text-white/20 rounded-xl px-4 py-3 text-base lg:text-sm transition-all duration-300 outline-none",
       focused === field
-        ? "border-[#FFD86B]/50 shadow-[0_0_20px_-6px_rgba(255,216,107,0.25)]"
+        ? "border-[#38BDF8]/50 shadow-[0_0_20px_-6px_rgba(56,189,248,0.25)]"
         : "border-white/[0.08] hover:border-white/[0.14]"
     )
 
@@ -248,11 +202,11 @@ export const Contact2 = ({
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
           <div
             className="absolute -top-40 -left-40 w-[600px] h-[600px] rounded-full opacity-[0.07]"
-            style={{ background: "radial-gradient(circle, #FFD86B, transparent 70%)" }}
+            style={{ background: "radial-gradient(circle, #38BDF8, transparent 70%)" }}
           />
           <div
             className="absolute bottom-0 right-0 w-[500px] h-[500px] rounded-full opacity-[0.05]"
-            style={{ background: "radial-gradient(circle, #FFD86B, transparent 70%)" }}
+            style={{ background: "radial-gradient(circle, #2563EB, transparent 70%)" }}
           />
         </div>
 
@@ -265,8 +219,8 @@ export const Contact2 = ({
             transition={{ duration: 0.9, ease: E }}
             className="text-center mb-16"
           >
-            <p className="section-label mb-4">
-              Book a free demo or start a project
+            <p className="font-label text-[0.75rem] lg:text-[0.65rem] font-medium tracking-[0.3em] uppercase mb-4 m-tx-label" style={{ color: 'var(--text-muted)' }}>
+              Let's work together
             </p>
             <h1
               className="font-heading font-medium leading-[1.05] tracking-[-0.03em]"
@@ -278,14 +232,14 @@ export const Contact2 = ({
                 style={{
                   fontFamily: 'var(--font-body)',
                   fontStyle: "italic",
-                  fontWeight: 500,
+                  fontWeight: 400,
                 }}
               >
                 {title.split(" ").slice(-1)[0]}
               </em>
             </h1>
             <p
-              className="font-body mt-5 font-medium max-w-[520px] mx-auto leading-relaxed"
+              className="font-body mt-5 font-normal max-w-[520px] mx-auto leading-relaxed"
               style={{ fontSize: "clamp(0.88rem, 1.4vw, 1rem)", color: 'var(--text-body)' }}
             >
               {description}
@@ -300,30 +254,44 @@ export const Contact2 = ({
               initial={{ opacity: 0, x: -24 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.9, ease: E, delay: 0.15 }}
-              className="flex flex-col gap-5 min-w-0 order-2 lg:order-none"
+              className="flex flex-col gap-5 min-w-0"
             >
               {[
                 { Icon: Phone, label: "Phone", value: phone, href: `tel:${phone.replace(/\s/g, '')}` },
                 { Icon: Mail, label: "Email", value: email, href: `mailto:${email}` },
+                { Icon: Globe, label: "Web", value: web.label, href: web.url },
               ].map(({ Icon, label, value, href }) => (
                 <a
                   key={label}
                   href={href}
-                  className="group flex items-center gap-4 p-5 rounded-2xl border border-white/[0.07] bg-white/[0.02] hover:border-[#FFD86B]/30 hover:bg-white/[0.04] transition-all duration-300"
+                  target={label === "Web" ? "_blank" : undefined}
+                  rel={label === "Web" ? "noopener noreferrer" : undefined}
+                  className="group flex items-center gap-4 p-5 rounded-2xl border border-white/[0.07] bg-white/[0.02] hover:border-[#38BDF8]/30 hover:bg-white/[0.04] transition-all duration-300"
                 >
-                  <span className="flex-shrink-0 w-10 h-10 rounded-xl border border-white/[0.08] bg-white/[0.04] flex items-center justify-center text-white/75 group-hover:text-[#FFD86B] group-hover:border-[#FFD86B]/30 transition-all duration-300">
+                  <span className="flex-shrink-0 w-10 h-10 rounded-xl border border-white/[0.08] bg-white/[0.04] flex items-center justify-center text-white/40 group-hover:text-[#38BDF8] group-hover:border-[#38BDF8]/30 transition-all duration-300">
                     <Icon size={16} />
                   </span>
                   <div className="min-w-0">
-                    <p className="font-label text-xs lg:text-xs tracking-[0.14em] uppercase font-medium mb-0.5" style={{ color: 'var(--text-muted)' }}>
+                    <p className="font-label text-[0.75rem] lg:text-[0.62rem] tracking-[0.22em] uppercase font-medium mb-0.5" style={{ color: 'var(--text-muted)' }}>
                       {label}
                     </p>
-                    <p className="font-body text-[0.95rem]  font-medium group-hover:text-white transition-colors duration-300 [overflow-wrap:anywhere]" style={{ color: 'var(--text-body)' }}>
+                    <p className="font-body text-[0.95rem] lg:text-[0.9rem] font-normal group-hover:text-white/90 transition-colors duration-300 [overflow-wrap:anywhere]" style={{ color: 'var(--text-body)' }}>
                       {value}
                     </p>
                   </div>
                 </a>
               ))}
+
+              {/* Status badge */}
+              <div className="flex items-center gap-3 px-5 py-4 rounded-2xl border border-white/[0.06] bg-white/[0.02] mt-1">
+                <span
+                  className="w-2 h-2 rounded-full bg-[#22C55E] flex-shrink-0"
+                  style={{ boxShadow: "0 0 8px rgba(34,197,94,0.7)", animation: "contact-pulse 2.2s ease-in-out infinite" }}
+                />
+                <p className="font-label text-[0.8125rem] lg:text-[0.78rem] font-medium tracking-wide" style={{ color: 'var(--text-muted)' }}>
+                  Available for new projects
+                </p>
+              </div>
 
               <NetworkVisual />
             </motion.div>
@@ -333,44 +301,28 @@ export const Contact2 = ({
               initial={{ opacity: 0, x: 24 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.9, ease: E, delay: 0.22 }}
-              className="order-1 lg:order-none min-w-0"
             >
               <div
-                className="rounded-[28px] border border-white/[0.08] bg-white/[0.025] p-5 sm:p-8 md:p-10 backdrop-blur-sm"
+                className="rounded-[28px] border border-white/[0.08] bg-white/[0.025] p-8 md:p-10 backdrop-blur-sm"
                 style={{ boxShadow: "0 32px 80px -20px rgba(0,0,0,0.5)" }}
               >
-                {status === "sent" ? (
+                {submitted ? (
                   <motion.div
                     initial={{ opacity: 0, y: 16 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, ease: E }}
-                    role="status"
                     className="flex flex-col items-center justify-center text-center py-16 gap-5"
                   >
-                    <span className="w-14 h-14 rounded-full border border-gold/40 bg-gold/10 flex items-center justify-center text-gold">
-                      <CheckCircle2 size={24} />
+                    <span className="w-14 h-14 rounded-full border border-[#22C55E]/30 bg-[#22C55E]/10 flex items-center justify-center text-[#22C55E]">
+                      <Send size={22} />
                     </span>
-                    <h2 className="font-heading text-xl font-medium tracking-tight" style={{ color: 'var(--text-primary)' }}>Your enquiry has been sent</h2>
-                    <p className="font-body text-sm max-w-sm leading-relaxed" style={{ color: 'var(--text-body)' }}>
-                      Thank you. We&apos;ll reply to the email address you gave us.
+                    <h3 className="font-heading text-xl font-medium tracking-tight" style={{ color: 'var(--text-primary)' }}>Message sent</h3>
+                    <p className="font-body text-sm font-normal max-w-xs leading-relaxed" style={{ color: 'var(--text-body)' }}>
+                      Thank you for reaching out. We'll be in touch within one business day.
                     </p>
-                    <button
-                      type="button"
-                      onClick={() => setStatus("idle")}
-                      className="font-body text-sm underline underline-offset-4 min-h-[44px]"
-                      style={{ color: 'var(--text-primary)' }}
-                    >
-                      Send another enquiry
-                    </button>
                   </motion.div>
                 ) : (
                   <form onSubmit={handleSubmit} className="flex flex-col gap-5">
-
-                    {/* Hidden from people; only automated submissions fill this in. */}
-                    <div aria-hidden="true" style={{ position: 'absolute', left: '-9999px', width: 1, height: 1, overflow: 'hidden' }}>
-                      <label htmlFor="confirm_fax">Leave this field empty</label>
-                      <input id="confirm_fax" name="confirm_fax" type="text" tabIndex={-1} autoComplete="off" />
-                    </div>
 
                     {/* Name row */}
                     <div className="grid sm:grid-cols-2 gap-4">
@@ -378,17 +330,15 @@ export const Contact2 = ({
                         <div key={id} className="flex flex-col gap-2">
                           <Label
                             htmlFor={id}
-                            className="font-label text-xs tracking-[0.14em] uppercase font-medium" style={{ color: 'var(--text-muted)' }}
+                            className="font-label text-[0.7rem] tracking-[0.18em] uppercase font-medium" style={{ color: 'var(--text-muted)' }}
                           >
                             {id === "firstname" ? "First Name" : "Last Name"}
                           </Label>
                           <input
                             id={id}
-                            name={id}
                             type="text"
-                            autoComplete={id === "firstname" ? "given-name" : "family-name"}
+                            placeholder=""
                             required
-                            maxLength={40}
                             onFocus={() => setFocused(id)}
                             onBlur={() => setFocused(null)}
                             className={inputClass(id)}
@@ -399,103 +349,64 @@ export const Contact2 = ({
 
                     {/* Email */}
                     <div className="flex flex-col gap-2">
-                      <Label htmlFor="email" className="font-label text-xs tracking-[0.14em] uppercase font-medium" style={{ color: 'var(--text-muted)' }}>
+                      <Label htmlFor="email" className="font-label text-[0.7rem] tracking-[0.18em] uppercase font-medium" style={{ color: 'var(--text-muted)' }}>
                         Email
                       </Label>
                       <input
                         id="email"
-                        name="email"
                         type="email"
-                        autoComplete="email"
+                        placeholder=""
                         required
-                        maxLength={254}
                         onFocus={() => setFocused("email")}
                         onBlur={() => setFocused(null)}
                         className={inputClass("email")}
                       />
                     </div>
 
-                    {/* Service */}
+                    {/* Subject */}
                     <div className="flex flex-col gap-2">
-                      <Label htmlFor="service" className="font-label text-xs tracking-[0.14em] uppercase font-medium" style={{ color: 'var(--text-muted)' }}>
-                        What do you need help with?
+                      <Label htmlFor="subject" className="font-label text-[0.7rem] tracking-[0.18em] uppercase font-medium" style={{ color: 'var(--text-muted)' }}>
+                        Subject
                       </Label>
-                      <div className="relative">
-                      <select
-                        id="service"
-                        name="service"
+                      <input
+                        id="subject"
+                        type="text"
+                        placeholder=""
                         required
-                        defaultValue=""
-                        onFocus={() => setFocused("service")}
+                        onFocus={() => setFocused("subject")}
                         onBlur={() => setFocused(null)}
-                        className={cn(inputClass("service"), "appearance-none pr-11")}
-                        style={{ colorScheme: 'dark' }}
-                      >
-                        <option value="" disabled>Choose an option</option>
-                        {SERVICE_OPTIONS.map((option) => (
-                          <option key={option} value={option}>{option}</option>
-                        ))}
-                      </select>
-                      <ChevronDown aria-hidden="true" size={18} className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-gold" />
-                      </div>
+                        className={inputClass("subject")}
+                      />
                     </div>
 
                     {/* Message */}
                     <div className="flex flex-col gap-2">
-                      <Label htmlFor="message" className="font-label text-xs tracking-[0.14em] uppercase font-medium" style={{ color: 'var(--text-muted)' }}>
+                      <Label htmlFor="message" className="font-label text-[0.7rem] tracking-[0.18em] uppercase font-medium" style={{ color: 'var(--text-muted)' }}>
                         Message
                       </Label>
                       <textarea
                         id="message"
-                        name="message"
                         rows={5}
+                        placeholder=""
                         required
-                        maxLength={5000}
                         onFocus={() => setFocused("message")}
                         onBlur={() => setFocused(null)}
                         className={cn(inputClass("message"), "resize-none leading-relaxed")}
                       />
                     </div>
 
-                    {/* Error: the visitor's details stay in the form */}
-                    {status === "error" && formError && (
-                      <div role="alert" className="rounded-xl border border-gold/40 bg-gold/10 p-4 font-body text-sm leading-relaxed" style={{ color: 'var(--text-primary)' }}>
-                        <p>{FORM_ERRORS[formError]}</p>
-                        {formError !== "invalid" && (
-                          <p className="mt-2 [overflow-wrap:anywhere]">
-                            <a className="text-gold underline underline-offset-4" href={`mailto:${email}`}>{email}</a>
-                            {' · '}
-                            <a className="text-gold underline underline-offset-4" href={`tel:${phone.replace(/\s/g, '')}`}>{phone}</a>
-                            {' · '}
-                            <a className="text-gold underline underline-offset-4" href={WHATSAPP_HREF} target="_blank" rel="noopener noreferrer">WhatsApp</a>
-                          </p>
-                        )}
-                      </div>
-                    )}
-
                     {/* Submit */}
                     <button
                       type="submit"
-                      disabled={status === "sending"}
-                      className="font-body btn-glow-primary group mt-1 w-full flex items-center justify-center gap-2.5 py-3.5 rounded-xl font-medium text-sm tracking-wide transition-all duration-300 disabled:opacity-70 disabled:cursor-wait"
+                      className="font-body group mt-1 w-full flex items-center justify-center gap-2.5 py-3.5 rounded-xl font-medium text-sm tracking-wide transition-all duration-300 text-[#010709] bg-[#F8FAFC] hover:bg-white"
+                      style={{ boxShadow: "0 8px 32px -8px rgba(248,250,252,0.18)" }}
                     >
-                      {status === "sending" ? "Sending…" : "Send Enquiry"}
+                      Send Message
                       <Send
                         size={14}
                         className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-0.5"
                       />
                     </button>
-
-                    <p className="font-body text-sm text-center" style={{ color: 'var(--text-description)', lineHeight: 1.6 }}>
-                      We&apos;ll use your details to reply to your enquiry. See our{' '}
-                      <a
-                        href="/privacy"
-                        className="text-gold underline underline-offset-4"
-                        onClick={(e) => { e.preventDefault(); goToPath('/privacy') }}
-                      >
-                        privacy notice
-                      </a>.
-                    </p>
 
                   </form>
                 )}
@@ -503,11 +414,63 @@ export const Contact2 = ({
             </motion.div>
           </div>
 
+          {/* ── Closing statement ── */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.1, ease: E, delay: 0.5 }}
+            className="text-center mt-20"
+          >
+            <p
+              className="font-heading font-medium tracking-[-0.01em]"
+              style={{ fontSize: "clamp(2rem, 4vw, 3.2rem)", lineHeight: 1.15, color: 'var(--text-primary)' }}
+            >
+              Built with intention.
+            </p>
+            <p
+              className="font-heading font-medium tracking-[-0.01em] mt-2"
+              style={{ fontSize: "clamp(2rem, 4vw, 3.2rem)", lineHeight: 1.15, color: 'var(--text-body)' }}
+            >
+              <em style={{ fontFamily: 'var(--font-body)', fontStyle: "italic", fontWeight: 400 }}>
+                Designed to scale.
+              </em>
+            </p>
+          </motion.div>
+
         </div>
+
+        <style>{`
+          @keyframes contact-pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+          }
+        `}</style>
       </section>
 
-      {/* The form above is this page's call to action, so the footer is bar-only. */}
-      <Footer id="site-footer" showCta={false} />
+      {/* ── Contact footer ── */}
+      <Footer
+        id="site-footer"
+        heading={<>
+          Let's create something{' '}
+          <em style={{
+            fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400,
+            background: 'linear-gradient(90deg, #FFFFFF 0%, #7DDCFF 45%, #B7AEFF 100%)',
+            WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
+            color: 'transparent',
+            textShadow: '0 0 24px rgba(125, 220, 255, 0.16)',
+          }}>
+            amazing
+          </em>{' '}
+          together
+        </>}
+        subtext={<>
+          Have a project in mind? I'd love to hear about it.{' '}
+          <br />
+          Let's discuss how we can work together.
+        </>}
+        ctaLabel={email}
+        ctaHref={`mailto:${email}`}
+      />
     </>
   )
 }

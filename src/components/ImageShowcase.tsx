@@ -311,6 +311,87 @@ function ProjectCard({
   )
 }
 
+function WorkCTA() {
+  const { ref, visible } = useScrollReveal(0.1)
+
+  const item = (delay: number): React.CSSProperties => ({
+    opacity:    visible ? 1 : 0,
+    transform:  visible ? 'translateY(0)' : 'translateY(24px)',
+    transition: `opacity 0.8s ease ${delay}ms, transform 0.8s cubic-bezier(0.16,1,0.3,1) ${delay}ms`,
+  })
+
+  return (
+    <section
+      ref={ref}
+      style={{
+        background: '#010709',
+        borderTop: '1px solid rgba(255,216,107,0.10)',
+        padding: 'clamp(6rem, 12vw, 10rem) clamp(1.5rem, 3.5vw, 3rem)',
+      }}
+    >
+      <div style={{ maxWidth: '54rem', margin: '0 auto', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
+        <p className="section-label" style={{ ...item(0), marginBottom: '1.8rem' }}>
+          Start a Project
+        </p>
+
+        <h2
+          style={{
+            ...item(140),
+            fontFamily: 'var(--font-heading)',
+            fontWeight: 500,
+            fontSize: 'clamp(2.2rem, 5.5vw, 4.4rem)',
+            lineHeight: 1.07,
+            letterSpacing: '-0.04em',
+            color: 'var(--text-primary)',
+            marginBottom: '1.8rem',
+          }}
+        >
+          Let&apos;s build work{' '}
+          <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 500, color: 'var(--text-body)' }}>
+            people remember.
+          </em>
+        </h2>
+
+        <div aria-hidden="true" style={{ ...item(220), width: '2.5rem', height: '1px', background: 'rgba(255,216,107,0.45)', marginBottom: '1.8rem' }} />
+
+        <p
+          style={{
+            ...item(280),
+            fontFamily: 'var(--font-body)',
+            fontWeight: 500,
+            fontSize: 'clamp(0.88rem, 1.4vw, 1rem)',
+            lineHeight: 1.9,
+            color: 'var(--text-body)',
+            maxWidth: '38rem',
+            marginBottom: 'clamp(2.5rem, 5vw, 3.8rem)',
+          }}
+        >
+          Whether you need a brand campaign, digital launch, visual system, or
+          content-led creative direction, we&apos;ll help shape the idea into something
+          polished, purposeful, and ready to perform.
+        </p>
+
+        <div style={{ ...item(420), display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.6rem' }}>
+          <a
+            href="mailto:hello@weavyautomation.com"
+            className="font-body btn-glow-primary inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-medium"
+            style={{ whiteSpace: 'nowrap', textDecoration: 'none' }}
+          >
+            Book a discovery call
+          </a>
+          <a
+            href="mailto:hello@weavyautomation.com"
+            className="font-body inline-flex items-center min-h-[44px] underline underline-offset-4 decoration-[#FFD86B]/40 hover:text-white transition-colors duration-300 [overflow-wrap:anywhere]"
+            style={{ fontSize: 'clamp(0.875rem, 1.2vw, 0.9rem)', color: 'var(--text-body)' }}
+          >
+            hello@weavyautomation.com
+          </a>
+        </div>
+      </div>
+    </section>
+  )
+}
+
 // ─── Testimonial section ───────────────────────────────────────────────────────
 
 function WorkTestimonial() {
@@ -1082,6 +1163,9 @@ export default function ImageShowcase() {
 
       {/* ── Testimonial ── */}
       <WorkTestimonial />
+
+      {/* ── Email contact ── */}
+      <WorkCTA />
 
       {/* ── Contact / Footer ── */}
       <Footer

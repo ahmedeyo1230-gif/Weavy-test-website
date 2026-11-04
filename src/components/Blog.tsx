@@ -687,6 +687,77 @@ function BlogHero() {
 
 // ─── Main export ───────────────────────────────────────────────────────────────
 
+function BlogCTA() {
+  return (
+    <section style={{ background: '#010709', borderTop: '1px solid hsl(0 0% 100% / 0.07)', padding: 'clamp(5rem, 10vw, 9rem) clamp(1.5rem, 4vw, 3.5rem)' }}>
+      <div style={{ maxWidth: '1480px', margin: '0 auto', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.9, ease: E }}
+          style={{
+            width: '100%',
+            maxWidth: '52rem',
+            background: 'hsl(195 30% 6% / 0.6)',
+            border: '1px solid hsl(0 0% 100% / 0.08)',
+            borderRadius: '32px',
+            padding: 'clamp(2.5rem, 6vw, 5rem) clamp(1.5rem, 5vw, 4rem)',
+            boxShadow: '0 32px 88px rgba(0,0,0,0.45)',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+          <p className="section-label" style={{ marginBottom: 'clamp(1.4rem, 3vw, 2rem)' }}>
+            Next Step
+          </p>
+          <h2
+            style={{
+              fontFamily: 'var(--font-heading)',
+              fontWeight: 500,
+              fontSize: 'clamp(1.9rem, 4.5vw, 3.8rem)',
+              lineHeight: 1.08,
+              letterSpacing: '-0.04em',
+              color: 'var(--text-primary)',
+              maxWidth: '38rem',
+              marginBottom: 'clamp(1.4rem, 3vw, 2rem)',
+            }}
+          >
+            Keep building{' '}
+            <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 500, color: 'var(--text-body)' }}>
+              smarter digital systems.
+            </em>
+          </h2>
+          <div aria-hidden="true" style={{ width: '2.5rem', height: '1px', background: 'rgba(255,216,107,0.45)', marginBottom: 'clamp(1.4rem, 3vw, 2rem)' }} />
+          <p
+            style={{
+              fontFamily: 'var(--font-body)',
+              fontWeight: 500,
+              fontSize: 'clamp(0.88rem, 1.4vw, 1rem)',
+              lineHeight: 1.9,
+              color: 'var(--text-body)',
+              maxWidth: '36rem',
+              marginBottom: 'clamp(1.6rem, 3vw, 2.4rem)',
+            }}
+          >
+            If these ideas speak to where your brand is heading, we can help turn
+            strategy, automation, content, and design into a cleaner system that
+            works across every touchpoint.
+          </p>
+          <a
+            href="mailto:hello@weavyautomation.com"
+            className="font-body inline-flex items-center min-h-[44px] underline underline-offset-4 decoration-[#FFD86B]/40 hover:text-white transition-colors duration-300 [overflow-wrap:anywhere]"
+            style={{ fontSize: 'clamp(0.875rem, 1.2vw, 0.9rem)', color: 'var(--text-body)' }}
+          >
+            hello@weavyautomation.com
+          </a>
+        </motion.div>
+      </div>
+    </section>
+  )
+}
+
 export default function Blog() {
   const [selected, setSelected] = useState<Article | null>(null)
 
@@ -738,6 +809,9 @@ export default function Blog() {
               </div>
             </section>
 
+            {/* ── Email contact ── */}
+            <BlogCTA />
+
             {/* ── Contact / Footer ── */}
             <Footer
               eyebrow="Get in touch"
@@ -755,9 +829,7 @@ export default function Blog() {
                 to work?
               </>}
               subtext="If something here sparked an idea, let's turn it into a clearer website, smarter workflow or stronger creative direction for your business."
-              ctaLabel="Start a Project"
-              ctaHref="/contact"
-              ctaVariant="primary"
+              ctaLabel="Start a Conversation"
             />
           </motion.div>
         )}
