@@ -7,23 +7,24 @@
   --color-raised: #0d1a1e;
 
   /* ── Text ─────────────────────────────────────────────────── */
-  --color-text: #F8FAFC;
-  --color-body: #E2E7E8;
-  --color-muted: #BAC4C6;
-  --color-text-primary: #F8FAFC;
-  --color-accent: #F8FAFC;
+  --color-text: #F2F5F8;
+  --color-body: #B8C7D1;
+  --color-muted: #B8C7D1;
+  --color-text-primary: #F2F5F8;
+  --color-accent: #F2F5F8;
 
   /* ── Magic Patterns / legacy ─────────────────────────────── */
   --color-background: #010709;
-  --color-primary: #F8FAFC;
+  --color-primary: #F2F5F8;
   --color-stroke: hsl(0 0% 18%);
   --color-border: hsl(0 0% 18%);
 
   /* ── Accent palette ──────────────────────────────────────── */
   --color-gold: #FFD86B;
-  --color-accent-blue: #FFD86B;
-  --color-gold: #FFD86B;
+  --color-accent-blue: #79D4E8;
   --color-champagne: #FFD86B;
+  --color-ocean: #79D4E8;
+  --color-periwinkle: #A5B4FC;
 
   /* ── Typography ──────────────────────────────────────────────────────────
      Poppins Medium (500) is the site default. Instrument Serif Italic is the
@@ -40,10 +41,10 @@
   /* ── Text colour tokens ────────────────────────────────────────────────
      Central place for text colour by role. Edit these four lines to
      retune contrast/readability sitewide. */
-  --text-primary: #F8F9F9;
-  --text-body: #E2E7E8;
-  --text-description: #D0D7D8;
-  --text-muted: #BAC4C6;
+  --text-primary: #F2F5F8;
+  --text-body: #B8C7D1;
+  --text-description: #B8C7D1;
+  --text-muted: #B8C7D1;
 }
 
 html {
@@ -81,8 +82,10 @@ html {
   letter-spacing: 0.16em;
   line-height: 1.5;
   text-transform: uppercase;
-  color: var(--color-gold);
+  color: var(--color-ocean);
 }
+#about .section-label,
+.section-label--periwinkle { color: var(--color-periwinkle); }
 
 /* ── Primary CTA: the single gold action style ──────────────────────────── */
 .btn-glow-primary {
@@ -98,6 +101,15 @@ html {
 .btn-glow-primary:focus-visible {
   outline: 2px solid #FFF;
   outline-offset: 3px;
+}
+/* "Book a Free Demo" keeps the original ice-blue of the live pricing CTA. */
+.btn-glow-primary.btn-demo {
+  background-color: #7DDCFF;
+  box-shadow: 0 8px 28px -12px rgba(125, 220, 255, 0.55);
+}
+.btn-glow-primary.btn-demo:hover {
+  background-color: #BFEFFF;
+  box-shadow: 0 10px 34px -10px rgba(125, 220, 255, 0.7);
 }
 
 /* ── Opening CTA on service pages: independent of each page's reveal timeline ── */
@@ -130,7 +142,7 @@ html {
     color: rgba(235, 245, 255, 0.78);
     font-size: 13px;
     letter-spacing: 0.18em;
-    text-shadow: 0 0 12px rgba(255,216,107, 0.10);
+    text-shadow: 0 0 12px rgba(121,212,232,0.10);
   }
 }
 
@@ -186,11 +198,11 @@ html {
   pointer-events: none;
 }
 .bwdc-flow-line::before {
-  background: linear-gradient(to right, transparent 0%, rgba(255,216,107,0.353) 25%, rgba(255,216,107,0.554) 50%, rgba(255,216,107,0.353) 75%, transparent 100%);
+  background: linear-gradient(to right, transparent 0%, rgba(121,212,232,0.353) 25%, rgba(121,212,232,0.554) 50%, rgba(121,212,232,0.353) 75%, transparent 100%);
   animation: bwdc-flow 16s ease-in-out infinite;
 }
 .bwdc-flow-line::after {
-  background: linear-gradient(to right, transparent 0%, rgba(255,216,107,0.176) 30%, rgba(255,216,107,0.302) 50%, rgba(255,216,107,0.176) 70%, transparent 100%);
+  background: linear-gradient(to right, transparent 0%, rgba(121,212,232,0.176) 30%, rgba(121,212,232,0.302) 50%, rgba(121,212,232,0.176) 70%, transparent 100%);
   animation: bwdc-flow 16s ease-in-out infinite 8s;
 }
 @media (prefers-reduced-motion: reduce) {
@@ -220,7 +232,7 @@ html {
   left: -10%;
   width: 120%;
   height: 1px;
-  background: linear-gradient(to right, transparent 0%, rgba(255,216,107,0.18) 30%, rgba(255,216,107,0.28) 50%, rgba(255,216,107,0.18) 70%, transparent 100%);
+  background: linear-gradient(to right, transparent 0%, rgba(121,212,232,0.18) 30%, rgba(121,212,232,0.28) 50%, rgba(121,212,232,0.18) 70%, transparent 100%);
   animation: bwd1-light-flow 12s ease-in-out infinite;
   pointer-events: none;
 }
@@ -262,7 +274,7 @@ html {
 }
 
 .text-gold-shimmer {
-  background: linear-gradient(to right, #FFD86B 20%, #fff8e7 40%, #fff8e7 60%, #FFD86B 80%);
+  background: linear-gradient(to right, #79D4E8 20%, #BCE9F3 40%, #BCE9F3 60%, #79D4E8 80%);
   background-size: 200% auto;
   color: transparent;
   -webkit-background-clip: text;
@@ -272,7 +284,7 @@ html {
 
 /* ── Video Showcase — ice shimmer on heading ─────────────────────────────── */
 .shimmer-ice {
-  background: linear-gradient(90deg, #ffffff 0%, #ffffff 35%, #FFD86B 50%, #ffffff 65%, #ffffff 100%);
+  background: linear-gradient(90deg, #ffffff 0%, #ffffff 35%, #79D4E8 50%, #ffffff 65%, #ffffff 100%);
   background-size: 200% auto;
   -webkit-background-clip: text;
   background-clip: text;
@@ -288,7 +300,7 @@ html {
   position: absolute;
   width: 2px;
   height: 2px;
-  background: rgba(255,216,107, 0.55);
+  background: rgba(121,212,232,0.55);
   border-radius: 50%;
   pointer-events: none;
   z-index: 2;
@@ -304,7 +316,7 @@ html {
   position: absolute;
   left: 0; right: 0;
   height: 1px;
-  background: linear-gradient(to right, transparent 0%, rgba(255,216,107,0.35) 30%, rgba(255,216,107,0.55) 50%, rgba(255,216,107,0.35) 70%, transparent 100%);
+  background: linear-gradient(to right, transparent 0%, rgba(121,212,232,0.35) 30%, rgba(121,212,232,0.55) 50%, rgba(121,212,232,0.35) 70%, transparent 100%);
   animation: vs-scan 10s ease-in-out infinite;
   top: -1px;
 }
@@ -519,15 +531,15 @@ html {
   background: conic-gradient(
     from var(--about-border-angle),
     transparent          0deg,
-    hsl(44 100% 71% / 0) 30deg,
-    hsl(44 100% 71% / 0.9) 65deg,
-    hsl(44 100% 71% / 0.6) 90deg,
-    hsl(44 100% 71% / 0) 120deg,
+    rgba(165,180,252,0) 30deg,
+    rgba(165,180,252,0.9) 65deg,
+    rgba(165,180,252,0.6) 90deg,
+    rgba(165,180,252,0) 120deg,
     transparent         180deg,
-    hsl(44 100% 71% / 0) 210deg,
-    hsl(44 100% 71% / 0.75) 245deg,
-    hsl(44 100% 71% / 0.5) 270deg,
-    hsl(44 100% 71% / 0) 300deg,
+    rgba(165,180,252,0) 210deg,
+    rgba(165,180,252,0.75) 245deg,
+    rgba(165,180,252,0.5) 270deg,
+    rgba(165,180,252,0) 300deg,
     transparent         360deg
   );
   animation: about-border-spin 5s linear infinite;
@@ -544,15 +556,15 @@ html {
   background: conic-gradient(
     from var(--about-border-angle),
     transparent          0deg,
-    hsl(44 100% 71% / 0) 40deg,
-    hsl(44 100% 71% / 0.55) 70deg,
-    hsl(44 100% 71% / 0.35) 95deg,
-    hsl(44 100% 71% / 0) 125deg,
+    rgba(165,180,252,0) 40deg,
+    rgba(165,180,252,0.55) 70deg,
+    rgba(165,180,252,0.35) 95deg,
+    rgba(165,180,252,0) 125deg,
     transparent         180deg,
-    hsl(44 100% 71% / 0) 220deg,
-    hsl(44 100% 71% / 0.45) 250deg,
-    hsl(44 100% 71% / 0.3) 275deg,
-    hsl(44 100% 71% / 0) 305deg,
+    rgba(165,180,252,0) 220deg,
+    rgba(165,180,252,0.45) 250deg,
+    rgba(165,180,252,0.3) 275deg,
+    rgba(165,180,252,0) 305deg,
     transparent         360deg
   );
   animation: about-border-spin 5s linear infinite;
@@ -565,8 +577,8 @@ html {
   border-radius: calc(1rem - 1px);
   height: 100%;
   box-shadow:
-    0 0 18px -4px hsl(44 100% 71% / 0.22),
-    0 0 40px -8px hsl(44 100% 71% / 0.14),
+    0 0 18px -4px rgba(165,180,252,0.22),
+    0 0 40px -8px rgba(165,180,252,0.14),
     0 12px 40px -10px hsl(0 0% 0% / 0.6);
 }
 
@@ -731,7 +743,7 @@ html {
   background: linear-gradient(
     105deg,
     transparent 25%,
-    rgba(255,216,107, 0.40) 50%,
+    rgba(121,212,232,0.40) 50%,
     transparent 75%
   );
   animation: gold-line-glint 3.2s linear infinite;
@@ -749,7 +761,7 @@ html {
 }
 
 .weavy-shimmer-text {
-  background: linear-gradient(90deg, #FFF3CC 0%, #FFD86B 38%, #FFD86B 55%, #FFD86B 72%, #FFF3CC 100%);
+  background: linear-gradient(90deg, #e2f4ff 0%, #7DDCFF 38%, #2BA8D9 55%, #7DDCFF 72%, #e2f4ff 100%);
   background-size: 200% auto;
   -webkit-background-clip: text;
   background-clip: text;
@@ -761,8 +773,51 @@ html {
 @media (prefers-reduced-motion: reduce) {
   .weavy-shimmer-text {
     animation: none;
-    background: linear-gradient(90deg, #FFD86B, #FFD86B);
+    background: linear-gradient(90deg, #7DDCFF, #2BA8D9);
     background-size: 100% auto;
+  }
+}
+
+/* ── Homepage phrase: the only other text shimmer, silver to cyan ─────────── */
+.weavy-shimmer-silver {
+  background: linear-gradient(90deg, #B8C7D1 0%, #DCE6EC 30%, #79D4E8 50%, #DCE6EC 70%, #B8C7D1 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: weavy-service-shimmer 9s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .weavy-shimmer-silver {
+    animation: none;
+    background: none;
+    -webkit-text-fill-color: #B8C7D1;
+    color: #B8C7D1;
+  }
+}
+
+/* ── About heading: "less complicated", periwinkle to ocean cyan ──────────── */
+@supports (background-clip: text) or (-webkit-background-clip: text) {
+  .weavy-shimmer-about {
+    /* Room for the italic overhang, which the text clip would otherwise cut;
+       the negative margin keeps the line exactly where it was. */
+    padding-inline-end: 0.1em;
+    margin-inline-end: -0.1em;
+    background-image: linear-gradient(90deg, #A5B4FC 0%, #79D4E8 50%, #A5B4FC 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: weavy-service-shimmer 8s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .weavy-shimmer-about {
+      animation: none;
+      background-image: linear-gradient(90deg, #A5B4FC, #79D4E8);
+      background-size: 100% auto;
+    }
   }
 }
 
@@ -873,7 +928,7 @@ body::after {
   top: 20%;
   bottom: 20%;
   width: 2px;
-  background: linear-gradient(to bottom, transparent, hsl(44 100% 71% / 0.65), transparent);
+  background: linear-gradient(to bottom, transparent, rgba(121,212,232,0.65), transparent);
   border-radius: 999px;
   opacity: 0;
   transform: scaleY(0.4);
@@ -890,13 +945,13 @@ body::after {
 
 /* ── Selection colour ────────────────────────────────────────────────────── */
 ::selection {
-  background: hsl(44 100% 71% / 0.22);
+  background: rgba(121,212,232,0.22);
   color: hsl(0 0% 96%);
 }
 
 /* ── Focus visible ring ──────────────────────────────────────────────────── */
 :focus-visible {
-  outline: 1.5px solid hsl(44 100% 71% / 0.55);
+  outline: 1.5px solid rgba(121,212,232,0.55);
   outline-offset: 3px;
 }
 
@@ -965,18 +1020,18 @@ body::after {
 }
 
 @keyframes chatbot-status-pulse {
-  0%, 100% { opacity: 1;    box-shadow: 0 0 6px hsl(44 100% 71%); }
-  50%       { opacity: 0.55; box-shadow: 0 0 12px hsl(44 100% 71% / 0.85); }
+  0%, 100% { opacity: 1;    box-shadow: 0 0 6px #79D4E8; }
+  50%       { opacity: 0.55; box-shadow: 0 0 12px rgba(121,212,232,0.85); }
 }
 
 @keyframes chatbot-card-glow-green {
   0%, 75%, 100% { box-shadow: 0 8px 24px hsl(0 0% 0% / 0.45); }
-  88%            { box-shadow: 0 8px 24px hsl(0 0% 0% / 0.45), 0 0 24px hsl(44 100% 71% / 0.38); }
+  88%            { box-shadow: 0 8px 24px hsl(0 0% 0% / 0.45), 0 0 24px rgba(121,212,232,0.38); }
 }
 
 @keyframes chatbot-card-glow-blue {
   0%, 75%, 100% { box-shadow: 0 8px 24px hsl(0 0% 0% / 0.45); }
-  88%            { box-shadow: 0 8px 24px hsl(0 0% 0% / 0.45), 0 0 24px hsl(44 100% 71% / 0.38); }
+  88%            { box-shadow: 0 8px 24px hsl(0 0% 0% / 0.45), 0 0 24px rgba(121,212,232,0.38); }
 }
 
 /* ── Connected Systems — cinematic workflow image (Glass.png) ─────────────
@@ -1099,13 +1154,13 @@ body::after {
     font-weight: 500;
     font-size: 16px;
     line-height: 1.3;
-    color: #F5F7FA;
+    color: #F2F5F8;
   }
   .cs-step-desc {
     font-family: var(--font-body);
     font-size: 14.5px;
     line-height: 1.5;
-    color: #D5DAE0;
+    color: #B8C7D1;
   }
 }
 /* ── Connected Systems — continuous 6s workflow light loop ─────────────────
@@ -1343,7 +1398,7 @@ body::after {
   animation: ugc-badge-float 4.2s ease-in-out infinite;
 }
 
-/* ── Footer bar: site links, contact details and legal line ─────────────── */
+/* ── Footer bar: social icons, contact details and legal line ───────────── */
 .footer-bottom-bar {
   display: grid;
   grid-template-columns: 1fr auto;
@@ -1352,7 +1407,6 @@ body::after {
   font-size: 0.875rem;
   color: var(--text-body);
 }
-.footer-links,
 .footer-contact,
 .footer-socials {
   display: flex;
@@ -1366,6 +1420,10 @@ body::after {
   .footer-bottom-bar { padding-right: calc(clamp(1.5rem, 5vw, 3.5rem) + 72px) !important; }
 }
 .footer-socials { gap: 0.25rem; }
+/* The 38px ring sits inside a 44px target; pull it onto the page margin. */
+@media (min-width: 768px) {
+  .footer-socials { margin-inline-start: -3px; }
+}
 .footer-link {
   display: inline-flex;
   align-items: center;
@@ -1374,7 +1432,13 @@ body::after {
   text-decoration: none;
   transition: color 180ms ease;
 }
-.footer-link:hover { color: var(--color-gold); }
+.footer-link:hover { color: var(--color-ocean); }
+/* Discreet legal link: full touch target without making the line any taller. */
+.footer-meta .footer-link {
+  margin-block: -12px;
+  color: inherit;
+}
+.footer-meta .footer-link:hover { color: var(--color-ocean); }
 .footer-meta {
   grid-column: 1 / -1;
   display: flex;
@@ -1385,6 +1449,7 @@ body::after {
   color: var(--text-description);
 }
 .footer-social-icon {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1392,12 +1457,46 @@ body::after {
   height: 44px;
   border-radius: 50%;
   color: var(--text-primary);
-  transition: color 180ms ease;
+  transition: color 240ms ease;
 }
-.footer-social-icon:hover { color: var(--color-gold); }
+.footer-social-icon::before {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border-radius: 50%;
+  border: 1px solid rgba(242, 245, 248, 0.16);
+  background: rgba(1, 7, 9, 0.38);
+  transition: border-color 240ms ease, background-color 240ms ease, box-shadow 240ms ease, transform 240ms ease;
+}
+.footer-social-icon svg {
+  position: relative;
+  display: block;
+}
+.footer-social-icon--inactive { cursor: default; }
+
+/* Villa Luna browser bar: its parts are fixed px sizes, so it is scaled to keep
+   step with the frame once that grows past its former 920px width. */
+@media (min-width: 1024px) { .bwdc-chrome { zoom: 1.06; } }
+@media (min-width: 1088px) { .bwdc-chrome { zoom: 1.13; } }
+@media (hover: hover) {
+  .footer-social-icon:hover { color: var(--color-ocean); }
+  .footer-social-icon:hover::before {
+    border-color: rgba(121, 212, 232, 0.55);
+    background: rgba(121, 212, 232, 0.08);
+    box-shadow: 0 0 16px rgba(121, 212, 232, 0.24), 0 0 30px rgba(165, 180, 252, 0.16);
+    transform: translateY(-1px);
+  }
+}
+a.footer-social-icon:active::before { transform: scale(0.96); }
+@media (prefers-reduced-motion: reduce) {
+  .footer-social-icon,
+  .footer-social-icon::before { transition: none; }
+  .footer-social-icon:hover::before,
+  a.footer-social-icon:active::before { transform: none; }
+}
 .footer-link:focus-visible,
 .footer-social-icon:focus-visible {
-  outline: 2px solid var(--color-gold);
+  outline: 2px solid var(--color-ocean);
   outline-offset: 2px;
 }
 
@@ -1422,10 +1521,10 @@ body::after {
     text-align: center;
     padding-bottom: 5.5rem !important;
   }
-  .footer-links,
+  .footer-socials,
   .footer-contact,
   .footer-meta { justify-content: center; }
-  .footer-meta { flex-direction: column; align-items: center; }
+  .footer-meta { align-items: center; }
 }
 
 @media (max-width: 480px) {
@@ -1435,9 +1534,9 @@ body::after {
   }
 }
 
-/* ── Services overview footer (bar only) — sea-wave visibility ─────────────
-   Scoped to .footer--bar-only, which only the Services overview renders, so
-   every other page's footer is unchanged. The same video asset, animation and
+/* ── Bar-only footers (Privacy, 404) — sea-wave visibility ─────────────────
+   Scoped to .footer--bar-only; the Services overview's bar-only footer has no
+   wave at all (showWave={false}). The same video asset, animation and
    colours; only its vertical offset, opacity and brightness are tuned, plus a
    shorter top blend so the short footer isn't almost entirely veiled.
    Phones: the video exactly fills the footer height there and the wave's
@@ -1518,7 +1617,7 @@ body::after {
   50% {
     opacity: 1;
     filter: brightness(1.08);
-    text-shadow: 0 0 18px rgba(255,216,107, 0.16);
+    text-shadow: 0 0 18px rgba(121,212,232,0.16);
     transform: translateY(-2px);
   }
 }
@@ -1713,12 +1812,12 @@ body::after {
 }
 
 /* Fix 2 — About Weavy highlighted phrases: the shared shimmer gradient has a
-   dark #FFD86B stop that reads muted on mobile. Scoped to #about so the
+   dark #2BA8D9 stop that reads muted on mobile. Scoped to #about so the
    Systems/Services panel's use of the class is unaffected. Slow, soft sweep;
    static gradient under reduced motion. */
 @media (max-width: 1023px) {
   #about .weavy-shimmer-text {
-    background-image: linear-gradient(100deg, #FFD86B 0%, #FFD86B 30%, #FFD86B 46%, #FFD86B 62%, #FFD86B 100%);
+    background-image: linear-gradient(100deg, #4CC9F0 0%, #8FE3FA 30%, #B8F1FF 46%, #8FE3FA 62%, #4CC9F0 100%);
     background-size: 220% auto;
     animation-duration: 9s;
   }
@@ -1726,7 +1825,7 @@ body::after {
 @media (max-width: 1023px) and (prefers-reduced-motion: reduce) {
   #about .weavy-shimmer-text {
     animation: none;
-    background-image: linear-gradient(90deg, #FFD86B, #FFD86B);
+    background-image: linear-gradient(90deg, #4CC9F0, #B8F1FF);
     background-size: 100% auto;
   }
 }
@@ -1785,9 +1884,9 @@ body::after {
    are never given these classes.
    ════════════════════════════════════════════════════════════════════════ */
 @media (max-width: 1023px) {
-  .m-tx-primary   { color: #F5F7FA !important; }
-  .m-tx-secondary { color: #E2E7E8 !important; }
-  .m-tx-label     { color: #C9D1D3 !important; }
+  .m-tx-primary   { color: #F2F5F8 !important; }
+  .m-tx-secondary { color: #B8C7D1 !important; }
+  .m-tx-label     { color: #B8C7D1 !important; }
   /* Systems in Motion row numbers: drop the 73% alpha on the row's own
      accent colour (12px label measured 3:1 on the purple row). */
   .m-tx-accent-solid { color: var(--accent-solid) !important; }
@@ -1802,19 +1901,19 @@ body::after {
      with a faint cyan tint; numbers keep their cyan, descriptions unchanged. */
   .m-strategy-title {
     color: #E6F8FF !important;
-    text-shadow: 0 0 18px rgba(255,216,107, 0.16) !important;
+    text-shadow: 0 0 18px rgba(125, 220, 255, 0.16) !important;
   }
 
   /* Fix 5 — Work "Strategy before visuals" process titles: muted champagne. */
-  .m-champagne-title { color: #D6B56C !important; }
+  .m-champagne-title { color: #F2F5F8 !important; }
 
   /* Fix 6 — Work "Let's build work people remember": supporting copy only.
      Paragraph lifted just above the secondary tone; status label solid ice. */
-  .m-cta-body   { color: #E3E8ED !important; }
+  .m-cta-body   { color: #B8C7D1 !important; }
   .m-cta-status { color: var(--text-body) !important; }
 
   /* Fix 7 — One Connected System step titles: ice-cyan. */
-  .m-workflow-title { color: #F5F7FA !important; }
+  .m-workflow-title { color: #F2F5F8 !important; }
 
   /* Fix 8 — System Architecture headings tinted from each card's accent. */
   .m-arch-title { color: var(--arch-title) !important; }
@@ -1822,10 +1921,10 @@ body::after {
   /* Fix 9 — "WHY WEAVY WORKS" eyebrow: silver-blue (was cyan at 70%).
      It sat underneath the section's 220px top-blend overlay (z-index 10),
      which is what actually darkened it — lift just the label above it. */
-  .m-why-label { color: #FFD86B; position: relative; z-index: 11; }
+  .m-why-label { color: #79D4E8; position: relative; z-index: 11; }
 
   /* Fix 10 — Why Weavy Works benefit card titles: icy white. */
-  .m-why-title { color: #F5F7FA !important; }
+  .m-why-title { color: #F2F5F8 !important; }
 
   /* Fix 4 — Graphic Design service pills: feedback only on real interaction
      (press on touch, hover with a mouse); nothing persists afterwards and the
@@ -1836,16 +1935,16 @@ body::after {
     transition: border-color 220ms ease, background-color 220ms ease, color 220ms ease, filter 220ms ease;
   }
   .gds-pill:active {
-    border-color: rgba(255,216,107, 0.38);
-    background-color: rgba(255,216,107, 0.06);
+    border-color: rgba(165,180,252,0.38);
+    background-color: rgba(165,180,252,0.06);
   }
   .gds-pill:active .gds-pill-text { color: rgba(255, 255, 255, 0.92); }
   .gds-pill:active .gds-pill-icon { filter: brightness(1.25) saturate(1.1); }
 }
 @media (max-width: 1023px) and (hover: hover) and (pointer: fine) {
   .gds-pill:hover {
-    border-color: rgba(255,216,107, 0.38);
-    background-color: rgba(255,216,107, 0.06);
+    border-color: rgba(165,180,252,0.38);
+    background-color: rgba(165,180,252,0.06);
   }
   .gds-pill:hover .gds-pill-text { color: rgba(255, 255, 255, 0.92); }
   .gds-pill:hover .gds-pill-icon { filter: brightness(1.25) saturate(1.1); }
@@ -1870,25 +1969,12 @@ body::after {
    The band starts and ends off-glyph, so before and after the sweep the title
    is the same solid #E6F8FF — no dark/light opacity cycling. */
 @media (max-width: 1023px) {
-  .m-strategy-title.is-sheen {
-    background-image: linear-gradient(100deg, #E6F8FF 0%, #E6F8FF 40%, #FFFFFF 47%, #FFD86B 50%, #FFFFFF 53%, #E6F8FF 60%, #E6F8FF 100%);
-    background-size: 260% 100%;
-    background-position: 100% 0;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: m-title-sheen 2s cubic-bezier(0.4, 0, 0.2, 1) 1 forwards;
-  }
-  @keyframes m-title-sheen {
-    from { background-position: 100% 0; }
-    to   { background-position: 0% 0; }
-  }
 }
 
 /* Fix 5 — Bespoke Website Design "SERVICE" eyebrow: 13px, premium ice-cyan.
    Letter-spacing, case and font family unchanged. */
 @media (max-width: 1023px) {
-  .m-service-label { font-size: 13px !important; color: #FFD86B; }
+  .m-service-label { font-size: 13px !important; color: #79D4E8; }
 }
 
 /* ════════════════════════════════════════════════════════════════════════
@@ -1899,36 +1985,22 @@ body::after {
    resting colour in the component instead, so their hover still works.
    ════════════════════════════════════════════════════════════════════════ */
 @media (min-width: 1024px) {
-  .m-tx-primary:not(a)   { color: #F5F7FA !important; }
-  .m-tx-secondary:not(a) { color: #E2E7E8 !important; }
-  .m-tx-label:not(a)     { color: #C9D1D3 !important; }
+  .m-tx-primary:not(a)   { color: #F2F5F8 !important; }
+  .m-tx-secondary:not(a) { color: #B8C7D1 !important; }
+  .m-tx-label:not(a)     { color: #B8C7D1 !important; }
   .m-tx-accent-solid     { color: var(--accent-solid) !important; }
 
   .m-strategy-title {
     color: #E6F8FF !important;
-    text-shadow: 0 0 18px rgba(255,216,107, 0.16) !important;
+    text-shadow: 0 0 18px rgba(125, 220, 255, 0.16) !important;
   }
-  .m-cta-body        { color: #E3E8ED !important; }
+  .m-cta-body        { color: #B8C7D1 !important; }
   .m-cta-status      { color: var(--text-body) !important; }
-  .m-workflow-title  { color: #F5F7FA !important; }
-  .m-why-label       { color: #FFD86B; }
-  .m-why-title       { color: #DDF5FA !important; }
-  .m-service-label   { color: #FFD86B; }
+  .m-workflow-title  { color: #F2F5F8 !important; }
+  .m-why-label       { color: #79D4E8; }
+  .m-why-title       { color: #F2F5F8 !important; }
+  .m-service-label   { color: #79D4E8; }
 
-  /* Strategy titles — same one-time ice-blue sheen as mobile */
-  .m-strategy-title.is-sheen {
-    background-image: linear-gradient(100deg, #E6F8FF 0%, #E6F8FF 40%, #FFFFFF 47%, #FFD86B 50%, #FFFFFF 53%, #E6F8FF 60%, #E6F8FF 100%);
-    background-size: 260% 100%;
-    background-position: 100% 0;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: d-title-sheen 2s cubic-bezier(0.4, 0, 0.2, 1) 1 forwards;
-  }
-  @keyframes d-title-sheen {
-    from { background-position: 100% 0; }
-    to   { background-position: 0% 0; }
-  }
 
   /* Social Media showcase — the shampoo mockup is gone; the remaining watch
      image sits centred at a little over half the column width. */
@@ -1944,8 +2016,8 @@ body::after {
 }
 @media (min-width: 1024px) and (hover: hover) and (pointer: fine) {
   .gds-pill:hover {
-    border-color: rgba(255,216,107, 0.38);
-    background-color: rgba(255,216,107, 0.06);
+    border-color: rgba(165,180,252,0.38);
+    background-color: rgba(165,180,252,0.06);
   }
   .gds-pill:hover .gds-pill-text { color: rgba(255, 255, 255, 0.92); }
   .gds-pill:hover .gds-pill-icon { filter: brightness(1.25) saturate(1.1); }
@@ -2012,8 +2084,8 @@ body::after {
   border-radius: 24px;
   overflow: hidden;
   background: #010709;
-  border: 1px solid rgba(255,216,107, 0.12);
-  box-shadow: 0 32px 90px rgba(0, 0, 0, 0.55), 0 0 40px rgba(255,216,107, 0.05);
+  border: 1px solid rgba(165,180,252,0.12);
+  box-shadow: 0 32px 90px rgba(0, 0, 0, 0.55), 0 0 40px rgba(165,180,252,0.05);
 }
 .gd-hero-img {
   position: absolute;
@@ -2207,7 +2279,7 @@ body::after {
     --dt-pill:           13px;                         /* showcase feature pills (was 11.5px) */
     --dt-bespoke-body:   clamp(17px, 1.25vw, 18px);    /* Bespoke detail paragraphs (was ≤16.8px) */
     --dt-bespoke-list:   clamp(16px, 1.15vw, 17px);    /* Bespoke benefit list (was ≤16px) */
-    --dt-bespoke-list-color: #CDD5DB;                  /* was hsl(0 0% 72%) */
+    --dt-bespoke-list-color: #B8C7D1;                  /* was hsl(0 0% 72%) */
   }
 }
 

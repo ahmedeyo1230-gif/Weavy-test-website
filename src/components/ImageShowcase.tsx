@@ -164,7 +164,7 @@ function Lightbox({ src, title, category, onClose }: { src: string; title: strin
           padding: '1.2rem 1.6rem',
           background: 'linear-gradient(to top, hsl(0 0% 0% / 0.75) 0%, transparent 100%)',
         }}>
-          <p className="mobile-label-min" style={{ fontFamily: 'var(--font-label)', fontWeight: 500, fontSize: '0.75rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'hsl(44 100% 71%)', margin: '0 0 0.3rem' }}>
+          <p className="mobile-label-min" style={{ fontFamily: 'var(--font-label)', fontWeight: 500, fontSize: '0.75rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: '#A5B4FC', margin: '0 0 0.3rem' }}>
             {category}
           </p>
           <p style={{ fontFamily: 'var(--font-label)', fontWeight: 500, fontSize: 'clamp(0.9rem, 1.5vw, 1.05rem)', letterSpacing: '-0.02em', color: 'var(--text-primary)', margin: 0 }}>
@@ -220,9 +220,9 @@ function ProjectCard({
         position: 'relative',
         borderRadius: '28px',
         overflow: 'hidden',
-        border: `1px solid ${hovered ? 'hsl(44 100% 71% / 0.18)' : 'hsl(0 0% 100% / 0.07)'}`,
+        border: `1px solid ${hovered ? 'rgba(165,180,252,0.18)' : 'hsl(0 0% 100% / 0.07)'}`,
         boxShadow: hovered
-          ? '0 0 0 1px hsl(44 100% 71% / 0.08), 0 32px 80px rgba(0,0,0,0.6)'
+          ? '0 0 0 1px rgba(165,180,252,0.08), 0 32px 80px rgba(0,0,0,0.6)'
           : '0 16px 48px rgba(0,0,0,0.45)',
         transform: `translateY(${visible ? (hovered ? '-8px' : '0') : '36px'})`,
         opacity: visible ? 1 : 0,
@@ -289,7 +289,7 @@ function ProjectCard({
           fontSize: '0.75rem',
           letterSpacing: '0.16em',
           textTransform: 'uppercase',
-          color: 'hsl(44 100% 71%)',
+          color: '#A5B4FC',
           margin: '0 0 0.4rem',
         }}>
           {project.category} — {project.year}
@@ -325,12 +325,12 @@ function WorkCTA() {
       ref={ref}
       style={{
         background: '#010709',
-        borderTop: '1px solid rgba(255,216,107,0.10)',
+        borderTop: '1px solid transparent',
         padding: 'clamp(6rem, 12vw, 10rem) clamp(1.5rem, 3.5vw, 3rem)',
       }}
     >
       <div style={{ maxWidth: '54rem', margin: '0 auto', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
-        <p className="section-label" style={{ ...item(0), marginBottom: '1.8rem' }}>
+        <p className="section-label section-label--periwinkle" style={{ ...item(0), marginBottom: '1.8rem' }}>
           Start a Project
         </p>
 
@@ -347,12 +347,12 @@ function WorkCTA() {
           }}
         >
           Let&apos;s build work{' '}
-          <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 500, color: 'var(--text-body)' }}>
+          <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 500, color: '#A5B4FC' }}>
             people remember.
           </em>
         </h2>
 
-        <div aria-hidden="true" style={{ ...item(220), width: '2.5rem', height: '1px', background: 'rgba(255,216,107,0.45)', marginBottom: '1.8rem' }} />
+        <div aria-hidden="true" style={{ ...item(220), width: '2.5rem', height: '1px', background: 'rgba(165,180,252,0.45)', marginBottom: '1.8rem' }} />
 
         <p
           style={{
@@ -381,7 +381,7 @@ function WorkCTA() {
           </a>
           <a
             href="mailto:hello@weavyautomation.com"
-            className="font-body inline-flex items-center min-h-[44px] underline underline-offset-4 decoration-[#FFD86B]/40 hover:text-white transition-colors duration-300 [overflow-wrap:anywhere]"
+            className="font-body inline-flex items-center min-h-[44px] underline underline-offset-4 decoration-[#A5B4FC]/40 hover:text-white transition-colors duration-300 [overflow-wrap:anywhere]"
             style={{ fontSize: 'clamp(0.875rem, 1.2vw, 0.9rem)', color: 'var(--text-body)' }}
           >
             hello@weavyautomation.com
@@ -412,7 +412,7 @@ function WorkTestimonial() {
       ref={ref}
       style={{
         background: '#010709',
-        borderTop: '1px solid rgba(255,216,107, 0.10)',
+        borderTop: '1px solid transparent',
         padding: 'clamp(5rem, 10vw, 9rem) clamp(1.5rem, 3.5vw, 3rem)',
       }}
     >
@@ -433,7 +433,7 @@ function WorkTestimonial() {
             <svg
               key={i}
               width="16" height="16" viewBox="0 0 24 24"
-              fill="hsl(44 100% 71%)"
+              fill="#A5B4FC"
               style={{
                 opacity: starsVis ? 1 : 0,
                 transition: `opacity 0.4s ease ${i * 80}ms`,
@@ -490,7 +490,7 @@ function WorkTestimonial() {
             fontSize: 'clamp(0.78rem, 1.1vw, 0.88rem)',
             letterSpacing: '0.06em',
             textTransform: 'uppercase',
-            color: 'rgba(255,216,107, 0.72)',
+            color: 'rgba(165,180,252,0.72)',
             margin: 0,
           }}>
             Founder at Vela Studio
@@ -502,7 +502,7 @@ function WorkTestimonial() {
           aria-hidden="true"
           style={{
             height: '1px',
-            background: 'rgba(255,216,107, 0.10)',
+            background: 'rgba(165,180,252,0.10)',
             opacity: clientVis ? 1 : 0,
             transition: 'opacity 0.8s ease 0.2s',
           }}
@@ -551,7 +551,7 @@ function PhilosophyRow({
         gridTemplateColumns: '3rem 1fr',
         gap: '0 2rem',
         padding: 'clamp(1.4rem, 2.5vw, 2rem) 0',
-        borderBottom: '1px solid rgba(255,216,107, 0.10)',
+        borderBottom: '1px solid rgba(165,180,252,0.10)',
         opacity: visible ? 1 : 0,
         transform: visible ? 'translateY(0)' : 'translateY(24px)',
         transition: `opacity 0.7s ease ${delay}ms, transform 0.7s cubic-bezier(0.16,1,0.3,1) ${delay}ms`,
@@ -565,8 +565,8 @@ function PhilosophyRow({
           fontWeight: 500,
           fontSize: '0.75rem',
           letterSpacing: '0.06em',
-          color: hovered ? 'hsl(44 100% 71%)' : 'rgba(255,216,107, 0.55)',
-          textShadow: '0 0 10px rgba(255,216,107, 0.10)',
+          color: '#A5B4FC',
+          textShadow: '0 0 10px rgba(165,180,252,0.10)',
           paddingTop: '0.18rem',
           transition: 'color 0.35s ease',
           lineHeight: 1,
@@ -582,7 +582,7 @@ function PhilosophyRow({
           style={{
             width: hovered ? '2rem' : '1.2rem',
             height: '1px',
-            background: hovered ? 'hsl(44 100% 71% / 0.7)' : 'hsl(44 100% 71% / 0.25)',
+            background: hovered ? 'rgba(165,180,252,0.7)' : 'rgba(165,180,252,0.25)',
             marginBottom: '0.75rem',
             transition: 'width 0.4s ease, background 0.35s ease',
           }}
@@ -595,7 +595,7 @@ function PhilosophyRow({
             fontSize: 'clamp(0.95rem, 1.6vw, 1.12rem)',
             lineHeight: 1.3,
             letterSpacing: '-0.02em',
-            color: hovered ? '#fff' : '#D6B56C',
+            color: hovered ? '#fff' : '#F2F5F8',
             marginBottom: '0.6rem',
             transition: 'color 0.3s ease',
           }}
@@ -639,7 +639,7 @@ function ProjectPhilosophy() {
     <section
       style={{
         background: '#010709',
-        borderTop: '1px solid rgba(255,216,107, 0.10)',
+        borderTop: '1px solid transparent',
         padding: 'clamp(5rem, 10vw, 9rem) clamp(1.5rem, 3.5vw, 3rem)',
       }}
     >
@@ -679,7 +679,7 @@ function ProjectPhilosophy() {
               fontSize: '0.75rem',
               letterSpacing: '0.16em',
               textTransform: 'uppercase',
-              color: 'hsl(44 100% 71%)',
+              color: '#A5B4FC',
               marginBottom: '1.8rem',
             }}
           >
@@ -704,7 +704,7 @@ function ProjectPhilosophy() {
                 fontFamily: 'var(--font-body)',
                 fontStyle: 'italic',
                 fontWeight: 500,
-                color: '#FFD86B',
+                color: '#A5B4FC',
               }}
             >
               good —
@@ -716,7 +716,7 @@ function ProjectPhilosophy() {
                 fontFamily: 'var(--font-body)',
                 fontStyle: 'italic',
                 fontWeight: 500,
-                color: '#FFD86B',
+                color: '#A5B4FC',
               }}
             >
               purpose.
@@ -729,7 +729,7 @@ function ProjectPhilosophy() {
             style={{
               width: '2.5rem',
               height: '1px',
-              background: 'hsl(44 100% 71% / 0.4)',
+              background: 'rgba(165,180,252,0.4)',
             }}
           />
         </div>
@@ -757,7 +757,7 @@ function ProjectPhilosophy() {
           </p>
 
           {/* Numbered rows */}
-          <div style={{ borderTop: '1px solid rgba(255,216,107, 0.10)' }}>
+          <div style={{ borderTop: '1px solid rgba(165,180,252,0.10)' }}>
             {PHILOSOPHY_POINTS.map((point, i) => (
               <PhilosophyRow
                 key={point.num}
@@ -819,7 +819,7 @@ function WorkGallery() {
       />
     )}
 
-    <section style={{ background: '#010709', borderTop: '1px solid rgba(255,216,107, 0.10)' }}>
+    <section style={{ background: '#010709', borderTop: '1px solid transparent' }}>
       <div style={{ maxWidth: '1520px', margin: '0 auto', padding: 'clamp(5rem, 9vw, 8rem) clamp(1.5rem, 3.5vw, 3rem)' }}>
 
         {/* ── Section header ── */}
@@ -839,7 +839,7 @@ function WorkGallery() {
             fontSize: '0.75rem',
             letterSpacing: '0.16em',
             textTransform: 'uppercase',
-            color: 'hsl(44 100% 71%)',
+            color: '#A5B4FC',
             marginBottom: '1.6rem',
           }}>
             Selected Work
@@ -859,14 +859,14 @@ function WorkGallery() {
               fontFamily: 'var(--font-body)',
               fontStyle: 'italic',
               fontWeight: 500,
-              color: '#FFD86B',
+              color: '#A5B4FC',
             }}>
               move fast,
             </em>
             {' '}and refuse to be ordinary.
           </h2>
 
-          <div aria-hidden="true" style={{ width: '2.5rem', height: '1px', background: 'hsl(44 100% 71% / 0.35)', marginBottom: '1.6rem' }} />
+          <div aria-hidden="true" style={{ width: '2.5rem', height: '1px', background: 'rgba(165,180,252,0.35)', marginBottom: '1.6rem' }} />
 
           <p style={{
             fontFamily: 'var(--font-body)',
@@ -1174,10 +1174,10 @@ export default function ImageShowcase() {
           Ready to create something worth{' '}
           <em style={{
             fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 500,
-            background: 'linear-gradient(90deg, #FFFFFF 0%, #FFE9A8 45%, #FFD86B 100%)',
+            background: 'linear-gradient(90deg, #F2F5F8 0%, #D2DAFE 45%, #A5B4FC 100%)',
             WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
             color: 'transparent',
-            textShadow: '0 0 24px rgba(255,216,107, 0.16)',
+            textShadow: '0 0 24px rgba(165,180,252,0.16)',
           }}>
             remembering
           </em>?

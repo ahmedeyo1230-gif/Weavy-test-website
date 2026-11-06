@@ -216,7 +216,7 @@ export default function ConnectedSystems() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.12, ease: E }}
               className="font-label"
-              style={{ fontSize: '0.85rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: '#FFD86B', marginBottom: '1.4rem' }}
+              style={{ fontSize: '0.85rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: '#79D4E8', marginBottom: '1.4rem' }}
             >
               Connected Systems
             </motion.p>
@@ -230,7 +230,7 @@ export default function ConnectedSystems() {
               style={{ fontSize: 'clamp(2.6rem, 6vw, 6rem)', lineHeight: 1.05, letterSpacing: '-0.03em', color: 'var(--text-primary)' }}
             >
               From first click to{' '}
-              <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 500, color: '#FFD86B' }}>
+              <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 500, color: '#79D4E8' }}>
                 booked client.
               </em>
             </motion.h2>

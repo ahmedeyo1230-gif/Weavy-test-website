@@ -39,8 +39,7 @@ const ROUTE_BY_PATH: Record<string, Route> = {
   '/':         'home',
 }
 
-// Decided once per page load, outside React, so StrictMode's double render
-// can't consume the session flag before the intro is shown.
+// Decided once per page load, outside React.
 const PLAY_INTRO = shouldPlayIntro()
 
 function routeFromPath(): Route {
@@ -108,9 +107,11 @@ export default function App() {
   return (
     <>
       {!introDone && <LoadingScreen onComplete={() => setIntroDone(true)} />}
-      <CursorGlow />
-      <WhatsAppFloatingButton />
+      {introDone && <CursorGlow />}
+      {introDone && <WhatsAppFloatingButton />}
       <Analytics />
+      {introDone && (
+        <>
           {route === 'services' ? (
             <>
               <Navbar />
@@ -164,10 +165,10 @@ export default function App() {
                   Ready to win more{' '}
                   <em style={{
                     fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 400,
-                    background: 'linear-gradient(90deg, #FFFFFF 0%, #FFE9A8 45%, #FFD86B 100%)',
+                    background: 'linear-gradient(90deg, #F2F5F8 0%, #BCE9F3 45%, #79D4E8 100%)',
                     WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
                     color: 'transparent',
-                    textShadow: '0 0 24px rgba(255, 216, 107, 0.16)',
+                    textShadow: '0 0 24px rgba(121,212,232,0.16)',
                   }}>
                     customers
                   </em>?
@@ -179,6 +180,8 @@ export default function App() {
               />
             </>
           )}
+        </>
+      )}
     </>
   )
 }

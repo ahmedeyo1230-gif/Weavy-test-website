@@ -163,7 +163,7 @@ function ArticleDetail({
             fontSize: '0.75rem',
             letterSpacing: '0.16em',
             textTransform: 'uppercase',
-            color: 'hsl(44 100% 71%)',
+            color: '#79D4E8',
           }}
         >
           {article.category}
@@ -209,7 +209,7 @@ function ArticleDetail({
         style={{
           width: '3rem',
           height: '2px',
-          background: 'linear-gradient(to right, hsl(44 100% 71%), hsl(44 100% 71%))',
+          background: 'linear-gradient(to right, #79D4E8, #79D4E8)',
           marginBottom: '2.8rem',
           borderRadius: '1px',
         }}
@@ -320,7 +320,7 @@ function BlogHeader() {
           fontSize: '0.75rem',
           letterSpacing: '0.16em',
           textTransform: 'uppercase',
-          color: 'hsl(44 100% 71% / 0.8)',
+          color: 'rgba(121,212,232,0.8)',
           marginBottom: '1.6rem',
         }}
       >
@@ -349,7 +349,7 @@ function BlogHeader() {
             fontFamily: 'var(--font-body)',
             fontStyle: 'italic',
             fontWeight: 500,
-            color: '#FFD86B',
+            color: '#79D4E8',
           }}
         >
           smarter digital systems.
@@ -409,9 +409,9 @@ function FeaturedArticle({ onRead }: { onRead: () => void }) {
         position: 'relative',
         borderRadius: '32px',
         overflow: 'hidden',
-        border: `1px solid ${hovered ? 'hsl(44 100% 71% / 0.26)' : 'hsl(0 0% 100% / 0.08)'}`,
+        border: `1px solid ${hovered ? 'rgba(121,212,232,0.26)' : 'hsl(0 0% 100% / 0.08)'}`,
         boxShadow: hovered
-          ? '0 0 0 1px hsl(44 100% 71% / 0.07), 0 48px 120px rgba(0,0,0,0.55)'
+          ? '0 0 0 1px rgba(121,212,232,0.07), 0 48px 120px rgba(0,0,0,0.55)'
           : '0 28px 80px rgba(0,0,0,0.38)',
         transform: hovered ? 'translateY(-5px)' : 'translateY(0)',
         transition:
@@ -431,8 +431,8 @@ function FeaturedArticle({ onRead }: { onRead: () => void }) {
           top: 0, left: 0, right: 0,
           height: '2px',
           background: hovered
-            ? 'linear-gradient(to right, hsl(44 100% 71%) 0%, hsl(44 100% 71%) 60%, transparent 100%)'
-            : 'linear-gradient(to right, hsl(44 100% 71% / 0.3) 0%, transparent 60%)',
+            ? 'linear-gradient(to right, #79D4E8 0%, #79D4E8 60%, transparent 100%)'
+            : 'linear-gradient(to right, rgba(121,212,232,0.3) 0%, transparent 60%)',
           transition: 'background 0.5s ease',
           zIndex: 1,
         }}
@@ -463,7 +463,7 @@ function FeaturedArticle({ onRead }: { onRead: () => void }) {
       <div className="blog-feat-grid" style={{ padding: 'clamp(2rem, 4.5vw, 3.5rem)', display: 'grid', gridTemplateColumns: '1fr auto', gap: '2rem', alignItems: 'end' }}>
       <div style={{ display: 'flex', flexDirection: 'column', gap: '1.6rem' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-          <span className="mobile-label-min" style={{ fontFamily: 'var(--font-label)', fontWeight: 500, fontSize: '0.75rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'rgba(255,216,107, 0.82)' }}>
+          <span className="mobile-label-min" style={{ fontFamily: 'var(--font-label)', fontWeight: 500, fontSize: '0.75rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'rgba(121,212,232,0.82)' }}>
             {FEATURED.category}
           </span>
           <span style={{ display: 'inline-block', width: 1, height: 10, background: 'hsl(0 0% 100% / 0.12)' }} />
@@ -476,23 +476,23 @@ function FeaturedArticle({ onRead }: { onRead: () => void }) {
           {FEATURED.title}
         </h2>
 
-        <div style={{ width: hovered ? '3.5rem' : '2.2rem', height: '1px', background: 'hsl(44 100% 71% / 0.45)', transition: 'width 0.45s ease' }} />
+        <div style={{ width: hovered ? '3.5rem' : '2.2rem', height: '1px', background: 'rgba(121,212,232,0.45)', transition: 'width 0.45s ease' }} />
 
         <p style={{ fontFamily: 'var(--font-body)', fontWeight: 500, fontSize: 'clamp(0.88rem, 1.45vw, 1.02rem)', lineHeight: 1.88, color: 'var(--text-body)', maxWidth: '42rem', margin: 0 }}>
           {FEATURED.excerpt}
         </p>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.55rem' }}>
-          <span style={{ fontFamily: 'var(--font-label)', fontWeight: 500, fontSize: '0.75rem', letterSpacing: '0.05em', color: hovered ? 'hsl(44 100% 71%)' : 'rgba(235, 245, 255, 0.76)', borderBottom: `1px solid ${hovered ? 'hsl(44 100% 71% / 0.5)' : 'hsl(0 0% 100% / 0.1)'}`, paddingBottom: '2px', textShadow: '0 0 10px rgba(255,216,107, 0.10)', transition: 'color 0.32s ease, border-color 0.32s ease' }}>
+          <span style={{ fontFamily: 'var(--font-label)', fontWeight: 500, fontSize: '0.75rem', letterSpacing: '0.05em', color: hovered ? '#79D4E8' : 'rgba(235, 245, 255, 0.76)', borderBottom: `1px solid ${hovered ? 'rgba(121,212,232,0.5)' : 'hsl(0 0% 100% / 0.1)'}`, paddingBottom: '2px', textShadow: '0 0 10px rgba(121,212,232,0.10)', transition: 'color 0.32s ease, border-color 0.32s ease' }}>
             Read article
           </span>
-          <span style={{ fontSize: '0.82rem', color: hovered ? 'hsl(44 100% 71%)' : 'hsl(0 0% 30%)', display: 'inline-block', transition: 'color 0.32s ease, transform 0.32s ease', transform: hovered ? 'translateX(5px)' : 'translateX(0)' }}>
+          <span style={{ fontSize: '0.82rem', color: hovered ? '#79D4E8' : 'hsl(0 0% 30%)', display: 'inline-block', transition: 'color 0.32s ease, transform 0.32s ease', transform: hovered ? 'translateX(5px)' : 'translateX(0)' }}>
             →
           </span>
         </div>
       </div>
 
-      <span aria-hidden="true" className="blog-feat-num" style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontSize: 'clamp(6rem, 14vw, 14rem)', lineHeight: 1, letterSpacing: '-0.03em', color: hovered ? 'rgba(255,216,107, 0.14)' : 'rgba(255,216,107, 0.10)', userSelect: 'none', transition: 'color 0.4s ease', alignSelf: 'center' }}>
+      <span aria-hidden="true" className="blog-feat-num" style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontSize: 'clamp(6rem, 14vw, 14rem)', lineHeight: 1, letterSpacing: '-0.03em', color: hovered ? 'rgba(121,212,232,0.14)' : 'rgba(121,212,232,0.10)', userSelect: 'none', transition: 'color 0.4s ease', alignSelf: 'center' }}>
         {FEATURED.num}
       </span>
       </div>{/* close content wrapper */}
@@ -526,9 +526,9 @@ function ArticleCard({
         position: 'relative',
         borderRadius: '28px',
         overflow: 'hidden',
-        border: `1px solid ${hovered ? 'hsl(44 100% 71% / 0.22)' : 'hsl(0 0% 100% / 0.07)'}`,
+        border: `1px solid ${hovered ? 'rgba(121,212,232,0.22)' : 'hsl(0 0% 100% / 0.07)'}`,
         boxShadow: hovered
-          ? '0 0 0 1px hsl(44 100% 71% / 0.06), 0 32px 88px rgba(0,0,0,0.5)'
+          ? '0 0 0 1px rgba(121,212,232,0.06), 0 32px 88px rgba(0,0,0,0.5)'
           : '0 18px 52px rgba(0,0,0,0.36)',
         transform: hovered ? 'translateY(-8px)' : 'translateY(0)',
         transition: 'transform 0.5s cubic-bezier(0.16,1,0.3,1), border-color 0.4s ease, box-shadow 0.45s ease',
@@ -539,7 +539,7 @@ function ArticleCard({
       }}
     >
       {/* Top accent line */}
-      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '1px', background: hovered ? 'linear-gradient(to right, hsl(44 100% 71% / 0.7) 0%, transparent 70%)' : 'linear-gradient(to right, hsl(44 100% 71% / 0.18) 0%, transparent 60%)', transition: 'background 0.45s ease', zIndex: 1 }} />
+      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '1px', background: hovered ? 'linear-gradient(to right, rgba(121,212,232,0.7) 0%, transparent 70%)' : 'linear-gradient(to right, rgba(121,212,232,0.18) 0%, transparent 60%)', transition: 'background 0.45s ease', zIndex: 1 }} />
 
       {/* Card image */}
       <div style={{ position: 'relative', width: '100%', aspectRatio: '16 / 9', overflow: 'hidden' }}>
@@ -566,10 +566,10 @@ function ArticleCard({
       {/* Text content */}
       <div style={{ padding: 'clamp(1.4rem, 2.5vw, 2rem)', display: 'flex', flexDirection: 'column', gap: '1.1rem', flex: 1 }}>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <span className="mobile-label-min" style={{ fontFamily: 'var(--font-label)', fontWeight: 500, fontSize: '0.75rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'rgba(255,216,107, 0.82)' }}>
+        <span className="mobile-label-min" style={{ fontFamily: 'var(--font-label)', fontWeight: 500, fontSize: '0.75rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'rgba(121,212,232,0.82)' }}>
           {article.category}
         </span>
-        <span aria-hidden="true" style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontSize: 'clamp(2.4rem, 4vw, 3.6rem)', lineHeight: 1, letterSpacing: '-0.03em', color: hovered ? 'rgba(255,216,107, 0.14)' : 'rgba(255,216,107, 0.10)', userSelect: 'none', transition: 'color 0.4s ease' }}>
+        <span aria-hidden="true" style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontSize: 'clamp(2.4rem, 4vw, 3.6rem)', lineHeight: 1, letterSpacing: '-0.03em', color: hovered ? 'rgba(121,212,232,0.14)' : 'rgba(121,212,232,0.10)', userSelect: 'none', transition: 'color 0.4s ease' }}>
           {article.num}
         </span>
       </div>
@@ -580,7 +580,7 @@ function ArticleCard({
         {article.title}
       </h3>
 
-      <div style={{ width: hovered ? '2.4rem' : '1.2rem', height: '1px', background: hovered ? 'hsl(44 100% 71% / 0.72)' : 'hsl(44 100% 71% / 0.2)', transition: 'width 0.42s ease, background 0.35s ease' }} />
+      <div style={{ width: hovered ? '2.4rem' : '1.2rem', height: '1px', background: hovered ? 'rgba(121,212,232,0.72)' : 'rgba(121,212,232,0.2)', transition: 'width 0.42s ease, background 0.35s ease' }} />
 
       <p style={{ fontFamily: 'var(--font-body)', fontWeight: 500, fontSize: 'clamp(0.8rem, 1.2vw, 0.88rem)', lineHeight: 1.82, color: 'var(--text-description)', margin: 0, flex: 1 }}>
         {article.excerpt}
@@ -591,10 +591,10 @@ function ArticleCard({
           {article.readTime}
         </span>
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
-          <span style={{ fontFamily: 'var(--font-label)', fontWeight: 500, fontSize: '0.75rem', letterSpacing: '0.04em', color: hovered ? 'hsl(44 100% 71%)' : 'rgba(235, 245, 255, 0.76)', borderBottom: `1px solid ${hovered ? 'hsl(44 100% 71% / 0.45)' : 'hsl(0 0% 100% / 0.09)'}`, paddingBottom: '1px', textShadow: '0 0 10px rgba(255,216,107, 0.10)', transition: 'color 0.32s ease, border-color 0.32s ease' }}>
+          <span style={{ fontFamily: 'var(--font-label)', fontWeight: 500, fontSize: '0.75rem', letterSpacing: '0.04em', color: hovered ? '#79D4E8' : 'rgba(235, 245, 255, 0.76)', borderBottom: `1px solid ${hovered ? 'rgba(121,212,232,0.45)' : 'hsl(0 0% 100% / 0.09)'}`, paddingBottom: '1px', textShadow: '0 0 10px rgba(121,212,232,0.10)', transition: 'color 0.32s ease, border-color 0.32s ease' }}>
             Read article
           </span>
-          <span style={{ fontSize: '0.75rem', color: hovered ? 'hsl(44 100% 71%)' : 'hsl(0 0% 28%)', display: 'inline-block', transition: 'color 0.32s ease, transform 0.32s ease', transform: hovered ? 'translateX(4px)' : 'translateX(0)' }}>
+          <span style={{ fontSize: '0.75rem', color: hovered ? '#79D4E8' : 'hsl(0 0% 28%)', display: 'inline-block', transition: 'color 0.32s ease, transform 0.32s ease', transform: hovered ? 'translateX(4px)' : 'translateX(0)' }}>
             →
           </span>
         </div>
@@ -632,15 +632,15 @@ function BlogHeroPhone() {
 
       <div className="relative">
         <div style={{ display: 'flex', alignItems: 'center', gap: '14px', marginBottom: '1.4rem' }}>
-          <span className="mobile-label-min" style={{ fontFamily: 'var(--font-label)', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'hsl(44 100% 71%)' }}>Blog</span>
-          <span aria-hidden="true" style={{ width: 48, height: 1, background: 'hsl(44 100% 71% / 0.5)' }} />
+          <span className="mobile-label-min" style={{ fontFamily: 'var(--font-label)', letterSpacing: '0.16em', textTransform: 'uppercase', color: '#79D4E8' }}>Blog</span>
+          <span aria-hidden="true" style={{ width: 48, height: 1, background: 'rgba(121,212,232,0.5)' }} />
         </div>
         <h2 style={{ fontFamily: 'var(--font-heading)', fontWeight: 500, fontSize: 'clamp(2.6rem, 12vw, 3.4rem)', lineHeight: 1.04, letterSpacing: '-0.01em', color: '#F4F6F5', margin: 0 }}>
           Insights that inspire{' '}
           <em style={{ fontStyle: 'italic', color: '#9CC4E4' }}>smarter</em>{' '}
           digital decisions.
         </h2>
-        <span aria-hidden="true" style={{ display: 'block', width: 56, height: 1, background: 'hsl(44 100% 71% / 0.5)', margin: '1.6rem 0' }} />
+        <span aria-hidden="true" style={{ display: 'block', width: 56, height: 1, background: 'rgba(121,212,232,0.5)', margin: '1.6rem 0' }} />
         <p style={{ fontSize: '16px', lineHeight: 1.7, color: 'var(--text-description)', fontWeight: 500, maxWidth: '22rem', margin: 0 }}>
           Practical ideas, real strategies and creative thinking to help brands grow, automate and build a powerful digital presence.
         </p>
@@ -650,7 +650,7 @@ function BlogHeroPhone() {
           className="mobile-label-min"
           style={{ display: 'inline-flex', alignItems: 'center', gap: '16px', marginTop: '2rem', background: 'none', border: 0, padding: 0, cursor: 'pointer', fontFamily: 'var(--font-label)', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'rgba(240,244,246,0.86)' }}
         >
-          <span aria-hidden="true" style={{ width: 48, height: 48, borderRadius: '50%', border: '1px solid hsl(44 100% 71% / 0.55)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, letterSpacing: 0 }}>↓</span>
+          <span aria-hidden="true" style={{ width: 48, height: 48, borderRadius: '50%', border: '1px solid rgba(121,212,232,0.55)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, letterSpacing: 0 }}>↓</span>
           Explore articles
         </button>
       </div>
@@ -689,7 +689,7 @@ function BlogHero() {
 
 function BlogCTA() {
   return (
-    <section style={{ background: '#010709', borderTop: '1px solid hsl(0 0% 100% / 0.07)', padding: 'clamp(5rem, 10vw, 9rem) clamp(1.5rem, 4vw, 3.5rem)' }}>
+    <section style={{ background: '#010709', borderTop: '1px solid transparent', padding: 'clamp(5rem, 10vw, 9rem) clamp(1.5rem, 4vw, 3.5rem)' }}>
       <div style={{ maxWidth: '1480px', margin: '0 auto', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -725,11 +725,11 @@ function BlogCTA() {
             }}
           >
             Keep building{' '}
-            <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 500, color: 'var(--text-body)' }}>
+            <em style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 500, color: '#79D4E8' }}>
               smarter digital systems.
             </em>
           </h2>
-          <div aria-hidden="true" style={{ width: '2.5rem', height: '1px', background: 'rgba(255,216,107,0.45)', marginBottom: 'clamp(1.4rem, 3vw, 2rem)' }} />
+          <div aria-hidden="true" style={{ width: '2.5rem', height: '1px', background: 'rgba(121,212,232,0.45)', marginBottom: 'clamp(1.4rem, 3vw, 2rem)' }} />
           <p
             style={{
               fontFamily: 'var(--font-body)',
@@ -747,7 +747,7 @@ function BlogCTA() {
           </p>
           <a
             href="mailto:hello@weavyautomation.com"
-            className="font-body inline-flex items-center min-h-[44px] underline underline-offset-4 decoration-[#FFD86B]/40 hover:text-white transition-colors duration-300 [overflow-wrap:anywhere]"
+            className="font-body inline-flex items-center min-h-[44px] underline underline-offset-4 decoration-[#79D4E8]/40 hover:text-white transition-colors duration-300 [overflow-wrap:anywhere]"
             style={{ fontSize: 'clamp(0.875rem, 1.2vw, 0.9rem)', color: 'var(--text-body)' }}
           >
             hello@weavyautomation.com
@@ -819,10 +819,10 @@ export default function Blog() {
                 Ready to put the right{' '}
                 <em style={{
                   fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 500,
-                  background: 'linear-gradient(90deg, #FFFFFF 0%, #FFE9A8 45%, #FFD86B 100%)',
+                  background: 'linear-gradient(90deg, #F2F5F8 0%, #BCE9F3 45%, #79D4E8 100%)',
                   WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
                   color: 'transparent',
-                  textShadow: '0 0 24px rgba(255,216,107, 0.16)',
+                  textShadow: '0 0 24px rgba(121,212,232,0.16)',
                 }}>
                   ideas
                 </em>{' '}

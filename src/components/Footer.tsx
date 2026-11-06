@@ -7,28 +7,24 @@ import { servicePageFromPath } from '../lib/servicePages'
 const HLS_SRC = 'https://stream.mux.com/Aa02T7oM1wH5Mk5EEVDYhbZ1ChcdhRsS2m1NYyx4Ua1g.m3u8'
 const MARQUEE_WORD = 'BUILDING THE FUTURE'
 
-// Add the real Weavy profile URLs here. An icon only appears once its URL is set.
-const INSTAGRAM_URL = ''
-const FACEBOOK_URL = ''
-const TIKTOK_URL = ''
-const LINKEDIN_URL = ''
+// Add the official Weavy profile URLs here. An icon stays inactive (shown, but
+// not a link) until its URL is set. Never use a generic homepage.
+const INSTAGRAM_URL = 'https://www.instagram.com/weavyautomation/?hl=en'
+const FACEBOOK_URL = 'https://www.facebook.com/profile.php?id=61592026198702'
+const LINKEDIN_URL = 'https://www.linkedin.com/in/hussein-shekhey-07b3a4317/'
 
-const FOOTER_LINKS = [
-  { label: 'Services', href: '/services' },
-  { label: 'Work', href: '/work' },
-  { label: 'Blog', href: '/blog' },
-  { label: 'Contact', href: '/contact' },
-  { label: 'Privacy', href: '/privacy' },
-]
+const FOOTER_PRIVACY = { label: 'Privacy', href: '/privacy' }
 const FOOTER_EMAIL = 'hello@weavyautomation.com'
 const FOOTER_PHONE = { label: '+44 208 1295033', href: 'tel:+442081295033' }
 
+// The Facebook and LinkedIn viewBoxes are cropped so all three marks read at the
+// same optical size and sit centred in their rings.
 const SOCIALS = [
   {
     label: 'Instagram',
     href: INSTAGRAM_URL,
     icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
         <path d="M12 0C8.741 0 8.333.014 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.014 8.333 0 8.741 0 12s.014 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.986 8.741 24 12 24s3.667-.014 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.014-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.014 15.259 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.36-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.06-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162s2.757 6.162 6.162 6.162 6.162-2.76 6.162-6.162c0-3.405-2.757-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.645-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z" />
       </svg>
     ),
@@ -37,17 +33,8 @@ const SOCIALS = [
     label: 'Facebook',
     href: FACEBOOK_URL,
     icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <svg width="18" height="18" viewBox="1.1 3 22 22" fill="currentColor" aria-hidden="true">
         <path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.732-.009c-.229 0-.473.004-.729.011-.257.006-.437.011-.539.011-.376 0-.696.024-.956.079-.259.055-.474.145-.646.278-.171.132-.308.312-.412.541-.104.229-.156.516-.156.867v1.313h2.965l-.386 3.667h-2.579v7.98H9.101z" />
-      </svg>
-    ),
-  },
-  {
-    label: 'TikTok',
-    href: TIKTOK_URL,
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-        <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.43 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" />
       </svg>
     ),
   },
@@ -55,14 +42,14 @@ const SOCIALS = [
     label: 'LinkedIn',
     href: LINKEDIN_URL,
     icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <svg width="18" height="18" viewBox="-1.5 -1.5 27 27" fill="currentColor" aria-hidden="true">
         <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
       </svg>
     ),
   },
 ]
 
-/** `tuned` is set only by the bar-only footer (Services overview): the wave's
+/** `tuned` is set only by the bar-only footers (Privacy, 404): the wave's
  *  vertical offset, opacity and brightness then come from the --fw-* custom
  *  properties on `.footer--bar-only` in index.css. Every other footer —
  *  including the five service pages, which match the homepage — keeps the
@@ -213,7 +200,7 @@ export function Marquee() {
           color: rgba(216, 227, 229, 0.8);
         }
         .btf-sep {
-          color: rgba(255,216,107, 0.55);
+          color: rgba(121,212,232,0.55);
         }
         .btf-sr-only {
           position: absolute;
@@ -252,6 +239,7 @@ interface FooterProps {
   /** Anchor id on the <footer> element. Pass undefined on pages that already own #contact elsewhere. */
   id?: string
   eyebrow?: string
+  eyebrowColor?: string
   heading?: ReactNode
   /** Pass null to omit the supporting paragraph entirely (e.g. Social Media Marketing tab). */
   subtext?: ReactNode | null
@@ -266,6 +254,9 @@ interface FooterProps {
    *  the footer (e.g. the Services overview) so only one CTA is shown. The
    *  footer then renders just its bottom bar. Defaults to true. */
   showCta?: boolean
+  /** Set false to drop the sea-wave video and let the page's dark background
+   *  run through the footer (the Services overview). Defaults to true. */
+  showWave?: boolean
 }
 
 const DEFAULT_HEADING = (
@@ -273,10 +264,10 @@ const DEFAULT_HEADING = (
     Ready to{' '}
     <em style={{
       fontFamily: 'var(--font-body)', fontStyle: 'italic', fontWeight: 500,
-      background: 'linear-gradient(90deg, #FFFFFF 0%, #FFE9A8 45%, #FFD86B 100%)',
+      background: 'linear-gradient(90deg, #F2F5F8 0%, #BCE9F3 45%, #79D4E8 100%)',
       WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
       color: 'transparent',
-      textShadow: '0 0 24px rgba(255,216,107, 0.16)',
+      textShadow: '0 0 24px rgba(121,212,232,0.16)',
     }}>
       automate
     </em>{' '}
@@ -291,17 +282,17 @@ const DEFAULT_SUBTEXT = (
   </>
 )
 
-const activeSocials = SOCIALS.filter(social => social.href)
-
 export default function Footer({
   id = 'contact',
   eyebrow = 'Get in touch',
+  eyebrowColor = 'rgba(121,212,232,0.72)',
   heading = DEFAULT_HEADING,
   subtext = DEFAULT_SUBTEXT,
   ctaLabel = 'Book a Free Demo',
   ctaHref = 'mailto:hello@weavyautomation.com',
   ctaVariant = 'glass',
   showCta = true,
+  showWave = true,
 }: FooterProps = {}) {
   const isInternalCta = ctaHref.startsWith('/')
   // Footers on /services/<slug> show the homepage's wave (see
@@ -320,7 +311,7 @@ export default function Footer({
     >
       {/* Background video — sits above the plain section background, below the
           overlay and footer content (see z-index stack: video 0 < blend/overlay 1 < content 2) */}
-      <FooterVideo tuned={!showCta} />
+      {showWave && <FooterVideo tuned={!showCta} />}
       <div
         aria-hidden="true"
         style={{
@@ -394,7 +385,7 @@ export default function Footer({
               zIndex: 1,
               letterSpacing: '0.16em',
               textTransform: 'uppercase',
-              color: 'rgba(255,216,107, 0.72)',
+              color: eyebrowColor,
               marginBottom: '2rem',
             }}
           >
@@ -459,7 +450,7 @@ export default function Footer({
             <a
               href={ctaHref}
               onClick={isInternalCta ? (e) => { e.preventDefault(); goToPath(ctaHref) } : undefined}
-              className="font-body btn-glow-primary inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-medium active:scale-[0.97]"
+              className={`font-body btn-glow-primary${ctaLabel === 'Book a Free Demo' ? ' btn-demo' : ''} inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-medium active:scale-[0.97]`}
               style={{ transition: 'background-color 200ms, box-shadow 200ms, transform 100ms' }}
             >
               {ctaLabel}
@@ -484,8 +475,8 @@ export default function Footer({
               }}
               onMouseEnter={e => {
                 const el = e.currentTarget as HTMLAnchorElement
-                el.style.borderColor = 'hsl(44 100% 71% / 0.5)'
-                el.style.boxShadow   = '0 0 32px -6px hsl(44 100% 71% / 0.22), inset 0 0 16px -8px hsl(44 100% 71% / 0.07)'
+                el.style.borderColor = 'rgba(121,212,232,0.5)'
+                el.style.boxShadow   = '0 0 32px -6px rgba(121,212,232,0.22), inset 0 0 16px -8px rgba(121,212,232,0.07)'
                 el.style.background  = 'hsl(0 0% 100% / 0.05)'
               }}
               onMouseLeave={e => {
@@ -510,48 +501,52 @@ export default function Footer({
           className="footer-bottom-bar"
           style={{
             padding: '1.5rem clamp(1.5rem, 5vw, 3.5rem) 1.75rem',
-            borderTop: servicesFooter ? 'none' : '1px solid hsl(0 0% 100% / 0.08)',
+            borderTop: servicesFooter ? 'none' : '1px solid transparent',
           }}
         >
-          <nav aria-label="Footer" className="footer-links">
-            {FOOTER_LINKS.map(({ label, href }) => (
-              <a
-                key={href}
-                href={href}
-                className="footer-link"
-                onClick={(e) => {
-                  if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return
-                  e.preventDefault()
-                  goToPath(href)
-                }}
-              >
-                {label}
-              </a>
-            ))}
-          </nav>
+          <div className="footer-socials" role="group" aria-label="Weavy on social media">
+            {SOCIALS.map(({ label, href, icon }) =>
+              href ? (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Weavy on ${label} (opens in a new tab)`}
+                  className="footer-social-icon"
+                >
+                  {icon}
+                </a>
+              ) : (
+                <span
+                  key={label}
+                  role="img"
+                  aria-label={`${label}: link not yet available`}
+                  className="footer-social-icon footer-social-icon--inactive"
+                >
+                  {icon}
+                </span>
+              ),
+            )}
+          </div>
 
           <div className="footer-contact">
             <a className="footer-link" href={`mailto:${FOOTER_EMAIL}`}>{FOOTER_EMAIL}</a>
             <a className="footer-link" href={FOOTER_PHONE.href}>{FOOTER_PHONE.label}</a>
-            {activeSocials.length > 0 && (
-              <div className="footer-socials">
-                {activeSocials.map(({ label, href, icon }) => (
-                  <a
-                    key={label}
-                    href={href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={label}
-                    className="footer-social-icon"
-                  >
-                    {icon}
-                  </a>
-                ))}
-              </div>
-            )}
           </div>
 
           <div className="footer-meta">
+            <a
+              href={FOOTER_PRIVACY.href}
+              className="footer-link"
+              onClick={(e) => {
+                if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return
+                e.preventDefault()
+                goToPath(FOOTER_PRIVACY.href)
+              }}
+            >
+              {FOOTER_PRIVACY.label}
+            </a>
             <p className="footer-copyright-text">© {new Date().getFullYear()} Weavy. London, UK.</p>
           </div>
         </div>

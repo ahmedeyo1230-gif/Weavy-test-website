@@ -14,9 +14,6 @@ interface ServiceDef {
   glowRgb: string
 }
 
-const GOLD = '#FFD86B'
-const GOLD_RGB = '255 216 107'
-
 const SERVICES: ServiceDef[] = [
   {
     num: '01',
@@ -24,8 +21,8 @@ const SERVICES: ServiceDef[] = [
     title: 'Customer Conversations',
     description:
       'Voice agents and chatbots answer questions across phone, WhatsApp, Instagram, Facebook and your website, day or night.',
-    accent: GOLD,
-    glowRgb: GOLD_RGB,
+    accent: '#38BDF8',
+    glowRgb: '56 189 248',
   },
   {
     num: '02',
@@ -33,8 +30,8 @@ const SERVICES: ServiceDef[] = [
     title: 'Lead Capture & CRM',
     description:
       'Every enquiry is captured, qualified and added to your CRM, with high-value leads routed to the right person.',
-    accent: GOLD,
-    glowRgb: GOLD_RGB,
+    accent: '#22C55E',
+    glowRgb: '34 197 94',
   },
   {
     num: '03',
@@ -42,8 +39,8 @@ const SERVICES: ServiceDef[] = [
     title: 'Bookings & Follow-Ups',
     description:
       'Customers book directly or are handed to your team, and follow-ups are triggered automatically.',
-    accent: GOLD,
-    glowRgb: GOLD_RGB,
+    accent: '#A855F7',
+    glowRgb: '168 85 247',
   },
   {
     num: '04',
@@ -51,15 +48,22 @@ const SERVICES: ServiceDef[] = [
     title: 'Analytics & Insight',
     description:
       'See where each enquiry came from, how quickly it was answered and what it turned into.',
-    accent: GOLD,
-    glowRgb: GOLD_RGB,
+    accent: '#F59E0B',
+    glowRgb: '245 158 11',
   },
 ]
 
 // Node centre from panel left edge: px-6 (24px) + half of w-8 (16px) = 40px
 const SPINE_LEFT = 40
 
-const ROW_TITLE = '#F7F8F8'
+// Heading tints derived from each row's accent (lighter so they hold AA
+// contrast on the tinted row backgrounds). Hover still lifts to near-white.
+const ARCH_TITLE_TINT: Record<string, string> = {
+  '#38BDF8': '#8EDFF5', // Customer Conversations: cyan
+  '#22C55E': '#7BE0AE', // Lead Capture & CRM: emerald
+  '#A855F7': '#C4A7FF', // Bookings & Follow-Ups: violet
+  '#F59E0B': '#E6C27A', // Analytics & Insight: champagne-amber
+}
 
 // ─── Module row ───────────────────────────────────────────────────────────────
 
@@ -85,7 +89,7 @@ function ModuleRow({ svc, index }: { svc: ServiceDef; index: number }) {
       iconRef.current.style.color       = svc.accent
       iconRef.current.style.background  = `rgb(${svc.glowRgb} / 0.08)`
     }
-    if (titleRef.current) titleRef.current.style.color = GOLD
+    if (titleRef.current) titleRef.current.style.color = '#f8fafc'
   }
 
   const leave = () => {
@@ -104,7 +108,7 @@ function ModuleRow({ svc, index }: { svc: ServiceDef; index: number }) {
       iconRef.current.style.color       = svc.accent
       iconRef.current.style.background  = `rgb(${svc.glowRgb} / 0.06)`
     }
-    if (titleRef.current) titleRef.current.style.color = ROW_TITLE
+    if (titleRef.current) titleRef.current.style.color = ARCH_TITLE_TINT[svc.accent]
   }
 
   return (
@@ -185,7 +189,7 @@ function ModuleRow({ svc, index }: { svc: ServiceDef; index: number }) {
             <h3
               ref={titleRef}
               className="font-heading font-medium tracking-tight m-arch-title"
-              style={{ fontSize: '16px', color: ROW_TITLE, transition: 'color 220ms', ['--arch-title' as string]: ROW_TITLE }}
+              style={{ fontSize: '16px', color: ARCH_TITLE_TINT[svc.accent], transition: 'color 220ms', ['--arch-title' as string]: ARCH_TITLE_TINT[svc.accent] }}
             >
               {svc.title}
             </h3>
@@ -216,7 +220,7 @@ function ArchitecturePanel() {
         boxShadow:
           '0 0 0 1px hsl(0 0% 100% / 0.02),' +
           '0 24px 64px -12px hsl(0 0% 0% / 0.5),' +
-          '0 0 80px -30px hsl(44 100% 71% / 0.08)',
+          '0 0 80px -30px hsl(199 89% 60% / 0.08)',
       }}
     >
       {/* Top accent line */}
@@ -224,7 +228,7 @@ function ArchitecturePanel() {
         className="absolute top-0 left-0 right-0 h-px pointer-events-none"
         style={{
           background:
-            'linear-gradient(to right, transparent 5%, hsl(44 100% 71% / 0.5) 28%, hsl(44 100% 71% / 0.25) 60%, transparent 95%)',
+            'linear-gradient(to right, transparent 5%, hsl(199 89% 60% / 0.5) 28%, hsl(270 91% 65% / 0.25) 60%, transparent 95%)',
         }}
       />
 
@@ -240,7 +244,7 @@ function ArchitecturePanel() {
           <div
             className="w-[7px] h-[7px] rounded-full"
             style={{
-              background: '#FFD86B',
+              background: '#22C55E',
               boxShadow: '0 0 6px #22C55E88',
               animation: 'energy-core-breathe 2.4s ease-in-out infinite',
             }}
@@ -289,7 +293,7 @@ function ArchitecturePanel() {
         className="h-px pointer-events-none"
         style={{
           background:
-            'linear-gradient(to right, transparent, hsl(44 100% 71% / 0.07), transparent)',
+            'linear-gradient(to right, transparent, hsl(199 89% 60% / 0.07), transparent)',
         }}
       />
     </motion.div>
@@ -339,7 +343,7 @@ export default function SystemsShowcase() {
               className="font-heading text-4xl md:text-5xl font-medium tracking-tight mb-6 text-primary"
             >
               Four systems that keep{' '}
-              <span className="font-serif italic text-gold">enquiries moving</span>
+              <span className="font-serif italic text-ocean">enquiries moving</span>
             </motion.h2>
 
             <motion.p
@@ -391,7 +395,7 @@ export default function SystemsShowcase() {
               style={{
                 inset: '-48px',
                 background:
-                  'radial-gradient(ellipse at 50% 25%, hsl(44 100% 71% / 0.06), transparent 65%)',
+                  'radial-gradient(ellipse at 50% 25%, hsl(199 89% 60% / 0.06), transparent 65%)',
               }}
             />
             <ArchitecturePanel />

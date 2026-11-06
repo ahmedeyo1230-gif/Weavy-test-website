@@ -46,7 +46,7 @@ function StatCounter({ value, suffix = '', prefix = '', bigText, label, descript
       className="flex flex-col items-center justify-center text-center px-4 sm:px-6 py-10 sm:py-12 relative group"
     >
       {/* Subtle top accent line that appears on hover */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-8 h-[1px] bg-gradient-to-r from-transparent via-gold/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-8 h-[1px] bg-gradient-to-r from-transparent via-ocean/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
       {value !== undefined ? (
         <div
@@ -100,7 +100,7 @@ export default function Stats() {
         className="absolute inset-0 pointer-events-none"
         aria-hidden="true"
         style={{
-          background: 'radial-gradient(ellipse 70% 60% at 50% 50%, hsl(44 100% 71% / 0.045) 0%, transparent 70%)',
+          background: 'radial-gradient(ellipse 70% 60% at 50% 50%, rgba(121,212,232,0.045) 0%, transparent 70%)',
         }}
       />
 

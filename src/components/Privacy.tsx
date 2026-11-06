@@ -21,7 +21,7 @@ export default function Privacy() {
           </h1>
           <p className="font-body mt-5" style={{ color: 'var(--text-body)', lineHeight: 1.8 }}>
             This notice explains what happens to your information when you use this website or contact Weavy. For any privacy question, email{' '}
-            <a className="text-gold underline underline-offset-4" href="mailto:hello@weavyautomation.com">hello@weavyautomation.com</a>.
+            <a className="text-ocean underline underline-offset-4" href="mailto:hello@weavyautomation.com">hello@weavyautomation.com</a>.
           </p>
 
           <Block title="When you contact us">
@@ -51,7 +51,7 @@ export default function Privacy() {
           <Block title="Your rights">
             <p>
               Under UK data protection law, you can ask to access, correct or delete the personal information we hold about you, or object to how we use it. Email us and we&rsquo;ll respond. You can also complain to the UK Information Commissioner&rsquo;s Office at{' '}
-              <a className="text-gold underline underline-offset-4" href="https://ico.org.uk" target="_blank" rel="noopener noreferrer">ico.org.uk</a>.
+              <a className="text-ocean underline underline-offset-4" href="https://ico.org.uk" target="_blank" rel="noopener noreferrer">ico.org.uk</a>.
             </p>
           </Block>
         </div>

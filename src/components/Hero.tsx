@@ -282,7 +282,7 @@ export function Navbar() {
         <a
           href="/contact"
           onClick={(e) => { e.preventDefault(); setActive('Contact'); goToPath('/contact') }}
-          className="font-body btn-glow-primary hidden md:inline-flex items-center gap-1.5 text-xs lg:text-sm px-4 py-2 min-h-[44px] xl:min-h-0 rounded-full font-medium active:scale-[0.97] shrink-0"
+          className="font-body btn-glow-primary btn-demo hidden md:inline-flex items-center gap-1.5 text-xs lg:text-sm px-4 py-2 min-h-[44px] xl:min-h-0 rounded-full font-medium active:scale-[0.97] shrink-0"
           style={{ transition: 'background-color 150ms, box-shadow 150ms, transform 100ms' }}
         >
           Book a Free Demo
@@ -369,7 +369,7 @@ export function Navbar() {
                   setMenuOpen(false)
                   goToPath('/contact')
                 }}
-                className="font-body btn-glow-primary flex items-center justify-center rounded-full px-6 py-3.5 text-sm font-medium"
+                className="font-body btn-glow-primary btn-demo flex items-center justify-center rounded-full px-6 py-3.5 text-sm font-medium"
               >
                 Book a Free Demo
               </a>
@@ -530,7 +530,7 @@ export default function Hero() {
             <a
               href="/contact"
               onClick={(e) => { e.preventDefault(); goToPath('/contact') }}
-              className="font-body btn-glow-primary inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-medium active:scale-[0.97]"
+              className="font-body btn-glow-primary btn-demo inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-medium active:scale-[0.97]"
               style={{ transition: 'background-color 200ms, box-shadow 200ms, transform 100ms' }}
             >
               Book a Free Demo →

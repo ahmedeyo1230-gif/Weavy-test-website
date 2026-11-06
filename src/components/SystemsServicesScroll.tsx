@@ -5,9 +5,9 @@ import { GradientDots } from './ui/gradient-dots'
 
 const E: [number, number, number, number] = [0.16, 1, 0.3, 1]
 
-const BLUE = '#FFD86B'
-const VIOLET_HEADING = '#FFD86B'
-const VIOLET_DOT = '#FFD86B'
+const BLUE = '#6F8CFF'
+const VIOLET_HEADING = '#B7AEFF'
+const VIOLET_DOT = '#9F94FF'
 
 const SYSTEMS_ITEMS = ['Voice Receptionists', 'Voice Agents', 'Chatbots', 'Messaging', 'CRM & Bookings', 'Analytics']
 const SERVICES_ITEMS = ['Bespoke Websites', 'Social Media', 'Paid Advertising', 'Creative Design', 'UGC & Creator Content']
@@ -123,7 +123,7 @@ export default function SystemsServicesScroll() {
           heading="Systems"
           items={SYSTEMS_ITEMS}
           accent={BLUE}
-          ambientRgb="rgba(255,216,107,0.07)"
+          ambientRgb="rgba(111,140,255,0.07)"
           bgBase="#010709"
           reduced={reduced}
           className="ssp-panel--systems"
@@ -137,7 +137,7 @@ export default function SystemsServicesScroll() {
           items={SERVICES_ITEMS}
           accent={VIOLET_DOT}
           headingColor={VIOLET_HEADING}
-          ambientRgb="rgba(255,216,107, 0.058)"
+          ambientRgb="rgba(159, 148, 255, 0.058)"
           bgBase="#010709"
           reduced={reduced}
           className="ssp-panel--services"
@@ -173,7 +173,7 @@ export default function SystemsServicesScroll() {
               className="ssp-closing"
             >
               Everything your business needs to grow—
-              <span className="weavy-shimmer-text">connected and managed by one team</span>.
+              <span className="weavy-shimmer-silver">connected and managed by one team</span>.
             </motion.p>
 
             <motion.div
@@ -266,7 +266,7 @@ const CSS = `
   font-size: 16px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: #FFD86B;
+  color: rgba(191, 225, 245, 0.78);
   pointer-events: none;
 }
 
@@ -289,7 +289,7 @@ const CSS = `
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background-image: radial-gradient(rgba(255,216,107,var(--ssp-dots-alpha, 0.045)) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(125,220,255,var(--ssp-dots-alpha, 0.045)) 1px, transparent 1px);
   background-size: 28px 28px;
   mask-image: radial-gradient(ellipse 70% 60% at 50% 45%, black 20%, transparent 100%);
   -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 45%, black 20%, transparent 100%);
@@ -437,7 +437,7 @@ const CSS = `
   align-items: center;
   gap: 14px;
   margin-top: clamp(60px, 6vw, 80px);
-  color: rgba(255,216,107, 0.68);
+  color: rgba(125, 220, 255, 0.68);
 }
 
 .ssp-scroll-cue-text {

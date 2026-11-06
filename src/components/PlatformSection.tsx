@@ -284,14 +284,14 @@ export default function PlatformSection() {
         {/* ── Header — its own display treatment, not the italic "Our Services" style ── */}
         <div className="text-center max-w-3xl mx-auto" style={{ marginBottom: 'clamp(4rem, 8vw, 6rem)' }}>
           <div className="ocs-header-el inline-flex items-center gap-3" style={{ marginBottom: '1.4rem' }}>
-            <span aria-hidden="true" style={{ width: 28, height: 1, background: '#FFD86B80' }} />
+            <span aria-hidden="true" style={{ width: 28, height: 1, background: '#79D4E880' }} />
             <span
               className="font-label font-medium uppercase"
-              style={{ fontSize: 'clamp(13px, 1.3vw, 15px)', letterSpacing: '0.16em', color: '#FFD86B' }}
+              style={{ fontSize: 'clamp(13px, 1.3vw, 15px)', letterSpacing: '0.16em', color: '#79D4E8' }}
             >
               One Connected System
             </span>
-            <span aria-hidden="true" style={{ width: 28, height: 1, background: '#FFD86B80' }} />
+            <span aria-hidden="true" style={{ width: 28, height: 1, background: '#79D4E880' }} />
           </div>
 
           <h2
@@ -405,7 +405,7 @@ export default function PlatformSection() {
           <a
             href="/contact"
             onClick={(e) => { e.preventDefault(); goToPath('/contact') }}
-            className="font-body btn-glow-primary inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-medium active:scale-[0.97]"
+            className="font-body btn-glow-primary btn-demo inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-medium active:scale-[0.97]"
             style={{ transition: 'background-color 200ms, box-shadow 200ms, transform 100ms' }}
           >
             Book a Free Demo →

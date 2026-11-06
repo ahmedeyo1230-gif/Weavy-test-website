@@ -83,7 +83,7 @@ export default function About() { // no diagonal lines bg
       <div
         className="absolute top-1/3 right-1/4 w-[520px] h-[520px] rounded-full pointer-events-none"
         aria-hidden="true"
-        style={{ background: 'hsl(44 100% 71% / 0.04)', filter: 'blur(110px)' }}
+        style={{ background: 'rgba(165,180,252,0.04)', filter: 'blur(110px)' }}
       />
 
       <div className="max-w-6xl mx-auto">
@@ -116,9 +116,9 @@ export default function About() { // no diagonal lines bg
               <br className="hidden sm:block" />
               {' '}
               <em
-                className="font-serif italic"
+                className="font-serif italic weavy-shimmer-about"
                 style={{
-                  color: '#FFD86B',
+                  color: '#A5B4FC',
                 }}
               >less complicated</em>.
             </motion.h2>
@@ -160,8 +160,8 @@ export default function About() { // no diagonal lines bg
                     transition={{ duration: 0.35, delay: 0.22 + i * 0.055, ease: E }}
                     className="inline-flex items-center gap-1.5 text-xs uppercase tracking-wide rounded-full px-4 py-2 select-none"
                     style={{
-                      color: 'rgba(255,216,107,0.82)',
-                      border: '1px solid rgba(255,216,107,0.38)',
+                      color: 'rgba(165,180,252,0.82)',
+                      border: '1px solid rgba(165,180,252,0.38)',
                       backgroundColor: 'rgba(6,17,20,0.50)',
                       boxShadow: 'none',
                       transition: 'border-color 200ms, color 200ms, background-color 200ms, box-shadow 200ms',
@@ -169,7 +169,7 @@ export default function About() { // no diagonal lines bg
                   >
                     <span
                       className="w-[5px] h-[5px] rounded-full shrink-0"
-                      style={{ background: 'rgba(255,216,107,0.72)' }}
+                      style={{ background: 'rgba(165,180,252,0.72)' }}
                     />
                     {tag}
                   </motion.span>
@@ -185,7 +185,7 @@ export default function About() { // no diagonal lines bg
               className="h-px w-full max-w-[220px]"
               style={{
                 transformOrigin: 'left center',
-                background: 'linear-gradient(to right, hsl(44 100% 71% / 0.6), transparent)',
+                background: 'linear-gradient(to right, rgba(165,180,252,0.6), transparent)',
               }}
             />
 
@@ -265,18 +265,18 @@ export default function About() { // no diagonal lines bg
                   left: '14px',
                   width: '72px',
                   height: '2px',
-                  background: 'linear-gradient(90deg, transparent, rgba(255,216,107,0.65), rgba(255,216,107,0.75), transparent)',
+                  background: 'linear-gradient(90deg, transparent, rgba(165,180,252,0.65), rgba(165,180,252,0.75), transparent)',
                   opacity: 0.9,
                   borderRadius: '0 0 2px 2px',
                   overflow: 'hidden',
-                  boxShadow: '0 0 8px 1px rgba(255,216,107,0.35)',
+                  boxShadow: '0 0 8px 1px rgba(165,180,252,0.35)',
                 }}
               >
                 <div className="gold-line-glint" />
               </div>
               <div
                 className="font-label select-none mb-2.5 sm:mb-4"
-                style={{ fontSize: '0.8rem', color: '#FFD86B' }}
+                style={{ fontSize: '0.8rem', color: '#A5B4FC' }}
               >
                 {svc.num}
               </div>
@@ -287,7 +287,7 @@ export default function About() { // no diagonal lines bg
                   return (
                     <>
                       {parts[0]}
-                      <span style={{ color: '#FFD86B' }}>{svc.highlight}</span>
+                      <span style={{ color: '#A5B4FC' }}>{svc.highlight}</span>
                       {parts[1]}
                     </>
                   )

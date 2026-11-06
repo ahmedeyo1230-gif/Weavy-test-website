@@ -259,7 +259,7 @@ export default function WhyWeavyWorks() {
       <div className="absolute pointer-events-none" aria-hidden="true"
         style={{
           top: '-15%', left: '-8%', width: '60%', height: '72%',
-          background: 'radial-gradient(ellipse at center, hsl(44 100% 71% / 0.07) 0%, hsl(44 100% 71% / 0.04) 40%, transparent 68%)',
+          background: 'radial-gradient(ellipse at center, rgba(121,212,232,0.07) 0%, rgba(121,212,232,0.04) 40%, transparent 68%)',
         }}
       />
 
@@ -309,7 +309,7 @@ export default function WhyWeavyWorks() {
             className="font-heading text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight text-primary"
           >
             Built with{' '}
-            <span className="font-serif italic text-gold">strategy</span>,
+            <span className="font-serif italic text-ocean">strategy</span>,
             powered by automation.
           </motion.h2>
           <motion.p
@@ -349,23 +349,23 @@ export default function WhyWeavyWorks() {
               style={{
                 transition: 'background-color 250ms, border-color 250ms, box-shadow 250ms',
                 background: 'rgba(8,30,38,0.45)',
-                border: '1px solid rgba(255,216,107,0.28)',
-                boxShadow: '0 0 20px rgba(255,216,107,0.06)',
+                border: '1px solid rgba(121,212,232,0.28)',
+                boxShadow: '0 0 20px rgba(121,212,232,0.06)',
               }}
               onMouseEnter={e => {
                 (e.currentTarget as HTMLElement).style.background = 'rgba(9,27,36,0.75)'
-                ;(e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,216,107,0.34)'
-                ;(e.currentTarget as HTMLElement).style.boxShadow = '0 0 28px rgba(255,216,107,0.09)'
+                ;(e.currentTarget as HTMLElement).style.borderColor = 'rgba(121,212,232,0.34)'
+                ;(e.currentTarget as HTMLElement).style.boxShadow = '0 0 28px rgba(121,212,232,0.09)'
               }}
               onMouseLeave={e => {
                 (e.currentTarget as HTMLElement).style.background = 'rgba(8,30,38,0.45)'
-                ;(e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,216,107,0.28)'
-                ;(e.currentTarget as HTMLElement).style.boxShadow = '0 0 20px rgba(255,216,107,0.06)'
+                ;(e.currentTarget as HTMLElement).style.borderColor = 'rgba(121,212,232,0.28)'
+                ;(e.currentTarget as HTMLElement).style.boxShadow = '0 0 20px rgba(121,212,232,0.06)'
               }}
             >
               <div
                 className="flex-shrink-0 w-11 h-11 rounded-full flex items-center justify-center"
-                style={{ background: 'rgba(6,22,30,0.9)', border: '1px solid rgba(255,216,107,0.30)', color: '#FFD86B', boxShadow: '0 0 16px rgba(255,216,107,0.13)', transition: 'color 250ms, border-color 250ms, box-shadow 250ms' }}
+                style={{ background: 'rgba(6,22,30,0.9)', border: '1px solid rgba(121,212,232,0.30)', color: '#79D4E8', boxShadow: '0 0 16px rgba(121,212,232,0.13)', transition: 'color 250ms, border-color 250ms, box-shadow 250ms' }}
               >
                 {feature.icon}
               </div>

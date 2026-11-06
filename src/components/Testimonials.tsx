@@ -16,7 +16,7 @@ const testimonials = [
     name: 'Lila Karim',
     role: 'Creative Director, Level UP',
     initials: 'LK',
-    avatarGradient: 'linear-gradient(135deg, hsl(44 45% 26%), hsl(44 45% 16%))',
+    avatarGradient: 'linear-gradient(135deg, hsl(340 60% 26%), hsl(280 55% 16%))',
     quote:
       'Working with Weavy completely changed how we show up online. The social media strategy and content they delivered felt premium from day one — our engagement grew, our brand looked sharper, and clients started coming to us instead of the other way around.',
   },
@@ -36,9 +36,9 @@ function Avatar({
       <div
         className="font-label w-9 h-9 rounded-full flex items-center justify-center text-xs font-medium tracking-wide shrink-0 select-none"
         style={{
-          background: avatarGradient ?? 'linear-gradient(135deg, hsl(44 45% 22%), hsl(44 45% 14%))',
+          background: avatarGradient ?? 'linear-gradient(135deg, hsl(199 70% 22%), hsl(230 60% 14%))',
           border: '1px solid rgba(255,255,255,0.12)',
-          color: 'hsl(44 100% 71%)',
+          color: 'hsl(199 85% 84%)',
         }}
       >
         {initials}
@@ -98,10 +98,10 @@ export default function TestimonialsSection() {
           transition={{ duration: 0.7, ease: E }}
           className="text-center mb-20"
         >
-          <p className="font-label font-medium text-xs uppercase tracking-widest text-gold mb-4">Testimonials</p>
+          <p className="font-label font-medium text-xs uppercase tracking-widest text-ocean mb-4">Testimonials</p>
           <h2 className="font-heading text-3xl md:text-5xl font-medium tracking-tight mb-4 text-primary">
             Don't just take our{' '}
-            <span className="font-serif italic text-gold-shimmer">word</span>{' '}
+            <span className="font-serif italic text-ocean">word</span>{' '}
             for it
           </h2>
           <p className="font-body max-w-lg mx-auto text-sm font-medium leading-relaxed" style={{ color: 'var(--text-body)', lineHeight: 1.75 }}>
@@ -126,8 +126,8 @@ export default function TestimonialsSection() {
               }}
               onMouseEnter={e => {
                 const el = e.currentTarget as HTMLDivElement
-                el.style.borderColor = 'hsl(44 100% 71% / 0.18)'
-                el.style.boxShadow = '0 0 30px rgba(255,216,107,0.04)'
+                el.style.borderColor = 'rgba(121,212,232,0.18)'
+                el.style.boxShadow = '0 0 30px rgba(121,212,232,0.04)'
               }}
               onMouseLeave={e => {
                 const el = e.currentTarget as HTMLDivElement

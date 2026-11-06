@@ -70,7 +70,7 @@ export function TestimonialsSection({
         aria-hidden="true"
         className="pointer-events-none absolute inset-0"
         style={{
-          background: 'radial-gradient(ellipse 60% 45% at 50% 0%, hsl(44 100% 71% / 0.05) 0%, transparent 70%)',
+          background: 'radial-gradient(ellipse 60% 45% at 50% 0%, rgba(121,212,232,0.05) 0%, transparent 70%)',
         }}
       />
 
@@ -98,11 +98,11 @@ export function TestimonialsSection({
             style={{
               fontSize: '0.75rem',
               letterSpacing: '0.16em',
-              color: 'hsl(44 100% 71%)',
-              border: '1px solid hsl(44 100% 71% / 0.3)',
+              color: '#79D4E8',
+              border: '1px solid rgba(121,212,232,0.3)',
               borderRadius: '999px',
               padding: '0.3rem 0.9rem',
-              background: 'hsl(44 100% 71% / 0.06)',
+              background: 'rgba(121,212,232,0.06)',
             }}
           >
             {badgeText}
@@ -146,8 +146,8 @@ export function TestimonialsSection({
                   boxShadow: '0 4px 32px -8px hsl(0 0% 0% / 0.5)',
                 }}
                 onMouseEnter={e => {
-                  (e.currentTarget as HTMLElement).style.borderColor = 'hsl(44 100% 71% / 0.2)'
-                  ;(e.currentTarget as HTMLElement).style.background = 'hsl(44 100% 71% / 0.04)'
+                  (e.currentTarget as HTMLElement).style.borderColor = 'rgba(121,212,232,0.2)'
+                  ;(e.currentTarget as HTMLElement).style.background = 'rgba(121,212,232,0.04)'
                 }}
                 onMouseLeave={e => {
                   (e.currentTarget as HTMLElement).style.borderColor = 'hsl(0 0% 100% / 0.07)'
@@ -201,9 +201,9 @@ export function TestimonialsSection({
                           height: 36,
                           fontSize: '0.75rem',
                           letterSpacing: '0.02em',
-                          background: t.avatarGradient ?? 'linear-gradient(135deg, hsl(44 45% 22%), hsl(44 45% 14%))',
+                          background: t.avatarGradient ?? 'linear-gradient(135deg, hsl(199 70% 22%), hsl(230 60% 14%))',
                           border: '1px solid hsl(0 0% 100% / 0.12)',
-                          color: 'hsl(44 100% 71%)',
+                          color: 'hsl(199 85% 84%)',
                         }}
                       >
                         {t.avatarInitials}
