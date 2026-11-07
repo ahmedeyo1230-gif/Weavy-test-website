@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, useCallback } from 'react'
 import Footer from './Footer'
 import { useMediaQuery } from '../lib/useMediaQuery'
+import LazyVideo from './ui/lazy-video'
 
 
 // ─── Types ─────────────────────────────────────────────────────────────────────
@@ -989,7 +990,9 @@ function WorkGallery() {
 
 // ─── Main export ───────────────────────────────────────────────────────────────
 
-const WORK_HERO_SRC = 'https://pub-731d5e7deddb4fce94cef7393920d429.r2.dev/section-work.mp4'
+const WORK_HERO_SRC = '/brand_assets/section-work-2560.mp4'
+const WORK_HERO_MOBILE_SRC = '/brand_assets/section-work-1600.mp4'
+const WORK_HERO_POSTER = '/brand_assets/section-work-poster.webp'
 
 // Phone/tablet hero: the desktop video has its heading baked into the left
 // half, so on a narrow screen it gets cropped / shrunk to an unreadable size.
@@ -1039,21 +1042,21 @@ function WorkHero() {
       >
         {/* Frame is ~2:1 (4032×2056); the visual spans x≈57–93%, y≈3–76%. Scale so that
             span fills the square (with a little air) and offset it into view. */}
-        <video
+        <LazyVideo
+          eager
           src={WORK_HERO_SRC}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          style={{ position: 'absolute', width: '250%', maxWidth: 'none', height: 'auto', left: '-136%', top: '-1%' }}
+          mobileSrc={WORK_HERO_MOBILE_SRC}
+          poster={WORK_HERO_POSTER}
+          style={{ position: 'absolute', width: '250%', maxWidth: 'none', height: 'auto', aspectRatio: '4032 / 2056', left: '-136%', top: '-1%' }}
         />
       </div>
     </div>
   )
 }
 
-const WORK_STORY_SRC = 'https://pub-731d5e7deddb4fce94cef7393920d429.r2.dev/HERO_SECTION2.mp4'
+const WORK_STORY_SRC = '/brand_assets/HERO_SECTION2-1920.mp4'
+const WORK_STORY_MOBILE_SRC = '/brand_assets/HERO_SECTION2-1280.mp4'
+const WORK_STORY_POSTER = '/brand_assets/HERO_SECTION2-poster.webp'
 
 // Phone version of the "Every project begins with a single question" video:
 // its copy is baked into the left ~30% of the 16:9 frame (≈5–12px on a
@@ -1076,14 +1079,11 @@ function WorkStoryPhone() {
       <span aria-hidden="true" style={{ display: 'block', width: '60%', height: 1, background: 'rgba(235,240,242,0.35)', margin: '1.6rem 0 1.75rem' }} />
       </div>
       <div aria-hidden="true" style={{ position: 'relative', width: '100%', aspectRatio: '1.138 / 1', overflow: 'hidden', borderRadius: '0.75rem' }}>
-        <video
+        <LazyVideo
           src={WORK_STORY_SRC}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          style={{ position: 'absolute', top: 0, left: '-56.25%', width: '156.25%', maxWidth: 'none', height: 'auto' }}
+          mobileSrc={WORK_STORY_MOBILE_SRC}
+          poster={WORK_STORY_POSTER}
+          style={{ position: 'absolute', top: 0, left: '-56.25%', width: '156.25%', maxWidth: 'none', height: 'auto', aspectRatio: '16 / 9' }}
         />
       </div>
     </div>
@@ -1123,12 +1123,9 @@ export default function ImageShowcase() {
       >
         {isPhone ? <WorkStoryPhone /> : (
         <div className="relative max-w-[109rem] mx-auto px-[4px] sm:px-[7px] lg:px-8">
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
+          <LazyVideo
+            src={WORK_STORY_SRC}
+            poster={WORK_STORY_POSTER}
             style={{
               display: 'block',
               width: '100%',
@@ -1138,9 +1135,7 @@ export default function ImageShowcase() {
               objectPosition: 'center center',
               borderRadius: '0.75rem',
             }}
-          >
-            <source src={WORK_STORY_SRC} type="video/mp4" />
-          </video>
+          />
         </div>
         )}
 

@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useImperativeHandle, useRef } from 'react';
 import type { HTMLAttributes } from 'react';
 
 const cn = (...classes: (string | undefined | null | false)[]) =>
@@ -31,8 +31,26 @@ const CircularGallery = React.forwardRef<HTMLDivElement, CircularGalleryProps>(
     const [isScrolling, setIsScrolling] = useState(false);
     const scrollTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
     const animationFrameRef = useRef<number | null>(null);
+    const rootRef = useRef<HTMLDivElement>(null);
+    useImperativeHandle(ref, () => rootRef.current as HTMLDivElement);
+    // Nearby: the photos can start loading, and it keeps turning. Off screen it
+    // would otherwise re-render every card on every frame for nothing.
+    const [isNear, setIsNear] = useState(false);
+    const [photosRequested, setPhotosRequested] = useState(false);
 
     useEffect(() => {
+      const el = rootRef.current;
+      if (!el) return;
+      const observer = new IntersectionObserver(([entry]) => {
+        setIsNear(entry.isIntersecting);
+        if (entry.isIntersecting) setPhotosRequested(true);
+      }, { rootMargin: '300px 0px' });
+      observer.observe(el);
+      return () => observer.disconnect();
+    }, []);
+
+    useEffect(() => {
+      if (!isNear) return;
       const handleScroll = () => {
         setIsScrolling(true);
         if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current);
@@ -48,9 +66,10 @@ const CircularGallery = React.forwardRef<HTMLDivElement, CircularGalleryProps>(
         window.removeEventListener('scroll', handleScroll);
         if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current);
       };
-    }, []);
+    }, [isNear]);
 
     useEffect(() => {
+      if (!isNear) return;
       const autoRotate = () => {
         if (!isScrolling) setRotation(prev => prev + autoRotateSpeed);
         animationFrameRef.current = requestAnimationFrame(autoRotate);
@@ -59,13 +78,13 @@ const CircularGallery = React.forwardRef<HTMLDivElement, CircularGalleryProps>(
       return () => {
         if (animationFrameRef.current) cancelAnimationFrame(animationFrameRef.current);
       };
-    }, [isScrolling, autoRotateSpeed]);
+    }, [isNear, isScrolling, autoRotateSpeed]);
 
     const anglePerItem = 360 / items.length;
 
     return (
       <div
-        ref={ref}
+        ref={rootRef}
         role="region"
         aria-label="Circular 3D Gallery"
         className={cn('relative w-full h-full flex items-center justify-center', className)}
@@ -115,7 +134,7 @@ const CircularGallery = React.forwardRef<HTMLDivElement, CircularGalleryProps>(
                   <img
                     loading="lazy"
                     decoding="async"
-                    src={item.photo.url}
+                    src={photosRequested ? item.photo.url : undefined}
                     alt={item.photo.text}
                     className="absolute inset-0 w-full h-full object-cover"
                     style={{ objectPosition: item.photo.pos ?? 'center' }}

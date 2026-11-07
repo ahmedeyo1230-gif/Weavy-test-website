@@ -85,9 +85,10 @@ const NoiseCanvas = ({ patternRefreshInterval = 3, patternAlpha = 20 }: { patter
     let f = 0, id = 0;
     const S = 1024;
     const resize = () => { c.width = S; c.height = S; c.style.width = "100%"; c.style.height = "100%"; };
+    // One reusable buffer: a new 4MB one per draw kept the garbage collector busy.
+    const img = ctx.createImageData(S, S);
+    const d = img.data;
     const draw = () => {
-      const img = ctx.createImageData(S, S);
-      const d = img.data;
       for (let i = 0; i < d.length; i += 4) {
         const v = Math.random() * 255;
         d[i] = v; d[i + 1] = v; d[i + 2] = v; d[i + 3] = patternAlpha;
@@ -97,8 +98,13 @@ const NoiseCanvas = ({ patternRefreshInterval = 3, patternAlpha = 20 }: { patter
     const loop = () => { if (f % patternRefreshInterval === 0) draw(); f++; id = requestAnimationFrame(loop); };
     window.addEventListener("resize", resize);
     resize();
-    loop();
-    return () => { window.removeEventListener("resize", resize); cancelAnimationFrame(id); };
+    // Only redraw while the grain can be seen.
+    const inView = new IntersectionObserver(([entry]) => {
+      cancelAnimationFrame(id);
+      if (entry.isIntersecting) loop();
+    });
+    inView.observe(c);
+    return () => { window.removeEventListener("resize", resize); inView.disconnect(); cancelAnimationFrame(id); };
   }, [patternRefreshInterval, patternAlpha]);
   return <canvas ref={ref} className="pointer-events-none absolute inset-0 w-full h-full" style={{ imageRendering: "pixelated" }} />;
 };

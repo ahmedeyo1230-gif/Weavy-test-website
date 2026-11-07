@@ -798,14 +798,16 @@ html {
   }
 }
 
-/* ── About heading: "less complicated", periwinkle to ocean cyan ──────────── */
+/* ── About heading: "less complicated", a pearl sweep over cyan and periwinkle ─ */
 @supports (background-clip: text) or (-webkit-background-clip: text) {
   .weavy-shimmer-about {
     /* Room for the italic overhang, which the text clip would otherwise cut;
        the negative margin keeps the line exactly where it was. */
     padding-inline-end: 0.1em;
     margin-inline-end: -0.1em;
-    background-image: linear-gradient(90deg, #A5B4FC 0%, #79D4E8 50%, #A5B4FC 100%);
+    /* Periwinkle and cyan are close in brightness, so the pearl band is what
+       makes the sweep readable. Both ends match so the loop has no seam. */
+    background-image: linear-gradient(90deg, #A5B4FC 0%, #79D4E8 34%, #F2F5F8 50%, #79D4E8 66%, #A5B4FC 100%);
     background-size: 200% auto;
     -webkit-background-clip: text;
     background-clip: text;
@@ -2004,7 +2006,7 @@ a.footer-social-icon:active::before { transform: scale(0.96); }
 
   /* Social Media showcase — the shampoo mockup is gone; the remaining watch
      image sits centred at a little over half the column width. */
-  .d-watch-solo { flex: 0 0 calc((100% - 1.25rem) * 0.58); margin-inline: auto; }
+  .d-watch-solo { flex: 0 0 calc((100% - 1.25rem) * 0.64); margin-inline: auto; }
 
   /* Graphic Design service pills — subtle hover highlight (mouse only);
      the pills remain non-interactive, non-focusable list items. */
@@ -2258,9 +2260,16 @@ a.footer-social-icon:active::before { transform: scale(0.96); }
 /* Watch post ("Social campaigns built for the platforms…"): a little larger
    at every size; the image is object-fit: contain, so the box height sets
    its size. Desktop width is set by .d-watch-solo. */
-.s5cv-img-a { height: 520px; }
-@media (min-width: 640px)  { .s5cv-img-a { height: 590px; } }
-@media (min-width: 1024px) { .s5cv-img-a { height: clamp(480px, 52vw, 680px); } }
+.s5cv-img-a { height: min(572px, calc((100vw - 24px) * 1.9)); }
+@media (min-width: 640px)  { .s5cv-img-a { height: 650px; } }
+/* Grows with .d-watch-solo so the frame keeps its proportions: the spare height
+   above and below the post is what stops its slow zoom cropping the top and bottom. */
+@media (min-width: 1024px) { .s5cv-img-a { height: clamp(525px, 57vw, 745px); } }
+/* On narrow phones the column is too tight for the larger post, so the frame eases into
+   the page gutters (leaving 12px). 351px is the post at the peak of its slow zoom. */
+@media (max-width: 639px) {
+  .d-watch-solo { width: min(calc(100vw - 24px), max(100%, 351px)); align-self: center; }
+}
 
 /* ── Desktop typography — readability pass (≥1024px only) ───────────────────
    Supporting copy, service cards and lists set their size through these

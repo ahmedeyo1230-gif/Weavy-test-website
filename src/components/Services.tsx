@@ -10,6 +10,7 @@ import { CircularGallery, type GalleryItem } from './ui/circular-gallery'
 import { TestimonialsSection } from './ui/testimonials-1'
 import { useMediaQuery } from '../lib/useMediaQuery'
 import { GradientBlurBg } from './ui/gradient-blur-bg'
+import LazyVideo from './ui/lazy-video'
 import { BorderRotate } from './ui/animated-gradient-border'
 import { goToPath } from '../lib/navigation'
 import Footer from './Footer'
@@ -801,14 +802,12 @@ function BespokeWeb1Mockup() {
           the frame. The video's own vertical margins limit the scale: much
           above this, its nav button or bottom text starts to be cut. */}
       <div style={{ overflow: 'hidden' }}>
-        <video
-          src="/brand_assets/Web1.mp4"
-          autoPlay
-          muted
-          loop
-          playsInline
+        <LazyVideo
+          src="/brand_assets/Web1-1700.mp4"
+          mobileSrc="/brand_assets/Web1-1100.mp4"
+          poster="/brand_assets/Web1-poster.webp"
           aria-label="Interactive hero concept — bespoke website motion design"
-          style={{ display: 'block', width: '100%', height: 'auto', transform: 'scale(1.07)', transformOrigin: '60% 34%' }}
+          style={{ display: 'block', width: '100%', height: 'auto', aspectRatio: '3404 / 2436', transform: 'scale(1.07)', transformOrigin: '60% 34%' }}
         />
       </div>
     </div>
@@ -816,10 +815,10 @@ function BespokeWeb1Mockup() {
 }
 
 const BWS_PROJECTS = [
-  { image: '/brand_assets/zebra-mockup.png', name: 'ZEBRA', tag: 'Private Health', url: 'zebraprivatehealth.com' },
-  { image: '/brand_assets/vael-mockup.png', name: 'VAEL', tag: 'Creative Studio', url: 'vaelstudio.com' },
-  { image: '/brand_assets/kairos-mockup.png', name: 'KAIROS', tag: 'Brand Identity', url: 'kairos.com' },
-  { image: '/brand_assets/solenne-mockup.png', name: 'SOLENNE', tag: 'Digital Design', url: 'solenne.com' },
+  { image: 'zebra', name: 'ZEBRA', tag: 'Private Health', url: 'zebraprivatehealth.com' },
+  { image: 'vael', name: 'VAEL', tag: 'Creative Studio', url: 'vaelstudio.com' },
+  { image: 'kairos', name: 'KAIROS', tag: 'Brand Identity', url: 'kairos.com' },
+  { image: 'solenne', name: 'SOLENNE', tag: 'Digital Design', url: 'solenne.com' },
 ]
 
 function BespokeWebShowcase() {
@@ -1094,9 +1093,11 @@ function BespokeWebShowcase() {
                   {BWS_PROJECTS.map((project, i) => (
                     <img
                       key={project.name}
-                      loading={i === 0 ? 'eager' : 'lazy'}
+                      loading="lazy"
                       decoding="async"
-                      src={project.image}
+                      src={`/brand_assets/${project.image}-mockup-1860.webp`}
+                      srcSet={`/brand_assets/${project.image}-mockup-1000.webp 1000w, /brand_assets/${project.image}-mockup-1860.webp 1860w`}
+                      sizes="(max-width: 767px) 85vw, 930px"
                       alt={`${project.name} — ${project.tag} website design concept`}
                       style={{
                         position: 'absolute', inset: 0,
@@ -2953,12 +2954,10 @@ function SocialMediaMarketing() {
       style={{ height: 'clamp(460px, 58vw, 700px)', marginLeft: 'calc(-50vw + 50%)', marginRight: 'calc(-50vw + 50%)', background: '#010709' }}
     >
       {/* Full-width background video */}
-      <video
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="metadata"
+      <LazyVideo
+        eager
+        src="/brand_assets/Social_media.mp4"
+        poster="/brand_assets/Social_media-poster.webp"
         aria-hidden="true"
         style={{
           position: 'absolute', inset: 0,
@@ -2967,7 +2966,6 @@ function SocialMediaMarketing() {
           objectPosition: 'center center',
           pointerEvents: 'none',
         }}
-        src="/brand_assets/Social_media.mp4"
       />
 
       {/* Dark overlay for text legibility */}
@@ -3229,14 +3227,11 @@ function SocialMediaMarketing() {
                   ;(e.currentTarget as HTMLElement).style.boxShadow = '0 80px 160px -24px hsl(0 0% 0% / 0.88), 0 0 0 1px hsl(0 0% 100% / 0.05)'
                 }}
               >
-                <video
-                  src="https://pub-731d5e7deddb4fce94cef7393920d429.r2.dev/social_control_room.mp4"
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  preload="metadata"
-                  style={{ display: 'block', width: '100%', height: 'auto' }}
+                <LazyVideo
+                  src="/brand_assets/social_control_room-1400.mp4"
+                  mobileSrc="/brand_assets/social_control_room-1024.mp4"
+                  poster="/brand_assets/social_control_room-poster.webp"
+                  style={{ display: 'block', width: '100%', height: 'auto', aspectRatio: '16 / 9' }}
                 />
                 {/* Bottom vignette */}
                 <div aria-hidden="true" style={{
@@ -3708,7 +3703,7 @@ function SocialMediaMarketing() {
             >
               {[
                 {
-                  src: '/brand_assets/campaign-lips-1.png',
+                  src: '/brand_assets/campaign-lips-1.webp',
                   alt: 'Skincare campaign — beauty product application',
                   // balances the fingers applying cream at the cheek, the face and
                   // the jar (they sit ~57% of the photo apart, so narrow panels
@@ -3716,14 +3711,14 @@ function SocialMediaMarketing() {
                   objectPosition: '58% 50%',
                 },
                 {
-                  src: '/brand_assets/SIIRR.png',
+                  src: '/brand_assets/SIIRR.webp',
                   alt: 'SIIR Oud fragrance campaign',
                   // keeps the cap (left) and the bus (right) either side of the bottle
                   objectPosition: '42% 42%',
                   filter: 'brightness(0.86) saturate(0.92)',
                 },
                 {
-                  src: '/brand_assets/campaign-lips-3.png',
+                  src: '/brand_assets/campaign-lips-3.webp',
                   alt: 'Lipstick editorial campaign close-up',
                   // centred on the lips and the lipstick
                   objectPosition: '46% 50%',
@@ -4256,7 +4251,7 @@ function SocialMediaMarketing() {
                 }}
               >
                 <img
-                  src="/images/social-media/fragrance-campaign-landscape.webp"
+                  src="/images/social-media/fragrance-campaign-landscape-1846.webp"
                   alt="Luxury fragrance campaign adapted for websites and widescreen brand storytelling"
                   loading="lazy"
                   decoding="async"
@@ -4315,7 +4310,7 @@ function SocialMediaMarketing() {
                 }}
               >
                 <img
-                  src="/images/social-media/fragrance-campaign-vertical.webp"
+                  src="/images/social-media/fragrance-campaign-vertical-846.webp"
                   alt="Luxury fragrance social campaign designed for TikTok, Reels and mobile advertising"
                   loading="lazy"
                   decoding="async"
@@ -5015,7 +5010,7 @@ function GraphicDesignHero() {
       <div ref={frameRef} className="gd-hero-frame">
         <img
           className="gd-hero-img"
-          loading="lazy"
+          fetchPriority="high"
           decoding="async"
           src="/brand_assets/meeting-1800.webp"
           srcSet="/brand_assets/meeting-1200.webp 1200w, /brand_assets/meeting-1800.webp 1800w, /brand_assets/meeting-2600.webp 2600w"
@@ -5116,7 +5111,9 @@ function GraphicDesignCreativeSystems() {
           }}
         >
           <img
-            src="/images/graphic-design/creative-control-showcase.png"
+            src="/images/graphic-design/creative-control-showcase-2016.webp"
+            srcSet="/images/graphic-design/creative-control-showcase-1200.webp 1200w, /images/graphic-design/creative-control-showcase-2016.webp 2016w"
+            sizes="(max-width: 767px) 85vw, 1006px"
             alt="Creative control, built for impact — Photoshop and Illustrator tools shown as a premium design control system"
             loading="lazy"
             decoding="async"
@@ -5143,52 +5140,52 @@ const GD_GALLERY_ITEMS: GalleryItem[] = [
   {
     common: 'Brand Identity',
     binomial: 'Identity Systems',
-    photo: { url: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=900&auto=format&fit=crop&q=80', text: 'Brand identity design', pos: 'center', by: 'Unsplash' },
+    photo: { url: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&auto=format&fit=crop&q=80', text: 'Brand identity design', pos: 'center', by: 'Unsplash' },
   },
   {
     common: 'Motion Graphics',
     binomial: 'Commercial Animation',
-    photo: { url: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=900&auto=format&fit=crop&q=80', text: 'Motion graphics', pos: 'center', by: 'Unsplash' },
+    photo: { url: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&auto=format&fit=crop&q=80', text: 'Motion graphics', pos: 'center', by: 'Unsplash' },
   },
   {
     common: 'Campaign Visuals',
     binomial: 'Digital Advertising',
-    photo: { url: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&auto=format&fit=crop&q=80', text: 'Campaign visual design', pos: 'center', by: 'Unsplash' },
+    photo: { url: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&auto=format&fit=crop&q=80', text: 'Campaign visual design', pos: 'center', by: 'Unsplash' },
   },
   {
     common: 'Editorial Design',
     binomial: 'Typography & Layout',
-    photo: { url: 'https://images.unsplash.com/photo-1561070791-36c11767b26a?w=900&auto=format&fit=crop&q=80', text: 'Editorial typography', pos: 'center', by: 'Unsplash' },
+    photo: { url: 'https://images.unsplash.com/photo-1561070791-36c11767b26a?w=600&auto=format&fit=crop&q=80', text: 'Editorial typography', pos: 'center', by: 'Unsplash' },
   },
   {
     common: 'Social Creatives',
     binomial: 'Platform Content',
-    photo: { url: 'https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=900&auto=format&fit=crop&q=80', text: 'Social media creatives', pos: 'center', by: 'Unsplash' },
+    photo: { url: 'https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=600&auto=format&fit=crop&q=80', text: 'Social media creatives', pos: 'center', by: 'Unsplash' },
   },
   {
     common: 'Product Visuals',
     binomial: 'Commercial Photography',
-    photo: { url: 'https://images.unsplash.com/photo-1572044162444-ad60f128bdea?w=900&auto=format&fit=crop&q=80', text: 'Product visual design', pos: 'center', by: 'Unsplash' },
+    photo: { url: 'https://images.unsplash.com/photo-1572044162444-ad60f128bdea?w=600&auto=format&fit=crop&q=80', text: 'Product visual design', pos: 'center', by: 'Unsplash' },
   },
   {
     common: 'Packaging Design',
     binomial: 'Brand Expression',
-    photo: { url: 'https://images.unsplash.com/photo-1547949003-9792a18a2601?w=900&auto=format&fit=crop&q=80', text: 'Packaging design', pos: 'center', by: 'Unsplash' },
+    photo: { url: 'https://images.unsplash.com/photo-1547949003-9792a18a2601?w=600&auto=format&fit=crop&q=80', text: 'Packaging design', pos: 'center', by: 'Unsplash' },
   },
   {
     common: 'Digital Illustration',
     binomial: 'Concept Art',
-    photo: { url: 'https://images.unsplash.com/photo-1607799279861-4dd421887fb3?w=900&auto=format&fit=crop&q=80', text: 'Digital illustration', pos: 'center', by: 'Unsplash' },
+    photo: { url: 'https://images.unsplash.com/photo-1607799279861-4dd421887fb3?w=600&auto=format&fit=crop&q=80', text: 'Digital illustration', pos: 'center', by: 'Unsplash' },
   },
   {
     common: 'UI Design',
     binomial: 'Digital Experience',
-    photo: { url: 'https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=900&auto=format&fit=crop&q=80', text: 'UI design work', pos: 'center', by: 'Unsplash' },
+    photo: { url: 'https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=600&auto=format&fit=crop&q=80', text: 'UI design work', pos: 'center', by: 'Unsplash' },
   },
   {
     common: 'Cinematic Grade',
     binomial: 'Colour & Tone',
-    photo: { url: 'https://images.unsplash.com/photo-1550684376-efcbd6e3f031?w=900&auto=format&fit=crop&q=80', text: 'Cinematic colour grading', pos: 'center', by: 'Unsplash' },
+    photo: { url: 'https://images.unsplash.com/photo-1550684376-efcbd6e3f031?w=600&auto=format&fit=crop&q=80', text: 'Cinematic colour grading', pos: 'center', by: 'Unsplash' },
   },
 ]
 
@@ -5626,7 +5623,7 @@ function GraphicDesignSplitA() {
               <img
                 loading="lazy"
                 decoding="async"
-                src="/brand_assets/Creative1.webp"
+                src="/brand_assets/Creative1-graded.webp"
                 alt="Designer at work — cinematic neon studio setup"
                 width={1600}
                 height={2143}
@@ -5638,12 +5635,11 @@ function GraphicDesignSplitA() {
                   aspectRatio: '1600 / 1971',
                   objectFit: 'cover',
                   objectPosition: 'center center',
-                  filter: 'brightness(0.92) contrast(1.03) saturate(1.04)',
                 }}
               />
-              {/* Cinematic grade: the filter above plus a falloff to the page's
-                  #010709 at the image edges only. The face and icons sit clear
-                  of it, and nothing here reaches beyond this frame. */}
+              {/* The grade is baked into the file, because a CSS filter can't
+                  calm highlights without dulling the midtones. This adds a
+                  falloff to the page's #010709 at the image edges only. */}
               <div aria-hidden="true" style={{
                 position: 'absolute', inset: 0, pointerEvents: 'none',
                 background: [
@@ -6599,9 +6595,14 @@ function UGCHero() {
       style={{ width: '100%', background: '#020508' }}
     >
       {/* Background video */}
-      <video autoPlay muted loop playsInline preload="metadata" aria-hidden="true" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', pointerEvents: 'none' }}>
-        <source src="https://pub-731d5e7deddb4fce94cef7393920d429.r2.dev/tiktok_grid.mp4" type="video/mp4" />
-      </video>
+      <LazyVideo
+        eager
+        src="/brand_assets/tiktok_grid-1920.mp4"
+        mobileSrc="/brand_assets/tiktok_grid-1280.mp4"
+        poster="/brand_assets/tiktok_grid-poster.webp"
+        aria-hidden="true"
+        style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', pointerEvents: 'none' }}
+      />
 
       {/* Layered overlays */}
       <div aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'linear-gradient(108deg, hsl(0 0% 2% / 0.94) 0%, hsl(0 0% 2% / 0.62) 50%, hsl(0 0% 2% / 0.1) 100%)' }}/>
@@ -6766,7 +6767,7 @@ function UGCCreatorPhotoCard({ className = '' }: { className?: string }) {
       <img
         loading="lazy"
         decoding="async"
-        src="/brand_assets/UGCCCC.webp"
+        src="/brand_assets/UGCCCC-1120.webp"
         alt="UGC creator filming beauty content with product setup"
         width={3072}
         height={5504}
@@ -7107,14 +7108,13 @@ function UGCFindCreators() {
 
                 {/* Video — berryfume1 has no sound (its source track is silent and
                     stripped from this web copy), so there is no sound toggle. */}
-                <video
-                  autoPlay={autoPlay} muted loop playsInline preload="metadata"
+                <LazyVideo
+                  play={autoPlay}
+                  src="/brand_assets/berryfume1.mp4"
                   poster="/brand_assets/berryfume1-poster.webp"
                   aria-label="UGC creator presenting a Valéor Cherry setting spray"
                   style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-                >
-                  <source src="/brand_assets/berryfume1.mp4" type="video/mp4" />
-                </video>
+                />
 
                 {/* Darkens the video only; the app UI above it stays as it was */}
                 <div aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'hsl(0 0% 0% / 0.18)', zIndex: 1 }}/>
@@ -8682,9 +8682,11 @@ export default function Services({ serviceKey = null }: ServicesProps) {
               {/* Property image — full bleed inside browser */}
               <div style={{ position: 'relative', width: '100%', lineHeight: 0 }}>
                 <img
-                  loading="lazy"
+                  fetchPriority="high"
                   decoding="async"
                   src="/brand_assets/Property.webp"
+                  srcSet="/brand_assets/Property-1100.webp 1100w, /brand_assets/Property.webp 1800w"
+                  sizes="(max-width: 767px) 92vw, min(1040px, 100vw)"
                   alt="Bespoke luxury real estate website showcase"
                   width={1800}
                   height={1344}

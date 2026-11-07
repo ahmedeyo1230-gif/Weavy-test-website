@@ -72,7 +72,7 @@ function FooterVideo({ tuned = false }: { tuned?: boolean }) {
     const init = () => {
       if (initialized) return
       initialized = true
-      import('hls.js').then(({ default: Hls }) => {
+      import('hls.js/light').then(({ default: Hls }) => {
         if (!videoRef.current) return
         if (Hls.isSupported()) {
           const hls = new Hls({ startLevel: -1, maxBufferLength: 20, maxMaxBufferLength: 40 })

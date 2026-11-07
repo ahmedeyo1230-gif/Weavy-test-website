@@ -41,6 +41,8 @@ const ROUTE_BY_PATH: Record<string, Route> = {
 
 // Decided once per page load, outside React.
 const PLAY_INTRO = shouldPlayIntro()
+// The hero wave needs this as soon as the intro ends, so it's fetched during it.
+if (PLAY_INTRO) void import('hls.js/light')
 
 function routeFromPath(): Route {
   // /services and every dedicated service page beneath it (/services/<slug>)

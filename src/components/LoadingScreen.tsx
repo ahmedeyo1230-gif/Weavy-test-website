@@ -2,9 +2,20 @@ import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 
 const WORDS         = ['Design', 'Create', 'Automate', 'Inspire']
-const DURATION      = 2700
-const WORD_INTERVAL = 900
+// The counter finishes at MIN_DURATION once the page has loaded, and never runs
+// past MAX_DURATION however slow the connection is.
+const MIN_DURATION  = 1800
+const MAX_DURATION  = 2700
+const FINAL_HOLD    = 120
+const WORD_INTERVAL = 600
 
+/** Resolves when the page's critical files and fonts have finished loading. */
+function whenPageReady(): Promise<unknown> {
+  const loaded = document.readyState === 'complete'
+    ? Promise.resolve()
+    : new Promise(resolve => window.addEventListener('load', resolve, { once: true }))
+  return loaded.then(() => document.fonts.ready)
+}
 
 interface LoadingScreenProps {
   onComplete?: () => void
@@ -19,23 +30,42 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
   // Skip expensive filter:blur animation on mobile to reduce GPU load on first paint
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 1024
 
-  // RAF counter — eased, 0 → 100 over 2700ms
+  // RAF counter — runs towards MAX_DURATION until the page is ready, then
+  // carries on from where it is to finish at MIN_DURATION or just after.
   useEffect(() => {
-    const tick = (ts: number) => {
-      if (startRef.current === null) startRef.current = ts
-      const t      = Math.min((ts - startRef.current) / DURATION, 1)
-      setCount(Math.floor(t * 100))
-      setRawProgress(t)
+    let cancelled = false
+    let ready = false
+    let progress = 0
+    let finish: { from: number; value: number; end: number } | null = null
+    let holdId: ReturnType<typeof setTimeout> | undefined
+    whenPageReady().then(() => { ready = true })
 
-      if (t < 1) {
+    const tick = (ts: number) => {
+      if (cancelled) return
+      if (startRef.current === null) startRef.current = ts
+      const elapsed = ts - startRef.current
+      if (ready && !finish) {
+        finish = { from: elapsed, value: progress, end: Math.min(MAX_DURATION, Math.max(MIN_DURATION, elapsed + 200)) }
+      }
+      progress = finish
+        ? finish.value + (1 - finish.value) * Math.min((elapsed - finish.from) / Math.max(finish.end - finish.from, 1), 1)
+        : Math.min(elapsed / MAX_DURATION, 1)
+      setCount(Math.floor(progress * 100))
+      setRawProgress(progress)
+
+      if (progress < 1) {
         rafRef.current = requestAnimationFrame(tick)
       } else {
         setCount(100)
-        setTimeout(() => onComplete?.(), 400)
+        holdId = setTimeout(() => onComplete?.(), FINAL_HOLD)
       }
     }
     rafRef.current = requestAnimationFrame(tick)
-    return () => { if (rafRef.current !== null) cancelAnimationFrame(rafRef.current) }
+    return () => {
+      cancelled = true
+      if (rafRef.current !== null) cancelAnimationFrame(rafRef.current)
+      if (holdId) clearTimeout(holdId)
+    }
   }, [onComplete])
 
   // Word rotation — plays through once, stops on last word
@@ -78,7 +108,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
             initial={isMobile ? { opacity: 0, y: 8 } : { opacity: 0, y: 10, filter: 'blur(6px)' }}
             animate={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, y: 0, filter: 'blur(0px)' }}
             exit={isMobile ? { opacity: 0, y: -6 } : { opacity: 0, y: -8, filter: 'blur(4px)' }}
-            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
             className="font-display italic select-none"
             style={{
               fontSize: 'clamp(2.8rem, 8vw, 5.5rem)',

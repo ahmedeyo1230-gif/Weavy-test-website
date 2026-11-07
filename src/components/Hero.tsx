@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 import { useLenis } from 'lenis/react'
-import weavyLogo from '../assets/weavy-logo-new.png'
+import weavyLogo from '../assets/weavy-logo-288.webp'
 import { goToPath } from '../lib/navigation'
 import { isServicesPath, normalisePath } from '../lib/servicePages'
 
@@ -110,7 +110,7 @@ function HeroVideo() {
 
     let cleanup: (() => void) | undefined
 
-    import('hls.js').then(({ default: Hls }) => {
+    import('hls.js/light').then(({ default: Hls }) => {
       if (!videoRef.current) return
       if (Hls.isSupported()) {
         const hls = new Hls({ startLevel: -1, maxBufferLength: 20, maxMaxBufferLength: 40 })
@@ -240,17 +240,19 @@ export function Navbar() {
     >
       <nav
         aria-label="Main navigation"
-        className="glass-panel rounded-full px-3 py-0 flex items-center justify-between gap-2"
+        // From tablet up, equal outer columns keep the links on the page's centre line.
+        className="glass-panel rounded-full px-3 md:px-3.5 xl:px-[18px] py-0 flex md:grid md:grid-cols-[1fr_auto_1fr] items-center justify-between gap-2"
         style={{ pointerEvents: 'auto' }}
       >
         {/* Logo */}
         <a
           href="/"
           aria-label="Weavy"
-          className="flex items-center shrink-0 -my-3 ml-4"
+          className="flex items-center shrink-0 -my-3 ml-1 xl:ml-0 justify-self-start"
           onClick={(e) => { e.preventDefault(); setActive('Home'); goToPath('/') }}
         >
-          <img src={weavyLogo} alt="Weavy" className="w-[4.75rem] h-[4.75rem] md:w-24 md:h-24 object-contain" decoding="async" draggable={false} />
+          {/* The artwork sits above the middle of its transparent square, so it's nudged down to centre it in the bar. */}
+          <img src={weavyLogo} alt="Weavy" className="w-[4.75rem] h-[4.75rem] md:w-24 md:h-24 translate-y-[2px] md:translate-y-[3px] object-contain" decoding="async" draggable={false} />
         </a>
 
         {/* Desktop links */}
@@ -267,7 +269,7 @@ export function Navbar() {
                     setActive(label)
                     goToPath(href)
                   }}
-                  className={`font-body font-medium relative block text-xs sm:text-sm px-3 py-1.5 max-xl:py-2.5 rounded-full transition-colors duration-150 active:scale-[0.97] ${
+                  className={`font-body font-medium relative block text-xs sm:text-sm px-2.5 lg:px-3 py-2 max-xl:py-3 rounded-full transition-colors duration-150 active:scale-[0.97] ${
                     isActive ? 'text-primary bg-white/10' : 'text-muted hover:text-primary hover:bg-white/5'
                   }`}
                 >
@@ -282,7 +284,7 @@ export function Navbar() {
         <a
           href="/contact"
           onClick={(e) => { e.preventDefault(); setActive('Contact'); goToPath('/contact') }}
-          className="font-body btn-glow-primary btn-demo hidden md:inline-flex items-center gap-1.5 text-xs lg:text-sm px-4 py-2 min-h-[44px] xl:min-h-0 rounded-full font-medium active:scale-[0.97] shrink-0"
+          className="font-body btn-glow-primary btn-demo hidden md:inline-flex items-center gap-1.5 text-xs lg:text-sm px-4 py-2 min-h-[44px] xl:min-h-0 rounded-full font-medium active:scale-[0.97] shrink-0 justify-self-end"
           style={{ transition: 'background-color 150ms, box-shadow 150ms, transform 100ms' }}
         >
           Book a Free Demo
@@ -292,7 +294,7 @@ export function Navbar() {
             used elsewhere) so the three lines stay clearly visible against the
             dark navbar glass, not just on hover. */}
         <button
-          className="md:hidden flex items-center justify-center w-11 h-11 -mr-1.5 rounded-full hover:text-primary hover:bg-white/5 transition-colors"
+          className="md:hidden flex items-center justify-center w-11 h-11 -mr-1 rounded-full hover:text-primary hover:bg-white/5 transition-colors"
           style={{ color: 'rgba(235, 245, 255, 0.88)' }}
           aria-label={menuOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={menuOpen}
@@ -388,15 +390,18 @@ export default function Hero() {
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 1024
 
   const [subheadIndex, setSubheadIndex] = useState(0)
+  const reduceMotion = useReducedMotion()
 
   useEffect(() => {
+    // Reduced motion: hold the first phrase rather than rotating it.
+    if (reduceMotion) return
     // 2.5s hold + 0.5s blur-out + 0.5s blur-in = 3.5s per phrase, looping forever.
     const id = setInterval(
       () => setSubheadIndex(i => (i + 1) % ROTATING_SUBHEAD_PHRASES.length),
       3500,
     )
     return () => clearInterval(id)
-  }, [])
+  }, [reduceMotion])
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -496,12 +501,28 @@ export default function Hero() {
                 <AnimatePresence mode="wait">
                   <motion.span
                     key={ROTATING_SUBHEAD_PHRASES[subheadIndex]}
-                    initial={{ opacity: 0, filter: 'blur(8px)' }}
-                    animate={{ opacity: 1, filter: 'blur(0px)' }}
-                    exit={{ opacity: 0, filter: 'blur(8px)' }}
-                    transition={{ duration: 0.5, ease: 'easeInOut' }}
+                    // The original 8px, 0.5s crossfade (e936162). The fade now
+                    // trails the blur so the blur can be seen, and a small drift
+                    // carries each phrase out upward and settles the next one.
+                    initial={reduceMotion ? false : { opacity: 0, y: 6, filter: 'blur(8px)' }}
+                    animate={{
+                      opacity: 1, y: 0, filter: 'blur(0px)',
+                      transition: {
+                        filter: { duration: 0.5, ease: 'easeInOut' },
+                        opacity: { duration: 0.4, ease: 'easeOut' },
+                        y: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
+                      },
+                    }}
+                    exit={{
+                      opacity: 0, y: -6, filter: 'blur(8px)',
+                      transition: {
+                        filter: { duration: 0.5, ease: 'easeOut' },
+                        opacity: { duration: 0.5, ease: 'easeIn' },
+                        y: { duration: 0.5, ease: 'easeIn' },
+                      },
+                    }}
                     className="absolute inset-0 whitespace-nowrap"
-                    style={{ color: '#7DD3FC' }}
+                    style={{ color: '#7DD3FC', willChange: 'opacity, transform, filter' }}
                   >
                     {ROTATING_SUBHEAD_PHRASES[subheadIndex]}
                   </motion.span>
@@ -516,11 +537,12 @@ export default function Hero() {
           <motion.p
             variants={itemVariants}
             className="font-body max-w-xl mx-auto mb-8 max-[359px]:mb-6 sm:mb-12 leading-relaxed text-base max-[359px]:text-sm lg:text-lg font-medium m-tx-secondary"
-            style={{ color: 'rgba(228, 238, 245, 0.88)', lineHeight: 1.75 }}
+            style={{ color: 'rgba(228, 238, 245, 0.88)', lineHeight: 1.75, textWrap: 'pretty' }}
           >
             Weavy <span style={heroSubheadHighlight}>answers, qualifies and books</span> new
-            enquiries across voice, WhatsApp, Instagram and Facebook. We also build the{' '}
-            <span style={heroSubheadHighlight}>websites and creative</span> that bring them in.
+            enquiries across voice, WhatsApp, Instagram and Facebook. We also deliver{' '}
+            <span style={heroSubheadHighlight}>paid social, digital marketing and creative work</span> that
+            brings customers in.
           </motion.p>
 
           <motion.div
