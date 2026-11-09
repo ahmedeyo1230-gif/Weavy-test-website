@@ -7,7 +7,7 @@ const testimonials = [
   {
     name: 'Zakaria Dahir',
     role: 'Co-Founder, Champion Office for Scaling Up Nutrition',
-    avatar: '/brand_assets/Dr.Zak.png',
+    avatar: '/brand_assets/Dr.Zak-216.webp',
     avatarFocalPoint: { top: '-35%', left: '-25%' },
     quote:
       'Weavy understood our mission from the first conversation. They built us a site that communicates trust and credibility — exactly what we needed to connect with partners and stakeholders. The process was smooth, the delivery was fast, and the result speaks for itself.',

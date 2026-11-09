@@ -1417,7 +1417,7 @@ const BESPOKE_TESTIMONIALS = [
     role: 'Co-Founder, Champion Office for Scaling Up Nutrition',
     rating: 5,
     text: 'Weavy understood our mission from the first conversation. They built us a site that communicates trust and credibility — exactly what we needed to connect with partners and stakeholders. The process was smooth, the delivery was fast, and the result speaks for itself.',
-    avatar: '/brand_assets/Dr.Zak.png',
+    avatar: '/brand_assets/Dr.Zak-216.webp',
     avatarFocalPoint: { top: '-35%', left: '-25%' },
   },
   {
@@ -4081,22 +4081,6 @@ function SocialMediaMarketing() {
                     objectFit: 'contain', objectPosition: 'center',
                   }}
                 />
-                {/* Instagram platform tag */}
-                <div style={{
-                  position: 'absolute', bottom: '0.85rem', left: '0.85rem',
-                  background: 'hsl(0 0% 4% / 0.9)',
-                  backdropFilter: 'blur(14px)',
-                  border: '1px solid hsl(199 89% 60% / 0.22)',
-                  borderRadius: '999px',
-                  padding: '0.28rem 0.8rem',
-                  display: 'flex', alignItems: 'center', gap: '0.38rem',
-                  zIndex: 2,
-                }}>
-                  <span style={{ width: 4, height: 4, borderRadius: '50%', background: 'hsl(199 89% 60%)', flexShrink: 0 }}/>
-                  <span style={{ fontSize: '0.75rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'hsl(199 89% 68%)', fontFamily: 'var(--font-label)', fontWeight: 500 }}>
-                    Instagram
-                  </span>
-                </div>
               </div>
             </div>
 

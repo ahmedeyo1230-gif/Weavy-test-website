@@ -11,32 +11,32 @@ const SITE_URL = 'https://www.weavyautomation.com'
 export const PAGE_SEO: Record<'home' | 'about' | 'services' | 'work' | 'blog' | 'contact' | 'privacy' | 'notFound', PageSeo> = {
   home: {
     title: 'Weavy — AI Automation & Creative Agency in London',
-    description: 'Weavy answers, qualifies and books new enquiries across voice, WhatsApp, Instagram and Facebook, and builds the websites and creative that bring them in.',
+    description: 'Weavy is a London AI automation and creative agency. We answer, qualify and book new enquiries, and deliver paid social, digital marketing and creative work.',
     path: '/',
   },
   about: {
     title: 'About Weavy — London Automation & Creative Agency',
-    description: 'Weavy is a London-based automation and creative agency. One team connects the systems behind your enquiries and bookings with the creative that attracts customers.',
+    description: 'Weavy is a London-based automation and creative agency: one team connecting your enquiries, bookings and follow-ups with creative work that builds trust.',
     path: '/about',
   },
   services: {
     title: 'Services — Weavy | Websites, AI Chatbots, Social & Creative',
-    description: 'Bespoke websites, AI chatbots, social media marketing, graphic design and UGC content, planned and delivered by one team.',
+    description: 'Explore Weavy\'s services: bespoke websites, AI chatbots, social media marketing, graphic design and animation, and UGC content, delivered by one team.',
     path: '/services',
   },
   work: {
     title: 'Selected Work — Weavy',
-    description: 'A selection of brand campaigns, product visuals and creative systems by Weavy.',
+    description: 'Selected brand campaigns, product visuals and creative systems by Weavy, the London automation and creative agency.',
     path: '/work',
   },
   blog: {
     title: 'Blog — Weavy | Automation & Growth Insights',
-    description: 'Practical ideas on websites, AI automation, social media and visual identity for growing businesses.',
+    description: 'Practical insights from Weavy on websites, AI automation, social media and visual identity for growing businesses.',
     path: '/blog',
   },
   contact: {
     title: 'Contact — Weavy | Book a Free Demo',
-    description: 'Tell Weavy what you need help with: automation, chatbots, a new website or creative work.',
+    description: 'Book a free demo with Weavy. Tell us what you need help with, from automation and chatbots to a new website or creative work.',
     path: '/contact',
   },
   privacy: {

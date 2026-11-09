@@ -23,7 +23,7 @@ export const SERVICE_PAGES: ServicePage[] = [
     path: '/services/bespoke-website-design',
     seo: {
       title: 'Bespoke Website Design' + SUFFIX,
-      description: 'Tailored, high-performance websites designed around your brand identity and user experience — built by Weavy to stand out and convert.',
+      description: 'Bespoke websites from Weavy, custom-built to explain your value clearly, load fast and turn visitors into enquiries.',
       path: '/services/bespoke-website-design',
     },
   },
@@ -33,7 +33,7 @@ export const SERVICE_PAGES: ServicePage[] = [
     path: '/services/custom-chatbots',
     seo: {
       title: 'Custom Chatbots' + SUFFIX,
-      description: 'Intelligent chatbots for WhatsApp, Instagram, Facebook Messenger and TikTok that automate support, bookings and customer engagement.',
+      description: 'Custom AI chatbots from Weavy for your website, WhatsApp, Instagram, Messenger and TikTok that answer questions, qualify leads and handle bookings.',
       path: '/services/custom-chatbots',
     },
   },
@@ -43,7 +43,7 @@ export const SERVICE_PAGES: ServicePage[] = [
     path: '/services/social-media-marketing',
     seo: {
       title: 'Social Media Marketing' + SUFFIX,
-      description: 'Data-driven social media systems that grow your audience, reach and conversions across every platform.',
+      description: 'Social media marketing from Weavy: planned content, paid campaigns and clear reporting designed to grow your audience and enquiries.',
       path: '/services/social-media-marketing',
     },
   },
@@ -53,7 +53,7 @@ export const SERVICE_PAGES: ServicePage[] = [
     path: '/services/graphic-design-animation',
     seo: {
       title: 'Graphic Design & Animation' + SUFFIX,
-      description: 'High-quality visuals, branding assets and engaging motion graphics designed to elevate your brand.',
+      description: 'Brand identities, campaign graphics and motion graphics from Weavy, designed to make your business easier to recognise.',
       path: '/services/graphic-design-animation',
     },
   },
@@ -63,7 +63,7 @@ export const SERVICE_PAGES: ServicePage[] = [
     path: '/services/ugc-content-creation',
     seo: {
       title: 'UGC & Content Creation' + SUFFIX,
-      description: 'Authentic user-generated content and creator campaigns that build trust and connect your brand with its audience.',
+      description: 'Creator-led UGC videos from Weavy that show your product naturally and give customers a reason to trust your brand.',
       path: '/services/ugc-content-creation',
     },
   },
