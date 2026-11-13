@@ -5,11 +5,12 @@ import weavyLogo from '../assets/weavy-logo-288.webp'
 import { goToPath } from '../lib/navigation'
 import { isServicesPath, normalisePath } from '../lib/servicePages'
 
-// Self-hosted hero wave (replaces the Mux stream, which now returns 403).
+// Self-hosted hero wave (replaces the Mux stream, which now returns 403). The
+// clip is a seamless 17 s cycle, so the loop has no visible restart.
 // Phones and tablets get the lighter 1280 file; larger screens the 1920 one.
-const HERO_VIDEO_SRC = '/brand_assets/hero-wave-1920.mp4'
-const HERO_VIDEO_MOBILE_SRC = '/brand_assets/hero-wave-1280.mp4'
-const HERO_POSTER = '/brand_assets/hero-wave-poster.webp'
+const HERO_VIDEO_SRC = '/brand_assets/hero-wave-endless-1920.mp4'
+const HERO_VIDEO_MOBILE_SRC = '/brand_assets/hero-wave-endless-1280.mp4'
+const HERO_POSTER = '/brand_assets/hero-wave-endless-poster.webp'
 
 // Rotating second half of the hero subhead, after the static "— " dash.
 const ROTATING_SUBHEAD_PHRASES = [

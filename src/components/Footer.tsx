@@ -6,8 +6,8 @@ import { servicePageFromPath } from '../lib/servicePages'
 
 // Same self-hosted wave as the hero (replaces the Mux stream, which now returns
 // 403), so the browser usually has it cached by the time the footer is reached.
-const WAVE_SRC = '/brand_assets/hero-wave-1920.mp4'
-const WAVE_MOBILE_SRC = '/brand_assets/hero-wave-1280.mp4'
+const WAVE_SRC = '/brand_assets/hero-wave-endless-1920.mp4'
+const WAVE_MOBILE_SRC = '/brand_assets/hero-wave-endless-1280.mp4'
 const MARQUEE_WORD = 'BUILDING THE FUTURE'
 
 // Add the official Weavy profile URLs here. An icon stays inactive (shown, but
