@@ -4,7 +4,10 @@ import gsap from 'gsap'
 import { goToPath } from '../lib/navigation'
 import { servicePageFromPath } from '../lib/servicePages'
 
-const HLS_SRC = 'https://stream.mux.com/Aa02T7oM1wH5Mk5EEVDYhbZ1ChcdhRsS2m1NYyx4Ua1g.m3u8'
+// Same self-hosted wave as the hero (replaces the Mux stream, which now returns
+// 403), so the browser usually has it cached by the time the footer is reached.
+const WAVE_SRC = '/brand_assets/hero-wave-1920.mp4'
+const WAVE_MOBILE_SRC = '/brand_assets/hero-wave-1280.mp4'
 const MARQUEE_WORD = 'BUILDING THE FUTURE'
 
 // Add the official Weavy profile URLs here. An icon stays inactive (shown, but
@@ -66,27 +69,15 @@ function FooterVideo({ tuned = false }: { tuned?: boolean }) {
     // Skip if user prefers reduced motion
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
 
-    let cleanup: (() => void) | undefined
     let initialized = false
 
     const init = () => {
       if (initialized) return
       initialized = true
-      import('hls.js/light').then(({ default: Hls }) => {
-        if (!videoRef.current) return
-        if (Hls.isSupported()) {
-          const hls = new Hls({ startLevel: -1, maxBufferLength: 20, maxMaxBufferLength: 40 })
-          hls.loadSource(HLS_SRC)
-          hls.attachMedia(video)
-          hls.on(Hls.Events.MANIFEST_PARSED, () => {
-            video.play().catch(() => {})
-          })
-          cleanup = () => hls.destroy()
-        } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-          video.src = HLS_SRC
-          video.play().catch(() => {})
-        }
-      })
+      const isSmallScreen = window.matchMedia('(max-width: 1023px)').matches
+      video.muted = true // some mobile browsers only allow muted autoplay when set on the element
+      video.src = isSmallScreen ? WAVE_MOBILE_SRC : WAVE_SRC
+      video.play().catch(() => {})
     }
 
     const observer = new IntersectionObserver(
@@ -103,7 +94,6 @@ function FooterVideo({ tuned = false }: { tuned?: boolean }) {
 
     return () => {
       observer.disconnect()
-      cleanup?.()
     }
   }, [])
 

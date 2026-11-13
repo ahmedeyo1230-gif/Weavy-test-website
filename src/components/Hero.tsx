@@ -5,8 +5,11 @@ import weavyLogo from '../assets/weavy-logo-288.webp'
 import { goToPath } from '../lib/navigation'
 import { isServicesPath, normalisePath } from '../lib/servicePages'
 
-const HLS_SRC = 'https://stream.mux.com/Aa02T7oM1wH5Mk5EEVDYhbZ1ChcdhRsS2m1NYyx4Ua1g.m3u8'
-const HERO_POSTER = 'https://image.mux.com/Aa02T7oM1wH5Mk5EEVDYhbZ1ChcdhRsS2m1NYyx4Ua1g/thumbnail.jpg?width=1200&time=1'
+// Self-hosted hero wave (replaces the Mux stream, which now returns 403).
+// Phones and tablets get the lighter 1280 file; larger screens the 1920 one.
+const HERO_VIDEO_SRC = '/brand_assets/hero-wave-1920.mp4'
+const HERO_VIDEO_MOBILE_SRC = '/brand_assets/hero-wave-1280.mp4'
+const HERO_POSTER = '/brand_assets/hero-wave-poster.webp'
 
 // Rotating second half of the hero subhead, after the static "— " dash.
 const ROTATING_SUBHEAD_PHRASES = [
@@ -61,7 +64,7 @@ function labelFromPath() {
   return LABEL_BY_PATH[normalisePath(window.location.pathname)] ?? NO_ACTIVE
 }
 
-// ─── HLS Video Background ─────────────────────────────────────────────────────
+// ─── Video Background ─────────────────────────────────────────────────────────
 
 function HeroVideo() {
   const videoRef = useRef<HTMLVideoElement>(null)
@@ -70,7 +73,7 @@ function HeroVideo() {
     const video = videoRef.current
     if (!video) return
 
-    // Respect reduced-motion users: keep the static poster frame, skip streaming + playback.
+    // Respect reduced-motion users: keep the static poster frame, skip loading + playback.
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
 
     // Belt-and-braces: some mobile browsers (particularly iOS Safari) only honour
@@ -108,27 +111,11 @@ function HeroVideo() {
     }, { threshold: 0.1 })
     io.observe(video)
 
-    let cleanup: (() => void) | undefined
-
-    import('hls.js/light').then(({ default: Hls }) => {
-      if (!videoRef.current) return
-      if (Hls.isSupported()) {
-        const hls = new Hls({ startLevel: -1, maxBufferLength: 20, maxMaxBufferLength: 40 })
-        hls.loadSource(HLS_SRC)
-        hls.attachMedia(video)
-        hls.on(Hls.Events.MANIFEST_PARSED, attemptPlay)
-        cleanup = () => hls.destroy()
-      } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-        // Native HLS (Safari) — last-resort fallback if hls.js somehow reports
-        // unsupported: still assign the source directly rather than leaving
-        // the poster frame up permanently.
-        video.src = HLS_SRC
-        attemptPlay()
-      } else {
-        video.src = HLS_SRC
-        attemptPlay()
-      }
-    })
+    // The source is attached here rather than in JSX so reduced-motion visitors
+    // (who return above) never download the video.
+    const isSmallScreen = window.matchMedia('(max-width: 1023px)').matches
+    video.src = isSmallScreen ? HERO_VIDEO_MOBILE_SRC : HERO_VIDEO_SRC
+    attemptPlay()
 
     return () => {
       video.removeEventListener('loadedmetadata', attemptPlay)
@@ -138,11 +125,10 @@ function HeroVideo() {
       video.removeEventListener('suspend', attemptPlay)
       document.removeEventListener('visibilitychange', onVisibilityChange)
       io.disconnect()
-      cleanup?.()
     }
   }, [])
 
-  // Same video on every viewport — no `controls`, so there is never a native
+  // Same wave on every viewport (1280 or 1920 file) — no `controls`, so there is never a native
   // play button; if autoplay is blocked or playback errors out, the `poster`
   // frame simply stays on screen as a fallback.
   return (
