@@ -249,9 +249,12 @@ export default function ConnectedFlow() {
   }
 
   const ins = geo?.nodes[4]
-  const showChart = !!(geo && ins && !geo.vertical && geo.w - (ins.x + ins.r) >= 170)
-  const cx0 = ins ? ins.x + ins.r + 34 : 0, cy0 = ins ? ins.y - 52 : 0
-  const chartPts = CHART_PTS.map(([x, y]) => `${(cx0 + x).toFixed(1)},${(cy0 + y).toFixed(1)}`).join(' ')
+  // The chart scales with the circles (designed at a 44px radius).
+  const ck = ins ? ins.r / 44 : 1
+  const showChart = !!(geo && ins && !geo.vertical && geo.w - (ins.x + ins.r) >= 164 * ck)
+  const cx0 = ins ? ins.x + ins.r + 34 * ck : 0, cy0 = ins ? ins.y - 52 * ck : 0
+  const CP = CHART_PTS.map(([x, y]) => [x * ck, y * ck] as const)
+  const chartPts = CP.map(([x, y]) => `${(cx0 + x).toFixed(1)},${(cy0 + y).toFixed(1)}`).join(' ')
 
   return (
     <div ref={rootRef} className="cf">
@@ -265,7 +268,7 @@ export default function ConnectedFlow() {
             <radialGradient id="cf-chart-fade">
               <stop offset="40%" stopColor="white" stopOpacity="1" /><stop offset="100%" stopColor="white" stopOpacity="0" />
             </radialGradient>
-            <mask id="cf-chart-mask"><rect x={cx0 - 30} y={cy0 - 30} width={180} height={150} fill="url(#cf-chart-fade)" /></mask>
+            <mask id="cf-chart-mask"><rect x={cx0 - 30 * ck} y={cy0 - 30 * ck} width={180 * ck} height={150 * ck} fill="url(#cf-chart-fade)" /></mask>
           </defs>
           {geo.pills.map((_, i) => (
             <g key={i}>
@@ -289,11 +292,11 @@ export default function ConnectedFlow() {
           })}
           {showChart && (
             <g className="cf-chart">
-              <rect x={cx0 - 30} y={cy0 - 30} width={180} height={150} fill="url(#cf-dots)" mask="url(#cf-chart-mask)" />
+              <rect x={cx0 - 30 * ck} y={cy0 - 30 * ck} width={180 * ck} height={150 * ck} fill="url(#cf-dots)" mask="url(#cf-chart-mask)" />
               <polyline points={chartPts} fill="none" stroke="rgba(125,211,252,0.45)" strokeWidth={1.5} strokeLinejoin="round" />
               <polyline className="cf-chart-hi" pathLength={1} points={chartPts} fill="none" stroke="#9FE7FA" strokeWidth={2} strokeLinejoin="round" style={{ filter: 'drop-shadow(0 0 4px rgba(34,211,238,0.8))' }} />
-              {CHART_PTS.slice(1, -1).map(([x, y], i) => <circle key={i} cx={cx0 + x} cy={cy0 + y} r={2.1} fill="#9FE7FA" opacity={0.8} />)}
-              <circle className="cf-chart-end" cx={cx0 + 118} cy={cy0 + 8} r={4} fill="#E6FBFF" style={{ filter: 'drop-shadow(0 0 6px rgba(34,211,238,0.9))' }} />
+              {CP.slice(1, -1).map(([x, y], i) => <circle key={i} cx={cx0 + x} cy={cy0 + y} r={2.1 * ck} fill="#9FE7FA" opacity={0.8} />)}
+              <circle className="cf-chart-end" cx={cx0 + CP[CP.length - 1][0]} cy={cy0 + CP[CP.length - 1][1]} r={4 * ck} fill="#E6FBFF" style={{ filter: 'drop-shadow(0 0 6px rgba(34,211,238,0.9))' }} />
             </g>
           )}
         </svg>
@@ -329,7 +332,8 @@ export default function ConnectedFlow() {
           <div key={s.key} className={`cf-step${'success' in s && s.success ? ' is-success' : ''}`} onPointerEnter={() => onNodeEnter(i)} onPointerLeave={() => onNodeLeave(i)}>
             <h3 className="cf-head">
               <span className="cf-no">{s.no}</span>
-              <span className="cf-label">{s.label}</span>
+              {/* Words never break inside (keeps "Follow-up" whole) */}
+              <span className="cf-label">{s.label.split(' ').flatMap((word, wi) => [wi > 0 ? ' ' : null, <span key={wi} className="cf-word">{word}</span>])}</span>
             </h3>
             <div className="cf-node" ref={el => { nodeRefs.current[i] = el }}>
               <span className="cf-halo" aria-hidden="true" />

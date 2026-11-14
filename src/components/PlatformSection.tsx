@@ -52,7 +52,8 @@ export default function PlatformSection() {
         background: 'linear-gradient(to bottom, rgba(0,0,0,0.225) 0%, transparent 100%)',
       }} />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-10">
+      {/* Wider than the usual 7xl so the larger workflow has room; the header keeps its own max-w-3xl. */}
+      <div className="relative z-10 max-w-[1600px] mx-auto px-6 sm:px-10">
 
         {/* ── Header — its own display treatment, not the italic "Our Services" style ── */}
         <div className="text-center max-w-3xl mx-auto" style={{ marginBottom: 'clamp(4rem, 8vw, 6rem)' }}>
