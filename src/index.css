@@ -1594,6 +1594,95 @@ a.footer-social-icon:active::before { transform: scale(0.96); }
 @media (min-width: 1028px) { .footer--service-page .footer-hlc-video-wrap { --fw-home-h: calc(456px + 18.3vw); } }
 @media (min-width: 1280px) { .footer--service-page .footer-hlc-video-wrap { --fw-home-h: 693px; } }
 
+/* ── One Connected System — animated lead journey (ConnectedFlow.tsx) ───────
+   Phones/tablets (<1024px): channels as a 2×2 row, steps stacked with the
+   node on the left. Desktop: channels column + five steps in a row. Lines
+   are drawn in an SVG measured from the real node positions. */
+.cf { position: relative; max-width: 1240px; margin: 0 auto; }
+.cf-svg { position: absolute; left: 0; top: 0; overflow: visible; pointer-events: none; z-index: 1; }
+.cf-grid { position: relative; z-index: 3; display: grid; grid-template-columns: minmax(0, 1fr); row-gap: 30px; max-width: 520px; margin: 0 auto; }
+.cf-rider { position: absolute; left: 0; top: 0; width: 0; height: 0; z-index: 2; pointer-events: none; opacity: 0; will-change: transform; }
+.cf-dot { position: absolute; width: 12px; height: 12px; margin: -6px 0 0 -6px; border-radius: 50%; background: #E6FBFF;
+  box-shadow: 0 0 0 4px rgba(34, 211, 238, 0.22), 0 0 18px 5px rgba(34, 211, 238, 0.65); }
+.cf-tag { display: none; position: absolute; top: 0; left: 0; z-index: 4; pointer-events: none; white-space: nowrap; opacity: 0;
+  font-family: var(--font-label); font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #7DD3FC;
+  padding: 2px 8px; border-radius: 999px; background: rgba(3, 11, 14, 0.92); border: 1px solid rgba(125, 211, 252, 0.22); }
+.cf-tag.is-success { color: #3DDC97; border-color: rgba(61, 220, 151, 0.35); }
+
+.cf-channels { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-bottom: 30px; }
+.cf-pill { display: inline-flex; align-items: center; gap: 10px; height: 42px; padding: 0 16px 0 13px; border-radius: 999px;
+  border: 1px solid rgba(125, 211, 252, 0.16); background: rgba(8, 20, 26, 0.8); color: var(--text-description);
+  font-family: var(--font-body); font-size: 14px; font-weight: 500; cursor: pointer;
+  transition: border-color 250ms, box-shadow 250ms, color 250ms, background-color 250ms; }
+.cf-pill svg { color: #9FE7FA; flex-shrink: 0; }
+.cf-pill:hover, .cf-pill:focus-visible, .cf-pill.is-live { border-color: rgba(34, 211, 238, 0.6); color: #fff;
+  background: rgba(10, 30, 38, 0.9); box-shadow: 0 0 18px rgba(34, 211, 238, 0.22); outline: none; }
+
+.cf-step { display: grid; grid-template-areas: "node head" "node desc"; grid-template-columns: 64px minmax(0, 1fr);
+  column-gap: 18px; row-gap: 4px; align-items: start; }
+.cf-head { grid-area: head; display: flex; align-items: baseline; gap: 10px; margin: 6px 0 0; font-weight: 500; }
+.cf-no { font-family: var(--font-heading); font-weight: 300; font-size: 22px; line-height: 1; color: #7DD3FC; letter-spacing: -0.02em; }
+.cf-label { font-family: var(--font-heading); font-size: 14px; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; color: var(--text-primary); line-height: 1.3; }
+.cf-desc { grid-area: desc; margin: 0; font-family: var(--font-body); font-weight: 500; font-size: 15px; line-height: 1.6; color: var(--text-description); }
+
+.cf-node { grid-area: node; position: relative; width: 64px; height: 64px; }
+.cf-halo { position: absolute; inset: -9px; border-radius: 50%; border: 1px solid rgba(125, 211, 252, 0.13);
+  background: radial-gradient(circle, rgba(34, 211, 238, 0.05), transparent 70%); animation: cf-breathe 4.5s ease-in-out infinite; }
+.cf-burst { position: absolute; inset: 0; border-radius: 50%; border: 1.5px solid #22D3EE; opacity: 0; }
+.cf-core { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; border-radius: 50%;
+  background: radial-gradient(circle at 50% 32%, #0B2129 0%, #050E12 72%); border: 1px solid rgba(125, 211, 252, 0.35);
+  box-shadow: 0 0 22px rgba(34, 211, 238, 0.1), inset 0 0 16px rgba(34, 211, 238, 0.07); transition: border-color 300ms, box-shadow 300ms; }
+.cf-icon { width: 26px; height: 26px; overflow: visible; }
+.cf-node.is-hit .cf-core, .cf-node.is-focus .cf-core { border-color: rgba(34, 211, 238, 0.85);
+  box-shadow: 0 0 0 1px rgba(34, 211, 238, 0.35), 0 0 30px rgba(34, 211, 238, 0.35), inset 0 0 18px rgba(34, 211, 238, 0.14); }
+.cf-step.is-success .cf-core { border-color: rgba(61, 220, 151, 0.55); box-shadow: 0 0 24px rgba(61, 220, 151, 0.16), inset 0 0 16px rgba(61, 220, 151, 0.08);
+  background: radial-gradient(circle at 50% 32%, #0B2A20 0%, #04110C 72%); }
+.cf-step.is-success .cf-burst { border-color: #3DDC97; }
+.cf-step.is-success .cf-node.is-hit .cf-core, .cf-step.is-success .cf-node.is-focus .cf-core { border-color: rgba(61, 220, 151, 0.95);
+  box-shadow: 0 0 0 1px rgba(61, 220, 151, 0.4), 0 0 32px rgba(61, 220, 151, 0.4), inset 0 0 18px rgba(61, 220, 151, 0.16); }
+.cf-badge { position: absolute; top: -3px; right: -3px; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  background: #3DDC97; box-shadow: 0 0 0 3px #04110C, 0 0 14px rgba(61, 220, 151, 0.55); }
+.cf-crm-check { stroke-dasharray: 1; stroke-dashoffset: 1; }
+.cf-cal-check, .cf-ins-line, .cf-chart-hi { stroke-dasharray: 1; stroke-dashoffset: 0; }
+.cf-chart-hi { opacity: 0.35; }
+.cf-step:hover .cf-desc { color: var(--text-primary); }
+
+/* Entrance: lines draw in, joints pop, ambient flow fades up once in view */
+.cf-draw { stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 1.4s cubic-bezier(.65, 0, .35, 1); }
+.cf-pop { transform-box: fill-box; transform-origin: center; transform: scale(0); transition: transform 0.5s cubic-bezier(.34, 1.56, .64, 1) 0.9s; }
+.cf-flowline { stroke-dasharray: 2 10; opacity: 0; animation: cf-flow 1.5s linear infinite; transition: opacity 0.8s 1.2s; }
+.cf.is-in .cf-draw, .cf.is-static .cf-draw { stroke-dashoffset: 0; }
+.cf.is-in .cf-pop, .cf.is-static .cf-pop { transform: scale(1); }
+.cf.is-in .cf-flowline { opacity: 0.45; }
+.cf.is-paused *, .cf.is-paused *::before { animation-play-state: paused !important; }
+@keyframes cf-flow { to { stroke-dashoffset: -24; } }
+@keyframes cf-breathe { 0%, 100% { opacity: 0.55; transform: scale(1); } 50% { opacity: 1; transform: scale(1.045); } }
+
+@media (min-width: 1024px) {
+  .cf-grid { max-width: none; grid-template-columns: 150px repeat(5, minmax(0, 1fr)); column-gap: clamp(14px, 2vw, 30px); row-gap: 0; align-items: start; }
+  .cf-channels { display: flex; flex-direction: column; gap: 12px; margin: 0; padding-top: 34px; }
+  .cf-pill { width: 100%; }
+  .cf-step { grid-template-areas: "head" "node" "desc"; grid-template-columns: minmax(0, 1fr); justify-items: center; text-align: center; row-gap: 18px; }
+  .cf-head { align-items: flex-end; justify-content: center; min-height: 48px; margin: 0; gap: 8px; }
+  .cf-no { font-size: 28px; }
+  .cf-label { font-size: 13px; }
+  .cf-node { width: 88px; height: 88px; }
+  .cf-halo { inset: -12px; }
+  .cf-icon { width: 34px; height: 34px; }
+  .cf-badge { width: 26px; height: 26px; top: -2px; right: -2px; }
+  .cf-desc { max-width: 190px; font-size: 14px; margin-top: 4px; }
+  .cf-tag { display: block; }
+}
+@media (min-width: 1280px) {
+  .cf-grid { padding-right: 150px; }
+  .cf-label { font-size: 13.5px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cf-halo, .cf-flowline { animation: none; }
+  .cf-draw { transition: none; stroke-dashoffset: 0; }
+  .cf-pop { transition: none; transform: scale(1); }
+}
+
 /* ── Platform section — card top-border shimmer sweep ────────────────────── */
 @keyframes platform-card-sweep {
   0%   { left: -45%;  opacity: 0; }
