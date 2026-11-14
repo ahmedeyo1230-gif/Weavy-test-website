@@ -1690,7 +1690,9 @@ a.footer-social-icon:active::before { transform: scale(0.96); }
 @media (min-width: 1280px) {
   /* Room for the growth chart beside Insight (scales with the circles), and a
      gentle shift right so the channel buttons balance the lighter chart. */
-  .cf-grid { padding-left: clamp(15px, calc(15px + (100vw - 1280px) * 0.28), 70px); padding-right: calc(var(--cf-node) * 1.75); }
+  .cf-grid { --cf-shift: clamp(20px, calc(20px + (100vw - 1280px) * 0.0625), 30px);
+    padding-left: calc(clamp(15px, calc(15px + (100vw - 1280px) * 0.28), 70px) + var(--cf-shift));
+    padding-right: calc(var(--cf-node) * 1.75 - var(--cf-shift)); }
 }
 @media (prefers-reduced-motion: reduce) {
   .cf-halo, .cf-flowline { animation: none; }

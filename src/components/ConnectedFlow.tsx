@@ -250,8 +250,10 @@ export default function ConnectedFlow() {
 
   const ins = geo?.nodes[4]
   // The chart scales with the circles (designed at a 44px radius).
-  const ck = ins ? ins.r / 44 : 1
-  const showChart = !!(geo && ins && !geo.vertical && geo.w - (ins.x + ins.r) >= 164 * ck)
+  // It eases a little smaller when space beside Insight is tight, and hides if too cramped.
+  const room = geo && ins ? geo.w - (ins.x + ins.r) : 0
+  const ck = ins ? Math.min(ins.r / 44, room / 158) : 1
+  const showChart = !!(geo && ins && !geo.vertical && ck >= 1)
   const cx0 = ins ? ins.x + ins.r + 34 * ck : 0, cy0 = ins ? ins.y - 52 * ck : 0
   const CP = CHART_PTS.map(([x, y]) => [x * ck, y * ck] as const)
   const chartPts = CP.map(([x, y]) => `${(cx0 + x).toFixed(1)},${(cy0 + y).toFixed(1)}`).join(' ')
