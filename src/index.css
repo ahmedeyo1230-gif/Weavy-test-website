@@ -1628,7 +1628,7 @@ a.footer-social-icon:active::before { transform: scale(0.96); }
 
 .cf-node { grid-area: node; position: relative; width: 82px; height: 82px; }
 .cf-halo { position: absolute; inset: -9px; border-radius: 50%; border: 1px solid rgba(125, 211, 252, 0.13);
-  background: radial-gradient(circle, rgba(34, 211, 238, 0.05), transparent 70%); animation: cf-breathe 4.5s ease-in-out infinite; }
+  background: radial-gradient(circle, rgba(34, 211, 238, 0.05), transparent 70%); animation: cf-breathe 6s ease-in-out infinite; }
 .cf-burst { position: absolute; inset: 0; border-radius: 50%; border: 1.5px solid #22D3EE; opacity: 0; }
 .cf-core { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; border-radius: 50%;
   background: radial-gradient(circle at 50% 32%, #0B2129 0%, #050E12 72%); border: 1px solid rgba(125, 211, 252, 0.35);
@@ -1651,7 +1651,7 @@ a.footer-social-icon:active::before { transform: scale(0.96); }
 /* Entrance: lines draw in, joints pop, ambient flow fades up once in view */
 .cf-draw { stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 1.4s cubic-bezier(.65, 0, .35, 1); }
 .cf-pop { transform-box: fill-box; transform-origin: center; transform: scale(0); transition: transform 0.5s cubic-bezier(.34, 1.56, .64, 1) 0.9s; }
-.cf-flowline { stroke-dasharray: 2 10; opacity: 0; animation: cf-flow 1.5s linear infinite; transition: opacity 0.8s 1.2s; }
+.cf-flowline { stroke-dasharray: 2 10; opacity: 0; animation: cf-flow 3.8s linear infinite; transition: opacity 0.8s 1.2s; }
 .cf.is-in .cf-draw, .cf.is-static .cf-draw { stroke-dashoffset: 0; }
 .cf.is-in .cf-pop, .cf.is-static .cf-pop { transform: scale(1); }
 .cf.is-in .cf-flowline { opacity: 0.45; }

@@ -154,22 +154,22 @@ export default function ConnectedFlow() {
     const pulse = (i: number) => {
       const node = nodeRefs.current[i]; if (!node) return
       const core = node.querySelector('.cf-core'), burst = node.querySelector('.cf-burst')
-      gsap.fromTo(burst, { scale: 1, opacity: 0.6 }, { scale: 1.6, opacity: 0, duration: 0.95, ease: 'power2.out' })
-      gsap.timeline().to(core, { scale: 1.07, duration: 0.22, ease: 'power2.out' }).to(core, { scale: 1, duration: 0.5, ease: 'power2.inOut' })
-      node.classList.add('is-hit'); gsap.delayedCall(0.75, () => node.classList.remove('is-hit'))
+      gsap.fromTo(burst, { scale: 1, opacity: 0.6 }, { scale: 1.6, opacity: 0, duration: 1.3, ease: 'power2.out' })
+      gsap.timeline().to(core, { scale: 1.07, duration: 0.3, ease: 'power2.out' }).to(core, { scale: 1, duration: 0.7, ease: 'power2.inOut' })
+      node.classList.add('is-hit'); gsap.delayedCall(1.05, () => node.classList.remove('is-hit'))
       const k = STEPS[i].key
-      if (k === 'enquiry') gsap.fromTo(node.querySelectorAll('.cf-typing'), { y: 0 }, { y: -2.4, duration: 0.18, yoyo: true, repeat: 3, stagger: 0.1, ease: 'sine.inOut' })
-      if (k === 'respond') gsap.to(node.querySelectorAll('.cf-bar'), { scaleY: () => gsap.utils.random(0.35, 1.7), transformOrigin: '50% 50%', duration: 0.11, yoyo: true, repeat: 5, stagger: 0.03, onComplete() { gsap.set(node.querySelectorAll('.cf-bar'), { scaleY: 1 }) } })
-      if (k === 'crm') gsap.timeline().fromTo(node.querySelector('.cf-crm-check'), { strokeDashoffset: 1, opacity: 1 }, { strokeDashoffset: 0, duration: 0.35, ease: 'power2.out' }).to(node.querySelector('.cf-crm-check'), { opacity: 0, duration: 0.4, delay: 0.8 })
+      if (k === 'enquiry') gsap.fromTo(node.querySelectorAll('.cf-typing'), { y: 0 }, { y: -2.4, duration: 0.26, yoyo: true, repeat: 3, stagger: 0.14, ease: 'sine.inOut' })
+      if (k === 'respond') gsap.to(node.querySelectorAll('.cf-bar'), { scaleY: () => gsap.utils.random(0.35, 1.7), transformOrigin: '50% 50%', duration: 0.16, yoyo: true, repeat: 5, stagger: 0.045, onComplete() { gsap.set(node.querySelectorAll('.cf-bar'), { scaleY: 1 }) } })
+      if (k === 'crm') gsap.timeline().fromTo(node.querySelector('.cf-crm-check'), { strokeDashoffset: 1, opacity: 1 }, { strokeDashoffset: 0, duration: 0.5, ease: 'power2.out' }).to(node.querySelector('.cf-crm-check'), { opacity: 0, duration: 0.55, delay: 1.1 })
       if (k === 'booking') {
-        gsap.fromTo(node.querySelector('.cf-cal-check'), { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.4, ease: 'power2.out' })
-        gsap.fromTo(node.querySelector('.cf-badge'), { scale: 0.4 }, { scale: 1, duration: 0.55, ease: 'back.out(3)' })
+        gsap.fromTo(node.querySelector('.cf-cal-check'), { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.55, ease: 'power2.out' })
+        gsap.fromTo(node.querySelector('.cf-badge'), { scale: 0.4 }, { scale: 1, duration: 0.75, ease: 'back.out(3)' })
       }
       if (k === 'insight') {
-        gsap.fromTo(node.querySelector('.cf-ins-line'), { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.5, ease: 'power2.out' })
+        gsap.fromTo(node.querySelector('.cf-ins-line'), { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.7, ease: 'power2.out' })
         const chart = root.querySelector('.cf-chart-hi'), end = root.querySelector('.cf-chart-end')
-        if (chart) gsap.fromTo(chart, { strokeDashoffset: 1, opacity: 1 }, { strokeDashoffset: 0, duration: 1.1, ease: 'power2.out', onComplete() { gsap.to(chart, { opacity: 0.35, duration: 1.2, delay: 0.6 }) } })
-        if (end) gsap.fromTo(end, { scale: 0.6, opacity: 0.4 }, { scale: 1.6, opacity: 1, duration: 0.5, yoyo: true, repeat: 1, transformOrigin: '50% 50%', delay: 0.9 })
+        if (chart) gsap.fromTo(chart, { strokeDashoffset: 1, opacity: 1 }, { strokeDashoffset: 0, duration: 1.5, ease: 'power2.out', onComplete() { gsap.to(chart, { opacity: 0.35, duration: 1.6, delay: 0.8 }) } })
+        if (end) gsap.fromTo(end, { scale: 0.6, opacity: 0.4 }, { scale: 1.6, opacity: 1, duration: 0.7, yoyo: true, repeat: 1, transformOrigin: '50% 50%', delay: 1.25 })
       }
     }
 
@@ -187,13 +187,13 @@ export default function ConnectedFlow() {
       for (const l of lens) { acc += l; fr.push(acc / total) }
       const pill = pillRefs.current[ch]
 
-      const tl = gsap.timeline({ onComplete: () => { L.next = gsap.delayedCall(0.45, () => runLead((ch + 1) % CHANNELS.length)) } })
+      const tl = gsap.timeline({ onComplete: () => { L.next = gsap.delayedCall(1.2, () => runLead((ch + 1) % CHANNELS.length)) } })
       L.tl = tl
       tl.call(() => { pill?.classList.add('is-live') })
       tl.set(tag, { opacity: 0 })
       tl.set(rider, { motionPath: { path, start: 0, end: 0 } })
-      tl.to(rider, { opacity: 1, duration: 0.25 }, '<')
-      tl.to(rider, { motionPath: { path, start: 0, end: fr[0] }, duration: 1.0, ease: 'power1.inOut' }, '<')
+      tl.to(rider, { opacity: 1, duration: 0.35 }, '<')
+      tl.to(rider, { motionPath: { path, start: 0, end: fr[0] }, duration: 2.3, ease: 'power1.inOut' }, '<')
       tl.call(() => { pill?.classList.remove('is-live'); pulse(0) })
       for (let i = 1; i < g.nodes.length; i++) {
         const s = STEPS[i - 1], a = g.nodes[i - 1], b = g.nodes[i]
@@ -201,13 +201,13 @@ export default function ConnectedFlow() {
           tag.textContent = s.status
           tag.classList.toggle('is-success', !!(s as { success?: boolean }).success)
           gsap.set(tag, { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 + 16, xPercent: -50 })
-        }, [], '+=0.45')
-        tl.to(rider, { motionPath: { path, start: fr[i - 1], end: fr[i] }, duration: 0.85, ease: 'power1.inOut' })
-        tl.to(tag, { opacity: 1, duration: 0.18 }, '<0.12')
-        tl.to(tag, { opacity: 0, duration: 0.15 }, '<0.5')
+        }, [], '+=0.7')
+        tl.to(rider, { motionPath: { path, start: fr[i - 1], end: fr[i] }, duration: 2.0, ease: 'power1.inOut' })
+        tl.to(tag, { opacity: 1, duration: 0.25 }, '<0.3')
+        tl.to(tag, { opacity: 0, duration: 0.22 }, '<1.25')
         tl.call(() => pulse(i))
       }
-      tl.to(rider, { opacity: 0, duration: 0.3 }, '+=0.15')
+      tl.to(rider, { opacity: 0, duration: 0.4 }, '+=0.25')
       if (!L.visible || L.hover) tl.pause()
     }
 
