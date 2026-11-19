@@ -14,6 +14,7 @@ import LazyVideo from './ui/lazy-video'
 import { BorderRotate } from './ui/animated-gradient-border'
 import { goToPath } from '../lib/navigation'
 import Footer from './Footer'
+import SocialCampaignMotion from './SocialCampaignMotion'
 import { servicePageByCardId, type ServiceKey } from '../lib/servicePages'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -2826,6 +2827,7 @@ function SocialMediaMarketing() {
     tl.to(el.querySelectorAll('.s5cv-body'),    { opacity: 1, y: 0, duration: 0.75, stagger: 0.12 }, 0.22)
     tl.to(el.querySelectorAll('.s5cv-item'),    { opacity: 1, y: 0, duration: 0.5, stagger: 0.09 }, 0.3)
     tl.to(el.querySelectorAll('.s5cv-img-a'),   { opacity: 1, y: 0, duration: 1.2, ease: 'power2.out' }, 0.15)
+    tl.to(el.querySelectorAll('.s5cv-motion'),  { opacity: 1, y: 0, duration: 1.2, ease: 'power2.out' }, 0.15)
     tl.to(el.querySelectorAll('.s5cv-img-b'),   { opacity: 1, y: 0, duration: 1.4, ease: 'power2.out' }, 0.28)
     tl.add(() => {
       // Image 1: floats UP, tilts, inner img zooms in and out
@@ -4041,46 +4043,10 @@ function SocialMediaMarketing() {
           {/* ── RIGHT: image showcase ── */}
           <div className="flex flex-col sm:flex-row sm:items-end gap-5 order-2">
 
-            {/* Image 1: Instagram Watch — gallery-mounted tall frame */}
+            {/* "One idea. Every platform." kinetic typography — same frame size as the former watch post */}
             <div className="d-watch-solo flex-1 relative w-full sm:w-auto" style={{ zIndex: 1 }}>
-              <div
-                className="s5cv-img-a"
-                style={{
-                  opacity: 0, transform: 'translateY(36px)',
-                  borderRadius: '28px', overflow: 'hidden',
-                  boxShadow: [
-                    '0 36px 72px -16px hsl(0 0% 0% / 0.9)',
-                    '0 0 0 1px hsl(0 0% 100% / 0.07)',
-                    '0 0 56px -18px hsl(44 100% 71% / 0.22)',
-                  ].join(', '),
-                  background: '#080a0e',
-                  transition: 'transform 0.65s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.65s ease',
-                  position: 'relative',
-                }}
-                onMouseEnter={e => {
-                  (e.currentTarget as HTMLElement).style.boxShadow = [
-                    '0 50px 96px -14px hsl(0 0% 0% / 0.94)',
-                    '0 0 0 1px hsl(0 0% 100% / 0.1)',
-                    '0 0 76px -14px hsl(44 100% 71% / 0.32)',
-                  ].join(', ')
-                }}
-                onMouseLeave={e => {
-                  (e.currentTarget as HTMLElement).style.boxShadow = [
-                    '0 36px 72px -16px hsl(0 0% 0% / 0.9)',
-                    '0 0 0 1px hsl(0 0% 100% / 0.07)',
-                    '0 0 56px -18px hsl(44 100% 71% / 0.22)',
-                  ].join(', ')
-                }}
-              >
-                <img
-                  src="/brand_assets/Watch_L.webp"
-                  alt="Instagram luxury watch campaign visual"
-                  style={{
-                    position: 'absolute', inset: 0,
-                    width: '100%', height: '100%',
-                    objectFit: 'contain', objectPosition: 'center',
-                  }}
-                />
+              <div className="s5cv-motion" style={{ opacity: 0, transform: 'translateY(36px)' }}>
+                <SocialCampaignMotion />
               </div>
             </div>
 

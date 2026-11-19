@@ -2377,6 +2377,84 @@ a.footer-social-icon:active::before { transform: scale(0.96); }
   .d-watch-solo { width: min(calc(100vw - 24px), max(100%, 351px)); align-self: center; }
 }
 
+/* ── "One idea. Every platform." kinetic typography (SocialCampaignMotion.tsx) ──
+   Takes the watch frame's place at exactly the same size (same heights as
+   .s5cv-img-a above, same width from .d-watch-solo), so the section keeps its
+   proportions. Type and spacing scale with the card's own width. */
+.s5cv-motion { container-type: inline-size; height: min(572px, calc((100vw - 24px) * 1.9)); }
+@media (min-width: 640px)  { .s5cv-motion { height: 650px; } }
+@media (min-width: 1024px) { .s5cv-motion { height: clamp(525px, 57vw, 745px); } }
+
+.scm {
+  position: relative; isolation: isolate; overflow: hidden;
+  display: flex; flex-direction: column;
+  width: 100%; height: 100%;
+  padding: 28px;
+  border-radius: 28px;
+  background: linear-gradient(180deg, #050d11 0%, #010709 62%);
+  box-shadow: 0 36px 72px -16px hsl(0 0% 0% / 0.9), 0 0 0 1px hsl(0 0% 100% / 0.07), 0 0 56px -18px hsl(44 100% 71% / 0.16);
+  font-family: var(--font-heading); font-weight: 500; color: #fff;
+}
+.scm-glow { position: absolute; inset: -10%; z-index: -1; pointer-events: none; }
+.scm-glow-0 { background: radial-gradient(70% 45% at 18% 64%, hsl(262 60% 55% / 0.17) 0%, transparent 70%); }
+.scm-glow-1 { background: radial-gradient(70% 45% at 22% 66%, hsl(190 80% 58% / 0.13) 0%, transparent 70%); }
+.scm-glow-2 { background: radial-gradient(70% 45% at 20% 66%, hsl(44 100% 71% / 0.13) 0%, transparent 70%); }
+
+.scm-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px;
+  font-size: 11px; line-height: 1.6; letter-spacing: 0.2em; text-transform: uppercase; }
+.scm-title { display: flex; flex-direction: column; color: rgba(255, 255, 255, 0.88); }
+.scm-title-dim { color: rgba(255, 255, 255, 0.42); }
+.scm-count { display: inline-flex; gap: 0.5em; color: rgba(255, 255, 255, 0.36); font-variant-numeric: tabular-nums; letter-spacing: 0.14em; }
+.scm-num { display: inline-grid; overflow: hidden; color: rgba(255, 255, 255, 0.9); }
+.scm-num-d { grid-area: 1 / 1; }
+
+.scm-stage { flex: 1; min-height: 0; display: flex; flex-direction: column; justify-content: center; }
+.scm-label-row { display: flex; align-items: center; gap: 12px; margin-bottom: 18px;
+  font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255, 255, 255, 0.5); }
+.scm-label-row::before { content: ''; width: 20px; height: 1px; background: currentColor; flex-shrink: 0; }
+.scm-labels { display: inline-grid; overflow: hidden; }
+.scm-label { grid-area: 1 / 1; white-space: nowrap; }
+.scm-label-0 { color: hsl(262 72% 80%); }
+.scm-label-1 { color: hsl(190 72% 72%); }
+.scm-label-2 { color: #FFD86B; }
+
+.scm-head { font-size: clamp(2.1rem, 11vw, 4.2rem); line-height: 0.98; letter-spacing: -0.035em; text-transform: uppercase; }
+.scm-line { display: block; overflow: hidden; padding: 0.07em 0.12em 0.05em; margin: 0 -0.12em; }
+.scm-lead, .scm-word { display: inline-block; position: relative; z-index: 0; will-change: transform; }
+.scm-last { display: grid; }
+.scm-word { grid-area: 1 / 1; justify-self: start; transform-origin: 0% 100%; }
+.scm-word-gold { color: #FFD86B; }
+.scm-hl { position: absolute; z-index: -1; left: -0.1em; right: -0.08em; top: 0.08em; bottom: 0.02em;
+  background: hsl(260 40% 45%); transform: scaleX(0); transform-origin: 0% 50%; }
+.scm-rule { position: absolute; left: 0.02em; right: 0.2em; bottom: 0.02em; height: max(2px, 0.03em);
+  transform: scaleX(0); transform-origin: 0% 50%; }
+.scm-rule-cyan { background: hsl(190 85% 64%); }
+.scm-rule-gold { background: #FFD86B; }
+
+.scm-nav { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-top: 16px; }
+.scm-dot { appearance: none; background: none; border: 0; padding: 14px 0 8px; margin: 0; cursor: pointer; text-align: left;
+  font: inherit; font-size: 10px; line-height: 1.4; letter-spacing: 0.16em; text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.38); transition: color 0.3s ease; -webkit-tap-highlight-color: transparent; }
+.scm-dot:hover { color: rgba(255, 255, 255, 0.7); }
+.scm-dot[aria-pressed='true'] { color: rgba(255, 255, 255, 0.9); }
+.scm-dot:focus-visible { outline: 1px solid hsl(44 100% 71% / 0.7); outline-offset: 4px; border-radius: 4px; }
+.scm-dot-name { display: none; }
+.scm-track { position: relative; display: block; height: 1px; margin-top: 10px; overflow: hidden; background: rgba(255, 255, 255, 0.14); }
+.scm-fill { position: absolute; inset: 0; transform: scaleX(0); transform-origin: 0% 50%; }
+.scm-fill-0 { background: hsl(262 72% 78%); }
+.scm-fill-1 { background: hsl(190 80% 68%); }
+.scm-fill-2 { background: #FFD86B; }
+
+@supports (container-type: inline-size) {
+  .scm { padding: clamp(22px, 7.5cqi, 44px); }
+  .scm-head { font-size: clamp(2.1rem, 17cqi, 5.6rem); }
+  .scm-label-row { margin-bottom: clamp(14px, 5cqi, 26px); }
+  @container (min-width: 330px) {
+    .scm-dot-num { display: none; }
+    .scm-dot-name { display: inline; }
+  }
+}
+
 /* ── Desktop typography — readability pass (≥1024px only) ───────────────────
    Supporting copy, service cards and lists set their size through these
    tokens with their original value as the fallback (e.g.
