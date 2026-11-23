@@ -1057,6 +1057,10 @@ function WorkHero() {
 const WORK_STORY_SRC = '/brand_assets/HERO_SECTION2-1920.mp4'
 const WORK_STORY_MOBILE_SRC = '/brand_assets/HERO_SECTION2-1280.mp4'
 const WORK_STORY_POSTER = '/brand_assets/HERO_SECTION2-poster.webp'
+// Desktop only: the same video with a stray picture-in-picture box (baked into
+// the bottom-left corner, under the copy) blended into black. Phones/tablets
+// crop that corner out, so they keep the files above unchanged.
+const WORK_STORY_DESKTOP_SRC = '/brand_assets/HERO_SECTION2-clean-1920.mp4'
 
 // Phone version of the "Every project begins with a single question" video:
 // its copy is baked into the left ~30% of the 16:9 frame (≈5–12px on a
@@ -1124,7 +1128,7 @@ export default function ImageShowcase() {
         {isPhone ? <WorkStoryPhone /> : (
         <div className="relative max-w-[109rem] mx-auto px-[4px] sm:px-[7px] lg:px-8">
           <LazyVideo
-            src={WORK_STORY_SRC}
+            src={WORK_STORY_DESKTOP_SRC}
             poster={WORK_STORY_POSTER}
             style={{
               display: 'block',
